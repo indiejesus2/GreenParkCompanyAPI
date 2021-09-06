@@ -1,5 +1,5 @@
 {
-  "name": "Green Park Company API",
+  "name": "green_park_company_api",
   "private": true,
   "dependencies": {
     "@babel/preset-react": "^7.14.5",
