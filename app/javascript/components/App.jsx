@@ -1,11 +1,4 @@
 import React from 'react';
+import Routes from '../routes/Index'
 
-export default function App() {
-
-    return (
-        <div>
-            <h1>Welcome!</h1>
-            <p>You Got Mail!</p>
-        </div>
-    )
-}
+export default props => <>{Routes}</>;
