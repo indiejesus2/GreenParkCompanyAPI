@@ -10,19 +10,17 @@ import Home from '../components/Home';
 import EmployeesContainer from '../containers/EmployeesContainer'
 import NavBar from '../components/NavBar'
 
+
         
 
 function App() {
     return (
         <div>
-        <Router>
         <NavBar />
             <Switch>
                 <Route path="/" exact component={Home}></Route>
-                <Route path="/employees" exact component={EmployeesContainer}></Route>
+                <Route path="/employees" component={EmployeesContainer}></Route>
             </Switch>
-        </Router>
-
         </div>
     )
 }

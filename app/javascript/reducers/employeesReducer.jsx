@@ -1,7 +1,7 @@
 export default function employeesReducer(state = {employee: [], loggedIn: false}, action) {
     switch(action.type) {
         case 'SIGNIN_EMPLOYEE':
-            debugger
+            // debugger
             return {
                 employee: action.payload,
                 loggedIn: true
