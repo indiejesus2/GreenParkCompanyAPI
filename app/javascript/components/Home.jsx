@@ -4,19 +4,28 @@ import { Link } from 'react-router-dom'
 class Home extends Component {
     render() {
         return (
-            <div className="home">
+            <div className="homepage">
+                <div className="homepage-image">
+                    <div className="homepage-container">
+                <div className="homepage-header">
+
                 <h1>Start Your Career Path, Today!</h1>
-                <div className="employees">
+                </div>
+                <div className="homepage-body">
+                <div className="cards">
                     <Link to="/employees">
-                    <h5>JobSeekers</h5>
+                    <label>JobSeekers</label>
                         <button>Search Jobs</button>
                     </Link>
                 </div>
-                <div className="employers">
-                    <h5>Employers</h5>
+                <div className="cards">
+                    <label>Employers</label>
                     <Link to="/employers">
                         <button>Post Jobs</button>
                     </Link>
+                </div>
+                </div>
+                </div>
                 </div>
             </div>
         )

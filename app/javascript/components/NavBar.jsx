@@ -6,8 +6,10 @@ class NavBar extends Component {
         return (
             <div className="nav">
             <div className="logo">
+                <Link to="/">
                 <img src="/images/React.png" alt="Logo" />
                 <h3>Green Park Company</h3>
+                </Link>
             </div>
             <div className="links">
                 <Link to={'/employees'}>For Employees</Link>

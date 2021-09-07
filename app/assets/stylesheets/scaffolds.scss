@@ -63,3 +63,36 @@ div.actions {
 
 label {
   display: block; }
+
+.homepage-container {
+  padding: 50px;
+  // display: grid;
+  text-align: center;
+  // justify-content: space-between;
+}
+
+.homepage-body {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 25px;
+  padding: 25px;
+}
+
+.homepage .cards {
+  background-color: #cccccc;
+  border: black 1px solid;
+  padding: 10px;
+  margin: 10px;
+  width: 100px;
+  height: 50px;
+}
+
+.homepage-image {
+  background-image: url("/images/WorkersHouse.jpg");
+  background-color: #cccccc;
+  height: 500px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
