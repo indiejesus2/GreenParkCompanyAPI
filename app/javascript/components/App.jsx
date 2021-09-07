@@ -22,6 +22,9 @@ function App() {
                 <Route path="/employees" exact component={EmployeesContainer}></Route>
             </Switch>
         </Router>
+        <div className="footer">
+        <a href="https://www.freepik.com/vectors/banner">Banner vector created by katemangostar - www.freepik.com</a>
+        </div>
         </div>
     )
 }
