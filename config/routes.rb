@@ -4,7 +4,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :employees
       resources :employers
-
+      post '/signin', to: 'auth#create'
     end
   end
 end

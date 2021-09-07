@@ -7,7 +7,7 @@ export default function SignIn(props) {
 
     const handleChange = (event) => {
         return(
-        event.target.name==="username"?setUsername(event.target.value):
+        event.target.name==="email"?setEmail(event.target.value):
         event.target.name==="password"?setPassword(event.target.value):
         ()=>{}
         )
@@ -15,21 +15,21 @@ export default function SignIn(props) {
         
     const handleSubmit = (event) => {
         event.preventDefault()
-        let state = {username: username, password: password}
-        props.loginUser(state)
+        let state = {email: email, password: password}
+        props.signIn(state)
     }
 
         return (
-            <div class="signin">
+            <div className="signin">
                 <h1>Sign-In</h1>
-            <div class="input">
+            <div className="input">
                 <form onSubmit={handleSubmit}>
-                    <label>Username: </label>
-                    <input type="text" name="username" id="username" onChange={handleChange}/>
+                    <label>Email: </label>
+                    <input type="text" name="email" id="email" onChange={handleChange}/>
                     <br />
                     <label>Password: </label>
                     <input type="password" name="password" id="password" onChange={handleChange}/>
-                        <div class="submit">
+                        <div className="submit">
                             <input type="submit" value="Log-In"/>
                         </div>
                 </form>

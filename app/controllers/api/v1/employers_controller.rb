@@ -1,4 +1,4 @@
-class EmployersController < ApplicationController
+class Api::V1::EmployersController < ApplicationController
   before_action :set_employer, only: %i[ show edit update destroy ]
 
   # GET /employers or /employers.json

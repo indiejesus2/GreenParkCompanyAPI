@@ -1,8 +1,9 @@
-export default function employeesReducer(state = {user: [], loggedIn: false}, action) {
+export default function employeesReducer(state = {employee: [], loggedIn: false}, action) {
     switch(action.type) {
-        case 'SIGNIN_USER':
+        case 'SIGNIN_EMPLOYEE':
+            debugger
             return {
-                user: action.payload,
+                employee: action.payload,
                 loggedIn: true
             }
         default:
