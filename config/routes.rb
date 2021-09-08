@@ -5,6 +5,7 @@ Rails.application.routes.draw do
       resources :employees
       resources :employers
       post '/signin', to: 'auth#create'
+      post '/signup', to: 'employees#create'
     end
   end
 end

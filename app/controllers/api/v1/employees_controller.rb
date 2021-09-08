@@ -1,5 +1,6 @@
 class Api::V1::EmployeesController < ApplicationController
   before_action :set_employee, only: %i[ show edit update destroy ]
+  wrap_parameters :employee, include: [:name, :email, :password]
 
   # GET /employees or /employees.json
   def index
@@ -23,16 +24,16 @@ class Api::V1::EmployeesController < ApplicationController
   # POST /employees or /employees.json
   def create
     @employee = Employee.new(employee_params)
-
-    respond_to do |format|
-      if @employee.save
-        format.html { redirect_to @employee, notice: "Employee was successfully created." }
-        format.json { render :show, status: :created, location: @employee }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @employee.errors, status: :unprocessable_entity }
-      end
+    if @employee.save
+      render json: @employee
+      # format.html { redirect_to @employee, notice: "Employee was successfully created." }
+        # format.json { render :show, status: :created, location: @employee }
+    else
+        render json: @employee.errors
+        # format.html { render :new, status: :unprocessable_entity }
+        # format.json { render json: @employee.errors, status: :unprocessable_entity }
     end
+    # end
   end
 
   # PATCH/PUT /employees/1 or /employees/1.json
@@ -65,6 +66,6 @@ class Api::V1::EmployeesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def employee_params
-      params.require(:employee).permit(:email, :password, :password_confirmation)
+      params.require(:employee).permit(:name, :email, :password)
     end
 end
