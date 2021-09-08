@@ -5,12 +5,14 @@ import {signIn} from '../actions/signIn'
 import { signUpEmployee } from '../actions/signUpEmployee'
 import Employees from '../components/Employees/Employees'
 import SignUp from '../components/Employees/SignUp'
+import Profile from '../components/Employees/Profile'
 
 class EmployeesContainer extends Component {
     render() {
         return (
             <div className="employee">
                 <Switch>
+                    <Route path='/employees/profile' render={(routerProps) => <Profile {...routerProps} signUpEmployee={this.props.signUpEmployee} />}></Route>
                     <Route path='/employees/signup' render={(routerProps) => <SignUp {...routerProps} signUpEmployee={this.props.signUpEmployee} />}></Route>
                     <Route path='/employees' render={(routerProps) => <Employees {...routerProps} signIn={this.props.signIn} loggedIn={this.props.loggedIn} employee={this.props.employee}/>}></Route>
                 </Switch>
