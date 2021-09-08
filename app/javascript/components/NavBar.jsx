@@ -14,6 +14,7 @@ class NavBar extends Component {
             <div className="links">
                 <Link to={'/employees'}>For Employees</Link>
                 <Link to={'/employers'}>For Employers</Link>
+                <Link to={'/employees/profile'}>Profile</Link>
             </div>
         </div>
         )

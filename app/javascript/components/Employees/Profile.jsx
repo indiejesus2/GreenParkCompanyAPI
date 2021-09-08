@@ -4,25 +4,28 @@ export default function Profile(props) {
 
     // First Name, Last Name, Location(Zipcode), Phone, Job Type(FT, PT, ...etc), Schedule (M-F, WKND), Job History, Education, Skills, Military Service, Certficates
 
-    const [fname, setFname] = useState()
-    const [lname, setlname] = useState()
-    const [location, setLocation] = useState()
-    const [phone, setPhone] = useState()
-    const [jobType, setJobType] = useState()
-    const [schedule, setSchedule] = useState()
-    const [education, setEducation] = useState()
-    const [history, setHistory] = useState()
-    const [skills, setSkills] = useState()
-    const [military, setMilitary] = useState()
-    const [certificates, setCertificates] = useState()
+    const [state, setState] = useState({
+        fname : "",
+        lname: "",
+        location: "",
+        phone: "",
+        status: "",
+        jobType: "",
+        schedule: "",
+        education: "",
+        history: "",
+        skills: "",
+        military: "",
+        certificates: "",
+        description: ""
+    })
 
     const handleChange = (event) => {
-        return (
-            // event.target.name==="name"?setName(event.target.value):
-            event.target.name==="email"?setEmail(event.target.value):
-            event.target.name==="password"?setPassword(event.target.value):
-            ()=>{}
-        )
+        const {name, value}  = event.target
+        setState( prevState => ({
+            ...prevState,
+            [name] : value
+        }))
     }
 
     const handleSubmit = (event) => {
@@ -50,6 +53,46 @@ export default function Profile(props) {
                         <label htmlFor="phone">Phone: </label>
                         <input type="text" name="phone" id="phone" onChange={handleChange} />
                         <br />
+                        <label htmlFor="status">Status: </label>
+                        <input type="radio" name="status" id="status" value="authorized" onChange={handleChange} /> Authorized to work in the US for any employer
+                        <br />
+                        <input type="radio" name="status" id="status" value="sponsorship" onChange={handleChange} /> Sponsorship required to work in the US
+                        <br />
+                        <input type="radio" name="status" id="status" value="unknown" onChange={handleChange} /> Not specified
+                        <br />
+                    </div>
+                    <div className="work-schedule">
+                        <label htmlFor="job-type">Job-Type: </label>
+                        <input type="checkbox" name="jobType" value="ft" onChange={handleChange} /> Full-time
+                        <input type="checkbox" name="jobType" value="pt" onChange={handleChange} /> Part-time
+                        <input type="checkbox" name="jobType" value="contract" onChange={handleChange} /> Contract
+                        <input type="checkbox" name="jobType" value="temporary" onChange={handleChange} /> Temporary
+                        <br />
+                        <label htmlFor="schedule">Schedule: </label>
+                        <input type="checkbox" name="schedule" value="M-F" onChange={handleChange}/>
+                        M-F
+                        <input type="checkbox" name="schedule" value="Weekends" onChange={handleChange}/>
+                        Weekends
+                        <input type="checkbox" name="schedule" value="Overnight" onChange={handleChange}/>
+                        Overnight
+                        <input type="checkbox" name="schedule" value="Holidays" onChange={handleChange}/>
+                        Holidays
+                    </div>
+                    <div className="education">
+                        <label htmlFor="education">Education: </label>
+                        <select name="education" id="education">
+                            <option value="hs">High-School</option>
+                            <option value="ged">GED</option>
+                            <option value="sc">Some College</option>
+                            <option value="BA">BA</option>
+                            <option value="BS">BS</option>
+                            <option value="MA">MA</option>
+                            <option value="MS">MS</option>
+                        </select>    
+                    </div>
+                    <div className="history">
+                        <h5>Work History</h5>
+
                     </div>
                 </form>
             </div>
