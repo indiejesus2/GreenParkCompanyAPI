@@ -6,8 +6,9 @@ class Api::V1::AuthController < ApplicationController
     def create
         @employee = Employee.find_by(email: employee_params[:email])
         if @employee && @employee.authenticate(employee_params[:password])
+            session[:user_id] = @employee.id
             # format.html { redirect_to @employee, notice: "Employee was successfully created." }
-            render json: @employee
+            render json: {employee: @employee, profile: @employee.profile}
             # token = issue_token(@user)
             # cookies.signed[:jwt] = {value: token, httponly: true, expires: 1.hour.from_now}
             # render json: {user: UserSerializer.new(@user), jwt: token}

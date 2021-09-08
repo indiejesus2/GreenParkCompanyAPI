@@ -12,9 +12,9 @@ class EmployeesContainer extends Component {
         return (
             <div className="employee">
                 <Switch>
-                    <Route path='/employees/profile' render={(routerProps) => <Profile {...routerProps} signUpEmployee={this.props.signUpEmployee} />}></Route>
+                    <Route path='/employees/:id/profile' render={(routerProps) => <Profile {...routerProps} employee={this.props.employee} profile={this.props.profile} />}></Route>
                     <Route path='/employees/signup' render={(routerProps) => <SignUp {...routerProps} signUpEmployee={this.props.signUpEmployee} />}></Route>
-                    <Route path='/employees' render={(routerProps) => <Employees {...routerProps} signIn={this.props.signIn} loggedIn={this.props.loggedIn} employee={this.props.employee}/>}></Route>
+                    <Route path='/employees' render={(routerProps) => <Employees {...routerProps} signIn={this.props.signIn} loggedIn={this.props.loggedIn} employee={this.props.employee} profile={this.props.profile} />}></Route>
                 </Switch>
             </div>
         )
@@ -24,6 +24,7 @@ class EmployeesContainer extends Component {
 const mapStateToProps = state => {
     return {
         employee: state.employeesReducer.employee,
+        profile: state.employeesReducer.profile,
         loggedIn: state.employeesReducer.loggedIn
     }
 }

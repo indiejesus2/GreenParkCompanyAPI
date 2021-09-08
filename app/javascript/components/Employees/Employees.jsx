@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import SignIn from './signin'
 
 const Employees = props => {
+    debugger
     if (props.loggedIn === false) {
         return (
             <div className="jobs">
@@ -19,7 +20,7 @@ const Employees = props => {
     } else {
         return (
                 <div className="jobs">
-                    <h1>{props.employee.name} Jobs!</h1>
+                    <h1>{props.profile.fname} {props.profile.lname} Jobs!</h1>
                     <p>Jobs!</p>
                 </div>
         )

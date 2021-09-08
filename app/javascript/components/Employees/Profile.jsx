@@ -30,8 +30,8 @@ export default function Profile(props) {
 
     const handleSubmit = (event) => {
         event.preventDefault()
-        let state = {email: email, password: password}
-        props.signUpEmployee(state)
+        // let state = {email: email, password: password}
+        props.updateEmployee(state)
         props.history.push('/employees/profile')
     }
 

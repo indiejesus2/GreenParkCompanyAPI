@@ -5,4 +5,5 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-Employee.create(name: 'Steve Jobs', email: 'steve.jobs@gmail.com', password: 'abc123', zipcode: '08527')
+Employee.create(email: 'steve.jobs@gmail.com', password: 'abc123')
+Profile.create(employee_id: 1, fname: "Steve", lname: "Jobs")
