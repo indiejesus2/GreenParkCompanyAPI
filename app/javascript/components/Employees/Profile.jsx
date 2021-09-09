@@ -24,12 +24,43 @@ export default function Profile(props) {
         description: props.profile.description
     })
 
+    // const [
+        // jobType, setJobType] = useState([
+    //     {id: 1, value: 'ft', isChecked: false},
+    //     {id: 2, value: 'pt', isChecked: false},
+    //     {id: 3, value: 'contract', isChecked: false},
+    //     {id: 4, value: 'temporary', isChecked: false},
+    // ])
+
     const handleChange = (event) => {
         const {name, value}  = event.target
+        console.log(event.target)
         setState( prevState => ({
             ...prevState,
             [name] : value
         }))
+        console.log(state)
+    }
+
+    const handleJob = (e) => {
+        if (e.target.checked === true) {
+            setState( prevState => ({
+                ...prevState,
+                jobType: [...state.jobType, {[e.target.id]: e.target.value}]
+            }))
+            // setJobType([...jobType, e.target.value])
+        } else {
+            let group = state.jobType
+            let deleted = group.findIndex(job => Object.keys(job)[0] == e.target.id)
+            group.splice(deleted, 1)
+            debugger
+            setState( prevState => ({
+                ...prevState,
+                jobType: [...state.jobType, ...group]
+            }))
+            // debugger
+        }
+        // debugger
     }
 
     const handleSubmit = (event) => {
@@ -67,10 +98,10 @@ export default function Profile(props) {
                     </div>
                     <div className="work-schedule">
                         <label htmlFor="job-type">Job-Type: </label>
-                        <input type="checkbox" name="jobType" value="ft" onChange={handleChange} /> Full-time
-                        <input type="checkbox" name="jobType" value="pt" onChange={handleChange} /> Part-time
-                        <input type="checkbox" name="jobType" value="contract" onChange={handleChange} /> Contract
-                        <input type="checkbox" name="jobType" value="temporary" onChange={handleChange} /> Temporary
+                        <input type="checkbox" name="jobType" value="ft" id='1' onChange={handleJob} /> Full-time
+                        <input type="checkbox" name="jobType" value="pt" id='2' onChange={handleJob} /> Part-time
+                        <input type="checkbox" name="jobType" value="contract" id='3' onChange={handleJob} /> Contract
+                        <input type="checkbox" name="jobType" value="temporary" id='4' onChange={handleJob} /> Temporary
                         <br />
                         <label htmlFor="schedule">Schedule: </label>
                         <input type="checkbox" name="schedule" value="M-F" onChange={handleChange}/>
@@ -84,7 +115,8 @@ export default function Profile(props) {
                     </div>
                     <div className="education">
                         <label htmlFor="education">Education: </label>
-                        <select name="education" id="education">
+                        <select name="education" id="education" onChange={handleChange}>
+                            <option value="">--</option>
                             <option value="hs">High-School</option>
                             <option value="ged">GED</option>
                             <option value="sc">Some College</option>
