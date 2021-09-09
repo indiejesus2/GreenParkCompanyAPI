@@ -34,7 +34,6 @@ export default function Profile(props) {
 
     const handleChange = (event) => {
         const {name, value}  = event.target
-        console.log(event.target)
         setState( prevState => ({
             ...prevState,
             [name] : value
@@ -46,25 +45,26 @@ export default function Profile(props) {
         if (e.target.checked === true) {
             setState( prevState => ({
                 ...prevState,
-                jobType: [...state.jobType, {[e.target.id]: e.target.value}]
+                jobType: [...state.jobType, {id: e.target.id, value: e.target.value}]
             }))
-            // setJobType([...jobType, e.target.value])
         } else {
             let group = state.jobType
             let deleted = group.findIndex(job => Object.keys(job)[0] == e.target.id)
             group.splice(deleted, 1)
-            debugger
             setState( prevState => ({
                 ...prevState,
-                jobType: [...state.jobType, ...group]
+                jobType: group
             }))
-            // debugger
         }
-        // debugger
+    }
+
+    const handleHistory = (e) => {
+        debugger
     }
 
     const handleSubmit = (event) => {
         event.preventDefault()
+        debugger
         // let state = {email: email, password: password}
         props.updateProfile(state)
         props.history.push('/employees')
@@ -128,6 +128,21 @@ export default function Profile(props) {
                     </div>
                     <div className="history">
                         <h5>Work History</h5>
+                        <label htmlFor="Job Title">Job Title: </label>
+                        <input type="text" name="historyTitle" value={state.history} onChange={handleChange} />
+                        <br />
+                        <label htmlFor="Company">Company: </label>
+                        <input type="text" name="historyCompany" value={state.history} onChange={handleChange} />
+                        <br />
+                        <label htmlFor="zipcode">Zipcode: </label>
+                        <input type="text" name="zipcode" value={state.history} onChange={handleChange} />
+                        <br />
+                        <label htmlFor="Description">Description: </label>
+                        <input type="text" name="historyDesc" value={state.history} onChange={handleChange} />
+                        <br />
+                        <label htmlFor="phone">Phone: </label>
+                        <input type="text" name="phone" value={state.phone} onChange={handleChange} />
+                        <br />
                     </div>
                     <div className="submit">
                         <input type="submit" value="Edit Profile" />

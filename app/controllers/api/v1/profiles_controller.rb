@@ -20,9 +20,9 @@ class Api::V1::ProfilesController < ApplicationController
     end
 
     def update 
+        # byebug
         @profile = @employee.profile
         @profile.update(profile_params)
-        # byebug
         if @profile.save
             render json: {profile: @profile}
         else
@@ -33,7 +33,9 @@ class Api::V1::ProfilesController < ApplicationController
     private
     
     def profile_params
-        params.require(:profile).permit(:fname, :lname, :zipcode, :phone, :status, :jobType, :schedule, :education, :history, :skills, :military, :certificates, :description, :employee_id)
+        # jobType_params = (params[:profile] || {})[jobType: :value].keys
+        # byebug
+        params.require(:profile).permit(:id, :fname, :lname, :zipcode, :phone, :status, {jobType: :value}, {:schedule  => []}, :education, {:history => []}, {:skills => []}, :military, :certificates, :description, :employee_id)
     end
 
     def set_employee
