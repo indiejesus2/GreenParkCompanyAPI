@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import SignIn from './signin'
 
 const Employees = props => {
-    debugger
+    // debugger
     if (props.loggedIn === false) {
         return (
             <div className="jobs">

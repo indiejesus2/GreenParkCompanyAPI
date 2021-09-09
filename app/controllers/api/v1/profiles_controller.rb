@@ -13,20 +13,31 @@ class Api::V1::ProfilesController < ApplicationController
     def create
         @profile = @employee.profiles.new(profile_params)
         if @profile.save
-            render json: @employee
+            render json: @profile
         else
-            render json: @employee.errors
+            render json: @profile.errors
+        end
+    end
+
+    def update 
+        @profile = @employee.profile
+        @profile.update(profile_params)
+        # byebug
+        if @profile.save
+            render json: {profile: @profile}
+        else
+            render json: @profile.errors
         end
     end
 
     private
     
     def profile_params
-        params.require(:profile).permit()
+        params.require(:profile).permit(:fname, :lname, :zipcode, :phone, :status, :jobType, :schedule, :education, :history, :skills, :military, :certificates, :description, :employee_id)
     end
 
     def set_employee
-        @employee = current_user.employee if current_user
+        @employee = Employee.find_by_id(params[:employee_id])
     end
 
 end

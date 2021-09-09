@@ -2,22 +2,26 @@ import React, { useState, useEffect } from 'react'
 
 export default function Profile(props) {
 
+    // debugger
+
     // First Name, Last Name, Location(Zipcode), Phone, Job Type(FT, PT, ...etc), Schedule (M-F, WKND), Job History, Education, Skills, Military Service, Certficates
 
     const [state, setState] = useState({
-        fname : "",
-        lname: "",
-        location: "",
-        phone: "",
-        status: "",
-        jobType: "",
-        schedule: "",
-        education: "",
-        history: "",
-        skills: "",
-        military: "",
-        certificates: "",
-        description: ""
+        id: props.profile.id,
+        employee_id: props.profile.employee_id,
+        fname: props.profile.fname,
+        lname: props.profile.lname,
+        zipcode: props.profile.zipcode,
+        phone: props.profile.phone,
+        status: props.profile.status,
+        jobType: props.profile.jobType,
+        schedule: props.profile.schedule,
+        education: props.profile.education,
+        history: props.profile.history,
+        skills: props.profile.skills,
+        military: props.profile.military,
+        certificates: props.profile.certificates,
+        description: props.profile.description
     })
 
     const handleChange = (event) => {
@@ -31,8 +35,8 @@ export default function Profile(props) {
     const handleSubmit = (event) => {
         event.preventDefault()
         // let state = {email: email, password: password}
-        props.updateEmployee(state)
-        props.history.push('/employees/profile')
+        props.updateProfile(state)
+        props.history.push('/employees')
     }
 
     return (
@@ -42,16 +46,16 @@ export default function Profile(props) {
                 <form onSubmit={handleSubmit} className="profile-form">
                     <div className="basic-info">
                         <label htmlFor="first name">First Name: </label>
-                        <input type="text" name="fname" id="fname" onChange={handleChange} />
+                        <input type="text" name="fname" value={state.fname} onChange={handleChange} />
                         <br />
                         <label htmlFor="last name">Last Name: </label>
-                        <input type="text" name="lname" id="lname" onChange={handleChange} />
+                        <input type="text" name="lname" value={state.lname} onChange={handleChange} />
                         <br />
-                        <label htmlFor="location">Zipcode: </label>
-                        <input type="text" name="location" id="location" onChange={handleChange} />
+                        <label htmlFor="zipcode">Zipcode: </label>
+                        <input type="text" name="zipcode" value={state.zipcode} onChange={handleChange} />
                         <br />
                         <label htmlFor="phone">Phone: </label>
-                        <input type="text" name="phone" id="phone" onChange={handleChange} />
+                        <input type="text" name="phone" value={state.phone} onChange={handleChange} />
                         <br />
                         <label htmlFor="status">Status: </label>
                         <input type="radio" name="status" id="status" value="authorized" onChange={handleChange} /> Authorized to work in the US for any employer
@@ -92,7 +96,9 @@ export default function Profile(props) {
                     </div>
                     <div className="history">
                         <h5>Work History</h5>
-
+                    </div>
+                    <div className="submit">
+                        <input type="submit" value="Edit Profile" />
                     </div>
                 </form>
             </div>

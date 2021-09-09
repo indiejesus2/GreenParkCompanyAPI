@@ -15,6 +15,11 @@ export default function employeesReducer(state = {employee: [], profile: [], log
                 loggedIn: true,
                 loading: false
             }
+        case 'UPDATE_PROFILE':
+            return {
+                ...state, 
+                profile: action.payload.profile
+            }
         default:
             return state
     }
