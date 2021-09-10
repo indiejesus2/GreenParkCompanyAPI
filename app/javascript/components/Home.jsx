@@ -12,14 +12,14 @@ class Home extends Component {
                         </div>
                         <div className="homepage-body">
                             <div className="cards">
-                                <Link to="/employees">
                                     <label>JobSeekers</label>
+                                <Link to="/employees">
                                     <button>Search Jobs</button>
                                 </Link>
                             </div>
                             <div className="cards">
-                                <label>Employers</label>
-                                    <Link to="/employers">
+                                <label>Contractors</label>
+                                    <Link to="/contractors">
                                         <button>Post Jobs</button>
                                     </Link>
                             </div>

@@ -13,7 +13,7 @@ class NavBar extends Component {
             </div>
             <div className="links">
                 <Link to={'/employees'}>For Employees</Link>
-                <Link to={'/employers'}>For Employers</Link>
+                <Link to={'/contractors'}>For Employers</Link>
                 <Link to={'/employees/profile'}>Profile</Link>
             </div>
         </div>

@@ -2,9 +2,14 @@ class Api::V1::AuthController < ApplicationController
     # skip_before_action :authorized, only: [:create]
 
     wrap_parameters :employee, include: [:email, :password]
+    wrap_parameters :employer, include: [:email, :password]
 
     def create
-        @employee = Employee.find_by(email: employee_params[:email])
+        if params["employee"]
+            @employee = Employee.find_by(email: employee_params[:email])
+        else
+            @contractor = Employer.find_by(email: employer_params[:email])
+        end
         if @employee && @employee.authenticate(employee_params[:password])
             session[:user_id] = @employee.id
             # format.html { redirect_to @employee, notice: "Employee was successfully created." }
@@ -12,6 +17,10 @@ class Api::V1::AuthController < ApplicationController
             # token = issue_token(@user)
             # cookies.signed[:jwt] = {value: token, httponly: true, expires: 1.hour.from_now}
             # render json: {user: UserSerializer.new(@user), jwt: token}
+        elsif @contractor && @contractor.authenticate(employer_params[:password])
+            session[:user_id] = @contractor.id
+            render json: {contractor: @contractor}
+            # , profile: @contractor.profile}
         else
             render json: {error: "Incorrect Username/Password"}, status: 401
         end
@@ -33,7 +42,12 @@ class Api::V1::AuthController < ApplicationController
     private
 
     def employee_params
+        byebug
         params.require(:employee).permit(:email, :password)
       end
+
+    def employer_params
+        params.require(:employer).permit(:email, :password)
+    end
 
 end
