@@ -1,9 +1,11 @@
 class Api::V1::EmployersController < ApplicationController
   before_action :set_employer, only: %i[ show edit update destroy ]
+  wrap_parameters :employer, include: [:name, :email, :password]
 
   # GET /employers or /employers.json
   def index
     @employers = Employer.all
+    render json: @employers
   end
 
   # GET /employers/1 or /employers/1.json
@@ -22,15 +24,12 @@ class Api::V1::EmployersController < ApplicationController
   # POST /employers or /employers.json
   def create
     @employer = Employer.new(employer_params)
-
-    respond_to do |format|
-      if @employer.save
-        format.html { redirect_to @employer, notice: "Employer was successfully created." }
-        format.json { render :show, status: :created, location: @employer }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @employer.errors, status: :unprocessable_entity }
-      end
+    if @employer.save
+      # @employer.profile.new()
+      session[:user_id] = @employer.id
+      render json: @employer
+    else
+      render json: @employer.errors
     end
   end
 
@@ -64,6 +63,6 @@ class Api::V1::EmployersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def employer_params
-      params.require(:employer).permit(:name, :email, :password, :password_confirmation, :zipcode)
+      params.require(:employer).permit(:name, :email, :password)
     end
 end

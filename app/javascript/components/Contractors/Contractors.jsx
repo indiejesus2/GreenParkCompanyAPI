@@ -17,10 +17,14 @@ const Contractors = props => {
                 </Link>
             </div>
         )
+    } else if (props.loading === true) {
+        <div className="spinner">
+            <span className="sr-only">Loading...</span>
+        </div>
     } else {
         return (
                 <div className="jobs">
-                    <h1>{props.contractor.email} Jobs</h1>
+                    <h1>{props.contractor.name} Jobs</h1>
                     {/* <h1>{props.profile.fname} {props.profile.lname} Jobs!</h1> */}
                     <p>Jobs!</p>
                 </div>

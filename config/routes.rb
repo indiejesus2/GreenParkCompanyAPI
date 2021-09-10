@@ -8,6 +8,7 @@ Rails.application.routes.draw do
       resources :employers
       post '/signin', to: 'auth#create'
       post '/signup', to: 'employees#create'
+      post '/contractors/signup', to: 'employers#create'
     end
   end
 end

@@ -7,4 +7,4 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 Employee.create(email: 'steve.jobs@gmail.com', password: 'abc123')
 Profile.create(employee_id: 1, fname: "Steve", lname: "Jobs")
-Employer.create(email: 'dste@aol.com', password: 'abc123')
+Employer.create(email: 'dste@aol.com', password: 'abc123', name: 'Danny Boy Productions')
