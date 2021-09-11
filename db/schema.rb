@@ -42,12 +42,10 @@ ActiveRecord::Schema.define(version: 2021_09_11_004852) do
     t.text "skills", default: [], array: true
     t.text "certficates", default: [], array: true
     t.text "description"
-    t.bigint "employers_id", null: false
-    t.bigint "employees_id", null: false
+    t.bigint "employer_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["employees_id"], name: "index_jobs_on_employees_id"
-    t.index ["employers_id"], name: "index_jobs_on_employers_id"
+    t.index ["employer_id"], name: "index_jobs_on_employer_id"
   end
 
   create_table "profiles", force: :cascade do |t|
@@ -70,7 +68,6 @@ ActiveRecord::Schema.define(version: 2021_09_11_004852) do
     t.index ["employee_id"], name: "index_profiles_on_employee_id"
   end
 
-  add_foreign_key "jobs", "employees", column: "employees_id"
-  add_foreign_key "jobs", "employers", column: "employers_id"
+  add_foreign_key "jobs", "employers"
   add_foreign_key "profiles", "employees"
 end

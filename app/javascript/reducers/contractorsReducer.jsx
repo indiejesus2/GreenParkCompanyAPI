@@ -1,4 +1,4 @@
-export default function contractorsReducer(state = {contractor: [], profile: [], jobPost: [], loggedIn: false, loading: false}, action) {
+export default function contractorsReducer(state = {contractor: [], jobs: [], loggedIn: false, loading: false}, action) {
     switch(action.type) {
         case 'FETCH_CONTRACTOR':
 
@@ -17,14 +17,14 @@ export default function contractorsReducer(state = {contractor: [], profile: [],
             // debugger
             return {
                 contractor: action.payload.contractor,
-                profile: action.payload.profile,
+                jobs: action.payload.jobs,
                 loggedIn: true,
                 loading: false
             }
-        case 'UPDATE_PROFILE':
+        case 'ADD_JOB':
             return {
                 ...state, 
-                profile: action.payload.profile
+                jobs: action.payload.jobs
             }
         default:
             return state

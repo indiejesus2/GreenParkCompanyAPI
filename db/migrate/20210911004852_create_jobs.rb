@@ -9,8 +9,7 @@ class CreateJobs < ActiveRecord::Migration[6.0]
       t.text :skills, array: true, default: []
       t.text :certficates, array: true, default: []
       t.text :description
-      t.references :employers, null: false, foreign_key: true
-      t.references :employees, null: false, foreign_key: true
+      t.references :employer, null: false, foreign_key: true
       t.timestamps
     end
   end

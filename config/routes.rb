@@ -6,6 +6,7 @@ Rails.application.routes.draw do
         resources :profiles
       end
       resources :employers
+      resources :jobs
       post '/signin', to: 'auth#create'
       post '/signup', to: 'employees#create'
       post '/contractors/signup', to: 'employers#create'

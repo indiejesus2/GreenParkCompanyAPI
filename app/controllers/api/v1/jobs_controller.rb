@@ -10,14 +10,14 @@ class Api::V1::JobsController < ApplicationController
     end
 
     def new
-        @job = Employer.job.new
+        @job = @employer.job.new
     end
 
     def edit
     end
 
     def create
-        @job = Employer.job.new(job_params)
+        @job = @employer.jobs.new(job_params)
         if @job.save
             @job.status = true
             render json: @job
@@ -36,10 +36,11 @@ class Api::V1::JobsController < ApplicationController
 
     def set_employer
         @employer = Employer.find(params[:employer_id])
+        byebug
     end
 
     def job_params
-        params.require(:job).permit(:title, :status, :location, {jobType: []}, {schedule: []}, skill: [], certificates: [], :description, :employer_id)
+        params.require(:job).permit(:title, :status, :location, {jobType: []}, {schedule: []}, {skill: []}, {certificates: []}, :description, :employer_id)
     end
 
 end

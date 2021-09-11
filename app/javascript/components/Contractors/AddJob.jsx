@@ -10,7 +10,7 @@ export default function AddJob(props) {
         schedule: [],
         skills: [],
         certificates: [],
-        description: []
+        description: ""
     })
 
     const handleChange = (e) => {
@@ -23,25 +23,27 @@ export default function AddJob(props) {
 
     const handleJob = (e) => {
         if (e.target.checked === true) {
-            setState( prevState => ({
-                ...prevState,
-                jobType: [...state.jobType, {id: e.target.id, value: e.target.value}]
-            }))
+                setState( prevState => ({
+                    ...prevState,
+                    [e.target.name]: [...state[e.target.name], e.target.value]
+                }))
         } else {
-            let group = state.jobType
+            let group = state[e.target.name]
             let deleted = group.findIndex(job => Object.keys(job)[0] == e.target.id)
             group.splice(deleted, 1)
-            setState( prevState => ({
-                ...prevState,
-                jobType: group
-            }))
+            if (e.target.name === "jobType") {
+                setState( prevState => ({
+                    ...prevState,
+                    [e.target.name] : group
+                }))
+            }
         }
     }
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        // props.addJob()
-        // props.history.push('/jobs')
+        props.addJob(state)
+        props.history.push('/contractors')
     }
 
     return (
@@ -63,13 +65,13 @@ export default function AddJob(props) {
                         <input type="checkbox" name="jobType" value="temporary" id='4' onChange={handleJob} /> Temporary
                         <br />
                         <label htmlFor="schedule">Schedule: </label>
-                        <input type="checkbox" name="schedule" value="M-F" onChange={handleChange}/>
+                        <input type="checkbox" name="schedule" value="M-F" onChange={handleJob}/>
                         M-F
-                        <input type="checkbox" name="schedule" value="Weekends" onChange={handleChange}/>
+                        <input type="checkbox" name="schedule" value="Weekends" onChange={handleJob}/>
                         Weekends
-                        <input type="checkbox" name="schedule" value="Overnight" onChange={handleChange}/>
+                        <input type="checkbox" name="schedule" value="Overnight" onChange={handleJob}/>
                         Overnight
-                        <input type="checkbox" name="schedule" value="Holidays" onChange={handleChange}/>
+                        <input type="checkbox" name="schedule" value="Holidays" onChange={handleJob}/>
                         Holidays
                     </div>
                     <div className="submit">
