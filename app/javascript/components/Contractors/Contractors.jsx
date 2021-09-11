@@ -4,7 +4,13 @@ import SignIn from './SignIn'
 
 const Contractors = props => {
     // debugger
-    if (props.loggedIn === false) {
+    if (props.loading === true) {
+        return (
+        <div className="spinner">
+            <span className="sr-only">Loading...</span>
+        </div>
+        )
+    } else if (props.loggedIn === false) {
         return (
             <div className="jobs">
                 <h1>Jobs!</h1>
@@ -17,10 +23,6 @@ const Contractors = props => {
                 </Link>
             </div>
         )
-    } else if (props.loading === true) {
-        <div className="spinner">
-            <span className="sr-only">Loading...</span>
-        </div>
     } else {
         return (
                 <div className="jobs">

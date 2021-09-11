@@ -1,7 +1,9 @@
 export default function contractorsReducer(state = {contractor: [], profile: [], jobPost: [], loggedIn: false, loading: false}, action) {
     switch(action.type) {
         case 'FETCH_CONTRACTOR':
+
             return {
+                contractor: [...state.contractor],
                 loading: true
             }
         case 'SIGNUP_CONTRACTOR':

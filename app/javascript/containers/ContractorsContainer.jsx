@@ -14,8 +14,8 @@ class ContractorsContainer extends Component {
             <div className="contractor">
                 <Switch>
                     {/* <Route path='/contractors/profile' render={(routerProps) => <Profile {...routerProps} contractor={this.props.contractor} profile={this.props.profile} updateProfile={this.props.updateProfile}/>}></Route> */}
-                    <Route path='/contractors/signup' render={(routerProps) => <SignUp {...routerProps} signUpContractor={this.props.signUpContractor} />}></Route>
-                    <Route path='/contractors' render={(routerProps) => <Contractors {...routerProps} signIn={this.props.signIn} loggedIn={this.props.loggedIn} contractor={this.props.contractor} profile={this.props.profile} />}></Route>
+                    <Route path='/contractors/signup' render={(routerProps) => <SignUp {...routerProps} loading={this.props.loading} signUpContractor={this.props.signUpContractor} />}></Route>
+                    <Route path='/contractors' render={(routerProps) => <Contractors {...routerProps} loading={this.props.loading} signIn={this.props.signIn} loggedIn={this.props.loggedIn} contractor={this.props.contractor} profile={this.props.profile} />}></Route>
                 </Switch>
             </div>
         )
@@ -26,7 +26,8 @@ const mapStateToProps = state => {
     return {
         contractor: state.contractorsReducer.contractor,
         profile: state.contractorsReducer.profile,
-        loggedIn: state.contractorsReducer.loggedIn
+        loggedIn: state.contractorsReducer.loggedIn,
+        loading: state.contractorsReducer.loading
     }
 }
 

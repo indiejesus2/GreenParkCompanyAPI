@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_08_172238) do
+ActiveRecord::Schema.define(version: 2021_09_11_004852) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,6 +33,23 @@ ActiveRecord::Schema.define(version: 2021_09_08_172238) do
     t.index ["email"], name: "index_employers_on_email", unique: true
   end
 
+  create_table "jobs", force: :cascade do |t|
+    t.string "title"
+    t.boolean "status", default: false
+    t.string "location"
+    t.text "jobType", default: [], array: true
+    t.text "schedule", default: [], array: true
+    t.text "skills", default: [], array: true
+    t.text "certficates", default: [], array: true
+    t.text "description"
+    t.bigint "employers_id", null: false
+    t.bigint "employees_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["employees_id"], name: "index_jobs_on_employees_id"
+    t.index ["employers_id"], name: "index_jobs_on_employers_id"
+  end
+
   create_table "profiles", force: :cascade do |t|
     t.string "fname"
     t.string "lname"
@@ -53,5 +70,7 @@ ActiveRecord::Schema.define(version: 2021_09_08_172238) do
     t.index ["employee_id"], name: "index_profiles_on_employee_id"
   end
 
+  add_foreign_key "jobs", "employees", column: "employees_id"
+  add_foreign_key "jobs", "employers", column: "employers_id"
   add_foreign_key "profiles", "employees"
 end
