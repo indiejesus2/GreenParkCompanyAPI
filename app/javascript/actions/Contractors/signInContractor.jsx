@@ -6,7 +6,7 @@ export const signInContractor = (employer) => {
                 'Content-Type': 'application/json',
                 Accept : 'application/json',
             },
-            body: JSON.stringify(employer)
+            body: JSON.stringify({employer: employer})
         }
         dispatch({type: 'FETCH_CONTRACTOR'})
         return fetch(`/api/v1/signin`, configObj)

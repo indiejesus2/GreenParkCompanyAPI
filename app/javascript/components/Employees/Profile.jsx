@@ -38,14 +38,13 @@ export default function Profile(props) {
             ...prevState,
             [name] : value
         }))
-        console.log(state)
     }
 
     const handleJob = (e) => {
         if (e.target.checked === true) {
             setState( prevState => ({
                 ...prevState,
-                jobType: [...state.jobType, {id: e.target.id, value: e.target.value}]
+                [e.target.name]: [...state[e.target.name], e.target.value]
             }))
         } else {
             let group = state.jobType
@@ -53,13 +52,24 @@ export default function Profile(props) {
             group.splice(deleted, 1)
             setState( prevState => ({
                 ...prevState,
-                jobType: group
+                [e.target.name]: group
             }))
         }
     }
 
     const handleHistory = (e) => {
+        let workHistory = []
+        workHistory[e.target.name] = e.target.value
+        // history = workHistory
         debugger
+        setState( prevState => ({
+            ...prevState,
+            history : [...workHistory]
+        }))
+        // setState( prevState = ({
+        //     ...prevState,
+        //     history: [...state.history, workHistory]
+        // }))
     }
 
     const handleSubmit = (event) => {
@@ -104,13 +114,13 @@ export default function Profile(props) {
                         <input type="checkbox" name="jobType" value="temporary" id='4' onChange={handleJob} /> Temporary
                         <br />
                         <label htmlFor="schedule">Schedule: </label>
-                        <input type="checkbox" name="schedule" value="M-F" onChange={handleChange}/>
+                        <input type="checkbox" name="schedule" value="M-F" onChange={handleJob}/>
                         M-F
-                        <input type="checkbox" name="schedule" value="Weekends" onChange={handleChange}/>
+                        <input type="checkbox" name="schedule" value="Weekends" onChange={handleJob}/>
                         Weekends
-                        <input type="checkbox" name="schedule" value="Overnight" onChange={handleChange}/>
+                        <input type="checkbox" name="schedule" value="Overnight" onChange={handleJob}/>
                         Overnight
-                        <input type="checkbox" name="schedule" value="Holidays" onChange={handleChange}/>
+                        <input type="checkbox" name="schedule" value="Holidays" onChange={handleJob}/>
                         Holidays
                     </div>
                     <div className="education">
@@ -129,20 +139,21 @@ export default function Profile(props) {
                     <div className="history">
                         <h5>Work History</h5>
                         <label htmlFor="Job Title">Job Title: </label>
-                        <input type="text" name="historyTitle" value={state.history} onChange={handleChange} />
+                        <input type="text" name="title" value={state.history.title} onChange={handleHistory} />
                         <br />
                         <label htmlFor="Company">Company: </label>
-                        <input type="text" name="historyCompany" value={state.history} onChange={handleChange} />
+                        <input type="text" name="company" value={state.history.company} onChange={handleHistory} />
                         <br />
                         <label htmlFor="zipcode">Zipcode: </label>
-                        <input type="text" name="zipcode" value={state.history} onChange={handleChange} />
+                        <input type="text" name="zipcode" value={state.history.zipcode} onChange={handleHistory} />
                         <br />
                         <label htmlFor="Description">Description: </label>
-                        <input type="text" name="historyDesc" value={state.history} onChange={handleChange} />
+                        <input type="text" name="description" value={state.history.description} onChange={handleHistory} />
                         <br />
                         <label htmlFor="phone">Phone: </label>
-                        <input type="text" name="phone" value={state.phone} onChange={handleChange} />
+                        <input type="text" name="phone" value={state.history.phone} onChange={handleHistory} />
                         <br />
+                        <button onClick={handleHistory}></button>
                     </div>
                     <div className="submit">
                         <input type="submit" value="Edit Profile" />

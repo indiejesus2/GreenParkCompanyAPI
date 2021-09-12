@@ -8,7 +8,7 @@ export default function employeesReducer(state = {employee: [], profile: [], log
                 loading: false
             }
         case 'SIGNIN_EMPLOYEE':
-            // debugger
+            debugger
             return {
                 employee: action.payload.employee,
                 profile: action.payload.profile,

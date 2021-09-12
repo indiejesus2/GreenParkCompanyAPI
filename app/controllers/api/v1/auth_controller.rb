@@ -1,8 +1,8 @@
 class Api::V1::AuthController < ApplicationController
     # skip_before_action :authorized, only: [:create]
 
-    wrap_parameters :employee, include: [:email, :password]
-    wrap_parameters :employer, include: [:email, :password]
+    # wrap_parameters :employee, include: [:email, :password]
+    # wrap_parameters :employer, include: [:email, :password]
 
     def create
         if params["employee"]
@@ -12,7 +12,7 @@ class Api::V1::AuthController < ApplicationController
         end
         if @employee && @employee.authenticate(employee_params[:password])
             session[:user_id] = @employee.id
-            # format.html { redirect_to @employee, notice: "Employee was successfully created." }
+            # format.html { redirect_to @employee, notice: "Employee was successfully creaated." }
             render json: {employee: @employee, profile: @employee.profile}
             # token = issue_token(@user)
             # cookies.signed[:jwt] = {value: token, httponly: true, expires: 1.hour.from_now}
@@ -42,12 +42,11 @@ class Api::V1::AuthController < ApplicationController
     private
 
     def employee_params
-        byebug
         params.require(:employee).permit(:email, :password)
       end
 
     def employer_params
-        params.require(:employer).permit(:email, :password)
+        params.require(:employer).permit(:employer, :email, :password)
     end
 
 end
