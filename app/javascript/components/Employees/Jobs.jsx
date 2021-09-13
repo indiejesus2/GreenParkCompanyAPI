@@ -10,6 +10,8 @@ export default class Jobs extends Component {
                     {this.props.jobs.map(job =>
                     <li id={job.id} key={job.id}>
                         <h4>{job.title}</h4>
+                        <p>Location: {job.location}</p>
+                        <p>Description: {job.description} </p>
                     </li>
                     )}
                 </ul>

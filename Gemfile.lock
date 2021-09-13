@@ -83,6 +83,7 @@ GEM
     fast_jsonapi (1.5)
       activesupport (>= 4.2)
     ffi (1.15.4)
+    geocoder (1.6.7)
     globalid (0.5.2)
       activesupport (>= 5.0)
     i18n (1.8.10)
@@ -212,6 +213,7 @@ DEPENDENCIES
   capybara (>= 2.15)
   dotenv-rails
   fast_jsonapi
+  geocoder (~> 1.3, >= 1.3.7)
   jbuilder (~> 2.7)
   jwt (~> 2.2)
   listen (~> 3.2)

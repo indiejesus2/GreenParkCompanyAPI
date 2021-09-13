@@ -3,7 +3,10 @@ class CreateJobs < ActiveRecord::Migration[6.0]
     create_table :jobs do |t|
       t.string :title
       t.boolean :status, default: false
-      t.string :location
+      t.string :city
+      t.string :state
+      t.float :longitude
+      t.float :latitude
       t.text :jobType, array: true, default: []
       t.text :schedule, array: true, default: []
       t.text :skills, array: true, default: []

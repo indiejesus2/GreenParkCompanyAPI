@@ -12,10 +12,11 @@ const Employees = props => {
                 <p>Jobs!</p>
                 <div className="signin">
                     <SignIn signIn={props.signIn} />
-                </div>
                 <Link to="/employees/signup">
                     Create Account and Find A Job Today!
                 </Link>
+                </div>
+                <Jobs jobs={props.jobs} />
             </div>
         )
     } else {

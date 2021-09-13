@@ -37,7 +37,10 @@ ActiveRecord::Schema.define(version: 2021_09_11_004852) do
   create_table "jobs", force: :cascade do |t|
     t.string "title"
     t.boolean "status", default: false
-    t.string "location"
+    t.string "city"
+    t.string "state"
+    t.float "longitude"
+    t.float "latitude"
     t.text "jobType", default: [], array: true
     t.text "schedule", default: [], array: true
     t.text "skills", default: [], array: true
@@ -52,7 +55,10 @@ ActiveRecord::Schema.define(version: 2021_09_11_004852) do
   create_table "profiles", force: :cascade do |t|
     t.string "fname"
     t.string "lname"
-    t.integer "zipcode"
+    t.string "city"
+    t.string "state"
+    t.float "longitude"
+    t.float "latitude"
     t.integer "phone"
     t.string "status"
     t.text "jobType", default: [], array: true
