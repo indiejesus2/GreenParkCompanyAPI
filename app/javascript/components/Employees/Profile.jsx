@@ -17,12 +17,21 @@ export default function Profile(props) {
         jobType: props.profile.jobType,
         schedule: props.profile.schedule,
         education: props.profile.education,
-        history: props.profile.history,
+        history: props.profile.history || [],
         skills: props.profile.skills,
         military: props.profile.military,
         certificates: props.profile.certificates,
         description: props.profile.description
     })
+
+    const workHistory = {
+        id: state.history.length + 1,
+        title: "",
+        company: "",
+        zipcode: "",
+        phone: "",
+        description: ""
+    }
 
     // const [
         // jobType, setJobType] = useState([
@@ -58,18 +67,18 @@ export default function Profile(props) {
     }
 
     const handleHistory = (e) => {
-        let workHistory = []
-        workHistory[e.target.name] = e.target.value
-        // history = workHistory
         debugger
-        setState( prevState => ({
-            ...prevState,
-            history : [...workHistory]
-        }))
-        // setState( prevState = ({
-        //     ...prevState,
-        //     history: [...state.history, workHistory]
-        // }))
+        let experience = state.history.find(his => his.id == e.target.id)
+        if (!!experience) {
+            experience[e.target.name] = e.target.value
+        } else {
+            workHistory[e.target.name] = e.target.value
+            setState( prevState => ({
+                ...prevState,
+                history : [...state.history, workHistory]
+            }))
+        }
+        debugger
     }
 
     const handleSubmit = (event) => {
@@ -138,21 +147,25 @@ export default function Profile(props) {
                     </div>
                     <div className="history">
                         <h5>Work History</h5>
+                        <div >
+
                         <label htmlFor="Job Title">Job Title: </label>
-                        <input type="text" name="title" value={state.history.title} onChange={handleHistory} />
+                        <input type="text" name="title" id={1} value={state.history.title} onChange={handleHistory} />
                         <br />
                         <label htmlFor="Company">Company: </label>
-                        <input type="text" name="company" value={state.history.company} onChange={handleHistory} />
+                        <input type="text" name="company" id={1} value={state.history.company} onChange={handleHistory} />
                         <br />
                         <label htmlFor="zipcode">Zipcode: </label>
-                        <input type="text" name="zipcode" value={state.history.zipcode} onChange={handleHistory} />
-                        <br />
-                        <label htmlFor="Description">Description: </label>
-                        <input type="text" name="description" value={state.history.description} onChange={handleHistory} />
+                        <input type="text" name="zipcode" id={1} value={state.history.zipcode} onChange={handleHistory} />
                         <br />
                         <label htmlFor="phone">Phone: </label>
-                        <input type="text" name="phone" value={state.history.phone} onChange={handleHistory} />
+                        <input type="text" name="phone" id={1} value={state.history.phone} onChange={handleHistory} />
                         <br />
+                        <label htmlFor="Description">Description: </label>
+                        <input type="text" name="description" id={1} value={state.history.description} onChange={handleHistory} />
+                        <br />
+                        </div>
+                        
                         <button onClick={handleHistory}></button>
                     </div>
                     <div className="submit">

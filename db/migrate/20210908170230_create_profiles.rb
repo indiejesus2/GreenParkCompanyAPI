@@ -1,5 +1,6 @@
 class CreateProfiles < ActiveRecord::Migration[6.0]
   def change
+    enable_extension 'hstore' unless extension_enabled?('hstore')
     create_table :profiles do |t|
       t.string :fname
       t.string :lname
@@ -9,7 +10,7 @@ class CreateProfiles < ActiveRecord::Migration[6.0]
       t.text :jobType, array: true, default: []
       t.text :schedule, array: true, default: []
       t.string :education
-      t.text :history, array: true, default: []
+      t.hstore :history
       t.text :skills, array: true, default: []
       t.boolean :military, default: false
       t.text :certficates, array: true, default: []

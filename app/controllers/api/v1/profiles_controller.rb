@@ -34,9 +34,16 @@ class Api::V1::ProfilesController < ApplicationController
     
     def profile_params
         # jobType_params = (params[:profile] || {})[jobType: :value].keys
-        # byebug
-        params.require(:profile).permit(:id, :fname, :lname, :zipcode, :phone, :status, {jobType: :value}, {:schedule  => []}, :education, {:history => []}, {:skills => []}, :military, :certificates, :description, :employee_id)
+        params.require(:profile).permit(:id, :fname, :lname, :zipcode, :phone, :status, {:jobType => []}, {:schedule  => []}, :education, {:skills => []}, :military, :certificates, :description, :employee_id, history: {:id, :title, :company, :zipcode, :phone, :description})
+        #     whitelisted[:history] = params[:profile][:history]
+        # end
     end
+    
+    # def history_params
+    #     params.require(:history).permit(:id, :title, :company, :zipcode, :phone, :description).tap do |whitelisted|
+    #         whitelisted[:history] = params[:profile][:history]
+    #     end
+    # end
 
     def set_employee
         @employee = Employee.find_by_id(params[:employee_id])

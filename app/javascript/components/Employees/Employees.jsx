@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import SignIn from './signin'
+import Jobs from './Jobs'
 
 const Employees = props => {
     // debugger
@@ -21,7 +22,7 @@ const Employees = props => {
         return (
                 <div className="jobs">
                     <h1>{props.profile.fname} {props.profile.lname} Jobs!</h1>
-                    <p>Jobs!</p>
+                    <Jobs jobs={props.jobs} />
                 </div>
         )
     }
