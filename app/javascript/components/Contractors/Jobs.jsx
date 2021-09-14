@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 
 export default class Jobs extends Component {
 
+    
     componentDidMount() {
-        this.props.fetchJobs(this.props.employee)
+        this.props.fetchJobs(this.props.contractor)
     }
 
     handleClick = () => {
@@ -17,10 +19,12 @@ export default class Jobs extends Component {
                 <ul>
                     {this.props.jobs.map(job =>
                     <li id={job.id} key={job.id} >
-                        <h4>{job.title}</h4>
+                        <Link to={`/contractors/${this.props.contractor.id}/jobs/${job.id}`} >
+                            <h4>{job.title}</h4>
+                        </Link>
                         <p>Location: {job.location}</p>
                         <p>Description: {job.description} </p>
-                        <button onClick={this.handleClick}>Apply</button>
+                        {/* <button onClick={this.handleClick}>Apply</button> */}
                     </li>
                     )}
                 </ul>

@@ -1,10 +1,12 @@
 class Api::V1::JobsController < ApplicationController
-    before_action :set_employer, only: %i[ new create show edit update destroy ]
+    before_action :set_employer, only: %i[ index new create show edit update destroy ]
     before_action :set_employee, only: %i[ index ]
 
     def index
         if @employee 
             @jobs = Job.near(@employee.profile.address, 50)
+        elsif @employer
+            @jobs = @employer.jobs
         else
             @jobs = Job.all
         end
@@ -40,12 +42,19 @@ class Api::V1::JobsController < ApplicationController
     private
 
     def set_employee
-        @employee = Employee.find(params[:employee_id])
+        if (params[:employee_id])
+            @employee = Employee.find(params[:employee_id])
+        else
+            nil
+        end
     end
 
     def set_employer
-        @employer = Employer.find(params[:employer_id])
-        byebug
+        if (params[:employer_id])
+            @employer = Employer.find(params[:employer_id])
+        else
+            nil
+        end
     end
 
     def job_params

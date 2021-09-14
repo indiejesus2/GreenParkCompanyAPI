@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react'
 
 export default function Profile(props) {
 
-    debugger
 
     // First Name, Last Name, Location(Zipcode), Phone, Job Type(FT, PT, ...etc), Schedule (M-F, WKND), Job History, Education, Skills, Military Service, Certficates
 
@@ -11,7 +10,8 @@ export default function Profile(props) {
         employee_id: props.profile.employee_id,
         fname: props.profile.fname,
         lname: props.profile.lname,
-        zipcode: props.profile.zipcode,
+        city: props.profile.city,
+        state: props.profile.state,
         phone: props.profile.phone,
         status: props.profile.status,
         jobType: props.profile.jobType,
@@ -20,25 +20,9 @@ export default function Profile(props) {
         skills: props.profile.skills,
         military: props.profile.military,
         certificates: props.profile.certificates,
-        description: props.profile.description
+        description: props.profile.description,
+        work_histories: props.work_history
     })
-
-    const workHistory = {
-        id: state.history.length + 1,
-        title: "",
-        company: "",
-        zipcode: "",
-        phone: "",
-        description: ""
-    }
-
-    // const [
-        // jobType, setJobType] = useState([
-    //     {id: 1, value: 'ft', isChecked: false},
-    //     {id: 2, value: 'pt', isChecked: false},
-    //     {id: 3, value: 'contract', isChecked: false},
-    //     {id: 4, value: 'temporary', isChecked: false},
-    // ])
 
     const handleChange = (event) => {
         const {name, value}  = event.target
@@ -66,24 +50,16 @@ export default function Profile(props) {
     }
 
     const handleHistory = (e) => {
-        debugger
-        let experience = state.history.find(his => his.id == e.target.id)
-        if (!!experience) {
-            experience[e.target.name] = e.target.value
-        } else {
-            workHistory[e.target.name] = e.target.value
-            setState( prevState => ({
-                ...prevState,
-                history : [...state.history, workHistory]
-            }))
-        }
-        debugger
+        let work_histories = state.work_histories
+        work_histories[e.target.name] = e.target.value
+        setState( prevState => ({
+            ...prevState,
+            work_histories : work_histories
+        }))
     }
 
     const handleSubmit = (event) => {
         event.preventDefault()
-        debugger
-        // let state = {email: email, password: password}
         props.updateProfile(state)
         props.history.push('/employees')
     }
@@ -100,8 +76,11 @@ export default function Profile(props) {
                         <label htmlFor="last name">Last Name: </label>
                         <input type="text" name="lname" value={state.lname} onChange={handleChange} />
                         <br />
-                        <label htmlFor="zipcode">Zipcode: </label>
-                        <input type="text" name="zipcode" value={state.zipcode} onChange={handleChange} />
+                        <label htmlFor="city">City: </label>
+                        <input type="text" name="city" value={state.city} onChange={handleChange} />
+                        <br />
+                        <label htmlFor="state">State: </label>
+                        <input type="text" name="state" value={state.state} onChange={handleChange} />
                         <br />
                         <label htmlFor="phone">Phone: </label>
                         <input type="text" name="phone" value={state.phone} onChange={handleChange} />
@@ -149,20 +128,32 @@ export default function Profile(props) {
                         <div >
 
                         <label htmlFor="Job Title">Job Title: </label>
-                        <input type="text" name="title" id={1} value="" onChange={handleHistory} />
+                        <input type="text" name="title" id={state.work_histories.id} value={state.work_histories.title} onChange={handleHistory} />
                         <br />
                         <label htmlFor="Company">Company: </label>
-                        <input type="text" name="company" id={1} value="" onChange={handleHistory} />
+                        <input type="text" name="company" id={state.work_histories.id} value={state.work_histories.company} onChange={handleHistory} />
                         <br />
-                        <label htmlFor="zipcode">Zipcode: </label>
-                        <input type="text" name="zipcode" id={1} value="" onChange={handleHistory} />
+                        <label htmlFor="city">City: </label>
+                        <input type="text" name="city" id={state.work_histories.id} value={state.work_histories.city} onChange={handleHistory} />
+                        <br />
+                        <label htmlFor="state">State: </label>
+                        <input type="text" name="state" id={state.work_histories.id} value={state.work_histories.state} onChange={handleHistory} />
                         <br />
                         <label htmlFor="phone">Phone: </label>
-                        <input type="text" name="phone" id={1} value="" onChange={handleHistory} />
+                        <input type="text" name="phone" id={state.work_histories.id} value={state.work_histories.phone} onChange={handleHistory} />
+                        <br />
+                        <label htmlFor="startdate">Start Date: </label>
+                        <input type="text" name="startdate" id={state.work_histories.id} value={state.work_histories.startdate} onChange={handleHistory} />
+                        <br />
+                        <label htmlFor="enddate">End Date: </label>
+                        <input type="text" name="enddate" id={state.work_histories.id} value={state.work_histories.enddate} onChange={handleHistory} />
+                        <label htmlFor="current">Current Job: </label>
+                        <input type="checkbox" name="current" id={state.work_histories.id} value={state.work_histories.current} onChange={handleHistory} />
                         <br />
                         <label htmlFor="Description">Description: </label>
-                        <input type="text" name="description" id={1} value="" onChange={handleHistory} />
+                        <input type="text" name="description" id={state.work_histories.id} value={state.work_histories.description} onChange={handleHistory} />
                         <br />
+
                         </div>
                         
                         <button onClick={handleHistory}></button>

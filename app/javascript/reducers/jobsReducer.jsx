@@ -7,7 +7,6 @@ export default function jobsReducer(state = {jobs: [], loading: false}, action) 
                 loading: true
             }
         case 'FETCH_JOBS':
-            debugger
             return {
                 jobs: action.payload,
                 loading: false
