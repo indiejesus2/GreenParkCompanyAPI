@@ -11,17 +11,13 @@ import Profile from '../components/Employees/Profile'
 
 class EmployeesContainer extends Component {
 
-    componentDidMount() {
-        this.props.fetchJobs()
-    }
-
     render() {
         return (
             <div className="employee">
                 <Switch>
-                    <Route path='/employees/profile' render={(routerProps) => <Profile {...routerProps} employee={this.props.employee} profile={this.props.profile} updateProfile={this.props.updateProfile}/>}></Route>
+                    <Route path='/employees/profile' render={(routerProps) => <Profile {...routerProps} employee={this.props.employee} profile={this.props.profile} work_history={this.props.work_history} updateProfile={this.props.updateProfile}/>}></Route>
                     <Route path='/employees/signup' render={(routerProps) => <SignUp {...routerProps} signUpEmployee={this.props.signUpEmployee} />}></Route>
-                    <Route path='/employees' render={(routerProps) => <Employees {...routerProps} signIn={this.props.signIn} loggedIn={this.props.loggedIn} employee={this.props.employee} profile={this.props.profile} jobs={this.props.jobs} />}></Route>
+                    <Route path='/employees' render={(routerProps) => <Employees {...routerProps} signIn={this.props.signIn} loggedIn={this.props.loggedIn} employee={this.props.employee} profile={this.props.profile}  jobs={this.props.jobs} fetchJobs={this.props.fetchJobs} />}></Route>
                 </Switch>
             </div>
         )
@@ -32,6 +28,7 @@ const mapStateToProps = state => {
     return {
         employee: state.employeesReducer.employee,
         profile: state.employeesReducer.profile,
+        work_history: state.employeesReducer.work_history,
         loggedIn: state.employeesReducer.loggedIn,
         jobs: state.jobsReducer.jobs
     }
@@ -41,7 +38,7 @@ const mapDispatchToProps = dispatch => ({
     signIn: employee => dispatch(signIn(employee)),
     signUpEmployee: employee => dispatch(signUpEmployee(employee)),
     updateProfile: profile => dispatch(updateProfile(profile)),
-    fetchJobs: () => dispatch(fetchJobs())
+    fetchJobs: employee => dispatch(fetchJobs(employee))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(EmployeesContainer)

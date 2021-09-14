@@ -11,9 +11,9 @@ class Api::V1::AuthController < ApplicationController
             @contractor = Employer.find_by(email: employer_params[:email])
         end
         if @employee && @employee.authenticate(employee_params[:password])
-            session[:user_id] = @employee.id
+            # session[:user_id] = @employee.id
             # format.html { redirect_to @employee, notice: "Employee was successfully creaated." }
-            render json: {employee: @employee, profile: @employee.profile}
+            render json: EmployeeSerializer.new(@employee, include: [:profile, :work_histories])
             # token = issue_token(@user)
             # cookies.signed[:jwt] = {value: token, httponly: true, expires: 1.hour.from_now}
             # render json: {user: UserSerializer.new(@user), jwt: token}

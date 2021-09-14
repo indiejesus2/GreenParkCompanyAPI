@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_11_004852) do
+ActiveRecord::Schema.define(version: 2021_09_13_212443) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "hstore"
@@ -75,6 +75,24 @@ ActiveRecord::Schema.define(version: 2021_09_11_004852) do
     t.index ["employee_id"], name: "index_profiles_on_employee_id"
   end
 
+  create_table "work_histories", force: :cascade do |t|
+    t.string "title"
+    t.string "company"
+    t.string "city"
+    t.string "state"
+    t.string "phone"
+    t.string "startdate"
+    t.string "enddate"
+    t.text "description"
+    t.boolean "current"
+    t.bigint "profile_id", null: false
+    t.bigint "employee_id", null: false
+    t.index ["employee_id"], name: "index_work_histories_on_employee_id"
+    t.index ["profile_id"], name: "index_work_histories_on_profile_id"
+  end
+
   add_foreign_key "jobs", "employers"
   add_foreign_key "profiles", "employees"
+  add_foreign_key "work_histories", "employees"
+  add_foreign_key "work_histories", "profiles"
 end

@@ -3,7 +3,7 @@ class Api::V1::ProfilesController < ApplicationController
 
     def index
         @profiles = Profile.all
-        render json: @profiles
+        render json: {profiles: @profiles, work_histories: @profiles.work_histories}
     end
 
     def new
@@ -34,7 +34,7 @@ class Api::V1::ProfilesController < ApplicationController
     
     def profile_params
         # jobType_params = (params[:profile] || {})[jobType: :value].keys
-        params.require(:profile).permit(:id, :fname, :lname, :zipcode, :phone, :status, {:jobType => []}, {:schedule  => []}, :education, {:skills => []}, :military, :certificates, :description, :employee_id, history: {:id, :title, :company, :zipcode, :phone, :description})
+        params.require(:profile).permit(:id, :fname, :lname, :zipcode, :phone, :status, {:jobType => []}, {:schedule  => []}, :education, {:skills => []}, :military, :certificates, :description, :employee_id, workhistory_attributes: [:title, :company, :city, :state, :phone, :startdate, :enddate, :description, :current, :employee_id])
         #     whitelisted[:history] = params[:profile][:history]
         # end
     end

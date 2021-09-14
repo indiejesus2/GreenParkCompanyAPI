@@ -2,6 +2,10 @@ import React, { Component } from 'react'
 
 export default class Jobs extends Component {
 
+    componentDidMount() {
+        this.props.fetchJobs(this.props.employee)
+    }
+
     render() {
         return (
             <div className="jobs">

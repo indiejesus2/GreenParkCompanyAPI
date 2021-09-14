@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 
 export default function Profile(props) {
 
-    // debugger
+    debugger
 
     // First Name, Last Name, Location(Zipcode), Phone, Job Type(FT, PT, ...etc), Schedule (M-F, WKND), Job History, Education, Skills, Military Service, Certficates
 
@@ -17,7 +17,6 @@ export default function Profile(props) {
         jobType: props.profile.jobType,
         schedule: props.profile.schedule,
         education: props.profile.education,
-        history: props.profile.history || [],
         skills: props.profile.skills,
         military: props.profile.military,
         certificates: props.profile.certificates,
@@ -150,19 +149,19 @@ export default function Profile(props) {
                         <div >
 
                         <label htmlFor="Job Title">Job Title: </label>
-                        <input type="text" name="title" id={1} value={state.history.title} onChange={handleHistory} />
+                        <input type="text" name="title" id={1} value="" onChange={handleHistory} />
                         <br />
                         <label htmlFor="Company">Company: </label>
-                        <input type="text" name="company" id={1} value={state.history.company} onChange={handleHistory} />
+                        <input type="text" name="company" id={1} value="" onChange={handleHistory} />
                         <br />
                         <label htmlFor="zipcode">Zipcode: </label>
-                        <input type="text" name="zipcode" id={1} value={state.history.zipcode} onChange={handleHistory} />
+                        <input type="text" name="zipcode" id={1} value="" onChange={handleHistory} />
                         <br />
                         <label htmlFor="phone">Phone: </label>
-                        <input type="text" name="phone" id={1} value={state.history.phone} onChange={handleHistory} />
+                        <input type="text" name="phone" id={1} value="" onChange={handleHistory} />
                         <br />
                         <label htmlFor="Description">Description: </label>
-                        <input type="text" name="description" id={1} value={state.history.description} onChange={handleHistory} />
+                        <input type="text" name="description" id={1} value="" onChange={handleHistory} />
                         <br />
                         </div>
                         

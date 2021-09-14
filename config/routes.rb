@@ -3,9 +3,14 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :employees do
-        resources :profiles
+        resources :profiles do
+          resources :work_histories
+        end
+        resources :jobs
       end
-      resources :employers
+      resources :employers do
+        resources :jobs
+      end
       resources :jobs
       post '/signin', to: 'auth#create'
       post '/signup', to: 'employees#create'

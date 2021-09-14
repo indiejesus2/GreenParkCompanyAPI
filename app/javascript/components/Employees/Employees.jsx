@@ -16,14 +16,14 @@ const Employees = props => {
                     Create Account and Find A Job Today!
                 </Link>
                 </div>
-                <Jobs jobs={props.jobs} />
+                {/* <Jobs jobs={props.jobs} fetchJobs={props.fetchJobs} /> */}
             </div>
         )
     } else {
         return (
                 <div className="jobs">
                     <h1>{props.profile.fname} {props.profile.lname} Jobs!</h1>
-                    <Jobs jobs={props.jobs} />
+                    <Jobs jobs={props.jobs} fetchJobs={props.fetchJobs} employee={props.employee} />
                 </div>
         )
     }

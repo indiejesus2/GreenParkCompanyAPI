@@ -1,8 +1,13 @@
 class Api::V1::JobsController < ApplicationController
     before_action :set_employer, only: %i[ new create show edit update destroy ]
+    before_action :set_employee, only: %i[ index ]
 
     def index
-        @jobs = Job.all
+        if @employee 
+            @jobs = Job.near(@employee.profile.address, 50)
+        else
+            @jobs = Job.all
+        end
         render json: @jobs
     end
 
@@ -34,13 +39,17 @@ class Api::V1::JobsController < ApplicationController
 
     private
 
+    def set_employee
+        @employee = Employee.find(params[:employee_id])
+    end
+
     def set_employer
         @employer = Employer.find(params[:employer_id])
         byebug
     end
 
     def job_params
-        params.require(:job).permit(:title, :status, :location, {jobType: []}, {schedule: []}, {skill: []}, {certificates: []}, :description, :employer_id)
+        params.require(:job).permit(:title, :status, :city, :state, {jobType: []}, {schedule: []}, {skill: []}, {certificates: []}, :description, :employer_id)
     end
 
 end

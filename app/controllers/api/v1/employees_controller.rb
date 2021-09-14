@@ -6,7 +6,7 @@ class Api::V1::EmployeesController < ApplicationController
   def index
     @employees = Employee.all
     # render json: @employees
-    render json: EmployeeSerializer.new(@employees)
+    render json: EmployeeSerializer.new(@employees, include: [:profile, :work_histories])
   end
 
   # GET /employees/1 or /employees/1.json
@@ -27,7 +27,7 @@ class Api::V1::EmployeesController < ApplicationController
     @employee = Employee.new(employee_params)
     if @employee.save
       session[:user_id] = @employee.id
-      render json: @employee
+      render json: EmployeeSerializer.new(@employee, include: [:profile, :work_histories])
       # format.html { redirect_to @employee, notice: "Employee was successfully created." }
         # format.json { render :show, status: :created, location: @employee }
     else
