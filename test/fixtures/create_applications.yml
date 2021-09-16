@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  employee: one
+  employer: one
+  job: one
+
+two:
+  employee: two
+  employer: two
+  job: two

@@ -54,8 +54,11 @@ export default function AddJob(props) {
                     <label>Title: </label>
                     <input type="text" name="title" id="title" onChange={handleChange} />
                     <br />
-                    <label>Location: </label>
-                    <input type="text" name="location" id="location" onChange={handleChange} />
+                    <label>City: </label>
+                    <input type="text" name="city" id="city" onChange={handleChange} />
+                    <br />
+                    <label>State: </label>
+                    <input type="text" name="state" id="state" onChange={handleChange} />
                     <br />
                     <div className="work-schedule">
                         <label htmlFor="job-type">Job-Type: </label>

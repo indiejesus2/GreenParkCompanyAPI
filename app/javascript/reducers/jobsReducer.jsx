@@ -1,4 +1,4 @@
-export default function jobsReducer(state = {jobs: [], loading: false}, action) {
+export default function jobsReducer(state = {jobs: [], candidates: [], loading: false}, action) {
     switch(action.type) {
         
         case 'LOADING_JOBS':
@@ -9,6 +9,12 @@ export default function jobsReducer(state = {jobs: [], loading: false}, action) 
         case 'FETCH_JOBS':
             return {
                 jobs: action.payload,
+                // candidates: action.payload.candidates,
+                loading: false
+            }
+        case 'FETCH_JOB':
+            return {
+                candidates: action.payload.candidates,
                 loading: false
             }
         default:

@@ -11,11 +11,16 @@ import AddJob from '../components/Contractors/AddJob'
 import Job from '../components/Contractors/Job'
 
 class ContractorsContainer extends Component {
+
+    componentDidMount() {
+        this.props.fetchJobs(this.props.contractor)
+    }
+    
     render() {
         return (
             <div className="contractor">
                 <Switch>
-                    <Route path='/contractors/:id/jobs/:job_id' render={(routerProps) => <Job {...routerProps} contractor={this.props.contractor} jobs={this.props.jobs} /> } ></Route>
+                    <Route path='/contractors/:id/jobs/:job_id' render={(routerProps) => <Job {...routerProps} contractor={this.props.contractor} jobs={this.props.jobs} candidates={this.props.candidates} /> } ></Route>
                     <Route path='/contractors/addjob' render={(routerProps) => <AddJob {...routerProps} contractor={this.props.contractor} addJob={this.props.addJob}/>}></Route>
                     <Route path='/contractors/signup' render={(routerProps) => <SignUp {...routerProps} loading={this.props.loading} signUpContractor={this.props.signUpContractor} />}></Route>
                     <Route path='/contractors' render={(routerProps) => <Contractors {...routerProps} loading={this.props.loading} signIn={this.props.signIn} loggedIn={this.props.loggedIn} contractor={this.props.contractor} profile={this.props.profile} fetchJobs={this.props.fetchJobs} jobs={this.props.jobs} />}></Route>
@@ -31,7 +36,8 @@ const mapStateToProps = state => {
         // profile: state.contractorsReducer.profile,
         loggedIn: state.contractorsReducer.loggedIn,
         loading: state.contractorsReducer.loading,
-        jobs: state.jobsReducer.jobs
+        jobs: state.jobsReducer.jobs,
+        candidates: state.jobsReducer.candidates
     }
 }
 

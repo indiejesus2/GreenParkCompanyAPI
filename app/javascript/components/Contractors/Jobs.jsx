@@ -4,15 +4,14 @@ import { Link } from 'react-router-dom'
 export default class Jobs extends Component {
 
     
-    componentDidMount() {
-        this.props.fetchJobs(this.props.contractor)
-    }
+
 
     handleClick = () => {
         
     }
 
     render() {
+        debugger
         return (
             <div className="jobs">
                 <h2>Jobs</h2>

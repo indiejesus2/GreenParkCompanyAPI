@@ -39,7 +39,7 @@ export default function Profile(props) {
                 [e.target.name]: [...state[e.target.name], e.target.value]
             }))
         } else {
-            let group = state.jobType
+            let group = state[e.target.name]
             let deleted = group.findIndex(job => Object.keys(job)[0] == e.target.id)
             group.splice(deleted, 1)
             setState( prevState => ({

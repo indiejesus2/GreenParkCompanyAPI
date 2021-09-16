@@ -1,6 +1,6 @@
 class Api::V1::JobsController < ApplicationController
     before_action :set_employer, only: %i[ index new create show edit update destroy ]
-    before_action :set_employee, only: %i[ index ]
+    before_action :set_employee, only: %i[ index, show ]
 
     def index
         if @employee 
@@ -14,10 +14,16 @@ class Api::V1::JobsController < ApplicationController
     end
 
     def show
+        @job = @employer.jobs.find(params[:id])
+        @candidates = @job.proximity
+        if !search_params.blank?
+            @candidates = @candidates.potential(search_params)
+        end
+        render json: {job: @job, candidates: @candidates}
     end
 
     def new
-        @job = @employer.job.new
+        @job = @employer.jobs.new
     end
 
     def edit
@@ -27,6 +33,7 @@ class Api::V1::JobsController < ApplicationController
         @job = @employer.jobs.new(job_params)
         if @job.save
             @job.status = true
+            @candidates = @job.p
             render json: @job
         else
             render json: @job.errors
@@ -59,6 +66,10 @@ class Api::V1::JobsController < ApplicationController
 
     def job_params
         params.require(:job).permit(:title, :status, :city, :state, {jobType: []}, {schedule: []}, {skill: []}, {certificates: []}, :description, :employer_id)
+    end
+
+    def search_params
+        params.permit(:jobtype, :schedule, :skill, :certificates)
     end
 
 end
