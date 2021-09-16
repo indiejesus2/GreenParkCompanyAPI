@@ -1,5 +1,5 @@
 class Api::V1::EmployeesController < ApplicationController
-  before_action :set_employee, only: %i[ show edit update destroy ]
+  before_action :set_employee, only: %i[ edit update destroy ]
   wrap_parameters :employee, include: [:name, :email, :password]
 
   # GET /employees or /employees.json

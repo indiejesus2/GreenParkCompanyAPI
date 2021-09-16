@@ -14,7 +14,7 @@ export default function contractorsReducer(state = {contractor: [], jobs: [], lo
                 loading: false
             }
         case 'SIGNIN_CONTRACTOR':
-            // debugger
+            debugger
             return {
                 contractor: action.payload.contractor,
                 jobs: action.payload.jobs,

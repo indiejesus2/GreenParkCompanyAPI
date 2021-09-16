@@ -11,7 +11,9 @@ class Job < ApplicationRecord
   def proximity
     # let rate = 0
     # byebug
-    Profile.near(self.address, 100)
+    profiles = []
+    self.skills.each {|skill| profiles << Profile.where(":skills = ANY (skills)", skills: "#{skill}").near(self.address, 100)}
+    return profiles
     
     # Profile.where("jobtype && ?", "{FT}")
     # Profile.where("#{key} && ?", "#{values}")
@@ -22,7 +24,7 @@ class Job < ApplicationRecord
     schedule = self.schedule
     skills = self.skills
     certificates = self.certificates
-    
+    address = self.address
   end
 
 end  

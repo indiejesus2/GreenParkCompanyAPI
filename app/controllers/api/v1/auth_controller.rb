@@ -19,7 +19,7 @@ class Api::V1::AuthController < ApplicationController
             # render json: {user: UserSerializer.new(@user), jwt: token}
         elsif @contractor && @contractor.authenticate(employer_params[:password])
             session[:user_id] = @contractor.id
-            render json: {contractor: @contractor}
+            render json: {contractor: @contractor, jobs: @contractor.jobs}
             # , profile: @contractor.profile}
         else
             render json: {error: "Incorrect Username/Password"}, status: 401
