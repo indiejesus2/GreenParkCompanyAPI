@@ -13,5 +13,5 @@ Profile.create(employee_id: 2, fname: "Bill", lname: "Gates", city: "Howell", st
 Profile.create(employee_id: 3, fname: "Steve", lname: "Jobs", city: "Trumansburg", state: "NY", jobtype: ["FT", "PT", "Temporary"], schedule: ["MF"], skills: ["painting"])
 WorkHistory.create(profile_id: 1, employee_id: 1, title: "Painter", company: "JB and Sons", city: "Freehold", state: "NJ", current: true)
 Employer.create(email: 'dste@aol.com', password: 'abc123', name: 'Danny Boy Productions')
-dJob.create(title: "Painter", status: true, city: "Jackson", state: "NJ", jobtype: ["FT"], schedule: ["MF", "Weekends"], skills: ["painting", "paint", "painter"], description: "Painting houses, rooms and everything in between.", employer_id: 1)
+Job.create(title: "Painter", status: true, city: "Jackson", state: "NJ", jobtype: ["FT"], schedule: ["MF", "Weekends"], skills: ["painting", "paint", "painter"], description: "Painting houses, rooms and everything in between.", employer_id: 1)
 Job.create(title: "Electrician", status: true, city: "Toms River", state: "NJ", skills: ["electric"], description: "Painting houses, rooms and everything in between.", employer_id: 1)

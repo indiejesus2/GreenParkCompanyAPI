@@ -5,25 +5,27 @@ import {signInContractor} from '../actions/Contractors/signInContractor'
 import { signUpContractor } from '../actions/Contractors/signUpContractor'
 import { addJob } from '../actions/Contractors/addJob'
 import { fetchJobs } from '../actions/Contractors/fetchJobs'
+import { fetchJob } from '../actions/Contractors/fetchJob'
 import Contractors from '../components/Contractors/Contractors'
 import SignUp from '../components/Contractors/SignUp'
 import AddJob from '../components/Contractors/AddJob'
 import Job from '../components/Contractors/Job'
+import Jobs from '../components/Contractors/Jobs'
 
-class ContractorsContainer extends Component {
+class JobsContainer extends Component {
 
     // componentDidMount() {
     //     this.props.fetchJobs(this.props.contractor)
     // }
-
+    
     render() {
         return (
             <div className="contractor">
                 <Switch>
-                    {/* <Route path='/contractors/:id/jobs/:job_id' render={(routerProps) => <Job {...routerProps} contractor={this.props.contractor} jobs={this.props.jobs} candidates={this.props.candidates} /> } ></Route>
-                    <Route path='/contractors/addjob' render={(routerProps) => <AddJob {...routerProps} contractor={this.props.contractor} addJob={this.props.addJob}/>}></Route> */}
+                    <Route path='/contractors/:id/jobs/:job_id' render={(routerProps) => <Job {...routerProps} contractor={this.props.contractor} jobs={this.props.jobs} candidates={this.props.candidates} fetchJob={this.props.fetchJob} /> } ></Route>
+                    <Route path='/contractors/addjob' render={(routerProps) => <AddJob {...routerProps} contractor={this.props.contractor} addJob={this.props.addJob}/>}></Route>
                     <Route path='/contractors/signup' render={(routerProps) => <SignUp {...routerProps} loading={this.props.loading} signUpContractor={this.props.signUpContractor} />}></Route>
-                    <Route path='/contractors' render={(routerProps) => <Contractors {...routerProps} loading={this.props.loading} signIn={this.props.signIn} loggedIn={this.props.loggedIn} contractor={this.props.contractor} profile={this.props.profile} fetchJobs={this.props.fetchJobs} jobs={this.props.jobs} />}></Route>
+                    <Route path='/contractors' render={(routerProps) => <Jobs {...routerProps} loading={this.props.loading} signIn={this.props.signIn} loggedIn={this.props.loggedIn} contractor={this.props.contractor} profile={this.props.profile} fetchJobs={this.props.fetchJobs} jobs={this.props.jobs} />}></Route>
                 </Switch>
             </div>
         )
@@ -36,8 +38,8 @@ const mapStateToProps = state => {
         // profile: state.contractorsReducer.profile,
         loggedIn: state.contractorsReducer.loggedIn,
         loading: state.contractorsReducer.loading,
-        // jobs: state.jobsReducer.jobs,
-        // candidates: state.jobsReducer.candidates
+        jobs: state.jobsReducer.jobs,
+        candidates: state.jobsReducer.candidates
     }
 }
 
@@ -45,9 +47,10 @@ const mapDispatchToProps = dispatch => ({
     signIn: contractor => dispatch(signInContractor(contractor)),
     signUpContractor: contractor => dispatch(signUpContractor(contractor)),
     addJob: job => dispatch(addJob(job)),
-    fetchJobs: contractor => dispatch(fetchJobs(contractor))
+    fetchJobs: contractor => dispatch(fetchJobs(contractor)),
+    fetchJob: job => dispatch(fetchJob(job))
 
     // updateProfile: profile => dispatch(updateProfile(profile))
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(ContractorsContainer)
+export default connect(mapStateToProps, mapDispatchToProps)(JobsContainer)

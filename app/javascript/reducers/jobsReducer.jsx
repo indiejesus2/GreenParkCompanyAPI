@@ -9,7 +9,6 @@ export default function jobsReducer(state = {jobs: [], candidates: [], loading: 
         case 'FETCH_JOBS':
             return {
                 jobs: action.payload,
-                // candidates: action.payload.candidates,
                 loading: false
             }
         case 'FETCH_JOB':

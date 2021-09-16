@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import SignIn from './SignIn'
-import Jobs from './Jobs'
+import JobsContainer from '../../containers/JobsContainer'
 
 const Contractors = props => {
     // debugger
@@ -13,9 +13,7 @@ const Contractors = props => {
         )
     } else if (props.loggedIn === false) {
         return (
-            <div className="jobs">
-                <h1>Jobs!</h1>
-                <p>Jobs!</p>
+            <div className="login">
                 <div className="signin">
                     <SignIn signIn={props.signIn} />
                 </div>
@@ -28,7 +26,7 @@ const Contractors = props => {
         return (
                 <div className="jobs">
                     <h1>{props.contractor.name} Jobs</h1>
-                    <Jobs jobs={props.jobs} fetchJobs={props.fetchJobs} contractor={props.contractor} />
+                    <JobsContainer jobs={props.jobs} fetchJobs={props.fetchJobs} contractor={props.contractor} />
 
                     {/* <h1>{props.profile.fname} {props.profile.lname} Jobs!</h1> */}
                     <p>Jobs!</p>
