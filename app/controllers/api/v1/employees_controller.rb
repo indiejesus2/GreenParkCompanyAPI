@@ -1,5 +1,5 @@
 class Api::V1::EmployeesController < ApplicationController
-  before_action :set_employee, only: %i[ edit update destroy ]
+  before_action :set_employee, only: %i[ show edit update destroy ]
   wrap_parameters :employee, include: [:name, :email, :password]
 
   # GET /employees or /employees.json
@@ -11,6 +11,7 @@ class Api::V1::EmployeesController < ApplicationController
 
   # GET /employees/1 or /employees/1.json
   def show
+    render json: EmployeeSerializer.new(@employee, include: [:profile, :work_histories])
   end
 
   # GET /employees/new

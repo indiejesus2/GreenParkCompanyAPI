@@ -9,10 +9,21 @@ export default class Job extends Component {
         this.props.fetchJob(job)
     }
 
+    handleSearch = (e) => {
+
+    }
+
+    handleChange = (e) => {
+
+    }
+
+    handleSubmit = (e) => {
+        e.preventDefault()
+    }
+
     render() {
         const job = this.props.jobs.find(job => job.id == this.props.match.params.job_id)
         const candidates = this.props.candidates.length > 0 ? this.props.candidates : []
-        debugger
         if (this.props.loading === true) {
             return (
             <div className="spinner">
@@ -27,13 +38,26 @@ export default class Job extends Component {
                     <p>{job.jobtype} {job.schedule} {job.skills} </p>
                     <p>{job.description}</p>
                     <div className="candidates">
+                        <div className="search">
+                            <label htmlFor="search">Search Candidates</label>
+                        <input type="checkbox" name="jobtype" id="jobtype" value="jobtype" onChange={this.handleSearch}/> Job Type
+                        <input type="checkbox" name="schedule" id="schedule" value="schedule" onChange={this.handleSearch}/> Schedule
+                        <input type="checkbox" name="skills" id="skills" value="skills" onChange={this.handleSearch}/> Skills
+                        <input type="checkbox" name="certificates" id="certificates" value="certificates" onChange={this.handleSearch}/> Certificates
+                        <select name="address" id="address" onChange={this.handleChange}> Address
+                            <option value="25">25</option>
+                            <option value="50">50</option>
+                            <option value="75">75</option>
+                            <option value="100">100</option>
+                        </select>
                         {candidates.map(candidate => 
                             <li id={candidate.id} key={candidate.id}>
-                                <Link to={`/employees/${candidate.id}`}>
+                                <Link to={`/contractors/employees/${candidate.id}`}>
                                     <h3>{candidate.fname} {candidate.lname}</h3>
                                 </Link>
                             </li>
                         )}
+                        </div>
                     </div>
                 </div>
             )

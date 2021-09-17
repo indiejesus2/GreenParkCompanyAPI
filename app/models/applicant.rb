@@ -1,4 +1,4 @@
-class CreateApplication < ApplicationRecord
+class Applicant < ApplicationRecord
   belongs_to :employee
   belongs_to :employer
   belongs_to :job

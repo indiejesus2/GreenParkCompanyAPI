@@ -13,7 +13,6 @@ export default class Jobs extends Component {
     }
 
     render() {
-        debugger
         return (
             <div className="jobs">
                 <h2>Jobs</h2>

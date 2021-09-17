@@ -7,10 +7,20 @@ class Api::V1::JobsController < ApplicationController
             @jobs = Job.near(@employee.profile.address, 50)
         elsif @employer
             @jobs = @employer.jobs
+            @applicants = @jobs.map {|job| job.applicants if !job.applicants.empty?}.compact
+            @employees = @applicants.map do 
+                |applicant| 
+                applicant.map do 
+                    |apply|
+                    apply.employee 
+                end
+            end
+            byebug
+            render json: {jobs: @jobs, candidates: EmployeeSerializer.new(@employees[0], include: [:profile, :work_histories])}
         else
             @jobs = Job.all
         end
-        render json: @jobs
+        # render json: @jobs
     end
 
     def show
@@ -19,7 +29,7 @@ class Api::V1::JobsController < ApplicationController
         if !search_params.blank?
             @candidates = @candidates.potential(search_params)
         end
-        render json: {job: @job, candidates: @candidates}
+        render json: {job: @job, candidates: @job.candidates}
     end
 
     def new
@@ -33,7 +43,7 @@ class Api::V1::JobsController < ApplicationController
         @job = @employer.jobs.new(job_params)
         if @job.save
             @job.status = true
-            @candidates = @job.p
+            @job.applicants = @job.proximity
             render json: @job
         else
             render json: @job.errors

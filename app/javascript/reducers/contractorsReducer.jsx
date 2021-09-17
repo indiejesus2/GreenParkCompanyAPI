@@ -1,7 +1,6 @@
-export default function contractorsReducer(state = {contractor: [], jobs: [], loggedIn: false, loading: false}, action) {
+export default function contractorsReducer(state = {contractor: [], jobs: [], profile: [], loggedIn: false, loading: false}, action) {
     switch(action.type) {
         case 'FETCH_CONTRACTOR':
-
             return {
                 contractor: [...state.contractor],
                 loading: true
@@ -14,7 +13,6 @@ export default function contractorsReducer(state = {contractor: [], jobs: [], lo
                 loading: false
             }
         case 'SIGNIN_CONTRACTOR':
-            debugger
             return {
                 contractor: action.payload.contractor,
                 jobs: action.payload.jobs,
@@ -26,6 +24,10 @@ export default function contractorsReducer(state = {contractor: [], jobs: [], lo
                 ...state, 
                 jobs: action.payload.jobs
             }
+        // case 'FETCH_EMPLOYEE':
+        //     return {
+        //         profile: action.payload.profile
+        //     }
         default:
             return state
     }
