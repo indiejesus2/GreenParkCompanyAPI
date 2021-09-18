@@ -64,6 +64,25 @@ div.actions {
 label {
   display: block; }
 
+.logo img {
+  height: 100px;
+}
+
+.nav {
+  height: 100px;
+}
+
+.nav .links {
+  display: flex;
+  position: relative;
+  bottom: 100px;
+  justify-content: right;
+}
+
+.nav .links a {
+  margin: 5px;
+}
+
 .homepage-container {
   padding: 50px;
   // display: grid;
@@ -99,5 +118,5 @@ label {
 
 .homepage .footer {
   position: relative;
-  bottom: 10px;
+  top: 50px;
 }

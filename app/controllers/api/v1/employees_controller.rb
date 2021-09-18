@@ -5,7 +5,6 @@ class Api::V1::EmployeesController < ApplicationController
   # GET /employees or /employees.json
   def index
     @employees = Employee.all
-    # render json: @employees
     render json: EmployeeSerializer.new(@employees, include: [:profile, :work_histories])
   end
 

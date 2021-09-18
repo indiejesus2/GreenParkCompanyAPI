@@ -1,4 +1,4 @@
-export default function contractorsReducer(state = {contractor: [], jobs: [], profile: [], loggedIn: false, loading: false}, action) {
+export default function contractorsReducer(state = {contractor: [], jobs: [], candidates: [], profiles: [], work_history: [], loggedIn: false, loading: false}, action) {
     switch(action.type) {
         case 'FETCH_CONTRACTOR':
             return {
@@ -16,6 +16,13 @@ export default function contractorsReducer(state = {contractor: [], jobs: [], pr
             return {
                 contractor: action.payload.contractor,
                 jobs: action.payload.jobs,
+                candidates: action.payload.candidates.data.map(dat => dat.attributes),
+                profiles: action.payload.candidates.included.filter(include => include.type == "profile"),
+                //     if (include.type == "profile") {
+                //         include
+                //     }
+                // }),
+                work_history: action.payload.candidates.included.filter(include => include.type == "work_history"),
                 loggedIn: true,
                 loading: false
             }

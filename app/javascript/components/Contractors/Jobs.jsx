@@ -16,18 +16,18 @@ export default class Jobs extends Component {
         return (
             <div className="jobs">
                 <h2>Jobs</h2>
-                <ul>
+                {/* <ul> */}
                     {this.props.jobs.map(job =>
-                    <li id={job.id} key={job.id} >
+                    <div id={job.id} key={job.id} >
                         <Link to={`/contractors/${this.props.contractor.id}/jobs/${job.id}`} >
                             <h4>{job.title}</h4>
                         </Link>
                         <p>Location: {job.location}</p>
                         <p>Description: {job.description} </p>
                         {/* <button onClick={this.handleClick}>Apply</button> */}
-                    </li>
+                    </div>
                     )}
-                </ul>
+                {/* </ul> */}
             </div>
         )
     }

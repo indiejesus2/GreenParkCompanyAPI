@@ -4,7 +4,6 @@ import SignIn from './SignIn'
 import JobsContainer from '../../containers/JobsContainer'
 
 const Contractors = props => {
-    // debugger
     if (props.loading === true) {
         return (
         <div className="spinner">
@@ -26,7 +25,7 @@ const Contractors = props => {
         return (
                 <div className="jobs">
                     <h1>{props.contractor.name} Jobs</h1>
-                    <JobsContainer jobs={props.jobs} fetchJobs={props.fetchJobs} contractor={props.contractor} />
+                    <JobsContainer jobs={props.jobs} fetchJobs={props.fetchJobs} contractor={props.contractor} candidates={props.candidates} profiles={props.profiles} work_history={props.work_history}/>
 
                     {/* <h1>{props.profile.fname} {props.profile.lname} Jobs!</h1> */}
                     <p>Jobs!</p>

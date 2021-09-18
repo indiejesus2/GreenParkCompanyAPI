@@ -7,16 +7,9 @@ class Api::V1::JobsController < ApplicationController
             @jobs = Job.near(@employee.profile.address, 50)
         elsif @employer
             @jobs = @employer.jobs
-            @applicants = @jobs.map {|job| job.applicants if !job.applicants.empty?}.compact
-            @employees = @applicants.map do 
-                |applicant| 
-                applicant.map do 
-                    |apply|
-                    apply.employee 
-                end
-            end
-            byebug
-            render json: {jobs: @jobs, candidates: EmployeeSerializer.new(@employees[0], include: [:profile, :work_histories])}
+            @applicants = @employer.applicants
+            @employees = @applicants.map {|applicant| applicant.employee }
+            render json: {contractor: @employer, jobs: @jobs, candidates: EmployeeSerializer.new(@employees, include: [:profile, :work_histories])}
         else
             @jobs = Job.all
         end

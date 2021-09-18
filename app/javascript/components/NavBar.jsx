@@ -3,14 +3,14 @@ import {Link} from 'react-router-dom'
 
 class NavBar extends Component {
     render() {
+        debugger
         return (
             <div className="nav">
-            <div className="logo">
+            <span className="logo">
                 <Link to="/">
-                <img src="/images/React.png" alt="Logo" />
-                <h3>BluCollar</h3>
+                <img src="/images/BluCollar-Logo.jpeg" alt="Logo" />
                 </Link>
-            </div>
+            </span>
             <div className="links">
                 <Link to={'/employees'}>For Employees</Link>
                 <Link to={'/contractors'}>For Employers</Link>

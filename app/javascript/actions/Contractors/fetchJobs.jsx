@@ -1,5 +1,4 @@
 export const fetchJobs = (contractor) => {
-    debugger
     return (dispatch) => {
         dispatch({type: 'LOADING_JOBS'})
         fetch(`api/v1/employers/${contractor.id}/jobs`).then(resp => resp.json())

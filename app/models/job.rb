@@ -3,8 +3,7 @@ class Job < ApplicationRecord
     has_many :applicants
     has_many :employees, through: :applicants
     geocoded_by :address
-    after_validation :geocode
-    before_save :proximity
+    after_validation :geocode, :proximity
 
   def address
     [city, state].compact.join(', ')

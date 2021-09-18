@@ -4,10 +4,10 @@ import { Link } from 'react-router-dom'
 export default class Job extends Component {
 
     
-    componentDidMount() {
-        let job = this.props.jobs.find(job => job.id == this.props.match.params.job_id)
-        this.props.fetchJob(job)
-    }
+    // componentDidMount() {
+    //     let job = this.props.jobs.find(job => job.id == this.props.match.params.job_id)
+    //     this.props.fetchJob(job)
+    // }
 
     handleSearch = (e) => {
 
@@ -23,7 +23,8 @@ export default class Job extends Component {
 
     render() {
         const job = this.props.jobs.find(job => job.id == this.props.match.params.job_id)
-        const candidates = this.props.candidates.length > 0 ? this.props.candidates : []
+        const profiles = this.props.profiles.length > 0 ? this.props.profiles : []
+        const candidates = profiles.map(profile => profile.attributes)
         if (this.props.loading === true) {
             return (
             <div className="spinner">
@@ -51,11 +52,11 @@ export default class Job extends Component {
                             <option value="100">100</option>
                         </select>
                         {candidates.map(candidate => 
-                            <li id={candidate.id} key={candidate.id}>
-                                <Link to={`/contractors/employees/${candidate.id}`}>
+                            <div id={candidate.id} key={candidate.id}>
+                                <Link to={`/contractors/employees/${candidate.employee_id}`}>
                                     <h3>{candidate.fname} {candidate.lname}</h3>
                                 </Link>
-                            </li>
+                            </div>
                         )}
                         </div>
                     </div>

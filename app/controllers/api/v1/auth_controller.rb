@@ -19,7 +19,9 @@ class Api::V1::AuthController < ApplicationController
             # render json: {user: UserSerializer.new(@user), jwt: token}
         elsif @contractor && @contractor.authenticate(employer_params[:password])
             session[:user_id] = @contractor.id
-            render json: {contractor: @contractor, jobs: @contractor.jobs}
+
+            redirect_to api_v1_employer_jobs_path(@contractor)
+            # render json: {contractor: @contractor, jobs: @contractor.jobs, candidates:}
             # , profile: @contractor.profile}
         else
             render json: {error: "Incorrect Username/Password"}, status: 401
