@@ -1,17 +1,39 @@
-import React, { Component } from 'react'
+import React from 'react'
 
-export default class EmployeeProfile extends Component {
+const EmployeeProfile = props => {
+
+
+    const candidate = props.profiles.find(profile => profile.id == props.match.params.id)
+
+    debugger
+    // const [state, setState] = useState({
+    //     id: candidate.id,
+    //     employee_id: candidate.employee_id,
+    //     fname: candidate.fname,
+    //     lname: candidate.lname,
+    //     city: candidate.city,
+    //     state: candidate.state,
+    //     phone: candidate.phone,
+    //     status: candidate.status,
+    //     jobType: candidate.jobType,
+    //     schedule: candidate.schedule,
+    //     education: candidate.education,
+    //     skills: candidate.skills,
+    //     military: candidate.military,
+    //     certificates: candidate.certificates,
+    //     description: candidate.description,
+    //     work_histories: props.work_history
+    // })
 
     // componentDidMount() {
     //     this.props.fetchEmployee(this.props.match.params.id)
     // }
-    
-    render() {
         // const employee = !!this.props.profile ? this.props.profile : [jobtype = [], schedule = []]
-        return (<div>
-            <h1>Candidates</h1>
-        </div>
-        )
+        // return (<div>
+        //     <h1>{candidate.fname} {candidate.lname}</h1>
+
+        // </div>
+        // )
         // if (this.props.loading === true) {
         //     return (
         //         <div className="loading">
@@ -19,26 +41,19 @@ export default class EmployeeProfile extends Component {
         //         </div>
         //     )
         // } else {
-        // return (
-        //     <div className="employee-profile">
-        //         <h2>{employee.fname} {employee.lname}</h2>
-        //         <h4>{employee.city}, {employee.state}</h4>
-        //         <h5>{employee.phone}</h5>
-                
-        //         <table>
-        //             <tr>
-        //                 <th>Job Type:</th>
-        //                 <th>Schedule:</th>
-        //                 <th>Education: </th>
-        //             </tr>
-        //             <tr>
-        //                 <td>{employee.jobtype}</td>
-        //                 <td>{employee.schedule}</td>
-        //                 <td>{employee.education}</td>
-        //             </tr>
-        //         </table>
-        //     </div>
-        // )} 
+        return (
+            <div className="employee-profile">
+                <h2>{candidate.fname} {candidate.lname}</h2>
+                <h4>{candidate.city}, {candidate.state}</h4>
+                <h5>{candidate.phone}</h5>
+                <label htmlFor="jobtype">Job Type: </label>
+                <p>{candidate.jobtype.join(", ")}</p>
+                <label htmlFor="schedule">Schedule: </label>
+                <p>{candidate.schedule.join(", ")}</p>
+                <label htmlFor="education">Education: </label>
+                <p>{candidate.education}</p>
+            </div>
+        )
         // else {
         //     return (
         //         <div>
@@ -46,5 +61,7 @@ export default class EmployeeProfile extends Component {
         //         </div>
         //     )
         // }
-    }
+    
 }
+
+export default EmployeeProfile

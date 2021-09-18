@@ -12,24 +12,25 @@ export default function contractorsReducer(state = {contractor: [], jobs: [], ca
                 loggedIn: true,
                 loading: false
             }
-        case 'SIGNIN_CONTRACTOR':
+        case 'SIGNIN_CONTRACTOR':    
             return {
                 contractor: action.payload.contractor,
                 jobs: action.payload.jobs,
                 candidates: action.payload.candidates.data.map(dat => dat.attributes),
-                profiles: action.payload.candidates.included.filter(include => include.type == "profile"),
-                //     if (include.type == "profile") {
-                //         include
-                //     }
-                // }),
-                work_history: action.payload.candidates.included.filter(include => include.type == "work_history"),
+                profiles: action.payload.candidates.included.filter(include => include.type == "profile").map(profile => profile.attributes),
+                work_history: action.payload.candidates.included.filter(include => include.type == "work_history").map(work => work.attributes),
                 loggedIn: true,
                 loading: false
             }
         case 'ADD_JOB':
+            debugger
             return {
                 ...state, 
-                jobs: action.payload.jobs
+                jobs: [...state.jobs, action.payload.jobs],
+                candidates: [...state.candidates, action.payload.candidates.data.map(dat => dat.attributes)],
+                profiles: [...state.profiles, action.payload.candidates.included.filter(include => include.type == "profile").map(profile => profile.attributes)],
+                work_history: [...state.work_history, action.payload.candidates.included.filter(include => include.type == "work_history").map(work => work.attributes)],
+                loading: false
             }
         // case 'FETCH_EMPLOYEE':
         //     return {

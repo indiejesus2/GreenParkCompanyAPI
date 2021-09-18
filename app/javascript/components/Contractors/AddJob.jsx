@@ -77,6 +77,11 @@ export default function AddJob(props) {
                         <input type="checkbox" name="schedule" value="Holidays" onChange={handleJob}/>
                         Holidays
                     </div>
+                    <div>
+                    <label>Skills: </label>
+                    <input type="text" name="skills" id="skills" onChange={handleChange} />
+                    <br />
+                    </div>
                     <div className="submit">
                         <input type="submit" value="Add Job" />
                     </div>

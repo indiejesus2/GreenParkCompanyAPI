@@ -36,8 +36,9 @@ class Api::V1::JobsController < ApplicationController
         @job = @employer.jobs.new(job_params)
         if @job.save
             @job.status = true
-            @job.applicants = @job.proximity
-            render json: @job
+            @job.proximity
+            @job.save
+            render json: {jobs: @job, candidates: EmployeeSerializer.new(@job.applicants, include: [:profile, :work_histories])}
         else
             render json: @job.errors
         end
