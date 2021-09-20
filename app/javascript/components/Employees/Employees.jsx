@@ -19,7 +19,13 @@ const Employees = props => {
                 {/* <Jobs jobs={props.jobs} fetchJobs={props.fetchJobs} /> */}
             </div>
         )
-    } else {
+    } else if (props.loading === true) {
+        return (
+            <div>
+                Loading....
+            </div>
+        )
+    } {
         return (
                 <div className="jobs">
                     <h1>{props.profile.fname} {props.profile.lname} Jobs!</h1>

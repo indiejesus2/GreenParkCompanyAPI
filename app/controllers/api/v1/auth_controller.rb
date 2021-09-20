@@ -13,7 +13,7 @@ class Api::V1::AuthController < ApplicationController
         if @employee && @employee.authenticate(employee_params[:password])
             # session[:user_id] = @employee.id
             # format.html { redirect_to @employee, notice: "Employee was successfully creaated." }
-            render json: EmployeeSerializer.new(@employee, include: [:profile, :work_histories])
+            redirect_to api_v1_employee_jobs_path(@employee)
             # token = issue_token(@user)
             # cookies.signed[:jwt] = {value: token, httponly: true, expires: 1.hour.from_now}
             # render json: {user: UserSerializer.new(@user), jwt: token}

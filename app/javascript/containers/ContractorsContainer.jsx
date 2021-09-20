@@ -42,6 +42,7 @@ const mapStateToProps = state => {
         loggedIn: state.contractorsReducer.loggedIn,
         loading: state.contractorsReducer.loading,
         jobs: state.contractorsReducer.jobs,
+        applicants: state.contractorsReducer.applicants
     }
 }
 

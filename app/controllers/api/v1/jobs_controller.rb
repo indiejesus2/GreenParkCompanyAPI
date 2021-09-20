@@ -1,19 +1,19 @@
 class Api::V1::JobsController < ApplicationController
-    before_action :set_employer, only: %i[ index new create show edit update destroy ]
-    before_action :set_employee, only: %i[ index, show ]
+    before_action :set_employee
+    before_action :set_employer
 
     def index
         if @employee 
             @jobs = Job.near(@employee.profile.address, 50)
+            render json: {employee: EmployeeSerializer.new(@employee, include: [:profile, :work_histories]), jobs: @jobs}
         elsif @employer
             @jobs = @employer.jobs
             @applicants = @employer.applicants
             @employees = @applicants.map {|applicant| applicant.employee }
-            render json: {contractor: @employer, jobs: @jobs, candidates: EmployeeSerializer.new(@employees, include: [:profile, :work_histories])}
+            render json: {contractor: @employer, jobs: JobSerializer.new(@jobs), candidates: EmployeeSerializer.new(@employees, include: [:profile, :work_histories])}
         else
             @jobs = Job.all
         end
-        # render json: @jobs
     end
 
     def show
@@ -37,8 +37,9 @@ class Api::V1::JobsController < ApplicationController
         if @job.save
             @job.status = true
             @job.proximity
+            byebug
             @job.save
-            render json: {jobs: @job, candidates: EmployeeSerializer.new(@job.applicants, include: [:profile, :work_histories])}
+            render json: {contractor: @employer, jobs: @job, candidates: EmployeeSerializer.new(@job.applicants, include: [:profile, :work_histories])}
         else
             render json: @job.errors
         end

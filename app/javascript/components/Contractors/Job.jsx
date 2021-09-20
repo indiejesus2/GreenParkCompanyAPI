@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState } from 'react'
 import { Link } from 'react-router-dom'
 
 const Job = props => {
@@ -15,16 +15,22 @@ const Job = props => {
     //     e.preventDefault()
     // }
 
+    const [state] = useState({
+
+    })
+
         const job = props.jobs.find(job => job.id == props.match.params.job_id)
-        let candidates = props.profiles.forEach(function(profile) {
-            for (let i = 0; i<profile.skills.length; i++){
-                if (profile.skills[i] == job.skills[0]) {
-                    profile
-                }
+        const candidates = props.candidates != null ? props.candidates.filter(function(candidate) {
+            if (candidate.job_ids.includes(Number(props.match.params.job_id))) {
+                return candidate
             }
-        })
+        }) : []
         debugger
-        candidates = candidates != null ? candidates : []
+        const profiles = candidates.length > 0 ? props.profiles.map(function(profile) {
+            if (candidates.find(candidate => candidate.id == profile.id)) {
+                return profile
+            }
+        }) : []
         if (props.loading === true) {
             return (
             <div className="spinner">
@@ -51,7 +57,7 @@ const Job = props => {
                             <option value="75">75</option>
                             <option value="100">100</option>
                         </select> */}
-                        {candidates.map(candidate => 
+                        {profiles.map(candidate => 
                             <div id={candidate.id} key={candidate.id}>
                                 <Link to={`/contractors/employees/${candidate.employee_id}`}>
                                     <h3>{candidate.fname} {candidate.lname}</h3>

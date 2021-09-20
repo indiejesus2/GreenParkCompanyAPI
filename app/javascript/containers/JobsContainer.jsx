@@ -22,7 +22,7 @@ class JobsContainer extends Component {
             return (
                 <div className="jobs">
                     <Switch>
-                        <Route path='/contractors/:id/jobs/:job_id' render={(routerProps) => <Job {...routerProps} contractor={this.props.contractor} jobs={this.props.jobs} candidates={this.props.candidates} profiles={this.props.profiles} fetchJob={this.props.fetchJob} /> } ></Route>
+                        <Route path='/contractors/:id/jobs/:job_id' render={(routerProps) => <Job {...routerProps} contractor={this.props.contractor} jobs={this.props.jobs} applicants={this.props.applicants} candidates={this.props.candidates} profiles={this.props.profiles} fetchJob={this.props.fetchJob} /> } ></Route>
                         <Route path='/contractors/addjob' render={(routerProps) => <AddJob {...routerProps} contractor={this.props.contractor} addJob={this.props.addJob}/>}></Route>
                         <Route path='/contractors/signup' render={(routerProps) => <SignUp {...routerProps} loading={this.props.loading} signUpContractor={this.props.signUpContractor} />}></Route>
                         <Route path='/contractors' render={(routerProps) => <Jobs {...routerProps} loading={this.props.loading} signIn={this.props.signIn} loggedIn={this.props.loggedIn} contractor={this.props.contractor} profile={this.props.profile} jobs={this.props.jobs} />}></Route>
@@ -47,6 +47,7 @@ const mapStateToProps = state => {
         loggedIn: state.contractorsReducer.loggedIn,
         loading: state.contractorsReducer.loading,
         jobs: state.contractorsReducer.jobs,
+        applicants: state.contractorsReducer.applicants
     }
 }
 

@@ -30,7 +30,7 @@ const mapStateToProps = state => {
         profile: state.employeesReducer.profile,
         work_history: state.employeesReducer.work_history,
         loggedIn: state.employeesReducer.loggedIn,
-        jobs: state.jobsReducer.jobs
+        jobs: state.employeesReducer.jobs
     }
 }
 

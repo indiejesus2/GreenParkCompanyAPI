@@ -22,7 +22,7 @@ export default class Jobs extends Component {
                         <Link to={`/contractors/${this.props.contractor.id}/jobs/${job.id}`} >
                             <h4>{job.title}</h4>
                         </Link>
-                        <p>Location: {job.location}</p>
+                        <p>Location: {job.city}, {job.state} </p>
                         <p>Description: {job.description} </p>
                         {/* <button onClick={this.handleClick}>Apply</button> */}
                     </div>
