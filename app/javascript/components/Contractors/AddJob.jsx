@@ -40,6 +40,15 @@ export default function AddJob(props) {
         }
     }
 
+    const handleSkills = (e) => {
+        e.preventDefault()
+        let skill = e.target.previousElementSibling.value
+        setState( prevState => ({
+            ...prevState,
+            skills: [...state.skills, skill]
+        }))
+    }
+
     const handleSubmit = (e) => {
         e.preventDefault()
         props.addJob(state)
@@ -77,9 +86,13 @@ export default function AddJob(props) {
                         <input type="checkbox" name="schedule" value="Holidays" onChange={handleJob}/>
                         Holidays
                     </div>
-                    <div>
+                    <div className="skills">
                     <label>Skills: </label>
-                    <input type="text" name="skills" id="skills" onChange={handleChange} />
+                    {state.skills.map(skill =>
+                    <span key={skill.id}>{skill} </span>
+                    )}
+                    <input type="text" name="skills" id="skills"/>
+                    <button onClick={handleSkills}>Add Skill</button>
                     <br />
                     </div>
                     <div className="submit">

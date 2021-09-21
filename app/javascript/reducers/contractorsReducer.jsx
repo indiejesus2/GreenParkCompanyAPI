@@ -1,4 +1,4 @@
-export default function contractorsReducer(state = {contractor: [], jobs: [], candidates: [], applicants: [], profiles: [], work_history: [], loggedIn: false, loading: false}, action) {
+export default function contractorsReducer(state = {contractor: [], jobs: [], candidates: [], profiles: [], work_history: [], loggedIn: false, loading: false}, action) {
     switch(action.type) {
         case 'FETCH_CONTRACTOR':
             return {
@@ -12,19 +12,10 @@ export default function contractorsReducer(state = {contractor: [], jobs: [], ca
                 loggedIn: true,
                 loading: false
             }
-        case 'SIGNIN_CONTRACTOR':    
-            let candidates = action.payload.candidates.data.map(function(candidate) {
-                let applicants = {}
-                // debugger
-                for (let i = 0; i<candidate.relationships.jobs.data.length; i++) {
-                    applicants[candidate.relationships.jobs.data[i].id] = candidate
-                }
-                return applicants
-            })
+        case 'SIGNIN_CONTRACTOR': 
             return {
                 contractor: action.payload.contractor,
                 jobs: action.payload.jobs.data.map(job => job.attributes),
-                applicants: action.payload.jobs.data.flatMap(job => [job.id] = job.relationships.employees.data),
                 candidates: action.payload.candidates.data.map(candidate => candidate.attributes),
                 profiles: action.payload.candidates.included.filter(include => include.type == "profile").map(profile => profile.attributes),
                 work_history: action.payload.candidates.included.filter(include => include.type == "work_history").map(work => work.attributes),
@@ -41,12 +32,18 @@ export default function contractorsReducer(state = {contractor: [], jobs: [], ca
                 loading: true
             }
         case 'ADD_JOB':
+            // let candidates = action.payload.candidates.data.filter(candidate => {
+            //     if (!state.candidates.find(dat => dat.id == candidate.id)) {
+            //         return candidate
+            //     }
+            // })
+            // let profiles = action.payload.candidates.included.filter()
             return {
                 ...state, 
                 jobs: [...state.jobs, action.payload.jobs],
-                candidates: [...state.candidates, action.payload.candidates.data.map(dat => dat.attributes)],
-                profiles: [...state.profiles, action.payload.candidates.included.filter(include => include.type == "profile").map(profile => profile.attributes)],
-                work_history: [...state.work_history, action.payload.candidates.included.filter(include => include.type == "work_history").map(work => work.attributes)],
+                // candidates: [...state.candidates, candidates],
+                // profiles: [...state.profiles, candidates.included.filter(include => include.type == "profile").map(profile => profile.attributes)],
+                // work_history: [...state.work_history, candidates.included.filter(include => include.type == "work_history").map(work => work.attributes)],
                 loading: false
             }
         // case 'FETCH_EMPLOYEE':

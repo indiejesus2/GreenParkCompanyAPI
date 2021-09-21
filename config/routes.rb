@@ -9,7 +9,9 @@ Rails.application.routes.draw do
         resources :jobs
       end
       resources :employers do
-        resources :jobs
+        resources :jobs do 
+          resources :employees
+        end
       end
       resources :jobs
       post '/signin', to: 'auth#create'

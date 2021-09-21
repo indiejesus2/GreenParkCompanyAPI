@@ -20,17 +20,7 @@ const Job = props => {
     })
 
         const job = props.jobs.find(job => job.id == props.match.params.job_id)
-        const candidates = props.candidates != null ? props.candidates.filter(function(candidate) {
-            if (candidate.job_ids.includes(Number(props.match.params.job_id))) {
-                return candidate
-            }
-        }) : []
-        debugger
-        const profiles = candidates.length > 0 ? props.profiles.map(function(profile) {
-            if (candidates.find(candidate => candidate.id == profile.id)) {
-                return profile
-            }
-        }) : []
+        const profiles = job.profiles.length > 0 ? job.profiles : []
         if (props.loading === true) {
             return (
             <div className="spinner">

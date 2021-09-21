@@ -4,4 +4,8 @@ class Employee < ApplicationRecord
   has_many :applicants
   has_many :jobs, through: :applicants
   has_secure_password
+
+  # def name
+    
+  # end
 end

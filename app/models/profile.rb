@@ -1,6 +1,7 @@
 class Profile < ApplicationRecord
   belongs_to :employee
   has_many :work_histories
+  has_many :jobs, through: :employee
   accepts_nested_attributes_for :work_histories
   geocoded_by :address
   after_validation :geocode

@@ -17,12 +17,13 @@ class Api::V1::JobsController < ApplicationController
     end
 
     def show
-        @job = @employer.jobs.find(params[:id])
+        @job = Job.find(params[:id])
+        @employer = @job.employer
         @candidates = @job.proximity
         if !search_params.blank?
             @candidates = @candidates.potential(search_params)
         end
-        render json: {job: @job, candidates: @job.candidates}
+        render json: {job: JobSerializer.new(@job)}
     end
 
     def new
@@ -34,12 +35,11 @@ class Api::V1::JobsController < ApplicationController
 
     def create
         @job = @employer.jobs.new(job_params)
+        @job.save
         if @job.save
-            @job.status = true
-            @job.proximity
-            byebug
-            @job.save
-            render json: {contractor: @employer, jobs: @job, candidates: EmployeeSerializer.new(@job.applicants, include: [:profile, :work_histories])}
+            # @employees = @employer.applicants.map {|applicant| applicant.employee }
+            render json: {jobs: JobSerializer.new(@job)}
+            # , candidates: EmployeeSerializer.new(@employees, include: [:profile, :work_histories])}
         else
             render json: @job.errors
         end
@@ -70,7 +70,7 @@ class Api::V1::JobsController < ApplicationController
     end
 
     def job_params
-        params.require(:job).permit(:title, :status, :city, :state, {jobType: []}, {schedule: []}, {skill: []}, {certificates: []}, :description, :employer_id)
+        params.require(:job).permit(:title, :status, :city, :state, {jobType: []}, {schedule: []}, {skills: []}, {certificates: []}, :description, :employer_id)
     end
 
     def search_params
