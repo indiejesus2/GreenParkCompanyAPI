@@ -1,6 +1,6 @@
 class Job < ApplicationRecord
     belongs_to :employer
-    has_many :applicants
+    has_many :applicants, dependent: :destroy
     has_many :employees, through: :applicants
     has_many :profiles, through: :employees
     geocoded_by :address
@@ -16,9 +16,7 @@ class Job < ApplicationRecord
     self.skills.each {|skill| profiles << Profile.where(":skills = ANY (skills)", skills: "#{skill}").near(self.address, 100)}
     profiles.each {|profile| 
       profile.each {|pro|
-      if !self.employer.applicants.find_by(employee_id: pro.id)
         Applicant.create(employee_id: "#{pro.employee_id}", employer_id: "#{self.employer_id}", job_id: "#{self.id}")
-      end
       }}
     # Profile.where("jobtype && ?", "{FT}")
     # Profile.where("#{key} && ?", "#{values}")

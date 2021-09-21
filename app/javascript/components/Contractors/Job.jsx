@@ -49,7 +49,7 @@ const Job = props => {
                         </select> */}
                         {profiles.map(candidate => 
                             <div id={candidate.id} key={candidate.id}>
-                                <Link to={`/contractors/employees/${candidate.employee_id}`}>
+                                <Link to={`/contractors/${job.employer_id}/jobs/${job.id}/employees/${candidate.employee_id}`}>
                                     <h3>{candidate.fname} {candidate.lname}</h3>
                                 </Link>
                             </div>

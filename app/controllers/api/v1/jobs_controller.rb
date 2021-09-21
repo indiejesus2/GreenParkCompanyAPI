@@ -8,9 +8,7 @@ class Api::V1::JobsController < ApplicationController
             render json: {employee: EmployeeSerializer.new(@employee, include: [:profile, :work_histories]), jobs: @jobs}
         elsif @employer
             @jobs = @employer.jobs
-            @applicants = @employer.applicants
-            @employees = @applicants.map {|applicant| applicant.employee }
-            render json: {contractor: @employer, jobs: JobSerializer.new(@jobs), candidates: EmployeeSerializer.new(@employees, include: [:profile, :work_histories])}
+            render json: {contractor: @employer, jobs: JobSerializer.new(@jobs)}
         else
             @jobs = Job.all
         end
@@ -37,6 +35,7 @@ class Api::V1::JobsController < ApplicationController
         @job = @employer.jobs.new(job_params)
         @job.save
         if @job.save
+            byebug
             # @employees = @employer.applicants.map {|applicant| applicant.employee }
             render json: {jobs: JobSerializer.new(@job)}
             # , candidates: EmployeeSerializer.new(@employees, include: [:profile, :work_histories])}
@@ -49,6 +48,9 @@ class Api::V1::JobsController < ApplicationController
     end
 
     def destroy
+        @job = @employer.jobs.find(params[:id])
+        @job.destroy
+        render json: {jobs: JobSerializer.new(@employer.jobs)}
     end
 
     private

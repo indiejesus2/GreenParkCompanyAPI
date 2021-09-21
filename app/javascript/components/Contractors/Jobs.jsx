@@ -8,8 +8,9 @@ export default class Jobs extends Component {
     //     this.props.fetchJobs(this.props.contractor)
     // }
 
-    handleClick = () => {
-        
+    handleClick = (job) => {
+        // e.preventDefault()
+        this.props.deleteJob(job)
     }
 
     render() {
@@ -24,7 +25,8 @@ export default class Jobs extends Component {
                         </Link>
                         <p>Location: {job.city}, {job.state} </p>
                         <p>Description: {job.description} </p>
-                        {/* <button onClick={this.handleClick}>Apply</button> */}
+                        <p>Number of Applicants: {job.employees.length} </p>
+                        <button onClick={() => this.handleClick(job)}>Delete</button>
                     </div>
                     )}
                 {/* </ul> */}

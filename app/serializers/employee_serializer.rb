@@ -1,7 +1,7 @@
 class EmployeeSerializer
     include FastJsonapi::ObjectSerializer
     # link :public_url
-    attributes :id, :email, :jobs
+    attributes :id, :email, :jobs, :name
     has_one :profile
     has_many :work_histories, through: :profile
     has_many :applicants
