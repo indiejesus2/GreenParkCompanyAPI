@@ -24,7 +24,7 @@ gem 'bcrypt', '~> 3.1.7'
 
 gem 'rack-cors'
 
-gem 'fast_jsonapi'
+gem 'jsonapi-serializer'
 
 gem 'jwt', '~> 2.2'
 

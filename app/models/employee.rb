@@ -5,8 +5,8 @@ class Employee < ApplicationRecord
   has_many :jobs, through: :applicants
   has_secure_password
 
-  def name
-    [profile.fname, profile.lname].compact.join(" ")  
-  end
+  # def name
+  #   [profile.fname, profile.lname].compact.join(" ")  
+  # end
 
 end

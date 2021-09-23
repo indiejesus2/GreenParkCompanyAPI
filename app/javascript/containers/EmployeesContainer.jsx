@@ -7,7 +7,8 @@ import { updateProfile } from '../actions/Tradespeople/updateProfile'
 import { fetchJobs } from '../actions/Tradespeople/fetchJobs'
 import Employees from '../components/Employees/Employees'
 import SignUp from '../components/Employees/SignUp'
-import Profile from '../components/Employees/Profile'
+import Questionnaire from '../components/Questionnaire/Main'
+import EditProfile from '../components/Employees/EditProfile'
 
 class EmployeesContainer extends Component {
 
@@ -15,7 +16,9 @@ class EmployeesContainer extends Component {
         return (
             <div className="employee">
                 <Switch>
-                    <Route path='/employees/profile' render={(routerProps) => <Profile {...routerProps} employee={this.props.employee} profile={this.props.profile} work_history={this.props.work_history} updateProfile={this.props.updateProfile}/>}></Route>
+                    <Route path='/employees/:id/edit_profile' render={(routerProps) => <EditProfile {...routerProps} employee={this.props.employee} profile={this.props.profile} work_history={this.props.work_history} updateProfile={this.props.updateProfile}/>}></Route>
+                    <Route path='/employees/:id/profile' render={(routerProps) => <Profile {...routerProps} employee={this.props.employee} profile={this.props.profile} work_history={this.props.work_history} />}></Route>
+                    <Route path='/employees/questionnaire' render={(routerProps) => <Questionnaire {...routerProps} employee={this.props.employee} profile={this.props.profile} work_history={this.props.work_history} />}></Route>
                     <Route path='/employees/signup' render={(routerProps) => <SignUp {...routerProps} signUpEmployee={this.props.signUpEmployee} />}></Route>
                     <Route path='/employees' render={(routerProps) => <Employees {...routerProps} signIn={this.props.signIn} loggedIn={this.props.loggedIn} employee={this.props.employee} profile={this.props.profile}  jobs={this.props.jobs} fetchJobs={this.props.fetchJobs} />}></Route>
                 </Switch>

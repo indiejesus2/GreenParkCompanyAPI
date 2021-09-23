@@ -21,7 +21,6 @@ class Api::V1::ProfilesController < ApplicationController
 
     def update 
         @profile = @employee.profile
-        byebug
         @profile.update(profile_params)
         if @profile.save
             render json: {profile: @profile}

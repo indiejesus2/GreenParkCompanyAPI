@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import {Link} from 'react-router-dom'
 
 class NavBar extends Component {
+
     render() {
         return (
             <div className="nav">
@@ -13,8 +14,6 @@ class NavBar extends Component {
             <div className="links">
                 <Link to={'/employees'}>For Employees</Link>
                 <Link to={'/contractors'}>For Employers</Link>
-                <Link to={'/employees/profile'}>Profile</Link>
-                <Link to={'/contractors/addjob'}>Add Job</Link>
             </div>
         </div>
         )

@@ -1,6 +1,7 @@
 class Api::V1::JobsController < ApplicationController
     before_action :set_employee
     before_action :set_employer
+    before_action :set_job, only: [:edit, :update, :destroy]
 
     def index
         if @employee 
@@ -45,6 +46,12 @@ class Api::V1::JobsController < ApplicationController
     end
 
     def update
+        @job.update(job_params)
+        if @job.save
+            render json: {jobs: JobSerializer.new(@job)}
+        else
+            render json: @job.errors
+        end
     end
 
     def destroy
@@ -69,6 +76,10 @@ class Api::V1::JobsController < ApplicationController
         else
             nil
         end
+    end
+
+    def set_job
+        @job = Job.find(params[:id])
     end
 
     def job_params

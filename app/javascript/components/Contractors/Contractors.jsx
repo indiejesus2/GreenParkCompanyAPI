@@ -23,12 +23,12 @@ const Contractors = props => {
         )
     } else {
         return (
-                <div className="jobs">
-                    <h1>{props.contractor.name} Jobs</h1>
+                <div className="contractor">
+                    <h1>{props.contractor.name}</h1>
+                    <Link to={'/contractors/addjob'}>Add Job</Link>
+                    <Link to={`/contractors/${props.contractor.id}/profile`}>Employer Profile</Link>
+                    <Link to={`/contractors/${props.contractor.id}/editprofile`}>Edit Profile</Link>
                     <JobsContainer jobs={props.jobs} fetchJobs={props.fetchJobs} contractor={props.contractor} candidates={props.candidates} profiles={props.profiles} work_history={props.work_history}/>
-
-                    {/* <h1>{props.profile.fname} {props.profile.lname} Jobs!</h1> */}
-                    <p>Jobs!</p>
                 </div>
         )
     }

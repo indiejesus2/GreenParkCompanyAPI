@@ -4,7 +4,6 @@ import SignIn from './signin'
 import Jobs from './Jobs'
 
 const Employees = props => {
-    // debugger
     if (props.loggedIn === false) {
         return (
             <div className="jobs">
@@ -29,6 +28,7 @@ const Employees = props => {
         return (
                 <div className="jobs">
                     <h1>{props.profile.fname} {props.profile.lname} Jobs!</h1>
+                        <Link to={`/employees/${props.employee.id}/profile`}>Profile</Link>
                     <Jobs jobs={props.jobs} fetchJobs={props.fetchJobs} employee={props.employee} />
                 </div>
         )

@@ -1,17 +1,21 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
-export default function AddJob(props) {
+export default function EditJob(props) {
+
+
+    const job = props.jobs.find(job => job.id == props.match.params.job_id)
 
     const [state, setState] = useState({
-        employer_id: props.contractor.id,
-        title: "",
-        city: "",
-        state: "",
-        jobType: [],
-        schedule: [],
-        skills: [],
-        certificates: [],
-        description: ""
+        id: job.id,
+        employer_id: job.employer_id,
+        title: job.title,
+        city: job.city,
+        state: job.state,
+        jobType: job.jobType,
+        schedule: job.schedule,
+        skills: job.skills,
+        certificates: job.certificates,
+        description: job.description
     })
 
     const handleChange = (e) => {
@@ -52,8 +56,8 @@ export default function AddJob(props) {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        props.addJob(state)
-        props.history.push('/contractors')
+        props.editJob(state)
+        props.history.push(`/contractors/${state.employer_id}/jobs/${state.id}`)
     }
 
     return (
@@ -62,13 +66,16 @@ export default function AddJob(props) {
             <div className="input">
                 <form onSubmit={handleSubmit} className="addJob-form">
                     <label>Title: </label>
-                    <input type="text" name="title" id="title" onChange={handleChange} />
+                    <input type="text" name="title" id="title" onChange={handleChange} value={state.title}/>
                     <br />
                     <label>City: </label>
-                    <input type="text" name="city" id="city" onChange={handleChange} />
+                    <input type="text" name="city" id="city" onChange={handleChange} value={state.city}/>
                     <br />
                     <label>State: </label>
-                    <input type="text" name="state" id="state" onChange={handleChange} />
+                    <input type="text" name="state" id="state" onChange={handleChange} value={state.state} />
+                    <br />
+                    <label>Description: </label>
+                    <input type="textarea" name="description" id="description" onChange={handleChange} value={state.description} />
                     <br />
                     <div className="work-schedule">
                         <label htmlFor="job-type">Job-Type: </label>
@@ -103,5 +110,4 @@ export default function AddJob(props) {
             </div>
         </div>
     )
-
 }

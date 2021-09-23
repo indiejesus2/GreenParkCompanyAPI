@@ -1,5 +1,5 @@
 class ApplicantSerializer
-    include FastJsonapi::ObjectSerializer
+    include JSONAPI::Serializer
     belongs_to :employee 
     belongs_to :employer 
     belongs_to :job

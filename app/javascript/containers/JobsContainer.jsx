@@ -4,12 +4,14 @@ import { Route, Switch, Redirect } from 'react-router-dom'
 import {signInContractor} from '../actions/Contractors/signInContractor'
 import { signUpContractor } from '../actions/Contractors/signUpContractor'
 import { addJob } from '../actions/Contractors/addJob'
+import { editJob } from '../actions/Contractors/editJob'
 import { deleteJob } from '../actions/Contractors/deleteJob'
 import { fetchJobs } from '../actions/Contractors/fetchJobs'
 import { fetchJob } from '../actions/Contractors/fetchJob'
 import Contractors from '../components/Contractors/Contractors'
 import SignUp from '../components/Contractors/SignUp'
 import AddJob from '../components/Contractors/AddJob'
+import EditJob from '../components/Contractors/EditJob'
 import Job from '../components/Contractors/Job'
 import Jobs from '../components/Contractors/Jobs'
 
@@ -19,6 +21,7 @@ class JobsContainer extends Component {
             return (
                 <div className="jobs">
                     <Switch>
+                        <Route path='/contractors/:id/jobs/:job_id/editjob' render={(routerProps) => <EditJob {...routerProps} jobs={this.props.jobs} editJob={this.props.editJob} />}></Route>
                         <Route path='/contractors/:id/jobs/:job_id' render={(routerProps) => <Job {...routerProps} contractor={this.props.contractor} jobs={this.props.jobs} applicants={this.props.applicants} candidates={this.props.candidates} profiles={this.props.profiles} fetchJob={this.props.fetchJob} /> } ></Route>
                         <Route path='/contractors/addjob' render={(routerProps) => <AddJob {...routerProps} contractor={this.props.contractor} addJob={this.props.addJob}/>}></Route>
                         <Route path='/contractors/signup' render={(routerProps) => <SignUp {...routerProps} loading={this.props.loading} signUpContractor={this.props.signUpContractor} />}></Route>
@@ -52,6 +55,7 @@ const mapDispatchToProps = dispatch => ({
     signIn: contractor => dispatch(signInContractor(contractor)),
     signUpContractor: contractor => dispatch(signUpContractor(contractor)),
     addJob: job => dispatch(addJob(job)),
+    editJob: job => dispatch(editJob(job)),
     deleteJob: job => dispatch(deleteJob(job)),
     fetchJobs: contractor => dispatch(fetchJobs(contractor)),
     fetchJob: job => dispatch(fetchJob(job))

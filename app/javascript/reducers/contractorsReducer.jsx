@@ -37,15 +37,16 @@ export default function contractorsReducer(state = {contractor: [], jobs: [], lo
                 jobs: [...state.jobs, action.payload.jobs.data.attributes],
                 loading: false
             }
+        case 'EDIT_JOB':
+            return {
+                ...state,
+                jobs: action.payload.jobs.data.map(job => job.attributes)
+            }
         case 'DELETE_JOB':
             return {
                 ...state,
                 jobs: action.payload.jobs.data.map(job => job.attributes)
             }
-        // case 'FETCH_EMPLOYEE':
-        //     return {
-        //         profile: action.payload.profile
-        //     }
         default:
             return state
     }

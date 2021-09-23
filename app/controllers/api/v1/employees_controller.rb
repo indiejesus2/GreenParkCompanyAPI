@@ -27,8 +27,8 @@ class Api::V1::EmployeesController < ApplicationController
     @employee = Employee.new(employee_params)
     if @employee.save
       session[:user_id] = @employee.id
-      redirect_to api_v1_employee_jobs_path(@employee)
-      # render json: EmployeeSerializer.new(@employee, include: [:profile, :work_histories])
+      # redirect_to api_v1_employee_jobs_path(@employee)
+      render json: EmployeeSerializer.new(@employee, include: [:profile, :work_histories])
       # format.html { redirect_to @employee, notice: "Employee was successfully created." }
         # format.json { render :show, status: :created, location: @employee }
     else
