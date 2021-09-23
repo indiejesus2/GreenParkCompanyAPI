@@ -1,5 +1,6 @@
 import React from 'react'
 import Modal from 'react-bootstrap/Modal'
+import Button from 'react-bootstrap/Button'
 
 const Basic = props => {
 
@@ -8,10 +9,14 @@ const Basic = props => {
     }
 
     return(
-        // <React.Fragment>
-        <Modal show={props.show}>
+        <React.Fragment>
+        <Modal show={props.show} animation backdrop>
             
-        <div className="basic">
+        <Modal.Header closeButton>
+            <Modal.Title>Basic Info</Modal.Title>
+        </Modal.Header>
+            <Modal.Body>
+
             <label htmlFor="first name">First Name: </label>
             <input type="text" name="fname" value={props.fname} onChange={props.handleChange} />
             <br />
@@ -24,9 +29,14 @@ const Basic = props => {
             <label htmlFor="state">State: </label>
             <input type="text" name="state" value={props.state} onChange={props.handleChange} />
             <br />
-        </div>
+            </Modal.Body>
+            <Modal.Footer>
+                <Button variant="primary" name="next" onClick={props.handleClick}>
+                    Next
+                </Button>
+            </Modal.Footer>
         </Modal>
-        
+        </React.Fragment>
     )
 }
 

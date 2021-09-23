@@ -12,6 +12,7 @@ import employeesReducer from '../reducers/employeesReducer'
 import contractorsReducer from '../reducers/contractorsReducer'
 import jobsReducer from '../reducers/jobsReducer';
 import App from '../components/App'
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const rootReducer = combineReducers({
   employeesReducer,

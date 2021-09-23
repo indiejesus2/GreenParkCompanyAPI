@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import Modal from 'react-bootstrap/Modal'
-
 import Basic from './Basic'
 import Desired from './Desired'
 import Skills from './Skills'
@@ -9,7 +8,8 @@ const Main = (props) => {
 
     const [state, setState] = useState({
         currentStep: 1,
-        id: props.employee.id,
+        id: props.profile.id,
+        employee_id: props.employee.id,
         show: true,
         fname: '',
         lname: '',
@@ -17,7 +17,7 @@ const Main = (props) => {
         state: '',
         education: '',
         state: '',
-        jobtype: [],
+        jobType: [],
         schedule: [],
         minpay: 0,
         maxpay: 0,
@@ -86,63 +86,17 @@ const Main = (props) => {
                 ...prevState,
                 currentStep : currentStep -= 1
             }))
-            console.log(currentStep)
         } else if (currentStep < 3 && direction == "next") {
             setState( prevState => ({
                 ...prevState,
                 currentStep : currentStep += 1
             }))
-            console.log(currentStep)
         }
     }
 
-    // _next = () => {
-    //     let currentStep = this.state.currentStep
-    //     currentStep = currentStep >= 2? 3: currentStep + 1
-    //     this.setState({
-    //       currentStep: currentStep
-    //     })
-    //   }
-        
-    //   _prev = () => {
-    //     let currentStep = this.state.currentStep
-    //     currentStep = currentStep <= 1? 1: currentStep - 1
-    //     this.setState({
-    //       currentStep: currentStep
-    //     })
-    //   }
-
-    function previousButton() {
-        let currentStep = state.currentStep;
-        if(currentStep !==1){
-          return (
-            <button 
-              className="btn btn-secondary" 
-              type="button" onClick={setState(state.currentStep - 1)}>
-            Previous
-            </button>
-          )
-        }
-        return null;
-      }
-      
-   function nextButton() {
-        let currentStep = state.currentStep;
-        if(currentStep <3){
-          return (
-            <button 
-              className="btn btn-primary float-right" 
-              type="button" onClick={setState(state.currentStep + 1)}>
-            Next
-            </button>        
-          )
-        }
-        return null;
-      }
-
     
     return (
-        <React.Fragment>
+        <div>
             <h1>BluCollar Tradespeople Main</h1>
             {/* <Modal show={state.show}>     */}
             <p>Step {state.currentStep}</p>
@@ -150,49 +104,40 @@ const Main = (props) => {
                 <Basic
                     currentStep={state.currentStep}
                     handleChange={handleChange}
-                    setState={setState}
                     show={state.show}
                     fname={state.fname}
                     lname={state.lname}
                     city={state.city}
                     state={state.state}
                     education={state.education}
-                />
+                    handleClick={handleClick}
+                    />
                 <Desired
                     currentStep={state.currentStep}
                     handleChange={handleJob}
-                    setState={setState}
-
+                    
                     show={state.show}
                     jobType={state.jobType}
                     schedule={state.schedule}
                     minpay={state.minpay}
                     maxpay={state.maxpay}
-                />
+                    handleClick={handleClick}
+                    />
                 <Skills
                     currentStep={state.currentStep}
                     handleChange={handleSkills}
-                    setState={setState}
-
+                    handleSubmit={handleSubmit}
                     show={state.show}
                     skills={state.skills}
                     certificates={state.certificates}
-                />
-            <button 
-              className="btn btn-secondary" 
-              type="button" name="previous" onClick={handleClick}>
-            Previous
-            </button>
-            <button 
-              className="btn btn-primary float-right" 
-              type="button" name="next" onClick={handleClick}>
-            Next
-            </button>  
+                    handleClick={handleClick}
+                    />
             </form>
+            </div>
 
 
-                    {/* </Modal> */}
-        </React.Fragment>
+                    // {/* </Modal> */}
+        // </React.Fragment>
     )
 }
 

@@ -19,7 +19,7 @@ export default function SignUp(props) {
         event.preventDefault()
         let state = {email: email, password: password}
         props.signUpEmployee(state)
-        props.history.push('/employees/questionnaire')
+        props.history.push('/employees')
     }
 
     return (

@@ -2,8 +2,13 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import SignIn from './signin'
 import Jobs from './Jobs'
+import Questionnaire from '../Questionnaire/Main'
 
 const Employees = props => {
+
+    const questionnaire = () => {
+        props.history.push('/employees/questionnaire')
+    }
     if (props.loggedIn === false) {
         return (
             <div className="jobs">
@@ -24,6 +29,11 @@ const Employees = props => {
                 Loading....
             </div>
         )
+    } else if (props.profile.fname == null) {
+        return (
+            <Questionnaire employee={props.employee} profile={props.profile} work_history={props.work_history} updateProfile={props.updateProfile} />
+        )
+        
     } {
         return (
                 <div className="jobs">
