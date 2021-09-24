@@ -10,12 +10,14 @@ export default class Jobs extends Component {
         
     }
 
+    
     render() {
+        const jobs = this.props.jobs.length > 0 ? this.props.jobs : []
         return (
             <div className="jobs">
                 <h2>Jobs</h2>
                 <ul>
-                    {this.props.jobs.map(job =>
+                    {jobs.map(job =>
                     <li id={job.id} key={job.id} >
                         <h4>{job.title}</h4>
                         <p>Location: {job.city}, {job.state}</p>

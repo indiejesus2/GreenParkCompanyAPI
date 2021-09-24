@@ -8,6 +8,7 @@ export default function employeesReducer(state = {employee: [], profile: [], wor
             return {
                 employee: action.payload.data.attributes,
                 profile: action.payload.included.find(include => include.type == "profile").attributes,
+                jobs: [],
                 loggedIn: true,
                 loading: false
             }

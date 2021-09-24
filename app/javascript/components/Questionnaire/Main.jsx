@@ -3,8 +3,11 @@ import Modal from 'react-bootstrap/Modal'
 import Basic from './Basic'
 import Desired from './Desired'
 import Skills from './Skills'
+import { useHistory } from 'react-router-dom'
 
 const Main = (props) => {
+
+    const history = useHistory()
 
     const [state, setState] = useState({
         currentStep: 1,
@@ -75,7 +78,7 @@ const Main = (props) => {
     const handleSubmit = (event) => {
         event.preventDefault()
         props.updateProfile(state)
-        props.history.push('/employees')
+        history.push('/employees')
     }
 
     const handleClick = (e) => {

@@ -6,9 +6,6 @@ import Questionnaire from '../Questionnaire/Main'
 
 const Employees = props => {
 
-    const questionnaire = () => {
-        props.history.push('/employees/questionnaire')
-    }
     if (props.loggedIn === false) {
         return (
             <div className="jobs">
