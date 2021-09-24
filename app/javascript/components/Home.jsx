@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
+import SignIn from './Employees/SignIn'
+import Button from 'react-bootstrap/Button'
+
 
 class Home extends Component {
     render() {
@@ -13,9 +16,7 @@ class Home extends Component {
                         <div className="homepage-body">
                             <div className="cards">
                                     <label>JobSeekers</label>
-                                <Link to="/employees">
-                                    <button>Search Jobs</button>
-                                </Link>
+                                    <Button onClick={SignIn}>Search Jobs</Button>
                             </div>
                             <div className="cards">
                                 <label>Contractors</label>

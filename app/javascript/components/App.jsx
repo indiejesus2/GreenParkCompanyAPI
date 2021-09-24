@@ -10,38 +10,16 @@ import Home from '../components/Home';
 import EmployeesContainer from '../containers/EmployeesContainer'
 import ContractorsContainer from '../containers/ContractorsContainer'
 import NavBar from '../components/NavBar'
+import signIn from '../actions/Tradespeople/signIn'
 
 class App extends Component {
-
-    constructor(props) {
-        super(props)
-        this.state = {
-            user: "home"
-        }
-    }
-
-    componentDidUpdate() {
-        debugger
-    }
-
-    employer = () => {
-        this.setState({ user: "employer"})
-    }
-
-    employee = () => {
-        this.setState({ user: "employee" })
-    }
-
-    home = () => {
-        this.setState({ user: "home" })
-    }
 
     render(){
         return (
             <div>
-            <NavBar user={this.state}/>
+            <NavBar/>
                 <Switch>
-                    <Route path="/" exact component={Home}></Route>
+                    <Route path="/" exact render={(routerProps) => <Home {...routerProps} signIn={this.props.signIn}/>}></Route>
                     <Route path="/employees" component={EmployeesContainer}></Route>
                     <Route path="/contractors" component={ContractorsContainer}></Route>
                 </Switch>
@@ -50,4 +28,4 @@ class App extends Component {
     }
 }
 
-export default App;
+export default App(null, signIn);

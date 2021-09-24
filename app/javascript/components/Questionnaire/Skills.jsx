@@ -14,7 +14,7 @@ const Skills = props => {
         <React.Fragment>
         <Modal show={props.show} animation backdrop>
         <Modal.Header closeButton>
-            <Modal.Title>Work-Schedule</Modal.Title>
+            <Modal.Title><img src="/images/Collar.jpeg" alt="Collar" /></Modal.Title>
         </Modal.Header>
             <Modal.Body>
 

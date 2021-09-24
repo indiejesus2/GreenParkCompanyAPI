@@ -15,7 +15,6 @@ class EmployeesContainer extends Component {
 
     render() {
         return (
-            <div className="employee">
                 <Switch>
                     <Route path='/employees/:id/edit_profile' render={(routerProps) => <EditProfile {...routerProps} employee={this.props.employee} profile={this.props.profile} work_history={this.props.work_history} updateProfile={this.props.updateProfile}/>}></Route>
                     <Route path='/employees/:id/profile' render={(routerProps) => <Profile {...routerProps} employee={this.props.employee} profile={this.props.profile} work_history={this.props.work_history} />}></Route>
@@ -23,7 +22,6 @@ class EmployeesContainer extends Component {
                     <Route path='/employees/signup' render={(routerProps) => <SignUp {...routerProps} signUpEmployee={this.props.signUpEmployee} />}></Route>
                     <Route path='/employees' render={(routerProps) => <Employees {...routerProps} signIn={this.props.signIn} loggedIn={this.props.loggedIn} employee={this.props.employee} profile={this.props.profile}  jobs={this.props.jobs} loading={this.props.loading} updateProfile={this.props.updateProfile}/>}></Route>
                 </Switch>
-            </div>
         )
     }
 }

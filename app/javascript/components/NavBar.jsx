@@ -11,10 +11,10 @@ class NavBar extends Component {
                 <img src="/images/BluCollar-Logo.jpeg" alt="Logo" />
                 </Link>
             </span>
-            <div className="links">
+            <span className="links">
                 <Link to={'/employees'}>For Employees</Link>
                 <Link to={'/contractors'}>For Employers</Link>
-            </div>
+            </span>
         </div>
         )
     }

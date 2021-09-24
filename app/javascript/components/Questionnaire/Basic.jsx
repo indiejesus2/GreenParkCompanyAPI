@@ -13,7 +13,7 @@ const Basic = props => {
         <Modal show={props.show} animation backdrop>
             
         <Modal.Header closeButton>
-            <Modal.Title>Basic Info</Modal.Title>
+            <Modal.Title><img src="/images/Collar.jpeg" alt="Collar" /></Modal.Title>
         </Modal.Header>
             <Modal.Body>
 

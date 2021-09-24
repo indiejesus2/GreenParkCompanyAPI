@@ -130,8 +130,8 @@ a {
     width: 250px;
     padding-left: 25px;
     padding-right: 25px;
-    // padding-top: 25px;
-    padding-bottom: 25px;
+    padding-top: 25px;
+    padding-bottom: 5px;
     margin-bottom: 25px;
     margin-left: 0px;
     margin-right: 25px;
@@ -143,4 +143,18 @@ a {
 
 .card a {
   color: white;
+}
+
+.jobs {
+  display: grid;
+  justify-content: center;
+}
+
+.jobs h1 {
+  text-align: center;
+}
+
+.jobs a {
+  position: relative;
+  left: 200px;
 }
