@@ -1,6 +1,6 @@
 import React, { Component, useState } from 'react'
 
-export default function SignUp(props) {
+export default function EmployeeSignUp(props) {
 
     // const [name, setName] = useState()
     const [email, setEmail] = useState()

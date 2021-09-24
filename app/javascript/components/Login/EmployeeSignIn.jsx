@@ -11,21 +11,22 @@ const schema = yup.object().shape({
     password: yup.string().required()
 })
 
-export default function SignIn(props) {
+export default function EmployeeSignIn(props) {
 
     const formik = useFormik({
         initialValues: {
             email: "",
             password: "",
         },
-        // onSubmit: values => {
-        //     props.signIn(values)
-        // },
+        onSubmit: values => {
+            props.signIn(values)
+            // props.history.push('/employees')
+        },
     });
     
     return (
         <React.Fragment>    
-        <Modal show="true" animation backdrop>
+        <Modal show animation backdrop>
 
         {/* <div className="signin"> */}
             <Modal.Header>Sign-In</Modal.Header>

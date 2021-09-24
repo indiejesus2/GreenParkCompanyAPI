@@ -72,48 +72,62 @@ label {
   height: 100px;
 }
 
-.nav .links {
-  display: flex;
-  position: relative;
-  bottom: 100px;
-  justify-content: right;
-}
+// .nav .links {
+//   display: flex;
+//   position: relative;
+//   bottom: 100px;
+//   justify-content: right;
+// }
 
 a {
   margin: 5px;
 }
 
 .homepage-container {
-  padding: 50px;
+  // padding: 50px;
   // display: grid;
   text-align: center;
   // justify-content: space-between;
 }
 
-.homepage-body {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 25px;
-  padding: 25px;
+.homepage-header {
+  display: grid;
+  align-content: center;
 }
 
-.homepage .cards {
-  background-color: #cccccc;
-  border: black 1px solid;
-  padding: 10px;
-  margin: 10px;
-  width: 100px;
-  height: 50px;
+.homepage-body {
+  display: grid;
+  justify-content: space-between;
+  // margin-top: 25px;
+  // padding: 25px;
 }
+
+.homepage-cards {
+  width: 250px;
+}
+
+.homepage-cards .card{
+  margin-left: 50px;
+}
+// .homepage .cards {
+  // display: flex;
+  // justify-content: center;
+  // background-color: #cccccc;
+  // border: black 1px solid;
+  // padding: 10px;
+  // margin: 10px;
+  // width: 100px;
+  // height: 50px;
+// }
 
 .homepage-image {
-  background-image: url("/images/WorkersHouse.jpg");
+  background-image: url("/images/BluCollar-Logo.jpeg");
   background-color: #cccccc;
-  height: 500px;
+  // height: 500px;
   background-position: center;
   background-repeat: no-repeat;
-  background-size: cover;
-  position: relative;
+  // background-size: cover;
+  // position: relative;
 }
 
 .homepage .footer {
@@ -126,23 +140,27 @@ a {
   align-content: space-around;
 }
 
-.card {
-    width: 250px;
-    padding-left: 25px;
-    padding-right: 25px;
-    padding-top: 25px;
-    padding-bottom: 5px;
-    margin-bottom: 25px;
-    margin-left: 0px;
-    margin-right: 25px;
-    margin-top: 25px;
-    border: black solid 1px;
-    background-color: blue;
-    color: white;
+.homepage-body .card {
+  width: 100px;
+    // padding-left: 25px;
+    // padding-right: 25px;
+    // padding-top: 25px;
+    // margin-bottom: 25px;
+    // margin-right: 25px;
+    // margin-top: 25px;
+    // border: black solid 1px;
+    // background-color: blue;
+    // color: white;
 }
 
 .card a {
   color: white;
+}
+
+.card-header {
+  text-align: center;
+  border-bottom: 0px;
+  background-color: inherit;
 }
 
 .jobs {
@@ -150,11 +168,19 @@ a {
   justify-content: center;
 }
 
-.jobs h1 {
+h1 {
   text-align: center;
 }
 
-.jobs a {
+.employees a {
   position: relative;
   left: 200px;
 }
+
+.contractor-nav{
+  // position: relative;
+  // left: 200px;
+  display: flex;
+  justify-content: center;
+}
+

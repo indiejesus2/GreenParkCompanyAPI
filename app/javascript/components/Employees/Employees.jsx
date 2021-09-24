@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import SignIn from './SignIn'
+import EmployeeSignIn from '../Login/EmployeeSignIn'
 import Jobs from './Jobs'
 import Questionnaire from '../Questionnaire/Main'
 
@@ -9,7 +9,7 @@ const Employees = props => {
     if (props.loggedIn === false) {
         return (
                 <div className="signin">
-                    <SignIn signIn={props.signIn} />
+                    <EmployeeSignIn signIn={props.signIn} />
                 <Link to="/employees/signup">
                     Create Account and Find A Job Today!
                 </Link>
@@ -29,7 +29,7 @@ const Employees = props => {
         
     } {
         return (
-                <div className="jobs">
+                <div className="employees">
                     <h1>{props.profile.fname} {props.profile.lname}</h1>
                     <Link to={`/employees/${props.employee.id}/profile`}>Profile</Link>
                     <h2>Jobs</h2>

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-export default function SignUp(props) {
+export default function ContractorSignUp(props) {
 
     const [state, setState] = useState({
         name: "",

@@ -9,7 +9,7 @@ import { deleteJob } from '../actions/Contractors/deleteJob'
 import { fetchJobs } from '../actions/Contractors/fetchJobs'
 import { fetchJob } from '../actions/Contractors/fetchJob'
 import Contractors from '../components/Contractors/Contractors'
-import SignUp from '../components/Contractors/SignUp'
+import ContractorSignUp from '../components/Login/ContractorSignUp'
 import AddJob from '../components/Contractors/AddJob'
 import EditJob from '../components/Contractors/EditJob'
 import Job from '../components/Contractors/Job'
@@ -24,7 +24,7 @@ class JobsContainer extends Component {
                         <Route path='/contractors/:id/jobs/:job_id/editjob' render={(routerProps) => <EditJob {...routerProps} jobs={this.props.jobs} editJob={this.props.editJob} />}></Route>
                         <Route path='/contractors/:id/jobs/:job_id' render={(routerProps) => <Job {...routerProps} contractor={this.props.contractor} jobs={this.props.jobs} applicants={this.props.applicants} candidates={this.props.candidates} profiles={this.props.profiles} fetchJob={this.props.fetchJob} /> } ></Route>
                         <Route path='/contractors/addjob' render={(routerProps) => <AddJob {...routerProps} contractor={this.props.contractor} addJob={this.props.addJob}/>}></Route>
-                        <Route path='/contractors/signup' render={(routerProps) => <SignUp {...routerProps} loading={this.props.loading} signUpContractor={this.props.signUpContractor} />}></Route>
+                        <Route path='/contractors/signup' render={(routerProps) => <ContractorsSignUp {...routerProps} loading={this.props.loading} signUpContractor={this.props.signUpContractor} />}></Route>
                         <Route path='/contractors' render={(routerProps) => <Jobs {...routerProps} loading={this.props.loading} signIn={this.props.signIn} loggedIn={this.props.loggedIn} contractor={this.props.contractor} profile={this.props.profile} jobs={this.props.jobs} deleteJob={this.props.deleteJob}/>}></Route>
                     </Switch>
                 </div>

@@ -1,16 +1,10 @@
-// import React from 'react';
-// import Routes from '../routes/Index'
-
-// export default props => <>{Routes}</>;
-
 import React, { Component } from 'react';
 import { Provider } from 'react-redux'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
-import Home from '../components/Home';
+import LoginContainer from '../containers/LoginContainer'
 import EmployeesContainer from '../containers/EmployeesContainer'
 import ContractorsContainer from '../containers/ContractorsContainer'
 import NavBar from '../components/NavBar'
-import signIn from '../actions/Tradespeople/signIn'
 
 class App extends Component {
 
@@ -19,7 +13,8 @@ class App extends Component {
             <div>
             <NavBar/>
                 <Switch>
-                    <Route path="/" exact render={(routerProps) => <Home {...routerProps} signIn={this.props.signIn}/>}></Route>
+                    <Route path="/" exact component={LoginContainer}></Route>
+                    {/* // exact render={(routerProps) => <Home {...routerProps} signIn={this.props.signIn}/>}></Route> */}
                     <Route path="/employees" component={EmployeesContainer}></Route>
                     <Route path="/contractors" component={ContractorsContainer}></Route>
                 </Switch>
@@ -28,4 +23,4 @@ class App extends Component {
     }
 }
 
-export default App(null, signIn);
+export default App;
