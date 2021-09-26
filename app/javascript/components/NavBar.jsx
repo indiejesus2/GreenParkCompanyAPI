@@ -7,14 +7,18 @@ class NavBar extends Component {
     render() {
         return (
             <div className="nav-home">
-            {/* <span className="logo">
-                <Link to="/">
-                <img src="/images/BluCollar-Logo.jpeg" alt="Logo" />
-                </Link>
-            </span> */}
+
             <span className="links">
-                <Link to={'/employees'}>For Employees</Link>
-                <Link to={'/contractors'}>For Employers</Link>
+                <Link to={'/employees'}>
+                    <h5>
+                        Employees
+                    </h5>
+                </Link>
+                <Link to={'/contractors'}>
+                    <h5>
+                        Employers
+                    </h5>
+                    </Link>
             </span>
         </div>
         )

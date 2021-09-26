@@ -1,6 +1,7 @@
 import React from 'react'
 import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button'
+import Form from 'react-bootstrap/Form'
 
 const Basic = props => {
 
@@ -10,27 +11,23 @@ const Basic = props => {
 
     return(
         <React.Fragment>
-        <Modal show={props.show} animation backdrop>
+        <Modal show animation backdrop>
             
-        <Modal.Header closeButton>
-            <Modal.Title><img src="/images/Collar.jpeg" alt="Collar" /></Modal.Title>
+        <Modal.Header>
+            <Modal.Title><img src="/images/blucollar_icon.png" alt="Collar" /></Modal.Title>
         </Modal.Header>
             <Modal.Body>
 
-            <label htmlFor="first name">First Name: </label>
-            <input type="text" name="fname" value={props.fname} onChange={props.handleChange} />
-            <br />
-            <label htmlFor="last name">Last Name: </label>
-            <input type="text" name="lname" value={props.lname} onChange={props.handleChange} />
-            <br />
-            <label htmlFor="city">City: </label>
-            <input type="text" name="city" value={props.city} onChange={props.handleChange} />
-            <br />
-            <label htmlFor="state">State: </label>
-            <input type="text" name="state" value={props.state} onChange={props.handleChange} />
-            <br />
-            <label htmlFor="zipcode">zipcode: </label>
-            <input type="text" name="zipcode" value={props.state} onChange={props.handleChange} />
+            <Form.Label htmlFor="first name">First Name: </Form.Label>
+            <Form.Control type="text" name="fname" value={props.fname} onChange={props.handleChange} />
+            <Form.Label htmlFor="last name">Last Name: </Form.Label>
+            <Form.Control type="text" name="lname" value={props.lname} onChange={props.handleChange} />
+            <Form.Label htmlFor="city">City: </Form.Label>
+            <Form.Control type="text" name="city" value={props.city} onChange={props.handleChange} />
+            <Form.Label htmlFor="state">State: </Form.Label>
+            <Form.Control type="text" name="state" value={props.state} onChange={props.handleChange} />
+            <Form.Label htmlFor="zipcode">zipcode: </Form.Label>
+            <Form.Control type="text" name="zipcode" value={props.zipcode} onChange={props.handleChange} />
             </Modal.Body>
             <Modal.Footer>
                 <Button variant="primary" name="next" onClick={props.handleClick}>

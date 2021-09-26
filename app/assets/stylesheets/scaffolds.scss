@@ -76,12 +76,12 @@ label {
   margin-bottom: 20px;
 }
 
-// .nav .links {
-//   display: flex;
-//   position: relative;
-//   bottom: 100px;
-//   justify-content: right;
-// }
+.nav-home .links {
+  display: flex;
+  // position: relative;
+  // bottom: 100px;
+  // justify-content: right;
+}
 
 a {
   margin: 5px;
@@ -212,4 +212,17 @@ h1, h2 {
   width: 225px;
   padding: 10px;
   margin: 25px;
+}
+
+.modal-body {
+  display: flex;
+  justify-content: center;
+}
+
+.jobtype {
+  display: grid;
+}
+
+.schedule {
+  display: grid;
 }

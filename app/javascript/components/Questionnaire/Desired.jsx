@@ -1,4 +1,5 @@
 import React from 'react'
+import Form from 'react-bootstrap/Form'
 import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button'
 
@@ -11,38 +12,41 @@ const Desired = props => {
     }
 
     return(
-        <React.Fragment>
-        <Modal show={props.show} animation backdrop>
-        <Modal.Header closeButton>
-            <Modal.Title><img src="/images/Collar.jpeg" alt="Collar" /></Modal.Title>
+            <div key={`inline-checkbox`} className="mb-3">
+
+            <React.Fragment>
+        <Modal show animation backdrop>
+        <Modal.Header>
+            <Modal.Title><img src="/images/blucollar_icon.png" alt="Collar" /></Modal.Title>
         </Modal.Header>
             <Modal.Body>
-            <label htmlFor="job-type">Job-Type: </label>
-            <input type="checkbox" name="jobType" value="FT" id='1' onChange={props.handleJob} /> Full-time
-            <input type="checkbox" name="jobType" value="PT" id='2' onChange={props.handleJob} /> Part-time
-            <input type="checkbox" name="jobType" value="Contract" id='3' onChange={props.handleJob} /> Contract
-            <input type="checkbox" name="jobType" value="Temporary" id='4' onChange={props.handleJob} /> Temporary
-            <br />
-            <label htmlFor="schedule">Schedule: </label>
-            <input type="checkbox" name="schedule" value="M-F" onChange={props.handleJob}/>
-            M-F
-            <input type="checkbox" name="schedule" value="Weekends" onChange={props.handleJob}/>
-            Weekends
-            <input type="checkbox" name="schedule" value="Overnight" onChange={props.handleJob}/>
-            Overnight
-            <input type="checkbox" name="schedule" value="Holidays" onChange={props.handleJob}/>
-            Holidays
+                <div className="jobtype">
+            <Form.Label htmlFor="job-type">Job-Type: </Form.Label>
+            <Form.Check inline type="checkbox" name="jobType" label="Full-Time" value="FT" id={`inline-checkbox-1`} onChange={props.handleChange} />
+            <Form.Check inline type="checkbox" name="jobType" label="Part-Time" value="PT" id={`inline-checkbox-2`} onChange={props.handleChange} /> 
+            <Form.Check inline type="checkbox" name="jobType" label="Contract" value="Contract" id={`inline-checkbox-3`} onChange={props.handleChange} />
+            <Form.Check inline type="checkbox" name="jobType" label="Temporary" value="Temporary" id={`inline-checkbox-4`} onChange={props.handleChange} />
+                </div>
+                <div className="schedule">
+            <Form.Label htmlFor="schedule">Schedule: </Form.Label>
+            <Form.Check inline type="checkbox" name="schedule" label="Weekdays" value="Weekdays" onChange={props.handleChange}/>
+            <Form.Check inline type="checkbox" name="schedule" label="Weekends" value="Weekends" onChange={props.handleChange}/>
+            <Form.Check inline type="checkbox" name="schedule" label="Overnight" value="Overnight" onChange={props.handleChange}/>
+            <Form.Check inline type="checkbox" name="schedule" label="Holidays" value="Holidays" onChange={props.handleChange}/>
+                </div>
             </Modal.Body>
-            <Modal.Footer>
+                <Modal.Footer>
+                    
                 <Button variant="primary" name="previous" onClick={props.handleClick}>
                     Previous
                 </Button>
                 <Button variant="primary" name="next" onClick={props.handleClick}>
                     Next
                 </Button>
-            </Modal.Footer>
+                </Modal.Footer>
         </Modal>
         </React.Fragment>
+            </div>
     )
 }
 
