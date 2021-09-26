@@ -5,6 +5,7 @@ class CreateJobs < ActiveRecord::Migration[6.0]
       t.boolean :status, default: false
       t.string :city
       t.string :state
+      t.string :zipcode
       t.float :longitude
       t.float :latitude
       t.text :jobtype, array: true, default: []

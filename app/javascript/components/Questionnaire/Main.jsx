@@ -17,8 +17,7 @@ const Main = (props) => {
         show: true,
         fname: '',
         lname: '',
-        city: '',
-        state: '',
+        zipcode: '',
         education: '',
         state: '',
         jobType: [],
@@ -31,7 +30,7 @@ const Main = (props) => {
     })
 
     const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true)
+    const handleShow = () => setShow(true);
 
     const handleChange = (event) => {
         const {name, value}  = event.target

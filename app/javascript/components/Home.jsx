@@ -3,26 +3,43 @@ import { Link } from 'react-router-dom'
 import Card from 'react-bootstrap/Card'
 import CardGroup from 'react-bootstrap/CardGroup'
 import Button from 'react-bootstrap/Button'
+import EmployeeSignIn from './Login/EmployeeSignIn';
 
 
 class Home extends Component {
-    render() {
+
+    // renderSignIn(){
+    //     return (
+    //         <div>
+    //             <EmployeeSignIn />
+    //         </div>
+    //     )
+    // }
+
+    // handleClick = (e) => {
+    //     if (e.target.id == "employees") {
+    //         this.renderSignIn()
+    //     }
+    // }
+
+    render() {        
         return (
             <div className="homepage">
                     <div className="homepage-container">
                         <div className="homepage-header">
-                            <img src="/images/BluCollar-Logo.jpeg" alt="" />
-                            <h1>Start Your Career Path, Today!</h1>
+                            <img src="/images/blucollarlogo_wtagline.png" alt="" />
+                            {/* <h1>Start Your Career Path, Today!</h1> */}
                         </div>
                         <div className="homepage-body">
-                            <CardGroup className="homepage-cards">
+                            {/* <CardGroup className="homepage-cards"> */}
                                 <Card>
                                     <Card.Header>
                                         JobSeekers
                                     </Card.Header>
                                     <Card.Body>
-                                        <Link to="/employees">
-                                            <Button>Search Jobs</Button>
+                                        <Link to="/employees/signin">
+                                            <Button id="employees" onClick={this.handleClick}>Search Jobs</Button>
+                                            {/* { renderSignIn() } */}
                                         </Link>
                                     </Card.Body>
                                 </Card>
@@ -41,7 +58,7 @@ class Home extends Component {
                                     <Link to="/contractors">
                                         <button>Post Jobs</button>
                                     </Link> */}
-                            </CardGroup>
+                            {/* </CardGroup> */}
                     </div>
                 </div>
             </div>

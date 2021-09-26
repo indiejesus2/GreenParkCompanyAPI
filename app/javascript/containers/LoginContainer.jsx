@@ -13,8 +13,8 @@ class LoginContainer extends Component {
     render() {
         return(
             <Switch>
-                <Route path='/employeesignin' exact render={(routerProps) => <EmployeeSignIn {...routerProps} signIn={this.props.signIn} />}></Route>
-                <Route path='/employees/signup' render={(routerProps) => <EmployeeSignUp {...routerProps} signUpEmployee={this.props.signUpEmployee} />}></Route>
+                <Route path='/employees/signin' exact render={(routerProps) => <EmployeeSignIn {...routerProps} signIn={this.props.signIn} />}></Route>
+                {/* <Route path='/employees/signup' render={(routerProps) => <EmployeeSignUp {...routerProps} signUpEmployee={this.props.signUpEmployee} />}></Route> */}
                 <Route path='/' exact render={(routerProps) => <Home {...routerProps} />}></Route>
             </Switch>
         )

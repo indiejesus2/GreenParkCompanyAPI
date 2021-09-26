@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import Home from '../Home'
 import EmployeeSignIn from '../Login/EmployeeSignIn'
 import Jobs from './Jobs'
 import Questionnaire from '../Questionnaire/Main'
@@ -9,10 +10,8 @@ const Employees = props => {
     if (props.loggedIn === false) {
         return (
                 <div className="signin">
+                    <Home />
                     <EmployeeSignIn signIn={props.signIn} />
-                <Link to="/employees/signup">
-                    Create Account and Find A Job Today!
-                </Link>
                 </div>
                 /* <Jobs jobs={props.jobs} fetchJobs={props.fetchJobs} /> */
         )

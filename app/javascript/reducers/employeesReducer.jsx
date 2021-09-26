@@ -15,7 +15,7 @@ export default function employeesReducer(state = {employee: [], profile: [], wor
         case 'SIGNIN_EMPLOYEE':
             // debugger
             return {
-                employee: action.payload.employee,
+                employee: action.payload.employee.data.attributes,
                 profile: action.payload.employee.included.find(include => include.type == "profile").attributes,
                 work_history: action.payload.employee.included.find(include => include.type == "work_history").attributes,
                 jobs: action.payload.jobs,

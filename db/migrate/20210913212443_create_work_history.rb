@@ -5,6 +5,7 @@ class CreateWorkHistory < ActiveRecord::Migration[6.0]
       t.string :company
       t.string :city
       t.string :state
+      t.string :zipcode
       t.string :phone
       t.string :startdate
       t.string :enddate

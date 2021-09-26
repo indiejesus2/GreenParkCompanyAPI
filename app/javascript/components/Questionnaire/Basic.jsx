@@ -29,6 +29,8 @@ const Basic = props => {
             <label htmlFor="state">State: </label>
             <input type="text" name="state" value={props.state} onChange={props.handleChange} />
             <br />
+            <label htmlFor="zipcode">zipcode: </label>
+            <input type="text" name="zipcode" value={props.state} onChange={props.handleChange} />
             </Modal.Body>
             <Modal.Footer>
                 <Button variant="primary" name="next" onClick={props.handleClick}>

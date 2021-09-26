@@ -4,8 +4,10 @@ class Job < ApplicationRecord
     has_many :employees, through: :applicants
     has_many :profiles, through: :employees
     geocoded_by :address
+    # reverse_geocoded_by :latitude, :longitude
     before_save :proximity
     after_validation :geocode
+    # after_validation :reverse_geocode
 
   def address
     [city, state].compact.join(', ')

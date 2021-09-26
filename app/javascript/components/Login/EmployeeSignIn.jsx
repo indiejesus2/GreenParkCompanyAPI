@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { useFormik } from 'formik'
+import { Link } from 'react-router-dom'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import Col from 'react-bootstrap/Col'
@@ -13,6 +14,11 @@ const schema = yup.object().shape({
 
 export default function EmployeeSignIn(props) {
 
+    const [show, setShow] = useState(false)
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+
     const formik = useFormik({
         initialValues: {
             email: "",
@@ -23,10 +29,16 @@ export default function EmployeeSignIn(props) {
             // props.history.push('/employees')
         },
     });
+
+    const handleClick = () => {
+        handleClose
+        // debugger
+        // props.history.push('/employees/signup')
+    }
     
     return (
         <React.Fragment>    
-        <Modal show animation backdrop>
+        <Modal show animation backdrop onHide={handleClose}>
 
         {/* <div className="signin"> */}
             <Modal.Header>Sign-In</Modal.Header>
@@ -53,6 +65,9 @@ export default function EmployeeSignIn(props) {
                 </Form.Group>
                 </Modal.Body>
                 <Modal.Footer>
+                    <Link to="/employees/signup">
+                        <Button color="success" onClick={handleClick}>Sign-Up</Button>
+                    </Link>
                     <Button type="submit">Sign-In</Button>
                 </Modal.Footer>
                 </Form>

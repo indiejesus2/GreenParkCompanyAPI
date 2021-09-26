@@ -68,8 +68,12 @@ label {
   height: 100px;
 }
 
-.nav {
-  height: 100px;
+.nav-home {
+  display: flex;
+  justify-content: right;
+  margin-top: 10px;
+  margin-right: 10px;
+  margin-bottom: 20px;
 }
 
 // .nav .links {
@@ -91,23 +95,29 @@ a {
 }
 
 .homepage-header {
-  display: grid;
-  align-content: center;
+  display: flex;
+  justify-content: center;
 }
 
 .homepage-body {
-  display: grid;
-  justify-content: space-between;
+  display: flex;
+  justify-content: center;
   // margin-top: 25px;
   // padding: 25px;
 }
 
-.homepage-cards {
-  width: 250px;
+.homepage-header img {
+  width: 700px;
 }
 
-.homepage-cards .card{
-  margin-left: 50px;
+// .homepage-cards {
+// }
+
+.homepage-body .card{
+  margin-top: 25px;
+  margin-left: 25px;
+  margin-right: 25px;
+  width: 150px;
 }
 // .homepage .cards {
   // display: flex;
@@ -140,8 +150,8 @@ a {
   align-content: space-around;
 }
 
-.homepage-body .card {
-  width: 100px;
+// .homepage-body .card {
+  // width: 100px;
     // padding-left: 25px;
     // padding-right: 25px;
     // padding-top: 25px;
@@ -151,7 +161,7 @@ a {
     // border: black solid 1px;
     // background-color: blue;
     // color: white;
-}
+// }
 
 .card a {
   color: white;
@@ -168,13 +178,13 @@ a {
   justify-content: center;
 }
 
-h1 {
+h1, h2 {
   text-align: center;
 }
 
 .employees a {
   position: relative;
-  left: 200px;
+  left: 100px;
 }
 
 .contractor-nav{
@@ -184,3 +194,22 @@ h1 {
   justify-content: center;
 }
 
+.employees {
+  display: grid;
+  justify-content: center;
+}
+
+.employees h2 {
+  position: relative;
+  right: 300px;
+}
+
+.employees-jobs {
+  display: flex;
+}
+
+.employees-jobs .card {
+  width: 225px;
+  padding: 10px;
+  margin: 25px;
+}

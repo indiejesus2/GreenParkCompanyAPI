@@ -50,6 +50,7 @@ ActiveRecord::Schema.define(version: 2021_09_17_033305) do
     t.boolean "status", default: false
     t.string "city"
     t.string "state"
+    t.string "zipcode"
     t.float "longitude"
     t.float "latitude"
     t.text "jobtype", default: [], array: true
@@ -72,6 +73,7 @@ ActiveRecord::Schema.define(version: 2021_09_17_033305) do
     t.string "lname"
     t.string "city"
     t.string "state"
+    t.string "zipcode"
     t.float "longitude"
     t.float "latitude"
     t.integer "phone"
@@ -99,6 +101,7 @@ ActiveRecord::Schema.define(version: 2021_09_17_033305) do
     t.string "company"
     t.string "city"
     t.string "state"
+    t.string "zipcode"
     t.string "phone"
     t.string "startdate"
     t.string "enddate"
