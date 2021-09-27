@@ -1,7 +1,7 @@
 import React from 'react'
-import Modal from 'react-bootstrap/Modal'
-import Button from 'react-bootstrap/Button'
-import Form from 'react-bootstrap/Form'
+import {Modal, Button, Form} from 'react-bootstrap'
+// import Button from 'react-bootstrap/Button'
+// import Form from 'react-bootstrap/Form'
 
 const Basic = props => {
 
@@ -26,8 +26,9 @@ const Basic = props => {
             <Form.Control type="text" name="city" value={props.city} onChange={props.handleChange} />
             <Form.Label htmlFor="state">State: </Form.Label>
             <Form.Control type="text" name="state" value={props.state} onChange={props.handleChange} />
-            <Form.Label htmlFor="zipcode">zipcode: </Form.Label>
+            <Form.Label htmlFor="zipcode">Zipcode: </Form.Label>
             <Form.Control type="text" name="zipcode" value={props.zipcode} onChange={props.handleChange} />
+            <Form.Check type="checkbox" name="license" label="Driver's License" onChange={props.handleChange} />
             </Modal.Body>
             <Modal.Footer>
                 <Button variant="primary" name="next" onClick={props.handleClick}>

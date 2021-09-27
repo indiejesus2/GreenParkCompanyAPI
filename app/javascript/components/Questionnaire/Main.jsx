@@ -24,15 +24,30 @@ const Main = (props) => {
             city: '',
             state: '',
             zipcode: '',
-            education: '',
+            license: false,
+            // education: '',
             state: '',
             jobType: [],
             schedule: [],
+            shifts: [],
+            seasonstart: '',
+            seasonend: '',
             minpay: 0,
             maxpay: 0,
             industry: '',
-            skills: [],
-            experience: []
+            // skills: [],
+            experience: {
+                title: "",
+                company: "",
+                city: "",
+                state: "",
+                zipcode: "",
+                phone: "",
+                startdate: "",
+                enddate: "",
+                description: "",
+                current: false
+            }
         },
         onSubmit: values => {
             props.updateProfile(values)
