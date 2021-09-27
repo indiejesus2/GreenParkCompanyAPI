@@ -26,7 +26,6 @@ const Main = (props) => {
             zipcode: '',
             license: false,
             // education: '',
-            state: '',
             jobType: [],
             schedule: [],
             shifts: [],

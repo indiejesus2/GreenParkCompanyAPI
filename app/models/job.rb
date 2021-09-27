@@ -14,12 +14,10 @@ class Job < ApplicationRecord
   end
 
   def proximity
-    profiles = []
-    self.skills.each {|skill| profiles << Profile.where(":skills = ANY (skills)", skills: "#{skill}").near(self.address, 100)}
+    profiles = Profile.where("industry = ?", "#{industry}").near(self.address, 100)
     profiles.each {|profile| 
-      profile.each {|pro|
-        Applicant.create(employee_id: "#{pro.employee_id}", employer_id: "#{self.employer_id}", job_id: "#{self.id}")
-      }}
+        Applicant.create(employee_id: "#{profile.employee_id}", employer_id: "#{employer_id}", job_id: "#{id}")
+      }
     # Profile.where("jobtype && ?", "{FT}")
     # Profile.where("#{key} && ?", "#{values}")
   end

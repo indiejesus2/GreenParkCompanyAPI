@@ -55,17 +55,20 @@ ActiveRecord::Schema.define(version: 2021_09_17_033305) do
     t.float "latitude"
     t.text "jobtype", default: [], array: true
     t.text "schedule", default: [], array: true
-    t.text "skills", default: [], array: true
-    t.text "certificates", default: [], array: true
+    t.text "shifts", default: [], array: true
+    t.text "seasonstart"
+    t.text "seasonend"
+    t.float "minpay"
+    t.float "maxpay"
+    t.text "industry"
     t.text "description"
     t.bigint "employer_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["certificates"], name: "index_jobs_on_certificates", using: :gin
     t.index ["employer_id"], name: "index_jobs_on_employer_id"
     t.index ["jobtype"], name: "index_jobs_on_jobtype", using: :gin
     t.index ["schedule"], name: "index_jobs_on_schedule", using: :gin
-    t.index ["skills"], name: "index_jobs_on_skills", using: :gin
+    t.index ["shifts"], name: "index_jobs_on_shifts", using: :gin
   end
 
   create_table "profiles", force: :cascade do |t|
@@ -74,26 +77,25 @@ ActiveRecord::Schema.define(version: 2021_09_17_033305) do
     t.string "city"
     t.string "state"
     t.string "zipcode"
+    t.boolean "license"
     t.float "longitude"
     t.float "latitude"
-    t.integer "phone"
-    t.string "status"
     t.text "jobtype", default: [], array: true
     t.text "schedule", default: [], array: true
-    t.string "education"
-    t.hstore "history"
-    t.text "skills", default: [], array: true
-    t.boolean "military", default: false
-    t.text "certificates", default: [], array: true
+    t.text "shifts", default: [], array: true
+    t.text "seasonstart"
+    t.text "seasonend"
+    t.float "minpay"
+    t.float "maxpay"
+    t.text "industry"
     t.text "description"
     t.bigint "employee_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["certificates"], name: "index_profiles_on_certificates", using: :gin
     t.index ["employee_id"], name: "index_profiles_on_employee_id"
     t.index ["jobtype"], name: "index_profiles_on_jobtype", using: :gin
     t.index ["schedule"], name: "index_profiles_on_schedule", using: :gin
-    t.index ["skills"], name: "index_profiles_on_skills", using: :gin
+    t.index ["shifts"], name: "index_profiles_on_shifts", using: :gin
   end
 
   create_table "work_histories", force: :cascade do |t|
