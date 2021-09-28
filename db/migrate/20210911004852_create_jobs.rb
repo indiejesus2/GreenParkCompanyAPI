@@ -16,6 +16,8 @@ class CreateJobs < ActiveRecord::Migration[6.0]
       t.float :minpay
       t.float :maxpay
       t.text :industry
+      t.boolean :license
+      
       # t.text :skills, array: true, default: []
       # t.text :certificates, array: true, default: []
       t.text :description

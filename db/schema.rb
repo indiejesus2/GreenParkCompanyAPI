@@ -61,6 +61,7 @@ ActiveRecord::Schema.define(version: 2021_09_17_033305) do
     t.float "minpay"
     t.float "maxpay"
     t.text "industry"
+    t.boolean "license"
     t.text "description"
     t.bigint "employer_id", null: false
     t.datetime "created_at", precision: 6, null: false

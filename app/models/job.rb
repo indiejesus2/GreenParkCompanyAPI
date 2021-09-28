@@ -18,6 +18,7 @@ class Job < ApplicationRecord
     profiles.each {|profile| 
         Applicant.create(employee_id: "#{profile.employee_id}", employer_id: "#{employer_id}", job_id: "#{id}")
       }
+    
     # Profile.where("jobtype && ?", "{FT}")
     # Profile.where("#{key} && ?", "#{values}")
   end
@@ -27,10 +28,28 @@ class Job < ApplicationRecord
   end
 
   def potential
+    @types = {}
+    @types = {
+      "jobtype": jobtype,
+      "schedule": schedule,
+      "shifts": shifts,
+      "seasonstart": seasonstart,
+      "seasonend": seasonend,
+      "minpay": minpay,
+      "maxpay": maxpay,
+      "license": license,
+    }
+    byebug
+    match = employees.map{|employee| 
+    jobtype.each do |type| 
+      if employee.profile.jobtype = type
+        return employee
+      end
+    end
+  }
+  
     jobtype = self.jobtype
     schedule = self.schedule
-    skills = self.skills
-    certificates = self.certificates
     address = self.address
   end
 

@@ -33,7 +33,6 @@ const Employees = props => {
         )
         
     } {
-    debugger
         return (
                 <div className="employees">
                     <h1>{props.profile.fname} {props.profile.lname}</h1>
