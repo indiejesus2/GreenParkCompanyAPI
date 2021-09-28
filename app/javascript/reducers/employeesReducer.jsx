@@ -6,26 +6,25 @@ export default function employeesReducer(state = {employee: [], profile: [], wor
             }
         case 'SIGNUP_EMPLOYEE':
             return {
-                employee: action.payload.data.attributes,
-                profile: action.payload.included.find(include => include.type == "profile").attributes,
-                jobs: [],
+                employee: action.payload,
                 loggedIn: true,
                 loading: false
             }
         case 'SIGNIN_EMPLOYEE':
-            // debugger
             return {
                 employee: action.payload.employee.data.attributes,
-                profile: action.payload.employee.included.find(include => include.type == "profile").attributes,
-                work_history: action.payload.employee.included.find(include => include.type == "work_history").attributes,
+                profile: action.payload.employee.data.attrbutes.profile,
+                work_history: action.payload.employee.data.attributes.work_histories,
                 jobs: action.payload.jobs,
                 loggedIn: true,
                 loading: false
             }
-        case 'UPDATE_PROFILE':
+        case 'CREATE_PROFILE':
             return {
                 ...state, 
-                profile: action.payload.profile
+                profile: action.payload.profile,
+                work_history: action.payload.profile.data.attributes.work_histories,
+                loading: false
             }
         case 'FETCH_EMPLOYEE':
             return {

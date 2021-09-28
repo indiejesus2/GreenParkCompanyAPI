@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { Link } from 'react-router-dom'
 import Home from '../Home'
 import EmployeeSignIn from '../Login/EmployeeSignIn'
@@ -6,6 +6,11 @@ import Jobs from './Jobs'
 import Questionnaire from '../Questionnaire/Main'
 
 const Employees = props => {
+
+    const [state, setState] = useState({
+        profile: props.profile ? props.profile : [],
+        jobs: props.jobs ? props.jobs : []
+    })
 
     if (props.loggedIn === false) {
         return (
@@ -21,18 +26,18 @@ const Employees = props => {
                 Loading....
             </div>
         )
-    } else if (props.profile.fname == null) {
+    } else if (state.profile.length == 0) {
         return (
-            <Questionnaire employee={props.employee} profile={props.profile} work_history={props.work_history} updateProfile={props.updateProfile} />
+            <Questionnaire employee={props.employee} createProfile={props.createProfile} />
         )
         
     } {
         return (
                 <div className="employees">
-                    <h1>{props.profile.fname} {props.profile.lname}</h1>
+                    <h1>{state.profile.fname} {state.profile.lname}</h1>
                     <Link to={`/employees/${props.employee.id}/profile`}>Profile</Link>
                     <h2>Jobs</h2>
-                    <Jobs jobs={props.jobs} fetchJobs={props.fetchJobs} employee={props.employee} />
+                    <Jobs jobs={state.jobs} fetchJobs={props.fetchJobs} employee={props.employee} />
                 </div>
         )
     }

@@ -12,12 +12,12 @@ const Main = (props) => {
 
     const [state, setState] = useState({
         currentStep: 1,
+        loading: props.loading,
     })
 
     const formik = useFormik({
         initialValues: {
-            id: props.profile.id,
-            employee_id: props.employee.id,
+            employee_id: props.employee ? props.employee : 1,
             show: true,
             fname: '',
             lname: '',
@@ -49,7 +49,8 @@ const Main = (props) => {
             }
         },
         onSubmit: values => {
-            props.updateProfile(values)
+            debugger
+            props.createProfile(values)
             history.push('/employees')
         }
     })
@@ -83,7 +84,6 @@ const Main = (props) => {
     // }
 
     const handleSkills = (e) => {
-        debugger
         e.preventDefault()
         let skill = e.target.previousElementSibling.value
         setState( prevState => ({
@@ -123,9 +123,15 @@ const Main = (props) => {
         }
     }
 
-    
-    return (
-        <div>
+    if(state.loading == true) {
+        return (
+            <div>
+                Loading...
+            </div>
+        )
+    } else {    
+        return (
+            <div>
             <h1>BluCollar Tradespeople Main</h1>
             {/* <Modal show={state.show}>     */}
             <p>Step {state.currentStep}</p>
@@ -164,9 +170,8 @@ const Main = (props) => {
                     />
             </Form>
             </div>
+            )}
 
-)
 }
-
 
 export default Main

@@ -32,7 +32,8 @@ const Job = props => {
                 <div className="job">
                     <Link to={`/contractors/${job.employer_id}/jobs/${job.id}/editjob`}>Edit Job</Link>
                     <h1>{job.title}</h1>
-                    <p>{job.city}, {job.state}</p>
+                    <h4>{job.city}, {job.state}</h4>
+                    <h5>{job.industry}</h5>
                     <p>{job.jobtype.join(", ")} {job.schedule.join(", ")} {job.skills.join(", ")} </p>
                     <p>{job.description}</p>
                     <div className="candidates">

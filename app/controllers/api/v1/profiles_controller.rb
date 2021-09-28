@@ -12,8 +12,12 @@ class Api::V1::ProfilesController < ApplicationController
 
     def create
         @profile = @employee.profiles.new(profile_params)
+        employee = {employee_id: @employee.id, profile_id: @profile.id}
+        together = history_params.merge(employee)
+        @history = WorkHistory.new(together)
         if @profile.save
-            render json: @profile
+            @history.save
+            render json: ProfileSerializer.new(@profile)
         else
             render json: @profile.errors
         end
@@ -27,7 +31,7 @@ class Api::V1::ProfilesController < ApplicationController
         @profile.update(profile_params)
         if @profile.save
             @history.save
-            render json: {profile: @profile}
+            render json: ProfileSerializer.new(@profile)
         else
             render json: @profile.errors
         end
@@ -36,7 +40,7 @@ class Api::V1::ProfilesController < ApplicationController
     private
     
     def profile_params
-        params.require(:profile).permit(:id, :fname, :lname, :city, :state, :zipcode, :license, {:jobType => []}, {:schedule  => []}, {:shifts => []}, :seasonstart, :seasonend, :minpay, :maxpay, :industry, :military, :certificates, :description, :employee_id)
+        params.require(:profile).permit(:fname, :lname, :city, :state, :zipcode, :license, {:jobType => []}, {:schedule  => []}, {:shifts => []}, :seasonstart, :seasonend, :minpay, :maxpay, :industry, :military, :certificates, :description, :employee_id)
     end
     
     def history_params

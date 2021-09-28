@@ -12,15 +12,12 @@ const Profile = props => {
         <div className="employee-profile">
             <h2>{employee.fname} {employee.lname}</h2>
             <h4>{employee.city}, {employee.state}</h4>
-            <h5>{employee.education}</h5>
+            <h5>{employee.industry}</h5>
             <p>{employee.description}</p>
             <div className="work-schedule">
                 Job Type: {employee.jobtype.join(', ')}
                 <br />
                 Work Schedule: {employee.schedule.join(', ')}
-            </div>
-            <div className="skills">
-                Skills: {employee.skills.join(', ')}
             </div>
             <div className="work-history">
                 Experience:

@@ -6,7 +6,7 @@ import EmployeeSignIn from '../components/Login/EmployeeSignIn'
 import EmployeeSignUp from '../components/Login/EmployeeSignUp'
 import {signIn} from '../actions/Tradespeople/signIn'
 import { signUpEmployee } from '../actions/Tradespeople/signUpEmployee'
-import { updateProfile } from '../actions/Tradespeople/updateProfile'
+// import { updateProfile } from '../actions/Tradespeople/updateProfile'
 
 class LoginContainer extends Component {
 
