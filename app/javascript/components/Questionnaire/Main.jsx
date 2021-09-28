@@ -17,7 +17,7 @@ const Main = (props) => {
 
     const formik = useFormik({
         initialValues: {
-            employee_id: props.employee ? props.employee : 1,
+            employee_id: props.employee ? props.employee.id : 1,
             show: true,
             fname: '',
             lname: '',
@@ -49,7 +49,6 @@ const Main = (props) => {
             }
         },
         onSubmit: values => {
-            debugger
             props.createProfile(values)
             history.push('/employees')
         }

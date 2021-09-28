@@ -1,5 +1,6 @@
 export const createProfile = (profile) => {
     return (dispatch) => {
+        dispatch({type: 'LOADING_EMPLOYEES'})
         const configObj = {
             method: "POST",
             headers: {

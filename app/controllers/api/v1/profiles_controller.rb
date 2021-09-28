@@ -11,11 +11,11 @@ class Api::V1::ProfilesController < ApplicationController
     end
 
     def create
-        @profile = @employee.profiles.new(profile_params)
-        employee = {employee_id: @employee.id, profile_id: @profile.id}
-        together = history_params.merge(employee)
-        @history = WorkHistory.new(together)
+        @profile = Profile.new(profile_params)
         if @profile.save
+            employee = {employee_id: @employee.id, profile_id: @profile.id}
+            together = history_params.merge(employee)
+            @history = WorkHistory.new(together)
             @history.save
             render json: ProfileSerializer.new(@profile)
         else

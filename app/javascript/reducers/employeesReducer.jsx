@@ -2,6 +2,7 @@ export default function employeesReducer(state = {employee: [], profile: [], wor
     switch(action.type) {
         case 'LOADING_EMPLOYEES':
             return {
+                ...state,
                 loading: true
             }
         case 'SIGNUP_EMPLOYEE':
@@ -22,8 +23,8 @@ export default function employeesReducer(state = {employee: [], profile: [], wor
         case 'CREATE_PROFILE':
             return {
                 ...state, 
-                profile: action.payload.profile,
-                work_history: action.payload.profile.data.attributes.work_histories,
+                profile: action.payload.data.attributes,
+                work_history: action.payload.data.attributes.work_histories,
                 loading: false
             }
         case 'FETCH_EMPLOYEE':

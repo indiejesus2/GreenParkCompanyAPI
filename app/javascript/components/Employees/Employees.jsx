@@ -7,6 +7,7 @@ import Questionnaire from '../Questionnaire/Main'
 
 const Employees = props => {
 
+
     const [state, setState] = useState({
         profile: props.profile ? props.profile : [],
         jobs: props.jobs ? props.jobs : []
@@ -26,15 +27,16 @@ const Employees = props => {
                 Loading....
             </div>
         )
-    } else if (state.profile.length == 0) {
+    } else if (props.profile == null) {
         return (
             <Questionnaire employee={props.employee} createProfile={props.createProfile} />
         )
         
     } {
+    debugger
         return (
                 <div className="employees">
-                    <h1>{state.profile.fname} {state.profile.lname}</h1>
+                    <h1>{props.profile.fname} {props.profile.lname}</h1>
                     <Link to={`/employees/${props.employee.id}/profile`}>Profile</Link>
                     <h2>Jobs</h2>
                     <Jobs jobs={state.jobs} fetchJobs={props.fetchJobs} employee={props.employee} />

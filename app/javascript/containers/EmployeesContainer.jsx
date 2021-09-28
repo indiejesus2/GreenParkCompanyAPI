@@ -14,7 +14,6 @@ import EditProfile from '../components/Employees/EditProfile'
 class EmployeesContainer extends Component {
 
     render() {
-        // debugger
         return (
                 <Switch>
                     <Route path='/employees/:id/edit_profile' render={(routerProps) => <EditProfile {...routerProps} employee={this.props.employee} profile={this.props.profile} work_history={this.props.work_history} updateProfile={this.props.updateProfile}/>}></Route>
