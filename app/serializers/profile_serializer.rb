@@ -1,4 +1,4 @@
 class ProfileSerializer
     include JSONAPI::Serializer
-    attributes :id, :fname, :lname, :city, :state, :phone, :status, :jobtype, :schedule, :education, :skills, :military, :certificates, :description, :employee_id
+    attributes :id, :fname, :lname, :city, :state, :zipcode, :license, :jobtype, :schedule, :shifts, :seasonstart, :seasonend, :minpay, :maxpay, :industry, :description, :employee_id
 end

@@ -19,15 +19,15 @@ const Basic = props => {
             <Modal.Body>
 
             <Form.Label htmlFor="first name">First Name: </Form.Label>
-            <Form.Control type="text" name="fname" value={props.fname} onChange={props.handleChange} />
+            <Form.Control type="text" name="fname" onChange={props.handleChange} />
             <Form.Label htmlFor="last name">Last Name: </Form.Label>
-            <Form.Control type="text" name="lname" value={props.lname} onChange={props.handleChange} />
+            <Form.Control type="text" name="lname" onChange={props.handleChange} />
             <Form.Label htmlFor="city">City: </Form.Label>
-            <Form.Control type="text" name="city" value={props.city} onChange={props.handleChange} />
+            <Form.Control type="text" name="city" onChange={props.handleChange} />
             <Form.Label htmlFor="state">State: </Form.Label>
-            <Form.Control type="text" name="state" value={props.state} onChange={props.handleChange} />
+            <Form.Control type="text" name="state" onChange={props.handleChange} />
             <Form.Label htmlFor="zipcode">Zipcode: </Form.Label>
-            <Form.Control type="text" name="zipcode" value={props.zipcode} onChange={props.handleChange} />
+            <Form.Control type="text" name="zipcode" onChange={props.handleChange} />
             <Form.Check type="checkbox" name="license" label="Driver's License" onChange={props.handleChange} />
             </Modal.Body>
             <Modal.Footer>

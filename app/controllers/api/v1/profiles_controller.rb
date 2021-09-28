@@ -21,8 +21,12 @@ class Api::V1::ProfilesController < ApplicationController
 
     def update 
         @profile = @employee.profile
+        employee = {employee_id: @employee.id, profile_id: @profile.id}
+        together = history_params.merge(employee)
+        @history = WorkHistory.new(together)
         @profile.update(profile_params)
         if @profile.save
+            @history.save
             render json: {profile: @profile}
         else
             render json: @profile.errors
@@ -32,20 +36,12 @@ class Api::V1::ProfilesController < ApplicationController
     private
     
     def profile_params
-        # jobType_params = (params[:profile] || {})[jobType: :value].keys
-        params.require(:profile).permit(:id, :fname, :lname, :city, :state, :zipcode, :license, {:jobType => []}, {:schedule  => []}, {:shifts => []}, :seasonstart, :seasonend, :minpay, :maxpay, :industry, :military, :certificates, :description, :employee_id, :work_histories)
-        # _attributes => [:title, :company, :city, :state, :phone, :startdate, :enddate, :description, :current, :employee_id]})
-        #     whitelisted[:history] = params[:profile][:history]
-        # end
+        params.require(:profile).permit(:id, :fname, :lname, :city, :state, :zipcode, :license, {:jobType => []}, {:schedule  => []}, {:shifts => []}, :seasonstart, :seasonend, :minpay, :maxpay, :industry, :military, :certificates, :description, :employee_id)
     end
     
     def history_params
-        params.require(:profile).permit({:experience => [:title, :company, :city, :state, :zipcode, :phone, :startdate, :enddate, :description, :current, :employee_id]})
+        params.require(:experience).permit(:title, :company, :city, :state, :zipcode, :phone, :startdate, :enddate, :description, :current)
     end
-    #     params.require(:history).permit(:id, :title, :company, :zipcode, :phone, :description).tap do |whitelisted|
-    #         whitelisted[:history] = params[:profile][:history]
-    #     end
-    # end
 
     def set_employee
         @employee = Employee.find_by_id(params[:employee_id])

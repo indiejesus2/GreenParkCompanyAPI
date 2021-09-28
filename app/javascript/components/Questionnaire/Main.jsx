@@ -101,11 +101,11 @@ const Main = (props) => {
     //     }))
     // }
 
-    const handleSubmit = (event) => {
-        event.preventDefault()
-        props.updateProfile(state)
-        history.push('/employees')
-    }
+    // const handleSubmit = (event) => {
+    //     event.preventDefault()
+    //     props.updateProfile(state)
+    //     history.push('/employees')
+    // }
 
     const handleClick = (e) => {
         let currentStep = state.currentStep;
@@ -129,7 +129,7 @@ const Main = (props) => {
             <h1>BluCollar Tradespeople Main</h1>
             {/* <Modal show={state.show}>     */}
             <p>Step {state.currentStep}</p>
-            <Form onSubmit={handleSubmit}>
+            <Form onSubmit={formik.handleSubmit}>
                 <Basic
                     currentStep={state.currentStep}
                     handleChange={formik.handleChange}
@@ -155,17 +155,17 @@ const Main = (props) => {
                 <Skills
                     currentStep={state.currentStep}
                     handleChange={formik.handleChange}
-                    handleSubmit={handleSubmit}
                     show={state.show}
                     skills={formik.initialValues.skills}
                     certificates={formik.certificates}
                     handleClick={handleClick}
                     handleSkills={handleSkills}
+                    handleSubmit={formik.handleSubmit}
                     />
             </Form>
             </div>
 
-    )
+)
 }
 
 

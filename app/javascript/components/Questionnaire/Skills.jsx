@@ -37,34 +37,34 @@ const Skills = props => {
                 </Form.Label>
             <Form.Group name="experience">
                 <FloatingLabel label="Title">
-                    <Form.Control type="text" name="title" onChange={props.handleChange} />
+                    <Form.Control type="text" name="experience[title]" onChange={props.handleChange} />
                 </FloatingLabel>
                 <FloatingLabel label="Company">
-                    <Form.Control type="text" name="company" onChange={props.handleChange} />
+                    <Form.Control type="text" name="experience[company]" onChange={props.handleChange} />
                 </FloatingLabel>
                 <FloatingLabel label="City">
-                    <Form.Control type="text" name="city" onChange={props.handleChange} />
+                    <Form.Control type="text" name="experience[city]" onChange={props.handleChange} />
                 </FloatingLabel>
                 <FloatingLabel label="State">
-                    <Form.Control type="text" name="state" onChange={props.handleChange} />
+                    <Form.Control type="text" name="experience[state]" onChange={props.handleChange} />
                 </FloatingLabel>
                 <FloatingLabel label="ZipCode">
-                    <Form.Control type="text" name="zipcode" onChange={props.handleChange} />
+                    <Form.Control type="text" name="experience[zipcode]" onChange={props.handleChange} />
                 </FloatingLabel>
                 <FloatingLabel label="Phone">
-                    <Form.Control type="text" name="phone" onChange={props.handleChange} />
+                    <Form.Control type="text" name="experience[phone]" onChange={props.handleChange} />
                 </FloatingLabel>
                 <FloatingLabel label="State Date">
-                    <Form.Control type="text" name="startdate" onChange={props.handleChange} />
+                    <Form.Control type="text" name="experience[startdate]" onChange={props.handleChange} />
                 </FloatingLabel>
                 <FloatingLabel label="End Date">
-                    <Form.Control type="text" name="enddate" onChange={props.handleChange} />
+                    <Form.Control type="text" name="experience[enddate]" onChange={props.handleChange} />
                 </FloatingLabel>
                 <FloatingLabel label="Description">
-                    <Form.Control as="textarea" name="description" onChange={props.handleChange} />
+                    <Form.Control as="textarea" name="experience[description]" onChange={props.handleChange} />
                 </FloatingLabel>
                 <Form.Label>
-                    <Form.Check label="Current Job:" name="current" onChange={props.handleChange}/>
+                    <Form.Check label="Current Job:" name="experience[current]" onChange={props.handleChange}/>
                 </Form.Label>
             </Form.Group>
             {/* {skills.map(skill =>
@@ -77,7 +77,7 @@ const Skills = props => {
                 <Button variant="primary" name="previous" onClick={props.handleClick}>
                     Previous
                 </Button>
-                <Button variant="primary" type="submit">
+                <Button variant="primary" type="submit" onClick={props.handleSubmit}>
                     Submit
                 </Button>
             </Modal.Footer>

@@ -14,7 +14,7 @@ class Job < ApplicationRecord
   end
 
   def proximity
-    profiles = Profile.where("industry = ?", "#{industry}").near(self.address, 100)
+    profiles = Profile.where("industry = ?", industry).near(self.address, 100)
     profiles.each {|profile| 
         Applicant.create(employee_id: "#{profile.employee_id}", employer_id: "#{employer_id}", job_id: "#{id}")
       }
