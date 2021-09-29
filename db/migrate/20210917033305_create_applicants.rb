@@ -4,7 +4,7 @@ class CreateApplicants < ActiveRecord::Migration[6.0]
       t.references :employee, null: false, foreign_key: true
       t.references :employer, null: false, foreign_key: true
       t.references :job, null: false, foreign_key: true
-
+      t.integer :rating, default: 0
       t.timestamps
     end
   end
