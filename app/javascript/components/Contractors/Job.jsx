@@ -1,5 +1,6 @@
 import React, {useState } from 'react'
 import { Link } from 'react-router-dom'
+import { Card } from 'react-bootstrap'
 
 const Job = props => {
 
@@ -15,12 +16,25 @@ const Job = props => {
     //     e.preventDefault()
     // }
 
+
+
     const [state] = useState({
 
     })
 
         const job = props.jobs.find(job => job.id == props.match.params.job_id)
+        const applicants = job.applicants.sort(applicant => applicant.rating)
         const profiles = job.profiles.length > 0 ? job.profiles : []
+        const sort = () => {
+            let sorted = profiles.map(profile => {
+            for (let i = 0; i<applicants.length;i++) {
+                    if (profile.id == applicants[i].employee_id) {
+                        return profile
+                    }
+                }
+            })
+            return sorted
+        }
         if (props.loading === true) {
             return (
             <div className="spinner">
@@ -30,12 +44,19 @@ const Job = props => {
         } else {
             return (
                 <div className="job">
+                    <Card.Header>
+                    <img src="/images/noun_electric_3108716.png" alt="Electric" />
+                        <h1>{job.title}</h1>
+                        <br />
                     <Link to={`/contractors/${job.employer_id}/jobs/${job.id}/editjob`}>Edit Job</Link>
-                    <h1>{job.title}</h1>
-                    <h4>{job.city}, {job.state}</h4>
-                    <h5>{job.industry}</h5>
-                    <p>{job.jobtype.join(", ")} {job.schedule.join(", ")} {job.skills.join(", ")} </p>
-                    <p>{job.description}</p>
+                    </Card.Header>
+                    <Card.Subtitle>{job.city}, {job.state}</Card.Subtitle>
+                    <Card.Text>Job Type: {job.jobtype.join(", ")}</Card.Text>
+                    <Card.Text>Schedule: {job.schedule.join(", ")}</Card.Text>
+                    <Card.Text>Shifts: {job.shifts.join(", ")}</Card.Text>
+                    <Card.Text>Season: {job.seasonstart} - {job.seasonend} </Card.Text>
+                    <Card.Text>Pay Range: {job.minpay} - {job.maxpay}</Card.Text>
+                    <Card.Text>{job.description}</Card.Text>
                     <div className="candidates">
                         {/* <div className="search">
                             <label htmlFor="search">Search Candidates</label>
@@ -49,7 +70,7 @@ const Job = props => {
                             <option value="75">75</option>
                             <option value="100">100</option>
                         </select> */}
-                        {profiles.map(candidate => 
+                        {sort().map(candidate => 
                             <div id={candidate.id} key={candidate.id}>
                                 <Link to={`/contractors/${job.employer_id}/jobs/${job.id}/employees/${candidate.employee_id}`}>
                                     <h3>{candidate.fname} {candidate.lname}</h3>

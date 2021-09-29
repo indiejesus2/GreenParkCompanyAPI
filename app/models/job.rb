@@ -63,9 +63,7 @@ class Job < ApplicationRecord
           end
         }
         @types[:schedule].each {|type| 
-          byebug
           if employee.profile.schedule.include?(type)
-            byebug
             print("schedule")
             @rating+=1
           end
@@ -82,13 +80,6 @@ class Job < ApplicationRecord
           applicant.save
         end
     }
-      # employee.profile.each{|pro| 
-      # if profile. = type
-      #   self[employee]: type
-      # end
-    # end
-  # }
-  byebug
   end
 
 end  
