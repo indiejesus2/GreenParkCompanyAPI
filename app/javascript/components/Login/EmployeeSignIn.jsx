@@ -41,7 +41,9 @@ export default function EmployeeSignIn(props) {
         <Modal show animation backdrop onHide={handleClose}>
 
         {/* <div className="signin"> */}
-            <Modal.Header>Sign-In</Modal.Header>
+            <Modal.Header>
+        <img src="/images/blucollar_horizicon.png" alt="" className="signIn"/>
+            Sign-In</Modal.Header>
 
             <Form onSubmit={formik.handleSubmit}>
             <Modal.Body>

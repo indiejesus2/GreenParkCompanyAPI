@@ -1,113 +1,121 @@
 import React, { useState, useEffect } from 'react'
+import { Form, Button, FloatingLabel } from 'react-bootstrap'
+import { useFormik } from 'formik'
 
 export default function EditJob(props) {
 
+    const months = [
+        "Jan", 
+        "Feb", 
+        "Mar", 
+        "Apr", 
+        "May", 
+        "Jun", 
+        "Jul", 
+        "Aug", 
+        "Sept", 
+        "Oct", 
+        "Nov",
+        "Dec"
+    ]
 
     const job = props.jobs.find(job => job.id == props.match.params.job_id)
 
-    const [state, setState] = useState({
-        id: job.id,
-        employer_id: job.employer_id,
-        title: job.title,
-        city: job.city,
-        state: job.state,
-        jobType: job.jobType,
-        schedule: job.schedule,
-        skills: job.skills,
-        certificates: job.certificates,
-        description: job.description
+    const formik = useFormik({
+        initialValues: {
+            job: job.id,
+            title: job.title,
+            city: job.city,
+            state: job.state,
+            zipcode: job.zipcode,
+            license: job.license,
+            jobType: job.jobType,
+            schedule: job.schedule,
+            shifts: job.shifts,
+            seasonstart: job.seasonstart,
+            seasonend: job.seasonend,
+            minpay: job.minpay,
+            maxpay: job.maxpay,
+            industry: ''
+        },
+        onSubmit: values => {
+            props.editJob(values)
+            props.history.push(`/contractors/${state.employer_id}/jobs/${state.id}`)
+        }
     })
 
-    const handleChange = (e) => {
-        const {name, value} = e.target
-        setState( prevState => ({
-            ...prevState,
-            [name] : value
-        }))
-    }
-
-    const handleJob = (e) => {
-        if (e.target.checked === true) {
-                setState( prevState => ({
-                    ...prevState,
-                    [e.target.name]: [...state[e.target.name], e.target.value]
-                }))
-        } else {
-            let group = state[e.target.name]
-            let deleted = group.findIndex(job => Object.keys(job)[0] == e.target.id)
-            group.splice(deleted, 1)
-            if (e.target.name === "jobType") {
-                setState( prevState => ({
-                    ...prevState,
-                    [e.target.name] : group
-                }))
-            }
-        }
-    }
-
-    const handleSkills = (e) => {
-        e.preventDefault()
-        let skill = e.target.previousElementSibling.value
-        setState( prevState => ({
-            ...prevState,
-            skills: [...state.skills, skill]
-        }))
-    }
-
-    const handleSubmit = (e) => {
-        e.preventDefault()
-        props.editJob(state)
-        props.history.push(`/contractors/${state.employer_id}/jobs/${state.id}`)
-    }
-
     return (
-        <div className="addJob">
-            <h1>New Job</h1>
+        <div className="editJob">
+            <h1>Edit Job</h1>
+                <Form onSubmit={formik.handleSubmit} className="editJob-form">
             <div className="input">
-                <form onSubmit={handleSubmit} className="addJob-form">
-                    <label>Title: </label>
-                    <input type="text" name="title" id="title" onChange={handleChange} value={state.title}/>
-                    <br />
-                    <label>City: </label>
-                    <input type="text" name="city" id="city" onChange={handleChange} value={state.city}/>
-                    <br />
-                    <label>State: </label>
-                    <input type="text" name="state" id="state" onChange={handleChange} value={state.state} />
-                    <br />
-                    <label>Description: </label>
-                    <input type="textarea" name="description" id="description" onChange={handleChange} value={state.description} />
-                    <br />
-                    <div className="work-schedule">
-                        <label htmlFor="job-type">Job-Type: </label>
-                        <input type="checkbox" name="jobType" value="ft" id='1' onChange={handleJob} /> Full-time
-                        <input type="checkbox" name="jobType" value="pt" id='2' onChange={handleJob} /> Part-time
-                        <input type="checkbox" name="jobType" value="contract" id='3' onChange={handleJob} /> Contract
-                        <input type="checkbox" name="jobType" value="temporary" id='4' onChange={handleJob} /> Temporary
-                        <br />
-                        <label htmlFor="schedule">Schedule: </label>
-                        <input type="checkbox" name="schedule" value="M-F" onChange={handleJob}/>
-                        M-F
-                        <input type="checkbox" name="schedule" value="Weekends" onChange={handleJob}/>
-                        Weekends
-                        <input type="checkbox" name="schedule" value="Overnight" onChange={handleJob}/>
-                        Overnight
-                        <input type="checkbox" name="schedule" value="Holidays" onChange={handleJob}/>
-                        Holidays
-                    </div>
-                    <div className="skills">
-                    <label>Skills: </label>
-                    {state.skills.map(skill =>
-                    <span key={skill.id}>{skill} </span>
-                    )}
-                    <input type="text" name="skills" id="skills"/>
-                    <button onClick={handleSkills}>Add Skill</button>
-                    <br />
-                    </div>
-                    <div className="submit">
-                        <input type="submit" value="Add Job" />
-                    </div>
-                </form>
+                <Form.Group name="info">
+                <FloatingLabel label="Title">
+                    <Form.Control type="text" name="title" value={formik.initialValues.title} onChange={formik.handleChange} />
+                </FloatingLabel>
+                <FloatingLabel label="City">
+                    <Form.Control type="text" name="city" value={formik.initialValues.city} onChange={formik.handleChange} />
+                </FloatingLabel>
+                <FloatingLabel label="State">
+                    <Form.Control type="text" name="state" value={formik.initialValues.state} onChange={formik.handleChange} />
+                </FloatingLabel>
+                <FloatingLabel label="ZipCode">
+                    <Form.Control type="text" name="zipcode" value={formik.initialValues.zipcode} onChange={formik.handleChange} />
+                </FloatingLabel>
+                <FloatingLabel label="Description">
+                    <Form.Control as="textarea" name="description" value={formik.initialValues.description} onChange={formik.handleChange} />
+                </FloatingLabel>
+                </Form.Group>
             </div>
+            <div className="job-type">
+                <Form.Label htmlFor="job-type">Job-Type: </Form.Label>
+            <Form.Check name="jobType" label="Full-Time" value="FT" id={`inline-checkbox-1`} onChange={formik.handleChange} />
+            <Form.Check name="jobType" label="Part-Time" value="PT" id={`inline-checkbox-2`} onChange={formik.handleChange} /> 
+            <Form.Check name="jobType" label="Contract" value="Contract" id={`inline-checkbox-3`} onChange={formik.handleChange} />
+            <Form.Check name="jobType" label="Temporary" value="Temporary" id={`inline-checkbox-4`} onChange={formik.handleChange} />
+            </div>
+                <div className="schedule">
+            <Form.Label htmlFor="schedule">Schedule: </Form.Label>
+            <Form.Check name="schedule" label="Weekdays" value="Weekdays" onChange={props.handleChange}/>
+            <Form.Check name="schedule" label="Weekends" value="Weekends" onChange={props.handleChange}/>
+            <Form.Check name="schedule" label="Overnight" value="Overnight" onChange={props.handleChange}/>
+            <Form.Check name="schedule" label="Holidays" value="Holidays" onChange={props.handleChange}/>
+                </div>
+                <div className="shifts">
+                    <Form.Label>Shifts: </Form.Label>
+                    <Form.Check name="shift" label="AM" value="AM" onChange={props.handleChange}/>
+                    <Form.Check name="shift" label="PM" value="PM" onChange={props.handleChange}/>
+                    <Form.Check name="shift" label="Evening" value="Evening" onChange={props.handleChange}/>
+                </div>
+                <div className="seasonal">
+                    <Form.Label>Season Availability: </Form.Label>
+                    <Form.Control as="select" name="seasonstart" onChange={props.handleChange}> 
+                        <option>Seasonal Start</option>
+                        {months.map(month => 
+                        <option value={month}>{month}</option>
+                            )}
+                    </Form.Control>
+                    <Form.Control as="select" name="seasonend" onChange={props.handleChange}> 
+                        <option>Seasonal End</option>
+                        {months.map(month => 
+                        <option value={month}>{month}</option>
+                            )}
+                    </Form.Control>
+                </div>
+                <div className="payrate">
+                    <Form.Label>
+                        Minimum Pay Rate: 
+                    </Form.Label>
+                    <Form.Control type="text" name="minpay" onChange={props.handleChange} />
+                    <Form.Label>
+                        Maximum Pay Rate: 
+                    </Form.Label>
+                    <Form.Control type="text" name="maxpay" onChange={props.handleChange} />
+                </div>
+                <div className="submit">
+                    <Button type="submit" value="Edit Job" onClick={formik.handleSubmit}/>
+                </div>
+            </Form>
         </div>
     )
 }
