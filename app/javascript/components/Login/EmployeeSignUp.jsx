@@ -9,23 +9,15 @@ import { useHistory } from 'react-router-dom'
 
 export default function EmployeeSignUp(props) {
 
-    const [show, setShow] = useState(false)
+    const [show, setShow] = useState(true)
     const history = useHistory();
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
-
-    // const [name, setName] = useState()
-    // const [email, setEmail] = useState()
-    // const [password, setPassword] = useState()
-
-    const handleChange = (event) => {
-        return (
-            // event.target.name==="name"?setName(event.target.value):
-            event.target.name==="email"?setEmail(event.target.value):
-            event.target.name==="password"?setPassword(event.target.value):
-            ()=>{}
-        )
+    
+    const handleClose = () => {
+        history.push('/');
+        setShow(false)
     }
+
+    const handleShow = () => setShow(true);
 
     const formik = useFormik({
         initialValues: {
@@ -39,14 +31,13 @@ export default function EmployeeSignUp(props) {
         },
     });
 
-    // const handleClick = (event) => {
-    //     handleClose
-    //     setInterval(history.push('/employees'), 5000) 
-    // }
+    if(props.currentStep !== 2) {
+        return null
+    } 
 
     return (
         <React.Fragment>    
-        <Modal show animation backdrop>
+        <Modal show={show} animation backdrop>
 
         {/* <div className="signin"> */}
             <Modal.Header><h1>Create a Free Account</h1>
@@ -74,6 +65,8 @@ export default function EmployeeSignUp(props) {
                 </Form.Group>
                 </Modal.Body>
                 <Modal.Footer>
+                    <Button color="danger" name="close" onClick={handleClose}>Close</Button>
+                        <Button color="success" name="sign in" onClick={props.handleClick}>Sign-In</Button>
                     {/* <Link to="/employees"> */}
                         <Button color="primary" type="submit">Sign-Up</Button>
                     {/* </Link> */}

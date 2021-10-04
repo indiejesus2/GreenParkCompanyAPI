@@ -16,12 +16,9 @@ export default function EditProfile(props) {
         status: props.profile.status,
         jobType: props.profile.jobType,
         schedule: props.profile.schedule,
-        education: props.profile.education,
-        skills: props.profile.skills,
-        military: props.profile.military,
-        certificates: props.profile.certificates,
+        skills: props.profile.shifts,
         description: props.profile.description,
-        work_histories: props.work_history
+        work_histories: props.work_histories ? props.work_histories : []
     })
 
     const handleChange = (event) => {
@@ -64,6 +61,10 @@ export default function EditProfile(props) {
         props.history.push('/employees')
     }
 
+    const handleSelection = (event) => {
+        debugger
+    }
+
     return (
         <div className="profile">
             <h1>Complete Profile</h1>
@@ -88,17 +89,14 @@ export default function EditProfile(props) {
                         <label htmlFor="Description">Description: </label>
                         <input type="textarea" name="description" value={state.description} value={state.description} onChange={handleChange} />
                         <br />
-                        <label htmlFor="status">Status: </label>
-                        <input type="radio" name="status" id="status" value="authorized" onChange={handleChange} /> Authorized to work in the US for any employer
-                        <br />
-                        <input type="radio" name="status" id="status" value="sponsorship" onChange={handleChange} /> Sponsorship required to work in the US
-                        <br />
-                        <input type="radio" name="status" id="status" value="unknown" onChange={handleChange} /> Not specified
-                        <br />
                     </div>
                     <div className="work-schedule">
-                        <label htmlFor="job-type">Job-Type: </label>
-                        <input type="checkbox" name="jobType" value="ft" id='1' onChange={handleJob} /> Full-time
+                        <label htmlFor="job type">Job Type: </label>
+                        {/* {state.jobType.map(work => 
+                    
+                    
+                    )} */}
+                    <input type="checkbox" label="Full Time" name="jobType" value="ft" id='1' onChange={handleJob} />
                         <input type="checkbox" name="jobType" value="pt" id='2' onChange={handleJob} /> Part-time
                         <input type="checkbox" name="jobType" value="contract" id='3' onChange={handleJob} /> Contract
                         <input type="checkbox" name="jobType" value="temporary" id='4' onChange={handleJob} /> Temporary

@@ -1,6 +1,6 @@
 class EmployeeSerializer
     include JSONAPI::Serializer
-    attributes :id, :email, :profile, :applicants
+    attributes :id, :email, :profile, :applicants, :work_histories
     # :name 
     has_one :profile
     has_many :work_histories, through: :profile

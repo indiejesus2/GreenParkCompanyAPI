@@ -8,7 +8,7 @@ export default function EditJob(props) {
         "Jan", 
         "Feb", 
         "Mar", 
-        "Apr", 
+        "APR", 
         "May", 
         "Jun", 
         "Jul", 
@@ -17,6 +17,26 @@ export default function EditJob(props) {
         "Oct", 
         "Nov",
         "Dec"
+    ]
+
+    const jobtypes = [
+        "Full Time",
+        "Part Time",
+        "Contract",
+        "Temporary"
+    ]
+
+    const schedule = [
+        "Weekdays",
+        "Weekends",
+        "Overnight",
+        "Holidays"
+    ]
+
+    const shifts = [
+        "AM",
+        "PM",
+        "Evening"
     ]
 
     const job = props.jobs.find(job => job.id == props.match.params.job_id)
@@ -29,9 +49,9 @@ export default function EditJob(props) {
             state: job.state,
             zipcode: job.zipcode,
             license: job.license,
-            jobType: job.jobType,
-            schedule: job.schedule,
-            shifts: job.shifts,
+            jobtype: job.jobtype.join("").split(", "),
+            schedule: job.schedule.join("").split(", "),
+            shifts: job.shifts.join("").split(", "),
             seasonstart: job.seasonstart,
             seasonend: job.seasonend,
             minpay: job.minpay,
@@ -43,6 +63,16 @@ export default function EditJob(props) {
             props.history.push(`/contractors/${state.employer_id}/jobs/${state.id}`)
         }
     })
+    
+    const handleCheck = (e) => {
+        // if (formik.values.jobtype.includes(jobType.value)) {
+        //     return true
+        // }
+    }
+
+    const handleClick = () => {
+        debugger
+    }
 
     return (
         <div className="editJob">
@@ -68,49 +98,58 @@ export default function EditJob(props) {
                 </Form.Group>
             </div>
             <div className="job-type">
+                {/* {jobtypes.map(job => 
+                    
+                    )} */}
                 <Form.Label htmlFor="job-type">Job-Type: </Form.Label>
-            <Form.Check name="jobType" label="Full-Time" value="FT" id={`inline-checkbox-1`} onChange={formik.handleChange} />
-            <Form.Check name="jobType" label="Part-Time" value="PT" id={`inline-checkbox-2`} onChange={formik.handleChange} /> 
-            <Form.Check name="jobType" label="Contract" value="Contract" id={`inline-checkbox-3`} onChange={formik.handleChange} />
-            <Form.Check name="jobType" label="Temporary" value="Temporary" id={`inline-checkbox-4`} onChange={formik.handleChange} />
+                
+            <Form.Check name="jobType" label="Full-Time" value="FT" id={`inline-checkbox-1`} onChange={formik.handleChange} onClick={handleClick} defaultChecked={handleCheck}/>
+            <Form.Check name="jobType" label="Part-Time" value="PT" id={`inline-checkbox-2`} onChange={formik.handleChange} defaultChecked={formik.values.jobtype}/> 
+            <Form.Check name="jobType" label="Contract" value="Contract" id={`inline-checkbox-3`} onChange={formik.handleChange} defaultChecked={formik.values.jobtype}/>
+            <Form.Check name="jobType" label="Temporary" value="Temporary" id={`inline-checkbox-4`} onChange={formik.handleChange} defaultChecked={formik.values.jobtype}/>
             </div>
                 <div className="schedule">
             <Form.Label htmlFor="schedule">Schedule: </Form.Label>
-            <Form.Check name="schedule" label="Weekdays" value="Weekdays" onChange={props.handleChange}/>
-            <Form.Check name="schedule" label="Weekends" value="Weekends" onChange={props.handleChange}/>
-            <Form.Check name="schedule" label="Overnight" value="Overnight" onChange={props.handleChange}/>
-            <Form.Check name="schedule" label="Holidays" value="Holidays" onChange={props.handleChange}/>
+                    {schedule.map(day => 
+                        <Form.Check name="schedule" id={day} label={day} value={day} onChange={props.handleChange} 
+                        defaultChecked={formik.values.schedule.includes(day)}
+                        />
+                    )}
                 </div>
                 <div className="shifts">
                     <Form.Label>Shifts: </Form.Label>
-                    <Form.Check name="shift" label="AM" value="AM" onChange={props.handleChange}/>
-                    <Form.Check name="shift" label="PM" value="PM" onChange={props.handleChange}/>
-                    <Form.Check name="shift" label="Evening" value="Evening" onChange={props.handleChange}/>
+                    {shifts.map(shift =>                             
+                        <Form.Check name="shift" label={shift} value={shift} onChange={props.handleChange} defaultChecked={formik.values.shifts.includes(shift)} />
+                        )}
                 </div>
                 <div className="seasonal">
                     <Form.Label>Season Availability: </Form.Label>
-                    <Form.Control as="select" name="seasonstart" onChange={props.handleChange}> 
-                        <option>Seasonal Start</option>
+                    <FloatingLabel label="Seasonal Start">
+
+                    <Form.Select name="seasonstart" onChange={props.handleChange} defaultValue={formik.values.seasonstart}> 
+                        {months.map(month =>
+                                <option selected={formik.values.seasonstart == month}>{month}</option>
+                        )}
+                    </Form.Select>
+                        </FloatingLabel>
+                        <FloatingLabel label="Seasonal End">
+
+                    <Form.Select name="seasonend" onChange={props.handleChange} defaultValue={formik.values.seasonend}> 
                         {months.map(month => 
-                        <option value={month}>{month}</option>
-                            )}
-                    </Form.Control>
-                    <Form.Control as="select" name="seasonend" onChange={props.handleChange}> 
-                        <option>Seasonal End</option>
-                        {months.map(month => 
-                        <option value={month}>{month}</option>
-                            )}
-                    </Form.Control>
+                        <option selected={formik.values.seasonend == month}>{month}</option>
+                        )}
+                    </Form.Select>
+                    </FloatingLabel>
                 </div>
                 <div className="payrate">
                     <Form.Label>
                         Minimum Pay Rate: 
                     </Form.Label>
-                    <Form.Control type="text" name="minpay" onChange={props.handleChange} />
+                    <Form.Control type="text" name="minpay" onChange={props.handleChange} value={formik.values.minpay}/>
                     <Form.Label>
                         Maximum Pay Rate: 
                     </Form.Label>
-                    <Form.Control type="text" name="maxpay" onChange={props.handleChange} />
+                    <Form.Control type="text" name="maxpay" onChange={props.handleChange} value={formik.values.maxpay}/>
                 </div>
                 <div className="submit">
                     <Button type="submit" value="Edit Job" onClick={formik.handleSubmit}/>

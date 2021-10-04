@@ -4,25 +4,8 @@ import { Card, Form, Button } from 'react-bootstrap'
 import Applicants from './Applicants'
 
 const Job = props => {
-
-    const months = [
-        "Jan", 
-        "Feb", 
-        "Mar", 
-        "Apr", 
-        "May", 
-        "Jun", 
-        "Jul", 
-        "Aug", 
-        "Sept", 
-        "Oct", 
-        "Nov",
-        "Dec"
-    ]
-
-    
+   
     const job = props.jobs.find(job => job.id == props.match.params.job_id)
-
 
         if (props.loading === true) {
             return (
@@ -46,7 +29,6 @@ const Job = props => {
                     <Card.Text>Season: {job.seasonstart} - {job.seasonend} </Card.Text>
                     <Card.Text>Pay Range: {job.minpay} - {job.maxpay}</Card.Text>
                     <Card.Text>{job.description}</Card.Text>
-
                             <Applicants job={job}/>
                         </div>
 

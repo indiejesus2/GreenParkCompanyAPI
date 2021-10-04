@@ -5,6 +5,7 @@ import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import Col from 'react-bootstrap/Col'
 import Modal from 'react-bootstrap/Modal'
+import { useHistory } from 'react-router-dom'
 import * as yup from 'yup'
 
 const schema = yup.object().shape({
@@ -14,9 +15,14 @@ const schema = yup.object().shape({
 
 export default function EmployeeSignIn(props) {
 
-    const [show, setShow] = useState(false)
+    const [show, setShow] = useState(true)
+    const history = useHistory();
 
-    const handleClose = () => setShow(false);
+    const handleClose = () => {
+        history.push('/');
+        setShow(false)
+    }
+
     const handleShow = () => setShow(true);
 
     const formik = useFormik({
@@ -30,15 +36,13 @@ export default function EmployeeSignIn(props) {
         },
     });
 
-    const handleClick = () => {
-        handleClose
-        // debugger
-        // props.history.push('/employees/signup')
+    if(props.currentStep !== 1) {
+        return null
     }
     
     return (
         <React.Fragment>    
-        <Modal show animation backdrop onHide={handleClose}>
+        <Modal show={show} animation backdrop onHide={handleClose}>
 
         {/* <div className="signin"> */}
             <Modal.Header>
@@ -67,9 +71,10 @@ export default function EmployeeSignIn(props) {
                 </Form.Group>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Link to="/employees/signup">
-                        <Button color="success" onClick={handleClick}>Sign-Up</Button>
-                    </Link>
+                <Button color="danger" name="close" onClick={handleClose}>Close</Button>
+                <Link to="/employees/signup">
+                        <Button color="success" name="sign up" onClick={props.handleClick}>Sign-Up</Button>
+                </Link>
                     <Button type="submit">Sign-In</Button>
                 </Modal.Footer>
                 </Form>
