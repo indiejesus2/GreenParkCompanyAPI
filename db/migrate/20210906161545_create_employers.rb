@@ -4,8 +4,8 @@ class CreateEmployers < ActiveRecord::Migration[6.0]
       t.string :name
       t.string :email
       t.string :password_digest
-      t.integer :zipcode
-
+      t.string :subscription
+      t.boolean :status
       t.timestamps
     end
     add_index :employers, :email, unique: true

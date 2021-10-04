@@ -21,7 +21,7 @@ export default function ContractorSignUp(props) {
         event.preventDefault()
         if (state.password == state.password_confirmation) {
             props.signUpContractor(state)
-            props.history.push('/contractors')
+            props.history.push('/contractors/subscription')
         } else {
             alert("Passwords do not match.")
         }

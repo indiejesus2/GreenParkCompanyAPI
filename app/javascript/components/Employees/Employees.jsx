@@ -23,13 +23,11 @@ const Employees = props => {
                 ...prevState,
                 currentStep : currentStep+=1
             }))
-            console.log(currentStep)
         } else if (currentStep == 2 && direction == "sign in") {
             setState( prevState => ({
                 ...prevState,
                 currentStep : currentStep-=1
             }))
-            console.log(currentStep)
         }
     }
 
