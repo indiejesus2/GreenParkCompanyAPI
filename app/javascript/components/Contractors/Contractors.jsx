@@ -1,9 +1,31 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { Link } from 'react-router-dom'
+import Home from '../Home'
 import ContractorSignIn from '../Login/ContractorSignIn'
+import ContractorSignUp from '../Login/ContractorSignUp'
 import JobsContainer from '../../containers/JobsContainer'
 
 const Contractors = props => {
+
+    const [state, setState] = useState({
+        currentStep: 1
+    })
+
+    const handleClick = (e) => {
+        let currentStep = state.currentStep;
+        let direction = e.target.name;
+        if (currentStep == 1 && direction == "sign up"){
+            setState( prevState => ({
+                ...prevState,
+                currentStep : currentStep+=1
+            }))
+        } else if (currentStep == 2 && direction == "sign in") {
+            setState( prevState => ({
+                ...prevState,
+                currentStep : currentStep-=1
+            }))
+        }
+    }
     if (props.loading === true) {
         return (
         <div className="spinner">
@@ -12,13 +34,10 @@ const Contractors = props => {
         )
     } else if (props.loggedIn === false) {
         return (
-            <div className="login">
-                <div className="signin">
-                    <ContractorSignIn signIn={props.signIn} />
-                </div>
-                <Link to="/contractors/signup">
-                    Create Account and Hire a Tradesperson Today!
-                </Link>
+            <div className="signin">
+                <Home />
+                <ContractorSignUp signUp={props.signUp} currentStep={state.currentStep} handleClick={handleClick} />
+                <ContractorSignIn signIn={props.signIn} currentStep={state.currentStep} handleClick={handleClick} />
             </div>
         )
     } else {

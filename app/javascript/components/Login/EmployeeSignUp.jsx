@@ -25,7 +25,7 @@ export default function EmployeeSignUp(props) {
             password: "",
         },
         onSubmit: values => {
-            props.signUpEmployee(values)
+            props.signUp(values)
             handleClose
             history.push('/employees')
         },
@@ -38,8 +38,6 @@ export default function EmployeeSignUp(props) {
     return (
         <React.Fragment>    
         <Modal show={show} animation backdrop>
-
-        {/* <div className="signin"> */}
             <Modal.Header><h1>Create a Free Account</h1>
             <p>Find a job today!</p></Modal.Header>
 
@@ -67,31 +65,10 @@ export default function EmployeeSignUp(props) {
                 <Modal.Footer>
                     <Button color="danger" name="close" onClick={handleClose}>Close</Button>
                         <Button color="success" name="sign in" onClick={props.handleClick}>Sign-In</Button>
-                    {/* <Link to="/employees"> */}
                         <Button color="primary" type="submit">Sign-Up</Button>
-                    {/* </Link> */}
                 </Modal.Footer>
                 </Form>
-            {/* </div> */}
         </Modal>
-                        </React.Fragment>
-        // <div className="signUp">
-
-        //     <div className="input">
-        //         <form onSubmit={handleSubmit} className="signup-form">
-        //         {/* <label>Name: </label>
-        //             <input type="text" name="name" id="name" onChange={handleChange}/>
-        //             <br /> */}
-        //         <label>Email: </label>
-        //             <input type="text" name="email" id="email" onChange={handleChange}/>
-        //             <br />
-        //         <label>Password: </label>
-        //             <input type="password" name="password" id="password" onChange={handleChange}/>
-        //                 <div className="submit">
-        //                     <input type="submit" value="Log-In"/>
-        //                 </div>
-        //         </form>
-        //     </div>
-        // </div>
+        </React.Fragment>
     )
 }

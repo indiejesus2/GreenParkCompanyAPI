@@ -32,7 +32,6 @@ export default function EmployeeSignIn(props) {
         },
         onSubmit: values => {
             props.signIn(values)
-            // props.history.push('/employees')
         },
     });
 
@@ -43,10 +42,8 @@ export default function EmployeeSignIn(props) {
     return (
         <React.Fragment>    
         <Modal show={show} animation backdrop onHide={handleClose}>
-
-        {/* <div className="signin"> */}
             <Modal.Header>
-        <img src="/images/blucollar_horizicon.png" alt="" className="signIn"/>
+        <img src="/images/blucollar_horizicon.png" alt="Blue Collar Logo" className="signIn"/>
             Sign-In</Modal.Header>
 
             <Form onSubmit={formik.handleSubmit}>
@@ -72,13 +69,10 @@ export default function EmployeeSignIn(props) {
                 </Modal.Body>
                 <Modal.Footer>
                 <Button color="danger" name="close" onClick={handleClose}>Close</Button>
-                <Link to="/employees/signup">
                         <Button color="success" name="sign up" onClick={props.handleClick}>Sign-Up</Button>
-                </Link>
                     <Button type="submit">Sign-In</Button>
                 </Modal.Footer>
                 </Form>
-            {/* </div> */}
         </Modal>
                         </React.Fragment>
     )

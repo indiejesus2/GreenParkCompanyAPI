@@ -40,7 +40,8 @@ ActiveRecord::Schema.define(version: 2021_09_17_033305) do
     t.string "name"
     t.string "email"
     t.string "password_digest"
-    t.integer "zipcode"
+    t.string "subscription"
+    t.boolean "status"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_employers_on_email", unique: true

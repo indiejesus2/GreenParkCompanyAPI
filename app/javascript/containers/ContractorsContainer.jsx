@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Route, Switch, Redirect, Link } from 'react-router-dom'
-import {signInContractor} from '../actions/Contractors/signInContractor'
+import { signInContractor } from '../actions/Contractors/signInContractor'
 import { signUpContractor } from '../actions/Contractors/signUpContractor'
 import { addJob } from '../actions/Contractors/addJob'
 import { fetchJobs } from '../actions/Contractors/fetchJobs'
@@ -33,8 +33,8 @@ class ContractorsContainer extends Component {
                     {/* <Route path='/contractors/:id/jobs/:job_id' render={(routerProps) => <Job {...routerProps} contractor={this.props.contractor} jobs={this.props.jobs} candidates={this.props.candidates} /> } ></Route>
                     <Route path='/contractors/addjob' render={(routerProps) => <AddJob {...routerProps} contractor={this.props.contractor} addJob={this.props.addJob}/>}></Route> */}
                     <Route path='/contractors/subscription' render={(routerProps) => <Subscription {...routerProps} contractor={this.props.contractor} updateSubscription={this.props.updateSubscription} />}></Route>
-                    <Route path='/contractors/signup' render={(routerProps) => <ContractorSignUp {...routerProps} loading={this.props.loading} signUpContractor={this.props.signUpContractor} />}></Route>
-                    <Route path='/contractors' render={(routerProps) => <Contractors {...routerProps} loading={this.props.loading} signIn={this.props.signIn} loggedIn={this.props.loggedIn} contractor={this.props.contractor} profile={this.props.profile} fetchJobs={this.props.fetchJobs} jobs={this.props.jobs} />}></Route>
+                    {/* <Route path='/contractors/signup' render={(routerProps) => <ContractorSignUp {...routerProps} loading={this.props.loading} signUpContractor={this.props.signUpContractor} />}></Route> */}
+                    <Route path='/contractors' render={(routerProps) => <Contractors {...routerProps} loading={this.props.loading} signIn={this.props.signIn} signUp={this.props.signUp} loggedIn={this.props.loggedIn} contractor={this.props.contractor} profile={this.props.profile} fetchJobs={this.props.fetchJobs} jobs={this.props.jobs} />}></Route>
                 </Switch>
             </div>
         )
@@ -56,7 +56,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => ({
     signIn: contractor => dispatch(signInContractor(contractor)),
-    signUpContractor: contractor => dispatch(signUpContractor(contractor)),
+    signUp: contractor => dispatch(signUpContractor(contractor)),
     addJob: job => dispatch(addJob(job)),
     fetchJobs: contractor => dispatch(fetchJobs(contractor)),
     fetchEmployee: id => dispatch(fetchEmployee(id)),
