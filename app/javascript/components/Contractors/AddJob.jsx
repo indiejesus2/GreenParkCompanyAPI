@@ -19,6 +19,15 @@ export default function AddJob(props) {
         "Dec"
     ]
 
+    const industries = [
+        "Plumbing",
+        "Painting",
+        "Maintenance",
+        "Electric",
+        "Landscape",   
+        "Other"
+    ]
+
     const formik = useFormik({
         initialValues: {
             employer_id: props.contractor.id,
@@ -44,31 +53,37 @@ export default function AddJob(props) {
 
     return (
         <div className="editJob">
-            <h1>Edit Job</h1>
-                <Form onSubmit={formik.handleSubmit} className="editJob-form">
+            <h1>Add Job</h1>
+                <Form onSubmit={formik.handleSubmit} className="addJob-form">
             <div className="input">
+            <Form.Select name="industry" id="industry" onChange={formik.handleChange}>
+            <option>Work Industry</option>
+                        {industries.map(industry => 
+                        <option value={industry}>{industry}</option>
+                            )}
+            </Form.Select>
                 <Form.Group name="info">
                 <FloatingLabel label="Title">
-                    <Form.Control type="text" name="title" value={formik.initialValues.title} onChange={formik.handleChange} />
+                    <Form.Control type="text" name="title" onChange={formik.handleChange} />
                 </FloatingLabel>
                 <FloatingLabel label="City">
-                    <Form.Control type="text" name="city" value={formik.initialValues.city} onChange={formik.handleChange} />
+                    <Form.Control type="text" name="city" onChange={formik.handleChange} />
                 </FloatingLabel>
                 <FloatingLabel label="State">
-                    <Form.Control type="text" name="state" value={formik.initialValues.state} onChange={formik.handleChange} />
+                    <Form.Control type="text" name="state" onChange={formik.handleChange} />
                 </FloatingLabel>
                 <FloatingLabel label="ZipCode">
-                    <Form.Control type="text" name="zipcode" value={formik.initialValues.zipcode} onChange={formik.handleChange} />
+                    <Form.Control type="text" name="zipcode" onChange={formik.handleChange} />
                 </FloatingLabel>
                 <FloatingLabel label="Description">
-                    <Form.Control as="textarea" name="description" value={formik.initialValues.description} onChange={formik.handleChange} />
+                    <Form.Control as="textarea" name="description" onChange={formik.handleChange} />
                 </FloatingLabel>
                 </Form.Group>
             </div>
             <div className="job-type">
                 <Form.Label htmlFor="job-type">Job-Type: </Form.Label>
-            <Form.Check name="jobType" label="Full-Time" value="FT" id={`inline-checkbox-1`} onChange={formik.handleChange} />
-            <Form.Check name="jobType" label="Part-Time" value="PT" id={`inline-checkbox-2`} onChange={formik.handleChange} /> 
+            <Form.Check name="jobType" label="Full Time" value="Full Time" id={`inline-checkbox-1`} onChange={formik.handleChange} />
+            <Form.Check name="jobType" label="Part Time" value="Part Time" id={`inline-checkbox-2`} onChange={formik.handleChange} /> 
             <Form.Check name="jobType" label="Contract" value="Contract" id={`inline-checkbox-3`} onChange={formik.handleChange} />
             <Form.Check name="jobType" label="Temporary" value="Temporary" id={`inline-checkbox-4`} onChange={formik.handleChange} />
             </div>
@@ -111,7 +126,7 @@ export default function AddJob(props) {
                     <Form.Control type="text" name="maxpay" onChange={props.handleChange} />
                 </div>
                 <div className="submit">
-                    <Button type="submit" value="Add Job" onClick={formik.handleSubmit}/>
+                    <Button type="submit" value="Add Job" onClick={formik.handleSubmit}>Add Job</Button>
                 </div>
             </Form>
         </div>

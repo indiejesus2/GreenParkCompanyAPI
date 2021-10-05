@@ -8,7 +8,7 @@ export default function EditJob(props) {
         "Jan", 
         "Feb", 
         "Mar", 
-        "APR", 
+        "Apr", 
         "May", 
         "Jun", 
         "Jul", 
@@ -98,20 +98,18 @@ export default function EditJob(props) {
                 </Form.Group>
             </div>
             <div className="job-type">
-                {/* {jobtypes.map(job => 
-                    
-                    )} */}
                 <Form.Label htmlFor="job-type">Job-Type: </Form.Label>
-                
-            <Form.Check name="jobType" label="Full-Time" value="FT" id={`inline-checkbox-1`} onChange={formik.handleChange} onClick={handleClick} defaultChecked={handleCheck}/>
-            <Form.Check name="jobType" label="Part-Time" value="PT" id={`inline-checkbox-2`} onChange={formik.handleChange} defaultChecked={formik.values.jobtype}/> 
+                {jobtypes.map(job => 
+                    <Form.Check name="jobType" label={job} value={job} id={job} onChange={formik.handleChange} defaultChecked={formik.values.jobtype.includes(job)}/>
+                )}
+            {/* <Form.Check name="jobType" label="Part-Time" value="PT" id={`inline-checkbox-2`} onChange={formik.handleChange} defaultChecked={formik.values.jobtype}/> 
             <Form.Check name="jobType" label="Contract" value="Contract" id={`inline-checkbox-3`} onChange={formik.handleChange} defaultChecked={formik.values.jobtype}/>
-            <Form.Check name="jobType" label="Temporary" value="Temporary" id={`inline-checkbox-4`} onChange={formik.handleChange} defaultChecked={formik.values.jobtype}/>
+            <Form.Check name="jobType" label="Temporary" value="Temporary" id={`inline-checkbox-4`} onChange={formik.handleChange} defaultChecked={formik.values.jobtype}/> */}
             </div>
                 <div className="schedule">
             <Form.Label htmlFor="schedule">Schedule: </Form.Label>
                     {schedule.map(day => 
-                        <Form.Check name="schedule" id={day} label={day} value={day} onChange={props.handleChange} 
+                        <Form.Check name="schedule" id={day} label={day} value={day} onChange={formik.handleChange} 
                         defaultChecked={formik.values.schedule.includes(day)}
                         />
                     )}
@@ -119,14 +117,14 @@ export default function EditJob(props) {
                 <div className="shifts">
                     <Form.Label>Shifts: </Form.Label>
                     {shifts.map(shift =>                             
-                        <Form.Check name="shift" label={shift} value={shift} onChange={props.handleChange} defaultChecked={formik.values.shifts.includes(shift)} />
+                        <Form.Check name="shift" label={shift} value={shift} onChange={formik.handleChange} defaultChecked={formik.values.shifts.includes(shift)} />
                         )}
                 </div>
                 <div className="seasonal">
                     <Form.Label>Season Availability: </Form.Label>
                     <FloatingLabel label="Seasonal Start">
 
-                    <Form.Select name="seasonstart" onChange={props.handleChange} defaultValue={formik.values.seasonstart}> 
+                    <Form.Select name="seasonstart" onChange={formik.handleChange} defaultValue={formik.values.seasonstart}> 
                         {months.map(month =>
                                 <option selected={formik.values.seasonstart == month}>{month}</option>
                         )}
@@ -134,7 +132,7 @@ export default function EditJob(props) {
                         </FloatingLabel>
                         <FloatingLabel label="Seasonal End">
 
-                    <Form.Select name="seasonend" onChange={props.handleChange} defaultValue={formik.values.seasonend}> 
+                    <Form.Select name="seasonend" onChange={formik.handleChange} defaultValue={formik.values.seasonend}> 
                         {months.map(month => 
                         <option selected={formik.values.seasonend == month}>{month}</option>
                         )}
@@ -145,14 +143,14 @@ export default function EditJob(props) {
                     <Form.Label>
                         Minimum Pay Rate: 
                     </Form.Label>
-                    <Form.Control type="text" name="minpay" onChange={props.handleChange} value={formik.values.minpay}/>
+                    <Form.Control type="text" name="minpay" onChange={formik.handleChange} value={formik.values.minpay}/>
                     <Form.Label>
                         Maximum Pay Rate: 
                     </Form.Label>
-                    <Form.Control type="text" name="maxpay" onChange={props.handleChange} value={formik.values.maxpay}/>
+                    <Form.Control type="text" name="maxpay" onChange={formik.handleChange} value={formik.values.maxpay}/>
                 </div>
                 <div className="submit">
-                    <Button type="submit" value="Edit Job" onClick={formik.handleSubmit}/>
+                    <Button type="submit" value="Edit Job" onClick={formik.handleSubmit}>Edit Job</Button>
                 </div>
             </Form>
         </div>

@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 2021_09_17_033305) do
     t.bigint "employer_id", null: false
     t.bigint "job_id", null: false
     t.integer "rating", default: 0
+    t.float "distance"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["employee_id"], name: "index_applicants_on_employee_id"

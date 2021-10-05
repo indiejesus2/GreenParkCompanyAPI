@@ -29,13 +29,14 @@ const Applicants = (props) => {
             if (v == true) {
                 state.profiles.map(function(profile) {
                     props.job[k].map(function(i) {
-                        if (profile[k].includes(i)) {
+                        if (profile[k].includes(i) && !filtered.includes(profile)) {
                                 filtered.push(profile)
                         }
                     })
                 })
             }
         })
+        debugger
         setCandidates(filtered)
     }
 
@@ -47,7 +48,22 @@ const Applicants = (props) => {
         }))
     }
 
-    const handleClear = (e) => {
+    const handleLocation = (e) => {
+        let candidates = []
+        state.applicants.map(function(applicant) {
+            if (applicant.distance <= e.target.value) {
+                debugger 
+                state.profiles.map(function(profile) {
+                    if (profile.id == applicant.id) {
+                        candidates.push(profile)
+                    }
+                })
+            }
+        })
+        setCandidates(candidates)
+    }
+
+    const handleClear = () => {
         setCandidates(original)
     }
     
@@ -69,11 +85,11 @@ const Applicants = (props) => {
                 <option value={month}>{month}</option>
             )}
         </Form.Control> */}
-        <Form.Control as="select" name="proximity" id="proximity" onChange={handleChange}> Proximity
-            <option value="25">25</option>
-            <option value="50">50</option>
-            <option value="75">75</option>
-            <option value="100">100</option>
+        <Form.Control as="select" name="proximity" id="proximity" onChange={handleLocation}> Proximity
+            <option value={25}>25</option>
+            <option value={50}>50</option>
+            <option value={75}>75</option>
+            <option value={100}>100</option>
         </Form.Control>
         <Button onClick={handleClear}> Clear </Button>
         <Button type="submit"> Search </Button>
