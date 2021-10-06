@@ -7,21 +7,7 @@ import EmployeeSignIn from './Login/EmployeeSignIn';
 
 
 class Home extends Component {
-
-    // renderSignIn(){
-    //     return (
-    //         <div>
-    //             <EmployeeSignIn />
-    //         </div>
-    //     )
-    // }
-
-    // handleClick = (e) => {
-    //     if (e.target.id == "employees") {
-    //         this.renderSignIn()
-    //     }
-    // }
-
+    
     render() {        
         return (
             <div className="homepage">
