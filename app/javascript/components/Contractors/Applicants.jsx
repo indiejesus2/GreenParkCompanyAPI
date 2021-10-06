@@ -1,24 +1,39 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { Form, Button } from 'react-bootstrap'
+import { Form, Button, Card } from 'react-bootstrap'
 
 const Applicants = (props) => {
-
+    
+    const [job, setJob] = useState(props.job)
+    
+    useEffect(() => {
+        setJob(props.job)
+    })
+    
     const [state, setState] = useState({
         jobtype: false,
         schedule: false,
         shifts: false,
-        applicants: props.job.applicants.sort(applicant => applicant.rating),
-        profiles: props.job.profiles.length > 0 ? props.job.profiles : []
+        applicants: job.applicants.sort(applicant => applicant.rating),
+        profiles: job.profiles.length > 0 ? props.job.profiles : []
     })
 
     const original = state.profiles.map(profile => {
+        let oObj = {
+            info: '',
+            rating: '',
+            distance: '',
+        }
         for (let i = 0; i<state.applicants.length;i++) {
                 if (profile.id == state.applicants[i].employee_id) {
-                    return profile
+                    oObj.info = profile,
+                    oObj.rating = state.applicants[i].rating,
+                    oObj.distance = state.applicants[i].distance
                 }
         }
+        return oObj
     })
+
 
     const [candidates, setCandidates] = useState(original)
     
@@ -27,16 +42,15 @@ const Applicants = (props) => {
         let filtered = []
         Object.entries(state).map(function([k, v]) {
             if (v == true) {
-                state.profiles.map(function(profile) {
-                    props.job[k].map(function(i) {
-                        if (profile[k].includes(i) && !filtered.includes(profile)) {
+                original.map(function(profile) {
+                    job[k].map(function(i) {
+                        if (profile.info[k].includes(i) && !filtered.includes(profile)) {
                                 filtered.push(profile)
                         }
                     })
                 })
             }
         })
-        debugger
         setCandidates(filtered)
     }
 
@@ -49,15 +63,9 @@ const Applicants = (props) => {
     }
 
     const handleLocation = (e) => {
-        let candidates = []
-        state.applicants.map(function(applicant) {
-            if (applicant.distance <= e.target.value) {
-                debugger 
-                state.profiles.map(function(profile) {
-                    if (profile.id == applicant.id) {
-                        candidates.push(profile)
-                    }
-                })
+        const candidates = original.map(function(profile) {
+            if (profile.distance <= e.target.value) {
+                return profile
             }
         })
         setCandidates(candidates)
@@ -104,11 +112,18 @@ const Applicants = (props) => {
             </Form>
         <div>
         {candidates.map(candidate => 
-            <div id={candidate.id} key={candidate.id}>
-            <Link to={`/contractors/${props.job.employer_id}/jobs/${props.job.id}/employees/${candidate.employee_id}`}>
-            <h3>{candidate.fname} {candidate.lname}</h3>
-            </Link>
-            </div>
+            <Card id={candidate.info.id} key={candidate.info.id} bg="info" style={{width: '18rem'}}>
+                <Card.Title>
+                    <Link to={`/contractors/${props.job.employer_id}/jobs/${props.job.id}/employees/${candidate.info.employee_id}`}>
+                        <h3>{candidate.info.fname} {candidate.info.lname}</h3>
+                    </Link>
+
+                </Card.Title>
+                <Card.Body>
+                      <Card.Subtitle>{candidate.info.city}, {candidate.info.state}</Card.Subtitle>
+                      <Card.Text>{candidate.rating}</Card.Text>
+                </Card.Body>
+                </Card>
         )}
         </div>
         </div>
