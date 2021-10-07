@@ -1,12 +1,16 @@
-import React, { Component } from 'react'
+import React, { useState, useEffect } from 'react'
 import Card from 'react-bootstrap/Card'
 import CardGroup from 'react-bootstrap/CardGroup'
 import Button from 'react-bootstrap/Button'
 
-export default class Jobs extends Component {
+const Jobs = (props) => {
 
-    render() {
-        const jobs = this.props.jobs.length > 0 ? this.props.jobs : []
+        const [jobs, setJobs] = useState(props.jobs)
+        useEffect(() => {
+            if (props.jobs && props.jobs != jobs) {
+                setJobs(props.jobs)
+            }
+        })
         return (
             
             // <CardGroup> 
@@ -19,12 +23,14 @@ export default class Jobs extends Component {
                     <Card.Title className="mb-2 text-muted">{job.title}</Card.Title>
                     <Card.Subtitle>Location: {job.city}, {job.state}</Card.Subtitle>
                     <Card.Text>Description: {job.description} </Card.Text>
-                        <Button onClick={this.handleClick}>Apply</Button>
+                        <Button onClick={props.handleClick}>Apply</Button>
                 </Card>
                 )}
             {/* </CardGroup> */}
                 </div>
             
         )
-    }
+    
 }
+
+export default Jobs
