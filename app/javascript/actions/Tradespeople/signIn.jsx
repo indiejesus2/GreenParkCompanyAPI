@@ -9,12 +9,22 @@ export const signIn = (employee) => {
             },
             body: JSON.stringify({employee: employee})
         }
-        // dispatch({type: 'FETCH_USER'})
+        dispatch({type: 'LOADING_EMPLOYEES'})
         return fetch(`/api/v1/signin`, configObj)
         .then(resp => resp.json())
-        .then(employee => dispatch({
-            type: 'SIGNIN_EMPLOYEE',
-            payload: employee
-        }))
+        .then(employee => {
+            if (employee.error) {
+                dispatch({
+                    type: 'ERROR_EMPLOYEE',
+                    payload: employee.error
+                })
+            } else {
+                dispatch({
+                    type: 'SIGNIN_EMPLOYEE',
+                    payload: employee
+                })
+            }
+            }
+        )
     }
 }

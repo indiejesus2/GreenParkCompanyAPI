@@ -34,8 +34,8 @@ const Employees = props => {
         return (
                 <div className="signin">
                     <Home />
-                    <EmployeeSignUp signUp={props.signUp} currentStep={state.currentStep} handleClick={handleClick} />
-                    <EmployeeSignIn signIn={props.signIn} currentStep={state.currentStep} handleClick={handleClick} />
+                    <EmployeeSignUp signUp={props.signUp} currentStep={state.currentStep} handleClick={handleClick} errors={props.errors} />
+                    <EmployeeSignIn signIn={props.signIn} currentStep={state.currentStep} handleClick={handleClick} errors={props.errors} />
                 </div>
         )
     } else if (props.loading === true) {

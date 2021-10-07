@@ -14,7 +14,7 @@ export const signInContractor = (employer) => {
         .then(employer => {
             if (employer.error) {
                 dispatch({
-                    type: 'ADD_ERROR',
+                    type: 'ERROR_CONTRACTOR',
                     payload: employer.error    
                 })
             } else {

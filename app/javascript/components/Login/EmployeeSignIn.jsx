@@ -1,10 +1,11 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useFormik } from 'formik'
 import { Link } from 'react-router-dom'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import Col from 'react-bootstrap/Col'
 import Modal from 'react-bootstrap/Modal'
+import Alert from 'react-bootstrap/Alert'
 import { useHistory } from 'react-router-dom'
 import * as yup from 'yup'
 
@@ -17,11 +18,20 @@ export default function EmployeeSignIn(props) {
 
     const [show, setShow] = useState(true)
     const history = useHistory();
+    const [alert, setAlert] = useState(false)
+    const [errors, setErrors] = useState(props.errors)
 
     const handleClose = () => {
         history.push('/');
         setShow(false)
     }
+
+    useEffect(() => {
+        if (errors != props.errors) {
+            setErrors(props.errors)
+            setAlert(true)
+        }
+    })
 
     const handleShow = () => setShow(true);
 
@@ -48,6 +58,9 @@ export default function EmployeeSignIn(props) {
 
             <Form onSubmit={formik.handleSubmit}>
             <Modal.Body>
+            <Alert show={alert}>
+                    {props.errors}
+                </Alert>
                 <Form.Group as={Col} md="4" controlId="validationFormik01">
                 <Form.Label>Email: </Form.Label>
                 <Form.Control

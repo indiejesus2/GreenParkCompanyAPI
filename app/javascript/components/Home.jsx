@@ -24,7 +24,7 @@ class Home extends Component {
                                     </Card.Header>
                                     <Card.Body>
                                         <Link to="/employees/signin">
-                                            <Button id="employees" onClick={this.handleClick}>Find Jobs</Button>
+                                            <Button id="employees">Find Jobs</Button>
                                             {/* { renderSignIn() } */}
                                         </Link>
                                     </Card.Body>
@@ -34,7 +34,7 @@ class Home extends Component {
                                         Contractors
                                     </Card.Header>
                                     <Card.Body>
-                                        <Link to="/contractors">
+                                        <Link to="/contractors/signin">
                                             <Button>Post Jobs</Button>
                                         </Link>
                                     </Card.Body>

@@ -48,6 +48,13 @@ export default function contractorsReducer(state = {contractor: [], jobs: [], lo
                 ...state,
                 jobs: action.payload.jobs.data.map(job => job.attributes)
             }
+        case 'ERROR_CONTRACTOR':
+            return {
+                contractor: [...state.contractor],
+                loggedIn: false,
+                loading: false,
+                errors: action.payload
+            }
         default:
             return state
     }

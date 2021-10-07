@@ -32,7 +32,7 @@ const mapStateToProps = state => {
         loggedIn: state.employeesReducer.loggedIn,
         loading: state.employeesReducer.loading,
         jobs: state.employeesReducer.jobs,
-        errors: state.errorsReducer.errors
+        errors: state.employeesReducer.errors
     }
 }
 

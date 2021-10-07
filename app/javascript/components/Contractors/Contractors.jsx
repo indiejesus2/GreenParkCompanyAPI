@@ -14,6 +14,13 @@ const Contractors = props => {
 
     const [loading, setLoading] = useState(props.loading)
     const [jobs, setJobs] = useState(props.job ? props.jobs : [])
+    const [errors, setErrors] = useState(props.errors)
+
+    useEffect(() => {
+        if (props.errors != errors) {
+            setErrors(props.errors)
+        }
+    })
 
     const handleClick = (e) => {
         let currentStep = state.currentStep;
@@ -30,11 +37,7 @@ const Contractors = props => {
             }))
         }
     }
-    if (props.errors.length>0) {
-        alert(props.errors)
-        setLoading(false)
-    } else if (loading === true) {
-        debugger
+if (loading === true) {
         return (
         <div className="spinner">
             <span className="sr-only">Loading...</span>
@@ -44,8 +47,8 @@ const Contractors = props => {
         return (
             <div className="signin">
                 <Home />
-                <ContractorSignUp signUp={props.signUp} currentStep={state.currentStep} handleClick={handleClick} />
-                <ContractorSignIn signIn={props.signIn} currentStep={state.currentStep} handleClick={handleClick} />
+                <ContractorSignUp signUp={props.signUp} currentStep={state.currentStep} handleClick={handleClick} errors={errors} />
+                <ContractorSignIn signIn={props.signIn} currentStep={state.currentStep} handleClick={handleClick} errors={errors} />
             </div>
         )
     } else {

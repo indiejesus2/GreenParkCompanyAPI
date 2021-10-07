@@ -1,4 +1,4 @@
-export default function employeesReducer(state = {employee: [], profile: [], work_history: [], jobs: [], loggedIn: false, loading: false}, action) {
+export default function employeesReducer(state = {employee: [], profile: [], work_history: [], jobs: [], loggedIn: false, loading: false, errors: []}, action) {
     switch(action.type) {
         case 'LOADING_EMPLOYEES':
             return {
@@ -33,6 +33,12 @@ export default function employeesReducer(state = {employee: [], profile: [], wor
                 profile: action.payload.included.find(include => include.type == "profile").attributes,
                 work_history: action.payload.included.find(include => include.type == "work_history").attributes,
                 loading: false
+            }
+        case 'ERROR_EMPLOYEE':
+            return {
+                loading: false,
+                loggedIn: false,
+                errors: action.payload
             }
         default:
             return state
