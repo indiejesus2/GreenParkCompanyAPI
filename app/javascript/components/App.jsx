@@ -11,7 +11,6 @@ class App extends Component {
     render(){
         return (
             <div>
-            <NavBar/>
                 <Switch>
                     <Route path="/" exact component={LoginContainer}></Route>
                     {/* // exact render={(routerProps) => <Home {...routerProps} signIn={this.props.signIn}/>}></Route> */}

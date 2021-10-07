@@ -42,6 +42,7 @@ export default function EmployeeSignIn(props) {
         },
         onSubmit: values => {
             props.signIn(values)
+            history.push('/employees')
         },
     });
 

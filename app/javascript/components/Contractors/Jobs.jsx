@@ -1,27 +1,34 @@
-import React, { Component } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
 
-export default class Jobs extends Component {
+const Jobs = (props) => {
 
-    
+const [jobs, setJobs] = useState(props.jobs ? props.jobs : [])
+
+    useEffect(() => {
+        if (props.jobs && props.jobs != jobs) {
+            setJobs(props.jobs)
+        }
+
+    })
     // componentDidMount() {
-    //     this.props.fetchJobs(this.props.contractor)
+    //     props.fetchJobs(props.contractor)
     // }
 
-    handleClick = (job) => {
+    const handleClick = (job) => {
         // e.preventDefault()
-        this.props.deleteJob(job)
+        props.deleteJob(job)
     }
 
-    render() {
+
         return (
             <div className="employer-jobs">
-                         {this.props.jobs.map(job =>
+                         {jobs.map(job =>
                         <Card id={job.id} key={job.id} bg="info" text="white" style={{width: '18rem'}}>
                             <Card.Header as="h2">
-                            <Link to={`/contractors/${this.props.contractor.id}/jobs/${job.id}`} >
+                            <Link to={`/contractors/${props.contractor.id}/jobs/${job.id}`} >
                                 {job.title}
                             </Link>
                             </Card.Header>
@@ -29,12 +36,14 @@ export default class Jobs extends Component {
                         <Card.Text>Description: {job.description} </Card.Text>
                         <Card.Text>Number of Applicants: {job.employees.length} </Card.Text>
                         <Card.Footer>
-                            <Button onClick={() => this.handleClick(job)}>Delete</Button>
+                            <Button onClick={() => handleClick(job)}>Delete</Button>
                         </Card.Footer>
                 </Card>
                     )}
                 {/* </ul> */}
             </div>
         )
-    }
+    
 }
+
+export default Jobs

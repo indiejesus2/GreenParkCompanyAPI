@@ -4,13 +4,14 @@ import Card from 'react-bootstrap/Card'
 import CardGroup from 'react-bootstrap/CardGroup'
 import Button from 'react-bootstrap/Button'
 import EmployeeSignIn from './Login/EmployeeSignIn';
-
+import NavBar from '../components/NavBar'
 
 class Home extends Component {
     
     render() {        
         return (
             <div className="homepage">
+                <NavBar/>
                     <div className="homepage-container">
                         <div className="homepage-header">
                             <img src="/images/blucollarlogo_wtagline.png" alt="" />
@@ -23,7 +24,7 @@ class Home extends Component {
                                         JobSeekers
                                     </Card.Header>
                                     <Card.Body>
-                                        <Link to="/employees/signin">
+                                        <Link to="/employees">
                                             <Button id="employees">Find Jobs</Button>
                                             {/* { renderSignIn() } */}
                                         </Link>
@@ -34,7 +35,7 @@ class Home extends Component {
                                         Contractors
                                     </Card.Header>
                                     <Card.Body>
-                                        <Link to="/contractors/signin">
+                                        <Link to="/contractors">
                                             <Button>Post Jobs</Button>
                                         </Link>
                                     </Card.Body>

@@ -1,18 +1,31 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import { Link } from 'react-router-dom'
 import Home from '../Home'
 import EmployeeSignIn from '../Login/EmployeeSignIn'
 import EmployeeSignUp from '../Login/EmployeeSignUp'
 import Jobs from './Jobs'
 import Questionnaire from '../Questionnaire/Main'
+import NavBar from '../NavBar'
+import { useHistory } from 'react-router-dom'
+
 
 const Employees = props => {
 
     const [state, setState] = useState({
         profile: props.profile ? props.profile : [],
-        jobs: props.jobs ? props.jobs : [],
         currentStep: 1
     })
+
+    const [jobs, setJobs] = useState(props.jobs)
+
+    useEffect(() => {
+        if (props.jobs && props.job != jobs) {
+            setJobs(props.jobs)
+        }
+    })
+
+    const history = useHistory();
+
 
     const handleClick = (e) => {
         let currentStep = state.currentStep;
@@ -28,6 +41,11 @@ const Employees = props => {
                 currentStep : currentStep-=1
             }))
         }
+    }
+
+    const handleSignout = () => {
+        props.signOut()
+        history.push('/');
     }
 
     if (props.loggedIn === false) {
@@ -52,10 +70,13 @@ const Employees = props => {
     } {
         return (
             <div className="employees">
+                <NavBar loggedIn={props.loggedIn} handleSignout={handleSignout}/>
+
                 <h1>{props.profile.fname} {props.profile.lname}</h1>
+                <Link to={`/employees`}>Home</Link>
                 <Link to={`/employees/${props.employee.id}/profile`}>Profile</Link>
                 <h2>Jobs</h2>
-                <Jobs jobs={state.jobs} fetchJobs={props.fetchJobs} employee={props.employee} />
+                <Jobs jobs={jobs} employee={props.employee} />
             </div>
         )
     }

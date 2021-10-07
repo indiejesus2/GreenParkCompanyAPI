@@ -4,6 +4,9 @@ import Home from '../Home'
 import ContractorSignIn from '../Login/ContractorSignIn'
 import ContractorSignUp from '../Login/ContractorSignUp'
 import JobsContainer from '../../containers/JobsContainer'
+import NavBar from '../NavBar'
+import { useHistory } from 'react-router-dom'
+
 
 const Contractors = props => {
 
@@ -13,14 +16,23 @@ const Contractors = props => {
     })
 
     const [loading, setLoading] = useState(props.loading)
-    const [jobs, setJobs] = useState(props.job ? props.jobs : [])
+    const [jobs, setJobs] = useState(props.jobs ? props.jobs : [])
     const [errors, setErrors] = useState(props.errors)
+    const history = useHistory();
+
 
     useEffect(() => {
         if (props.errors != errors) {
             setErrors(props.errors)
+        } else if (props.jobs != jobs) {
+            setJobs(props.jobs)
         }
     })
+
+    const handleSignout = () => {
+        props.signOut()
+        history.push('/');
+    }
 
     const handleClick = (e) => {
         let currentStep = state.currentStep;
@@ -54,8 +66,11 @@ if (loading === true) {
     } else {
         return (
                 <div className="contractor">
+                <NavBar loggedIn={props.loggedIn} handleSignout={handleSignout} />
+
                     <h1>{props.contractor.name}</h1>
-                    <div className="contractor-nav">    
+                    <div className="contractor-nav">
+                        <Link to={'/contractors'}>Home</Link>    
                         <Link to={'/contractors/addjob'}>Add Job</Link>
                         <Link to={`/contractors/${props.contractor.id}/profile`}>Profile</Link>
                         <Link to={`/contractors/${props.contractor.id}/editprofile`}>Edit Profile</Link>
