@@ -25,4 +25,4 @@ const mapDispatchToProps = dispatch => ({
     signIn: employee => dispatch(signIn(employee))
 })
 
-export default connect(null, mapDispatchToProps)(LoginContainer)
+export default connect((errors) => errors, mapDispatchToProps)(LoginContainer)

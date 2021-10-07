@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import { Link } from 'react-router-dom'
 import Home from '../Home'
 import ContractorSignIn from '../Login/ContractorSignIn'
@@ -7,9 +7,13 @@ import JobsContainer from '../../containers/JobsContainer'
 
 const Contractors = props => {
 
+
     const [state, setState] = useState({
         currentStep: 1
     })
+
+    const [loading, setLoading] = useState(props.loading)
+    const [jobs, setJobs] = useState(props.job ? props.jobs : [])
 
     const handleClick = (e) => {
         let currentStep = state.currentStep;
@@ -26,7 +30,11 @@ const Contractors = props => {
             }))
         }
     }
-    if (props.loading === true) {
+    if (props.errors.length>0) {
+        alert(props.errors)
+        setLoading(false)
+    } else if (loading === true) {
+        debugger
         return (
         <div className="spinner">
             <span className="sr-only">Loading...</span>
@@ -49,10 +57,11 @@ const Contractors = props => {
                         <Link to={`/contractors/${props.contractor.id}/profile`}>Profile</Link>
                         <Link to={`/contractors/${props.contractor.id}/editprofile`}>Edit Profile</Link>
                     </div>
-                    <JobsContainer jobs={props.jobs} fetchJobs={props.fetchJobs} contractor={props.contractor} candidates={props.candidates} profiles={props.profiles} work_history={props.work_history}/>
+                    <JobsContainer jobs={jobs} fetchJobs={props.fetchJobs} contractor={props.contractor} candidates={props.candidates} profiles={props.profiles} work_history={props.work_history}/>
                 </div>
         )
     }
+
 }
 
 export default Contractors

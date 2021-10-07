@@ -11,13 +11,15 @@ import thunkMiddleware from 'redux-thunk';
 import employeesReducer from '../reducers/employeesReducer'
 import contractorsReducer from '../reducers/contractorsReducer'
 import jobsReducer from '../reducers/jobsReducer';
+import errorsReducer from '../reducers/errorsReducer'
 import App from '../components/App'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const rootReducer = combineReducers({
   employeesReducer,
   contractorsReducer,
-  jobsReducer
+  jobsReducer,
+  errorsReducer
 })
 
 const store = createStore(rootReducer, applyMiddleware(thunkMiddleware))

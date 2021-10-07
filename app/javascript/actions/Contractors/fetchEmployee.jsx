@@ -4,7 +4,7 @@ export const fetchEmployee = (id) => {
         // dispatch({type: 'LOADING_JOBS'})
         // dispatch({type: 'LOADING_EMPLOYEES'})
 
-        fetch(`http://localhost:3000/api/v1/employees/${id}`).then(resp => resp.json())
+        fetch(`/api/v1/employees/${id}`).then(resp => resp.json())
         .then(employee => dispatch({
             type: 'FETCH_EMPLOYEE',
             payload: employee

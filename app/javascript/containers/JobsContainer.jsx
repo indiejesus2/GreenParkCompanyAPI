@@ -25,7 +25,7 @@ class JobsContainer extends Component {
                         <Route path='/contractors/:id/jobs/:job_id' render={(routerProps) => <Job {...routerProps} contractor={this.props.contractor} jobs={this.props.jobs} applicants={this.props.applicants} candidates={this.props.candidates} profiles={this.props.profiles} fetchJob={this.props.fetchJob} /> } ></Route>
                         <Route path='/contractors/addjob' render={(routerProps) => <AddJob {...routerProps} contractor={this.props.contractor} addJob={this.props.addJob}/>}></Route>
                         <Route path='/contractors/signup' render={(routerProps) => <ContractorsSignUp {...routerProps} loading={this.props.loading} signUpContractor={this.props.signUpContractor} />}></Route>
-                        <Route path='/contractors' render={(routerProps) => <Jobs {...routerProps} loading={this.props.loading} signIn={this.props.signIn} loggedIn={this.props.loggedIn} contractor={this.props.contractor} profile={this.props.profile} jobs={this.props.jobs} deleteJob={this.props.deleteJob}/>}></Route>
+                        {/* <Route path='/contractors' render={(routerProps) => <Jobs {...routerProps} loading={this.props.loading} signIn={this.props.signIn} loggedIn={this.props.loggedIn} contractor={this.props.contractor} profile={this.props.profile} jobs={this.props.jobs} deleteJob={this.props.deleteJob}/>}></Route> */}
                     </Switch>
                 </div>
             )
@@ -47,7 +47,8 @@ const mapStateToProps = state => {
         loggedIn: state.contractorsReducer.loggedIn,
         loading: state.contractorsReducer.loading,
         jobs: state.contractorsReducer.jobs,
-        applicants: state.contractorsReducer.applicants
+        applicants: state.contractorsReducer.applicants,
+        errors: state.errorsReducer.errors
     }
 }
 
