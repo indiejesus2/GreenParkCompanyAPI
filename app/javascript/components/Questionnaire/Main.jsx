@@ -35,8 +35,22 @@ const Main = (props) => {
             maxpay: 0,
             industry: '',
             // skills: [],
-            experience: {
-                id: "",
+            experience: [
+                {
+                id: 1,
+                title: "",
+                company: "",
+                city: "",
+                state: "",
+                zipcode: "",
+                phone: "",
+                startdate: "",
+                enddate: "",
+                description: "",
+                current: false
+            },
+                {
+                    id: 2,
                 title: "",
                 company: "",
                 city: "",
@@ -48,9 +62,9 @@ const Main = (props) => {
                 description: "",
                 current: false
             }
+        ]
         },
         onSubmit: values => {
-            debugger
             props.createProfile(values)
             history.push('/employees')
         }
@@ -85,7 +99,8 @@ const Main = (props) => {
     // }
 
     const handleSkills = (e) => {
-        debugger
+        let id = e.target.id
+        formik.values.experience[id-1].id = id
     }
 
     // const handleHistory = (e) => {

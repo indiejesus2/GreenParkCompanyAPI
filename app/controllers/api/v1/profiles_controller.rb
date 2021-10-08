@@ -14,6 +14,7 @@ class Api::V1::ProfilesController < ApplicationController
         @profile = Profile.new(profile_params)
         if @profile.save
             employee = {employee_id: @employee.id, profile_id: @profile.id}
+            byebug
             together = history_params.merge(employee)
             @history = WorkHistory.new(together)
             @history.save
@@ -26,6 +27,7 @@ class Api::V1::ProfilesController < ApplicationController
     def update 
         @profile = @employee.profile
         employee = {employee_id: @employee.id, profile_id: @profile.id}
+        byebug
         together = history_params.merge(employee)
         @history = WorkHistory.new(together)
         @profile.update(profile_params)
@@ -44,7 +46,10 @@ class Api::V1::ProfilesController < ApplicationController
     end
     
     def history_params
-        params.require(:experience).permit(:title, :company, :city, :state, :zipcode, :phone, :startdate, :enddate, :description, :current)
+        first = params.require(:experience)[0].permit(:id, :title, :company, :city, :state, :zipcode, :phone, :startdate, :enddate, :description, :current)
+        second = params.require(:experience)[1].permit(:id, :title, :company, :city, :state, :zipcode, :phone, :startdate, :enddate, :description, :current)
+        return first
+        # return [first, second]
     end
 
     def set_employee

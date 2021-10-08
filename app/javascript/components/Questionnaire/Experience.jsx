@@ -1,42 +1,43 @@
 import React from 'react'
-import { Form, FloatingLabel } from 'react-bootstrap'
+import { Form, FloatingLabel, Button } from 'react-bootstrap'
 
 const Experience = props => {
 
-    debugger
+    const id = props.id - 1
 
     return(
-        <Form.Group name="experience" id={props.id}>
+        <Form.Group name="experience" id={id}>
         <FloatingLabel label="Title">
-            <Form.Control type="text" id={props.id} name="experience.title" onChange={props.handleSkills} />
+            <Form.Control type="text" id={id} name={`experience[${id}].title`} onChange={props.handleChange} />
         </FloatingLabel>
         <FloatingLabel label="Company">
-            <Form.Control type="text" id={props.id} name="experience.company" onChange={props.handleSkills} />
+            <Form.Control type="text" id={id} name={`experience[${id}].company`} onChange={props.handleChange} />
         </FloatingLabel>
         <FloatingLabel label="City">
-            <Form.Control type="text" id={props.id} name="experience.city" onChange={props.handleSkills} />
+            <Form.Control type="text" id={id} name={`experience[${id}].city`} onChange={props.handleChange} />
         </FloatingLabel>
         <FloatingLabel label="State">
-            <Form.Control type="text" id={props.id} name="experience.state" onChange={props.handleSkills} />
+            <Form.Control type="text" id={id} name={`experience[${id}].state`} onChange={props.handleChange} />
         </FloatingLabel>
         <FloatingLabel label="ZipCode">
-            <Form.Control type="text" id={props.id} name="experience.zipcode" onChange={props.handleSkills} />
+            <Form.Control type="text" id={id} name={`experience[${id}].zipcode`} onChange={props.handleChange} />
         </FloatingLabel>
         <FloatingLabel label="Phone">
-            <Form.Control type="text" id={props.id} name="experience.phone" onChange={props.handleSkills} />
+            <Form.Control type="text" id={id} name={`experience[${id}].phone`} onChange={props.handleChange} />
         </FloatingLabel>
         <FloatingLabel label="State Date">
-            <Form.Control type="text" id={props.id} name="experience.startdate" onChange={props.handleSkills} />
+            <Form.Control type="text" id={id} name={`experience[${id}].startdate`} onChange={props.handleChange} />
         </FloatingLabel>
         <FloatingLabel label="End Date">
-            <Form.Control type="text" id={props.id} name="experience.enddate" onChange={props.handleSkills} />
+            <Form.Control type="text" id={id} name={`experience[${id}].enddate`} onChange={props.handleChange} />
         </FloatingLabel>
         <FloatingLabel label="Description">
-            <Form.Control as="textarea" id={props.id} name="experience.description" onChange={props.handleSkills} />
+            <Form.Control as="textarea" id={id} name={`experience[${id}].description`} onChange={props.handleChange} />
         </FloatingLabel>
         <Form.Label>
-            <Form.Check label="Current Job:" id={props.id} name="experience.current" onChange={props.handleSkills}/>
+            <Form.Check label="Current Job:" id={id} name={`experience[${id}].current`} onChange={props.handleChange}/>
         </Form.Label>
+        {/* <Button id={props.id} onClick={props.handleSkills}>Add Job</Button> */}
     </Form.Group>
     )
 }

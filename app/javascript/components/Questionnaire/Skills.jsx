@@ -29,7 +29,7 @@ const Skills = props => {
     const addExperience = () => {
         const exp = []
         for (let i = 2; i<=click;i++) {
-            exp.push(<Experience id={i} handleChange={props.handleSkills} />,
+            exp.push(<Experience id={i} handleChange={props.handleChange} />,
                 <Button name="Add Experience" onClick={handleExperience}>Additional Experience</Button>,
                 <Button>Delete Experience</Button>
                 );
@@ -58,7 +58,7 @@ const Skills = props => {
                 <Form.Label>
                     Experience:
                 </Form.Label>
-                <Experience id={1} handleChange={props.handleSkills}/>
+                <Experience id={1} handleChange={props.handleChange} handleSkills={props.handleSkills} />
                 <Button name="Add Experience" onClick={handleExperience}>Additional Experience</Button>
                 {addExperience()}
             </Modal.Body>

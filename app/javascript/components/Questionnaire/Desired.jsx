@@ -39,8 +39,8 @@ const Desired = props => {
             <Modal.Body>
                 <div className="jobtype">
             <Form.Label htmlFor="job-type">Job-Type: </Form.Label>
-            <Form.Check name="jobType" label="Full-Time" value="FT" id={`inline-checkbox-1`} onChange={props.handleChange} />
-            <Form.Check name="jobType" label="Part-Time" value="PT" id={`inline-checkbox-2`} onChange={props.handleChange} /> 
+            <Form.Check name="jobType" label="Full Time" value="Full Time" id={`inline-checkbox-1`} onChange={props.handleChange} />
+            <Form.Check name="jobType" label="Part Time" value="Part Time" id={`inline-checkbox-2`} onChange={props.handleChange} /> 
             <Form.Check name="jobType" label="Contract" value="Contract" id={`inline-checkbox-3`} onChange={props.handleChange} />
             <Form.Check name="jobType" label="Temporary" value="Temporary" id={`inline-checkbox-4`} onChange={props.handleChange} />
                 </div>
