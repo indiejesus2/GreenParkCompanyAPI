@@ -66,8 +66,6 @@ if (loading === true) {
     } else {
         return (
                 <div className="contractor">
-                <NavBar loggedIn={props.loggedIn} handleSignout={handleSignout} />
-
                     <h1>{props.contractor.name}</h1>
                     <div className="contractor-nav">
                         <Link to={'/contractors'}>Home</Link>    

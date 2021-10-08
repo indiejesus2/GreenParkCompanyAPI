@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Route, Switch, Redirect, Link } from 'react-router-dom'
+import { Route, Switch, useHistory } from 'react-router-dom'
 import { signInContractor } from '../actions/Contractors/signInContractor'
 import { signUpContractor } from '../actions/Contractors/signUpContractor'
 import { addJob } from '../actions/Contractors/addJob'
@@ -23,10 +23,15 @@ class ContractorsContainer extends Component {
     //     this.props.fetchJobs(this.props.contractor)
     // }
 
+    handleSignout = () => {
+        this.props.signOut()
+    }
+
     render() {
 
         return (
-
+            <div>
+                <NavBar loggedIn={this.props.loggedIn} handleSignout={this.handleSignout} user="contractor" />
                 <Switch>
                 <Route path='/contractors/:id/jobs/:job_id/employees/:employee_id' render={(routerProps) => <EmployeeProfile {...routerProps} loading={this.props.loading} jobs={this.props.jobs}/>}></Route>
                 <Route path='/contractors/:id/profile' render={(routerProps) => <Profile {...routerProps} contractor={this.props.contractor}/>}></Route>
@@ -38,6 +43,7 @@ class ContractorsContainer extends Component {
                     {/* <Route path='/contractors/signup' render={(routerProps) => <ContractorSignUp {...routerProps} loading={this.props.loading} signUpContractor={this.props.signUpContractor} />}></Route> */}
                     <Route path='/contractors' render={(routerProps) => <Contractors {...routerProps} loading={this.props.loading} signIn={this.props.signIn} signUp={this.props.signUp} loggedIn={this.props.loggedIn} contractor={this.props.contractor} profile={this.props.profile} fetchJobs={this.props.fetchJobs} jobs={this.props.jobs} errors={this.props.errors} signOut={this.props.signOut}/>}></Route>
                 </Switch>
+            </div>
         )
     }
 }

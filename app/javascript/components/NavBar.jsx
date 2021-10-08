@@ -1,23 +1,27 @@
-import React, { Component } from 'react'
+import React, { useState } from 'react'
 import {Link} from 'react-router-dom'
 import {Button} from 'react-bootstrap'
 
+const NavBar  = props => {
 
-class NavBar extends Component {
+    const [home] = useState(
+        props.user == "contractor" ? '/contractors' : '/employees'
+    )
 
-    render() {
-        if (this.props.loggedIn===true) {
+    
+        if (props.loggedIn===true) {
+            debugger
             return (
                 <div className="nav-sign">
                     <span className="link">
-                        {/* <Link to={'/signout'} onClick={this.props.signOut}>
+                        <Link to={home} onClick={props.signOut}>
                             <h5>
-                                Log-Out
+                                Home
                             </h5>
-                        </Link> */}
-                        <Button onClick={this.props.handleSignout}>
+                        </Link>
+                        <Link to={'/'} onClick={props.handleSignout}>
                             Log-Out
-                        </Button>
+                        </Link>
                     </span>
                 </div>
             )
@@ -39,7 +43,6 @@ class NavBar extends Component {
             </span>
         </div>
         )
-    }
 }
 
 export default NavBar
