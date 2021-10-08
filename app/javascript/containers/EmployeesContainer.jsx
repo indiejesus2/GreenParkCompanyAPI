@@ -34,6 +34,7 @@ class EmployeesContainer extends Component {
 }
 
 const mapStateToProps = state => {
+    debugger
     return {
         employee: state.employeesReducer.employee,
         profile: state.employeesReducer.profile,

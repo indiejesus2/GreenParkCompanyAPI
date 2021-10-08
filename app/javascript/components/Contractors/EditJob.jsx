@@ -101,9 +101,9 @@ export default function EditJob(props) {
                 {jobtypes.map(job => 
                     <Form.Check name="jobType" label={job} value={job} id={job} onChange={formik.handleChange} defaultChecked={formik.values.jobtype.includes(job)}/>
                 )}
-            <Form.Check name="jobType" label="Part-Time" value="PT" id={`inline-checkbox-2`} onChange={formik.handleChange} defaultChecked={formik.values.jobtype}/> 
+            {/* <Form.Check name="jobType" label="Part-Time" value="PT" id={`inline-checkbox-2`} onChange={formik.handleChange} defaultChecked={formik.values.jobtype}/> 
             <Form.Check name="jobType" label="Contract" value="Contract" id={`inline-checkbox-3`} onChange={formik.handleChange} defaultChecked={formik.values.jobtype}/>
-            <Form.Check name="jobType" label="Temporary" value="Temporary" id={`inline-checkbox-4`} onChange={formik.handleChange} defaultChecked={formik.values.jobtype}/>
+            <Form.Check name="jobType" label="Temporary" value="Temporary" id={`inline-checkbox-4`} onChange={formik.handleChange} defaultChecked={formik.values.jobtype}/> */}
             </div>
                 <div className="schedule">
             <Form.Label htmlFor="schedule">Schedule: </Form.Label>
