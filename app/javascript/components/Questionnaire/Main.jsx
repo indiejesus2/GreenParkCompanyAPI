@@ -36,6 +36,7 @@ const Main = (props) => {
             industry: '',
             // skills: [],
             experience: {
+                id: "",
                 title: "",
                 company: "",
                 city: "",
@@ -49,6 +50,7 @@ const Main = (props) => {
             }
         },
         onSubmit: values => {
+            debugger
             props.createProfile(values)
             history.push('/employees')
         }
@@ -83,12 +85,7 @@ const Main = (props) => {
     // }
 
     const handleSkills = (e) => {
-        e.preventDefault()
-        let skill = e.target.previousElementSibling.value
-        setState( prevState => ({
-            ...prevState,
-            skills: [...state.skills, skill]
-        }))
+        debugger
     }
 
     // const handleHistory = (e) => {

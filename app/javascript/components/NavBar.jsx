@@ -10,7 +10,6 @@ const NavBar  = props => {
 
     
         if (props.loggedIn===true) {
-            debugger
             return (
                 <div className="nav-sign">
                     <span className="link">

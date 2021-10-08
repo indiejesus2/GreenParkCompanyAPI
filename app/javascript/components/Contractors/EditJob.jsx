@@ -70,9 +70,8 @@ export default function EditJob(props) {
         // }
     }
 
-    const handleClick = () => {
-        debugger
-    }
+    // const handleClick = () => {
+    // }
 
     return (
         <div className="editJob">

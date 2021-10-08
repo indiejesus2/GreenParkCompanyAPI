@@ -24,9 +24,6 @@ const Employees = props => {
         }
     })
 
-    const history = useHistory();
-
-
     const handleClick = (e) => {
         let currentStep = state.currentStep;
         let direction = e.target.name;
@@ -41,11 +38,6 @@ const Employees = props => {
                 currentStep : currentStep-=1
             }))
         }
-    }
-
-    const handleSignout = () => {
-        props.signOut()
-        history.push('/');
     }
 
     if (props.loggedIn === false) {
@@ -70,10 +62,7 @@ const Employees = props => {
     } {
         return (
             <div className="employees">
-                <NavBar loggedIn={props.loggedIn} handleSignout={handleSignout}/>
-
                 <h1>{props.profile.fname} {props.profile.lname}</h1>
-                <Link to={`/employees`}>Home</Link>
                 <Link to={`/employees/${props.employee.id}/profile`}>Profile</Link>
                 <h2>Jobs</h2>
                 <Jobs jobs={jobs} employee={props.employee} />
