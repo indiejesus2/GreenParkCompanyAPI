@@ -20,7 +20,6 @@ const Profile = props => {
             state: employee.state,
             zipcode: employee.zipcode,
             license: employee.license,
-            // education: employee.,
             jobtype: employee.jobtype.join("").split(", "),
             schedule: employee.schedule.join("").split(", "),
             shifts: employee.shifts.join("").split(", "),
@@ -46,7 +45,7 @@ const Profile = props => {
                 Shifts: {employee.shifts.join(', ')}
             </div>
                 {props.work_history.map(history => 
-            <div className="work-history">
+            <div className="work-history" key={history.id}>
                 Experience:
                     <p>{history.title}</p>
                     <p>{history.company}</p>

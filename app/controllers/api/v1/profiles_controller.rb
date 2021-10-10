@@ -25,14 +25,16 @@ class Api::V1::ProfilesController < ApplicationController
         end
     end
 
-    def update 
+    def update
         @profile = @employee.profile
         employee = {employee_id: @employee.id, profile_id: @profile.id}
-        together = history_params.merge(employee)
-        @history = WorkHistory.new(together)
         @profile.update(profile_params)
         if @profile.save
-            @history.save
+            if !!history_params 
+                together = history_params.merge(employee)
+                @history = WorkHistory.new(together)
+                @history.save
+            end
             render json: ProfileSerializer.new(@profile)
         else
             render json: @profile.errors
@@ -42,23 +44,25 @@ class Api::V1::ProfilesController < ApplicationController
     private
     
     def profile_params
-        params.require(:profile).permit(:fname, :lname, :city, :state, :zipcode, :license, {:jobType => []}, {:schedule  => []}, {:shifts => []}, :seasonstart, :seasonend, :minpay, :maxpay, :industry, :military, :certificates, :description, :employee_id)
+        params.require(:profile).permit(:fname, :lname, :city, :state, :zipcode, :license, {:jobtype => []}, {:schedule  => []}, {:shifts => []}, :seasonstart, :seasonend, :minpay, :maxpay, :industry, :military, :certificates, :description, :employee_id)
     end
     
     def history_params
-        experience = params.require(:experience)
-        history = []
-        for i in experience do 
-            history.push(experience[i].permit(:title, :company, :city, :state, :zipcode, :phone, :startdate, :enddate, :description, :current))        
-        end
+        if params[:experience]
+            experience = params.require(:experience)
+            history = []
+            for i in experience do 
+                history.push(experience[i].permit(:title, :company, :city, :state, :zipcode, :phone, :startdate, :enddate, :description, :current))        
+            end
         # first = params.require(:experience)[0].permit(:title, :company, :city, :state, :zipcode, :phone, :startdate, :enddate, :description, :current)
         # second = params.require(:experience)[1].permit(:title, :company, :city, :state, :zipcode, :phone, :startdate, :enddate, :description, :current)
         # third = params.require(:experience)[2].permit(:title, :company, :city, :state, :zipcode, :phone, :startdate, :enddate, :description, :current)
-        return history
+            return history
+        end
     end
 
     def set_employee
-        @employee = Employee.find_by_id(params[:employee_id])
+        @employee = Employee.find_by_id(profile_params[:employee_id])
     end
 
 end

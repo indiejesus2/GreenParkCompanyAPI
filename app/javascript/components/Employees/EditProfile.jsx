@@ -5,68 +5,6 @@ import { Form, FloatingLabel, Button } from 'react-bootstrap'
 
 export default function EditProfile(props) {
 
-
-    // First Name, Last Name, Location(Zipcode), Phone, Job Type(FT, PT, ...etc), Schedule (M-F, WKND), Job History, Education, Skills, Military Service, Certficates
-
-    // const [state, setState] = useState({
-    //     id: props.profile.id,
-    //     employee_id: props.profile.employee_id,
-    //     fname: props.profile.fname,
-    //     lname: props.profile.lname,
-    //     city: props.profile.city,
-    //     state: props.profile.state,
-    //     phone: props.profile.phone,
-    //     status: props.profile.status,
-    //     jobType: props.profile.jobType,
-    //     schedule: props.profile.schedule,
-    //     skills: props.profile.shifts,
-    //     description: props.profile.description,
-    //     work_histories: props.work_histories ? props.work_histories : []
-    // })
-
-    // const formik.handleChange = (event) => {
-    //     const {name, value}  = event.target
-    //     setState( prevState => ({
-    //         ...prevState,
-    //         [name] : value
-    //     }))
-    // }
-
-    // const handleJob = (e) => {
-    //     if (e.target.checked === true) {
-    //         setState( prevState => ({
-    //             ...prevState,
-    //             [e.target.name]: [...state[e.target.name], e.target.value]
-    //         }))
-    //     } else {
-    //         let group = state[e.target.name]
-    //         let deleted = group.findIndex(job => Object.keys(job)[0] == e.target.id)
-    //         group.splice(deleted, 1)
-    //         setState( prevState => ({
-    //             ...prevState,
-    //             [e.target.name]: group
-    //         }))
-    //     }
-    // }
-
-    // const handleHistory = (e) => {
-    //     let work_histories = state.work_histories
-    //     work_histories[e.target.name] = e.target.value
-    //     setState( prevState => ({
-    //         ...prevState,
-    //         work_histories : work_histories
-    //     }))
-    // }
-
-    // const handleSubmit = (event) => {
-    //     event.preventDefault()
-    //     props.updateProfile(state)
-    //     props.history.push('/employees')
-    // }
-
-    // const handleSelection = (event) => {
-    //     debugger
-    // }
     const months = [
         "Jan", 
         "Feb", 
@@ -104,9 +42,11 @@ export default function EditProfile(props) {
 
     const employee = props.profile
 
+    debugger
+
     const formik = useFormik({
         initialValues: {
-            employee_id: employee.id,
+            employee_id: props.match.params.id,
             fname: employee.fname,
             lname: employee.lname,
             city: employee.city,
@@ -115,78 +55,82 @@ export default function EditProfile(props) {
             phone: employee.phone,
             description: employee.description,
             license: employee.license,
-            // education: employee.,
-            jobtype: employee.jobtype.join("").split(", "),
-            schedule: employee.schedule.join("").split(", "),
-            shifts: employee.shifts.join("").split(", "),
+            jobtype: employee.jobtype,
+            schedule: employee.schedule,
+            shifts: employee.shifts,
             seasonstart: employee.seasonstart,
             seasonend: employee.seasonend,
             minpay: employee.minpay,
             maxpay: employee.maxpay,
             industry: employee.industry,
+        },
+        onSubmit: values => {
+            debugger
+            props.updateProfile(values)
+            props.history.push(`/employees/${values.employee_id}/profile`)
         }
     })
 
     return (
         <div className="profile">
-            <h1>Complete Profile</h1>
+            <h1>Edit Profile</h1>
             <div className="input">
                 <Form onSubmit={formik.handleSubmit} className="profile-form">
-                    <div className="basic-info">
-                        <label htmlFor="first name">First Name: </label>
-                        <input type="text" name="fname" value={formik.initialValues.fname} onChange={formik.handleChange} />
-                        <br />
-                        <label htmlFor="last name">Last Name: </label>
-                        <input type="text" name="lname" value={formik.initialValues.lname} onChange={formik.handleChange} />
-                        <br />
-                        <label htmlFor="city">City: </label>
-                        <input type="text" name="city" value={formik.initialValues.city} onChange={formik.handleChange} />
-                        <br />
-                        <label htmlFor="state">State: </label>
-                        <input type="text" name="state" value={formik.initialValues.state} onChange={formik.handleChange} />
-                        <br />
-                        <label htmlFor="phone">Phone: </label>
-                        <input type="text" name="phone" value={formik.initialValues.phone} onChange={formik.handleChange} />
-                        <br />
-                        <label htmlFor="Description">Description: </label>
-                        <input type="textarea" name="description" value={formik.initialValues.description} onChange={formik.handleChange} />
-                        <br />
-                    </div>
+                    <Form.Group className="basic-info">
+                        <FloatingLabel label="first name">
+                            <Form.Control type="text" name="fname" value={formik.initialValues.fname} onChange={formik.handleChange} />
+                        </FloatingLabel>
+                        <FloatingLabel label="last name">
+                            <Form.Control type="text" name="lname" value={formik.initialValues.lname} onChange={formik.handleChange} />
+                        </FloatingLabel>
+                        <FloatingLabel label="city">
+                            <Form.Control type="text" name="city" value={formik.initialValues.city} onChange={formik.handleChange} />
+                        </FloatingLabel>
+                        <FloatingLabel label="state">
+                            <Form.Control type="text" name="state" value={formik.initialValues.state} onChange={formik.handleChange} />
+                        </FloatingLabel>
+                        <FloatingLabel label="phone">
+                            <Form.Control type="text" name="phone" value={formik.initialValues.phone} onChange={formik.handleChange} />
+                        </FloatingLabel>
+                        <FloatingLabel label="Description">
+                            <Form.Control as="textarea" name="description" value={formik.initialValues.description} onChange={formik.handleChange} />
+                        </FloatingLabel>
+                    </Form.Group>
                     <div className="work-schedule">
-                        <label htmlFor="job type">Job Type: </label>
+                        <Form.Label htmlFor="job type"> Job-Type: </Form.Label>
                         {jobtypes.map(job => 
-                    <Form.Check name="jobType" label={job} value={job} id={job} onChange={formik.handleChange} defaultChecked={formik.initialValues.jobtype.includes(job)}/>
-                )}
-                </div>
+                            <Form.Check name="jobtype" label={job} value={job} id={job} key={job} onChange={formik.handleChange} defaultChecked={formik.values.jobtype.includes(job)}/>
+                        )}
+                    </div>
                     <div className="schedule">
-            <Form.Label htmlFor="schedule">Schedule: </Form.Label>
-                    {schedule.map(day => 
-                        <Form.Check name="schedule" id={day} label={day} value={day} onChange={formik.handleChange} 
-                        defaultChecked={formik.initialValues.schedule.includes(day)}
+                        <Form.Label htmlFor="schedule">Schedule: </Form.Label>
+                        {schedule.map(day => 
+                            <Form.Check name="schedule" id={day} label={day} value={day} key={day} onChange={formik.handleChange} 
+                            defaultChecked={formik.values.schedule.includes(day)}
                         />
-                    )}
-                </div>
+                        )}
+                    </div>
                 <div className="shifts">
                     <Form.Label>Shifts: </Form.Label>
                     {shifts.map(shift =>                             
-                        <Form.Check name="shift" label={shift} value={shift} onChange={formik.handleChange} defaultChecked={formik.initialValues.shifts.includes(shift)} />
+                        <Form.Check name="shifts" label={shift} value={shift} key={shift} onChange={formik.handleChange} defaultChecked={formik.values.shifts.includes(shift)} />
                         )}
                 </div>
                 <div className="seasonal">
                     <Form.Label>Season Availability: </Form.Label>
                     <FloatingLabel label="Seasonal Start">
 
-                    <Form.Select name="seasonstart" onChange={formik.handleChange} defaultValue={formik.initialValues.seasonstart}> 
+                    <Form.Select name="seasonstart" onChange={formik.handleChange} defaultValue={formik.values.seasonstart}> 
                         {months.map(month =>
-                                <option selected={formik.initialValues.seasonstart == month}>{month}</option>
+                                <option defaultValue={formik.initialValues.seasonstart == month}>{month}</option>
                         )}
                     </Form.Select>
                         </FloatingLabel>
                         <FloatingLabel label="Seasonal End">
 
-                    <Form.Select name="seasonend" onChange={formik.handleChange} defaultValue={formik.initialValues.seasonend}> 
+                    <Form.Select name="seasonend" onChange={formik.handleChange} defaultValue={formik.values.seasonend}> 
                         {months.map(month => 
-                        <option selected={formik.initialValues.seasonend == month}>{month}</option>
+                        <option defaultValue={formik.initialValues.seasonend == month}>{month}</option>
                         )}
                     </Form.Select>
                     </FloatingLabel>
@@ -195,11 +139,11 @@ export default function EditProfile(props) {
                     <Form.Label>
                         Minimum Pay Rate: 
                     </Form.Label>
-                    <Form.Control type="text" name="minpay" onChange={formik.handleChange} value={formik.initialValues.minpay}/>
+                    <Form.Control type="text" name="minpay" onChange={formik.handleChange} value={formik.values.minpay}/>
                     <Form.Label>
                         Maximum Pay Rate: 
                     </Form.Label>
-                    <Form.Control type="text" name="maxpay" onChange={formik.handleChange} value={formik.initialValues.maxpay}/>
+                    <Form.Control type="text" name="maxpay" onChange={formik.handleChange} value={formik.values.maxpay}/>
                 </div>
                 <div className="submit">
                     <Button type="submit" value="Edit Profile" onClick={formik.handleSubmit}>Edit Profile</Button>

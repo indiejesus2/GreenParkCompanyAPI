@@ -21,7 +21,7 @@ export const signIn = (employee) => {
             } else {
                 dispatch({
                     type: 'SIGNIN_EMPLOYEE',
-                    payload: employee
+                    payload: employee.data.attributes
                 })
             }
             }

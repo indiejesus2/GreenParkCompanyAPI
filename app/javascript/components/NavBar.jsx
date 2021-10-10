@@ -11,7 +11,15 @@ const NavBar  = props => {
     
         if (props.loggedIn===true) {
             return (
-                <div className="nav-sign">
+                <div className="nav-og">
+                    <div className="nav-sign">
+                    <span className="logo">
+                    <Link to="/">
+                        <img src="/images/BluCollar-Logo.jpeg" alt="Logo" />
+                    </Link>
+                    </span>
+                </div>
+                <div className="nav-links">
                     <span className="link">
                         <Link to={home} onClick={props.signOut}>
                             <h5>
@@ -22,6 +30,8 @@ const NavBar  = props => {
                             Log-Out
                         </Link>
                     </span>
+
+                    </div>
                 </div>
             )
         }

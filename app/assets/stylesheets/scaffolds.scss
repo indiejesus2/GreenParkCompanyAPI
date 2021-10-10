@@ -74,7 +74,6 @@ label {
   display: flex;
   justify-content: right;
   margin-top: 10px;
-  margin-right: 10px;
   margin-bottom: 10px;
 }
 
@@ -82,7 +81,25 @@ label {
   display: flex;
   // position: relative;
   // bottom: 100px;
-  // justify-content: right;
+  justify-content: right;
+}
+
+.nav-og {
+  margin-top: 10px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+
+.nav-sign {
+  display: flex;
+  justify-content: center;
+}
+
+.nav-links {
+  position: relative;
+  bottom: 100px;
+  display: flex;
+  justify-content: right;
 }
 
 a {
