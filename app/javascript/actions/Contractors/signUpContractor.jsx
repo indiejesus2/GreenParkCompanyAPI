@@ -11,6 +11,18 @@ export const signUpContractor = (contractor) => {
         dispatch({type: 'FETCH_CONTRACTOR'})
         return fetch('/api/v1/employers', configObj)
         .then(response => response.json())
-        .then(contractor => dispatch({type: 'SIGNUP_CONTRACTOR', payload: contractor}))
+        .then(employer => {
+            if (employer.error) {
+                dispatch({
+                    type: 'ERROR_CONTRACTOR',
+                    payload: employer.error    
+                })
+            } else {
+                dispatch({
+                    type: 'SIGNIN_CONTRACTOR',
+                    payload: employer.data.attributes
+                })
+            }
+        })
     }
 }

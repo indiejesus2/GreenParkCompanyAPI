@@ -48,6 +48,23 @@ ActiveRecord::Schema.define(version: 2021_09_17_033305) do
     t.index ["email"], name: "index_employers_on_email", unique: true
   end
 
+  create_table "experiences", force: :cascade do |t|
+    t.string "title"
+    t.string "company"
+    t.string "city"
+    t.string "state"
+    t.string "zipcode"
+    t.string "phone"
+    t.string "startdate"
+    t.string "enddate"
+    t.text "description"
+    t.boolean "current"
+    t.bigint "profile_id", null: false
+    t.bigint "employee_id", null: false
+    t.index ["employee_id"], name: "index_experiences_on_employee_id"
+    t.index ["profile_id"], name: "index_experiences_on_profile_id"
+  end
+
   create_table "jobs", force: :cascade do |t|
     t.string "title"
     t.boolean "status", default: false
@@ -102,28 +119,11 @@ ActiveRecord::Schema.define(version: 2021_09_17_033305) do
     t.index ["shifts"], name: "index_profiles_on_shifts", using: :gin
   end
 
-  create_table "work_histories", force: :cascade do |t|
-    t.string "title"
-    t.string "company"
-    t.string "city"
-    t.string "state"
-    t.string "zipcode"
-    t.string "phone"
-    t.string "startdate"
-    t.string "enddate"
-    t.text "description"
-    t.boolean "current"
-    t.bigint "profile_id", null: false
-    t.bigint "employee_id", null: false
-    t.index ["employee_id"], name: "index_work_histories_on_employee_id"
-    t.index ["profile_id"], name: "index_work_histories_on_profile_id"
-  end
-
   add_foreign_key "applicants", "employees"
   add_foreign_key "applicants", "employers"
   add_foreign_key "applicants", "jobs"
+  add_foreign_key "experiences", "employees"
+  add_foreign_key "experiences", "profiles"
   add_foreign_key "jobs", "employers"
   add_foreign_key "profiles", "employees"
-  add_foreign_key "work_histories", "employees"
-  add_foreign_key "work_histories", "profiles"
 end

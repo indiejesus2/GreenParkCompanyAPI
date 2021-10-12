@@ -17,7 +17,7 @@ class Api::V1::ProfilesController < ApplicationController
             if !!history_params 
                 history_params.each{|history| 
                     together = history.merge(employee)
-                    @history = WorkHistory.new(together)
+                    @history = Experience.new(together)
                     @history.save
                 }
             end
@@ -34,7 +34,7 @@ class Api::V1::ProfilesController < ApplicationController
         if @profile.save
             if !!history_params 
                 together = history_params.merge(employee)
-                @history = WorkHistory.new(together)
+                @history = Experience.new(together)
                 @history.save
             end
             render json: ProfileSerializer.new(@profile)

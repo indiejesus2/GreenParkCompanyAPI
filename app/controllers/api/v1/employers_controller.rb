@@ -10,6 +10,7 @@ class Api::V1::EmployersController < ApplicationController
 
   # GET /employers/1 or /employers/1.json
   def show
+    render json: EmployerSerializer.new(@employer)
   end
 
   # GET /employers/new

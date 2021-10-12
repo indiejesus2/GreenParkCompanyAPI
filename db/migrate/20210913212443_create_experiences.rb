@@ -1,6 +1,6 @@
-class CreateWorkHistory < ActiveRecord::Migration[6.0]
+class CreateExperiences < ActiveRecord::Migration[6.0]
   def change
-    create_table :work_histories do |t|
+    create_table :experiences do |t|
       t.string :title
       t.string :company
       t.string :city

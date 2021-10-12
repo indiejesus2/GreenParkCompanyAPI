@@ -14,7 +14,7 @@ const NavBar  = props => {
                 <div className="nav-og">
                     <div className="nav-sign">
                     <span className="logo">
-                    <Link to="/">
+                    <Link to={home}>
                         <img src="/images/BluCollar-Logo.jpeg" alt="Logo" />
                     </Link>
                     </span>

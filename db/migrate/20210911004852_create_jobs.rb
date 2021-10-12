@@ -17,9 +17,6 @@ class CreateJobs < ActiveRecord::Migration[6.0]
       t.float :maxpay
       t.text :industry
       t.boolean :license
-      
-      # t.text :skills, array: true, default: []
-      # t.text :certificates, array: true, default: []
       t.text :description
       t.references :employer, null: false, foreign_key: true
       t.timestamps
@@ -27,6 +24,5 @@ class CreateJobs < ActiveRecord::Migration[6.0]
     add_index :jobs, :jobtype, using: 'gin'
     add_index :jobs, :schedule, using: 'gin'
     add_index :jobs, :shifts, using: 'gin'
-    # add_index :jobs, :certificates, using: 'gin'
   end
 end

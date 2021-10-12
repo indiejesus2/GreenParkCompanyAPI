@@ -19,6 +19,7 @@ const Applicants = (props) => {
     })
 
     const original = state.profiles.map(profile => {
+        debugger
         let oObj = {
             info: '',
             rating: '',

@@ -1,4 +1,4 @@
-class Api::V1::WorkHistoriesController < ApplicationController
+class Api::V1::ExperienceController < ApplicationController
     before_action :set_profile
 
     def index

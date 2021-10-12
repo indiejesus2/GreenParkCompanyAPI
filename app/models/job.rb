@@ -3,6 +3,7 @@ class Job < ApplicationRecord
     has_many :applicants, dependent: :destroy
     has_many :employees, through: :applicants
     has_many :profiles, through: :employees
+    has_many :experiences, through: :employees
     geocoded_by :address
     # reverse_geocoded_by :latitude, :longitude
     before_save :proximity, :potential
