@@ -5,7 +5,7 @@ class Job < ApplicationRecord
     has_many :profiles, through: :employees
     geocoded_by :address
     # reverse_geocoded_by :latitude, :longitude
-    before_save :proximity
+    before_save :proximity, :potential
     after_validation :geocode
     # after_validation :reverse_geocode
 

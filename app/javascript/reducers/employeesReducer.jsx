@@ -22,23 +22,18 @@ export default function employeesReducer(state = {employee: [], profile: [], wor
             }
         case 'CREATE_PROFILE':
             return {
-                ...state, 
-                profile: action.payload.data.attributes,
-                work_history: action.payload.data.attributes.work_histories,
+                ...state,
+                profile: action.payload,
+                work_history: action.payload.work_histories,
+                jobs: action.payload.jobs,
                 loading: false
             }
         case 'UPDATE_PROFILE':
             return {
                 ...state,
-                profile: action.payload.data.attributes,
-                work_history: action.payload.data.attributes.work_histories,
-                loading: false
-            }
-        case 'FETCH_EMPLOYEE':
-            return {
-                employee: action.payload.data,
-                profile: action.payload.included.find(include => include.type == "profile").attributes,
-                work_history: action.payload.included.find(include => include.type == "work_history").attributes,
+                profile: action.payload,
+                work_history: action.payload.work_histories,
+                jobs: action.payload.jobs,
                 loading: false
             }
         case 'ERROR_EMPLOYEE':

@@ -73,50 +73,11 @@ const Main = (props) => {
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
-    // const handleChange = (event) => {
-    //     const {name, value}  = event.target
-    //     setState( prevState => ({
-    //         ...prevState,
-    //         [name] : value
-    //     }))
-    // }
-
-    // const handleJob = (e) => {
-    //     if (e.target.checked === true) {
-    //         setState( prevState => ({
-    //             ...prevState,
-    //             [e.target.name]: [...state[e.target.name], e.target.value]
-    //         }))
-    //     } else {
-    //         let group = state[e.target.name]
-    //         let deleted = group.findIndex(job => Object.keys(job)[0] == e.target.id)
-    //         group.splice(deleted, 1)
-    //         setState( prevState => ({
-    //             ...prevState,
-    //             [e.target.name]: group
-    //         }))
-    //     }
-    // }
-
     const handleSkills = (e) => {
         let id = e.target.id
         formik.values.experience[id-1].id = id
     }
-
-    // const handleHistory = (e) => {
-    //     let work_histories = state.work_histories
-    //     work_histories[e.target.name] = e.target.value
-    //     setState( prevState => ({
-    //         ...prevState,
-    //         work_histories : work_histories
-    //     }))
-    // }
-
-    // const handleSubmit = (event) => {
-    //     event.preventDefault()
-    //     props.updateProfile(state)
-    //     history.push('/employees')
-    // }
+    
 
     const handleClick = (e) => {
         let currentStep = state.currentStep;
@@ -150,31 +111,19 @@ const Main = (props) => {
                 <Basic
                     currentStep={state.currentStep}
                     handleChange={formik.handleChange}
-                    show={state.show}
-                    fname={formik.initialValues.fname}
-                    lname={formik.initialValues.lname}
-                    city={formik.initialValues.city}
-                    state={formik.initialValues.state}
-                    education={formik.initialValues.education}
+                    values={formik.values}
                     handleClick={handleClick}
                     />
                 <Desired
                     currentStep={state.currentStep}
                     handleChange={formik.handleChange}
-                    
-                    show={state.show}
-                    jobType={formik.initialValues.jobType}
-                    schedule={formik.initialValues.schedule}
-                    minpay={formik.initialValues.minpay}
-                    maxpay={formik.initialValues.maxpay}
+                    values={formik.values}
                     handleClick={handleClick}
                     />
                 <Skills
                     currentStep={state.currentStep}
                     handleChange={formik.handleChange}
-                    show={state.show}
-                    skills={formik.initialValues.skills}
-                    certificates={formik.certificates}
+                    values={formik.values}
                     handleClick={handleClick}
                     handleSkills={handleSkills}
                     handleSubmit={formik.handleSubmit}

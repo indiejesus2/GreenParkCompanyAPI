@@ -14,12 +14,14 @@ class Api::V1::ProfilesController < ApplicationController
         @profile = Profile.new(profile_params)
         if @profile.save
             employee = {employee_id: @employee.id, profile_id: @profile.id}
-            history_params.each{|history| 
-                together = history.merge(employee)
-                @history = WorkHistory.new(together)
-                @history.save
-            }
-            render json: ProfileSerializer.new(@profile)
+            if !!history_params 
+                history_params.each{|history| 
+                    together = history.merge(employee)
+                    @history = WorkHistory.new(together)
+                    @history.save
+                }
+            end
+            redirect_to api_v1_employee_path(@employee)
         else
             render json: @profile.errors
         end
@@ -48,7 +50,7 @@ class Api::V1::ProfilesController < ApplicationController
     end
     
     def history_params
-        if params[:experience]
+        if params[:experience][0][:title] != ""
             experience = params.require(:experience)
             history = []
             for i in experience do 

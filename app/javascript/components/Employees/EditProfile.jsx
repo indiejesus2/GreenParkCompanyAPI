@@ -42,8 +42,6 @@ export default function EditProfile(props) {
 
     const employee = props.profile
 
-    debugger
-
     const formik = useFormik({
         initialValues: {
             employee_id: props.match.params.id,
@@ -65,7 +63,6 @@ export default function EditProfile(props) {
             industry: employee.industry,
         },
         onSubmit: values => {
-            debugger
             props.updateProfile(values)
             props.history.push(`/employees/${values.employee_id}/profile`)
         }

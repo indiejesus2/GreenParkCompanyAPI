@@ -19,16 +19,16 @@ const Basic = props => {
             <Modal.Body>
 
             <Form.Label htmlFor="first name">First Name: </Form.Label>
-            <Form.Control type="text" name="fname" onChange={props.handleChange} />
+            <Form.Control type="text" name="fname" value={props.values.fname} onChange={props.handleChange} />
             <Form.Label htmlFor="last name">Last Name: </Form.Label>
-            <Form.Control type="text" name="lname" onChange={props.handleChange} />
+            <Form.Control type="text" name="lname" value={props.values.lname} onChange={props.handleChange} />
             <Form.Label htmlFor="city">City: </Form.Label>
-            <Form.Control type="text" name="city" onChange={props.handleChange} />
+            <Form.Control type="text" name="city" value={props.values.city} onChange={props.handleChange} />
             <Form.Label htmlFor="state">State: </Form.Label>
-            <Form.Control type="text" name="state" onChange={props.handleChange} />
+            <Form.Control type="text" name="state" value={props.values.state} onChange={props.handleChange} />
             <Form.Label htmlFor="zipcode">Zipcode: </Form.Label>
-            <Form.Control type="text" name="zipcode" onChange={props.handleChange} />
-            <Form.Check type="checkbox" name="license" label="Driver's License" onChange={props.handleChange} />
+            <Form.Control type="text" name="zipcode" value={props.values.zipcode} onChange={props.handleChange} />
+            <Form.Check type="checkbox" name="license" label="Driver's License" value={props.values.license} onChange={props.handleChange} />
             </Modal.Body>
             <Modal.Footer>
                 <Button variant="primary" name="next" onClick={props.handleClick}>

@@ -11,6 +11,15 @@ export const signUpEmployee = (employee) => {
         dispatch({type: 'LOADING_EMPLOYEES'})
         return fetch('/api/v1/employees', configObj)
         .then(response => response.json())
-        .then(employee => dispatch({type: 'SIGNUP_EMPLOYEE', payload: employee}))
+        .then(employee => {
+            if (employee.error) {
+                dispatch({
+                    type: 'ERROR_EMPLOYEE',
+                    payload: employee.error
+                })
+            } else {
+                dispatch({type: 'SIGNUP_EMPLOYEE', payload: employee.data.attributes})
+            }
+        })
     }
 }

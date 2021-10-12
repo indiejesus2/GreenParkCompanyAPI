@@ -7,6 +7,7 @@ const Jobs = (props) => {
 
         const [jobs, setJobs] = useState(props.jobs)
         useEffect(() => {
+            debugger
             if (props.jobs && props.jobs != jobs) {
                 setJobs(props.jobs)
             }
