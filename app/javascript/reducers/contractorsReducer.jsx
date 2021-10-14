@@ -2,7 +2,7 @@ export default function contractorsReducer(state = {contractor: [], jobs: [], lo
     switch(action.type) {
         case 'FETCH_CONTRACTOR':
             return {
-                contractor: [...state.contractor],
+                ...state,
                 loading: true
             }
         case 'SIGNUP_CONTRACTOR':
@@ -12,9 +12,14 @@ export default function contractorsReducer(state = {contractor: [], jobs: [], lo
                 loggedIn: true,
                 loading: false
             }
-        case 'SIGNIN_CONTRACTOR': 
+        case 'UPDATE_SUBSCRIPTION':
             return {
                 contractor: action.payload,
+                loading: false
+            }
+        case 'SIGNIN_CONTRACTOR': 
+            return {
+                contractor: action.payload.contractor,
                 jobs: action.payload.jobs.data.map(job => job.attributes),
                 loggedIn: true,
                 loading: false

@@ -46,7 +46,7 @@ class ContractorsContainer extends Component {
                     <Route path='/contractors/addjob' render={(routerProps) => <AddJob {...routerProps} contractor={this.props.contractor} addJob={this.props.addJob}/>}></Route> */}
                     <Route path='/contractors/subscription' render={(routerProps) => <Subscription {...routerProps} contractor={this.props.contractor} updateSubscription={this.props.updateSubscription} />}></Route>
                     {/* <Route path='/contractors/signup' render={(routerProps) => <ContractorSignUp {...routerProps} loading={this.props.loading} signUpContractor={this.props.signUpContractor} />}></Route> */}
-                    <Route path='/contractors' render={(routerProps) => <Contractors {...routerProps} loading={this.props.loading} signIn={this.props.signIn} signUp={this.props.signUp} loggedIn={this.props.loggedIn} contractor={this.props.contractor} profile={this.props.profile} fetchJobs={this.props.fetchJobs} jobs={this.props.jobs} errors={this.props.errors} signOut={this.props.signOut}/>}></Route>
+                    <Route path='/contractors' render={(routerProps) => <Contractors {...routerProps} loading={this.props.loading} signIn={this.props.signIn} signUp={this.props.signUp} loggedIn={this.props.loggedIn} contractor={this.props.contractor} profile={this.props.profile} jobs={this.props.jobs} updateSubscription={this.props.updateSubscription} errors={this.props.errors} signOut={this.props.signOut}/>}></Route>
                 </Switch>
             </div>
         )}

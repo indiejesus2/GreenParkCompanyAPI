@@ -1,17 +1,16 @@
-export const updateSubscription = (subscription, id) => {
-    debugger
+export const updateSubscription = (subscription) => {
     return (dispatch) => {
-        dispatch({type: 'LOADING_JOBS'})
+        dispatch({type: 'FETCH_CONTRACTOR'})
         const configObj = {
             method: "PATCH",
             headers: {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json'
             },
-            body: JSON.stringify(subscription)
+            body: JSON.stringify({employer: subscription})
         };
-        return fetch(`/api/v1/employers/${id}`, configObj)
+        return fetch(`/api/v1/employers/${subscription.id}`, configObj)
         .then(resp => resp.json())
-        .then(subscription => dispatch({type: 'UPDATE_SUBSCRIPTION', payload: subscription}))
+        .then(subscription => dispatch({type: 'UPDATE_SUBSCRIPTION', payload: subscription.data.attributes}))
     }
 }

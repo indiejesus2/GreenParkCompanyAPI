@@ -36,15 +36,16 @@ class Api::V1::EmployersController < ApplicationController
 
   # PATCH/PUT /employers/1 or /employers/1.json
   def update
-    respond_to do |format|
       if @employer.update(employer_params)
-        format.html { redirect_to @employer, notice: "Employer was successfully updated." }
-        format.json { render :show, status: :ok, location: @employer }
+        if !@employer.subscription.empty?
+          @employer.status = true
+          @employer.save
+        end
+        render json: EmployerSerializer.new(@employer)
       else
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @employer.errors, status: :unprocessable_entity }
       end
-    end
   end
 
   # DELETE /employers/1 or /employers/1.json
@@ -64,6 +65,7 @@ class Api::V1::EmployersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def employer_params
-      params.require(:employer).permit(:name, :email, :password)
+      params.require(:employer).permit(:name, :email, :password, :subscription, :status)
     end
+
 end

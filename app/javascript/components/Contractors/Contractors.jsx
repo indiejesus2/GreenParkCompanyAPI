@@ -1,15 +1,15 @@
 import React, {useState, useEffect} from 'react'
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 import Home from '../Home'
 import ContractorSignIn from '../Login/ContractorSignIn'
 import ContractorSignUp from '../Login/ContractorSignUp'
+import Subscription from '../Contractors/Subscription'
 import JobsContainer from '../../containers/JobsContainer'
 import NavBar from '../NavBar'
 import { useHistory } from 'react-router-dom'
 
 
 const Contractors = props => {
-
 
     const [state, setState] = useState({
         currentStep: 1
@@ -18,6 +18,7 @@ const Contractors = props => {
     const [loading, setLoading] = useState(props.loading)
     const [jobs, setJobs] = useState(props.jobs ? props.jobs : [])
     const [errors, setErrors] = useState(props.errors)
+    const [contractor, setContractor] = useState(props.contractor)
     const history = useHistory();
 
 
@@ -26,6 +27,10 @@ const Contractors = props => {
             setErrors(props.errors)
         } else if (props.jobs != jobs) {
             setJobs(props.jobs)
+        } else if (props.contractor != contractor) {
+            setContractor(props.contractor)
+        } else if (props.loading != loading) {
+            setLoading(props.loading)
         }
     })
 
@@ -63,17 +68,24 @@ if (loading === true) {
                 <ContractorSignIn signIn={props.signIn} currentStep={state.currentStep} handleClick={handleClick} errors={errors} />
             </div>
         )
+    } else if (contractor.status!=true) {
+        return (
+            <Redirect to="/contractors/subscription" />
+            // <div className="subscription">
+            //     <Subscription contractor={props.contractor} updateSubscription={props.updateSubscription} history={props.history} />
+            // </div>
+        )
     } else {
         return (
                 <div className="contractor">
-                    <h1>{props.contractor.name}</h1>
+                    <h1>{contractor.name}</h1>
                     <div className="contractor-nav">
                         <Link to={'/contractors'}>Home</Link>    
                         <Link to={'/contractors/addjob'}>Add Job</Link>
-                        <Link to={`/contractors/${props.contractor.id}/profile`}>Profile</Link>
-                        <Link to={`/contractors/${props.contractor.id}/editprofile`}>Edit Profile</Link>
+                        <Link to={`/contractors/${contractor.id}/profile`}>Profile</Link>
+                        <Link to={`/contractors/${contractor.id}/editprofile`}>Edit Profile</Link>
                     </div>
-                    <JobsContainer jobs={jobs} fetchJobs={props.fetchJobs} contractor={props.contractor} candidates={props.candidates} profiles={props.profiles} work_history={props.work_history}/>
+                    <JobsContainer jobs={jobs} fetchJobs={props.fetchJobs} contractor={contractor} candidates={props.candidates} profiles={props.profiles} work_history={props.work_history}/>
                 </div>
         )
     }

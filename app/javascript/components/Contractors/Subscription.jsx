@@ -18,7 +18,12 @@ const Subscription = (props) => {
     }
         
     const handleSubmit = () => {
-        props.updateSubscription(subscription, id)
+        let values = {
+            subscription: subscription, 
+            id: id
+        }
+        props.updateSubscription(values)
+        props.history.push("/contractors")
     }
 
     return (

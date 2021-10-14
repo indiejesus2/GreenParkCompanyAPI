@@ -19,8 +19,8 @@ export const signUpContractor = (contractor) => {
                 })
             } else {
                 dispatch({
-                    type: 'SIGNIN_CONTRACTOR',
-                    payload: employer.data.attributes
+                    type: 'SIGNUP_CONTRACTOR',
+                    payload: employer
                 })
             }
         })
