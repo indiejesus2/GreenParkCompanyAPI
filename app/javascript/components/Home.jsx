@@ -18,34 +18,19 @@ class Home extends Component {
                             {/* <h1>Start Your Career Path, Today!</h1> */}
                         </div>
                         <div className="homepage-body">
-                            {/* <CardGroup className="homepage-cards"> */}
-                                <Card>
-                                    <Card.Header>
-                                        JobSeekers
-                                    </Card.Header>
-                                    <Card.Body>
+                            <div className="homepage-employees">
+                                        <h5>JobSeekers</h5>
                                         <Link to="/employees">
                                             <Button id="employees">Find Jobs</Button>
-                                            {/* { renderSignIn() } */}
                                         </Link>
-                                    </Card.Body>
-                                </Card>
-                                {/* <Card>
-                                    <Card.Body> */}
+                            </div>
+
                                     <div className="homepage-contractors">
-                                        <p>Contractors</p>
+                                        <h5>Contractors</h5>
                                         <Link to="/contractors">
                                             <Button>Post Jobs</Button>
                                         </Link>
                                     </div>
-                                    {/* </Card.Body>
-                                </Card> */}
-                                    {/* <label>JobSeekers</label>
-                                <label>Contractors</label>
-                                    <Link to="/contractors">
-                                        <button>Post Jobs</button>
-                                    </Link> */}
-                            {/* </CardGroup> */}
                     </div>
                 </div>
             </div>

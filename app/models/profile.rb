@@ -23,7 +23,9 @@ class Profile < ApplicationRecord
         Applicant.create(employee_id: "#{employee_id}", employer_id: "#{job.employer_id}", job_id: "#{job.id}", distance: distance_to(job))
       end
     }
-    EmployeeMailer(employee: @employee).jobs_email.deliver_later
+    if jobs.length > 0
+      EmployeeMailer(employee: @employee).jobs_email.deliver_later
+    end
   end
 
   # def posted

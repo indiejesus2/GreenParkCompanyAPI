@@ -124,6 +124,13 @@ a {
   justify-content: center;
   // margin-top: 25px;
   // padding: 25px;
+  margin-top: 25px;
+  margin-left: 25px;
+  margin-right: 25px;
+}
+
+.homepage-body div {
+  margin: 25px;
 }
 
 .homepage-header img {
@@ -133,12 +140,8 @@ a {
 // .homepage-cards {
 // }
 
-.homepage-body .card{
-  margin-top: 25px;
-  margin-left: 25px;
-  margin-right: 25px;
-  width: 150px;
-}
+// .homepage-body .card{
+// }
 // .homepage .cards {
   // display: flex;
   // justify-content: center;
@@ -273,6 +276,10 @@ h1, h2 {
   top: 20px;
   left: 25px;
 }
+
+// .homepage-contractors {
+//   margin-top: 40px;
+// }
 // .modal-body {
 //   display: flex;
 //   justify-content: center;

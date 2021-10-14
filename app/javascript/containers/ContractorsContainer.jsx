@@ -9,11 +9,8 @@ import { fetchEmployee } from '../actions/Contractors/fetchEmployee'
 import { updateSubscription } from '../actions/Contractors/updateSubscription'
 import { signOut } from '../actions/signOut'
 import Contractors from '../components/Contractors/Contractors'
-import ContractorSignUp from '../components/Login/ContractorSignUp'
 import Subscription from '../components/Contractors/Subscription'
 import Profile from '../components/Contractors/Profile'
-import AddJob from '../components/Contractors/AddJob'
-import Job from '../components/Contractors/Job'
 import EmployeeProfile from '../components/Contractors/EmployeeProfile'
 import NavBar from '../components/NavBar'
 
@@ -28,7 +25,15 @@ class ContractorsContainer extends Component {
     }
 
     render() {
+        if (this.props.loading == true) {
+            return (
+                <div className="loading">
+                <NavBar loading={this.props.loading} handleSignout={this.handleSignout} user="contractor" />
 
+                    Loading....
+                </div>
+            )
+        } else {
         return (
             <div>
                 <NavBar loggedIn={this.props.loggedIn} handleSignout={this.handleSignout} user="contractor" />
@@ -44,7 +49,7 @@ class ContractorsContainer extends Component {
                     <Route path='/contractors' render={(routerProps) => <Contractors {...routerProps} loading={this.props.loading} signIn={this.props.signIn} signUp={this.props.signUp} loggedIn={this.props.loggedIn} contractor={this.props.contractor} profile={this.props.profile} fetchJobs={this.props.fetchJobs} jobs={this.props.jobs} errors={this.props.errors} signOut={this.props.signOut}/>}></Route>
                 </Switch>
             </div>
-        )
+        )}
     }
 }
 

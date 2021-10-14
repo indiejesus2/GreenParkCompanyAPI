@@ -10,6 +10,10 @@ import * as yup from 'yup'
 
 export default function ContractorSignIn(props) {
 
+    const schema = yup.object().shape({
+        email: yup.string().email("Please enter a valid email address").required("Email is required."),
+        password: yup.string().required("Please enter a password.").min(6, "Password must have at least 6 characters")
+    })
 
     const [show, setShow] = useState(true)
     const history = useHistory();
@@ -33,8 +37,9 @@ export default function ContractorSignIn(props) {
             email: "",
             password: "",
         },
+        validationSchema: schema,
         onSubmit: values => {
-            props.signIn(values)
+                props.signIn(values)
         },
     });
 
@@ -49,7 +54,7 @@ export default function ContractorSignIn(props) {
                 <img src="/images/blucollar_horizicon.png" alt="Blue Collar Logo" className="signIn"/>
                 Sign-In
             </Modal.Header>
-            <Form onSubmit={formik.handleSubmit}>
+            <Form noValidate onSubmit={formik.handleSubmit}>
             <Modal.Body>
                 <Alert show={alert}>
                     {props.errors}
@@ -61,7 +66,15 @@ export default function ContractorSignIn(props) {
                     name="email"
                     value={formik.values.email}
                     onChange={formik.handleChange}
+                    isInvalid={formik.touched.email && formik.errors.email}
+                    onBlur={formik.handleBlur}
                     />
+                    {/* <Form.Control.Feedback type="invalid" tooltip>
+                        {formik.errors.email}
+                    </Form.Control.Feedback> */}
+                    {formik.errors.email && formik.touched.email && (
+                        <div style={{ color: "red"}}>{formik.errors.email}</div>
+                    )}
                 </Form.Group>
                 <Form.Group md="4" controlId="validationFormik02">
                     <Form.Label>Password: </Form.Label>
@@ -70,7 +83,13 @@ export default function ContractorSignIn(props) {
                         name="password"
                         value={formik.values.password}
                         onChange={formik.handleChange}
+                        isInvalid={formik.touched.password && formik.errors.password}
+                    onBlur={formik.handleBlur}
+
                         />
+                        {formik.errors.password && formik.touched.password && (
+                            <div style={{ color: "red"}}>{formik.errors.password}</div>
+                        )}
                 </Form.Group>
             </Modal.Body>
             <Modal.Footer>
