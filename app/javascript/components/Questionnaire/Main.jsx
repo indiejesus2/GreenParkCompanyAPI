@@ -15,6 +15,12 @@ const Main = (props) => {
         loading: props.loading,
     })
 
+    const schema = yup.object().shape({
+        fname: yup.string().required(),
+        city: yup.string().required(),
+        state: yup.string().required()
+    })
+
     const formik = useFormik({
         initialValues: {
             employee_id: props.employee ? props.employee.id : 1,
@@ -65,6 +71,7 @@ const Main = (props) => {
             }
         ]
         },
+        validationSchema: schema,
         onSubmit: values => {
             props.createProfile(values)
             history.push('/employees')
@@ -114,6 +121,9 @@ const Main = (props) => {
                     handleChange={formik.handleChange}
                     values={formik.values}
                     handleClick={handleClick}
+                    touched={formik.touched}
+                    errors={formik.errors}
+                    onBlur={formik.handleBlur}
                     />
                 <Desired
                     currentStep={state.currentStep}

@@ -22,7 +22,17 @@ const Basic = props => {
 
                     <Form.Group as={Col}>
                         <FloatingLabel label="First Name">
-                            <Form.Control type="text" name="fname" value={props.values.fname} onChange={props.handleChange} />
+                            <Form.Control 
+                            type="text" 
+                            name="fname" 
+                            value={props.values.fname}
+                            onChange={props.handleChange}
+                            isInvalid={props.touched.fname && props.errors.fname}
+                            onBlur={props.handleBlur}
+                            />
+                                {props.errors.fname && props.touched.fname && (
+                                    <div style={{ color: "red"}}>{props.errors.fname}</div>
+                                )}
                         </FloatingLabel>
                     </Form.Group> 
                     <Form.Group as={Col}>
@@ -36,12 +46,32 @@ const Basic = props => {
 
                     <Form.Group as={Col}>
                         <FloatingLabel label="City">
-                            <Form.Control type="text" name="city" value={props.values.city} onChange={props.handleChange} />
+                            <Form.Control 
+                            type="text" 
+                            name="city" 
+                            value={props.values.city} 
+                            onChange={props.handleChange} 
+                            isInvalid={props.touched.city && props.errors.city}
+                            onBlur={props.handleBlur}
+                            />
+                            {props.errors.city && props.touched.city && (
+                                <div style={{ color: "red"}}>{props.errors.city}</div>
+                            )}
                         </FloatingLabel>
                         </Form.Group> 
                     <Form.Group as={Col}>
                         <FloatingLabel label="State">
-                            <Form.Control type="text" name="state" value={props.values.state} onChange={props.handleChange} />
+                            <Form.Control 
+                            type="text" 
+                            name="state" 
+                            value={props.values.state} 
+                            onChange={props.handleChange}
+                            isInvalid={props.touched.state && props.errors.state}
+                            onBlur={props.handleBlur}
+                            />
+                            {props.errors.state && props.touched.state && (
+                                <div style={{ color: "red"}}>{props.errors.state}</div>
+                            )}
                         </FloatingLabel>
                         </Form.Group>
                     <Form.Group as={Col}>

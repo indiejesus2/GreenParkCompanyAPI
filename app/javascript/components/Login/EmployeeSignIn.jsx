@@ -21,6 +21,11 @@ export default function EmployeeSignIn(props) {
     const [alert, setAlert] = useState(false)
     const [errors, setErrors] = useState(props.errors)
 
+    const schema = yup.object().shape({
+        email: yup.string().email("Please enter a valid email address").required("Email is required."),
+        password: yup.string().required("Please enter a password.").min(6, "Password must have at least 6 characters")
+    })
+
     const handleClose = () => {
         history.push('/');
         setShow(false)
@@ -40,6 +45,7 @@ export default function EmployeeSignIn(props) {
             email: "",
             password: "",
         },
+        validationSchema: schema,
         onSubmit: values => {
             props.signIn(values)
             history.push('/employees')
@@ -69,7 +75,15 @@ export default function EmployeeSignIn(props) {
                     name="email"
                     value={formik.values.email}
                     onChange={formik.handleChange}
+                    isInvalid={formik.touched.email && formik.errors.email}
+                    onBlur={formik.handleBlur}
                     />
+                    {/* <Form.Control.Feedback type="invalid" tooltip>
+                        {formik.errors.email}
+                    </Form.Control.Feedback> */}
+                    {formik.errors.email && formik.touched.email && (
+                        <div style={{ color: "red"}}>{formik.errors.email}</div>
+                    )}
                 </Form.Group>
                 <Form.Group md="4" controlId="validationFormik02">
                     <Form.Label>Password: </Form.Label>
@@ -78,7 +92,13 @@ export default function EmployeeSignIn(props) {
                         name="password"
                         value={formik.values.password}
                         onChange={formik.handleChange}
-                        />
+                        isInvalid={formik.touched.password && formik.errors.password}
+                        onBlur={formik.handleBlur}
+    
+                            />
+                            {formik.errors.password && formik.touched.password && (
+                                <div style={{ color: "red"}}>{formik.errors.password}</div>
+                            )}
                 </Form.Group>
                 </Modal.Body>
                 <Modal.Footer>

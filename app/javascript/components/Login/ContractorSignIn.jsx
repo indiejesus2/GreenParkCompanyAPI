@@ -66,7 +66,7 @@ export default function ContractorSignIn(props) {
                     name="email"
                     value={formik.values.email}
                     onChange={formik.handleChange}
-                    isInvalid={formik.touched.email && formik.errors.email}
+                    isInvalid={formik.errors.email}
                     onBlur={formik.handleBlur}
                     />
                     {/* <Form.Control.Feedback type="invalid" tooltip>
@@ -83,7 +83,7 @@ export default function ContractorSignIn(props) {
                         name="password"
                         value={formik.values.password}
                         onChange={formik.handleChange}
-                        isInvalid={formik.touched.password && formik.errors.password}
+                        isInvalid={formik.errors.password}
                     onBlur={formik.handleBlur}
 
                         />
