@@ -12,6 +12,10 @@ class Profile < ApplicationRecord
     [city, state].compact.join(', ')
   end
 
+  def name
+    [fname, lname].compact.join(' ')
+  end
+
   def proximity    
     jobs = Job.where("industry = ?", industry).near(address, 100)
     jobs.each {|job|
@@ -19,6 +23,7 @@ class Profile < ApplicationRecord
         Applicant.create(employee_id: "#{employee_id}", employer_id: "#{job.employer_id}", job_id: "#{job.id}", distance: distance_to(job))
       end
     }
+    EmployeeMailer(employee: @employee).jobs_email.deliver_later
   end
 
   # def posted
