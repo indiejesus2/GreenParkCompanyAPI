@@ -37,7 +37,7 @@ class Api::V1::ProfilesController < ApplicationController
                 @history = Experience.new(together)
                 @history.save
             end
-            render json: ProfileSerializer.new(@profile)
+            redirect_to api_v1_employee_path(@employee)
         else
             render json: @profile.errors
         end
@@ -50,7 +50,7 @@ class Api::V1::ProfilesController < ApplicationController
     end
     
     def history_params
-        if params[:experience][0][:title] != ""
+        if !!params[:experience] && params[:experience][0][:title] != ""
             experience = params.require(:experience)
             history = []
             for i in experience do 

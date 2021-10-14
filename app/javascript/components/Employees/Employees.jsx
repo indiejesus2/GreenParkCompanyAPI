@@ -48,15 +48,7 @@ const Employees = props => {
                     <EmployeeSignIn signIn={props.signIn} currentStep={state.currentStep} handleClick={handleClick} errors={props.errors} />
                 </div>
         )
-    } 
-    // else if (props.loading === true) {
-    //     return (
-    //         <div>
-    //             Loading....
-    //         </div>
-    //     )
-    // } 
-    else if (props.profile == null) {
+    } else if (props.profile == null) {
         return (
             <Questionnaire employee={props.employee} createProfile={props.createProfile} />
         )

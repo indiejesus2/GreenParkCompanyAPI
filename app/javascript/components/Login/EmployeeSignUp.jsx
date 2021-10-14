@@ -43,7 +43,7 @@ export default function EmployeeSignUp(props) {
 
             <Form onSubmit={formik.handleSubmit}>
             <Modal.Body>
-                <Form.Group as={Col} md="4" controlId="validationFormik01">
+                <Form.Group md="4" controlId="validationFormik01">
                 <Form.Label>Email: </Form.Label>
                 <Form.Control
                     type="text"
@@ -52,7 +52,7 @@ export default function EmployeeSignUp(props) {
                     onChange={formik.handleChange}
                     />
                 </Form.Group>
-                <Form.Group as={Col} md="4" controlId="validationFormik02">
+                <Form.Group md="4" controlId="validationFormik02">
                     <Form.Label>Password: </Form.Label>
                     <Form.Control
                         type="password"
@@ -63,9 +63,9 @@ export default function EmployeeSignUp(props) {
                 </Form.Group>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button color="danger" name="close" onClick={handleClose}>Close</Button>
-                        <Button color="success" name="sign in" onClick={props.handleClick}>Sign-In</Button>
-                        <Button color="primary" type="submit">Sign-Up</Button>
+                    <Button variant="danger" name="close" onClick={handleClose}>Close</Button>
+                        <Button variant="success" name="sign in" onClick={props.handleClick}>Sign-In</Button>
+                        <Button variant="primary" type="submit">Sign-Up</Button>
                 </Modal.Footer>
                 </Form>
         </Modal>

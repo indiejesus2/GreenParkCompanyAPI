@@ -20,6 +20,7 @@ export default function ContractorSignUp(props) {
 
     const formik = useFormik({
         initialValues: {
+            name: "",
             email: "",
             password: "",
         },
@@ -41,7 +42,14 @@ export default function ContractorSignUp(props) {
             <p>Fill that position today!</p></Modal.Header>
             <Form onSubmit={formik.handleSubmit}>
             <Modal.Body>
-                <Form.Group as={Col} md="4" controlId="validationFormik01">
+                <Form.Group  md="4" controlId="validationFormik01">
+                <Form.Label>Company: </Form.Label>
+                <Form.Control
+                    type="text"
+                    name="name"
+                    value={formik.values.name}
+                    onChange={formik.handleChange}
+                    />
                 <Form.Label>Email: </Form.Label>
                 <Form.Control
                     type="text"
@@ -49,8 +57,6 @@ export default function ContractorSignUp(props) {
                     value={formik.values.email}
                     onChange={formik.handleChange}
                     />
-                </Form.Group>
-                <Form.Group as={Col} md="4" controlId="validationFormik02">
                     <Form.Label>Password: </Form.Label>
                     <Form.Control
                         type="password"
@@ -61,9 +67,9 @@ export default function ContractorSignUp(props) {
                 </Form.Group>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button color="danger" name="close" onClick={handleClose}>Close</Button>
-                        <Button color="success" name="sign in" onClick={props.handleClick}>Sign-In</Button>
-                        <Button color="primary" type="submit">Sign-Up</Button>
+                    <Button variant="danger" name="close" onClick={handleClose}>Close</Button>
+                        <Button variant="success" name="sign in" onClick={props.handleClick}>Sign-In</Button>
+                        <Button variant="primary" type="submit">Sign-Up</Button>
                 </Modal.Footer>
                 </Form>
         </Modal>

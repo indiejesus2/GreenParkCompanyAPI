@@ -9,7 +9,7 @@ const NavBar  = props => {
     )
 
     
-        if (props.loggedIn===true) {
+        if (props.loggedIn===true || props.loading===true) {
             return (
                 <div className="nav-og">
                     <div className="nav-sign">

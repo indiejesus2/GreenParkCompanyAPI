@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useFormik } from 'formik'
-import { Form, FloatingLabel, Button } from 'react-bootstrap'
+import { Form, FloatingLabel, Button, Row, Col } from 'react-bootstrap'
 
 
 export default function EditProfile(props) {
@@ -43,6 +43,7 @@ export default function EditProfile(props) {
     const employee = props.profile
 
     const formik = useFormik({
+        
         initialValues: {
             employee_id: props.match.params.id,
             fname: employee.fname,
@@ -73,48 +74,82 @@ export default function EditProfile(props) {
             <h1>Edit Profile</h1>
             <div className="input">
                 <Form onSubmit={formik.handleSubmit} className="profile-form">
-                    <Form.Group className="basic-info">
-                        <FloatingLabel label="first name">
+                    <Row className="mb-3">
+
+                    <Form.Group as={Col}>
+                        <FloatingLabel label="First Name">
                             <Form.Control type="text" name="fname" value={formik.initialValues.fname} onChange={formik.handleChange} />
                         </FloatingLabel>
-                        <FloatingLabel label="last name">
+                    </Form.Group> 
+                    <Form.Group as={Col}>
+
+                        <FloatingLabel label="Last Name">
                             <Form.Control type="text" name="lname" value={formik.initialValues.lname} onChange={formik.handleChange} />
                         </FloatingLabel>
-                        <FloatingLabel label="city">
+                        </Form.Group>
+                    </Row>
+                    <Row className="mb-3">
+
+                    <Form.Group as={Col}>
+                        <FloatingLabel label="City">
                             <Form.Control type="text" name="city" value={formik.initialValues.city} onChange={formik.handleChange} />
                         </FloatingLabel>
-                        <FloatingLabel label="state">
+                        </Form.Group> 
+                    <Form.Group as={Col}>
+                        <FloatingLabel label="State">
                             <Form.Control type="text" name="state" value={formik.initialValues.state} onChange={formik.handleChange} />
                         </FloatingLabel>
-                        <FloatingLabel label="phone">
+                        </Form.Group>
+                    <Form.Group as={Col}>
+                        <FloatingLabel label="Zip-Code">
+                            <Form.Control type="text" name="zipcode" value={formik.initialValues.zipcode} onChange={formik.handleChange} />
+                        </FloatingLabel>
+                        </Form.Group>
+                    </Row>
+                    <Form.Group>
+                        <FloatingLabel label="Phone">
                             <Form.Control type="text" name="phone" value={formik.initialValues.phone} onChange={formik.handleChange} />
                         </FloatingLabel>
                         <FloatingLabel label="Description">
                             <Form.Control as="textarea" name="description" value={formik.initialValues.description} onChange={formik.handleChange} />
                         </FloatingLabel>
                     </Form.Group>
-                    <div className="work-schedule">
+                    <Row className="align-items-center">
+
+                    <Form.Group as={Col}>
+                    <div className="job type">
                         <Form.Label htmlFor="job type"> Job-Type: </Form.Label>
                         {jobtypes.map(job => 
                             <Form.Check name="jobtype" label={job} value={job} id={job} key={job} onChange={formik.handleChange} defaultChecked={formik.values.jobtype.includes(job)}/>
                         )}
                     </div>
+                    </Form.Group>
+                    <Form.Group as={Col}>
+
                     <div className="schedule">
                         <Form.Label htmlFor="schedule">Schedule: </Form.Label>
                         {schedule.map(day => 
                             <Form.Check name="schedule" id={day} label={day} value={day} key={day} onChange={formik.handleChange} 
                             defaultChecked={formik.values.schedule.includes(day)}
-                        />
-                        )}
+                            />
+                            )}
                     </div>
+                            </Form.Group>
+                            <Form.Group as={Col}>
+
                 <div className="shifts">
                     <Form.Label>Shifts: </Form.Label>
                     {shifts.map(shift =>                             
                         <Form.Check name="shifts" label={shift} value={shift} key={shift} onChange={formik.handleChange} defaultChecked={formik.values.shifts.includes(shift)} />
                         )}
                 </div>
-                <div className="seasonal">
+                        </Form.Group>
+                </Row>
+
                     <Form.Label>Season Availability: </Form.Label>
+                <Row className="mb-3">
+                <Form.Group as={Col}>
+                {/* <div className="seasonal"> */}
                     <FloatingLabel label="Seasonal Start">
 
                     <Form.Select name="seasonstart" onChange={formik.handleChange} defaultValue={formik.values.seasonstart}> 
@@ -123,6 +158,8 @@ export default function EditProfile(props) {
                         )}
                     </Form.Select>
                         </FloatingLabel>
+                        </Form.Group>
+                        <Form.Group as={Col}>
                         <FloatingLabel label="Seasonal End">
 
                     <Form.Select name="seasonend" onChange={formik.handleChange} defaultValue={formik.values.seasonend}> 
@@ -131,39 +168,28 @@ export default function EditProfile(props) {
                         )}
                     </Form.Select>
                     </FloatingLabel>
-                </div>
-                <div className="payrate">
+                {/* </div> */}
+                </Form.Group>
+
+                </Row>
+                <Row className="mb-3">
+                <Form.Group as={Col}>
+                {/* <div className="payrate"> */}
                     <Form.Label>
                         Minimum Pay Rate: 
                     </Form.Label>
                     <Form.Control type="text" name="minpay" onChange={formik.handleChange} value={formik.values.minpay}/>
+                </Form.Group>
+                <Form.Group as={Col}>
                     <Form.Label>
                         Maximum Pay Rate: 
                     </Form.Label>
                     <Form.Control type="text" name="maxpay" onChange={formik.handleChange} value={formik.values.maxpay}/>
-                </div>
+                </Form.Group>
+                </Row>
                 <div className="submit">
                     <Button type="submit" value="Edit Profile" onClick={formik.handleSubmit}>Edit Profile</Button>
                 </div>
-                        {/* {state.jobType.map(work => 
-                    
-                    
-                    )} */}
-                    {/* <input type="checkbox" label="Full Time" name="jobType" value={formik.initialValues."ft" id='1' onChange={handleJob} /> Full-Time
-                        <input type="checkbox" name="jobType" value={formik.initialValues."pt" id='2' onChange={handleJob} /> Part-time
-                        <input type="checkbox" name="jobType" value={formik.initialValues."contract" id='3' onChange={handleJob} /> Contract
-                        <input type="checkbox" name="jobType" value={formik.initialValues."temporary" id='4' onChange={handleJob} /> Temporary */}
-                        {/* <br />
-                        <label htmlFor="schedule">Schedule: </label>
-                        <input type="checkbox" name="schedule" value={formik.initialValues."M-F" onChange={handleJob}/>
-                        M-F
-                        <input type="checkbox" name="schedule" value={formik.initialValues."Weekends" onChange={handleJob}/>
-                        Weekends
-                        <input type="checkbox" name="schedule" value={formik.initialValues."Overnight" onChange={handleJob}/>
-                        Overnight
-                        <input type="checkbox" name="schedule" value={formik.initialValues."Holidays" onChange={handleJob}/>
-                        Holidays
-                    </div> */}
                     {/* <div className="history">
                         <h5>Work History</h5>
                         <div >

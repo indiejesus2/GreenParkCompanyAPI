@@ -21,7 +21,9 @@ class EmployeesContainer extends Component {
     render() {
         if (this.props.loading == true) {
             return (
-                <div>
+                <div className="loading">
+                <NavBar loading={this.props.loading} handleSignout={this.handleSignout} user="employee" />
+
                     Loading....
                 </div>
             )
@@ -30,8 +32,8 @@ class EmployeesContainer extends Component {
                 <div>
                 <NavBar loggedIn={this.props.loggedIn} handleSignout={this.handleSignout} user="employee" />
                 <Switch>
-                <Route path='/employees/:id/edit_profile' render={(routerProps) => <EditProfile {...routerProps} employee={this.props.employee} profile={this.props.profile} work_history={this.props.work_history} updateProfile={this.props.updateProfile}/>}></Route>
-                <Route path='/employees/:id/profile' render={(routerProps) => <Profile {...routerProps} employee={this.props.employee} profile={this.props.profile} work_history={this.props.work_history} />}></Route>
+                <Route path='/employees/:id/edit_profile' render={(routerProps) => <EditProfile {...routerProps} employee={this.props.employee} profile={this.props.profile} experience={this.props.experience} updateProfile={this.props.updateProfile}/>}></Route>
+                <Route path='/employees/:id/profile' render={(routerProps) => <Profile {...routerProps} employee={this.props.employee} profile={this.props.profile} experience={this.props.experience} />}></Route>
                 <Route path='/employees/questionnaire' render={(routerProps) => <Questionnaire {...routerProps} employee={this.props.employee} createProfile={this.props.createProfile} loading={this.props.loading} />}></Route>
                 <Route path='/employees' render={(routerProps) => <Employees {...routerProps} signIn={this.props.signIn} signUp={this.props.signUp} loggedIn={this.props.loggedIn} employee={this.props.employee} profile={this.props.profile}  jobs={this.props.jobs} loading={this.props.loading} createProfile={this.props.createProfile} errors={this.props.errors} signOut={this.props.signOut}/>}></Route>
                 </Switch>
@@ -46,7 +48,7 @@ const mapStateToProps = state => {
     return {
         employee: state.employeesReducer.employee,
         profile: state.employeesReducer.profile,
-        work_history: state.employeesReducer.work_history,
+        experience: state.employeesReducer.experience,
         loggedIn: state.employeesReducer.loggedIn,
         loading: state.employeesReducer.loading,
         jobs: state.employeesReducer.jobs,

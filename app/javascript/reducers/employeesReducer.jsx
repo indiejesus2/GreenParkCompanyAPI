@@ -1,4 +1,4 @@
-export default function employeesReducer(state = {employee: [], profile: [], work_history: [], jobs: [], loggedIn: false, loading: false, errors: []}, action) {
+export default function employeesReducer(state = {employee: [], profile: [], experience: [], jobs: [], loggedIn: false, loading: false, errors: []}, action) {
     switch(action.type) {
         case 'LOADING_EMPLOYEES':
             return {
@@ -15,7 +15,7 @@ export default function employeesReducer(state = {employee: [], profile: [], wor
             return {
                 employee: action.payload,
                 profile: action.payload.profile,
-                work_history: action.payload.work_histories,
+                experience: action.payload.experiences,
                 jobs: action.payload.jobs,
                 loggedIn: true,
                 loading: false
@@ -24,7 +24,7 @@ export default function employeesReducer(state = {employee: [], profile: [], wor
             return {
                 ...state,
                 profile: action.payload,
-                work_history: action.payload.work_histories,
+                experience: action.payload.experiences,
                 jobs: action.payload.jobs,
                 loading: false
             }
@@ -32,7 +32,7 @@ export default function employeesReducer(state = {employee: [], profile: [], wor
             return {
                 ...state,
                 profile: action.payload,
-                work_history: action.payload.work_histories,
+                experience: action.payload.experiences,
                 jobs: action.payload.jobs,
                 loading: false
             }

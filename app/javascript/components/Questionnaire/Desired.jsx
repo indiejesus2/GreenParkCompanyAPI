@@ -1,9 +1,5 @@
 import React from 'react'
-import Form from 'react-bootstrap/Form'
-import Modal from 'react-bootstrap/Modal'
-import Button from 'react-bootstrap/Button'
-
-
+import { Modal, Form, FloatingLabel, Button, Row, Col } from 'react-bootstrap'
 
 const Desired = props => {
 
@@ -22,6 +18,26 @@ const Desired = props => {
         "Dec"
     ]
 
+    const jobtypes = [
+        "Full Time",
+        "Part Time",
+        "Contract",
+        "Temporary"
+    ]
+
+    const schedule = [
+        "Weekdays",
+        "Weekends",
+        "Overnight",
+        "Holidays"
+    ]
+
+    const shifts = [
+        "AM",
+        "PM",
+        "Evening"
+    ]
+
     if(props.currentStep !== 2) {
         return null
     }
@@ -37,51 +53,74 @@ const Desired = props => {
             <Modal.Title><img src="/images/blucollar_icon.png" alt="Collar" /></Modal.Title>
         </Modal.Header>
             <Modal.Body>
-                <div className="jobtype">
-            <Form.Label htmlFor="job-type">Job-Type: </Form.Label>
-            <Form.Check name="jobType" label="Full Time" value="Full Time" id={`inline-checkbox-1`} onChange={props.handleChange} />
-            <Form.Check name="jobType" label="Part Time" value="Part Time" id={`inline-checkbox-2`} onChange={props.handleChange} /> 
-            <Form.Check name="jobType" label="Contract" value="Contract" id={`inline-checkbox-3`} onChange={props.handleChange} />
-            <Form.Check name="jobType" label="Temporary" value="Temporary" id={`inline-checkbox-4`} onChange={props.handleChange} />
-                </div>
-                <div className="schedule">
-            <Form.Label htmlFor="schedule">Schedule: </Form.Label>
-            <Form.Check name="schedule" label="Weekdays" value="Weekdays" onChange={props.handleChange}/>
-            <Form.Check name="schedule" label="Weekends" value="Weekends" onChange={props.handleChange}/>
-            <Form.Check name="schedule" label="Overnight" value="Overnight" onChange={props.handleChange}/>
-            <Form.Check name="schedule" label="Holidays" value="Holidays" onChange={props.handleChange}/>
-                </div>
-                <div className="shifts">
-                    <Form.Label>Shifts: </Form.Label>
-                    <Form.Check name="shift" label="AM" value="AM" onChange={props.handleChange}/>
-                    <Form.Check name="shift" label="PM" value="PM" onChange={props.handleChange}/>
-                    <Form.Check name="shift" label="Evening" value="Evening" onChange={props.handleChange}/>
-                </div>
-                <div className="seasonal">
-                    <Form.Label>Season Availability: </Form.Label>
-                    <Form.Control as="select" name="seasonstart" onChange={props.handleChange}> 
-                        <option>Seasonal Start</option>
-                        {months.map(month => 
-                        <option value={month}>{month}</option>
-                            )}
-                    </Form.Control>
-                    <Form.Control as="select" name="seasonend" onChange={props.handleChange}> 
-                        <option>Seasonal End</option>
-                        {months.map(month => 
-                        <option value={month}>{month}</option>
-                            )}
-                    </Form.Control>
-                </div>
-                <div className="payrate">
-                    <Form.Label>
-                        Minimum Pay Rate: 
-                    </Form.Label>
-                    <Form.Control type="text" name="minpay" onChange={props.handleChange} />
-                    <Form.Label>
-                        Maximum Pay Rate: 
-                    </Form.Label>
-                    <Form.Control type="text" name="maxpay" onChange={props.handleChange} />
-                </div>
+            <Row className="align-items-center">
+
+<Form.Group as={Col}>
+<div className="job type">
+    <Form.Label htmlFor="job type"> Job-Type: </Form.Label>
+    {jobtypes.map(job => 
+        <Form.Check name="jobtype" label={job} value={job} id={job} key={job} onChange={props.handleChange} />
+    )}
+</div>
+</Form.Group>
+<Form.Group as={Col}>
+
+<div className="schedule">
+    <Form.Label htmlFor="schedule">Schedule: </Form.Label>
+    {schedule.map(day => 
+        <Form.Check name="schedule" id={day} label={day} value={day} key={day} onChange={props.handleChange} />
+        )}
+</div>
+        </Form.Group>
+        <Form.Group as={Col}>
+
+<div className="shifts">
+<Form.Label>Shifts: </Form.Label>
+{shifts.map(shift =>                             
+    <Form.Check name="shifts" label={shift} value={shift} key={shift} onChange={props.handleChange} />
+    )}
+</div>
+    </Form.Group>
+</Row>
+
+<Form.Label>Season Availability: </Form.Label>
+<Row className="mb-3">
+<Form.Group as={Col}>
+<FloatingLabel label="Seasonal Start">
+
+<Form.Select name="seasonstart" onChange={props.handleChange} > 
+    {months.map(month =>
+            <option>{month}</option>
+    )}
+</Form.Select>
+    </FloatingLabel>
+    </Form.Group>
+    <Form.Group as={Col}>
+    <FloatingLabel label="Seasonal End">
+
+<Form.Select name="seasonend" onChange={props.handleChange}> 
+    {months.map(month => 
+    <option>{month}</option>
+    )}
+</Form.Select>
+</FloatingLabel>
+</Form.Group>
+
+</Row>
+<Row className="mb-3">
+<Form.Group as={Col}>
+<Form.Label>
+    Minimum Pay Rate: 
+</Form.Label>
+<Form.Control type="text" name="minpay" onChange={props.handleChange} value={props.values.minpay}/>
+</Form.Group>
+<Form.Group as={Col}>
+<Form.Label>
+    Maximum Pay Rate: 
+</Form.Label>
+<Form.Control type="text" name="maxpay" onChange={props.handleChange} value={props.values.maxpay}/>
+</Form.Group>
+</Row>
             </Modal.Body>
                 <Modal.Footer>
                     

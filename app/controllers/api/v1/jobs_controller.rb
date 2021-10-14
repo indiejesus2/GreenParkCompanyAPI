@@ -36,7 +36,6 @@ class Api::V1::JobsController < ApplicationController
         @job = @employer.jobs.new(job_params)
         @job.save
         if @job.save
-            byebug
             # @employees = @employer.applicants.map {|applicant| applicant.employee }
             render json: {jobs: JobSerializer.new(@job)}
             # , candidates: EmployeeSerializer.new(@employees, include: [:profile, :work_histories])}

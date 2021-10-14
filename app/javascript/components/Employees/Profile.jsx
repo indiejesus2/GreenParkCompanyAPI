@@ -21,7 +21,7 @@ const Profile = props => {
                 <br />
                 Shifts: {employee.shifts.join(', ')}
             </div>
-                {props.work_history.map(history => 
+                {props.experience.map(history => 
             <div className="work-history" key={history.id}>
                 Experience:
                     <p>{history.title}</p>

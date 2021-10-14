@@ -30,16 +30,16 @@ class Home extends Component {
                                         </Link>
                                     </Card.Body>
                                 </Card>
-                                <Card>
-                                    <Card.Header>
-                                        Contractors
-                                    </Card.Header>
-                                    <Card.Body>
+                                {/* <Card>
+                                    <Card.Body> */}
+                                    <div className="homepage-contractors">
+                                        <p>Contractors</p>
                                         <Link to="/contractors">
                                             <Button>Post Jobs</Button>
                                         </Link>
-                                    </Card.Body>
-                                </Card>
+                                    </div>
+                                    {/* </Card.Body>
+                                </Card> */}
                                     {/* <label>JobSeekers</label>
                                 <label>Contractors</label>
                                     <Link to="/contractors">

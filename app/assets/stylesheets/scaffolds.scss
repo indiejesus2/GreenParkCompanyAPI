@@ -85,6 +85,7 @@ label {
 }
 
 .nav-og {
+  height: 100px;
   margin-top: 10px;
   margin-right: 10px;
   margin-bottom: 10px;
@@ -257,6 +258,20 @@ h1, h2 {
 
 .signIn {
   width: 400px;
+}
+
+.profile-form {
+  margin: 20px;
+}
+
+.employee-profile {
+  margin: 20px;
+}
+
+.loading {
+  position: absolute;
+  top: 20px;
+  left: 25px;
 }
 // .modal-body {
 //   display: flex;

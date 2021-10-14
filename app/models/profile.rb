@@ -4,8 +4,7 @@ class Profile < ApplicationRecord
   has_many :jobs, through: :employee
   geocoded_by :address
   # reverse_geocoded_by :latitude, :longitude
-  after_validation :geocode
-  before_save :proximity, :potential
+  after_validation :geocode, :proximity, :potential
 
   # after_validation :reverse_geocode
 
@@ -15,8 +14,10 @@ class Profile < ApplicationRecord
 
   def proximity    
     jobs = Job.where("industry = ?", industry).near(address, 100)
-    jobs.each {|job| 
+    jobs.each {|job|
+      if !Applicant.where(job_id: job.id, employee_id: employee_id) 
         Applicant.create(employee_id: "#{employee_id}", employer_id: "#{job.employer_id}", job_id: "#{job.id}", distance: distance_to(job))
+      end
     }
   end
 

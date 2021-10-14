@@ -28,7 +28,7 @@ class Api::V1::EmployeesController < ApplicationController
     if @employee.save
       # session[:user_id] = @employee.id
       # redirect_to api_v1_employee_jobs_path(@employee)
-      render json: @employee
+      redirect_to api_v1_employee_path(@employee)
       # format.html { redirect_to @employee, notice: "Employee was successfully created." }
         # format.json { render :show, status: :created, location: @employee }
     else
