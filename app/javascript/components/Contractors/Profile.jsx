@@ -6,10 +6,12 @@ const Profile = props => {
         props.history.push(`employers/${props.contractor.id}/edit_profile`)
     }
 
+
     return (
-        <div className="contractor-profile">
-            <h2>{props.contractor.name}</h2>
-            <h5>{props.contractor.email}</h5>
+        <div className="employer-profile">
+            <h5>Email: {props.contractor.email}</h5>
+            <h5>Subscription: {props.contractor.subscription}</h5>
+            <h5>Status: {props.contractor.status == true ? "True" : "False"}</h5>
             <button onClick={handleClick}>Edit</button>
         </div>
     )

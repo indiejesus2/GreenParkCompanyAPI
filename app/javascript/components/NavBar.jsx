@@ -19,7 +19,7 @@ const NavBar  = props => {
                     </Link>
                     </span>
                 </div>
-                <div className="nav-links">
+                {/* <div className="nav-links">
                     <span className="link">
                         <Link to={home} onClick={props.signOut}>
                             <h5>
@@ -31,7 +31,7 @@ const NavBar  = props => {
                         </Link>
                     </span>
 
-                    </div>
+                    </div> */}
                 </div>
             )
         }

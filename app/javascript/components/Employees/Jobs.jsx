@@ -13,17 +13,9 @@ const Jobs = (props) => {
             }
         })
 
-        function CustomToggle({ children, eventKey }) {
-            const decoratedOnClick = useAccordionButton(eventKey, () =>
-              console.log('totally custom!'),
-            );
-          
+        function CustomToggle({ children }) {
             return (
-              <Button
-                // type="Button"
-                // style={{ backgroundColor: '#0b5ed7' }}
-                onClick={decoratedOnClick}
-              >
+              <Button>
                 {children}
               </Button>
             );

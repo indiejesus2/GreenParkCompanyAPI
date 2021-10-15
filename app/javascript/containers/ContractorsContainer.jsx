@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Route, Switch, useHistory } from 'react-router-dom'
+import { Route, Switch, Link } from 'react-router-dom'
 import { signInContractor } from '../actions/Contractors/signInContractor'
 import { signUpContractor } from '../actions/Contractors/signUpContractor'
 import { updateSubscription } from '../actions/Contractors/updateSubscription'
@@ -10,6 +10,7 @@ import Subscription from '../components/Contractors/Subscription'
 import Profile from '../components/Contractors/Profile'
 import EmployeeProfile from '../components/Contractors/EmployeeProfile'
 import NavBar from '../components/NavBar'
+import { Breadcrumb } from 'react-bootstrap'
 
 class ContractorsContainer extends Component {
 
@@ -34,6 +35,17 @@ class ContractorsContainer extends Component {
         return (
             <div>
                 <NavBar loggedIn={this.props.loggedIn} handleSignout={this.handleSignout} user="contractor" />
+                <h1>{this.props.contractor.name}</h1>
+
+                <div className="employer-nav">
+                        <Breadcrumb>
+                            <Breadcrumb.Item linkAs={Link} linkProps={{ to: '/contractors'}}>Home</Breadcrumb.Item>    
+                            <Breadcrumb.Item linkAs={Link} linkProps={{ to: '/contractors/addjob'}}>Add Job</Breadcrumb.Item>    
+                            <Breadcrumb.Item linkAs={Link} linkProps={{ to: `/contractors/${this.props.contractor.id}/profile`}}>Profile</Breadcrumb.Item>    
+                            <Breadcrumb.Item linkAs={Link} linkProps={{ to: `/contractors/${this.props.contractor.id}/editprofile`}}>Edit Profile</Breadcrumb.Item>    
+                            <Breadcrumb.Item linkAs={Link} linkProps={{to: "/", onClick: this.props.handleSignout }} >Sign Out</Breadcrumb.Item>
+                        </Breadcrumb>
+                    </div>
                 <Switch>
                 <Route path='/contractors/:id/jobs/:job_id/employees/:employee_id' render={(routerProps) => <EmployeeProfile {...routerProps} loading={this.props.loading} jobs={this.props.jobs}/>}></Route>
                 <Route path='/contractors/:id/profile' render={(routerProps) => <Profile {...routerProps} contractor={this.props.contractor}/>}></Route>

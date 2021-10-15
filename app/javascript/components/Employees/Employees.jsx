@@ -5,8 +5,7 @@ import EmployeeSignIn from '../Login/EmployeeSignIn'
 import EmployeeSignUp from '../Login/EmployeeSignUp'
 import Jobs from './Jobs'
 import Questionnaire from '../Questionnaire/Main'
-import NavBar from '../NavBar'
-import { useHistory } from 'react-router-dom'
+import { Breadcrumb } from 'react-bootstrap'
 
 
 const Employees = props => {
@@ -56,8 +55,6 @@ const Employees = props => {
     } {
         return (
             <div className="employees">
-                <h1>{props.profile.fname} {props.profile.lname}</h1>
-                <Link to={`/employees/${props.employee.id}/profile`}>Profile</Link>
                 <h2>Jobs</h2>
                 <Jobs jobs={jobs} employee={props.employee} />
             </div>

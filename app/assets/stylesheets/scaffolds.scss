@@ -210,7 +210,12 @@ h1, h2 {
   left: 100px;
 }
 
-.contractor-nav{
+.employee-nav {
+  display: flex;
+  justify-content: center;
+}
+
+.employer-nav{
   // position: relative;
   // left: 200px;
   display: flex;
@@ -237,15 +242,20 @@ h1, h2 {
   margin: 25px;
 }
 
+.employee-jobs-buttons {
+  display: flex;
+  justify-content: space-evenly;
+}
+
 .employer-jobs .card {
   width: 225px;
   padding: 10px;
   margin: 25px;
 }
 
-.employee-jobs-buttons {
+.employer-profile {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
 }
 
 .job img {
