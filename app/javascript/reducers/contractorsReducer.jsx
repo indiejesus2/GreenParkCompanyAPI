@@ -28,9 +28,6 @@ export default function contractorsReducer(state = {contractor: [], jobs: [], lo
             return {
                 contractor: state.contractor,
                 jobs: [...state.jobs],
-                // candidates: [...state.candidates],
-                // profiles: [...state.profiles],
-                // work_history: [...state.work_history],
                 loading: true
             }
         case 'ADD_JOB':
