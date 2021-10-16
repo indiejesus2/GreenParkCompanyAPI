@@ -229,12 +229,14 @@ h1, h2 {
 .employees-jobs {
   display: flex;
   justify-content: center;
+  flex-flow: wrap;
 }
 
 .employees-jobs .card {
-  width: 300px;
+  width: 250px;
   padding: 10px;
-  margin: 25px;
+  margin-inline: 25px;
+  margin-block-end: 45px;
 }
 
 .employee-jobs-buttons {
@@ -245,7 +247,8 @@ h1, h2 {
 .employer-jobs .card {
   width: 225px;
   padding: 10px;
-  margin: 25px;
+  margin-inline: 25px;
+  margin-block-end: 45px;
 }
 
 .employer-profile {
