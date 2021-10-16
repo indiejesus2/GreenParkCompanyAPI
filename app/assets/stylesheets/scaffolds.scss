@@ -88,7 +88,6 @@ label {
   height: 100px;
   margin-top: 10px;
   margin-right: 10px;
-  margin-bottom: 10px;
 }
 
 .nav-sign {
@@ -169,7 +168,8 @@ a {
 
 .employer-jobs {
   display: flex;
-  align-content: space-around;
+  justify-content: center;
+  flex-flow: wrap;
 }
 
 // .homepage-body .card {
@@ -211,10 +211,9 @@ h1, h2 {
 }
 
 .employer-nav{
-  // position: relative;
-  // left: 200px;
   display: grid;
   justify-content: center;
+  margin-bottom: 25px;
 }
 
 // .employees {
@@ -250,7 +249,7 @@ h1, h2 {
 }
 
 .employer-profile {
-  display: flex;
+  display: grid;
   justify-content: center;
 }
 
