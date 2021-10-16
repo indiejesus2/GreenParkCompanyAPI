@@ -56,7 +56,7 @@ const Employees = props => {
     } {
         return (
             <div className="employees">
-                <NavBar handleSignout={this.props.signOut} profile={this.props.profile} user="employee" />
+                <NavBar handleSignout={props.signOut} profile={props.profile} user="employee" />
 
                 <h2>Jobs</h2>
                 <Jobs jobs={jobs} employee={props.employee} />

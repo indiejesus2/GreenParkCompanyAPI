@@ -10,7 +10,7 @@ const Profile = props => {
 
     return (
         <div className="employer-profile">
-                <NavBar handleSignout={this.props.signOut} contractor={this.props.contractor} user="contractor" />
+                <NavBar handleSignout={props.signOut} contractor={props.contractor} user="contractor" />
 
             <h5>Email: {props.contractor.email}</h5>
             <h5>Subscription: {props.contractor.subscription}</h5>

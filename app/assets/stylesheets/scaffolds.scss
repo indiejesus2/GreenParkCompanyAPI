@@ -126,11 +126,6 @@ a {
 .homepage-body {
   display: flex;
   justify-content: center;
-  // margin-top: 25px;
-  // padding: 25px;
-  margin-top: 25px;
-  margin-left: 25px;
-  margin-right: 25px;
 }
 
 .homepage-body div {
@@ -209,27 +204,23 @@ h1, h2 {
   text-align: center;
 }
 
-.employees a {
-  position: relative;
-  left: 100px;
-}
 
 .employee-nav {
-  display: flex;
+  display: grid;
   justify-content: center;
 }
 
 .employer-nav{
   // position: relative;
   // left: 200px;
-  display: flex;
-  justify-content: center;
-}
-
-.employees {
   display: grid;
   justify-content: center;
 }
+
+// .employees {
+//   display: grid;
+//   justify-content: center;
+// }
 
 .employees h2 {
   position: relative;
@@ -238,6 +229,7 @@ h1, h2 {
 
 .employees-jobs {
   display: flex;
+  justify-content: center;
 }
 
 .employees-jobs .card {

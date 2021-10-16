@@ -7,17 +7,16 @@ const Jobs = (props) => {
 
         const [jobs, setJobs] = useState(props.jobs)
         useEffect(() => {
-            debugger
             if (props.jobs && props.jobs != jobs) {
                 setJobs(props.jobs)
             }
         })
 
-        function CustomToggle({ children }) {
+        function CustomToggle({ children, eventKey }) {
             return (
-              <Button>
+              <button type="button" className="btn btn-primary" onClick={useAccordionButton(eventKey)}>
                 {children}
-              </Button>
+              </button>
             );
           }
 
@@ -30,8 +29,7 @@ const Jobs = (props) => {
                     <Card.Subtitle>Location: {job.city}, {job.state}</Card.Subtitle>
                     <Card.Text>Description: {job.description} </Card.Text>
                     <div className="employee-jobs-buttons">
-
-                    <CustomToggle eventKey="0">More Info</CustomToggle>
+                        <CustomToggle eventKey="0">More Info</CustomToggle>
                         <Button onClick={props.handleClick}>Apply</Button>
                     </div>
                             <Accordion.Collapse eventKey="0">

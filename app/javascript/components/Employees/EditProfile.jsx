@@ -72,7 +72,7 @@ export default function EditProfile(props) {
 
     return (
         <div className="profile">
-                <NavBar handleSignout={this.props.signOut} profile={this.props.profile} user="employee" />
+                <NavBar handleSignout={props.signOut} profile={props.profile} user="employee" />
 
             <h1>Edit Profile</h1>
             <div className="input">

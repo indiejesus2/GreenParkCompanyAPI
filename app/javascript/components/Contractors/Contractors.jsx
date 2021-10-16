@@ -76,7 +76,7 @@ if (loading === true) {
     } else {
         return (
                 <div className="contractor">
-                <NavBar handleSignout={this.props.signOut} contractor={this.props.contractor} user="contractor" />
+                <NavBar handleSignout={props.signOut} contractor={props.contractor} user="contractor" />
 
                     <JobsContainer jobs={jobs} contractor={contractor} candidates={props.candidates} profiles={props.profiles} work_history={props.work_history}/>
                 </div>

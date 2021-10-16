@@ -76,7 +76,7 @@ export default function EditJob(props) {
 
     return (
         <div className="editJob">
-                <NavBar handleSignout={this.props.signOut} contractor={this.props.contractor} user="contractor" />
+                <NavBar handleSignout={props.signOut} contractor={props.contractor} user="contractor" />
 
             <h1>Edit Job</h1>
                 <Form onSubmit={formik.handleSubmit} className="editJob-form">
