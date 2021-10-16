@@ -1,18 +1,30 @@
 import React from 'react'
-import { Form, FloatingLabel, Button } from 'react-bootstrap'
+import { Form, FloatingLabel, Button, Row, Col } from 'react-bootstrap'
 
 const Experience = props => {
 
     const id = props.id - 1
 
     return(
-        <Form.Group name="experience" id={id}>
-        <FloatingLabel label="Title">
+        <div className="experience" id={id}>
+
+        <Row className="mb-3">
+
+        <Form.Group  as={Col} >
+            <FloatingLabel label="Title">
             <Form.Control type="text" id={id} name={`experience[${id}].title`} onChange={props.handleChange} />
         </FloatingLabel>
+        </Form.Group>
+        </Row>
+        <Row className="mb-3">
+        <Form.Group>
+
         <FloatingLabel label="Company">
             <Form.Control type="text" id={id} name={`experience[${id}].company`} onChange={props.handleChange} />
         </FloatingLabel>
+        </Form.Group>
+        </Row>
+    <Form.Group>
         <FloatingLabel label="City">
             <Form.Control type="text" id={id} name={`experience[${id}].city`} onChange={props.handleChange} />
         </FloatingLabel>
@@ -39,6 +51,7 @@ const Experience = props => {
         </Form.Label>
         {/* <Button id={props.id} onClick={props.handleSkills}>Add Job</Button> */}
     </Form.Group>
+        </div>
     )
 }
 

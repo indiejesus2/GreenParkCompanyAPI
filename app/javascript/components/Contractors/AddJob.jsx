@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Form, Button, FloatingLabel } from 'react-bootstrap'
 import {useFormik} from 'formik'
+import NavBar from '../NavBar'
 
 export default function AddJob(props) {
 
@@ -53,6 +54,8 @@ export default function AddJob(props) {
 
     return (
         <div className="editJob">
+                <NavBar handleSignout={this.props.signOut} contractor={this.props.contractor} user="contractor" />
+
             <h1>Add Job</h1>
                 <Form onSubmit={formik.handleSubmit} className="addJob-form">
             <div className="input">

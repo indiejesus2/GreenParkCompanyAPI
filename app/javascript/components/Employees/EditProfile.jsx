@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import NavBar from '../NavBar'
 import { useFormik } from 'formik'
 import { Form, FloatingLabel, Button, Row, Col } from 'react-bootstrap'
 
@@ -71,6 +72,8 @@ export default function EditProfile(props) {
 
     return (
         <div className="profile">
+                <NavBar handleSignout={this.props.signOut} profile={this.props.profile} user="employee" />
+
             <h1>Edit Profile</h1>
             <div className="input">
                 <Form onSubmit={formik.handleSubmit} className="profile-form">

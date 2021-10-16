@@ -1,4 +1,5 @@
 import React from 'react'
+import NavBar from '../NavBar'
 
 const Profile = props => {
 
@@ -9,6 +10,8 @@ const Profile = props => {
 
     return (
         <div className="employer-profile">
+                <NavBar handleSignout={this.props.signOut} contractor={this.props.contractor} user="contractor" />
+
             <h5>Email: {props.contractor.email}</h5>
             <h5>Subscription: {props.contractor.subscription}</h5>
             <h5>Status: {props.contractor.status == true ? "True" : "False"}</h5>

@@ -5,6 +5,7 @@ import EmployeeSignIn from '../Login/EmployeeSignIn'
 import EmployeeSignUp from '../Login/EmployeeSignUp'
 import Jobs from './Jobs'
 import Questionnaire from '../Questionnaire/Main'
+import NavBar from '../NavBar'
 import { Breadcrumb } from 'react-bootstrap'
 
 
@@ -55,6 +56,8 @@ const Employees = props => {
     } {
         return (
             <div className="employees">
+                <NavBar handleSignout={this.props.signOut} profile={this.props.profile} user="employee" />
+
                 <h2>Jobs</h2>
                 <Jobs jobs={jobs} employee={props.employee} />
             </div>

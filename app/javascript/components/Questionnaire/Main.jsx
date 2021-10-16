@@ -5,6 +5,7 @@ import Desired from './Desired'
 import Skills from './Skills'
 import Form from 'react-bootstrap/Form'
 import { useHistory } from 'react-router-dom'
+import * as yup from 'yup'
 
 const Main = (props) => {
 
@@ -114,7 +115,6 @@ const Main = (props) => {
             <div>
             <h1>BluCollar Tradespeople Main</h1>
             {/* <Modal show={state.show}>     */}
-            <p>Step {state.currentStep}</p>
             <Form onSubmit={formik.handleSubmit}>
                 <Basic
                     currentStep={state.currentStep}

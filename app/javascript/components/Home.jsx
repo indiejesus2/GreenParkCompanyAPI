@@ -11,7 +11,7 @@ class Home extends Component {
     render() {        
         return (
             <div className="homepage">
-                <NavBar/>
+                {/* <NavBar/> */}
                     <div className="homepage-container">
                         <div className="homepage-header">
                             <img src="/images/blucollarlogo_wtagline.png" alt="" />

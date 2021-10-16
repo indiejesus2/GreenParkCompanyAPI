@@ -1,4 +1,5 @@
 import React from 'react'
+import NavBar from '../NavBar'
 
 const Profile = props => {
     
@@ -9,7 +10,10 @@ const Profile = props => {
     const employee = props.profile
 
     return (
+        <div>
+
         <div className="employee-profile">
+            <NavBar handleSignout={props.signOut} profile={props.profile} user="employee" />
             <h4>{employee.city}, {employee.state}</h4>
             <h5>{employee.industry}</h5>
             <p>{employee.description}</p>
@@ -29,6 +33,7 @@ const Profile = props => {
                     )}
             <button onClick={handleClick}>Edit Profile</button>
         </div>
+                </div>
     )
 }
 

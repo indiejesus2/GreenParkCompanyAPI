@@ -11,7 +11,7 @@ import Questionnaire from '../components/Questionnaire/Main'
 import Profile from '../components/Employees/Profile'
 import EditProfile from '../components/Employees/EditProfile'
 import NavBar from '../components/NavBar'
-import { Breadcrumb } from 'react-bootstrap'
+import Logo from '../components/Logo'
 
 class EmployeesContainer extends Component {
 
@@ -23,22 +23,16 @@ class EmployeesContainer extends Component {
         if (this.props.loading == true) {
             return (
                 <div className="loading">
-                <NavBar loading={this.props.loading} handleSignout={this.handleSignout} user="employee" />
+                {/* <NavBar loading={this.props.loading} handleSignout={this.handleSignout} user="employee" />
+                 */}
+                 <Logo user="employee"/>
                     Loading....
                 </div>
             )
         } else {
             return (
                 <div>
-                <NavBar loggedIn={this.props.loggedIn} handleSignout={this.handleSignout} user="employee" />
-                <h1>{this.props.profile.fname} {this.props.profile.lname}</h1>
-                <div className="employee-nav">
-                <Breadcrumb>
-                    <Breadcrumb.Item linkAs={Link} linkProps={{to: "/employees"}}>Home</Breadcrumb.Item>
-                    <Breadcrumb.Item linkAs={Link} linkProps={{to: `/employees/${this.props.employee.id}/profile`}} >Profile</Breadcrumb.Item>
-                    <Breadcrumb.Item linkAs={Link} linkProps={{to: "/", onClick: this.props.handleSignout }} >Sign Out</Breadcrumb.Item>
-                </Breadcrumb>
-                </div>
+                <Logo user="employee"/>
                 <Switch>
                 <Route path='/employees/:id/edit_profile' render={(routerProps) => <EditProfile {...routerProps} employee={this.props.employee} profile={this.props.profile} experience={this.props.experience} updateProfile={this.props.updateProfile}/>}></Route>
                 <Route path='/employees/:id/profile' render={(routerProps) => <Profile {...routerProps} employee={this.props.employee} profile={this.props.profile} experience={this.props.experience} />}></Route>

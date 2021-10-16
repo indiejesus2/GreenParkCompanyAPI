@@ -4,6 +4,7 @@ import Home from '../Home'
 import ContractorSignIn from '../Login/ContractorSignIn'
 import ContractorSignUp from '../Login/ContractorSignUp'
 import JobsContainer from '../../containers/JobsContainer'
+import NavBar from '../NavBar'
 import { useHistory } from 'react-router-dom'
 
 
@@ -75,6 +76,8 @@ if (loading === true) {
     } else {
         return (
                 <div className="contractor">
+                <NavBar handleSignout={this.props.signOut} contractor={this.props.contractor} user="contractor" />
+
                     <JobsContainer jobs={jobs} contractor={contractor} candidates={props.candidates} profiles={props.profiles} work_history={props.work_history}/>
                 </div>
         )
