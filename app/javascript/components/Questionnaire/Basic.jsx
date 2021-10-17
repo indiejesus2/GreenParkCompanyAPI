@@ -9,6 +9,60 @@ const Basic = props => {
         return null
     }
 
+    const states = [
+        "--",
+        "AL",
+        "AK",
+        "AZ",
+        "AR",
+        "CA",
+        "CO",
+        "CT",
+        "DE",
+        "FL",
+        "GA",
+        "HI",
+        "ID",
+        "IL",
+        "IN",
+        "IA",
+        "KS",
+        "KY",
+        "LA",
+        "ME",
+        "MD",
+        "MA",
+        "MI",
+        "MN",
+        "MS",
+        "MO",
+        "MT",
+        "NE",
+        "NV",
+        "NH",
+        "NJ",
+        "NM",
+        "NY",
+        "NC",
+        "ND",
+        "OH",
+        "OK",
+        "OR",
+        "PA",
+        "RI",
+        "SC",
+        "SD",
+        "TN",
+        "TX",
+        "UT",
+        "VT",
+        "VA",
+        "WA",
+        "WV",
+        "WI",
+        "WY"
+    ]
+
     return(
         <React.Fragment>
         <Modal show animation backdrop>
@@ -61,17 +115,20 @@ const Basic = props => {
                         </Form.Group> 
                     <Form.Group as={Col}>
                         <FloatingLabel label="State">
-                            <Form.Control 
-                            type="text" 
+                            <Form.Select
                             name="state" 
                             value={props.values.state} 
                             onChange={props.handleChange}
                             isInvalid={props.touched.state && props.errors.state}
                             onBlur={props.handleBlur}
-                            />
+                            >
+                                {states.map(state => 
+                                    <option  defaultValue="--">{state}</option>
+                                )}
                             {props.errors.state && props.touched.state && (
                                 <div style={{ color: "red"}}>{props.errors.state}</div>
                             )}
+                            </Form.Select>
                         </FloatingLabel>
                         </Form.Group>
                     <Form.Group as={Col}>

@@ -1,9 +1,14 @@
 import React, { useState, useEffect } from 'react'
-import { Form, Button, FloatingLabel } from 'react-bootstrap'
+import { Form, Button, FloatingLabel, Row, Col } from 'react-bootstrap'
 import { useFormik } from 'formik'
-import NavBar from '../NavBar'
+import * as yup from 'yup'
 
 export default function EditJob(props) {
+
+    const schema = yup.object().shape({
+        city: yup.string().required(),
+        state: yup.string().required()
+    })
 
     const months = [
         "Jan", 
@@ -18,6 +23,60 @@ export default function EditJob(props) {
         "Oct", 
         "Nov",
         "Dec"
+    ]
+
+    const states = [
+        "--",
+        "AL",
+        "AK",
+        "AZ",
+        "AR",
+        "CA",
+        "CO",
+        "CT",
+        "DE",
+        "FL",
+        "GA",
+        "HI",
+        "ID",
+        "IL",
+        "IN",
+        "IA",
+        "KS",
+        "KY",
+        "LA",
+        "ME",
+        "MD",
+        "MA",
+        "MI",
+        "MN",
+        "MS",
+        "MO",
+        "MT",
+        "NE",
+        "NV",
+        "NH",
+        "NJ",
+        "NM",
+        "NY",
+        "NC",
+        "ND",
+        "OH",
+        "OK",
+        "OR",
+        "PA",
+        "RI",
+        "SC",
+        "SD",
+        "TN",
+        "TX",
+        "UT",
+        "VT",
+        "VA",
+        "WA",
+        "WV",
+        "WI",
+        "WY"
     ]
 
     const jobtypes = [
@@ -59,6 +118,7 @@ export default function EditJob(props) {
             maxpay: job.maxpay,
             industry: ''
         },
+        validationSchema: schema,
         onSubmit: values => {
             props.editJob(values)
             props.history.push(`/contractors/${state.employer_id}/jobs/${state.id}`)
@@ -78,79 +138,149 @@ export default function EditJob(props) {
         <div className="editJob">
             <h1>Edit Job</h1>
                 <Form onSubmit={formik.handleSubmit} className="editJob-form">
-            <div className="input">
-                <Form.Group name="info">
+            <Row className="mb-3">
+            <Form.Group as={Col} >
                 <FloatingLabel label="Title">
-                    <Form.Control type="text" name="title" value={formik.initialValues.title} onChange={formik.handleChange} />
+                    <Form.Control 
+                    type="text" 
+                    name="title" 
+                    onChange={formik.handleChange} 
+                    value={formik.values.title} 
+                            onChange={formik.handleChange} 
+                            isInvalid={formik.touched.title && formik.errors.title}
+                            onBlur={formik.handleBlur}
+                            />
+                            {formik.errors.title && formik.touched.title && (
+                                <div style={{ color: "red"}}>{formik.errors.title}</div>
+                            )}
                 </FloatingLabel>
-                <FloatingLabel label="City">
-                    <Form.Control type="text" name="city" value={formik.initialValues.city} onChange={formik.handleChange} />
+                </Form.Group> 
+                <Form.Group as={Col}>
+                <FloatingLabel label="Industry">
+
+                <Form.Select name="industry" id="industry" onChange={formik.handleChange}>
+                        {industries.map(industry => 
+                            <option key={industry} defaultValue="--" value={formik.values.industry}>{industry}</option>
+                        )}
+            </Form.Select>
                 </FloatingLabel>
-                <FloatingLabel label="State">
-                    <Form.Control type="text" name="state" value={formik.initialValues.state} onChange={formik.handleChange} />
-                </FloatingLabel>
+                </Form.Group> 
+
+                </Row>
+                <Row className="mb-3">
+                <Form.Group as={Col}>
+                        <FloatingLabel label="City">
+                            <Form.Control 
+                            type="text" 
+                            name="city" 
+                            value={formik.values.city} 
+                            onChange={formik.handleChange} 
+                            isInvalid={formik.touched.city && formik.errors.city}
+                            onBlur={formik.handleBlur}
+                            />
+                            {formik.errors.city && formik.touched.city && (
+                                <div style={{ color: "red"}}>{formik.errors.city}</div>
+                            )}
+                        </FloatingLabel>
+                        </Form.Group> 
+                <Form.Group as={Col}>
+                        <FloatingLabel label="State">
+                            <Form.Select
+                            name="state" 
+                            value={formik.values.state} 
+                            onChange={formik.handleChange}
+                            isInvalid={formik.touched.state && formik.errors.state}
+                            onBlur={formik.handleBlur}
+                            >
+                                {states.map(state => 
+                                    <option  defaultValue="--">{state}</option>
+                                )}
+                            {formik.errors.state && formik.touched.state && (
+                                <div style={{ color: "red"}}>{formik.errors.state}</div>
+                            )}
+                            </Form.Select>
+                        </FloatingLabel>
+                        </Form.Group>
+                <Form.Group as={Col}>
+
                 <FloatingLabel label="ZipCode">
-                    <Form.Control type="text" name="zipcode" value={formik.initialValues.zipcode} onChange={formik.handleChange} />
-                </FloatingLabel>
-                <FloatingLabel label="Description">
-                    <Form.Control as="textarea" name="description" value={formik.initialValues.description} onChange={formik.handleChange} />
+                    <Form.Control type="text" name="zipcode" onChange={formik.handleChange} />
                 </FloatingLabel>
                 </Form.Group>
-            </div>
-            <div className="job-type">
-                <Form.Label htmlFor="job-type">Job-Type: </Form.Label>
-                {jobtypes.map(job => 
-                    <Form.Check name="jobType" label={job} value={job} id={job} onChange={formik.handleChange} defaultChecked={formik.values.jobtype.includes(job)}/>
-                )}
-            {/* <Form.Check name="jobType" label="Part-Time" value="PT" id={`inline-checkbox-2`} onChange={formik.handleChange} defaultChecked={formik.values.jobtype}/> 
-            <Form.Check name="jobType" label="Contract" value="Contract" id={`inline-checkbox-3`} onChange={formik.handleChange} defaultChecked={formik.values.jobtype}/>
-            <Form.Check name="jobType" label="Temporary" value="Temporary" id={`inline-checkbox-4`} onChange={formik.handleChange} defaultChecked={formik.values.jobtype}/> */}
-            </div>
-                <div className="schedule">
-            <Form.Label htmlFor="schedule">Schedule: </Form.Label>
-                    {schedule.map(day => 
-                        <Form.Check name="schedule" id={day} label={day} value={day} onChange={formik.handleChange} 
-                        defaultChecked={formik.values.schedule.includes(day)}
-                        />
+                </Row>
+                
+                <FloatingLabel label="Description">
+                    <Form.Control as="textarea" name="description" onChange={formik.handleChange} />
+                </FloatingLabel>
+            <Row className="align-items-center">
+                <Form.Group as={Col}>
+                <div className="job type">
+                    <Form.Label htmlFor="job type"> Job-Type: </Form.Label>
+                    {jobtypes.map(job => 
+                        <Form.Check name="jobtype" label={job} value={formik.values.jobType} id={job} key={job} onChange={formik.handleChange} />
                     )}
                 </div>
+                </Form.Group>
+                <Form.Group as={Col}>
+                    
+                <div className="schedule">
+                    <Form.Label htmlFor="schedule">Schedule: </Form.Label>
+                    {schedule.map(day => 
+                        <Form.Check name="schedule" id={day} label={day} value={formik.values.schedule} key={day} onChange={formik.handleChange} />
+                        )}
+                </div>
+                        </Form.Group>
+                        <Form.Group as={Col}>
+                    
                 <div className="shifts">
-                    <Form.Label>Shifts: </Form.Label>
-                    {shifts.map(shift =>                             
-                        <Form.Check name="shift" label={shift} value={shift} onChange={formik.handleChange} defaultChecked={formik.values.shifts.includes(shift)} />
-                        )}
+                <Form.Label>Shifts: </Form.Label>
+                {shifts.map(shift =>                             
+                    <Form.Check name="shifts" label={shift} value={formik.values.shifts} key={shift} onChange={formik.handleChange} />
+                    )}
                 </div>
-                <div className="seasonal">
-                    <Form.Label>Season Availability: </Form.Label>
-                    <FloatingLabel label="Seasonal Start">
+                    </Form.Group>
+                </Row>
 
-                    <Form.Select name="seasonstart" onChange={formik.handleChange} defaultValue={formik.values.seasonstart}> 
-                        {months.map(month =>
-                                <option selected={formik.values.seasonstart == month}>{month}</option>
-                        )}
-                    </Form.Select>
-                        </FloatingLabel>
-                        <FloatingLabel label="Seasonal End">
+                <Form.Label>Season Availability: </Form.Label>
+                <Row className="mb-3">
+                <Form.Group as={Col}>
+                <FloatingLabel label="Seasonal Start">
 
-                    <Form.Select name="seasonend" onChange={formik.handleChange} defaultValue={formik.values.seasonend}> 
-                        {months.map(month => 
-                        <option selected={formik.values.seasonend == month}>{month}</option>
-                        )}
-                    </Form.Select>
+                <Form.Select name="seasonstart" onChange={formik.handleChange} > 
+                    {months.map(month =>
+                            <option key={month}>{month}</option>
+                    )}
+                </Form.Select>
                     </FloatingLabel>
-                </div>
-                <div className="payrate">
-                    <Form.Label>
-                        Minimum Pay Rate: 
-                    </Form.Label>
-                    <Form.Control type="text" name="minpay" onChange={formik.handleChange} value={formik.values.minpay}/>
-                    <Form.Label>
-                        Maximum Pay Rate: 
-                    </Form.Label>
-                    <Form.Control type="text" name="maxpay" onChange={formik.handleChange} value={formik.values.maxpay}/>
-                </div>
+                    </Form.Group>
+                    <Form.Group as={Col}>
+                    <FloatingLabel label="Seasonal End">
+
+                <Form.Select name="seasonend" onChange={formik.handleChange}> 
+                    {months.map(month => 
+                    <option>{month}</option>
+                    )}
+                </Form.Select>
+                </FloatingLabel>
+                </Form.Group>
+
+                </Row>
+                <Row className="mb-3">
+                <Form.Group as={Col}>
+                <Form.Label>
+                    Minimum Pay Rate: 
+                </Form.Label>
+                <Form.Control type="text" name="minpay" onChange={formik.handleChange} value={formik.values.minpay}/>
+                </Form.Group>
+                <Form.Group as={Col}>
+                <Form.Label>
+                    Maximum Pay Rate: 
+                </Form.Label>
+                <Form.Control type="text" name="maxpay" onChange={formik.handleChange} value={formik.values.maxpay}/>
+                </Form.Group>
+                </Row>
                 <div className="submit">
-                    <Button type="submit" value="Edit Job" onClick={formik.handleSubmit}>Edit Job</Button>
+                    <Button type="submit" value="Add Job" onClick={formik.handleSubmit}>Add Job</Button>
                 </div>
             </Form>
         </div>

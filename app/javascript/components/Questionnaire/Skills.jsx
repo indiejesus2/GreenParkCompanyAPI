@@ -17,27 +17,6 @@ const Skills = props => {
         "Landscape",   
     ]
 
-    const [click, setClick] = useState(1)
-
-    const handleExperience = () => {
-        if (click < 3) {
-            let exp = click + 1
-            setClick(exp)
-        }
-    }
-
-    const addExperience = () => {
-        const exp = []
-        for (let i = 2; i<=click;i++) {
-            exp.push(<Experience id={i} handleChange={props.handleChange} />,
-                <Button name="Add Experience" onClick={handleExperience}>Additional Experience</Button>,
-                <Button>Delete Experience</Button>
-                );
-        }
-        return exp
-    }
-
-
     return(
         <React.Fragment>
         <Modal show animation backdrop>
@@ -52,15 +31,13 @@ const Skills = props => {
             <Form.Select name="industry" id="industry" onChange={props.handleChange}>
             <option>Work Industry</option>
                         {industries.map(industry => 
-                        <option value={industry}>{industry}</option>
+                        <option key={value} value={industry}>{industry}</option>
                             )}
             </Form.Select>
                 <Form.Label>
                     Experience:
                 </Form.Label>
-                <Experience id={1} handleChange={props.handleChange} handleSkills={props.handleSkills} />
-                <Button name="Add Experience" onClick={handleExperience}>Additional Experience</Button>
-                {addExperience()}
+                <Experience handleChange={props.handleChange} />
             </Modal.Body>
             <Modal.Footer>
                 <Button variant="primary" name="previous" onClick={props.handleClick}>

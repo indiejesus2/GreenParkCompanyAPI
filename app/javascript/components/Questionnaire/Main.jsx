@@ -33,7 +33,6 @@ const Main = (props) => {
             zipcode: '',
             phone: '',
             license: false,
-            // education: '',
             jobType: [],
             schedule: [],
             shifts: [],
@@ -42,29 +41,15 @@ const Main = (props) => {
             minpay: 0,
             maxpay: 0,
             industry: '',
-            // skills: [],
             experience: [
                 {
-                id: 1,
                 title: "",
                 company: "",
                 city: "",
                 state: "",
                 zipcode: "",
                 phone: "",
-                startdate: "",
-                enddate: "",
-                description: "",
-                current: false
-            },
-                {
-                    id: 2,
-                title: "",
-                company: "",
-                city: "",
-                state: "",
-                zipcode: "",
-                phone: "",
+                email: "",
                 startdate: "",
                 enddate: "",
                 description: "",
@@ -81,12 +66,6 @@ const Main = (props) => {
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
-
-    const handleSkills = (e) => {
-        let id = e.target.id
-        formik.values.experience[id-1].id = id
-    }
-    
 
     const handleClick = (e) => {
         let currentStep = state.currentStep;
@@ -114,7 +93,6 @@ const Main = (props) => {
         return (
             <div>
             <h1>BluCollar Tradespeople Main</h1>
-            {/* <Modal show={state.show}>     */}
             <Form onSubmit={formik.handleSubmit}>
                 <Basic
                     currentStep={state.currentStep}
@@ -136,7 +114,6 @@ const Main = (props) => {
                     handleChange={formik.handleChange}
                     values={formik.values}
                     handleClick={handleClick}
-                    handleSkills={handleSkills}
                     handleSubmit={formik.handleSubmit}
                     />
             </Form>

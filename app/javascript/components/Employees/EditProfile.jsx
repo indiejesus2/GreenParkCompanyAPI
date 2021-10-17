@@ -21,6 +21,60 @@ export default function EditProfile(props) {
         "Dec"
     ]
 
+    const states = [
+        "--",
+        "AL",
+        "AK",
+        "AZ",
+        "AR",
+        "CA",
+        "CO",
+        "CT",
+        "DE",
+        "FL",
+        "GA",
+        "HI",
+        "ID",
+        "IL",
+        "IN",
+        "IA",
+        "KS",
+        "KY",
+        "LA",
+        "ME",
+        "MD",
+        "MA",
+        "MI",
+        "MN",
+        "MS",
+        "MO",
+        "MT",
+        "NE",
+        "NV",
+        "NH",
+        "NJ",
+        "NM",
+        "NY",
+        "NC",
+        "ND",
+        "OH",
+        "OK",
+        "OR",
+        "PA",
+        "RI",
+        "SC",
+        "SD",
+        "TN",
+        "TX",
+        "UT",
+        "VT",
+        "VA",
+        "WA",
+        "WV",
+        "WI",
+        "WY"
+    ]
+
     const jobtypes = [
         "Full Time",
         "Part Time",
@@ -100,7 +154,11 @@ export default function EditProfile(props) {
                         </Form.Group> 
                     <Form.Group as={Col}>
                         <FloatingLabel label="State">
-                            <Form.Control type="text" name="state" value={formik.initialValues.state} onChange={formik.handleChange} />
+                        <Form.Select name={`experience.state`} onChange={props.handleChange}>
+                            {states.map(state => 
+                                <option defaultValue="--">{state}</option>
+                            )}
+                        </Form.Select>
                         </FloatingLabel>
                         </Form.Group>
                     <Form.Group as={Col}>

@@ -10,7 +10,6 @@ const Profile = props => {
     const employee = props.profile
 
     return (
-        <div>
 
         <div className="employee-profile">
             <NavBar handleSignout={props.signOut} profile={props.profile} user="employee" />
@@ -27,13 +26,13 @@ const Profile = props => {
                 {props.experience.map(history => 
             <div className="work-history" key={history.id}>
                 Experience:
-                    <p>{history.title}</p>
-                    <p>{history.company}</p>
+                <br />
+                    <span>{history.title} - {history.company}</span>
             </div>
                     )}
+                    <br />
             <button onClick={handleClick}>Edit Profile</button>
         </div>
-                </div>
     )
 }
 
