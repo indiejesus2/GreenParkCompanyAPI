@@ -135,6 +135,12 @@ a {
   width: 700px;
 }
 
+@media (max-width: 600px) {
+  .homepage-header img {
+    width: 700px;
+  }
+}
+
 // .homepage-cards {
 // }
 
