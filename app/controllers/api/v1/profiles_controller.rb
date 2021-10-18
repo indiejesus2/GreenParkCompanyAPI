@@ -49,7 +49,7 @@ class Api::V1::ProfilesController < ApplicationController
     
     def history_params
         if !!params[:experience] && params[:experience][:title] != ""
-            params.require(:experience).permit(:title, :company, :city, :state, :zipcode, :phone, :startdate, :enddate, :description, :current))
+            params.require(:experience).permit(:title, :company, :city, :state, :zipcode, :phone, :startdate, :enddate, :description, :current)
         end
     end
 
