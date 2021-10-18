@@ -5,6 +5,7 @@ const EmployeeProfile = props => {
     const job = props.jobs.find(job => job.id == props.match.params.job_id)
     const candidate = job.profiles.find(profile => profile.employee_id == props.match.params.employee_id)
 
+    
         return (
         <div className="employee-profile">
             <h2>{candidate.fname} {candidate.lname}</h2>

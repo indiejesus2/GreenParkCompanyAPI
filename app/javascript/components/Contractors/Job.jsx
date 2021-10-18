@@ -14,6 +14,7 @@ const Job = props => {
             </div>
             )
         } else {
+            debugger
             return (
                 <div className="job">
                     <Card.Header>

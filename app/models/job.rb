@@ -5,7 +5,7 @@ class Job < ApplicationRecord
     has_many :profiles, through: :employees
     has_many :experiences, through: :employees
     geocoded_by :address
-    before_save :proximity, :potential
+    before_save :updated, :proximity, :potential
     after_validation :geocode
 
   def address
@@ -32,52 +32,59 @@ class Job < ApplicationRecord
   def potential
     @types = {}
     @types = {
-      "jobtype": jobtype.join().split(", "),
-      "schedule": schedule.join().split(", "),
-      "shifts": shifts.join().split(", "),
-      "seasonstart": seasonstart,
-      "seasonend": seasonend,
-      "minpay": minpay,
-      "maxpay": maxpay,
-      "license": license,
-    }
-    employees.each{|employee|
-        @rating = 1
-        if employee.profile.minpay <= @types[:maxpay] && employee.profile.minpay >= @types[:minpay]
-          print("minpay")
-          @rating+=1
-        elsif employee.profile.maxpay >= @types[:minpay] && employee.profile.maxpay <= @types[:maxpay]
-          print("maxpay")
-          @rating+=1
-        end
-        if employee.profile.license == @types[:license]
-          print("license")
-          @rating+=1
-        end
-        @types[:jobtype].each {|type| 
-          if employee.profile.jobtype.include?(type)
-            print("jobtype")
+        "jobtype": jobtype.join().split(", "),
+        "schedule": schedule.join().split(", "),
+        "shifts": shifts.join().split(", "),
+        "seasonstart": seasonstart,
+        "seasonend": seasonend,
+        "minpay": minpay,
+        "maxpay": maxpay,
+        "license": license,
+      }
+      employees.each{|employee|
+          @rating = 1
+          if employee.profile.minpay <= @types[:maxpay] && employee.profile.minpay >= @types[:minpay]
+            print("minpay")
+            @rating+=1
+          elsif employee.profile.maxpay >= @types[:minpay] && employee.profile.maxpay <= @types[:maxpay]
+            print("maxpay")
             @rating+=1
           end
-        }
-        @types[:schedule].each {|type| 
-          if employee.profile.schedule.include?(type)
-            print("schedule")
+          if employee.profile.license == @types[:license]
+            print("license")
             @rating+=1
           end
-        }
-        @types[:shifts].each {|type| 
-          if employee.profile.shifts.include?(type)
-            print("shifts")
-            @rating+=1
+          @types[:jobtype].each {|type| 
+            if employee.profile.jobtype.include?(type)
+              print("jobtype")
+              @rating+=1
+            end
+          }
+          @types[:schedule].each {|type| 
+            if employee.profile.schedule.include?(type)
+              print("schedule")
+              @rating+=1
+            end
+          }
+          @types[:shifts].each {|type| 
+            if employee.profile.shifts.include?(type)
+              print("shifts")
+              @rating+=1
+            end
+          }
+          applicant = Applicant.find_by(employee_id: employee.id, job_id: id)
+          if applicant.rating != @rating
+            applicant.update(rating: @rating)
+            applicant.save
           end
-        }
-        applicant = Applicant.find_by(employee_id: employee.id, job_id: id)
-        if applicant.rating != @rating
-          applicant.update(rating: @rating)
-          applicant.save
-        end
-    }
+      }
+  end
+
+  def updated
+    applicants = Applicant.where(job_id: id)
+    if applicants.length > 0
+      applicants.each{|applicant| applicant.destroy}
+    end
   end
 
 end  

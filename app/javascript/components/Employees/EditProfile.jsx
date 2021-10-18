@@ -176,7 +176,16 @@ export default function EditProfile(props) {
                         </FloatingLabel>
                     </Form.Group>
                     <Row className="align-items-center">
+                    <Form.Group as={Col}>
+                <FloatingLabel label="Industry">
 
+                <Form.Select name="industry" id="industry" onChange={formik.handleChange} defaultValue={formik.initialValues.industry == industry} >
+                        {industries.map(industry => 
+                            <option key={industry}>{industry}</option>
+                        )}
+            </Form.Select>
+                </FloatingLabel>
+                </Form.Group> 
                     <Form.Group as={Col}>
                     <div className="job type">
                         <Form.Label htmlFor="job type"> Job-Type: </Form.Label>
@@ -215,7 +224,7 @@ export default function EditProfile(props) {
 
                     <Form.Select name="seasonstart" onChange={formik.handleChange} defaultValue={formik.values.seasonstart}> 
                         {months.map(month =>
-                                <option defaultValue={formik.initialValues.seasonstart == month}>{month}</option>
+                                <option>{month}</option>
                         )}
                     </Form.Select>
                         </FloatingLabel>
@@ -225,7 +234,7 @@ export default function EditProfile(props) {
 
                     <Form.Select name="seasonend" onChange={formik.handleChange} defaultValue={formik.values.seasonend}> 
                         {months.map(month => 
-                        <option defaultValue={formik.initialValues.seasonend == month}>{month}</option>
+                        <option >{month}</option>
                         )}
                     </Form.Select>
                     </FloatingLabel>

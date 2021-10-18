@@ -33,6 +33,7 @@ class ContractorsContainer extends Component {
                 </div>
             )
         } else {
+            debugger
         return (
             <div>
             <Logo user="contractor"/>

@@ -35,7 +35,7 @@ const [jobs, setJobs] = useState(props.jobs ? props.jobs : [])
                             </Card.Header>
                         <Card.Subtitle>{job.city}, {job.state} </Card.Subtitle>
                         <Card.Text>Description: {job.description} </Card.Text>
-                        <Card.Text>Number of Applicants: {job.employees.length} </Card.Text>
+                        <Card.Text>Number of Applicants: {job.applicants.length} </Card.Text>
                         <Card.Footer>
                             <Button onClick={() => handleClick(job)}>Delete</Button>
                         </Card.Footer>

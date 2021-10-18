@@ -5,31 +5,32 @@ import { Form, Button, Card } from 'react-bootstrap'
 const Applicants = (props) => {
     
     const [job, setJob] = useState(props.job)
+    const [applicants, setApplicants] = useState(props.job.applicants.sort(applicant => applicant.rating))
+    const [profiles, setProfiles] = useState(props.job.profiles)
     
     useEffect(() => {
         setJob(props.job)
+        setApplicants(props.job.applicants.sort(applicant=>applicant.rating))
+        setProfiles(props.job.profiles)
     })
     
     const [state, setState] = useState({
         jobtype: false,
         schedule: false,
         shifts: false,
-        applicants: job.applicants.sort(applicant => applicant.rating),
-        profiles: job.profiles.length > 0 ? props.job.profiles : []
     })
 
-    const original = state.profiles.map(profile => {
-        debugger
+    const original = profiles.map(profile => {
         let oObj = {
             info: '',
             rating: '',
             distance: '',
         }
-        for (let i = 0; i<state.applicants.length;i++) {
-                if (profile.id == state.applicants[i].employee_id) {
+        for (let i = 0; i<applicants.length;i++) {
+                if (profile.id == applicants[i].employee_id) {
                     oObj.info = profile,
-                    oObj.rating = state.applicants[i].rating,
-                    oObj.distance = state.applicants[i].distance
+                    oObj.rating = applicants[i].rating,
+                    oObj.distance = applicants[i].distance
                 }
         }
         return oObj
