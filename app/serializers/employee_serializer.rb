@@ -6,5 +6,4 @@ class EmployeeSerializer
     has_many :experiences
     has_many :applicants
     has_many :jobs, through: :applicants
-    has_many :employers, through: :applicants
 end 

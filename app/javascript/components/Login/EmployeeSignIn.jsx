@@ -19,7 +19,6 @@ export default function EmployeeSignIn(props) {
     const [show, setShow] = useState(true)
     const history = useHistory();
     const [alert, setAlert] = useState(false)
-    const [errors, setErrors] = useState(props.errors)
 
     const schema = yup.object().shape({
         email: yup.string().email("Please enter a valid email address").required("Email is required."),
@@ -32,8 +31,7 @@ export default function EmployeeSignIn(props) {
     }
 
     useEffect(() => {
-        if (errors != props.errors) {
-            setErrors(props.errors)
+        if (props.errors) {
             setAlert(true)
         }
     })
@@ -63,7 +61,7 @@ export default function EmployeeSignIn(props) {
         <img src="/images/blucollar_horizicon.png" alt="Blue Collar Logo" className="signIn"/>
             Sign-In</Modal.Header>
 
-            <Form onSubmit={formik.handleSubmit}>
+            <Form noValidate onSubmit={formik.handleSubmit}>
             <Modal.Body>
             <Alert show={alert}>
                     {props.errors}

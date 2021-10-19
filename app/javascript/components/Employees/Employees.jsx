@@ -17,9 +17,12 @@ const Employees = props => {
     })
 
     const [jobs, setJobs] = useState(props.jobs)
-
+    const [errors, setErrors] = useState(props.errors)
+    
     useEffect(() => {
-        if (props.jobs && props.job != jobs) {
+        if (props.errors != errors) {
+            setErrors(props.errors)
+        } else if (props.jobs && props.job != jobs) {
             setJobs(props.jobs)
         }
     })
@@ -44,8 +47,8 @@ const Employees = props => {
         return (
                 <div className="signin">
                     <Home />
-                    <EmployeeSignUp signUp={props.signUp} currentStep={state.currentStep} handleClick={handleClick} errors={props.errors} />
-                    <EmployeeSignIn signIn={props.signIn} currentStep={state.currentStep} handleClick={handleClick} errors={props.errors} />
+                    <EmployeeSignUp signUp={props.signUp} currentStep={state.currentStep} handleClick={handleClick} errors={errors} />
+                    <EmployeeSignIn signIn={props.signIn} currentStep={state.currentStep} handleClick={handleClick} errors={errors} />
                 </div>
         )
     } else if (props.profile == null) {

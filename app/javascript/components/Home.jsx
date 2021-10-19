@@ -14,7 +14,7 @@ class Home extends Component {
                 {/* <NavBar/> */}
                     <div className="homepage-container">
                         <div className="homepage-header">
-                            <img src="/images/blucollarlogo_wtagline.png" alt="" />
+                            <img src="/images/blucollarlogo_wocollar.png" alt="" />
                             {/* <h1>Start Your Career Path, Today!</h1> */}
                         </div>
                         <div className="homepage-body">

@@ -15,7 +15,7 @@ const Profile = props => {
             <h5>Email: {props.contractor.email}</h5>
             <h5>Subscription: {props.contractor.subscription}</h5>
             <h5>Status: {props.contractor.status == true ? "True" : "False"}</h5>
-            <button onClick={handleClick}>Edit</button>
+            <button onClick={handleClick}>Edit Profile</button>
         </div>
     )
 }

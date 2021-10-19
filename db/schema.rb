@@ -13,6 +13,7 @@
 ActiveRecord::Schema.define(version: 2021_09_17_033305) do
 
   # These are extensions that must be enabled in order to support this database
+  enable_extension "citext"
   enable_extension "hstore"
   enable_extension "plpgsql"
 
@@ -30,7 +31,7 @@ ActiveRecord::Schema.define(version: 2021_09_17_033305) do
   end
 
   create_table "employees", force: :cascade do |t|
-    t.string "email"
+    t.citext "email"
     t.string "password_digest"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -39,7 +40,7 @@ ActiveRecord::Schema.define(version: 2021_09_17_033305) do
 
   create_table "employers", force: :cascade do |t|
     t.string "name"
-    t.string "email"
+    t.citext "email"
     t.string "password_digest"
     t.string "subscription"
     t.boolean "status"

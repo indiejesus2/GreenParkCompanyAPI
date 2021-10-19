@@ -1,4 +1,4 @@
-export default function employeesReducer(state = {employee: [], profile: [], experience: [], jobs: [], loggedIn: false, loading: false, errors: []}, action) {
+export default function employeesReducer(state = {employee: [], profile: [], experience: [], jobs: [], loggedIn: false, loading: false}, action) {
     switch(action.type) {
         case 'LOADING_EMPLOYEES':
             return {
@@ -44,7 +44,7 @@ export default function employeesReducer(state = {employee: [], profile: [], exp
             }
             case 'LOGOUT_USER':
                 return {
-                    employer: [],
+                    employee: [],
                     loggedIn: false
                 }
         default:

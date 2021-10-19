@@ -13,34 +13,17 @@ class Api::V1::AuthController < ApplicationController
         if @employee && @employee.authenticate(employee_params[:password])
             # session[:user_id] = @employee.id
             # format.html { redirect_to @employee, notice: "Employee was successfully creaated." }
-            byebug
             redirect_to api_v1_employee_path(@employee)
             # token = issue_token(@user)
             # cookies.signed[:jwt] = {value: token, httponly: true, expires: 1.hour.from_now}
             # render json: {user: UserSerializer.new(@user), jwt: token}
         elsif @contractor && @contractor.authenticate(employer_params[:password])
             session[:user_id] = @contractor.id
-
             redirect_to api_v1_employer_jobs_path(@contractor)
-            # render json: {contractor: @contractor, jobs: @contractor.jobs, candidates:}
-            # , profile: @contractor.profile}
         else
             render json: {error: "Incorrect Username/Password"}, status: 401
         end
     end
-
-    # def show
-    #     @user = User.find_by(id: user_id)
-    #     if logged_in?
-    #         render json: @user
-    #     else
-    #         render json: {error: 'No user could be found'}, status: 401
-    #     end
-    # end
-
-    # def destroy
-    #     byebug
-    # end
 
     private
 

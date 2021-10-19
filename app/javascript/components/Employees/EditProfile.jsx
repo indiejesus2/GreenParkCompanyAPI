@@ -95,6 +95,16 @@ export default function EditProfile(props) {
         "Evening"
     ]
 
+    const industries = [
+        "--",
+        "Plumbing",
+        "Painting",
+        "Maintenance",
+        "Electric",
+        "Landscape",   
+        "Other"
+    ]
+
     const employee = props.profile
 
     const formik = useFormik({
