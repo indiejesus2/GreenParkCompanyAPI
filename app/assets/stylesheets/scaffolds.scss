@@ -21,6 +21,10 @@ a {
 a:visited {
   color: #666; }
 
+nav {
+  margin-top: 10px;
+}
+
 // a:hover {
 //   color: #fff;
 //   background-color: #000; }
@@ -102,12 +106,17 @@ label {
   justify-content: right;
 }
 
-a {
-  margin: 5px;
+.nav {
+  display: flex;
+  justify-content: center;
 }
 
+// a {
+//   margin: 5px;
+// }
+
 .homepage {
-  margin: 20px;
+  margin: 75px;
 }
 
 .homepage-container {
@@ -195,7 +204,7 @@ a {
 // }
 
 .card a {
-  color: white;
+  color: 	#113955;
 }
 
 .card-header {
@@ -204,10 +213,10 @@ a {
   background-color: inherit;
 }
 
-.jobs {
-  display: grid;
-  justify-content: center;
-}
+// .jobs {
+//   display: grid;
+//   justify-content: center;
+// }
 
 h1, h2 {
   text-align: center;
@@ -221,14 +230,51 @@ h1, h2 {
 
 .employer-nav{
   display: grid;
-  justify-content: center;
   margin-bottom: 25px;
+}
+
+.employer-nav nav {
+  display: flex;
+  justify-content: center;
 }
 
 // .employees {
 //   display: grid;
 //   justify-content: center;
 // }
+
+.candidates {
+    display: flex;
+    justify-content: space-evenly;
+    flex-flow: wrap;
+    margin-block: 25px;
+}
+
+.candidates .card {
+  display: grid;
+  justify-items: center;
+  background-color: #3d8ac9;
+}
+
+.search {
+  display: grid;
+  justify-content: center;
+}
+
+.search label {
+  margin-block-end: 15px;
+  margin-inline: 15px;
+}
+
+.search button {
+  margin-left: 10px;
+}
+
+.search-buttons {
+  display: flex;
+  justify-content: right;
+  margin-block-start: 10px;
+}
 
 .employees h2 {
   position: relative;
@@ -246,6 +292,7 @@ h1, h2 {
   padding: 10px;
   margin-inline: 25px;
   margin-block-end: 45px;
+  background-color: #3d8ac9;
 }
 
 .employee-jobs-buttons {
@@ -258,9 +305,37 @@ h1, h2 {
   padding: 10px;
   margin-inline: 25px;
   margin-block-end: 45px;
+  background-color: #3d8ac9;
+}
+
+.employer-jobs button {
+  background-color: #113955;
+  border-color: #113955;
 }
 
 .employer-profile {
+  display: grid;
+  justify-content: center;
+}
+
+.contractor .jobs {
+  display: grid;
+  justify-content: center;
+}
+
+.contractor .job {
+  width: 50rem;
+}
+
+.contractor table {
+  margin-bottom: -1px;
+}
+
+.contractor h1 {
+  margin: -5px;
+}
+
+.job .card-body {
   display: grid;
   justify-content: center;
 }

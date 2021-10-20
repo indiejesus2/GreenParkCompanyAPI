@@ -27,7 +27,7 @@ const [jobs, setJobs] = useState(props.jobs ? props.jobs : [])
                 {/* <CardGroup> */}
 
                          {jobs.map(job =>
-                        <Card id={job.id} key={job.id} bg="info" text="white" style={{width: '18rem'}}>
+                        <Card id={job.id} key={job.id} text="white" style={{width: '18rem'}}>
                             <Card.Header as="h2">
                             <Link to={`/contractors/${props.contractor.id}/jobs/${job.id}`} >
                                 {job.title}

@@ -78,7 +78,7 @@ const Applicants = (props) => {
     }
     
     return (
-        <div className="candidates">
+        <div className="applicants">
         <div className="search">
             <Form onSubmit={handleSearch}>
             <label htmlFor="search">Search Candidates: </label>
@@ -101,8 +101,12 @@ const Applicants = (props) => {
             <option value={75}>75</option>
             <option value={100}>100</option>
         </Form.Control>
-        <Button onClick={handleClear}> Clear </Button>
-        <Button type="submit"> Search </Button>
+        <div className="search-buttons">
+            <Button onClick={handleClear}> Clear </Button>
+            <Button type="submit"> Search </Button>
+        </div>
+        </Form>
+        </div>
         {/* <Form.Label>
             Minimum Pay Rate: 
         </Form.Label>
@@ -111,23 +115,20 @@ const Applicants = (props) => {
             Maximum Pay Rate: 
         </Form.Label>
         <Form.Control type="text" name="maxpay" onChange={props.handleChange} /> */}
-            </Form>
-        <div>
+        <div className="candidates">
         {candidates.map(candidate => 
-            <Card id={candidate.info.id} key={candidate.info.id} bg="info" style={{width: '18rem'}}>
+            <Card id={candidate.info.id} key={candidate.info.id} style={{width: '10rem'}}>
                 <Card.Title>
                     <Link to={`/contractors/${props.job.employer_id}/jobs/${props.job.id}/employees/${candidate.info.employee_id}`}>
                         <h3>{candidate.info.fname} {candidate.info.lname}</h3>
                     </Link>
-
                 </Card.Title>
-                <Card.Body>
-                      <Card.Subtitle>{candidate.info.city}, {candidate.info.state}</Card.Subtitle>
-                      <Card.Text>{candidate.rating}</Card.Text>
-                </Card.Body>
+                    <Card.Subtitle>{candidate.info.city}, {candidate.info.state}</Card.Subtitle>
+                      <Card.Text>Match Score: {candidate.rating}</Card.Text>
+                {/* <Card.Body>
+                </Card.Body> */}
                 </Card>
         )}
-        </div>
         </div>
                 </div>
     )

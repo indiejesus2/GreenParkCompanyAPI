@@ -1,4 +1,5 @@
 import React from 'react'
+import NavBar from '../NavBar'
 
 const EmployeeProfile = props => {
 
@@ -8,6 +9,8 @@ const EmployeeProfile = props => {
     
         return (
         <div className="employee-profile">
+            <NavBar handleSignout={props.signOut} contractor={props.contractor} user="contractor" />
+
             <h2>{candidate.fname} {candidate.lname}</h2>
             <h4>{candidate.city}, {candidate.state}</h4>
             <h5>{candidate.industry}</h5>

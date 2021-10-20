@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { Card, Form, Button } from 'react-bootstrap'
+import { Card, Form, Button, Table } from 'react-bootstrap'
 import Applicants from './Applicants'
 
 const Job = props => {
@@ -14,22 +14,44 @@ const Job = props => {
             </div>
             )
         } else {
-            debugger
             return (
                 <div className="job">
                     <Card.Header>
                     <img src="/images/noun_electric_3108716.png" alt="Electric" />
                         <h1>{job.title}</h1>
-                        <br />
+                    <Card.Subtitle>{job.city}, {job.state}</Card.Subtitle>
                     <Link to={`/contractors/${job.employer_id}/jobs/${job.id}/editjob`}>Edit Job</Link>
                     </Card.Header>
-                    <Card.Subtitle>{job.city}, {job.state}</Card.Subtitle>
-                    <Card.Text>Job Type: {job.jobtype.join(", ")}</Card.Text>
-                    <Card.Text>Schedule: {job.schedule.join(", ")}</Card.Text>
-                    <Card.Text>Shifts: {job.shifts.join(", ")}</Card.Text>
-                    <Card.Text>Season: {job.seasonstart} - {job.seasonend} </Card.Text>
-                    <Card.Text>Pay Range: {job.minpay} - {job.maxpay}</Card.Text>
-                    <Card.Text>{job.description}</Card.Text>
+                    <Card.Body>
+                        <Table>
+                            <tbody>
+                                <tr>
+                                    <td>Job Type:</td>
+                                    <td>{job.jobtype.join(", ")}</td>
+                                </tr>
+                                <tr>
+                                    <td>Schedule:</td>
+                                    <td>{job.schedule.join(", ")}</td>
+                                </tr>
+                                <tr>
+                                    <td>Shifts:</td>
+                                    <td>{job.shifts.join(", ")}</td>
+                                </tr>
+                                <tr>
+                                    <td>Season Availability:</td>
+                                    <td>{job.seasonstart} - {job.seasonend} </td>
+                                </tr>
+                                <tr>
+                                    <td>Pay Range:</td>
+                                    <td>{job.minpay} - {job.maxpay}</td>
+                                </tr>
+                                <tr>
+                                    <td>Description:</td>
+                                    <td>{job.description}</td>
+                                </tr>
+                            </tbody>
+                        </Table>
+                    </Card.Body>
                             <Applicants job={job}/>
                         </div>
 
