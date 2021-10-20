@@ -28,6 +28,7 @@ class Api::V1::EmployersController < ApplicationController
     if @employer.save
       # @employer.profile.new()
       session[:user_id] = @employer.id
+      EmployerMailer.with(employer: @employer).welcome_email.deliver_later
       render json: @employer
     else
       render json: @employer.errors

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <img src="/images/BluCollar-Logo.jpeg" alt="Logo" />
+    <p>Hello <%= @employer.name %>,</p>
+    <p>
+      Here are the latest candidates you match with. 
+    </p>
+    <% @candidates.each do |candidate| %>
+        <h3><%= candidate.name %></h3>
+        <p><%= candidate.address %></p>
+        <p><%= candidate.description %></p>
+    <% end %>
+    <p>
+
+      To login to the site, just follow this link: <a href=<%= @url %>>BluCollar</a>.
+    </p>
+    <p>Happy hunting and have a great day!</p>
+    <p>BluCollar</p>
+  </body>
+</html>
