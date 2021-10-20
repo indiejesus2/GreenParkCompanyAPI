@@ -245,14 +245,17 @@ h1, h2 {
 
 .candidates {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
     flex-flow: wrap;
     margin-block: 25px;
 }
 
 .candidates .card {
+  width: 12rem;
+  padding: 5px;
   display: grid;
   justify-items: center;
+  margin-inline: 50px;
   background-color: #3d8ac9;
 }
 
