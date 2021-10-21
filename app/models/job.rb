@@ -5,7 +5,8 @@ class Job < ApplicationRecord
     has_many :profiles, through: :employees
     has_many :experiences, through: :employees
     geocoded_by :address
-    before_save :updated, :proximity, :potential
+    # before_create :proximity
+    # before_update :proximity 
     after_validation :geocode
 
   def address
@@ -19,14 +20,15 @@ class Job < ApplicationRecord
         Applicant.create(employee_id: "#{profile.employee_id}", employer_id: "#{employer_id}", job_id: "#{id}", distance: distance_to(profile))
       end
     }
+    self.potential
   end
 
   def posted
     self.status = true
   end
 
-  def payrange
-
+  def closed
+    self.status = false
   end
 
   def potential
@@ -73,7 +75,7 @@ class Job < ApplicationRecord
             end
           }
           applicant = Applicant.find_by(employee_id: employee.id, job_id: id)
-          if applicant.rating != @rating
+          if !!applicant && applicant.rating != @rating
             applicant.update(rating: @rating)
             applicant.save
           end
@@ -81,9 +83,15 @@ class Job < ApplicationRecord
   end
 
   def updated
-    applicants = Applicant.where(job_id: id)
+    applicants = self.applicants
     if applicants.length > 0
-      applicants.each{|applicant| applicant.destroy}
+      applicants.each{|applicant|
+        # if a job's industry or address is changed, current applicants must be checked to see if they are a match.
+        # if industry doesn't match applicant industry or Profile isn't near the updated address
+        if applicant.profile.industry != industry || Profile.near(address, 100).include?(applicant.profile) != true
+          Applicant.destroy(applicant.id)
+        end
+      }
     end
   end
 

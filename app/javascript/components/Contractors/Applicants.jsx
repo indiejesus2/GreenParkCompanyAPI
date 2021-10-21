@@ -8,25 +8,6 @@ const Applicants = (props) => {
     const [job, setJob] = useState(props.job)
     const [applicants, setApplicants] = useState(props.job.applicants.sort(applicant => applicant.rating))
     const [profiles, setProfiles] = useState(props.job.profiles)
-    const [show, setShow] = useState(false)
-    const [applicant, setApplicant] = useState("")
-    const handleClose = () => setShow(false);
-    const handleShow = (candidate) => {
-        setApplicant(candidate)
-        setShow(true);
-    }
-    
-    useEffect(() => {
-        setJob(props.job) 
-        setApplicants(props.job.applicants.sort(applicant=>applicant.rating))
-        setProfiles(props.job.profiles)
-    })
-    
-    const [state, setState] = useState({
-        jobtype: false,
-        schedule: false,
-        shifts: false,
-    })
 
     const original = profiles.map(profile => {
         let oObj = {
@@ -44,8 +25,31 @@ const Applicants = (props) => {
         return oObj
     })
 
-
+    const [show, setShow] = useState(false)
+    const [applicant, setApplicant] = useState("")
     const [candidates, setCandidates] = useState(original)
+    const handleClose = () => setShow(false);
+    const handleShow = (candidate) => {
+        setApplicant(candidate)
+        setShow(true);
+    }
+    
+    useEffect(() => {
+        setJob(props.job) 
+        setApplicants(props.job.applicants.sort(applicant=>applicant.rating))
+        setProfiles(props.job.profiles)
+        setCandidates(original)
+    })
+    
+    const [state, setState] = useState({
+        jobtype: false,
+        schedule: false,
+        shifts: false,
+    })
+
+
+
+
     
     const handleSearch = (e) => {
         e.preventDefault()

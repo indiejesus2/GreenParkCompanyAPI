@@ -7,7 +7,7 @@ const Jobs = (props) => {
 const [jobs, setJobs] = useState(props.jobs ? props.jobs : [])
 
     useEffect(() => {
-        if (props.jobs && props.jobs != jobs) {
+        if (props.jobs || props.jobs != jobs) {
             setJobs(props.jobs)
         }
 
@@ -35,7 +35,7 @@ const [jobs, setJobs] = useState(props.jobs ? props.jobs : [])
                             </Card.Header>
                         <Card.Subtitle>{job.city}, {job.state} </Card.Subtitle>
                         <Card.Text>Description: {job.description} </Card.Text>
-                        <Card.Text>Number of Applicants: {job.applicants.length} </Card.Text>
+                        <Card.Text>Number of Applicants: {job.profiles.length} </Card.Text>
                         <Card.Footer>
                             <Button onClick={() => handleClick(job)}>Delete</Button>
                         </Card.Footer>

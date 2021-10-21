@@ -26,6 +26,10 @@ const Job = props => {
                         <Table>
                             <tbody>
                                 <tr>
+                                    <td>Industry:</td>
+                                    <td>{job.industry}</td>
+                                </tr>
+                                <tr>
                                     <td>Job Type:</td>
                                     <td>{job.jobtype.join(", ")}</td>
                                 </tr>

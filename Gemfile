@@ -30,6 +30,8 @@ gem 'jwt', '~> 2.2'
 
 gem 'dotenv-rails'
 
+gem 'whenever', '~> 0.9.4'
+
 gem 'geocoder', '~> 1.3', '>= 1.3.7'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'

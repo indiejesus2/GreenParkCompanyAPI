@@ -45,7 +45,10 @@ class Api::V1::JobsController < ApplicationController
 
     def update
         @job.update(job_params)
+        @job.proximity
+        @job.updated
         if @job.save
+            byebug
             render json: JobSerializer.new(@job)
         else
             render json: @job.errors

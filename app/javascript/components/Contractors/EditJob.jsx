@@ -215,10 +215,10 @@ export default function EditJob(props) {
                 </FloatingLabel>
             <Row className="align-items-center">
                 <Form.Group as={Col}>
-                <div className="job type">
+                <div className="jobtype">
                     <Form.Label htmlFor="job type"> Job-Type: </Form.Label>
                     {jobtypes.map(job => 
-                        <Form.Check name="jobtype" label={job} defaultChecked={formik.values.jobtype.includes(job)} id={job} key={job} onChange={formik.handleChange} />
+                        <Form.Check name="jobtype" label={job} value={job} defaultChecked={formik.values.jobtype.includes(job)} id={job} key={job} onChange={formik.handleChange} />
                     )}
                 </div>
                 </Form.Group>
@@ -227,7 +227,7 @@ export default function EditJob(props) {
                 <div className="schedule">
                     <Form.Label htmlFor="schedule">Schedule: </Form.Label>
                     {schedule.map(day => 
-                        <Form.Check name="schedule" id={day} label={day} defaultChecked={formik.values.schedule.includes(day)} key={day} onChange={formik.handleChange} />
+                        <Form.Check name="schedule" id={day} label={day} value={day} defaultChecked={formik.values.schedule.includes(day)} key={day} onChange={formik.handleChange} />
                         )}
                 </div>
                         </Form.Group>
@@ -236,7 +236,7 @@ export default function EditJob(props) {
                 <div className="shifts">
                 <Form.Label>Shifts: </Form.Label>
                 {shifts.map(shift =>                             
-                    <Form.Check name="shifts" label={shift} defaultChecked={formik.values.shifts.includes(shift)} key={shift} onChange={formik.handleChange} />
+                    <Form.Check name="shifts" label={shift} value={shift} defaultChecked={formik.values.shifts.includes(shift)} key={shift} onChange={formik.handleChange} />
                     )}
                 </div>
                     </Form.Group>
