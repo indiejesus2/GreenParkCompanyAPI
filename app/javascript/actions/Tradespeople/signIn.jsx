@@ -13,7 +13,6 @@ export const signIn = (employee) => {
         return fetch(`/api/v1/signin`, configObj)
         .then(resp => resp.json())
         .then(employee => {
-            debugger
             if (employee.error) {
                 dispatch({
                     type: 'ERROR_EMPLOYEE',

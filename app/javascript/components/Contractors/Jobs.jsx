@@ -12,9 +12,6 @@ const [jobs, setJobs] = useState(props.jobs ? props.jobs : [])
         }
 
     })
-    // componentDidMount() {
-    //     props.fetchJobs(props.contractor)
-    // }
 
     const handleClick = (job) => {
         // e.preventDefault()
