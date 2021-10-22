@@ -1,20 +1,31 @@
 import React, { useState, useEffect } from 'react'
 import { useFormik } from 'formik'
+import { useHistory } from 'react-router-dom'
+import * as yup from 'yup'
 import Basic from './Basic'
 import Desired from './Desired'
 import Skills from './Skills'
+import NavBar from '../NavBar'
 import Form from 'react-bootstrap/Form'
-import { useHistory } from 'react-router-dom'
-import * as yup from 'yup'
+import { Alert, Button } from 'react-bootstrap'
 
 const Main = (props) => {
 
     const history = useHistory()
 
     const [state, setState] = useState({
-        currentStep: 1,
+        currentStep: 0,
         loading: props.loading,
     })
+
+    const [show, setShow] = useState(true)
+    const [step, setStep] = useState(0)
+    const [loading, setLoading] = useState(props.loading)
+
+    const handleClose = () => {
+        setShow(false);
+        setStep(step + 1)
+    }
 
     const schema = yup.object().shape({
         fname: yup.string().required(),
@@ -64,26 +75,25 @@ const Main = (props) => {
         }
     })
 
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
-
     const handleClick = (e) => {
-        let currentStep = state.currentStep;
+        let currentStep = step;
         let direction = e.target.name;
         if (currentStep !==1 && direction == "previous"){
-            setState( prevState => ({
-                ...prevState,
-                currentStep : currentStep -= 1
-            }))
+            setStep(step-1)
+            // setState( prevState => ({
+            //     ...prevState,
+            //     currentStep : currentStep -= 1
+            // }))
         } else if (currentStep < 3 && direction == "next") {
-            setState( prevState => ({
-                ...prevState,
-                currentStep : currentStep += 1
-            }))
+            setStep(step+1)
+            // setState( prevState => ({
+            //     ...prevState,
+            //     currentStep : currentStep += 1
+            // }))
         }
     }
 
-    if(state.loading == true) {
+    if(loading == true) {
         return (
             <div>
                 Loading...
@@ -92,10 +102,10 @@ const Main = (props) => {
     } else {    
         return (
             <div>
-            <h1>BluCollar Tradespeople Main</h1>
+            <NavBar handleSignout={props.handleSignout}/>
             <Form onSubmit={formik.handleSubmit}>
                 <Basic
-                    currentStep={state.currentStep}
+                    currentStep={step}
                     handleChange={formik.handleChange}
                     values={formik.values}
                     handleClick={handleClick}
@@ -104,19 +114,30 @@ const Main = (props) => {
                     onBlur={formik.handleBlur}
                     />
                 <Desired
-                    currentStep={state.currentStep}
+                    currentStep={step}
                     handleChange={formik.handleChange}
                     values={formik.values}
                     handleClick={handleClick}
                     />
                 <Skills
-                    currentStep={state.currentStep}
+                    currentStep={step}
                     handleChange={formik.handleChange}
                     values={formik.values}
                     handleClick={handleClick}
                     handleSubmit={formik.handleSubmit}
                     />
             </Form>
+            <Alert show={show} >
+                    <Alert.Heading>Welcome to BluCollar!</Alert.Heading>
+                    <p>
+                        Please complete the three-part questionnaire to begin the job-matching process. Please answer as many questions as possible to increase your chances of matching with a potential contractor.
+                    </p>
+                    <div onClick={handleClose} className="d-flex justify-content-end">
+                        <Button>
+                            Enter Info
+                        </Button>
+                    </div>
+                </Alert>
             </div>
             )}
 

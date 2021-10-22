@@ -20,7 +20,8 @@ const Skills = props => {
     return(
         <React.Fragment>
         <Modal show animation backdrop>
-        <Modal.Header>
+        <Modal.Header className="justify-content-center">
+
             <Modal.Title><img src="/images/blucollar_icon.png" alt="BluCollar Logo" /></Modal.Title>
         </Modal.Header>
             <Modal.Body>
@@ -31,7 +32,7 @@ const Skills = props => {
             <Form.Select name="industry" id="industry" onChange={props.handleChange}>
             <option>Work Industry</option>
                         {industries.map(industry => 
-                        <option key={value} value={industry}>{industry}</option>
+                        <option key={industry} value={industry}>{industry}</option>
                             )}
             </Form.Select>
                 <Form.Label>

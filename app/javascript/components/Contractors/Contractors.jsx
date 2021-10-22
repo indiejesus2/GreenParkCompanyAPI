@@ -77,7 +77,6 @@ if (loading === true) {
         return (
                 <div className="contractor">
                 <NavBar handleSignout={props.signOut} contractor={props.contractor} user="contractor" />
-
                     <JobsContainer jobs={jobs} contractor={contractor} candidates={props.candidates} profiles={props.profiles} work_history={props.work_history}/>
                 </div>
         )
@@ -85,4 +84,4 @@ if (loading === true) {
 
 }
 
-export default Contractors
+export default Contractors   

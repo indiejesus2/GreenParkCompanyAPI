@@ -53,7 +53,7 @@ const Employees = props => {
         )
     } else if (props.profile == null) {
         return (
-            <Questionnaire employee={props.employee} createProfile={props.createProfile} />
+            <Questionnaire employee={props.employee} createProfile={props.createProfile} handleSignout={props.signOut} />
         )
         
     } {

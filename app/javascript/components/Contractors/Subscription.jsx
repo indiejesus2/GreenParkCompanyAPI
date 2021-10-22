@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import {Button} from 'react-bootstrap'
 import ConfirmSubscription from './ConfirmSubscription'
+import NavBar from '../NavBar'
 
 const Subscription = (props) => {
 
@@ -29,6 +30,7 @@ const Subscription = (props) => {
 
     return (
         <div className="subscription">
+            <NavBar handleSignout={props.signOut}/>
             <h1>Subscription</h1>
             <div className="subscriptions">
 

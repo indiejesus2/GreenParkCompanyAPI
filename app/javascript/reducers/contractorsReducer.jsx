@@ -63,7 +63,6 @@ export default function contractorsReducer(state = {contractor: [], jobs: [], lo
             }
         case 'LOGOUT_USER':
             return {
-                contractor: [],
                 loggedIn: false
             }
         default:

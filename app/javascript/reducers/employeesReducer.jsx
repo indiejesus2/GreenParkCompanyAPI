@@ -44,7 +44,6 @@ export default function employeesReducer(state = {employee: [], profile: [], exp
             }
             case 'LOGOUT_USER':
                 return {
-                    employee: [],
                     loggedIn: false
                 }
         default:

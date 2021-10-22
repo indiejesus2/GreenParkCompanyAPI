@@ -30,6 +30,14 @@ const NavBar  = props => {
                     </Breadcrumb>
                 </div>
                 )
+        } else {
+            return (
+            <div className="nav">
+                <Breadcrumb>
+                    <Breadcrumb.Item linkAs={Link} linkProps={{to: "/", onClick: props.handleSignout }} >Sign Out</Breadcrumb.Item>
+                </Breadcrumb>
+            </div>
+            )
         }
 }
 

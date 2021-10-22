@@ -102,7 +102,7 @@ const Desired = props => {
 
             <React.Fragment>
         <Modal show animation backdrop>
-        <Modal.Header>
+        <Modal.Header className="justify-content-center">
             <Modal.Title><img src="/images/blucollar_icon.png" alt="Collar" /></Modal.Title>
         </Modal.Header>
             <Modal.Body>
