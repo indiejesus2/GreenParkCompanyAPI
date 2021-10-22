@@ -377,6 +377,32 @@ h1, h2 {
   left: 25px;
 }
 
+.subscriptions {
+  display: flex;
+  justify-content: center;
+}
+
+.subscriptions div {
+  display: grid;
+  justify-items: center;
+}
+
+.monthly {
+  margin-inline-end: 35px;
+}
+
+.yearly {
+  margin-inline-end: 30px;
+}
+
+.vl {
+  border: 1px solid black;
+}
+
+
+
+
+
 // .homepage-contractors {
 //   margin-top: 40px;
 // }

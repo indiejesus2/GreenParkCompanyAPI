@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import {Button} from 'react-bootstrap'
 import ConfirmSubscription from './ConfirmSubscription'
 
 const Subscription = (props) => {
@@ -28,23 +29,30 @@ const Subscription = (props) => {
 
     return (
         <div className="subscription">
+            <h1>Subscription</h1>
+            <div className="subscriptions">
+
             <div className="monthly">
-                <h1>Monthly Subscription</h1>
+                <h1>Monthly</h1>
                 <h3>$14.95</h3>
                 <ul>
                     <li>Unlimited Job Postings</li>
                     <li>Search Directory of Candidates</li>
                 </ul>
-                <button value="Monthly" onClick={handleClick}>Monthly</button>
+                <Button value="Monthly" onClick={handleClick}>Monthly</Button>
+            </div>
+            <div className="vl">
+
             </div>
             <div className="yearly">
-                <h1>Yearly Subscription</h1>
+                <h1>Yearly</h1>
                 <h3>$149.95</h3>
                 <ul>
                     <li>Unlimited Job Postings</li>
                     <li>Search Directory for Candidates</li>
                 </ul>
-                <button value="Yearly" onClick={handleClick}>Yearly</button>
+                <Button value="Yearly" onClick={handleClick}>Yearly</Button>
+            </div>
             </div>
             <ConfirmSubscription handleSubmit={handleSubmit} show={show} />
         </div>
