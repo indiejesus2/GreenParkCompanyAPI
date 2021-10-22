@@ -24,6 +24,12 @@ export default function contractorsReducer(state = {contractor: [], jobs: [], lo
                 loggedIn: true,
                 loading: false
             }
+        case 'UPDATE_PROFILE':
+            return {
+                ...state,
+                contractor: action.payload.contractor,
+                loading: false
+            }
         case 'LOADING_JOBS':
             return {
                 contractor: state.contractor,

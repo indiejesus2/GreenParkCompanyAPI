@@ -1,10 +1,15 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { Button } from 'react-bootstrap'
+import EditProfile from '../Contractors/EditProfile'
 import NavBar from '../NavBar'
 
 const Profile = props => {
 
+    const [show, setShow] = useState(false)
+
     const handleClick = () => {
-        props.history.push(`employers/${props.contractor.id}/edit_profile`)
+        setShow(true)
+        // props.history.push(`contractors/${props.contractor.id}/editprofile`)
     }
 
 
@@ -15,7 +20,8 @@ const Profile = props => {
             <h5>Email: {props.contractor.email}</h5>
             <h5>Subscription: {props.contractor.subscription}</h5>
             <h5>Status: {props.contractor.status == true ? "True" : "False"}</h5>
-            <button onClick={handleClick}>Edit Profile</button>
+            <Button onClick={handleClick}>Edit Profile</Button>
+            <EditProfile contractor={props.contractor} show={show} updateProfile={props.updateProfile}/>
         </div>
     )
 }

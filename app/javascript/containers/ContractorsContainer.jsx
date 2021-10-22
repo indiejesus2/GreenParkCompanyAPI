@@ -4,12 +4,13 @@ import { Route, Switch, Link } from 'react-router-dom'
 import { signInContractor } from '../actions/Contractors/signInContractor'
 import { signUpContractor } from '../actions/Contractors/signUpContractor'
 import { updateSubscription } from '../actions/Contractors/updateSubscription'
+import { updateProfile } from '../actions/Contractors/updateProfile'
 import { signOut } from '../actions/signOut'
 import Contractors from '../components/Contractors/Contractors'
 import Subscription from '../components/Contractors/Subscription'
 import Profile from '../components/Contractors/Profile'
 import EmployeeProfile from '../components/Contractors/EmployeeProfile'
-import NavBar from '../components/NavBar'
+import EditProfile from '../components/Contractors/EditProfile'
 import Logo from '../components/Logo'
 
 class ContractorsContainer extends Component {
@@ -38,7 +39,9 @@ class ContractorsContainer extends Component {
             <Logo user="contractor"/>
                 <Switch>
                 <Route path='/contractors/:id/jobs/:job_id/employees/:employee_id' render={(routerProps) => <EmployeeProfile {...routerProps} loading={this.props.loading} contractor={this.props.contractor} jobs={this.props.jobs} signOut={this.props.signOut} />}></Route>
-                <Route path='/contractors/:id/profile' render={(routerProps) => <Profile {...routerProps} contractor={this.props.contractor}/>}></Route>
+                <Route path='/contractors/:id/profile' render={(routerProps) => <Profile {...routerProps} contractor={this.props.contractor} signOut={this.props.signOut} updateProfile={this.props.updateProfile} />}></Route>
+                <Route path='/contractors/:id/editprofile' render={(routerProps) => <EditProfile {...routerProps} contractor={this.props.contractor} signOut={this.props.signOut} />}></Route>
+
                 <Route exact path='/signout' render={(routerProps) => <SignOut {...routerProps} signoutUser={this.props.signoutUser} user={this.props.user}/> }/>
                 {/* candidates={this.props.candidates} profiles={this.props.profiles} work_history={this.props.work_history} fetchEmployee={this.props.fetchEmployee} */}
                     {/* <Route path='/contractors/:id/jobs/:job_id' render={(routerProps) => <Job {...routerProps} contractor={this.props.contractor} jobs={this.props.jobs} candidates={this.props.candidates} /> } ></Route>
@@ -63,7 +66,6 @@ const mapStateToProps = state => {
         jobs: state.contractorsReducer.jobs,
         applicants: state.contractorsReducer.applicants,
         errors: state.contractorsReducer.errors
-
     }
 }
 
@@ -74,6 +76,7 @@ const mapDispatchToProps = dispatch => ({
     fetchJobs: contractor => dispatch(fetchJobs(contractor)),
     fetchEmployee: id => dispatch(fetchEmployee(id)),
     updateSubscription: (subscription, id) => dispatch(updateSubscription(subscription, id)),
+    updateProfile: contractor => dispatch(updateProfile(contractor)),
     signOut: () => dispatch(signOut())
 
     // updateProfile: profile => dispatch(updateProfile(profile))
