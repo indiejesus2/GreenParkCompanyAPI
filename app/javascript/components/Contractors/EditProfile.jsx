@@ -23,7 +23,7 @@ export default function EditProfile(props) {
 
     return (
         <div className="edit_contractor">
-            <Modal show={props.show}>
+            <Modal show={props.show} onHide={props.handleClose}>
             <div className="input">
                 <Modal.Header closeButton>
                 <Modal.Title>

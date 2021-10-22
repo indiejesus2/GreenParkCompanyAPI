@@ -31,7 +31,7 @@ class Api::V1::EmployersController < ApplicationController
       EmployerMailer.with(employer: @employer).welcome_email.deliver_later
       render json: @employer
     else
-      render json: @employer.errors
+      render json: {error: "Email is associated with an existing account."}
     end
   end
 

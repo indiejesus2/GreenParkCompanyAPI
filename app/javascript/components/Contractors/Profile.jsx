@@ -8,17 +8,13 @@ const Profile = props => {
     const [show, setShow] = useState(false)
     const [contractor, setContractor] = useState(props.contractor)
 
+    const handleClose = () => setShow(false)
+    const handleShow = () => setShow(true)
+
     const handleClick = () => {
         setShow(true)
         // props.history.push(`contractors/${props.contractor.id}/editprofile`)
     }
-
-    useEffect(() => {
-        if (props.contractor != contractor) {
-            setContractor(props.contractor)
-        }
-    }) 
-
 
     return (
         <div className="employer-profile">
@@ -27,8 +23,8 @@ const Profile = props => {
             <h5>Email: {contractor.email}</h5>
             <h5>Subscription: {contractor.subscription}</h5>
             <h5>Status: {contractor.status == true ? "True" : "False"}</h5>
-            <Button onClick={handleClick}>Edit Profile</Button>
-            <EditProfile contractor={contractor} show={show} updateProfile={props.updateProfile}/>
+            <Button onClick={handleShow}>Edit Profile</Button>
+            <EditProfile contractor={contractor} show={show} updateProfile={props.updateProfile} handleClose={handleClose}/>
         </div>
     )
 }

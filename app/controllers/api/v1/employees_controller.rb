@@ -33,7 +33,8 @@ class Api::V1::EmployeesController < ApplicationController
       # format.html { redirect_to @employee, notice: "Employee was successfully created." }
         # format.json { render :show, status: :created, location: @employee }
     else
-        render json: @employee.errors
+      render json: {error: "Email is associated with an existing account."}
+
         # format.html { render :new, status: :unprocessable_entity }
         # format.json { render json: @employee.errors, status: :unprocessable_entity }
     end
