@@ -9,7 +9,7 @@ export const updateProfile = (contractor) => {
             },
             body: JSON.stringify(contractor)
         };
-        return fetch(`/api/v1/employer/${contractor.id}`, configObj)
+        return fetch(`/api/v1/employers/${contractor.id}`, configObj)
         .then(resp => resp.json())
         .then(contractor => dispatch({type: 'UPDATE_PROFILE', payload: contractor.data.attributes}))
     }
