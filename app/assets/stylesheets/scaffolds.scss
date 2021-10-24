@@ -368,7 +368,34 @@ h1, h2 {
 }
 
 .employee-profile {
-  margin: 20px;
+  margin-inline: 20px;
+  margin-block-end: 20px;
+  display: grid;
+  justify-content: center;
+}
+
+.employee-profile td:nth-child(2) {
+  display: flex;
+  justify-content: right;
+}
+
+.employee-profile button {
+  width: -moz-fit-content;
+}
+
+.employee-title {
+  width: 500px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.edit-button {
+  display: flex;
+  justify-content: right;
+}
+
+.employer-profile button {
+  width: -moz-fit-content;
 }
 
 .loading {

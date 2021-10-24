@@ -1,5 +1,6 @@
 import React from 'react'
 import NavBar from '../NavBar'
+import { Button, Table } from 'react-bootstrap'
 
 const Profile = props => {
     
@@ -11,27 +12,55 @@ const Profile = props => {
 
     return (
 
-        <div className="employee-profile">
+        <div className="employee">
             <NavBar handleSignout={props.signOut} profile={props.profile} user="employee" />
-            <h4>{employee.city}, {employee.state}</h4>
-            <h5>{employee.industry}</h5>
+            <div className="employee-profile">
+                <div className="employee-title">
+                    <h4>{employee.city}, {employee.state}</h4>
+                    <h4>{employee.industry}</h4>
+                </div>
             <p>{employee.description}</p>
             <div className="work-schedule">
-                Job Type: {employee.jobtype.join(', ')}
-                <br />
-                Work Schedule: {employee.schedule.join(', ')}
-                <br />
-                Shifts: {employee.shifts.join(', ')}
+                <Table>
+                    <tbody>
+                    <tr>
+                        <td>Job Type:</td>
+                        <td>{employee.jobtype.join(", ")}</td>
+                    </tr>
+                    <tr>
+                        <td>Schedule:</td>
+                        <td>{employee.schedule.join(", ")}</td>
+                    </tr>
+                    <tr>
+                        <td>Shifts:</td>
+                        <td>{employee.shifts.join(", ")}</td>
+                    </tr>
+                    <tr>
+                        <td>Season Availability:</td>
+                        <td>{employee.seasonstart} - {employee.seasonend} </td>
+                    </tr>
+                    <tr>
+                        <td>Pay Range:</td>
+                        <td>${employee.minpay} - ${employee.maxpay}</td>
+                    </tr>
+                    </tbody>
+                </Table>
             </div>
                 {props.experience.map(history => 
             <div className="work-history" key={history.id}>
-                Experience:
-                <br />
-                    <span>{history.title} - {history.company}</span>
+                <h4>Experience:</h4>
+                    <span>{history.title} - {history.company} - {history.city}, {history.state} </span>
+                    <br />
+                    <span>{history.startdate} {history.enddate}</span>
+                    <br />
+                    <span>{history.description}</span>
             </div>
                     )}
                     <br />
-            <button onClick={handleClick}>Edit Profile</button>
+                    <div className="edit-button">
+                        <Button onClick={handleClick}>Edit Profile</Button>
+                    </div>
+            </div>
         </div>
     )
 }

@@ -108,10 +108,10 @@ const Applicants = (props) => {
             )}
         </Form.Control> */}
         <Form.Control as="select" name="proximity" id="proximity" onChange={handleLocation}> Proximity
-            <option value={25}>25</option>
-            <option value={50}>50</option>
-            <option value={75}>75</option>
-            <option value={100}>100</option>
+            <option value={25}>25 Miles</option>
+            <option value={50}>50 Miles</option>
+            <option value={75}>75 Miles</option>
+            <option value={100}>100 Miles</option>
         </Form.Control>
         <div className="search-buttons">
             <Button onClick={handleClear}> Clear </Button>

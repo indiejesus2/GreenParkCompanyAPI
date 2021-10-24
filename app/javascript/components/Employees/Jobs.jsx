@@ -25,12 +25,11 @@ const Jobs = (props) => {
                 {jobs.map(job =>
                     <Accordion>
                 <Card id={job.id} key={job.id} > 
-                    <Card.Title className="mb-2 text-muted">{job.title}</Card.Title>
+                    <Card.Title className="mb-2">{job.title}</Card.Title>
                     <Card.Subtitle>Location: {job.city}, {job.state}</Card.Subtitle>
                     <Card.Text>Description: {job.description} </Card.Text>
                     <div className="employee-jobs-buttons">
                         <CustomToggle eventKey="0">More Info</CustomToggle>
-                        <Button onClick={props.handleClick}>Apply</Button>
                     </div>
                             <Accordion.Collapse eventKey="0">
                             <Card.Body>

@@ -47,7 +47,7 @@ const Job = props => {
                                 </tr>
                                 <tr>
                                     <td>Pay Range:</td>
-                                    <td>{job.minpay} - {job.maxpay}</td>
+                                    <td>${job.minpay} - ${job.maxpay}</td>
                                 </tr>
                                 <tr>
                                     <td>Description:</td>

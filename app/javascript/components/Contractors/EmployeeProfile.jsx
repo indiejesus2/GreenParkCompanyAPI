@@ -4,8 +4,6 @@ import { Modal, Button } from 'react-bootstrap'
 
 const EmployeeProfile = props => {
 
-    // const job = props.jobs.find(job => job.id == props.match.params.job_id)
-    // const candidate = job.profiles.find(profile => profile.employee_id == props.match.params.employee_id)
     const candidate = props.candidate
     
     if (candidate == "") {
@@ -30,6 +28,12 @@ const EmployeeProfile = props => {
                 Work Schedule: {candidate.info.schedule.join(', ')}
                 <br />
                 Shifts: {candidate.info.shifts.join(', ')}
+                <br />
+                Season Availability: {candidate.info.seasonstart} - {candidate.info.seasonend}
+                <br />
+                Pay Range: ${candidate.info.minpay} - ${candidate.info.maxpay}
+                <br />
+                Description: {candidate.info.description}
             </div>
             <Modal.Footer>
                 <Button>Accept</Button>
