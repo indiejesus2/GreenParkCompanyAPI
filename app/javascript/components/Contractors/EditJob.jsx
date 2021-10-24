@@ -111,6 +111,7 @@ export default function EditJob(props) {
 
     const job = props.jobs.find(job => job.id == props.match.params.job_id)
 
+
     const formik = useFormik({
         initialValues: {
             id: job.id,
@@ -119,9 +120,9 @@ export default function EditJob(props) {
             state: job.state,
             zipcode: job.zipcode,
             license: job.license,
-            jobtype: job.jobtype,
-            schedule: job.schedule,
-            shifts: job.shifts,
+            jobtype: job.jobtype.join("").split(", "),
+            schedule: job.schedule.join("").split(", "),
+            shifts: job.shifts.join("").split(", "),
             seasonstart: job.seasonstart,
             seasonend: job.seasonend,
             minpay: job.minpay,
@@ -134,6 +135,8 @@ export default function EditJob(props) {
             props.history.push(`/contractors/${job.employer_id}/jobs/${job.id}`)
         }
     })
+
+    debugger
 
     return (
         <div className="editJob">
