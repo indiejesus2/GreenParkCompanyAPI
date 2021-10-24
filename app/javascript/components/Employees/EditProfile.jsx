@@ -188,12 +188,11 @@ export default function EditProfile(props) {
                     <Row className="align-items-center">
                     <Form.Group as={Col}>
                 <FloatingLabel label="Industry">
-
-                <Form.Select name="industry" id="industry" onChange={formik.handleChange} defaultValue={formik.initialValues.industry == industry} >
                         {industries.map(industry => 
+                <Form.Select name="industry" id="industry" onChange={formik.handleChange} defaultValue={formik.initialValues.industry == industry} >
                             <option key={industry}>{industry}</option>
-                        )}
             </Form.Select>
+            )}
                 </FloatingLabel>
                 </Form.Group> 
                     <Form.Group as={Col}>
