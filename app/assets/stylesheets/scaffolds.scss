@@ -380,7 +380,7 @@ h1, h2 {
 }
 
 .employee-profile button {
-  width: -moz-fit-content;
+  width: min-content;
 }
 
 .employee-title {
@@ -395,7 +395,7 @@ h1, h2 {
 }
 
 .employer-profile button {
-  width: -moz-fit-content;
+  width: min-content;
 }
 
 .loading {

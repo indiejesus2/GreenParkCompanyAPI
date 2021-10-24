@@ -214,7 +214,7 @@ export default function AddJob(props) {
                 </FloatingLabel>
             <Row className="align-items-center">
                 <Form.Group as={Col}>
-                <div className="job type">
+                <div className="jobtype">
                     <Form.Label htmlFor="job type"> Job-Type: </Form.Label>
                     {jobtypes.map(job => 
                         <Form.Check name="jobtype" label={job} value={formik.values.jobType} id={job} key={job} onChange={formik.handleChange} />

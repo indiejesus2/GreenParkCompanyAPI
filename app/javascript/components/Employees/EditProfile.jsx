@@ -196,7 +196,7 @@ export default function EditProfile(props) {
                 </FloatingLabel>
                 </Form.Group> 
                     <Form.Group as={Col}>
-                    <div className="job type">
+                    <div className="jobtype">
                         <Form.Label htmlFor="job type"> Job-Type: </Form.Label>
                         {jobtypes.map(job => 
                             <Form.Check name="jobtype" label={job} value={job} id={job} key={job} onChange={formik.handleChange} defaultChecked={formik.values.jobtype.includes(job)}/>
