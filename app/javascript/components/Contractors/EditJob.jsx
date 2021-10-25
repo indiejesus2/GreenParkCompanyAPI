@@ -217,7 +217,7 @@ export default function EditJob(props) {
                 <FloatingLabel label="Description">
                     <Form.Control as="textarea" name="description" onChange={formik.handleChange} />
                 </FloatingLabel>
-            <Row className="align-items-center">
+            <Row className="desired">
                 <Form.Group as={Col}>
                 <div className="jobtype">
                     <Form.Label htmlFor="jobtype"> Job-Type: </Form.Label>

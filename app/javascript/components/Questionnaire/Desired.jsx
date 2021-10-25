@@ -106,7 +106,7 @@ const Desired = props => {
             <Modal.Title><img src="/images/blucollar_icon.png" alt="Collar" /></Modal.Title>
         </Modal.Header>
             <Modal.Body>
-            <Row className="align-items-center">
+            <Row className="desired">
 
 <Form.Group as={Col}>
 <div className="job type">

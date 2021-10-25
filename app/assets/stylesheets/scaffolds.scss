@@ -345,6 +345,25 @@ h1, h2 {
 
 .job img {
   width: 50px;
+  padding: 25px;
+}
+
+.contractor .card-body {
+  padding-inline: 50px;
+}
+
+.contractor td:nth-child(2) {
+  display: flex;
+  justify-content: right;
+}
+
+.desired.row {
+  padding-block: 15px;
+}
+
+.desired .col {
+  display: flex;
+  justify-content: center;
 }
 
 .modal-dialog {

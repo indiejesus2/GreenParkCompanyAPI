@@ -177,24 +177,30 @@ export default function EditProfile(props) {
                         </FloatingLabel>
                         </Form.Group>
                     </Row>
-                    <Form.Group>
+                    <Row className="mb-3">
+
+                    <Form.Group as={Col}>
                         <FloatingLabel label="Phone">
                             <Form.Control type="text" name="phone" value={formik.initialValues.phone} onChange={formik.handleChange} />
                         </FloatingLabel>
+                    </Form.Group>
+                    <Form.Group as={Col}>
+                <FloatingLabel label="Industry">
+                <Form.Select name="industry" id="industry" onChange={formik.handleChange}>
+                        {industries.map(industry => 
+                            <option key={industry} defaultValue={formik.initialValues.industry == industry}>{industry}</option>
+                            )}
+            </Form.Select>
+                </FloatingLabel>
+                </Form.Group> 
+                </Row>
+
+                    <Form.Group>
                         <FloatingLabel label="Description">
                             <Form.Control as="textarea" name="description" value={formik.initialValues.description} onChange={formik.handleChange} />
                         </FloatingLabel>
                     </Form.Group>
                     <Row className="align-items-center">
-                    <Form.Group as={Col}>
-                <FloatingLabel label="Industry">
-                        {industries.map(industry => 
-                <Form.Select name="industry" id="industry" onChange={formik.handleChange} defaultValue={formik.initialValues.industry == industry} >
-                            <option key={industry}>{industry}</option>
-            </Form.Select>
-            )}
-                </FloatingLabel>
-                </Form.Group> 
                     <Form.Group as={Col}>
                     <div className="jobtype">
                         <Form.Label htmlFor="job type"> Job-Type: </Form.Label>
