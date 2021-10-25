@@ -22,17 +22,21 @@ const [jobs, setJobs] = useState(props.jobs ? props.jobs : [])
             <div className="employer-jobs">
                          {jobs.map(job =>
                         <Card id={job.id} key={job.id} text="white" style={{width: '18rem'}}>
-                            <Card.Title>
+                            <Card.Title className="d-flex justify-content-between">
                             <Link to={`/contractors/${props.contractor.id}/jobs/${job.id}`} >
                                 {job.title}
                             </Link>
+                            {job.city}, {job.state} 
                             </Card.Title>
-                        <Card.Subtitle>{job.city}, {job.state} </Card.Subtitle>
-                        <Card.Text>Description: {job.description} </Card.Text>
+                        <Card.Text style={{ height: 55 + 'px', overflow: "clip" }}> Description: {job.description} </Card.Text>
                         <Card.Text>Number of Applicants: {job.profiles.length} </Card.Text>
                         <div className="employee-jobs-buttons">
-                            <Button href={`/contractors/${props.contractor.id}/jobs/${job.id}`}>View Job</Button>
-                            <Button href={`/contractors/${props.contractor.id}/jobs/${job.id}/editjob`}>Edit Job</Button>
+                        <Link to={`/contractors/${props.contractor.id}/jobs/${job.id}`} >
+                            <Button>View Job</Button>
+                        </Link>
+                        <Link to={`/contractors/${props.contractor.id}/jobs/${job.id}/editjob`} >    
+                            <Button>Edit Job</Button>
+                        </Link>
                             <Button onClick={() => handleClick(job)}>Delete</Button>
                         </div>
                 </Card>

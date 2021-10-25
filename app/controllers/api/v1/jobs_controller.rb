@@ -48,7 +48,6 @@ class Api::V1::JobsController < ApplicationController
         @job.proximity
         @job.updated
         if @job.save
-            byebug
             render json: JobSerializer.new(@job)
         else
             render json: @job.errors
@@ -84,11 +83,7 @@ class Api::V1::JobsController < ApplicationController
     end
 
     def job_params
-        params.require(:job).permit(:industry, :title, :status, :city, :state, :zipcode, {jobType: []}, {schedule: []}, {shifts: []}, :description, :seasonstart, :seasonend, :minpay, :maxpay, :employer_id)
-    end
-
-    def search_params
-        params.permit(:jobtype, :schedule, :skill, :certificates)
+        params.require(:job).permit(:industry, :title, :status, :city, :state, :zipcode, {jobtype: []}, {schedule: []}, {shifts: []}, :description, :seasonstart, :seasonend, :minpay, :maxpay, :employer_id)
     end
 
 end

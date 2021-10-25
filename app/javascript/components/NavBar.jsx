@@ -23,7 +23,7 @@ const NavBar  = props => {
             <h1>{props.contractor.name}</h1>
             <br />
                     <Breadcrumb>
-                        <Breadcrumb.Item linkAs={Link} linkProps={{ to: '/contractors'}}>Home</Breadcrumb.Item>    
+                        <Breadcrumb.Item linkAs={Link} linkProps={{ to: '/contractors'}}>Jobs</Breadcrumb.Item>    
                         <Breadcrumb.Item linkAs={Link} linkProps={{ to: '/contractors/addjob'}}>Add Job</Breadcrumb.Item>    
                         <Breadcrumb.Item linkAs={Link} linkProps={{ to: `/contractors/${props.contractor.id}/profile`}}>Profile</Breadcrumb.Item>    
                         <Breadcrumb.Item linkAs={Link} linkProps={{to: "/", onClick: props.handleSignout }} >Sign Out</Breadcrumb.Item>

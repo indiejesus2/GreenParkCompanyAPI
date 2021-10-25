@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
+import { Link } from 'react-router-dom'
 import { Form, Button, FloatingLabel, Row, Col } from 'react-bootstrap'
 import { useFormik } from 'formik'
 import * as yup from 'yup'
@@ -219,7 +220,7 @@ export default function EditJob(props) {
             <Row className="align-items-center">
                 <Form.Group as={Col}>
                 <div className="jobtype">
-                    <Form.Label htmlFor="job type"> Job-Type: </Form.Label>
+                    <Form.Label htmlFor="jobtype"> Job-Type: </Form.Label>
                     {jobtypes.map(job => 
                         <Form.Check name="jobtype" label={job} value={job} defaultChecked={formik.values.jobtype.includes(job)} id={job} key={job} onChange={formik.handleChange} />
                     )}
@@ -285,6 +286,9 @@ export default function EditJob(props) {
                 </Row>
                 <div className="submit">
                     <Button type="submit" value="Edit Job" onClick={formik.handleSubmit}>Edit Job</Button>
+                    <Link to={`/contractors/${job.employer_id}/jobs/${job.id}`} >
+                            <Button>View Job</Button>
+                    </Link>
                 </div>
             </Form>
         </div>

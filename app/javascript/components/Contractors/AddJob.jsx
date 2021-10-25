@@ -118,7 +118,7 @@ export default function AddJob(props) {
             state: '',
             zipcode: '',
             license: false,
-            jobType: [],
+            jobtype: [],
             schedule: [],
             shifts: [],
             seasonstart: '',
@@ -160,7 +160,7 @@ export default function AddJob(props) {
 
                 <Form.Select name="industry" id="industry" onChange={formik.handleChange}>
                         {industries.map(industry => 
-                            <option key={industry} defaultValue="--" value={formik.values.industry}>{industry}</option>
+                            <option key={industry} defaultValue="--" value={industry}>{industry}</option>
                         )}
             </Form.Select>
                 </FloatingLabel>
@@ -215,9 +215,9 @@ export default function AddJob(props) {
             <Row className="align-items-center">
                 <Form.Group as={Col}>
                 <div className="jobtype">
-                    <Form.Label htmlFor="job type"> Job-Type: </Form.Label>
+                    <Form.Label htmlFor="jobtype"> Job-Type: </Form.Label>
                     {jobtypes.map(job => 
-                        <Form.Check name="jobtype" label={job} value={formik.values.jobType} id={job} key={job} onChange={formik.handleChange} />
+                        <Form.Check name="jobtype" label={job} value={job} id={job} key={job} onChange={formik.handleChange} />
                     )}
                 </div>
                 </Form.Group>
@@ -226,7 +226,7 @@ export default function AddJob(props) {
                 <div className="schedule">
                     <Form.Label htmlFor="schedule">Schedule: </Form.Label>
                     {schedule.map(day => 
-                        <Form.Check name="schedule" id={day} label={day} value={formik.values.schedule} key={day} onChange={formik.handleChange} />
+                        <Form.Check name="schedule" id={day} label={day} value={day} key={day} onChange={formik.handleChange} />
                         )}
                 </div>
                         </Form.Group>
@@ -235,7 +235,7 @@ export default function AddJob(props) {
                 <div className="shifts">
                 <Form.Label>Shifts: </Form.Label>
                 {shifts.map(shift =>                             
-                    <Form.Check name="shifts" label={shift} value={formik.values.shifts} key={shift} onChange={formik.handleChange} />
+                    <Form.Check name="shifts" label={shift} value={shift} key={shift} onChange={formik.handleChange} />
                     )}
                 </div>
                     </Form.Group>

@@ -13,6 +13,7 @@ import contractorsReducer from '../reducers/contractorsReducer'
 import jobsReducer from '../reducers/jobsReducer';
 import errorsReducer from '../reducers/errorsReducer'
 import App from '../components/App'
+import ScrollToTop from '../components/ScrollToTop'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const rootReducer = combineReducers({
@@ -29,6 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
   render(
     <Provider store={store}>
       <Router>
+        <ScrollToTop />
         <App />
       </Router>
     </Provider>,
