@@ -1,3 +1,5 @@
+import { bindActionCreators } from "redux"
+
 export default function contractorsReducer(state = {contractor: [], jobs: [], loggedIn: false, loading: false}, action) {
     switch(action.type) {
         case 'FETCH_CONTRACTOR':
@@ -24,6 +26,13 @@ export default function contractorsReducer(state = {contractor: [], jobs: [], lo
                 loggedIn: true,
                 loading: false
             }
+        case 'CURRENT_CONTRACTOR':
+            debugger
+            return {
+                contractor: action.payload.user.contractor,
+                loggedIn: true,
+                loading: true
+            }
         case 'UPDATE_PROFILE':
             return {
                 ...state,
@@ -36,6 +45,12 @@ export default function contractorsReducer(state = {contractor: [], jobs: [], lo
                 jobs: [...state.jobs],
                 loading: true
             }
+            case 'FETCH_JOBS':
+                return {
+                    ...state,
+                    jobs: action.payload.jobs.data.map(job=>job.attributes),
+                    loading: false
+                }
         case 'ADD_JOB':
             return {
                 ...state, 

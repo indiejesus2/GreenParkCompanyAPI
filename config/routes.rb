@@ -17,6 +17,7 @@ Rails.application.routes.draw do
       post '/signin', to: 'auth#create'
       post '/signup', to: 'employees#create'
       post '/contractors/signup', to: 'employers#create'
+      get '/current_user', to: 'auth#is_logged_in?'
     end
   end
 end

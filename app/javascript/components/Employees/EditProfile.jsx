@@ -145,13 +145,13 @@ export default function EditProfile(props) {
 
                     <Form.Group as={Col}>
                         <FloatingLabel label="First Name">
-                            <Form.Control type="text" name="fname" value={formik.initialValues.fname} onChange={formik.handleChange} />
+                            <Form.Control type="text" name="fname" value={formik.values.fname} onChange={formik.handleChange} />
                         </FloatingLabel>
                     </Form.Group> 
                     <Form.Group as={Col}>
 
                         <FloatingLabel label="Last Name">
-                            <Form.Control type="text" name="lname" value={formik.initialValues.lname} onChange={formik.handleChange} />
+                            <Form.Control type="text" name="lname" value={formik.values.lname} onChange={formik.handleChange} />
                         </FloatingLabel>
                         </Form.Group>
                     </Row>
@@ -159,21 +159,21 @@ export default function EditProfile(props) {
 
                     <Form.Group as={Col}>
                         <FloatingLabel label="City">
-                            <Form.Control type="text" name="city" value={formik.initialValues.city} onChange={formik.handleChange} />
+                            <Form.Control type="text" name="city" value={formik.values.city} onChange={formik.handleChange} />
                         </FloatingLabel>
                         </Form.Group> 
                     <Form.Group as={Col}>
                         <FloatingLabel label="State">
-                        <Form.Select name={`experience.state`} onChange={props.handleChange}>
+                        <Form.Select name="state" onChange={formik.handleChange} value={formik.values.state}>
                             {states.map(state => 
-                                <option defaultValue="--">{state}</option>
+                                <option defaultValue={formik.initialValues.state == state}>{state}</option>
                             )}
                         </Form.Select>
                         </FloatingLabel>
                         </Form.Group>
                     <Form.Group as={Col}>
                         <FloatingLabel label="Zip-Code">
-                            <Form.Control type="text" name="zipcode" value={formik.initialValues.zipcode} onChange={formik.handleChange} />
+                            <Form.Control type="text" name="zipcode" value={formik.values.zipcode} onChange={formik.handleChange} />
                         </FloatingLabel>
                         </Form.Group>
                     </Row>
@@ -181,16 +181,16 @@ export default function EditProfile(props) {
 
                     <Form.Group as={Col}>
                         <FloatingLabel label="Phone">
-                            <Form.Control type="text" name="phone" value={formik.initialValues.phone} onChange={formik.handleChange} />
+                            <Form.Control type="text" name="phone" value={formik.values.phone} onChange={formik.handleChange} />
                         </FloatingLabel>
                     </Form.Group>
                     <Form.Group as={Col}>
                 <FloatingLabel label="Industry">
-                <Form.Select name="industry" id="industry" onChange={formik.handleChange}>
+                <Form.Select name="industry" id="industry" onChange={formik.handleChange} defaultValue={formik.initialValues.industry}>
                         {industries.map(industry => 
-                            <option key={industry} defaultValue={formik.initialValues.industry == industry}>{industry}</option>
+                            <option key={industry}>{industry}</option>
                             )}
-            </Form.Select>
+                            </Form.Select>
                 </FloatingLabel>
                 </Form.Group> 
                 </Row>

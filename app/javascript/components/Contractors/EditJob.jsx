@@ -137,8 +137,6 @@ export default function EditJob(props) {
         }
     })
 
-    debugger
-
     return (
         <div className="editJob">
             <h1>Edit Job</h1>

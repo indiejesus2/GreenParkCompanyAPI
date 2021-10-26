@@ -1,14 +1,18 @@
-import React, { Component } from 'react';
+import React, { useEffect } from 'react';
 import { Provider } from 'react-redux'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import LoginContainer from '../containers/LoginContainer'
 import EmployeesContainer from '../containers/EmployeesContainer'
 import ContractorsContainer from '../containers/ContractorsContainer'
+import { currentUser } from '../actions/currentUser'
 import NavBar from '../components/NavBar'
 
-class App extends Component {
+const App = () => {
 
-    render(){
+    useEffect(() => {
+        currentUser()
+    })
+        
         return (
             <div>
                 <Switch>
@@ -19,7 +23,6 @@ class App extends Component {
                 </Switch>
             </div>
         )
-    }
 }
 
 export default App;

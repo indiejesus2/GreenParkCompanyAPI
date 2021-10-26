@@ -6,6 +6,7 @@ import { signUpContractor } from '../actions/Contractors/signUpContractor'
 import { updateSubscription } from '../actions/Contractors/updateSubscription'
 import { updateProfile } from '../actions/Contractors/updateProfile'
 import { signOut } from '../actions/signOut'
+import { fetchJobs } from '../actions/Contractors/fetchJobs'
 import Contractors from '../components/Contractors/Contractors'
 import Subscription from '../components/Contractors/Subscription'
 import Profile from '../components/Contractors/Profile'
@@ -16,7 +17,10 @@ import Logo from '../components/Logo'
 class ContractorsContainer extends Component {
 
     // componentDidMount() {
-    //     this.props.fetchJobs(this.props.contractor)
+    //     // debugger
+    //     if (this.props.jobs && this.props.jobs.length == 0) {
+    //         this.props.fetchJobs(this.props.contractor)
+    //     }
     // }
 
     handleSignout = () => {

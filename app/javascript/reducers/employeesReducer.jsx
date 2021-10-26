@@ -20,6 +20,11 @@ export default function employeesReducer(state = {employee: [], profile: [], exp
                 loggedIn: true,
                 loading: false
             }
+        case 'CURRENT_EMPLOYEE':
+            return {
+                employee: action.payload.user,
+                loggedIn: true
+            }    
         case 'CREATE_PROFILE':
             return {
                 ...state,
