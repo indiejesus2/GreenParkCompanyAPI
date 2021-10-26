@@ -1,14 +1,6 @@
 export const currentUser = () => {
-    debugger
     return (dispatch) => {
-        const configObj = {
-            method: "GET",
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
-            }
-        };
-    return fetch(`/api/v1/current_user`, configObj, {withCredentials: true})
+    return fetch(`/api/v1/signin`, {withCredentials: true})
     .then(resp => resp.json())
     .then(user => {
         if (user.user == "contractor") {

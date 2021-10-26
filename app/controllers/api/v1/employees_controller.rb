@@ -43,14 +43,14 @@ class Api::V1::EmployeesController < ApplicationController
 
   # PATCH/PUT /employees/1 or /employees/1.json
   def update
-    respond_to do |format|
-      if @employee.update(employee_params)
-        format.html { redirect_to @employee, notice: "Employee was successfully updated." }
-        format.json { render :show, status: :ok, location: @employee }
+    if @employee
+    render json: EmployeeSerializer.new(@employee)      
+      # if @employee.update(employee_params)
+      #   format.html { redirect_to @employee, notice: "Employee was successfully updated." }
+      #   format.json { render :show, status: :ok, location: @employee }
       else
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @employee.errors, status: :unprocessable_entity }
-      end
     end
   end
 

@@ -34,9 +34,10 @@ export default function employeesReducer(state = {employee: [], profile: [], exp
                 loading: false
             }
         case 'UPDATE_PROFILE':
+            debugger
             return {
                 ...state,
-                profile: action.payload,
+                profile: action.payload.profile,
                 experience: action.payload.experiences,
                 jobs: action.payload.jobs,
                 loading: false
