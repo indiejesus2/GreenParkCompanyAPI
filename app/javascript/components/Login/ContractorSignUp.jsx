@@ -4,7 +4,6 @@ import { useFormik } from 'formik'
 import { useHistory } from 'react-router-dom'
 import * as yup from 'yup'
 
-
 export default function ContractorSignUp(props) {
 
     const [show, setShow] = useState(true)

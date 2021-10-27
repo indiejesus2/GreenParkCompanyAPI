@@ -45,7 +45,7 @@ export default function EmployeeSignUp(props) {
 
     return (
         <React.Fragment>    
-        <Modal show={show} animation backdrop="false">
+        <Modal show={show} animation centered onHide={handleClose}>
             <Modal.Header><h1>Create a Free Account</h1>
             <p>Find a job today!</p></Modal.Header>
 
@@ -76,12 +76,11 @@ export default function EmployeeSignUp(props) {
                             {formik.errors.password && formik.touched.password && (
                                 <div style={{ color: "red"}}>{formik.errors.password}</div>
                             )}
+                        <Button variant="link" onClick={props.handleClick}>Already Have An Account?</Button>
                 </Form.Group>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="danger" name="close" onClick={handleClose}>Close</Button>
-                        <Button variant="success" name="sign in" onClick={props.handleClick}>Sign-In</Button>
-                        <Button variant="primary" type="submit">Sign-Up</Button>
+                    <Button variant="primary" type="submit">Sign-Up</Button>
                 </Modal.Footer>
                 </Form>
         </Modal>

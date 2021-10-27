@@ -13,7 +13,7 @@ const Employees = props => {
 
     const [state, setState] = useState({
         profile: props.profile ? props.profile : [],
-        currentStep: 1
+        currentStep: 2
     })
 
     const [jobs, setJobs] = useState(props.jobs)
@@ -29,13 +29,13 @@ const Employees = props => {
 
     const handleClick = (e) => {
         let currentStep = state.currentStep;
-        let direction = e.target.name;
-        if (currentStep == 1 && direction == "sign up"){
+        // let direction = e.target.name;
+        if (currentStep == 1){
             setState( prevState => ({
                 ...prevState,
                 currentStep : currentStep+=1
             }))
-        } else if (currentStep == 2 && direction == "sign in") {
+        } else if (currentStep == 2) {
             setState( prevState => ({
                 ...prevState,
                 currentStep : currentStep-=1

@@ -56,8 +56,7 @@ export default function EmployeeSignIn(props) {
     
     return (
         <React.Fragment>    
-        <Modal show={show} animation backdrop="false">
-
+        <Modal show={show} animation centered onHide={handleClose}>
             <Modal.Header>
                 <img src="/images/blucollarlogo.png" alt="Blue Collar Logo" className="signIn"/>
             </Modal.Header>
@@ -92,16 +91,14 @@ export default function EmployeeSignIn(props) {
                         onChange={formik.handleChange}
                         isInvalid={formik.touched.password && formik.errors.password}
                         onBlur={formik.handleBlur}
-    
-                            />
-                            {formik.errors.password && formik.touched.password && (
-                                <div style={{ color: "red"}}>{formik.errors.password}</div>
-                            )}
+                    />
+                        {formik.errors.password && formik.touched.password && (
+                            <div style={{ color: "red"}}>{formik.errors.password}</div>
+                        )}
+                        <Button variant="link" onClick={props.handleClick}>Sign Up For An Account</Button>
                 </Form.Group>
                 </Modal.Body>
                 <Modal.Footer>
-                <Button variant="danger" name="close" onClick={handleClose}>Close</Button>
-                        <Button variant="success" name="sign up" onClick={props.handleClick}>Sign-Up</Button>
                     <Button variant="primary" type="submit">Sign-In</Button>
                 </Modal.Footer>
                 </Form>
