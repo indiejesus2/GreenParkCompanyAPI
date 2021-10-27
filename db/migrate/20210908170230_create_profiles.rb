@@ -10,7 +10,7 @@ class CreateProfiles < ActiveRecord::Migration[6.0]
       t.boolean :license
       t.float :longitude
       t.float :latitude
-      # t.integer :phone
+      t.string :phone
       # t.string :status
       t.text :jobtype, array: true, default: []
       t.text :schedule, array: true, default: []

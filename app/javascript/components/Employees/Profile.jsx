@@ -19,7 +19,7 @@ const Profile = props => {
                     <h4>{employee.city}, {employee.state}</h4>
                     <h4>{employee.industry}</h4>
                 </div>
-            <p>{employee.description}</p>
+                {/* <span>Experience: </span> */}
             <div className="work-schedule">
                 <Table>
                     <tbody>
@@ -41,7 +41,11 @@ const Profile = props => {
                     </tr>
                     <tr>
                         <td>Pay Range:</td>
-                        <td>${employee.minpay} - ${employee.maxpay}</td>
+                        <td>${employee.minpay} - ${employee.maxpay} {employee.paytype}</td>
+                    </tr>
+                    <tr>
+                        <td>Driver's License</td>
+                        <td>{employee.license}</td>
                     </tr>
                     </tbody>
                 </Table>
@@ -49,11 +53,13 @@ const Profile = props => {
                 {props.experience.map(history => 
             <div className="work-history" key={history.id}>
                 <h4>Experience:</h4>
-                    <span>{history.title} - {history.company} - {history.city}, {history.state} </span>
+                <p>{employee.description}</p>
+
+                    {/* <span>{history.title} - {history.company} - {history.city}, {history.state} </span>
                     <br />
                     <span>{history.startdate} {history.enddate}</span>
                     <br />
-                    <span>{history.description}</span>
+                    <span>{history.description}</span> */}
             </div>
                     )}
                     <br />

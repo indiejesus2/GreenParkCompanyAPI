@@ -126,6 +126,7 @@ export default function EditProfile(props) {
             seasonend: employee.seasonend,
             minpay: employee.minpay,
             maxpay: employee.maxpay,
+            paytype: employee.paytype,
             industry: employee.industry,
         },
         onSubmit: values => {
@@ -196,7 +197,7 @@ export default function EditProfile(props) {
                 </Row>
 
                     <Form.Group>
-                        <FloatingLabel label="Description">
+                        <FloatingLabel label="Experience">
                             <Form.Control as="textarea" name="description" value={formik.initialValues.description} onChange={formik.handleChange} />
                         </FloatingLabel>
                     </Form.Group>
@@ -271,9 +272,24 @@ export default function EditProfile(props) {
                     </Form.Label>
                     <Form.Control type="text" name="maxpay" onChange={formik.handleChange} value={formik.values.maxpay}/>
                 </Form.Group>
+                <Form.Group as={Col}>
+                    <Form.Label>
+                        Pay Type:
+                    </Form.Label>
+                    <Form.Select name="paytype" label="paytype" value={formik.values.paytype} onChange={formik.handleChange} defaultValue={formik.values.paytype}>
+                            <option>Hourly</option>
+                            <option>Annually</option>
+                    </Form.Select>
+                </Form.Group>
+                </Row>
+                <Row>
+                    <Form.Group>
+                        <Form.Check name="license" value={formik.values.license} onChange={formik.handleChange} defaultChecked={formik.values.license} />
+                        <Form.Label>Driver's License</Form.Label>
+                    </Form.Group>
                 </Row>
                 <div className="submit">
-                    <Button type="submit" value="Edit Profile" onClick={formik.handleSubmit}>Edit Profile</Button>
+                    <Button type="submit" value="Save Changes" onClick={formik.handleSubmit}>Save Changes</Button>
                 </div>
                     {/* <div className="history">
                         <h5>Work History</h5>
