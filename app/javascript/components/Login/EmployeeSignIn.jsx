@@ -56,11 +56,11 @@ export default function EmployeeSignIn(props) {
     
     return (
         <React.Fragment>    
-        <Modal show={show} animation backdrop onHide={handleClose}>
-            <Modal.Header>
-        <img src="/images/blucollar_horizicon.png" alt="Blue Collar Logo" className="signIn"/>
-            Sign-In</Modal.Header>
+        <Modal show={show} animation backdrop="false">
 
+            <Modal.Header>
+                <img src="/images/blucollarlogo.png" alt="Blue Collar Logo" className="signIn"/>
+            </Modal.Header>
             <Form noValidate onSubmit={formik.handleSubmit}>
             <Modal.Body>
             <Alert show={alert}>

@@ -11,7 +11,7 @@ import { useHistory } from 'react-router-dom'
 const Contractors = props => {
 
     const [state, setState] = useState({
-        currentStep: 1
+        currentStep: 2
     })
 
     const [loading, setLoading] = useState(props.loading)
@@ -40,13 +40,13 @@ const Contractors = props => {
 
     const handleClick = (e) => {
         let currentStep = state.currentStep;
-        let direction = e.target.name;
-        if (currentStep == 1 && direction == "sign up"){
+        // let direction = e.target.name;
+        if (currentStep == 1){
             setState( prevState => ({
                 ...prevState,
                 currentStep : currentStep+=1
             }))
-        } else if (currentStep == 2 && direction == "sign in") {
+        } else if (currentStep == 2) {
             setState( prevState => ({
                 ...prevState,
                 currentStep : currentStep-=1

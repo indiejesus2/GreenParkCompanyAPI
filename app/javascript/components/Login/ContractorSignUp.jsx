@@ -1,8 +1,5 @@
 import React, { useState } from 'react'
-import Modal from 'react-bootstrap/Modal'
-import Form from 'react-bootstrap/Form'
-import Col from 'react-bootstrap/Col'
-import Button from 'react-bootstrap/Button'
+import { Modal, Form, Button } from 'react-bootstrap'
 import { useFormik } from 'formik'
 import { useHistory } from 'react-router-dom'
 import * as yup from 'yup'
@@ -46,7 +43,7 @@ export default function ContractorSignUp(props) {
 
     return (
         <React.Fragment>    
-        <Modal show={show} animation backdrop>
+        <Modal show={show} animation centered onHide={handleClose}>
             <Modal.Header><h1>Create a Free Account</h1>
             <p>Fill that position today!</p></Modal.Header>
             <Form onSubmit={formik.handleSubmit}>
@@ -88,11 +85,10 @@ export default function ContractorSignUp(props) {
                             {formik.errors.password && formik.touched.password && (
                                 <div style={{ color: "red"}}>{formik.errors.password}</div>
                             )}
+                        <Button variant="link" onClick={props.handleClick}>Already Have An Account?</Button>
                 </Form.Group>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="danger" name="close" onClick={handleClose}>Close</Button>
-                        <Button variant="success" name="sign in" onClick={props.handleClick}>Sign-In</Button>
                         <Button variant="primary" type="submit">Sign-Up</Button>
                 </Modal.Footer>
                 </Form>

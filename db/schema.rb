@@ -102,6 +102,7 @@ ActiveRecord::Schema.define(version: 2021_10_27_030343) do
     t.boolean "license"
     t.float "longitude"
     t.float "latitude"
+    t.string "phone"
     t.text "jobtype", default: [], array: true
     t.text "schedule", default: [], array: true
     t.text "shifts", default: [], array: true

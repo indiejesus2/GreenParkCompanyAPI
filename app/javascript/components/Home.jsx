@@ -10,7 +10,7 @@ class Home extends Component {
     
     render() {        
         return (
-            <div className="homepage">
+            <div className="homepage d:flex justify-content-center">
                 {/* <NavBar/> */}
                     <div className="homepage-container">
                         <div className="homepage-header">

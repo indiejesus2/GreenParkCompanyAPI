@@ -45,7 +45,7 @@ export default function EmployeeSignUp(props) {
 
     return (
         <React.Fragment>    
-        <Modal show={show} animation backdrop>
+        <Modal show={show} animation backdrop="false">
             <Modal.Header><h1>Create a Free Account</h1>
             <p>Find a job today!</p></Modal.Header>
 
