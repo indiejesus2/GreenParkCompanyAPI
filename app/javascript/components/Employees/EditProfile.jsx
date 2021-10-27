@@ -198,10 +198,10 @@ export default function EditProfile(props) {
 
                     <Form.Group>
                         <FloatingLabel label="Experience">
-                            <Form.Control as="textarea" name="description" value={formik.initialValues.description} onChange={formik.handleChange} />
+                            <Form.Control as="textarea" name="description" style={{ height: '100px'}} value={formik.initialValues.description} onChange={formik.handleChange} />
                         </FloatingLabel>
                     </Form.Group>
-                    <Row className="align-items-center">
+                    <Row className="desired">
                     <Form.Group as={Col}>
                     <div className="jobtype">
                         <Form.Label htmlFor="job type"> Job-Type: </Form.Label>
@@ -284,8 +284,7 @@ export default function EditProfile(props) {
                 </Row>
                 <Row>
                     <Form.Group>
-                        <Form.Check name="license" value={formik.values.license} onChange={formik.handleChange} defaultChecked={formik.values.license} />
-                        <Form.Label>Driver's License</Form.Label>
+                        <Form.Check name="license" label="Driver's License" value={formik.values.license} onChange={formik.handleChange} defaultChecked={formik.values.license} />
                     </Form.Group>
                 </Row>
                 <div className="submit">

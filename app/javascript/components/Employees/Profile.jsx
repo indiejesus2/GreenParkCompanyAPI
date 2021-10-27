@@ -9,6 +9,7 @@ const Profile = props => {
     }
 
     const employee = props.profile
+    const license = props.profile.license == true ? "Yes" : "No"
 
     return (
 
@@ -44,8 +45,8 @@ const Profile = props => {
                         <td>${employee.minpay} - ${employee.maxpay} {employee.paytype}</td>
                     </tr>
                     <tr>
-                        <td>Driver's License</td>
-                        <td>{employee.license}</td>
+                        <td>Driver's License:</td>
+                        <td>{license}</td>
                     </tr>
                     </tbody>
                 </Table>

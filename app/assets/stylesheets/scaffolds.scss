@@ -279,10 +279,10 @@ h1, h2 {
   margin-block-start: 10px;
 }
 
-.employees h2 {
-  position: relative;
-  right: 300px;
-}
+// .employees h2 {
+//   position: relative;
+//   right: 300px;
+// }
 
 .employees-jobs {
   display: flex;
@@ -384,6 +384,8 @@ h1, h2 {
 
 .profile-form {
   margin: 20px;
+  display: grid;
+  justify-content: center;
 }
 
 .employee-profile {
@@ -448,10 +450,6 @@ h1, h2 {
 .modal-header {
   justify-content: center;
 }
-
-
-
-
 
 // .homepage-contractors {
 //   margin-top: 40px;
