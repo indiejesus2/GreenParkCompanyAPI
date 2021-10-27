@@ -1,5 +1,6 @@
 class Profile < ApplicationRecord
   belongs_to :employee
+  has_one :document, through: :employee
   has_many :experiences
   has_many :jobs, through: :employee
   geocoded_by :address

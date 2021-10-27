@@ -1,9 +1,10 @@
 class Employee < ApplicationRecord
+  has_secure_password
   has_one :profile
+  has_one :document
   has_many :experiences
   has_many :applicants
   has_many :jobs, through: :applicants
-  has_secure_password
   validates :email, uniqueness: true
 
 

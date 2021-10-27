@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_27_030343) do
+ActiveRecord::Schema.define(version: 2021_10_27_170528) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "citext"
@@ -28,6 +28,16 @@ ActiveRecord::Schema.define(version: 2021_10_27_030343) do
     t.index ["employee_id"], name: "index_applicants_on_employee_id"
     t.index ["employer_id"], name: "index_applicants_on_employer_id"
     t.index ["job_id"], name: "index_applicants_on_job_id"
+  end
+
+  create_table "documents", force: :cascade do |t|
+    t.string "filename"
+    t.string "content_type"
+    t.binary "file_contents"
+    t.bigint "employee_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["employee_id"], name: "index_documents_on_employee_id"
   end
 
   create_table "employees", force: :cascade do |t|
@@ -125,6 +135,7 @@ ActiveRecord::Schema.define(version: 2021_10_27_030343) do
   add_foreign_key "applicants", "employees"
   add_foreign_key "applicants", "employers"
   add_foreign_key "applicants", "jobs"
+  add_foreign_key "documents", "employees"
   add_foreign_key "experiences", "employees"
   add_foreign_key "experiences", "profiles"
   add_foreign_key "jobs", "employers"
