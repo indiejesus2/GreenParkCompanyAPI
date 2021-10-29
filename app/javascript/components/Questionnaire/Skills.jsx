@@ -39,6 +39,10 @@ const Skills = props => {
                     Experience:
                 </Form.Label>
                 <Experience handleChange={props.handleChange} />
+            <Form.Group>
+                <Form.Label>Upload Resume:</Form.Label>
+                <Form.Control type="file" name="file" size="sm" onChange={props.handleChange} />
+            </Form.Group>
             </Modal.Body>
             <Modal.Footer>
                 <Button variant="primary" name="previous" onClick={props.handleClick}>

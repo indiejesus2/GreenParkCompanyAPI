@@ -53,6 +53,7 @@ const Main = (props) => {
             maxpay: 0,
             paytype: "",
             industry: '',
+            file: null,
             experience: [
                 {
                 title: "",

@@ -26,6 +26,7 @@ class Api::V1::ProfilesController < ApplicationController
     end
 
     def update
+        # byebug
         @profile = @employee.profile
         employee = {employee_id: @employee.id, profile_id: @profile.id}
         @profile.update(profile_params)
@@ -44,7 +45,7 @@ class Api::V1::ProfilesController < ApplicationController
     private
     
     def profile_params
-        params.require(:profile).permit(:fname, :lname, :city, :state, :zipcode, :phone, :license, {:jobtype => []}, {:schedule  => []}, {:shifts => []}, :seasonstart, :seasonend, :minpay, :maxpay, :paytype, :industry, :description, :employee_id, :file)
+        params.require(:profile).permit(:fname, :lname, :city, :state, :zipcode, :phone, :license, {:jobtype => []}, {:schedule  => []}, {:shifts => []}, :seasonstart, :seasonend, :minpay, :maxpay, :paytype, :industry, :description, :employee_id)
     end
     
     def history_params

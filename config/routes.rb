@@ -14,6 +14,7 @@ Rails.application.routes.draw do
         end
       end
       resources :jobs
+      resources :documents
       post '/signin', to: 'auth#create'
       post '/signup', to: 'employees#create'
       post '/contractors/signup', to: 'employers#create'

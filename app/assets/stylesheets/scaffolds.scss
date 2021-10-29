@@ -111,12 +111,26 @@ label {
   justify-content: center;
 }
 
+.nav a {
+  font-size: x-large;
+  color: #113955;
+}
+
+.nav a :hover {
+  color: #3d8ac9;
+}
+
 // a {
 //   margin: 5px;
 // }
 
 .homepage {
-  margin: 75px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+  // margin: 75px;
 }
 
 .homepage-container {
@@ -129,29 +143,34 @@ label {
 .homepage-header {
   display: flex;
   justify-content: center;
+  border-style: inset;
+  border-color: #113955;
+  padding: 25px;
+  box-shadow: 5px 10px #3d8ac9;
 }
 
 .homepage-body {
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
 }
 
 .homepage-body div {
-  margin: 25px;
+  margin-top: 25px;
 }
 
 .homepage-header img {
-  width: 700px;
+  max-width: 100%;
+  height: auto;
 }
 
-@media (max-width: 600px) {
-  .homepage-header img {
-    width: 300px;
-  }
-  .signIn {
-    width: 275px;
-  }
-}
+// @media (max-width: 700px) {
+//   .homepage-header img {
+//     width: 300px;
+//   }
+//   .signIn {
+//     width: 275px;
+//   }
+// }
 
 // .homepage-cards {
 // }
@@ -379,7 +398,8 @@ h1, h2 {
 
 
 .signIn {
-  width: 400px;
+  max-width: 100%;
+  height: auto;
 }
 
 .profile-form {

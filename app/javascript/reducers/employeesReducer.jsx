@@ -1,4 +1,6 @@
-export default function employeesReducer(state = {employee: [], profile: [], experience: [], jobs: [], loggedIn: false, loading: false}, action) {
+import { assertConditionalExpression } from "@babel/types"
+
+export default function employeesReducer(state = {employee: [], profile: [], experience: [], jobs: [], document: [], loggedIn: false, loading: false}, action) {
     switch(action.type) {
         case 'LOADING_EMPLOYEES':
             return {
@@ -34,13 +36,23 @@ export default function employeesReducer(state = {employee: [], profile: [], exp
                 loading: false
             }
         case 'UPDATE_PROFILE':
-            debugger
             return {
                 ...state,
                 profile: action.payload.profile,
                 experience: action.payload.experiences,
                 jobs: action.payload.jobs,
                 loading: false
+            }
+        case 'LOADING_FILE':
+            return {
+                ...state,
+                loading: true
+            }
+        case 'UPLOAD_FILE':
+            return {
+                ...state,
+                loading: false,
+                document: action.payload
             }
         case 'ERROR_EMPLOYEE':
             return {

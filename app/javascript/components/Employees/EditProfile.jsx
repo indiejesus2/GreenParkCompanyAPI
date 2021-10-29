@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import NavBar from '../NavBar'
 import { useFormik } from 'formik'
 import { Form, FloatingLabel, Button, Row, Col } from 'react-bootstrap'
+import EmployeeFile from './EmployeeFile'
 
 
 export default function EditProfile(props) {
@@ -105,6 +106,10 @@ export default function EditProfile(props) {
         "Other"
     ]
 
+    const [show, setShow] = useState(false);
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+
     const employee = props.profile
 
     const formik = useFormik({
@@ -130,10 +135,26 @@ export default function EditProfile(props) {
             industry: employee.industry,
         },
         onSubmit: values => {
-            props.updateProfile(values)
+            // let data = new FormData();
+            // data.append("file", values.file, values.file.name)
+            props.updateProfile(values, data)
             props.history.push(`/employees/${values.employee_id}/profile`)
         }
     })
+
+    // const handleUpload = (e) => {
+    //     let reader = new FileReader();
+    //     let file = e.target.files[0];
+    //     if (file) {
+    //         reader.onloadend = () => setFileName(file.name);
+    //         formik.setFieldValue('file', file);
+    //         if (file.name !== fileName) {
+    //             reader.readAsDataURL(file);
+    //             formik.setFieldValue('file', file);
+    //             // setSrc(reader)
+    //         }
+    //     }
+    // }
 
     return (
         <div className="profile">
@@ -286,6 +307,15 @@ export default function EditProfile(props) {
                     <Form.Group>
                         <Form.Check name="license" label="Driver's License" value={formik.values.license} onChange={formik.handleChange} defaultChecked={formik.values.license} />
                     </Form.Group>
+                    <Button onClick={handleShow}>
+                        Upload File
+                        <EmployeeFile 
+                        show={show} 
+                        employee={employee}
+                        uploadFile={props.uploadFile}
+                        // uploadFile={} 
+                        />
+                    </Button>
                 </Row>
                 <div className="submit">
                     <Button type="submit" value="Save Changes" onClick={formik.handleSubmit}>Save Changes</Button>

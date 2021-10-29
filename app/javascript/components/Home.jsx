@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
 import Card from 'react-bootstrap/Card'
 import CardGroup from 'react-bootstrap/CardGroup'
-import Button from 'react-bootstrap/Button'
+import { Button, Stack, Container, Image } from 'react-bootstrap'
 import EmployeeSignIn from './Login/EmployeeSignIn';
 import NavBar from '../components/NavBar'
 
@@ -10,11 +10,17 @@ class Home extends Component {
     
     render() {        
         return (
-            <div className="homepage d:flex justify-content-center">
+            <div className="homepage">
                 {/* <NavBar/> */}
-                    <div className="homepage-container">
+                    {/* <div className="homepage-container"> */}
+                    <Container>
+                            <NavBar />
+
                         <div className="homepage-header">
-                            <img src="/images/blucollarlogo_wocollar.png" alt="" />
+                            <Stack gap={2}>
+
+                            <Image src="/images/blucollarlogo_wocollar.png" alt="BluCollar Logo" fluid />
+                            </Stack>
                             {/* <h1>Start Your Career Path, Today!</h1> */}
                         </div>
                         <div className="homepage-body">
@@ -32,7 +38,8 @@ class Home extends Component {
                                         </Link>
                                     </div>
                     </div>
-                </div>
+                    </Container>
+                {/* </div> */}
             </div>
         )
     }
