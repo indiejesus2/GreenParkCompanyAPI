@@ -17,10 +17,7 @@ class Home extends Component {
                             <NavBar />
 
                         <div className="homepage-header">
-                            <Stack gap={2}>
-
-                            <Image src="/images/blucollarlogo_wocollar.png" alt="BluCollar Logo" fluid />
-                            </Stack>
+                            <Image src="/images/blucollarlogo_wocollar.png" alt="BluCollar Logo" />
                             {/* <h1>Start Your Career Path, Today!</h1> */}
                         </div>
                         <div className="homepage-body">

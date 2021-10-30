@@ -371,9 +371,50 @@ h1, h2 {
   padding-inline: 50px;
 }
 
-.contractor td:nth-child(2) {
+// .modal-body td:nth-child(2) {
+//   display: flex;
+//   justify-content: right;
+// }
+
+
+.job-info td:nth-child(2) {
   display: flex;
   justify-content: right;
+}
+
+.job-info td {
+  width: 200px;
+}
+
+.job-info {
+  // padding-inline: 25px;
+  padding-block-start: 25px;
+  display: grid;
+  justify-content: center;
+  border-style: inset;
+  border-color: #113955;
+}
+
+.job-body {
+  padding-top: 15px;
+}
+
+job-body .table {
+  border-style: inset;
+  border-color: #3d8ac9;
+}
+
+.description {
+  display: flex;
+  justify-content: center;
+  padding-block-end: 10px;
+  overflow-block: auto;
+  max-height: 250px;
+}
+
+.subtitle {
+  display: flex;
+  justify-content: space-around;
 }
 
 .desired.row {

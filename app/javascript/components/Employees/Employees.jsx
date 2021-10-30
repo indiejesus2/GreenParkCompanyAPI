@@ -62,7 +62,7 @@ const Employees = props => {
                 <NavBar handleSignout={props.signOut} profile={props.profile} user="employee" />
 
                 <h2>{jobs.length} Potential Job Matches</h2>
-                <Jobs jobs={jobs} employee={props.employee} />
+                <Jobs jobs={jobs} employee={props.employee} profile={props.profile} />
             </div>
         )
     }
