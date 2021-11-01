@@ -1,8 +1,5 @@
-import React, { Component, useState } from 'react'
-import Modal from 'react-bootstrap/Modal'
-import Form from 'react-bootstrap/Form'
-import Col from 'react-bootstrap/Col'
-import Button from 'react-bootstrap/Button'
+import React, { useState, useEffect } from 'react'
+import { Modal, Form, Col, Button, Alert } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { useFormik } from 'formik'
 import { useHistory } from 'react-router-dom'
@@ -13,6 +10,7 @@ export default function EmployeeSignUp(props) {
 
     const [show, setShow] = useState(true)
     const history = useHistory();
+    const [alert, setAlert] = useState(false)
 
     const schema = yup.object().shape({
         email: yup.string().email("Please enter a valid email address").required("Email is required."),
@@ -23,6 +21,12 @@ export default function EmployeeSignUp(props) {
         history.push('/');
         setShow(false)
     }
+
+    useEffect(() => {
+        if (props.errors) {
+            setAlert(true)
+        }
+    })
 
     const handleShow = () => setShow(true);
 
@@ -51,6 +55,9 @@ export default function EmployeeSignUp(props) {
 
             <Form onSubmit={formik.handleSubmit}>
             <Modal.Body>
+            <Alert show={alert}>
+                    {props.errors}
+                </Alert>
                 <Form.Group md="4" controlId="validationFormik01">
                 <Form.Label>Email: </Form.Label>
                 <Form.Control
