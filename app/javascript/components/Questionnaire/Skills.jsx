@@ -38,7 +38,7 @@ const Skills = props => {
                 <Form.Label>
                     Experience:
                 </Form.Label>
-                <Experience handleChange={props.handleChange} />
+                <Experience handleChange={props.handleChange} values={props.values} />
             <Form.Group>
                 <Form.Label>Upload Resume:</Form.Label>
                 <Form.Control type="file" name="file" size="sm" onChange={props.handleChange} />

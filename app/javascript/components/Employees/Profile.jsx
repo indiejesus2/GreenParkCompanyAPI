@@ -10,6 +10,9 @@ const Profile = props => {
 
     const employee = props.profile
     const license = props.profile.license == true ? "Yes" : "No"
+    const jobtype = employee.jobtype.length > 0 ? employee.jobtype : []
+    const schedule = employee.schedule.length > 0 ? employee.schedule : []
+    const shifts = employee.shifts.length > 0 ? employee.shifts : []
 
     return (
 
@@ -26,15 +29,15 @@ const Profile = props => {
                     <tbody>
                     <tr>
                         <td>Job Type:</td>
-                        <td>{employee.jobtype.join(", ")}</td>
+                        <td>{jobtype.join(", ")}</td>
                     </tr>
                     <tr>
                         <td>Schedule:</td>
-                        <td>{employee.schedule.join(", ")}</td>
+                        <td>{schedule.join(", ")}</td>
                     </tr>
                     <tr>
                         <td>Shifts:</td>
-                        <td>{employee.shifts.join(", ")}</td>
+                        <td>{shifts.join(", ")}</td>
                     </tr>
                     <tr>
                         <td>Season Availability:</td>
