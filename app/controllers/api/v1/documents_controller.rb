@@ -1,5 +1,5 @@
 class Api::V1::DocumentsController < ApplicationController
-    before_action :set_employee, only: [:update, :destroy]
+    before_action :set_employee, only: [:create, :update, :destroy]
 
     def index
         @documents = Document.all
@@ -10,16 +10,21 @@ class Api::V1::DocumentsController < ApplicationController
     end
 
     def create
+        @employee.file.attach(params[:file])
+        # @document = Document.new(document_params)
         byebug
-        @document = Document.new(document_params)
-        if @document.save
-            render json: @document
+        if @employee.save
+            render json: EmployeeSerializer.new(@employee)
         end
     end
 
+    private
+        def document_params
+            params.permit(:file, :employee_id)
+        end
+
     def set_employee
-        byebug
-        @employee = Employee.find_by(params[:employee_id])
+        @employee = Employee.find(params[:employee_id])
     end
 
 end

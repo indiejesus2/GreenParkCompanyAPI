@@ -1,8 +1,9 @@
-export const uploadFile = (file, id) => {
-    let data = new FormData()
-    data.append("file", file, file.name)
-    let upload = data.get('file')
-    debugger
+export const uploadFile = (file) => {
+    // const data = new FormData()
+    // data.append("file", file, file.name)
+    // data.append('employee_id', id)
+    // let upload = data.get('file')
+    // debugger
     return (dispatch) => {
         dispatch({type: 'LOADING_FILE'})
         // const configObj = {
@@ -15,9 +16,12 @@ export const uploadFile = (file, id) => {
         // };
         return fetch(`/api/v1/documents`, {
             method: "POST",
-            body: upload
+            body: file
         })
         .then(resp => resp.json())
-        .then(file => dispatch({type: 'UPLOAD_FILE', payload: file.data.attributes}))
+        .then(file => {
+            debugger
+            dispatch({
+            type: 'UPLOAD_FILE', payload: file.data.attributes})})
     }
 }

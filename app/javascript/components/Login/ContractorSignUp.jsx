@@ -41,9 +41,9 @@ export default function ContractorSignUp(props) {
     } 
 
     return (
-        <React.Fragment>    
+        <React.Fragment>     
         <Modal show={show} animation centered onHide={handleClose}>
-            <Modal.Header><h1>Create a Free Account</h1>
+            <Modal.Header><h1>Create An Account</h1>
             <p>Fill that position today!</p></Modal.Header>
             <Form onSubmit={formik.handleSubmit}>
             <Modal.Body>

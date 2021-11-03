@@ -34,6 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
         <App />
       </Router>
     </Provider>,
-    document.body.appendChild(document.createElement('div')),
+    // document.body.style.backgroundColor="#3d8ac9",
+    document.body.appendChild(document.createElement('div'))
   )
 })

@@ -9,7 +9,8 @@ const EmployeeFile = props => {
     const handleSubmit = () => {
         let data = new FormData()
         data.append("file", file, file.name)
-        props.uploadFile(file, id)
+        data.append('employee_id', id)
+        props.uploadFile(data)
     }
 
     const handleChange = (e) => {
