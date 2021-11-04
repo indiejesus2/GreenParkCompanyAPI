@@ -30,6 +30,10 @@ class EmployeesContainer extends Component {
                     Loading....
                 </div>
             )
+        } else if (this.props.loggedIn == false) {
+            return (
+                <Route path='/employees' render={(routerProps) => <Employees {...routerProps} signIn={this.props.signIn} signUp={this.props.signUp} loggedIn={this.props.loggedIn} employee={this.props.employee} profile={this.props.profile}  jobs={this.props.jobs} loading={this.props.loading} createProfile={this.props.createProfile} errors={this.props.errors} signOut={this.props.signOut}/>}></Route>
+            )
         } else {
             return (
                 <div>

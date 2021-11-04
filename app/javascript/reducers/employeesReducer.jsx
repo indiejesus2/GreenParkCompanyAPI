@@ -14,7 +14,6 @@ export default function employeesReducer(state = {employee: [], profile: [], exp
                 loading: false
             }
         case 'SIGNIN_EMPLOYEE':
-            debugger
             return {
                 employee: action.payload,
                 profile: action.payload.profile,
@@ -30,8 +29,8 @@ export default function employeesReducer(state = {employee: [], profile: [], exp
             }    
         case 'CREATE_PROFILE':
             return {
-                ...state,
-                profile: action.payload,
+                employee: action.payload,
+                profile: action.payload.profile,
                 experience: action.payload.experiences,
                 jobs: action.payload.jobs,
                 loading: false

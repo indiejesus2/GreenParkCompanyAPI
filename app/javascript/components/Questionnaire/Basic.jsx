@@ -68,7 +68,7 @@ const Basic = props => {
         <Modal show animation backdrop>
             
         <Modal.Header className="justify-content-center">
-            <Modal.Title><img src="/images/blucollar_icon.png" alt="Collar" /></Modal.Title>
+            <Modal.Title className="questionlogo"><img src="/images/blucollar_O.png" alt="BluCollar Logo" /></Modal.Title>
         </Modal.Header>
             <Modal.Body>
 
@@ -142,7 +142,6 @@ const Basic = props => {
                             <Form.Control type="text" name="phone" value={props.values.phone} onChange={props.handleChange} />
                         </FloatingLabel>
                     </Form.Group>
-            <Form.Check type="checkbox" name="license" label="Driver's License" value={props.values.license} onChange={props.handleChange} />
             </Modal.Body>
             <Modal.Footer>
                 <Button variant="primary" name="next" onClick={props.handleClick}>

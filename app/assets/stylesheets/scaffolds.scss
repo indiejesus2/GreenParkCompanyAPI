@@ -115,10 +115,13 @@ label {
 .nav a {
   font-size: x-large;
   color: #113955;
+  font-style: normal;
+  text-decoration: none;
 }
 
 .nav a:hover {
-  color: #3d8ac9;
+  // color: #3d8ac9;
+  text-decoration: underline;
 }
 
 // a {
@@ -243,9 +246,13 @@ h1, h2 {
   text-align: center;
 }
 
-
 .employee-nav {
   display: grid;
+  justify-content: center;
+}
+
+.employee-nav nav {
+  display: flex;
   justify-content: center;
 }
 
@@ -369,8 +376,21 @@ h1, h2 {
   padding: 25px;
 }
 
+.questionlogo {
+  display: flex;
+  justify-content: center;
+}
+
+.questionlogo img {
+  width: 25%
+}
+
 .contractor .card-body {
   padding-inline: 50px;
+}
+
+.modal-body {
+  padding-inline: 10px;
 }
 
 // .modal-body td:nth-child(2) {
@@ -420,7 +440,7 @@ job-body .table {
 }
 
 .desired.row {
-  padding-block: 15px;
+  padding-block: 10px;
 }
 
 .desired .col {

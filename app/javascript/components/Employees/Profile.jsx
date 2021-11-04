@@ -10,6 +10,10 @@ const Profile = props => {
 
     const employee = props.profile
     const license = props.profile.license == true ? "Yes" : "No"
+    // debugger
+    // const jobtype = []
+    // const schedule = []
+    // const shifts = []
     const jobtype = employee.jobtype.length > 0 ? employee.jobtype : []
     const schedule = employee.schedule.length > 0 ? employee.schedule : []
     const shifts = employee.shifts.length > 0 ? employee.shifts : []

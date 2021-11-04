@@ -44,7 +44,7 @@ const Main = (props) => {
             zipcode: '',
             phone: '',
             license: false,
-            jobType: [],
+            jobtype: [],
             schedule: [],
             shifts: [],
             seasonstart: '',
@@ -129,17 +129,19 @@ const Main = (props) => {
                     handleSubmit={formik.handleSubmit}
                     />
             </Form>
-            <Alert show={show} >
+            <div className="d-flex justify-content-center" >
+            <Alert show={show} style={{width: 50 + "%"}}>
                     <Alert.Heading>Welcome to BluCollar!</Alert.Heading>
                     <p>
-                        Please complete the three-part questionnaire to begin the job-matching process. Please answer as many questions as possible to increase your chances of matching with a potential contractor.
+                        Please complete the questionnaire to begin the job-matching process. Please answer as many questions as possible to increase your chances of matching with a potential contractor.
                     </p>
-                    <div onClick={handleClose} className="d-flex justify-content-end">
+                    <div onClick={handleClose} className="d-flex justify-content-center">
                         <Button>
                             Enter Info
                         </Button>
                     </div>
                 </Alert>
+            </div>
             </div>
             )}
 

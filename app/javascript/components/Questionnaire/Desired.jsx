@@ -38,6 +38,15 @@ const Desired = props => {
         "Evening"
     ]
 
+    const industries = [
+        "Plumbing",
+        "Painting",
+        "Maintenance",
+        "Electric",
+        "Landscape",   
+        "Other/None"
+    ]
+
     if(props.currentStep !== 2) {
         return null
     }
@@ -50,16 +59,23 @@ const Desired = props => {
             <React.Fragment>
         <Modal show animation backdrop>
         <Modal.Header className="justify-content-center">
-            <Modal.Title><img src="/images/blucollar_icon.png" alt="Collar" /></Modal.Title>
+            <Modal.Title className="questionlogo"><img src="/images/blucollar_O.png" alt="BluCollar Logo" /></Modal.Title>
         </Modal.Header>
             <Modal.Body>
+                <h1>Desired Position</h1>
+            <Form.Select name="industry" id="industry" onChange={props.handleChange}>
+            <option>Industry</option>
+                        {industries.map(industry => 
+                        <option key={industry} value={industry}>{industry}</option>
+                            )}
+            </Form.Select>
             <Row className="desired">
 
         <Form.Group as={Col}>
         <div className="job type">
             <Form.Label htmlFor="job type"> Job-Type: </Form.Label>
             {jobtypes.map(job => 
-                <Form.Check name="jobtype" label={job} value={job} id={job} key={job} onChange={props.handleChange} />
+                <Form.Check name="jobtype" label={job} value={job} id={job} key={job} onChange={props.handleChange} defaultChecked={props.values.jobtype.includes(job)} />
             )}
         </div>
         </Form.Group>
@@ -68,7 +84,7 @@ const Desired = props => {
         <div className="schedule">
             <Form.Label htmlFor="schedule">Schedule: </Form.Label>
             {schedule.map(day => 
-                <Form.Check name="schedule" id={day} label={day} value={day} key={day} onChange={props.handleChange} />
+                <Form.Check name="schedule" id={day} label={day} value={day} key={day} onChange={props.handleChange} defaultChecked={props.values.schedule.includes(day)}/>
                 )}
         </div>
                 </Form.Group>
@@ -77,7 +93,7 @@ const Desired = props => {
         <div className="shifts">
         <Form.Label>Shifts: </Form.Label>
         {shifts.map(shift =>                             
-            <Form.Check name="shifts" label={shift} value={shift} key={shift} onChange={props.handleChange} />
+            <Form.Check name="shifts" label={shift} value={shift} key={shift} onChange={props.handleChange} defaultChecked={props.values.shifts.includes(shift)}/>
             )}
         </div>
             </Form.Group>
@@ -88,7 +104,7 @@ const Desired = props => {
         <Form.Group as={Col}>
         <FloatingLabel label="Seasonal Start">
         
-        <Form.Select name="seasonstart" onChange={props.handleChange} > 
+        <Form.Select name="seasonstart" onChange={props.handleChange} defaultValue={props.values.seasonstart}> 
             {months.map(month =>
                     <option key={month}>{month}</option>
             )}
@@ -98,7 +114,7 @@ const Desired = props => {
             <Form.Group as={Col}>
             <FloatingLabel label="Seasonal End">
             
-        <Form.Select name="seasonend" onChange={props.handleChange}> 
+        <Form.Select name="seasonend" onChange={props.handleChange} defaultValue={props.values.seasonend}> 
             {months.map(month => 
             <option>{month}</option>
             )}
@@ -114,30 +130,36 @@ const Desired = props => {
         </Form.Label>
         <Form.Control type="text" name="minpay" onChange={props.handleChange} value={props.values.minpay}/>
         </Form.Group>
-        <Form.Group as={Col}>
-        <Form.Label>
-            Maximum Pay Rate: 
-        </Form.Label>
-        <Form.Control type="text" name="maxpay" onChange={props.handleChange} value={props.values.maxpay}/>
-        </Form.Group>
+    
         <Form.Group as={Col}>
             <Form.Label>
                 Pay Type:
             </Form.Label>
             <Form.Select name="paytype" label="paytype" value={props.values.paytype} onChange={props.handleChange} defaultValue={props.values.paytype}>
                     <option>Hourly</option>
-                    <option>Annually</option>
+                    <option>Salary</option>
             </Form.Select>
         </Form.Group>
         </Row>
+        <Row>
+            <Form.Group as={Col}>
+                <Form.Check type="checkbox" name="license" label="Driver's License" value={props.values.license} onChange={props.handleChange} />
+            </Form.Group>
+            <Form.Group as={Col}>
+                <Form.Label>Upload Resume:</Form.Label>
+                <Form.Control type="file" name="file" size="sm" onChange={props.handleChange} />
+            </Form.Group>
+        </Row>
             </Modal.Body>
-                <Modal.Footer>
-                    
+                <Modal.Footer>        
+                <Button variant="link" name="next" onClick={props.handleClick}>
+                    +Add Previous Experience
+                </Button>
                 <Button variant="primary" name="previous" onClick={props.handleClick}>
                     Previous
-                </Button>
-                <Button variant="primary" name="next" onClick={props.handleClick}>
-                    Next
+                </Button> 
+                <Button variant="primary" name="submit" onClick={props.handleSubmit}>
+                    Complete Profile
                 </Button>
                 </Modal.Footer>
         </Modal>
