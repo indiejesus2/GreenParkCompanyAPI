@@ -52,7 +52,7 @@ const Desired = props => {
     }
 
     return(
-        <div className="desired">
+        <div className="desired" style={{overflow: "auto"}}>
 
             <div key={`inline-checkbox`} className="mb-3">
 
