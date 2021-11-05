@@ -120,13 +120,13 @@ const Main = (props) => {
                     handleChange={formik.handleChange}
                     values={formik.values}
                     handleClick={handleClick}
+                    handleSubmit={formik.handleSubmit}
                     />
                 <Skills
                     currentStep={step}
                     handleChange={formik.handleChange}
                     values={formik.values}
                     handleClick={handleClick}
-                    handleSubmit={formik.handleSubmit}
                     />
             </Form>
             <div className="d-flex justify-content-center" >
