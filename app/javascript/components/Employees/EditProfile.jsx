@@ -137,7 +137,7 @@ export default function EditProfile(props) {
         onSubmit: values => {
             // let data = new FormData();
             // data.append("file", values.file, values.file.name)
-            props.updateProfile(values, data)
+            props.updateProfile(values)
             props.history.push(`/employees/${values.employee_id}/profile`)
         }
     })

@@ -1,5 +1,4 @@
 export const updateProfile = (profile) => {
-    debugger
     return (dispatch) => {
         const configObj = {
             method: "PATCH",

@@ -92,9 +92,9 @@ label {
   justify-content: right;
 }
 
-.nav-og {
-  height: 100px;
-}
+// .nav-og {
+//   height: 100px;
+// }
 
 .nav-sign {
   display: flex;
@@ -269,10 +269,6 @@ h1, h2 {
   justify-content: center;
 }
 
-.employees {
-  margin-top: 30px;
-}
-
 .candidates {
     display: flex;
     justify-content: center;
@@ -326,7 +322,7 @@ h1, h2 {
   margin-inline: 25px;
   margin-block-end: 45px;
   background-color: #eee;
-  border-color: #175785;
+  border: #175785;
 }
 
 .employees-jobs .matches {
