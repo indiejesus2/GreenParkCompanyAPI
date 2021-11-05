@@ -51,7 +51,7 @@ const Main = (props) => {
             seasonend: '',
             minpay: 0,
             maxpay: 0,
-            paytype: "",
+            paytype: "Hourly",
             industry: '',
             file: null,
             experience: [

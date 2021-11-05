@@ -31,7 +31,7 @@ const Job = props => {
                     {job.title} - {job.city}, {job.state} 
                 </h2>
                 <div className="subtitle">
-                        <span>
+                        <span className="d-flex">
                             Potential Match: {rate(applicant.rating)} 
                         </span>    
                         <span>
@@ -39,7 +39,7 @@ const Job = props => {
                         </span>
                 </div>
             </Modal.Title>
-            <Modal.Body style={{"padding-top": "0px"}}>
+            <Modal.Body style={{"padding-top": "5px"}}>
                 <div className="description">
                     <span>{job.description}</span>
                 </div>

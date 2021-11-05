@@ -100,18 +100,21 @@ const Jobs = (props) => {
             <div className="employees-jobs">
                 {jobs.map(job =>
                 <Card id={job.id} key={job.id} > 
-                    <Card.Header className="d-grid justify-content-center">
+                    <Card.Header>
+                    {/* // className="d-grid justify-content-center"> */}
                        <Card.Title className="mb-2" as="h2">{job.title}</Card.Title>
                         <Card.Subtitle>Location: {job.city}, {job.state}</Card.Subtitle>
                     </Card.Header>
-                    <Card.Body style={{ paddingBlockStart: 0 + `px`}}>
+                    <Card.Body>
                         <div className="d-flex justify-content-between">
                             <Card.Subtitle as="h5">Rating: {rate(employee.applicants.find(applicant => applicant.job_id == job.id).rating)}</Card.Subtitle>
                             <Card.Subtitle as="h5">Distance: {Math.round(employee.applicants.find(applicant => applicant.job_id == job.id).distance)}</Card.Subtitle>
                         </div>
+                        <div className="matches">
                         {Object.entries(jobMatch(job)).map(([key, value]) =>
                             <Card.Text style={{ marginBlockEnd: 1 + `px`}}>{key}: {value}</Card.Text>
-                        )}
+                            )}
+                        </div>
                         <Card.Text style={{ height: 63 + 'px', overflow: "clip", paddingBlock: 10 + 'px' }}>Description: {job.description} </Card.Text>
                     <div className="employee-jobs-buttons">
                         <Button onClick={() => handleShow(job)}>More Info</Button>

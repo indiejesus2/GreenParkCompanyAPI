@@ -30,11 +30,13 @@ class ContractorsContainer extends Component {
     render() {
         if (this.props.loading == true) {
             return (
-                <div className="loading">
+                <div>
                     <Logo user="contractor"/>
+                <div className="loading">
                 {/* <NavBar loading={this.props.loading} handleSignout={this.handleSignout} user="contractor" /> */}
 
                     Loading....
+                </div>
                 </div>
             )
         } else if (this.props.loggedIn == false) {

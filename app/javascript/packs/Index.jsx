@@ -16,6 +16,7 @@ import App from '../components/App'
 import ScrollToTop from '../components/ScrollToTop'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+
 const rootReducer = combineReducers({
   employeesReducer,
   contractorsReducer,
@@ -30,6 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
   render(
     <Provider store={store}>
       <Router>
+
         <ScrollToTop />
         <App />
       </Router>

@@ -22,7 +22,6 @@ const Skills = props => {
             <Modal.Body>
 
             {/* // <span key={skill.id}>{skill} </span> */}
-  /
 
 
                 <Form.Label>

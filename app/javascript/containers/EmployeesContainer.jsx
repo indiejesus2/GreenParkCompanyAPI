@@ -23,11 +23,14 @@ class EmployeesContainer extends Component {
     render() {
         if (this.props.loading == true) {
             return (
+                <div>
+
+                <Logo user="employee"/>
                 <div className="loading">
                 {/* <NavBar loading={this.props.loading} handleSignout={this.handleSignout} user="employee" />
                  */}
-                 <Logo user="employee"/>
                     Loading....
+                 </div>
                 </div>
             )
         } else if (this.props.loggedIn == false) {

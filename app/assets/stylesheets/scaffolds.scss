@@ -1,12 +1,15 @@
 @import 'bootstrap/scss/bootstrap';
+@import url('https://fonts.googleapis.com/css2?family=Sanchez&display=swap');
 
 body {
   background-color: #3d8ac9;
+  font-family: 'Sanchez', serif;
   color: #333;
   margin: 33px; }
 
 body, p, ol, ul, td {
-  font-family: verdana, arial, helvetica, sans-serif;
+  font-family: 'Sanchez', serif;
+  // font-family: verdana, arial, helvetica, sans-serif;
   font-size: 13px;
   line-height: 18px; }
 
@@ -91,13 +94,13 @@ label {
 
 .nav-og {
   height: 100px;
-  margin-top: 10px;
-  margin-right: 10px;
 }
 
 .nav-sign {
   display: flex;
   justify-content: center;
+  background-color: #eee;
+  padding: 25px;
 }
 
 .nav-links {
@@ -114,7 +117,7 @@ label {
 
 .nav a {
   font-size: x-large;
-  color: #113955;
+  color: white;
   font-style: normal;
   text-decoration: none;
 }
@@ -266,10 +269,9 @@ h1, h2 {
   justify-content: center;
 }
 
-// .employees {
-//   display: grid;
-//   justify-content: center;
-// }
+.employees {
+  margin-top: 30px;
+}
 
 .candidates {
     display: flex;
@@ -323,7 +325,12 @@ h1, h2 {
   height: 300px;
   margin-inline: 25px;
   margin-block-end: 45px;
-  background-color: #3d8ac9;
+  background-color: #eee;
+  border-color: #175785;
+}
+
+.employees-jobs .matches {
+  padding-top: 5px
 }
 
 .employee-jobs-buttons {
@@ -336,8 +343,16 @@ h1, h2 {
   padding: 10px;
   margin-inline: 25px;
   margin-block-end: 45px;
-  background-color: #3d8ac9;
+  background-color: #eee;
+  border-color: #175785;
 }
+.employees-jobs .card-header {
+  display: grid;
+  justify-content: center;
+  background-color: #113955;
+  color: white;
+}
+
 
 .employer-jobs button {
   background-color: #113955;
@@ -391,6 +406,10 @@ h1, h2 {
 
 .modal-body {
   padding-inline: 10px;
+}
+
+.employees .card-body {
+  padding-top: 5px;
 }
 
 // .modal-body td:nth-child(2) {

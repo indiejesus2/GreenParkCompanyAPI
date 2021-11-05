@@ -22,18 +22,21 @@ class Home extends Component {
                         </div>
                         <div className="homepage-body">
                             <div className="homepage-employees">
-                                        <h5>JobSeekers</h5>
-                                        <Link to="/employees">
-                                            <Button id="employees">Find Jobs</Button>
-                                        </Link>
+                                <div style={{position: "relative", right: 2.5+"px" }}>
+                                    <h5>JobSeekers</h5>
+                                </div>
+                                <Link to="/employees">
+                                    <Button id="employees">Find Jobs</Button>
+                                </Link>
+                        </div>
+                        <div className="homepage-contractors">
+                        <div style={{position: "relative", right: 6+"px" }}>
+                                <h5>Contractors</h5>
                             </div>
-
-                                    <div className="homepage-contractors">
-                                        <h5>Contractors</h5>
-                                        <Link to="/contractors">
-                                            <Button>Post Jobs</Button>
-                                        </Link>
-                                    </div>
+                            <Link to="/contractors">
+                                <Button>Post Jobs</Button>
+                            </Link>
+                        </div>
                     </div>
                     </Container>
                 {/* </div> */}
