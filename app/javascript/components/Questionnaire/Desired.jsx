@@ -39,12 +39,22 @@ const Desired = props => {
     ]
 
     const industries = [
+        "Industry",
         "Plumbing",
         "Painting",
         "Maintenance",
         "Electric",
         "Landscape",   
         "Other/None"
+    ]
+
+    const commute = [
+        "5",
+        "10",
+        "15",
+        "25",
+        "50",
+        "100"
     ]
 
     if(props.currentStep !== 2) {
@@ -63,12 +73,24 @@ const Desired = props => {
         </Modal.Header>
             <Modal.Body>
                 <h1>Desired Position</h1>
-            <Form.Select name="industry" id="industry" onChange={props.handleChange}>
-            <option>Industry</option>
-                        {industries.map(industry => 
-                        <option key={industry} value={industry}>{industry}</option>
-                            )}
+                <Row>
+                    <Form.Group as={Col}>
+
+            <Form.Select name="industry" id="industry" onChange={props.handleChange} value={props.values.industry} defaultValue={props.values.industry}>
+                {industries.map(industry => 
+                    <option key={industry} value={industry}>{industry}</option>
+                    )}
             </Form.Select>
+            </Form.Group>
+            <Form.Group as={Col}>
+            <Form.Select name="commute" id="commute" onChange={props.handleChange} value={props.values.commute} defaultValue={props.values.commute}>
+                {commute.map(miles => 
+                    <option key={miles} value={miles}>{miles} Miles</option>    
+                )}
+            </Form.Select>
+            </Form.Group>
+
+            </Row>
             <Row className="desired">
 
         <Form.Group as={Col}>
@@ -143,7 +165,7 @@ const Desired = props => {
         </Row>
         <Row>
             <Form.Group as={Col}>
-                <Form.Check type="checkbox" name="license" label="Driver's License" value={props.values.license} onChange={props.handleChange} />
+                <Form.Check type="checkbox" name="license" label="Driver's License" value={props.values.license} onChange={props.handleChange} defaultChecked={props.values.license}/>
             </Form.Group>
             <Form.Group as={Col}>
                 <Form.Label>Upload Resume:</Form.Label>
@@ -152,7 +174,7 @@ const Desired = props => {
         </Row>
             </Modal.Body>
                 <Modal.Footer>        
-                <Button variant="link" name="next" onClick={props.handleClick}>
+                <Button variant="link" name="next" style={{margin: 0+"px", padding:5+"px"}} onClick={props.handleClick}>
                     +Add Previous Experience
                 </Button>
                 <Button variant="primary" name="previous" onClick={props.handleClick}>

@@ -97,7 +97,7 @@ const Experience = props => {
         </FloatingLabel>
         </Form.Group>
         </Row>
-        <Row className="mb-3">
+        {/* <Row className="mb-3">
         <Form.Group as={Col}>
         <FloatingLabel label="Phone">
             <Form.Control type="text" name={`experience[0].phone`} value={props.values.experience[0].phone} onChange={props.handleChange} />
@@ -108,7 +108,7 @@ const Experience = props => {
             <Form.Control type="text" name={`experience[0].email`} value={props.values.experience[0].email} onChange={props.handleChange} />
         </FloatingLabel>
         </Form.Group>
-        </Row>
+        </Row> */}
         <Row className="mb-3">
         <Form.Group as={Col}>
         <FloatingLabel label="Start Date">
@@ -129,7 +129,7 @@ const Experience = props => {
         </Form.Group>
         </Row>
         <Form.Label>
-            <Form.Check label="Current Job" name={`experience[0].current`} value={props.values.experience[0].current} onChange={props.handleChange}/>
+            <Form.Check label="Current Job" name={`experience[0].current`} value={props.values.experience[0].current} onChange={props.handleChange} defaultChecked={props.values.experience[0].current}/>
         </Form.Label>
         </div>
     )

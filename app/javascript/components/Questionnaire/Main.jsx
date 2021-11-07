@@ -53,6 +53,7 @@ const Main = (props) => {
             maxpay: 0,
             paytype: "Hourly",
             industry: '',
+            commute: 25,
             file: null,
             experience: [
                 {

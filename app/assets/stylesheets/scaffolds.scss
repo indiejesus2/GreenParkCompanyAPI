@@ -20,18 +20,17 @@ pre {
   font-size: 11px; }
 
 a {
-  color: #000; }
+  color: #fff; }
 
-a:visited {
-  color: #666; }
+// a:visited {
+//   color: #666; }
 
 nav {
   margin-top: 10px;
 }
 
-// a:hover {
-//   color: #fff;
-//   background-color: #000; }
+a:hover {
+  text-decoration: underline; }
 
 th {
   padding-bottom: 5px; }
@@ -408,6 +407,11 @@ h1, h2 {
   padding-top: 5px;
 }
 
+.employee {
+  display: grid;
+  justify-content: center;
+}
+
 // .modal-body td:nth-child(2) {
 //   display: flex;
 //   justify-content: right;
@@ -471,7 +475,7 @@ job-body .table {
   left: 0;
   z-index: 10040;
   // overflow: auto;
-  overflow-y: auto;
+  // overflow-y: auto;
 }
 
 
@@ -491,6 +495,10 @@ job-body .table {
   margin-block-end: 20px;
   display: grid;
   justify-content: center;
+  width: min-content;
+  border: 1px solid black;
+  padding-inline: 25px;
+  padding-block: 10px;
 }
 
 .employee-profile td:nth-child(2) {
@@ -506,6 +514,15 @@ job-body .table {
   width: 500px;
   display: flex;
   justify-content: space-between;
+}
+
+.work-schedule {
+  border: 1px solid #a1c1db;
+  background: #eee;
+}
+
+.work-schedule table {
+  margin-bottom: 0px;
 }
 
 .edit-button {

@@ -10,10 +10,8 @@ const Profile = props => {
 
     const employee = props.profile
     const license = props.profile.license == true ? "Yes" : "No"
+    const experience = props.experience[0]
     // debugger
-    // const jobtype = []
-    // const schedule = []
-    // const shifts = []
     const jobtype = employee.jobtype.length > 0 ? employee.jobtype : []
     const schedule = employee.schedule.length > 0 ? employee.schedule : []
     const shifts = employee.shifts.length > 0 ? employee.shifts : []
@@ -23,6 +21,7 @@ const Profile = props => {
         <div className="employee">
             <NavBar handleSignout={props.signOut} profile={props.profile} user="employee" />
             <div className="employee-profile">
+
                 <div className="employee-title">
                     <h4>{employee.city}, {employee.state}</h4>
                     <h4>{employee.industry}</h4>
@@ -61,19 +60,18 @@ const Profile = props => {
                 {props.experience.map(history => 
             <div className="work-history" key={history.id}>
                 <h4>Experience:</h4>
-                <p>{employee.description}</p>
-
-                    {/* <span>{history.title} - {history.company} - {history.city}, {history.state} </span>
-                    <br />
-                    <span>{history.startdate} {history.enddate}</span>
-                    <br />
-                    <span>{history.description}</span> */}
+                <div>
+                    <h5>{experience.company}</h5>
+                    <h6>{experience.title}: {experience.city}, {experience.state}</h6>
+                    <p>{experience.startdate} to {experience.current?"Present":experience.enddate}</p>
+                    <p>{experience.description}</p>
+                </div>
             </div>
-                    )}
-                    <br />
-                    <div className="edit-button">
-                        <Button onClick={handleClick}>Edit Profile</Button>
-                    </div>
+                )}
+                <br />
+                <div className="edit-button">
+                    <Button variant="link" onClick={handleClick}>Edit Profile</Button>
+                </div>
             </div>
         </div>
     )
