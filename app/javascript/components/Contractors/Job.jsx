@@ -46,8 +46,8 @@ const Job = props => {
                                     <td>{job.seasonstart} - {job.seasonend} </td>
                                 </tr>
                                 <tr>
-                                    <td>Pay Range:</td>
-                                    <td>${job.minpay} - ${job.maxpay}</td>
+                                    <td>Pay:</td>
+                                    <td>${job.minpay} {job.paytype == "Hourly"?"per hour":"per year"}</td>
                                 </tr>
                                 <tr>
                                     <td>Description:</td>

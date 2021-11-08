@@ -31,7 +31,7 @@ const EmployeeProfile = props => {
                 <br />
                 Season Availability: {candidate.info.seasonstart} - {candidate.info.seasonend}
                 <br />
-                Pay Range: ${candidate.info.minpay} - ${candidate.info.maxpay}
+                Minimum Pay: ${candidate.info.minpay} {candidate.info.paytype == "Hourly"?"per hour":"per year"}
                 <br />
                 Description: {candidate.info.description}
             </div>

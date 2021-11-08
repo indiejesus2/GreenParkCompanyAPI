@@ -33,8 +33,8 @@ const NavBar  = props => {
             <div className="nav">
                 <Breadcrumb>
                     <Breadcrumb.Item linkAs={Link} linkProps={{ to: '/'}}>Home</Breadcrumb.Item>
-                    <Breadcrumb.Item linkAs={Link} linkProps={{ to: '/about'}}>About</Breadcrumb.Item>
-                    <Breadcrumb.Item linkAs={Link} linkProps={{ to: 'Contact'}}>Contact</Breadcrumb.Item>
+                    <Breadcrumb.Item linkAs={Link} linkProps={{ to: '#'}}>About</Breadcrumb.Item>
+                    <Breadcrumb.Item linkAs={Link} linkProps={{ to: '#'}}>Contact</Breadcrumb.Item>
                     {/* <Breadcrumb.Item linkAs={Link} linkProps={{to: "/", onClick: props.handleSignout }} >Sign Out</Breadcrumb.Item> */}
                 </Breadcrumb>
             </div>

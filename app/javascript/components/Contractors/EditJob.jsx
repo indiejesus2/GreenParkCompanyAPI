@@ -127,7 +127,7 @@ export default function EditJob(props) {
             seasonstart: job.seasonstart,
             seasonend: job.seasonend,
             minpay: job.minpay,
-            maxpay: job.maxpay,
+            paytype: job.paytype,
             industry: job.industry
         },
         validationSchema: schema,
@@ -273,13 +273,12 @@ export default function EditJob(props) {
                 <Form.Label>
                     Minimum Pay Rate: 
                 </Form.Label>
-                <Form.Control type="text" name="minpay" onChange={formik.handleChange} defaultValue={formik.values.minpay} />
                 </Form.Group>
                 <Form.Group as={Col}>
-                <Form.Label>
-                    Maximum Pay Rate: 
-                </Form.Label>
-                <Form.Control type="text" name="maxpay" onChange={formik.handleChange} defaultValue={formik.values.maxpay} />
+                <Form.Control type="text" name="minpay" onChange={formik.handleChange} defaultValue={formik.values.minpay} />
+                <Form.Select name="paytype" onChange={formik.handleChange} value={formik.values.paytype} defaultSelect={formik.values.paytype} />
+                        <option value="hourly">"Hourly"</option>
+                        <option value="yearly">"Yearly"</option>
                 </Form.Group>
                 </Row>
                 <div className="submit">

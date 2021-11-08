@@ -118,7 +118,7 @@ ActiveRecord::Schema.define(version: 2021_11_02_235851) do
     t.text "seasonstart"
     t.text "seasonend"
     t.float "minpay"
-    t.float "maxpay"
+    t.string "paytype", default: "Hourly"
     t.text "industry"
     t.boolean "license"
     t.text "description"
@@ -147,7 +147,7 @@ ActiveRecord::Schema.define(version: 2021_11_02_235851) do
     t.text "seasonstart"
     t.text "seasonend"
     t.float "minpay"
-    t.float "maxpay"
+    t.integer "commute"
     t.text "industry"
     t.text "description"
     t.bigint "employee_id", null: false

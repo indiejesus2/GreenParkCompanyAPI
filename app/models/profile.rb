@@ -20,7 +20,7 @@ class Profile < ApplicationRecord
   def proximity    
     jobs = Job.where("industry = ?", industry).near(address, 100)
     jobs.each {|job|
-      if Applicant.where(job_id: job.id, employee_id: employee_id).length == 0 
+      if Applicant.where(job_id: job.id, employee_id: employee_id).length == 0 && !job.applicants.map{|applicant| applicant.employee_id == employee_id}
         Applicant.create(employee_id: "#{employee_id}", employer_id: "#{job.employer_id}", job_id: "#{job.id}", distance: distance_to(job))
       end
     }
@@ -46,37 +46,29 @@ class Profile < ApplicationRecord
       "seasonstart": seasonstart,
       "seasonend": seasonend,
       "minpay": minpay,
-      "maxpay": maxpay,
+      "paytype": paytype,
       "license": license,
     }
     jobs.each{|job|
         @rating = 1
-        if job.minpay <= @types[:maxpay] && job.minpay >= @types[:minpay]
-          print("minpay")
-          @rating+=1
-        elsif job.maxpay >= @types[:minpay] && job.maxpay <= @types[:maxpay]
-          print("maxpay")
+        if job.minpay <= @types[:minpay] && job.paytpe == @types[:jobtype]
           @rating+=1
         end
         if job.license == @types[:license]
-          print("license")
           @rating+=1
         end
         @types[:jobtype].each {|type| 
           if job.jobtype.include?(type)
-            print("jobtype")
             @rating+=1
           end
         }
         @types[:schedule].each {|type| 
           if job.schedule.include?(type)
-            print("schedule")
             @rating+=1
           end
         }
         @types[:shifts].each {|type| 
           if job.shifts.include?(type)
-            print("shifts")
             @rating+=1
           end
         }

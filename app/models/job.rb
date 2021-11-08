@@ -40,37 +40,29 @@ class Job < ApplicationRecord
         "seasonstart": seasonstart,
         "seasonend": seasonend,
         "minpay": minpay,
-        "maxpay": maxpay,
+        "paytype": paytype,
         "license": license,
       }
       employees.each{|employee|
           @rating = 1
-          if employee.profile.minpay <= @types[:maxpay] && employee.profile.minpay >= @types[:minpay]
-            print("minpay")
-            @rating+=1
-          elsif employee.profile.maxpay >= @types[:minpay] && employee.profile.maxpay <= @types[:maxpay]
-            print("maxpay")
+          if employee.profile.minpay <= @types[:minpay] && employee.profile.paytype == @types[:paytype]
             @rating+=1
           end
           if employee.profile.license == @types[:license]
-            print("license")
             @rating+=1
           end
           @types[:jobtype].each {|type| 
             if employee.profile.jobtype.include?(type)
-              print("jobtype")
               @rating+=1
             end
           }
           @types[:schedule].each {|type| 
             if employee.profile.schedule.include?(type)
-              print("schedule")
               @rating+=1
             end
           }
           @types[:shifts].each {|type| 
             if employee.profile.shifts.include?(type)
-              print("shifts")
               @rating+=1
             end
           }

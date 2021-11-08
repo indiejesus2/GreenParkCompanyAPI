@@ -335,7 +335,6 @@ h1, h2 {
 
 .employer-jobs .card {
   width: 225px;
-  padding: 10px;
   margin-inline: 25px;
   margin-block-end: 45px;
   background-color: #eee;
@@ -395,9 +394,9 @@ h1, h2 {
   width: 25%
 }
 
-.contractor .card-body {
-  padding-inline: 50px;
-}
+// .contractor .card-body {
+//   padding-inline: 50px;
+// }
 
 .modal-body {
   padding-inline: 10px;
@@ -410,6 +409,28 @@ h1, h2 {
 .employee {
   display: grid;
   justify-content: center;
+}
+
+.edit-button button {
+  color: #fff;
+}
+
+.employer-jobs .card-body {
+  color: black;
+  border: 1px black solid
+}
+
+.employer-jobs .card-header {
+  background-color: #175785;
+}
+
+.employer-jobs .card-header a {
+  color: white;
+  text-decoration: none;
+}
+
+.employer-jobs .card-header a:hover {
+  text-decoration: underline;
 }
 
 // .modal-body td:nth-child(2) {

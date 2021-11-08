@@ -124,7 +124,7 @@ export default function AddJob(props) {
             seasonstart: '',
             seasonend: '',
             minpay: 0,
-            maxpay: 0,
+            paytype: "Hourly",
             industry: ''
         },
         validationSchema: schema,
@@ -273,10 +273,9 @@ export default function AddJob(props) {
                 <Form.Control type="text" name="minpay" onChange={formik.handleChange} value={formik.values.minpay}/>
                 </Form.Group>
                 <Form.Group as={Col}>
-                <Form.Label>
-                    Maximum Pay Rate: 
-                </Form.Label>
-                <Form.Control type="text" name="maxpay" onChange={formik.handleChange} value={formik.values.maxpay}/>
+                <Form.Select name="paytype" onChange={formik.handleChange} value={formik.values.paytype} defaultSelect={formik.values.paytype} />
+                        <option value="hourly">"Hourly"</option>
+                        <option value="yearly">"Yearly"</option>
                 </Form.Group>
                 </Row>
                 <div className="submit">
