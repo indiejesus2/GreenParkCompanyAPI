@@ -48,7 +48,7 @@ const Profile = props => {
                     </tr>
                     <tr>
                         <td>Pay Range:</td>
-                        <td>${employee.minpay} - ${employee.maxpay} {employee.paytype}</td>
+                        <td>${employee.minpay} {employee.paytype}</td>
                     </tr>
                     <tr>
                         <td>Driver's License:</td>

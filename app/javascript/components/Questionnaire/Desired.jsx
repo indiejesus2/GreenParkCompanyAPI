@@ -39,7 +39,7 @@ const Desired = props => {
     ]
 
     const industries = [
-        "Industry",
+        "--",
         "Plumbing",
         "Painting",
         "Maintenance",
@@ -57,6 +57,25 @@ const Desired = props => {
         "100"
     ]
 
+    // const formatPay = (pay) => {
+
+    //     if (!pay) return pay;
+
+    //     const check = pay.replace(/[^\d]/g, "");
+        
+    //     const checkLength = check.length;
+
+    //     if (props.values.paytype == "Hourly" && checkLength == 2) {
+    //         return `${check.slice(0, check.length)}.00`
+    //     } else if (props.values.paytype == "Salary" && checkLength > 3) {
+    //         return `${check.slice(0, 1)}, ${check.slice(1, 3)}`
+    //     } else if (props.values.paytype == "Salary" && checkLength > 4) {
+    //         return `${check.slice(0, 2)}, ${check.slice(1, 3)}`
+    //     } else if (props.values.paytype == "Salary" && checkLength > 5) {
+    //         return `${check.slice(0, 3)}, ${check.slice(1, 3)}`
+    //     }
+    // }
+
     if(props.currentStep !== 2) {
         return null
     }
@@ -67,7 +86,7 @@ const Desired = props => {
             <div key={`inline-checkbox`} className="mb-3">
 
             <React.Fragment>
-        <Modal show animation backdrop>
+        <Modal show animation backdrop centered>
         <Modal.Header className="justify-content-center">
             <Modal.Title className="questionlogo"><img src="/images/blucollar_O.png" alt="BluCollar Logo" /></Modal.Title>
         </Modal.Header>
@@ -75,20 +94,24 @@ const Desired = props => {
                 <h1>Desired Position</h1>
                 <Row>
                     <Form.Group as={Col}>
+                    <FloatingLabel label="Industry">
+                        <Form.Select name="industry" id="industry" onChange={props.handleChange} value={props.values.industry} defaultValue={props.values.industry}>
+                            {industries.map(industry => 
+                                <option key={industry} value={industry}>{industry}</option>
+                                )}
+                        </Form.Select>
+                    </FloatingLabel>
+                    </Form.Group>
+                    <Form.Group as={Col}>
+                    <FloatingLabel label="Commuting Distance">
 
-            <Form.Select name="industry" id="industry" onChange={props.handleChange} value={props.values.industry} defaultValue={props.values.industry}>
-                {industries.map(industry => 
-                    <option key={industry} value={industry}>{industry}</option>
-                    )}
-            </Form.Select>
-            </Form.Group>
-            <Form.Group as={Col}>
-            <Form.Select name="commute" id="commute" onChange={props.handleChange} value={props.values.commute} defaultValue={props.values.commute}>
-                {commute.map(miles => 
-                    <option key={miles} value={miles}>{miles} Miles</option>    
-                )}
-            </Form.Select>
-            </Form.Group>
+                        <Form.Select name="commute" id="commute" onChange={props.handleChange} value={props.values.commute} defaultValue={props.values.commute}>
+                            {commute.map(miles => 
+                                <option key={miles} value={miles}>{miles} Miles</option>    
+                            )}
+                        </Form.Select>
+                    </FloatingLabel>
+                    </Form.Group>
 
             </Row>
             <Row className="desired">
@@ -146,12 +169,6 @@ const Desired = props => {
             
         </Row>
         <Row className="mb-3">
-        <Form.Group as={Col}>
-        <Form.Label>
-            Minimum Pay Rate: 
-        </Form.Label>
-        <Form.Control type="text" name="minpay" onChange={props.handleChange} value={props.values.minpay}/>
-        </Form.Group>
     
         <Form.Group as={Col}>
             <Form.Label>
@@ -162,6 +179,12 @@ const Desired = props => {
                     <option>Salary</option>
             </Form.Select>
         </Form.Group>
+            <Form.Group as={Col}>
+                    <Form.Label>
+                        Minimum Pay Rate: 
+                    </Form.Label>
+                <Form.Control type="text" name="minpay" onChange={props.handleChange} value={props.values.minpay}/>
+            </Form.Group>
         </Row>
         <Row>
             <Form.Group as={Col}>

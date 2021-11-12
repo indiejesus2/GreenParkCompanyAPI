@@ -31,5 +31,9 @@ class ApplicationController < ActionController::Base
             @user = Employer.find(session[:user_id])
         end
     end
+
+    def findcity
+        byebug
+    end
     
 end

@@ -7,6 +7,8 @@ import { createProfile } from '../actions/Tradespeople/createProfile'
 import { signOut } from '../actions/signOut'
 import { updateProfile } from '../actions/Tradespeople/updateProfile'
 import { uploadFile } from '../actions/Tradespeople/uploadFile'
+import { findCity } from '../actions/Tradespeople/findCity'
+import { formatPhoneNumber } from '../actions/CommonWebblock/formatPhoneNumber'
 import Employees from '../components/Employees/Employees'
 import Questionnaire from '../components/Questionnaire/Main'
 import Profile from '../components/Employees/Profile'
@@ -44,7 +46,7 @@ class EmployeesContainer extends Component {
                 <Switch>
                 <Route path='/employees/:id/edit_profile' render={(routerProps) => <EditProfile {...routerProps} employee={this.props.employee} profile={this.props.profile} experience={this.props.experience} updateProfile={this.props.updateProfile} uploadFile={this.props.uploadFile}/>}></Route>
                 <Route path='/employees/:id/profile' render={(routerProps) => <Profile {...routerProps} employee={this.props.employee} profile={this.props.profile} experience={this.props.experience} />}></Route>
-                <Route path='/employees/questionnaire' render={(routerProps) => <Questionnaire {...routerProps} employee={this.props.employee} createProfile={this.props.createProfile} loading={this.props.loading} uploadFile={this.props.uploadFile}/>}></Route>
+                <Route path='/employees/questionnaire' render={(routerProps) => <Questionnaire {...routerProps} employee={this.props.employee} createProfile={this.props.createProfile} loading={this.props.loading} uploadFile={this.props.uploadFile} findCity={this.props.findCity} formatPhoneNumber={this.props.formatPhoneNumber} />}></Route>
                 <Route path='/employees' render={(routerProps) => <Employees {...routerProps} signIn={this.props.signIn} signUp={this.props.signUp} loggedIn={this.props.loggedIn} employee={this.props.employee} profile={this.props.profile}  jobs={this.props.jobs} loading={this.props.loading} createProfile={this.props.createProfile} errors={this.props.errors} signOut={this.props.signOut}/>}></Route>
                 </Switch>
                 </div>
@@ -74,6 +76,8 @@ const mapDispatchToProps = dispatch => ({
     fetchJobs: employee => dispatch(fetchJobs(employee)),
     updateProfile: profile => dispatch(updateProfile(profile)),
     uploadFile: (file, id) => dispatch(uploadFile(file, id)),
+    findCity: postal => dispatch(findCity(postal)),
+    formatPhoneNumber: value => dispatch(formatPhoneNumber(value)),
     signOut: () => dispatch(signOut())
 })
 

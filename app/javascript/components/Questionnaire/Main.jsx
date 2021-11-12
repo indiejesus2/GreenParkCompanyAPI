@@ -96,6 +96,14 @@ const Main = (props) => {
         }
     }
 
+    const handlePostal = (e) => {
+        let postal = e.target.value
+        formik.values.zipcode = postal
+        if (postal.length == 5) {
+            props.findCity(postal)
+        } 
+    }
+
     if(loading == true) {
         return (
             <div>
@@ -110,6 +118,7 @@ const Main = (props) => {
                 <Basic
                     currentStep={step}
                     handleChange={formik.handleChange}
+                    handlePostal={handlePostal}
                     values={formik.values}
                     handleClick={handleClick}
                     touched={formik.touched}

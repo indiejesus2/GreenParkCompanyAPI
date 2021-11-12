@@ -348,10 +348,10 @@ h1, h2 {
 }
 
 
-.employer-jobs button {
-  background-color: #113955;
-  border-color: #113955;
-}
+// .employer-jobs button {
+//   background-color: #113955;
+//   border-color: #113955;
+// }
 
 .employer-profile {
   display: grid;
@@ -363,8 +363,17 @@ h1, h2 {
   justify-content: center;
 }
 
+.contractor .job .card-header {
+  background-color: #113955;
+  color: white;
+}
+
 .contractor .job {
   width: 50rem;
+  margin-inline: 25px;
+  margin-block-end: 45px;
+  background-color: #eee;
+  border-color: #175785;
 }
 
 .contractor table {

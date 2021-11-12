@@ -17,7 +17,7 @@ const Job = props => {
             return (
                 <div className="job">
                     <Card.Header>
-                    <img src="/images/noun_electric_3108716.png" alt="Electric" />
+                    {/* <img src="/images/noun_electric_3108716.png" alt="Electric" /> */}
                         <h1>{job.title}</h1>
                     <Card.Subtitle>{job.city}, {job.state}</Card.Subtitle>
                     <Link to={`/contractors/${job.employer_id}/jobs/${job.id}/editjob`}>Edit Job</Link>

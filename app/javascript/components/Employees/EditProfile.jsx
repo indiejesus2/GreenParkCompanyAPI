@@ -130,7 +130,6 @@ export default function EditProfile(props) {
             seasonstart: employee.seasonstart,
             seasonend: employee.seasonend,
             minpay: employee.minpay,
-            maxpay: employee.maxpay,
             paytype: employee.paytype,
             industry: employee.industry,
         },
@@ -281,19 +280,6 @@ export default function EditProfile(props) {
                 </Row>
                 <Row className="mb-3">
                 <Form.Group as={Col}>
-                {/* <div className="payrate"> */}
-                    <Form.Label>
-                        Minimum Pay Rate: 
-                    </Form.Label>
-                    <Form.Control type="text" name="minpay" onChange={formik.handleChange} value={formik.values.minpay}/>
-                </Form.Group>
-                <Form.Group as={Col}>
-                    <Form.Label>
-                        Maximum Pay Rate: 
-                    </Form.Label>
-                    <Form.Control type="text" name="maxpay" onChange={formik.handleChange} value={formik.values.maxpay}/>
-                </Form.Group>
-                <Form.Group as={Col}>
                     <Form.Label>
                         Pay Type:
                     </Form.Label>
@@ -302,13 +288,20 @@ export default function EditProfile(props) {
                             <option>Annually</option>
                     </Form.Select>
                 </Form.Group>
+                <Form.Group as={Col}>
+                {/* <div className="payrate"> */}
+                    <Form.Label>
+                        Minimum Pay Rate: 
+                    </Form.Label>
+                    <Form.Control type="text" name="minpay" onChange={formik.handleChange} value={formik.values.minpay}/>
+                </Form.Group>
                 </Row>
                 <Row>
                     <Form.Group>
                         <Form.Check name="license" label="Driver's License" value={formik.values.license} onChange={formik.handleChange} defaultChecked={formik.values.license} />
                     </Form.Group>
-                    <Button onClick={handleShow}>
-                        Upload File
+                    <Button onClick={handleShow} className="d-flex justify-content-right">
+                        Upload Resume/CV
                         <EmployeeFile 
                         show={show} 
                         employee={employee}

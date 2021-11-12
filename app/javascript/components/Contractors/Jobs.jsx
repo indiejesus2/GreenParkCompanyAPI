@@ -28,13 +28,15 @@ const [jobs, setJobs] = useState(props.jobs ? props.jobs : [])
                             <Link to={`/contractors/${props.contractor.id}/jobs/${job.id}`} >
                                 {job.title}
                             </Link>
-                            {job.city}, {job.state} 
                             </Card.Title>
+                            <Card.Subtitle>
+                                {job.city}, {job.state} 
+                            </Card.Subtitle>
                         </Card.Header>
                         <Card.Body>
 
                         <Card.Text style={{ height: 55 + 'px', overflow: "clip" }}> Description: {job.description} </Card.Text>
-                        <Card.Text>Number of Applicants: {job.profiles.length} </Card.Text>
+                        <Card.Text>Number of Matching Applicants: {job.profiles.length} </Card.Text>
                         <div className="employee-jobs-buttons">
                         <Link to={`/contractors/${props.contractor.id}/jobs/${job.id}`} >
                             View Job

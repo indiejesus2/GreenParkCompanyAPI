@@ -42,6 +42,10 @@ class Api::V1::ProfilesController < ApplicationController
         end
     end
 
+    def handlePostal
+        byebug
+    end
+
     private
     
     def profile_params

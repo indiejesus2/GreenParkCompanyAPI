@@ -83,7 +83,7 @@ class Api::V1::JobsController < ApplicationController
     end
 
     def job_params
-        params.require(:job).permit(:industry, :title, :status, :city, :state, :zipcode, {jobtype: []}, {schedule: []}, {shifts: []}, :description, :seasonstart, :seasonend, :minpay, :maxpay, :employer_id)
+        params.require(:job).permit(:industry, :title, :status, :city, :state, :zipcode, {jobtype: []}, {schedule: []}, {shifts: []}, :description, :seasonstart, :seasonend, :minpay, :paytype, :employer_id)
     end
 
 end

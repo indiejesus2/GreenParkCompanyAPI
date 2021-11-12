@@ -3,10 +3,28 @@ import { Modal, Form, FloatingLabel, Button, Row, Col } from 'react-bootstrap'
 // import Button from 'react-bootstrap/Button'
 // import Form from 'react-bootstrap/Form'
 
-const Basic = props => {
+const Basic = (props) => {
 
     if(props.currentStep !== 1) {
         return null
+    }
+
+    const formatPhoneNumber = (value) => {
+
+        if (!value) return value;
+    
+        const phoneNumber = value.replace(/[^\d]/g, "");
+    
+        const phoneNumberLength = phoneNumber.length;
+    
+        if (phoneNumberLength < 4) return phoneNumber;
+    
+        if (phoneNumberLength < 7) {
+            return `(${phoneNumber.slice(0,3)}) ${phoneNumber.slice(3)}`
+        }
+    
+        return `(${phoneNumber.slice(0,3)}) ${phoneNumber.slice(3,6)}-${phoneNumber.slice(6, 10)}`;
+    
     }
 
     const states = [
@@ -65,7 +83,7 @@ const Basic = props => {
 
     return(
         <React.Fragment>
-        <Modal show animation backdrop>
+        <Modal show animation backdrop centered>
             
         <Modal.Header className="justify-content-center">
             <Modal.Title className="questionlogo"><img src="/images/blucollar_O.png" alt="BluCollar Logo" /></Modal.Title>
@@ -133,13 +151,15 @@ const Basic = props => {
                         </Form.Group>
                     <Form.Group as={Col}>
                         <FloatingLabel label="Zip-Code">
-                            <Form.Control type="text" name="zipcode" value={props.values.zipcode} onChange={props.handleChange} />
+                            <Form.Control type="text" name="zipcode" 
+                            // value={props.values.zipcode.length==5?props.values.zipcode : } 
+                            onChange={props.handlePostal} />
                         </FloatingLabel>
                         </Form.Group>
                     </Row>
                     <Form.Group>
                         <FloatingLabel label="Phone">
-                            <Form.Control type="text" name="phone" value={props.values.phone} onChange={props.handleChange} />
+                            <Form.Control type="text" name="phone" value={formatPhoneNumber(props.values.phone)} onChange={props.handleChange} />
                         </FloatingLabel>
                     </Form.Group>
             </Modal.Body>
