@@ -55,24 +55,13 @@ const Main = (props) => {
             industry: '',
             commute: 25,
             file: null,
-            experience: [
-                {
-                title: "",
-                company: "",
-                city: "",
-                state: "",
-                zipcode: "",
-                phone: "",
-                email: "",
-                startdate: "",
-                enddate: "",
-                description: "",
-                current: false
+            experience: {
+                id: ''
             }
-        ]
         },
         validationSchema: schema,
         onSubmit: values => {
+            debugger
             props.createProfile(values)
             history.push('/employees')
         }
@@ -96,14 +85,6 @@ const Main = (props) => {
         }
     }
 
-    const handlePostal = (e) => {
-        let postal = e.target.value
-        formik.values.zipcode = postal
-        if (postal.length == 5) {
-            props.findCity(postal)
-        } 
-    }
-
     if(loading == true) {
         return (
             <div>
@@ -118,12 +99,14 @@ const Main = (props) => {
                 <Basic
                     currentStep={step}
                     handleChange={formik.handleChange}
-                    handlePostal={handlePostal}
+                    setFieldValue={formik.setFieldValue}
+                    // handlePostal={handlePostal}
                     values={formik.values}
                     handleClick={handleClick}
                     touched={formik.touched}
                     errors={formik.errors}
                     onBlur={formik.handleBlur}
+                    email={props.employee.email}
                     />
                 <Desired
                     currentStep={step}

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Modal, Form, FloatingLabel, Button, Row, Col } from 'react-bootstrap'
+import { Modal, Form, FloatingLabel, Button, Row, Col, InputGroup } from 'react-bootstrap'
 
 const Desired = props => {
 
@@ -183,7 +183,10 @@ const Desired = props => {
                     <Form.Label>
                         Minimum Pay Rate: 
                     </Form.Label>
-                <Form.Control type="text" name="minpay" onChange={props.handleChange} value={props.values.minpay}/>
+                    <InputGroup>
+                        <InputGroup.Text>$</InputGroup.Text>
+                        <Form.Control type="text" name="minpay" onChange={props.handleChange} value={props.values.minpay}/>
+                    </InputGroup>
             </Form.Group>
         </Row>
         <Row>
@@ -204,7 +207,7 @@ const Desired = props => {
                     Previous
                 </Button> 
                 <Button variant="primary" name="submit" onClick={props.handleSubmit}>
-                    Complete Profile
+                    Submit Profile
                 </Button>
                 </Modal.Footer>
         </Modal>

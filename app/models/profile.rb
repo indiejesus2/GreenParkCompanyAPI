@@ -6,7 +6,8 @@ class Profile < ApplicationRecord
   geocoded_by :address
   # reverse_geocoded_by :latitude, :longitude
   after_validation :geocode
-  before_save :proximity, :potential, :updated
+  before_save :proximity, :potential
+  after_update :updated
 
   # after_validation :reverse_geocode
 

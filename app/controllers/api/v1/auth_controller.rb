@@ -46,6 +46,14 @@ class Api::V1::AuthController < ApplicationController
         end
     end
 
+    def find_city
+        location = Geocoder.search(params[:zipcode]).find{|location| location.country_code == "us"}
+        render json: {
+            town: location.town,
+            state: location.state
+        }
+    end
+
         #     render json: {
         #         user: @user,
         #         current: current_user

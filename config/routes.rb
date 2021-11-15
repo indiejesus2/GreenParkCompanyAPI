@@ -19,7 +19,7 @@ Rails.application.routes.draw do
       post '/signup', to: 'employees#create'
       post '/contractors/signup', to: 'employers#create'
       get '/current_user', to: 'auth#is_logged_in?'
-      get '/findcity', to: 'profiles#findcity'
+      get '/findcity(/:zipcode)', to: 'auth#find_city'
     end
   end
 end

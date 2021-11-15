@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import {Modal, Button, Form, FloatingLabel} from 'react-bootstrap'
+import {Modal, Button, Form, Accordion} from 'react-bootstrap'
 import NavBar from '../NavBar'
 import Experience from './Experience'
 
@@ -8,7 +8,6 @@ const Skills = props => {
     if(props.currentStep !== 3) {
         return null
     }
-
 
 
     return(
@@ -20,14 +19,38 @@ const Skills = props => {
             {/* <Modal.Title><img src="/images/blucollar_icon.png" alt="BluCollar Logo" /></Modal.Title> */}
         </Modal.Header>
             <Modal.Body>
-
-            {/* // <span key={skill.id}>{skill} </span> */}
-
-
                 <Form.Label>
                     Experience:
                 </Form.Label>
-                <Experience handleChange={props.handleChange} values={props.values} />
+
+            {/* // <span key={skill.id}>{skill} </span> */}
+
+            <Accordion defaultActiveKey="0">
+                <Accordion.Item eventKey="0">
+                    <Accordion.Header>
+                        Most Recent Job
+                    </Accordion.Header>
+                        <Accordion.Body>
+                            <Experience handleChange={props.handleChange} values={props.values} id={0}/>
+                        </Accordion.Body>
+                </Accordion.Item>
+                <Accordion.Item eventKey="1">
+                    <Accordion.Header>
+                        Job #2
+                    </Accordion.Header>
+                        <Accordion.Body>
+                            <Experience handleChange={props.handleChange} values={props.values} id={1}/>
+                        </Accordion.Body>
+                </Accordion.Item>
+                <Accordion.Item eventKey="2">
+                    <Accordion.Header>
+                        Job #3
+                    </Accordion.Header>
+                        <Accordion.Body>
+                            <Experience handleChange={props.handleChange} values={props.values} id={2}/>
+                        </Accordion.Body>
+                </Accordion.Item>
+            </Accordion>
             </Modal.Body>
             <Modal.Footer>
                 <Button variant="primary" name="previous" onClick={props.handleClick}>

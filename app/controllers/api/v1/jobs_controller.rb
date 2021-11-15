@@ -5,7 +5,7 @@ class Api::V1::JobsController < ApplicationController
 
     def index
         if @employee 
-            @jobs = Job.near(@employee.profile.address, 50)
+            @jobs = Job.near(@employee.profile.address, @employee.profile.commute)
             render json: {employee: EmployeeSerializer.new(@employee, include: [:profile, :work_histories]), jobs: @jobs}
         elsif @employer
             @jobs = @employer.jobs
