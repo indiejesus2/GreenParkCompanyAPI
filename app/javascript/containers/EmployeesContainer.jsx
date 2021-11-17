@@ -22,17 +22,18 @@ class EmployeesContainer extends Component {
         this.props.signOut()
     }
 
+    handleAlert = () => {
+        debugger
+    }
+
     render() {
         if (this.props.loading == true) {
             return (
                 <div>
-
-                <Logo user="employee"/>
-                <div className="loading">
-                {/* <NavBar loading={this.props.loading} handleSignout={this.handleSignout} user="employee" />
-                 */}
-                    Loading....
-                 </div>
+                    <Logo user="employee"/>
+                        <div className="loading">
+                            Loading....
+                        </div>
                 </div>
             )
         } else if (this.props.loggedIn == false) {
@@ -43,12 +44,12 @@ class EmployeesContainer extends Component {
             return (
                 <div>
                 <Logo user="employee"/>
-                <Switch>
-                <Route path='/employees/:id/edit_profile' render={(routerProps) => <EditProfile {...routerProps} employee={this.props.employee} profile={this.props.profile} experience={this.props.experience} updateProfile={this.props.updateProfile} uploadFile={this.props.uploadFile}/>}></Route>
-                <Route path='/employees/:id/profile' render={(routerProps) => <Profile {...routerProps} employee={this.props.employee} profile={this.props.profile} experience={this.props.experience} />}></Route>
-                <Route path='/employees/questionnaire' render={(routerProps) => <Questionnaire {...routerProps} employee={this.props.employee} createProfile={this.props.createProfile} loading={this.props.loading} uploadFile={this.props.uploadFile} findCity={this.props.findCity} formatPhoneNumber={this.props.formatPhoneNumber} />}></Route>
-                <Route path='/employees' render={(routerProps) => <Employees {...routerProps} signIn={this.props.signIn} signUp={this.props.signUp} loggedIn={this.props.loggedIn} employee={this.props.employee} profile={this.props.profile}  jobs={this.props.jobs} loading={this.props.loading} createProfile={this.props.createProfile} errors={this.props.errors} signOut={this.props.signOut}/>}></Route>
-                </Switch>
+                    <Switch>
+                        <Route path='/employees/:id/edit_profile' render={(routerProps) => <EditProfile {...routerProps} employee={this.props.employee} profile={this.props.profile} experience={this.props.experience} updateProfile={this.props.updateProfile} uploadFile={this.props.uploadFile}/>}></Route>
+                        <Route path='/employees/:id/profile' render={(routerProps) => <Profile {...routerProps} employee={this.props.employee} profile={this.props.profile} experience={this.props.experience} />}></Route>
+                        <Route path='/employees/questionnaire' render={(routerProps) => <Questionnaire {...routerProps} employee={this.props.employee} createProfile={this.props.createProfile} loading={this.props.loading} uploadFile={this.props.uploadFile} findCity={this.props.findCity} formatPhoneNumber={this.props.formatPhoneNumber} />}></Route>
+                        <Route path='/employees' render={(routerProps) => <Employees {...routerProps} signIn={this.props.signIn} signUp={this.props.signUp} loggedIn={this.props.loggedIn} employee={this.props.employee} profile={this.props.profile}  jobs={this.props.jobs} loading={this.props.loading} createProfile={this.props.createProfile} errors={this.props.errors} signOut={this.props.signOut}/>}></Route>
+                    </Switch>
                 </div>
                 )
         }

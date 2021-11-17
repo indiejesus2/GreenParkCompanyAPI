@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import NavBar from '../NavBar'
 import { useFormik } from 'formik'
-import { Form, FloatingLabel, Button, Row, Col } from 'react-bootstrap'
+import { Form, FloatingLabel, Button, Row, Col, InputGroup } from 'react-bootstrap'
 import EmployeeFile from './EmployeeFile'
-
 
 export default function EditProfile(props) {
 
@@ -24,56 +23,56 @@ export default function EditProfile(props) {
 
     const states = [
         "--",
-        "AL",
-        "AK",
-        "AZ",
-        "AR",
-        "CA",
-        "CO",
-        "CT",
-        "DE",
-        "FL",
-        "GA",
-        "HI",
-        "ID",
-        "IL",
-        "IN",
-        "IA",
-        "KS",
-        "KY",
-        "LA",
-        "ME",
-        "MD",
-        "MA",
-        "MI",
-        "MN",
-        "MS",
-        "MO",
-        "MT",
-        "NE",
-        "NV",
-        "NH",
-        "NJ",
-        "NM",
-        "NY",
-        "NC",
-        "ND",
-        "OH",
-        "OK",
-        "OR",
-        "PA",
-        "RI",
-        "SC",
-        "SD",
-        "TN",
-        "TX",
-        "UT",
-        "VT",
-        "VA",
-        "WA",
-        "WV",
-        "WI",
-        "WY"
+        "Alabama",
+        "Alaska",
+        "Arizona",
+        "Arkansas",
+        "California",
+        "Colorado",
+        "Connecticut",
+        "Delaware",
+        "Florida",
+        "Georgia",
+        "Hawaii",
+        "Idaho",
+        "Illinois",
+        "Indiana",
+        "Iowa",
+        "Kansas",
+        "Kentucky",
+        "Lousiana",
+        "Maine",
+        "Maryland",
+        "Massachussetts",
+        "Michigan",
+        "Minnesota",
+        "Mississippi",
+        "Missouri",
+        "Montana",
+        "Nebraska",
+        "Nevada",
+        "New Hampshire",
+        "New Jersey",
+        "New Mexico",
+        "New York",
+        "North Carolina",
+        "North Dakota",
+        "Ohio",
+        "Oklahoma",
+        "Oregon",
+        "Pennsylvania",
+        "Rhode Island",
+        "South Carolina",
+        "South Dakota",
+        "Tennessee",
+        "Texas",
+        "Utah",
+        "Vermont",
+        "Virginia",
+        "Washington",
+        "West Virginia",
+        "Wisconsin",
+        "Wyoming"
     ]
 
     const jobtypes = [
@@ -293,22 +292,27 @@ export default function EditProfile(props) {
                     <Form.Label>
                         Minimum Pay Rate: 
                     </Form.Label>
+                    <InputGroup>
+                        <InputGroup.Text>$</InputGroup.Text>
                     <Form.Control type="text" name="minpay" onChange={formik.handleChange} value={formik.values.minpay}/>
+                    </InputGroup>
                 </Form.Group>
                 </Row>
                 <Row>
-                    <Form.Group>
+                    <Form.Group as={Col}>
                         <Form.Check name="license" label="Driver's License" value={formik.values.license} onChange={formik.handleChange} defaultChecked={formik.values.license} />
                     </Form.Group>
-                    <Button onClick={handleShow} className="d-flex justify-content-right">
-                        Upload Resume/CV
-                        <EmployeeFile 
-                        show={show} 
-                        employee={employee}
-                        uploadFile={props.uploadFile}
-                        // uploadFile={} 
-                        />
-                    </Button>
+                    <Form.Group as={Col}>
+                        <Button onClick={handleShow} className="d-flex justify-content-right">
+                            Upload Resume/CV
+                            <EmployeeFile 
+                            show={show} 
+                            employee={employee}
+                            uploadFile={props.uploadFile}
+                            // uploadFile={} 
+                            />
+                        </Button>
+                    </Form.Group>
                 </Row>
                 <div className="submit">
                     <Button type="submit" value="Save Changes" onClick={formik.handleSubmit}>Save Changes</Button>

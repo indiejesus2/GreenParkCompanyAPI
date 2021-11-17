@@ -8,14 +8,35 @@ const Job = props => {
 
     const rate = (rating) => {
         if (rating == 6 || rating == 5) {
-            return "&#9734; &#9734; &#9734; &#9734; &#9734;"
+            return (
+                <span>
+                    {String.fromCharCode(9734) + String.fromCharCode(9734) + String.fromCharCode(9734) + String.fromCharCode(9734) + String.fromCharCode(9734)}
+                </span>
+            )
         } else if (rating == 4) {
             return (
-                <div>
+                <span>
                     {String.fromCharCode(9734) + String.fromCharCode(9734) + String.fromCharCode(9734) + String.fromCharCode(9734)}
-                </div>
+                </span>
             )
-
+        } else if (rating == 3) {
+            return (
+                <span>
+                    {String.fromCharCode(9734) + String.fromCharCode(9734) + String.fromCharCode(9734)}
+                </span>
+            )
+        } else if (rating == 2) {
+            return (
+                <span>
+                    {String.fromCharCode(9734) + String.fromCharCode(9734)}
+                </span>
+            )
+        } else if (rating == 1) {
+            return (
+                <span>
+                    {String.fromCharCode(9734)}
+                </span>
+            )
         }
     }
 
@@ -72,10 +93,10 @@ const Job = props => {
                     </tr>
                     <tr>
                         <td>
-                            Pay Range: 
+                            Pay: 
                         </td>
                         <td>
-                            {job.minpay} - {job.maxpay}
+                            ${job.minpay} {job.paytype}
                         </td>
                     </tr>
                     <tr>

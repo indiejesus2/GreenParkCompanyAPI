@@ -114,12 +114,12 @@ const Experience = props => {
         <Row className="mb-3">
         <Form.Group as={Col}>
         <FloatingLabel label="Start Date">
-            <Form.Control type="text" name={`experience.${id}.startdate`} value={props.values.experience.id.startdate} onChange={props.handleChange} />
+            <Form.Control type="date" name={`experience.${id}.startdate`} value={props.values.experience.id.startdate} onChange={props.handleChange} />
         </FloatingLabel>
         </Form.Group>
         <Form.Group as={Col}>
         <FloatingLabel label="End Date">
-            <Form.Control type="text" name={`experience.${id}.enddate`} value={props.values.experience.id.enddate} onChange={props.handleChange} />
+            <Form.Control type="date" name={`experience.${id}.enddate`} value={props.values.experience.id.enddate} onChange={props.handleChange} />
         </FloatingLabel>
         </Form.Group>
         </Row>
