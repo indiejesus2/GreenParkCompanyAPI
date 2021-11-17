@@ -77,7 +77,7 @@ const Jobs = (props) => {
                 matches["Payrange"] = `${job.minpay} - ${job.maxpay}`
             }
             if (employee.profile.seasonstart == job.seasonstart || employee.profile.seasonend == job.seasonend) {
-                matches["Season"] = `${seasonstart} - ${seasonend}`
+                matches["Season"] = `${job.seasonstart} - ${job.seasonend}`
             }
             if (employee.profile.license == job.license) {
                 matches["License"] = "Yes"
