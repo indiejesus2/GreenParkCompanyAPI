@@ -130,7 +130,7 @@ export default function AddJob(props) {
         validationSchema: schema,
         onSubmit: values => {
             props.addJob(values)
-            props.history.push(`/contractors/${props.employer_id}/jobs/`)
+            props.history.push(`/contractors/${props.contractor.id}/jobs/`)
         }
     })
 
@@ -273,9 +273,10 @@ export default function AddJob(props) {
                 <Form.Control type="text" name="minpay" onChange={formik.handleChange} value={formik.values.minpay}/>
                 </Form.Group>
                 <Form.Group as={Col}>
-                <Form.Select name="paytype" onChange={formik.handleChange} value={formik.values.paytype} defaultSelect={formik.values.paytype} />
+                <Form.Select name="paytype" onChange={formik.handleChange} value={formik.values.paytype} defaultSelect={formik.values.paytype}>
                         <option value="hourly">"Hourly"</option>
                         <option value="yearly">"Yearly"</option>
+                </Form.Select>                        
                 </Form.Group>
                 </Row>
                 <div className="submit">

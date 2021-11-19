@@ -207,7 +207,7 @@ export default function EditJob(props) {
                 <Form.Group as={Col}>
 
                 <FloatingLabel label="ZipCode">
-                    <Form.Control type="text" name="zipcode" onChange={formik.handleChange} />
+                    <Form.Control type="text" name="zipcode" value={formik.values.zipcode} onChange={formik.handleChange} />
                 </FloatingLabel>
                 </Form.Group>
                 </Row>
@@ -276,12 +276,13 @@ export default function EditJob(props) {
                 </Form.Group>
                 <Form.Group as={Col}>
                 <Form.Control type="text" name="minpay" onChange={formik.handleChange} defaultValue={formik.values.minpay} />
-                <Form.Select name="paytype" onChange={formik.handleChange} value={formik.values.paytype} defaultSelect={formik.values.paytype} />
+                <Form.Select name="paytype" onChange={formik.handleChange} value={formik.values.paytype} defaultSelect={formik.values.paytype}>
                         <option value="hourly">"Hourly"</option>
                         <option value="yearly">"Yearly"</option>
+                </Form.Select>
                 </Form.Group>
                 </Row>
-                <div className="submit">
+                <div className="submit d-flex justify-contet-between">
                     <Button type="submit" value="Edit Job" onClick={formik.handleSubmit}>Edit Job</Button>
                     <Link to={`/contractors/${job.employer_id}/jobs/${job.id}`} >
                             <Button>View Job</Button>

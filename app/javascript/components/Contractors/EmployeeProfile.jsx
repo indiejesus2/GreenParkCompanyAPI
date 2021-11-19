@@ -5,13 +5,14 @@ import { Modal, Button } from 'react-bootstrap'
 const EmployeeProfile = props => {
 
     const candidate = props.candidate
+    const display = props.show == true ? "employee-profile" : "employee-profile d-none"
     
     if (candidate == "") {
         return null
     }
     
         return (
-            <div className="employee-profile">
+            <div className={display}>
             <Modal show={props.show}>
                 <Modal.Header>
 

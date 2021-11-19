@@ -57,7 +57,6 @@ const Jobs = (props) => {
 
         const jobMatch = (job) => {
             let matches = {}
-            let payrange = (start, end) => Array.from({length: (end - start + 1)}, (v , k) => k + start)
             employee.profile.jobtype.map(function(type) {
                 if (job.jobtype.includes(type)) {
                     matches["Jobtype"] = job.jobtype.join(", ")
@@ -73,8 +72,8 @@ const Jobs = (props) => {
                     matches["Shifts"] = job.shifts.join(", ")
                 }
             })
-            if (payrange(employee.profile.minpay, employee.profile.maxpay).includes(Math.round(job.minpay)) || payrange(employee.profile.minpay, employee.profile.maxpay).includes(Math.round(job.maxpay))) {
-                matches["Payrange"] = `${job.minpay} - ${job.maxpay}`
+            if (employee.profile.minpay < job.minpay) {
+                matches[`Starting ${job.paytype == "Hourly" ? "Pay":"Salary"}`] = `${job.minpay}`
             }
             if (employee.profile.seasonstart == job.seasonstart || employee.profile.seasonend == job.seasonend) {
                 matches["Season"] = `${job.seasonstart} - ${job.seasonend}`
@@ -82,9 +81,6 @@ const Jobs = (props) => {
             if (employee.profile.license == job.license) {
                 matches["License"] = "Yes"
             }
-            // Object.entries(matches).map(function([k,v]) {
-            //     debugger
-            // })
             return matches
         }
 

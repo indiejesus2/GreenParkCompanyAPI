@@ -28,28 +28,56 @@ const Applicants = (props) => {
     const [show, setShow] = useState(false)
     const [applicant, setApplicant] = useState("")
     const [candidates, setCandidates] = useState(original)
-    const handleClose = () => setShow(false);
+    const handleClose = () => {
+        setShow(false);
+    }
     const handleShow = (candidate) => {
         setApplicant(candidate)
         setShow(true);
     }
     
-    useEffect(() => {
-        setJob(props.job) 
-        setApplicants(props.job.applicants.sort(applicant=>applicant.rating))
-        setProfiles(props.job.profiles)
-        setCandidates(original)
-    })
+    // useEffect(() => {
+    //     setJob(props.job) 
+    //     setApplicants(props.job.applicants.sort(applicant=>applicant.rating))
+    //     setProfiles(props.job.profiles)
+    //     setCandidates(original)
+    // })
+
+    const jobMatch = (profile) => {
+        let matches = {}
+        job.jobtype.map(function(type) {
+            if (profile.jobtype.includes(type)) {
+                matches["Jobtype"] = profile.jobtype.join(", ")
+            }
+        })
+        job.schedule.map(function(day) {
+            if (profile.schedule.includes(day)) {
+                matches["Schedule"] = profile.schedule.join(", ")
+            }
+        })
+        job.shifts.map(function(shift) {
+            if (profile.shifts.includes(shift)) {
+                matches["Shifts"] = profile.shifts.join(", ")
+            }
+        })
+        if (job.minpay < profile.minpay) {
+            matches[`Starting ${profile.paytype == "Hourly" ? "Pay":"Salary"}`] = `${profile.minpay}`
+        }
+        if (job.seasonstart == profile.seasonstart || job.seasonend == profile.seasonend) {
+            matches["Season"] = `${profile.seasonstart} - ${profile.seasonend}`
+        }
+        if (job.license == profile.license) {
+            matches["License"] = "Yes"
+        }
+        return matches
+    }
+
     
     const [state, setState] = useState({
         jobtype: false,
         schedule: false,
         shifts: false,
     })
-
-
-
-
     
     const handleSearch = (e) => {
         e.preventDefault()
@@ -137,6 +165,11 @@ const Applicants = (props) => {
                 </Card.Title>
                     <Card.Subtitle>{candidate.info.city}, {candidate.info.state}</Card.Subtitle>
                       <Card.Text>Match Score: {candidate.rating}</Card.Text>
+                      <div className="matches">
+                        {Object.entries(jobMatch(candidate.info)).map(([key, value]) =>
+                            <Card.Text style={{ marginBlockEnd: 1 + `px`}}>{key}: {value}</Card.Text>
+                            )}
+                        </div>
                       <Button onClick={() => handleShow(candidate)}>View Profile</Button>
                 {/* <Card.Body>
                 </Card.Body> */}

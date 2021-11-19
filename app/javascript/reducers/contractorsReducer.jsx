@@ -8,7 +8,6 @@ export default function contractorsReducer(state = {contractor: [], jobs: [], lo
                 loading: true
             }
         case 'SIGNUP_CONTRACTOR':
-            // debugger
             return {
                 contractor: action.payload,
                 loggedIn: true,
@@ -19,7 +18,7 @@ export default function contractorsReducer(state = {contractor: [], jobs: [], lo
                 contractor: action.payload,
                 loading: false
             }
-        case 'SIGNIN_CONTRACTOR': 
+        case 'SIGNIN_CONTRACTOR':
             return {
                 contractor: action.payload.contractor,
                 jobs: action.payload.jobs.data.map(job => job.attributes),
@@ -41,8 +40,7 @@ export default function contractorsReducer(state = {contractor: [], jobs: [], lo
             }
         case 'LOADING_JOBS':
             return {
-                contractor: state.contractor,
-                jobs: [...state.jobs],
+                ...state,
                 loading: true
             }
             case 'FETCH_JOBS':
@@ -52,10 +50,21 @@ export default function contractorsReducer(state = {contractor: [], jobs: [], lo
                     loading: false
                 }
         case 'ADD_JOB':
-            return {
-                ...state, 
-                jobs: [...state.jobs, action.payload],
-                loading: false
+            // let addition = state.jobs.map(job => {
+            //     if(job.id === action.payload.id) {
+            //         return action.payload
+            //     } else {
+            //         return job
+            //     }
+            // })
+            if(state.jobs) {
+                return {
+                    ...state, jobs: [...state.jobs, action.payload], loading: false
+                }
+            } else {
+                return {
+                    ...state, jobs: [action.payload], loading: false
+                }
             }
         case 'EDIT_JOB':
             let edited = state.jobs.map(job => {

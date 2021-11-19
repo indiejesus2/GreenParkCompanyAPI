@@ -276,11 +276,13 @@ h1, h2 {
 }
 
 .candidates .card {
-  width: 12rem;
-  padding: 5px;
+  width: 15rem;
+  min-height: 12rem;
+  padding: 10px;
   display: grid;
   justify-items: center;
   margin-inline: 50px;
+  margin-block: 25px;
   background-color: #3d8ac9;
 }
 
@@ -526,7 +528,7 @@ job-body .table {
   display: grid;
   justify-content: center;
   width: min-content;
-  border: 1px solid black;
+  // border: 1px solid black;
   padding-inline: 25px;
   padding-block: 10px;
 }

@@ -6,12 +6,12 @@ const Jobs = (props) => {
 
 const [jobs, setJobs] = useState(props.jobs ? props.jobs : [])
 
-    useEffect(() => {
-        if (props.jobs || props.jobs != jobs) {
-            setJobs(props.jobs)
-        }
+    // useEffect(() => {
+    //     if (props.jobs != jobs) {
+    //         setJobs(props.jobs)
+    //     }
 
-    })
+    // })
 
     const handleClick = (job) => {
         props.deleteJob(job)
