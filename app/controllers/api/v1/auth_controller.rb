@@ -49,7 +49,7 @@ class Api::V1::AuthController < ApplicationController
     def find_city
         location = Geocoder.search(params[:zipcode]).find{|location| location.country_code == "us"}
         render json: {
-            town: location.town,
+            town: location.display_name.split(",")[0],
             state: location.state
         }
     end

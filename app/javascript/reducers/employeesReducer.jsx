@@ -1,6 +1,6 @@
 import { assertConditionalExpression } from "@babel/types"
 
-export default function employeesReducer(state = {employee: [], profile: [], experience: [], jobs: [], document: [], loggedIn: false, loading: false}, action) {
+export default function employeesReducer(state = {employee: [], profile: [], experience: [], jobs: [], file: [], document: [], loggedIn: false, loading: false, fileLoading: false}, action) {
     switch(action.type) {
         case 'LOADING_EMPLOYEES':
             return {
@@ -9,27 +9,32 @@ export default function employeesReducer(state = {employee: [], profile: [], exp
             }
         case 'SIGNUP_EMPLOYEE':
             return {
+                ...state,
                 employee: action.payload,
                 loggedIn: true,
                 loading: false
             }
         case 'SIGNIN_EMPLOYEE':
             return {
+                ...state,
                 employee: action.payload,
                 profile: action.payload.profile,
                 experience: action.payload.experiences,
                 jobs: action.payload.jobs,
+                file: action.payload.file,
+                document: action.payload.document,
                 loggedIn: true,
                 loading: false
             }
         case 'CURRENT_EMPLOYEE':
             return {
+                ...state,
                 employee: action.payload.user,
                 loggedIn: true
             }    
         case 'CREATE_PROFILE':
             return {
-                employee: action.payload,
+                ...state,
                 profile: action.payload.profile,
                 experience: action.payload.experiences,
                 jobs: action.payload.jobs,
@@ -37,6 +42,7 @@ export default function employeesReducer(state = {employee: [], profile: [], exp
             }
         case 'UPDATE_PROFILE':
             return {
+                ...state,
                 employee: action.payload,
                 profile: action.payload.profile,
                 experience: action.payload.experiences,
@@ -46,16 +52,17 @@ export default function employeesReducer(state = {employee: [], profile: [], exp
         case 'LOADING_FILE':
             return {
                 ...state,
-                loading: true
+                fileLoading: true
             }
         case 'UPLOAD_FILE':
             return {
                 ...state,
-                loading: false,
+                fileLoading: false,
                 document: action.payload
             }
         case 'ERROR_EMPLOYEE':
             return {
+                ...state,
                 loading: false,
                 loggedIn: false,
                 errors: action.payload

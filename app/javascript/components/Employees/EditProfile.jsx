@@ -6,6 +6,51 @@ import EmployeeFile from './EmployeeFile'
 
 export default function EditProfile(props) {
 
+    const formatPhoneNumber = (value) => {
+
+        if (!value) return value;
+    
+        const phoneNumber = value.replace(/[^\d]/g, "");
+    
+        const phoneNumberLength = phoneNumber.length;
+    
+        if (phoneNumberLength < 4) return phoneNumber;
+    
+        if (phoneNumberLength < 7) {
+            return `(${phoneNumber.slice(0,3)}) ${phoneNumber.slice(3)}`
+        }
+    
+        return `(${phoneNumber.slice(0,3)}) ${phoneNumber.slice(3,6)}-${phoneNumber.slice(6, 10)}`;
+    
+    }
+
+    const handlePostal = (e) => {
+        let postal = e.target.value
+        if (postal.length == 5) {
+            findCity(postal)
+            formik.setFieldValue('zipcode', postal)
+        } else {
+            formik.setFieldValue('zipcode', postal)
+        }
+    }
+
+    const findCity = async (postal) => {
+        const configObj = {
+            method: "GET",
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify(postal)
+        };
+        const resp = await fetch(`/api/v1/findcity/${postal}`, { configObj })
+        const data = await resp.json()
+        if (data.town) {
+            formik.setFieldValue('city', data.town)
+            formik.setFieldValue('state', data.state)
+        }
+    }
+
     const months = [
         "Jan", 
         "Feb", 
@@ -108,6 +153,11 @@ export default function EditProfile(props) {
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+    useEffect(() => {
+        if (props.fileLoading == false) {
+            handleClose()
+        }
+    }, [props.fileLoading])
 
     const employee = props.profile
 
@@ -133,26 +183,10 @@ export default function EditProfile(props) {
             industry: employee.industry,
         },
         onSubmit: values => {
-            // let data = new FormData();
-            // data.append("file", values.file, values.file.name)
             props.updateProfile(values)
             props.history.push(`/employees/${values.employee_id}/profile`)
         }
     })
-
-    // const handleUpload = (e) => {
-    //     let reader = new FileReader();
-    //     let file = e.target.files[0];
-    //     if (file) {
-    //         reader.onloadend = () => setFileName(file.name);
-    //         formik.setFieldValue('file', file);
-    //         if (file.name !== fileName) {
-    //             reader.readAsDataURL(file);
-    //             formik.setFieldValue('file', file);
-    //             // setSrc(reader)
-    //         }
-    //     }
-    // }
 
     return (
         <div className="profile">
@@ -193,7 +227,7 @@ export default function EditProfile(props) {
                         </Form.Group>
                     <Form.Group as={Col}>
                         <FloatingLabel label="Zip-Code">
-                            <Form.Control type="text" name="zipcode" value={formik.values.zipcode} onChange={formik.handleChange} />
+                            <Form.Control type="text" name="zipcode" value={formik.values.zipcode} onChange={handlePostal} />
                         </FloatingLabel>
                         </Form.Group>
                     </Row>
@@ -201,7 +235,7 @@ export default function EditProfile(props) {
 
                     <Form.Group as={Col}>
                         <FloatingLabel label="Phone">
-                            <Form.Control type="text" name="phone" value={formik.values.phone} onChange={formik.handleChange} />
+                            <Form.Control type="text" name="phone" value={formatPhoneNumber(formik.values.phone)} onChange={formik.handleChange} />
                         </FloatingLabel>
                     </Form.Group>
                     <Form.Group as={Col}>
@@ -309,6 +343,7 @@ export default function EditProfile(props) {
                             show={show} 
                             employee={employee}
                             uploadFile={props.uploadFile}
+                            fileLoading={props.fileLoading}
                             // uploadFile={} 
                             />
                         </Button>

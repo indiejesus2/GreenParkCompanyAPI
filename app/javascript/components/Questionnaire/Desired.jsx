@@ -1,7 +1,18 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { Modal, Form, FloatingLabel, Button, Row, Col, InputGroup } from 'react-bootstrap'
+import EmployeeFile from '../Employees/EmployeeFile'
 
 const Desired = props => {
+
+    const [show, setShow] = useState(false);
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+
+    useEffect(() => {
+        if (props.fileLoading == false) {
+            handleClose()
+        }
+    }, [props.fileLoading])
 
     const months = [
         "Jan", 
@@ -194,9 +205,17 @@ const Desired = props => {
                 <Form.Check type="checkbox" name="license" label="Driver's License" value={props.values.license} onChange={props.handleChange} defaultChecked={props.values.license}/>
             </Form.Group>
             <Form.Group as={Col}>
-                <Form.Label>Upload Resume:</Form.Label>
-                <Form.Control type="file" name="file" size="sm" onChange={props.handleChange} />
-            </Form.Group>
+                        <Button variant="link" onClick={handleShow} className="d-flex justify-content-right">
+                            Upload Resume/CV
+                            <EmployeeFile 
+                            show={show} 
+                            employee={props.employee}
+                            uploadFile={props.uploadFile}
+                            fileLoading={props.fileLoading}
+                            // uploadFile={} 
+                            />
+                        </Button>
+                    </Form.Group>
         </Row>
             </Modal.Body>
                 <Modal.Footer>        

@@ -1,14 +1,26 @@
 import React, {useState, useEffect} from 'react'
 import NavBar from '../NavBar'
-import { Button, Table, Row, Col, Toast } from 'react-bootstrap'
+import {Link} from 'react-router-dom'
+// import FilePreview from 'react-preview-file'
+import FileViewer from 'react-file-viewer'
+import { Button, Table, Row, Col, Toast, Modal } from 'react-bootstrap'
 
 const Profile = props => {
 
     const [show, setShow] = useState(false);
+    const [preview, setPreview] = useState(false)
+    const [applications, setApplications] = useState([])
+
+    const handlePreview = () => setPreview(true)
 
     useEffect(() => {
-        setShow(true)
-    }, [applications])
+        if (props.employee.applicants.length !== applications.length) {
+            setApplications(props.employee.applicants)
+            setShow(true)
+        }
+    }, [props.employee.applicants])
+
+
     
     const handleClick = () => {
         props.history.push(`/employees/${props.employee.id}/edit_profile`)
@@ -32,12 +44,13 @@ const Profile = props => {
         )
     }
 
-    const applications = props.employee.applicants
     const employee = props.profile
     const license = props.profile.license == true ? "Yes" : "No"
     const jobtype = employee.jobtype.length > 0 ? employee.jobtype : []
     const schedule = employee.schedule.length > 0 ? employee.schedule : []
     const shifts = employee.shifts.length > 0 ? employee.shifts : []
+    const file = props.employee.file
+    const type = props.document?props.document.split("/")[1] : []
 
     return (
         <div className="employee">
@@ -63,6 +76,16 @@ const Profile = props => {
                     <h4>{employee.city}, {employee.state}</h4>
                     <h4>{employee.industry}</h4>
                 </div>
+                {/* <Button variant="link" onClick={handlePreview}>
+                    View Resume
+                </Button>
+                <div>
+                    <Modal show={preview}>
+                        <Modal.Body>
+                            <FileViewer filePath={file} fileType={type} />
+                        </Modal.Body>
+                    </Modal>
+                </div> */}
             <div className="work-schedule">
                 <Table>
                     <tbody>
@@ -101,6 +124,9 @@ const Profile = props => {
                     <h6>{history.title}: {history.city}, {history.state}</h6>
                     <p>{history.startdate} to {history.current?"Present":history.enddate}</p>
                     <p>{history.description}</p>
+                    <Link to={`/employees/${props.employee.id}/experience/${history.id}`}>
+                        Edit Experience
+                    </Link>
                 </div>
                     )}
                 </div>

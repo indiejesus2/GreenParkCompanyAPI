@@ -1,6 +1,7 @@
 class Employee < ApplicationRecord
   has_secure_password
   has_one :profile
+  has_one :document
   has_one_attached :file
   has_many :experiences
   has_many :applicants

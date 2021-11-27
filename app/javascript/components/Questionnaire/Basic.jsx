@@ -55,8 +55,10 @@ const Basic = (props) => {
         };
         const resp = await fetch(`api/v1/findcity/${postal}`, { configObj })
         const data = await resp.json()
-        props.setFieldValue('city', data.town)
-        props.setFieldValue('state', data.state)
+        if (data.town) {
+            props.setFieldValue('city', data.town)
+            props.setFieldValue('state', data.state)
+        }
     }
 
     const states = [
@@ -113,8 +115,6 @@ const Basic = (props) => {
         "Wyoming"
     ]
     
-    
-
     return(
         <React.Fragment>
         <Modal show animation backdrop centered>
@@ -157,10 +157,10 @@ const Basic = (props) => {
                             name="city" 
                             value={props.values.city} 
                             onChange={props.handleChange} 
-                            isInvalid={props.touched.city && props.errors.city}
+                            isInvalid={props.errors.city}
                             onBlur={props.handleBlur}
                             />
-                            {props.errors.city && props.touched.city && (
+                            {props.errors.city && (
                                 <div style={{ color: "red"}}>{props.errors.city}</div>
                             )}
                         </FloatingLabel>
@@ -171,13 +171,13 @@ const Basic = (props) => {
                             name="state" 
                             value={props.values.state} 
                             onChange={props.handleChange}
-                            isInvalid={props.touched.state && props.errors.state}
+                            isInvalid={props.errors.state}
                             onBlur={props.handleBlur}
                             >
                                 {Object.values(states).map(state => 
                                     <option  defaultValue="--">{state}</option>
                                 )}
-                            {props.errors.state && props.touched.state && (
+                            {props.errors.state && (
                                 <div style={{ color: "red"}}>{props.errors.state}</div>
                             )}
                             </Form.Select>

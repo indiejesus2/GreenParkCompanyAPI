@@ -3,6 +3,13 @@ import { Modal, Button, Form } from 'react-bootstrap'
 
 const EmployeeFile = props => {
 
+    const [show, setShow] = useState(false)
+
+    useEffect(() => {
+        setShow(props.show)
+    }, [props.show])
+
+
     const id = props.employee.id
     const [file, setFile] = useState(null)
 
@@ -24,7 +31,7 @@ const EmployeeFile = props => {
 
     return (
         <div className="employee-file">
-            <Modal show={props.show} >
+            <Modal show={show} backdrop centered>
                 <Modal.Header>
                     <Modal.Title>
                         Upload Document

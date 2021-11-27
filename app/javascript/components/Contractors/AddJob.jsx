@@ -10,6 +10,40 @@ export default function AddJob(props) {
         state: yup.string().required()
     })
 
+    const handlePostal = (e) => {
+        // let postal = e.target.value
+        let postal = e.target.value
+        if (postal.length == 5) {
+            findCity(postal)
+            formik.setFieldValue('zipcode', postal)
+        } else {
+            formik.setFieldValue('zipcode', postal)
+        }
+    }
+
+    // useEffect(() => {
+    //     if(formik.values.zipcode.length == 5) {
+    //         findCity(formik.values.postal)
+    //     }
+    // })
+
+    const findCity = async (postal) => {
+        const configObj = {
+            method: "GET",
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify(postal)
+        };
+        const resp = await fetch(`/api/v1/findcity/${postal}`, { configObj })
+        const data = await resp.json()
+        if (data.town) {
+            formik.setFieldValue('city', data.town)
+            formik.setFieldValue('state', data.state)
+        }
+    }
+
     const months = [
         "--",
         "Jan", 
@@ -204,7 +238,7 @@ export default function AddJob(props) {
                 <Form.Group as={Col}>
 
                 <FloatingLabel label="ZipCode">
-                    <Form.Control type="text" name="zipcode" onChange={formik.handleChange} />
+                    <Form.Control type="text" name="zipcode" onChange={handlePostal} value={formik.values.zipcode}/>
                 </FloatingLabel>
                 </Form.Group>
                 </Row>

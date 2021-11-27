@@ -4,8 +4,8 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :employees do
         resources :profiles do
-          resources :work_histories
         end
+        resources :experiences
         resources :jobs
       end
       resources :employers do

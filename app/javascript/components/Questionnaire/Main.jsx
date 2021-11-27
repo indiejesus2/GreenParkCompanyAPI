@@ -11,6 +11,7 @@ import { Alert, Button } from 'react-bootstrap'
 
 const Main = (props) => {
 
+
     const history = useHistory()
 
     const [state, setState] = useState({
@@ -61,7 +62,6 @@ const Main = (props) => {
         },
         validationSchema: schema,
         onSubmit: values => {
-            debugger
             props.createProfile(values)
             history.push('/employees')
         }
@@ -72,16 +72,10 @@ const Main = (props) => {
         let direction = e.target.name;
         if (currentStep !==1 && direction == "previous"){
             setStep(step-1)
-            // setState( prevState => ({
-            //     ...prevState,
-            //     currentStep : currentStep -= 1
-            // }))
-        } else if (currentStep < 3 && direction == "next") {
+        } else if (currentStep < 2 && direction == "next" && formik.values.city !== "" && formik.values.state !== "") {
             setStep(step+1)
-            // setState( prevState => ({
-            //     ...prevState,
-            //     currentStep : currentStep += 1
-            // }))
+        } else {
+            formik.setErrors({city: "Please enter a city", state: "Please enter a state"})
         }
     }
 
@@ -100,7 +94,6 @@ const Main = (props) => {
                     currentStep={step}
                     handleChange={formik.handleChange}
                     setFieldValue={formik.setFieldValue}
-                    // handlePostal={handlePostal}
                     values={formik.values}
                     handleClick={handleClick}
                     touched={formik.touched}
@@ -110,10 +103,13 @@ const Main = (props) => {
                     />
                 <Desired
                     currentStep={step}
+                    employee={props.employee}
+                    uploadFile={props.uploadFile}
                     handleChange={formik.handleChange}
                     values={formik.values}
                     handleClick={handleClick}
                     handleSubmit={formik.handleSubmit}
+                    fileLoading={props.fileLoading}
                     />
                 <Skills
                     currentStep={step}

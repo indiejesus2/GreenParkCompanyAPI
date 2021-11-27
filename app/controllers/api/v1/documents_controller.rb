@@ -11,8 +11,6 @@ class Api::V1::DocumentsController < ApplicationController
 
     def create
         @employee.file.attach(params[:file])
-        # @document = Document.new(document_params)
-        byebug
         if @employee.save
             render json: EmployeeSerializer.new(@employee)
         end
