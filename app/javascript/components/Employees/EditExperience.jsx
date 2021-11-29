@@ -1,7 +1,8 @@
 import React from 'react'
 import NavBar from '../NavBar'
-import { Form, FloatingLabel, Button, Row, Col} from 'react-bootstrap'
+import { useFormik } from 'formik'
 
+import { Form, FloatingLabel, Button, Row, Col} from 'react-bootstrap'
 
 export default function EditExperience(props) {
 
@@ -59,6 +60,28 @@ export default function EditExperience(props) {
         "Wyoming"
     ]
 
+    const experience = props.experience.find(exp => exp.id == props.match.params.id)
+
+    const formik = useFormik({      
+        initialValues: {
+            id: experience.id,
+            employee_id: props.employee.id,
+            title: experience.title,
+            company: experience.company,
+            city: experience.city,
+            state: experience.state,
+            zipcode: experience.zipcode,
+            startdate: experience.startdate,
+            enddate: experience.enddate,
+            description: experience.desciption,
+            current: experience.current
+        },
+        onSubmit: values => {
+            props.editExperience(values)
+            props.history.push(`/employees/${values.employee_id}/profile`)
+        }
+    })
+
     return (
         <div className="experience">
             <NavBar handleSignout={props.signOut} profile={props.profile} user="employee" />
@@ -70,13 +93,13 @@ export default function EditExperience(props) {
 
 <Form.Group as={Col} >
     <FloatingLabel label="Title">
-    <Form.Control type="text" name={props.experience.title} value={props.experience.title} onChange={props.handleChange} />
+    <Form.Control type="text" name="title" value={formik.values.title} onChange={formik.handleChange} />
 </FloatingLabel>
 </Form.Group>
 <Form.Group as={Col}>
 
 <FloatingLabel label="Company">
-    <Form.Control type="text" name={props.experience.company} value={props.experience.company} onChange={props.handleChange} />
+    <Form.Control type="text" name="company" value={formik.values.company} onChange={formik.handleChange} />
 </FloatingLabel>
 </Form.Group>
 </Row>
@@ -84,13 +107,13 @@ export default function EditExperience(props) {
 
 <Form.Group as={Col}>
 <FloatingLabel label="City">
-    <Form.Control type="text" name={props.experience.city} value={props.experience.city} onChange={props.handleChange} />
+    <Form.Control type="text" name="city" value={formik.values.city} onChange={formik.handleChange} />
 </FloatingLabel>
 </Form.Group>
 
 <Form.Group as={Col}>
 <FloatingLabel label="State">
-    <Form.Select name={props.experience.state} value={props.experience.state} onChange={props.handleChange}>
+    <Form.Select name="state" value={formik.values.state} onChange={formik.handleChange}>
     {states.map(state => 
         <option defaultValue="--">{state}</option>
     )}
@@ -99,44 +122,35 @@ export default function EditExperience(props) {
 </Form.Group>
 <Form.Group as={Col}>
 <FloatingLabel label="ZipCode">
-    <Form.Control type="text" name={props.experience.zipcode} value={props.experience.zipcode} onChange={props.handleChange} />
+    <Form.Control type="text" name="zipcode" value={formik.values.zipcode} onChange={formik.handleChange} />
 </FloatingLabel>
 </Form.Group>
 </Row>
-{/* <Row className="mb-3">
-<Form.Group as={Col}>
-<FloatingLabel label="Phone">
-    <Form.Control type="text" name={experience[0].phone} value={props.experience[0].phone} onChange={props.handleChange} />
-</FloatingLabel>
-</Form.Group>
-<Form.Group as={Col}>
-<FloatingLabel label="Email">
-    <Form.Control type="text" name={experience[0].email} value={props.experience[0].email} onChange={props.handleChange} />
-</FloatingLabel>
-</Form.Group>
-</Row> */}
 <Row className="mb-3">
 <Form.Group as={Col}>
 <FloatingLabel label="Start Date">
-    <Form.Control type="date" name={props.experience.startdate} value={props.experience.startdate} onChange={props.handleChange} />
+    <Form.Control type="date" name="startdate" value={formik.values.startdate} onChange={formik.handleChange} />
 </FloatingLabel>
 </Form.Group>
 <Form.Group as={Col}>
 <FloatingLabel label="End Date">
-    <Form.Control type="date" name={props.experience.enddate} value={props.experience.enddate} onChange={props.handleChange} />
+    <Form.Control type="date" name="enddate" value={formik.values.enddate} onChange={formik.handleChange} />
 </FloatingLabel>
 </Form.Group>
 </Row>
 <Row className="mb-3">
 <Form.Group as={Col}>
 <FloatingLabel label="Description">
-    <Form.Control as="textarea" name={props.experience.description} value={props.experience.description} onChange={props.handleChange} />
+    <Form.Control as="textarea" name="description" value={formik.values.description} onChange={formik.handleChange} />
 </FloatingLabel>
 </Form.Group>
 </Row>
 <Form.Label>
-    <Form.Check label="Current Job" name={props.experience.current} value={props.experience.current} onChange={props.handleChange} defaultChecked={props.experience.current}/>
+    <Form.Check label="Current Job" name="current" value={formik.values.current} onChange={formik.handleChange} defaultChecked={props.experience.current}/>
 </Form.Label>
+                <div className="submit">
+                    <Button type="submit" value="Save Changes" onClick={formik.handleSubmit}>Save Changes</Button>
+                </div>
                 </Form>
             </div>
         </div>

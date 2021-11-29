@@ -161,8 +161,7 @@ export default function EditProfile(props) {
 
     const employee = props.profile
 
-    const formik = useFormik({
-        
+    const formik = useFormik({      
         initialValues: {
             employee_id: props.match.params.id,
             fname: employee.fname,
@@ -352,41 +351,6 @@ export default function EditProfile(props) {
                 <div className="submit">
                     <Button type="submit" value="Save Changes" onClick={formik.handleSubmit}>Save Changes</Button>
                 </div>
-                    {/* <div className="history">
-                        <h5>Work History</h5>
-                        <div >
-
-                        <label htmlFor="Job Title">Job Title: </label>
-                        <input type="text" name="title" id={state.work_histories.id} value={state.work_histories.title} onChange={handleHistory} />
-                        <br />
-                        <label htmlFor="Company">Company: </label>
-                        <input type="text" name="company" id={state.work_histories.id} value={state.work_histories.company} onChange={handleHistory} />
-                        <br />
-                        <label htmlFor="city">City: </label>
-                        <input type="text" name="city" id={state.work_histories.id} value={state.work_histories.city} onChange={handleHistory} />
-                        <br />
-                        <label htmlFor="state">State: </label>
-                        <input type="text" name="state" id={state.work_histories.id} value={state.work_histories.state} onChange={handleHistory} />
-                        <br />
-                        <label htmlFor="phone">Phone: </label>
-                        <input type="text" name="phone" id={state.work_histories.id} value={state.work_histories.phone} onChange={handleHistory} />
-                        <br />
-                        <label htmlFor="startdate">Start Date: </label>
-                        <input type="text" name="startdate" id={state.work_histories.id} value={state.work_histories.startdate} onChange={handleHistory} />
-                        <br />
-                        <label htmlFor="enddate">End Date: </label>
-                        <input type="text" name="enddate" id={state.work_histories.id} value={state.work_histories.enddate} onChange={handleHistory} />
-                        <label htmlFor="current">Current Job: </label>
-                        <input type="checkbox" name="current" id={state.work_histories.id} value={state.work_histories.current} onChange={handleHistory} />
-                        <br />
-                        <label htmlFor="Description">Description: </label>
-                        <input type="text" name="description" id={state.work_histories.id} value={state.work_histories.description} onChange={handleHistory} />
-                        <br />
-
-                        </div>
-                        
-                        <button onClick={handleHistory}>Add Experience</button>
-                    </div> */}
                     </Form>
             </div>
         </div>
