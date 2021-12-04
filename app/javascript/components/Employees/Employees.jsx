@@ -11,7 +11,6 @@ import { Breadcrumb } from 'react-bootstrap'
 
 const Employees = props => {
 
-
     const [state, setState] = useState({
         profile: props.profile ? props.profile : [],
         currentStep: 2
@@ -52,12 +51,12 @@ const Employees = props => {
                     <EmployeeSignIn signIn={props.signIn} currentStep={state.currentStep} handleClick={handleClick} errors={errors} />
                 </div>
         )
-    } else if (props.profile.length === 0) {
+    } else if (state.profile.length === 0) {
         return (
             <Questionnaire employee={props.employee} createProfile={props.createProfile} handleSignout={props.signOut} uploadFile={props.uploadFile} fileLoading={props.fileLoading} />
         )
         
-    } {
+    } else {
         return (
             <div className="employees">
                 <NavBar handleSignout={props.signOut} profile={props.profile} user="employee" />
