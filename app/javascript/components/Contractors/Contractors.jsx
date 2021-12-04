@@ -3,10 +3,9 @@ import { Redirect } from 'react-router-dom'
 import Home from '../Home'
 import ContractorSignIn from '../Login/ContractorSignIn'
 import ContractorSignUp from '../Login/ContractorSignUp'
+import Applicants from '../Contractors/Applicants'
 import JobsContainer from '../../containers/JobsContainer'
 import NavBar from '../NavBar'
-import { useHistory } from 'react-router-dom'
-
 
 const Contractors = props => {
 
@@ -18,7 +17,6 @@ const Contractors = props => {
     const [jobs, setJobs] = useState(props.jobs ? props.jobs : [])
     const [errors, setErrors] = useState(props.errors)
     const [contractor, setContractor] = useState(props.contractor)
-    const history = useHistory();
 
 
     useEffect(() => {
@@ -32,11 +30,6 @@ const Contractors = props => {
             setLoading(props.loading)
         }
     })
-
-    const handleSignout = () => {
-        props.signOut()
-        history.push('/');
-    }
 
     const handleClick = (e) => {
         let currentStep = state.currentStep;
@@ -77,11 +70,12 @@ if (loading === true) {
         return (
                 <div className="contractor">
                 <NavBar handleSignout={props.signOut} contractor={props.contractor} user="contractor" />
-                    <JobsContainer jobs={jobs} contractor={contractor} candidates={props.candidates} profiles={props.profiles} work_history={props.work_history}/>
+                    {/* <Applicants contractor={contractor} jobs={jobs} /> */}
+                    <JobsContainer jobs={jobs} contractor={contractor} candidates={props.candidates} profiles={props.profiles}/>
                 </div>
         )
     }
-
+    
 }
 
 export default Contractors   

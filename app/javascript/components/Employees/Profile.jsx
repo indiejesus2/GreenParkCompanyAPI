@@ -20,12 +20,6 @@ const Profile = props => {
         }
     }, [props.employee.applicants])
 
-
-    
-    const handleClick = () => {
-        props.history.push(`/employees/${props.employee.id}/edit_profile`)
-    }
-
     const handleToast = () => {
         return (
             <Row>
@@ -132,7 +126,12 @@ const Profile = props => {
                 </div>
                 <br />
                 <div className="edit-button">
-                    <Button variant="link" onClick={handleClick}>Edit Profile</Button>
+                    <Link to={`/employees/${employee.id}/experience/add_experience`}>
+                        Add Experience
+                    </Link>
+                    <Link to={`/employees/${employee.id}/edit_profile`}>
+                        Edit Profile
+                    </Link>
                 </div>
             </div>
         </div>

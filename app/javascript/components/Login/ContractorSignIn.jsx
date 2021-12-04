@@ -89,7 +89,7 @@ export default function ContractorSignIn(props) {
                         {formik.errors.password && formik.touched.password && (
                             <div style={{ color: "red"}}>{formik.errors.password}</div>
                         )}
-                        <Button variant="link" onClick={props.handleClick}>Sign Up For Free Account</Button>
+                        <Button variant="link" onClick={props.handleClick}>Sign Up For An Account</Button>
 
                 </Form.Group>
             </Modal.Body>

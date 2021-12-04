@@ -50,14 +50,7 @@ export default function employeesReducer(state = {employee: [], profile: [], exp
                 loading: false
             }
         case 'ADD_EXPERIENCE':
-            let addition = state.experience.map(experience => {
-                if(experience.id != action.payload.id) {
-                    return action.payload
-                } else {
-                    return experience
-                }
-            })
-            return {...state, experience: addition, loading: false}
+            return {...state, experience: [...state.experience, action.payload], loading: false}
         case 'UPDATE_EXPERIENCE':
             let edited = state.experience.map(experience => {
                 if(experience.id === action.payload.id) {

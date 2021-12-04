@@ -11,7 +11,6 @@ class CreateExperiences < ActiveRecord::Migration[6.0]
       t.string :enddate
       t.text :description
       t.boolean :current
-      t.references :profile, null: false, foreign_key: true
       t.references :employee, null: false, foreign_key: true
     end
   end

@@ -11,7 +11,10 @@ class Api::V1::ExperiencesController < ApplicationController
     end
 
     def create
-
+        @experience = Experience.new(experience_params)
+        if @experience.save
+            render json: ExperienceSerializer.new(@experience)
+        end
     end
 
     def update
@@ -31,7 +34,7 @@ private
     end
 
     def experience_params
-        params.require(:experience).permit(:title, :company, :city, :state, :zipcode, :phone, :startdate, :enddate, :description, :current)
+        params.require(:experience).permit(:employee_id, :title, :company, :city, :state, :zipcode, :phone, :startdate, :enddate, :description, :current)
     end
 
     def set_experience

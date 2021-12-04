@@ -98,10 +98,8 @@ ActiveRecord::Schema.define(version: 2021_11_02_235851) do
     t.string "enddate"
     t.text "description"
     t.boolean "current"
-    t.bigint "profile_id", null: false
     t.bigint "employee_id", null: false
     t.index ["employee_id"], name: "index_experiences_on_employee_id"
-    t.index ["profile_id"], name: "index_experiences_on_profile_id"
   end
 
   create_table "jobs", force: :cascade do |t|
@@ -167,7 +165,6 @@ ActiveRecord::Schema.define(version: 2021_11_02_235851) do
   add_foreign_key "applicants", "jobs"
   add_foreign_key "documents", "employees"
   add_foreign_key "experiences", "employees"
-  add_foreign_key "experiences", "profiles"
   add_foreign_key "jobs", "employers"
   add_foreign_key "profiles", "employees"
 end
