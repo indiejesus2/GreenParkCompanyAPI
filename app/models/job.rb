@@ -6,7 +6,7 @@ class Job < ApplicationRecord
     has_many :experiences, through: :employees
     geocoded_by :address
     before_save :proximity, :potential
-    # before_update :updated 
+    before_update :updated 
     after_validation :geocode
 
   def address
@@ -16,7 +16,7 @@ class Job < ApplicationRecord
   def proximity
     profiles = Profile.where("industry = ?", industry).near(address, 100)
     profiles.each {|profile|
-      if Applicant.where(job_id: id, employee_id: profile.employee_id).length == 0 
+      if Applicant.where(employer_id: id, employee_id: profile.employee_id).length == 0 
         Applicant.create(employee_id: "#{profile.employee_id}", employer_id: "#{employer_id}", job_id: "#{id}", distance: distance_to(profile))
       end
     }

@@ -204,7 +204,7 @@ const Basic = (props) => {
                     </Form.Group>
                     </Row>
                     <Row>
-                    <Form.Group>
+                    <Form.Group as={Col}>
                         <FloatingLabel label="Description">
                             <Form.Control type="textarea" name="Description" style={{ height: '100px'}} value={props.values.description} />
                         </FloatingLabel>

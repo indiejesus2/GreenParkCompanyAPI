@@ -8,6 +8,7 @@ class Profile < ApplicationRecord
   after_validation :geocode
   before_save :proximity, :potential
   before_update :updated
+  # after_validation :proximity, :potential
 
   # after_validation :reverse_geocode
 
@@ -56,17 +57,17 @@ class Profile < ApplicationRecord
         if job.license == @types[:license]
           @rating+=1
         end
-        @types[:jobtype].each {|type| 
+        @types[:jobtype].each{|type| 
           if job.jobtype.include?(type)
             @rating+=1
           end
         }
-        @types[:schedule].each {|type| 
+        @types[:schedule].each{|type| 
           if job.schedule.include?(type)
             @rating+=1
           end
         }
-        @types[:shifts].each {|type| 
+        @types[:shifts].each{|type| 
           if job.shifts.include?(type)
             @rating+=1
           end

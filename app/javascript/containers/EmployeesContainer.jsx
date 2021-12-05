@@ -54,7 +54,7 @@ class EmployeesContainer extends Component {
                         <Route path='/employees/:id/edit_profile' render={(routerProps) => <EditProfile {...routerProps} employee={this.props.employee} profile={this.props.profile} experience={this.props.experience} updateProfile={this.props.updateProfile} uploadFile={this.props.uploadFile} fileLoading={this.props.fileLoading} />}></Route>
                         <Route path='/employees/:id/profile' render={(routerProps) => <Profile {...routerProps} employee={this.props.employee} profile={this.props.profile} experience={this.props.experience} document={this.props.document}/>}></Route>
                         <Route path='/employees/questionnaire' render={(routerProps) => <Questionnaire {...routerProps} employee={this.props.employee} createProfile={this.props.createProfile} loading={this.props.loading} findCity={this.props.findCity} formatPhoneNumber={this.props.formatPhoneNumber} uploadFile={this.props.uploadFile}/>}></Route>
-                        <Route path='/employees' render={(routerProps) => <Employees {...routerProps} signIn={this.props.signIn} signUp={this.props.signUp} loggedIn={this.props.loggedIn} employee={this.props.employee} profile={this.props.profile} jobs={this.props.jobs} loading={this.props.loading} fileLoading={this.props.fileLoading} createProfile={this.props.createProfile} uploadFile={this.props.uploadFile} errors={this.props.errors} signOut={this.props.signOut}/>}></Route>
+                        <Route path='/employees' render={(routerProps) => <Employees {...routerProps} signIn={this.props.signIn} signUp={this.props.signUp} loggedIn={this.props.loggedIn} employee={this.props.employee} profile={this.props.profile} jobs={this.props.jobs} applicants={this.props.applicants} loading={this.props.loading} fileLoading={this.props.fileLoading} createProfile={this.props.createProfile} uploadFile={this.props.uploadFile} errors={this.props.errors} signOut={this.props.signOut}/>}></Route>
                     </Switch>
                 </div>
                 )
@@ -70,6 +70,7 @@ const mapStateToProps = state => {
         loggedIn: state.employeesReducer.loggedIn,
         loading: state.employeesReducer.loading,
         jobs: state.employeesReducer.jobs,
+        applicants: state.employeesReducer.applicants,
         errors: state.employeesReducer.errors,
         file: state.employeesReducer.file,
         document: state.employeesReducer.document,

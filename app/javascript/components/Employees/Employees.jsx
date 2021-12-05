@@ -43,6 +43,25 @@ const Employees = props => {
         }
     }
 
+    const handleJobs = () => {
+        if (jobs.length == 0) {
+            return (
+                <div>
+                    <p>
+                        "We're working hard to find some matches."
+                    </p>
+                </div>
+            )
+        } else {
+            return (
+                <div>
+                    <h2>{jobs.length} Potential Job Matches</h2>
+                    <Jobs jobs={jobs} employee={props.employee} profile={props.profile} applicants={props.applicants} />
+                </div>
+            )
+        }
+    }
+
     if (props.loggedIn === false) {
         return (
                 <div className="signin">
@@ -60,9 +79,7 @@ const Employees = props => {
         return (
             <div className="employees">
                 <NavBar handleSignout={props.signOut} profile={props.profile} user="employee" />
-
-                <h2>{jobs.length} Potential Job Matches</h2>
-                <Jobs jobs={jobs} employee={props.employee} profile={props.profile} />
+                    {handleJobs()}
             </div>
         )
     }

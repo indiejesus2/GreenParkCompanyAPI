@@ -4,7 +4,7 @@ import { Modal, Button, Table, Container, Row } from 'react-bootstrap'
 const Job = props => {
     
     const job = props.job
-    const applicant = props.employee.applicants.find(applicant => applicant.job_id == job.id)
+    const applicant = props.applicants.find(applicant => applicant.job_id == job.id)
 
     const rate = (rating) => {
         if (rating == 6 || rating == 5) {

@@ -72,6 +72,8 @@ const Main = (props) => {
         let direction = e.target.name;
         if (currentStep !==1 && direction == "previous"){
             setStep(step-1)
+        } else if (currentStep === 2 && direction === "next") {
+            setStep(step+1)
         } else if (currentStep < 2 && direction == "next" && formik.values.city !== "" && formik.values.state !== "") {
             setStep(step+1)
         } else {

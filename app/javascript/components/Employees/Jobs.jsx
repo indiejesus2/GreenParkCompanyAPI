@@ -42,74 +42,74 @@ const Jobs = (props) => {
         const [jobs, setJobs] = useState(props.jobs)
         const [employee, setEmployee] = useState(props.employee)
         const [show, setShow] = useState(false)
-        const [job, setJob] = useState("")
+        const [listing, setListing] = useState("")
+        const [applicants, setApplicants] = useState(props.applicants)
+        const [profile, setProfle] = useState(props.profile)
         const handleClose = () => setShow(false);
         const handleShow = (job) => {
-            setJob(job)
+            setListing(job)
             setShow(true);
         }
 
         useEffect(() => {
             if (props.jobs && props.jobs != jobs) {
                 setJobs(props.jobs)
+            } else if (props.applicants && props.applicants != applicants) {
+                setApplicants(props.applicants)
             }
         })
 
         const jobMatch = (job) => {
             let matches = {}
-            employee.profile.jobtype.map(function(type) {
-                if (job.jobtype.includes(type)) {
-                    matches["Jobtype"] = job.jobtype.join(", ")
+            
+                job.jobtype.map(function(type) {
+                    if (profile.jobtype.includes(type)) {
+                        matches["Jobtype"] = job.jobtype.join(", ")
+                    }
+                })
+                job.schedule.map(function(day) {
+                    if (profile.schedule.includes(day)) {
+                        matches["Schedule"] = job.schedule.join(", ")
+                    }
+                })
+                job.shifts.map(function(shift) {
+                    if (profile.shifts.includes(shift)) {
+                        matches["Shifts"] = job.shifts.join(", ")
+                    }
+                })
+                if (profile.minpay < job.minpay) {
+                    matches[`Starting ${job.paytype == "Hourly" ? "Pay":"Salary"}`] = `${job.minpay}`
                 }
-            })
-            employee.profile.schedule.map(function(day) {
-                if (job.schedule.includes(day)) {
-                    matches["Schedule"] = job.schedule.join(", ")
+                if (profile.seasonstart == job.seasonstart || profile.seasonend == job.seasonend) {
+                    matches["Season"] = `${job.seasonstart} - ${job.seasonend}`
                 }
-            })
-            employee.profile.shifts.map(function(shift) {
-                if (job.shifts.includes(shift)) {
-                    matches["Shifts"] = job.shifts.join(", ")
+                if (profile.license == job.license) {
+                    matches["License"] = "Yes"
                 }
-            })
-            if (employee.profile.minpay < job.minpay) {
-                matches[`Starting ${job.paytype == "Hourly" ? "Pay":"Salary"}`] = `${job.minpay}`
-            }
-            if (employee.profile.seasonstart == job.seasonstart || employee.profile.seasonend == job.seasonend) {
-                matches["Season"] = `${job.seasonstart} - ${job.seasonend}`
-            }
-            if (employee.profile.license == job.license) {
-                matches["License"] = "Yes"
-            }
-            return matches
+                
+            return Object.entries(matches).splice(0, 3)
         }
 
-        function CustomToggle({ children, eventKey }) {
-            return (
-              <button type="button" className="btn btn-primary" onClick={useAccordionButton(eventKey)}>
-                {children}
-              </button>
-            );
-          }
+
+
 
         return (
             <div className="employees-jobs">
                 {jobs.map(job =>
                 <Card id={job.id} key={job.id} > 
                     <Card.Header>
-                    {/* // className="d-grid justify-content-center"> */}
                        <Card.Title className="mb-2" as="h2">{job.title}</Card.Title>
                         <Card.Subtitle>Location: {job.city}, {job.state}</Card.Subtitle>
                     </Card.Header>
                     <Card.Body>
-                        <div className="d-flex justify-content-between">
-                            <Card.Subtitle as="h5">Rating: {rate(employee.applicants.find(applicant => applicant.job_id == job.id).rating)}</Card.Subtitle>
-                            <Card.Subtitle as="h5">Distance: {Math.round(employee.applicants.find(applicant => applicant.job_id == job.id).distance)}</Card.Subtitle>
+                    <div className="d-flex justify-content-between">
+                            <Card.Subtitle as="h5">Rating: {rate(applicants.find(applicant => applicant.job_id == job.id).rating)}</Card.Subtitle>
+                            <Card.Subtitle as="h5">Distance: {Math.round(applicants.find(applicant => applicant.job_id == job.id).distance)}</Card.Subtitle>
                         </div>
                         <div className="matches">
-                        {Object.entries(jobMatch(job)).map(([key, value]) =>
-                            <Card.Text style={{ marginBlockEnd: 1 + `px`}}>{key}: {value}</Card.Text>
-                            )}
+                            {Object.values(jobMatch(job)).map(match =>
+                                <Card.Text style={{ marginBlockEnd: 1 + `px`}}>{match[0]}: {match[1]}</Card.Text>
+                                )}
                         </div>
                         <Card.Text style={{ height: 63 + 'px', overflow: "clip", paddingBlock: 10 + 'px' }}>Description: {job.description} </Card.Text>
                     <div className="employee-jobs-buttons">
@@ -118,7 +118,7 @@ const Jobs = (props) => {
                     </Card.Body>
                 </Card>
                 )}
-                <Job show={show} job={job} employee={employee} handleClose={handleClose} />
+                <Job show={show} job={listing} employee={employee} applicants={applicants} handleClose={handleClose} />
             </div>
         )
 
