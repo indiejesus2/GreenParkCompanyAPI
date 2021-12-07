@@ -12,12 +12,14 @@ import AddJob from '../components/Contractors/AddJob'
 import EditJob from '../components/Contractors/EditJob'
 import Job from '../components/Contractors/Job'
 import Jobs from '../components/Contractors/Jobs'
+import NavBar from '../components/NavBar'
 
 class JobsContainer extends Component {
   
     render() {
             return (
                 <div className="jobs">
+                    <NavBar handleSignout={this.props.signOut} contractor={this.props.contractor} user="contractor" />
                     <Switch>
                         <Route path='/contractors/:id/jobs/:job_id/editjob' render={(routerProps) => <EditJob {...routerProps} jobs={this.props.jobs} editJob={this.props.editJob} />}></Route>
                         <Route path='/contractors/:id/jobs/:job_id' render={(routerProps) => <Job {...routerProps} contractor={this.props.contractor} jobs={this.props.jobs} applicants={this.props.applicants} candidates={this.props.candidates} profiles={this.props.profiles} fetchJob={this.props.fetchJob} /> } ></Route>

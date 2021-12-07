@@ -9,7 +9,7 @@ class Api::V1::JobsController < ApplicationController
             render json: {employee: EmployeeSerializer.new(@employee, include: [:profile, :work_histories]), jobs: @jobs}
         elsif @employer
             @jobs = @employer.jobs
-            render json: {contractor: @employer, jobs: JobSerializer.new(@jobs)}
+            render json: {contractor: @employer, jobs: JobSerializer.new(@jobs), applicants: @employer.applicants}
         else
             @jobs = Job.all
         end

@@ -21,7 +21,8 @@ const NavBar  = props => {
             <div className="employer-nav">
             <h1>{props.contractor.name}</h1>
                     <Breadcrumb>
-                        <Breadcrumb.Item linkAs={Link} linkProps={{ to: '/contractors'}}>Jobs</Breadcrumb.Item>    
+                        <Breadcrumb.Item linkAs={Link} linkProps={{ to: `/contractors`}}>Applicants</Breadcrumb.Item>    
+                        <Breadcrumb.Item linkAs={Link} linkProps={{ to: `/contractors/${props.contractor.id}/jobs`}}>Jobs</Breadcrumb.Item>    
                         <Breadcrumb.Item linkAs={Link} linkProps={{ to: '/contractors/addjob'}}>Add Job</Breadcrumb.Item>    
                         <Breadcrumb.Item linkAs={Link} linkProps={{ to: `/contractors/${props.contractor.id}/profile`}}>Profile</Breadcrumb.Item>    
                         <Breadcrumb.Item linkAs={Link} linkProps={{to: "/", onClick: props.handleSignout }} >Sign Out</Breadcrumb.Item>

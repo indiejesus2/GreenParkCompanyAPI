@@ -3,45 +3,24 @@ import { Link } from 'react-router-dom'
 import { Form, Button, Card } from 'react-bootstrap'
 import EmployeeProfile from './EmployeeProfile'
 
-const Applicants = (props) => {
-    
-    const matches = () => {
-        if (!!props.contractor) {
-            let applicants = []
-            props.jobs.map(function(job) {
-                if(!applicants.some(apple => apple.id == job.id)) {
-                    applicants.push(job.applicants)  
-                }
-            })
-            debugger
-            return applicants
-        } else {
-            return props.job.applicants.sort(applicant => applicant.rating)
-        }
-    }
+const Applicant = (props) => {
+       
+    const [applicants, setApplicants] = useState(props.applicants)
+    const [jobs, setJob] = useState(props.jobs)
     
     const applications = () => {
-        if (!!props.contractor) {
-            let application = []
-            props.jobs.map(function(job) {
-                job.profiles.map(function(applicant) {
-                    if (!application.some(apple => apple.id == applicant.id)) {
-                        application.push(applicant)
-                    }
-                })
+        let profiles = []
+        jobs.map(job => {
+            job.profiles.map(function(profile) {
+                if (!profiles.some(apple => apple.id == profile.id)) {
+                    profiles.push(profile)
+                }
             })
-            return application
-        } else {
-            return props.job.profiles
-        }
+        })
+        return profiles
     }
     
-    
-    const [applicants, setApplicants] = useState(matches())
-    const [jobs, setJob] = useState(props.job?props.job:props.jobs)
     const [profiles, setProfiles] = useState(applications())
-
-    debugger 
 
     const original = profiles.map(profile => {
         let oObj = {
@@ -49,17 +28,15 @@ const Applicants = (props) => {
             rating: '',
             distance: '',
         }
-        for (let i = 0; i<applicants.length;i++) {
-                if (profile.id == applicants[i].employee_id) {
-                    oObj.info = profile,
-                    oObj.rating = applicants[i].rating,
-                    oObj.distance = applicants[i].distance
-                }
-        }
-        debugger
+        let candidate = applicants.find(applicant => applicant.employee_id == profile.id)
+            if (!!candidate) {
+                oObj.info = profile,
+                oObj.rating = candidate.rating,
+                oObj.distance = candidate.distance
+            }
         return oObj
     })
-
+    
     const [show, setShow] = useState(false)
     const [applicant, setApplicant] = useState("")
     const [candidates, setCandidates] = useState(original)
@@ -70,20 +47,11 @@ const Applicants = (props) => {
         setApplicant(candidate)
         setShow(true);
     }
-    
-    // useEffect(() => {
-    //     setJob(props.job) 
-    //     setApplicants(props.job.applicants.sort(applicant=>applicant.rating))
-    //     setProfiles(props.job.profiles)
-    //     setCandidates(original)
-    // })
+
 
     const handleMatches = (profile) => {
         let matches = {}
-        if (jobs.length < 1) {
-            debugger
-            jobs.map(function(job) {
-
+            let job = jobs.filter(job=>job.employees.filter(employee=>employee.id==profile.employee_id))[0]
                 job.jobtype.map(function(type) {
                     if (profile.jobtype.includes(type)) {
                         matches["Jobtype"] = profile.jobtype.join(", ")
@@ -107,19 +75,9 @@ const Applicants = (props) => {
                 }
                 if (job.license == profile.license) {
                     matches["License"] = "Yes"
-                }
-            })}
+                } 
         return matches
     }
-
-    const jobMatch = (profile) => {
-        if (jobs.length==1) {
-            handleMatches(profile, jobs[0])
-        } else if (jobs.length>1) {
-            jobs.map(job => handleMatches(profile, job))
-        }
-    }
-
     
     const [state, setState] = useState({
         jobtype: false,
@@ -127,52 +85,70 @@ const Applicants = (props) => {
         shifts: false,
     })
     
-    const handleSearch = (e) => {
-        e.preventDefault()
-        let filtered = []
-        Object.entries(state).map(function([k, v]) {
-            if (v == true) {
-                original.map(function(profile) {
-                    job[k].map(function(i) {
-                        if (profile.info[k].includes(i) && !filtered.includes(profile)) {
-                                filtered.push(profile)
-                        }
-                    })
-                })
-            }
-        })
-        setCandidates(filtered)
-    }
+    // const handleSearch = (e) => {
+    //     e.preventDefault()
+    //     let filtered = []
+    //     Object.entries(state).map(function([k, v]) {
+    //         if (v == true) {
+    //             original.map(function(profile) {
+    //                 job[k].map(function(i) {
+    //                     if (profile.info[k].includes(i) && !filtered.includes(profile)) {
+    //                             filtered.push(profile)
+    //                     }
+    //                 })
+    //             })
+    //         }
+    //     })
+    //     setCandidates(filtered)
+    // }
 
-    const handleChange = (e) => {
-        const {name, checked}  = e.target
-        setState( prevState => ({
-            ...prevState,
-            [name] : checked
-        }))
-    }
+    // const handleChange = (e) => {
+    //     const {name, checked}  = e.target
+    //     setState( prevState => ({
+    //         ...prevState,
+    //         [name] : checked
+    //     }))
+    // }
 
-    const handleLocation = (e) => {
-        const candidates = original.map(function(profile) {
-            if (profile.distance <= e.target.value) {
-                return profile
-            }
-        })
-        setCandidates(candidates)
-    }
+    // const handleLocation = (e) => {
+    //     const candidates = original.map(function(profile) {
+    //         if (profile.distance <= e.target.value) {
+    //             return profile
+    //         }
+    //     })
+    //     setCandidates(candidates)
+    // }
 
-    const handleClear = () => {
-        setCandidates(original)
+    // const handleClear = () => {
+    //     setCandidates(original)
+    // }
+    const header = () => {
+        if (candidates.length==0) {
+            return (
+                <div className="newemployer">
+                    <h1>Future Applicants</h1>
+                    <h3>We're working hard to find applicants.</h3>
+                </div>
+            )
+        } else {
+            return (
+                <div className="newemployer">
+                    <h1>{candidates.length} {candidates.length<=1?"Applicant":"Applicants!"}</h1>
+                </div>
+            )
+        }
     }
+    
     
     return (
         <div className="applicants">
-        <div className="search">
+            {header()}
+        {/* <div className="search">
             <Form onSubmit={handleSearch}>
             <label htmlFor="search">Search Candidates: </label>
         <Form.Check inline name="jobtype" id="jobtype" label="Job Type" value={state.jobtype} onChange={handleChange}/> 
         <Form.Check inline name="schedule" id="schedule" value={state.schedule} label="Schedule" onChange={handleChange}/> 
-        <Form.Check inline name="shifts" id="shifts" label="Shifts" value={state.shifts} label="Shifts" onChange={handleChange}/>
+        <Form.Check inline name="shifts" id="shifts" label="Shifts" value={state.shifts} label="Shifts" onChange={handleChange}/> */}
         {/* <Form.Control name="seasonstart" id="seasonstart" value="seasonstart" label="Season Start" onChange={handleChange}> 
             {months.map(month => 
                 <option value={month}>{month}</option>
@@ -183,7 +159,7 @@ const Applicants = (props) => {
                 <option value={month}>{month}</option>
             )}
         </Form.Control> */}
-        <Form.Control as="select" name="proximity" id="proximity" onChange={handleLocation}> Proximity
+        {/* <Form.Control as="select" name="proximity" id="proximity" onChange={handleLocation}> Proximity
             <option value={25}>25 Miles</option>
             <option value={50}>50 Miles</option>
             <option value={75}>75 Miles</option>
@@ -194,7 +170,7 @@ const Applicants = (props) => {
             <Button type="submit"> Search </Button>
         </div>
         </Form>
-        </div>
+        </div> */}
         {/* <Form.Label>
             Minimum Pay Rate: 
         </Form.Label>
@@ -203,22 +179,24 @@ const Applicants = (props) => {
             Maximum Pay Rate: 
         </Form.Label>
         <Form.Control type="text" name="maxpay" onChange={props.handleChange} /> */}
+
         <div className="candidates">
         {candidates.map(candidate => 
             <Card id={candidate.info.id} key={candidate.info.id} >
                 <Card.Title>
                     {/* <Link to={`/contractors/${props.job.employer_id}/jobs/${props.job.id}/employees/${candidate.info.employee_id}`}> */}
-                        <h3>{candidate.info.fname} {candidate.info.lname}</h3>
+                    <h3 style={{ marginBottom: 0+"px"}}>{candidate.info.fname} {candidate.info.lname}</h3>
                     {/* </Link> */}
                 </Card.Title>
                     <Card.Subtitle>{candidate.info.city}, {candidate.info.state}</Card.Subtitle>
                       <Card.Text>Match Score: {candidate.rating}</Card.Text>
+                      {/* <Card.Text>Info: {candidate.info} </Card.Text> */}
                       <div className="matches">
-                        {Object.entries(jobMatch(candidate.info)).map(([key, value]) =>
+                        {Object.entries(handleMatches(candidate.info)).map(([key, value]) =>
                             <Card.Text style={{ marginBlockEnd: 1 + `px`}}>{key}: {value}</Card.Text>
                             )}
                         </div>
-                      <Button onClick={() => handleShow(candidate)}>View Profile</Button>
+                      <Button style={{ marginBlockStart: 5+"px"}} onClick={() => handleShow(candidate)}>View Profile</Button>
                 {/* <Card.Body>
                 </Card.Body> */}
                 </Card>
@@ -234,4 +212,4 @@ const Applicants = (props) => {
     
 }
 
-export default Applicants
+export default Applicant

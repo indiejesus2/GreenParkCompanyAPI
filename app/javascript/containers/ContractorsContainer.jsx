@@ -12,6 +12,8 @@ import Subscription from '../components/Contractors/Subscription'
 import Profile from '../components/Contractors/Profile'
 import EmployeeProfile from '../components/Contractors/EmployeeProfile'
 import EditProfile from '../components/Contractors/EditProfile'
+import JobsContainer from '../containers/JobsContainer'
+import Applicant from '../components/Contractors/Applicant'
 import Logo from '../components/Logo'
 
 class ContractorsContainer extends Component {
@@ -51,8 +53,8 @@ class ContractorsContainer extends Component {
                 <Route path='/contractors/:id/jobs/:job_id/employees/:employee_id' render={(routerProps) => <EmployeeProfile {...routerProps} loading={this.props.loading} contractor={this.props.contractor} jobs={this.props.jobs} signOut={this.props.signOut} />}></Route>
                 <Route path='/contractors/:id/profile' render={(routerProps) => <Profile {...routerProps} contractor={this.props.contractor} signOut={this.props.signOut} updateProfile={this.props.updateProfile} />}></Route>
                 <Route path='/contractors/:id/editprofile' render={(routerProps) => <EditProfile {...routerProps} contractor={this.props.contractor} signOut={this.props.signOut} />}></Route>
-                {/* <Route path='/contractors/:id/jobs' render={(routerProps) => <JobsContainer {...routeProps} jobs={this.props.jobs} contractor={this.props.contractor} candidates={this.props.candidates} profiles={this.props.profiles} work_history={this.props.work_history}/>}></Route> */}
-                
+                <Route path='/contractors/:id/jobs' render={(routerProps) => <JobsContainer {...routerProps} jobs={this.props.jobs} contractor={this.props.contractor} candidates={this.props.candidates} profiles={this.props.profiles} work_history={this.props.work_history} signOut={this.props.signOut}/>}></Route>
+                <Route path='/contractors/:id/applicants' render={(routerProps) => <Applicant {...routerProps} jobs={this.props.jobs} contractor={this.props.contractor} applicants={this.props.applicants} profiles={this.props.profiles} work_history={this.props.work_history}/>}></Route>
                 
                 <Route exact path='/signout' render={(routerProps) => <SignOut {...routerProps} signoutUser={this.props.signoutUser} user={this.props.user}/> }/>
                 {/* candidates={this.props.candidates} profiles={this.props.profiles} work_history={this.props.work_history} fetchEmployee={this.props.fetchEmployee} */}
@@ -60,7 +62,7 @@ class ContractorsContainer extends Component {
                     <Route path='/contractors/addjob' render={(routerProps) => <AddJob {...routerProps} contractor={this.props.contractor} addJob={this.props.addJob}/>}></Route> */}
                     <Route path='/contractors/subscription' render={(routerProps) => <Subscription {...routerProps} contractor={this.props.contractor} updateSubscription={this.props.updateSubscription} signOut={this.props.signOut} />}></Route>
                     {/* <Route path='/contractors/signup' render={(routerProps) => <ContractorSignUp {...routerProps} loading={this.props.loading} signUpContractor={this.props.signUpContractor} />}></Route> */}
-                    <Route path='/contractors' render={(routerProps) => <Contractors {...routerProps} loading={this.props.loading} signIn={this.props.signIn} signUp={this.props.signUp} loggedIn={this.props.loggedIn} contractor={this.props.contractor} profile={this.props.profile} jobs={this.props.jobs} updateSubscription={this.props.updateSubscription} errors={this.props.errors} signOut={this.props.signOut}/>}></Route>
+                    <Route path='/contractors' render={(routerProps) => <Contractors {...routerProps} loading={this.props.loading} signIn={this.props.signIn} signUp={this.props.signUp} loggedIn={this.props.loggedIn} contractor={this.props.contractor} profile={this.props.profile} jobs={this.props.jobs} applicants={this.props.applicants} updateSubscription={this.props.updateSubscription} errors={this.props.errors} signOut={this.props.signOut}/>}></Route>
                 </Switch>
             </div>
         )}
@@ -70,7 +72,6 @@ class ContractorsContainer extends Component {
 const mapStateToProps = state => {
     return {
         contractor: state.contractorsReducer.contractor,
-        candidates: state.contractorsReducer.candidates,
         profiles: state.contractorsReducer.profiles,
         work_history: state.contractorsReducer.work_history,
         loggedIn: state.contractorsReducer.loggedIn,

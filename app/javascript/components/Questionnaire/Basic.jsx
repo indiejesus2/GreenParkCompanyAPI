@@ -203,10 +203,10 @@ const Basic = (props) => {
                         </FloatingLabel>
                     </Form.Group>
                     </Row>
-                    <Row>
+                    <Row className="mb-3">
                     <Form.Group as={Col}>
                         <FloatingLabel label="Description">
-                            <Form.Control type="textarea" name="Description" style={{ height: '100px'}} value={props.values.description} />
+                            <Form.Control as="textarea" name="Description" style={{ height: '100px', "margin-top": 15+"px"}} value={props.values.description} />
                         </FloatingLabel>
                     </Form.Group>
                     </Row>

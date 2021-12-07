@@ -160,7 +160,7 @@ const Applicants = (props) => {
             <Card id={candidate.info.id} key={candidate.info.id} >
                 <Card.Title>
                     {/* <Link to={`/contractors/${props.job.employer_id}/jobs/${props.job.id}/employees/${candidate.info.employee_id}`}> */}
-                        <h3>{candidate.info.fname} {candidate.info.lname}</h3>
+                        <h3 style="margin-bottom: 0px;">{candidate.info.fname} {candidate.info.lname}</h3>
                     {/* </Link> */}
                 </Card.Title>
                     <Card.Subtitle>{candidate.info.city}, {candidate.info.state}</Card.Subtitle>

@@ -3,7 +3,7 @@ import { Redirect } from 'react-router-dom'
 import Home from '../Home'
 import ContractorSignIn from '../Login/ContractorSignIn'
 import ContractorSignUp from '../Login/ContractorSignUp'
-import Applicants from '../Contractors/Applicants'
+import Applicant from '../Contractors/Applicant'
 import JobsContainer from '../../containers/JobsContainer'
 import NavBar from '../NavBar'
 
@@ -70,8 +70,8 @@ if (loading === true) {
         return (
                 <div className="contractor">
                 <NavBar handleSignout={props.signOut} contractor={props.contractor} user="contractor" />
-                    {/* <Applicants contractor={contractor} jobs={jobs} /> */}
-                    <JobsContainer jobs={jobs} contractor={contractor} candidates={props.candidates} profiles={props.profiles}/>
+                    <Applicant contractor={contractor} jobs={jobs} applicants={props.applicants} />
+                    {/* <JobsContainer jobs={jobs} contractor={contractor} candidates={props.candidates} profiles={props.profiles}/> */}
                 </div>
         )
     }
