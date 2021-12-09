@@ -15,13 +15,12 @@ const Applicants = (props) => {
             rating: '',
             distance: '',
         }
-        for (let i = 0; i<applicants.length;i++) {
-                if (profile.id == applicants[i].employee_id) {
-                    oObj.info = profile,
-                    oObj.rating = applicants[i].rating,
-                    oObj.distance = applicants[i].distance
-                }
-        }
+        let candidate = applicants.find(applicant => applicant.employee_id == profile.employee_id)
+            if (profile.employee_id == candidate.employee_id) {
+                oObj.info = profile,
+                oObj.rating = candidate.rating,
+                oObj.distance = candidate.distance
+            }
         return oObj
     })
 
@@ -160,7 +159,7 @@ const Applicants = (props) => {
             <Card id={candidate.info.id} key={candidate.info.id} >
                 <Card.Title>
                     {/* <Link to={`/contractors/${props.job.employer_id}/jobs/${props.job.id}/employees/${candidate.info.employee_id}`}> */}
-                        <h3 style="margin-bottom: 0px;">{candidate.info.fname} {candidate.info.lname}</h3>
+                        <h3 style={{marginBlockEnd: 0 + `px`}}>{candidate.info.fname} {candidate.info.lname}</h3>
                     {/* </Link> */}
                 </Card.Title>
                     <Card.Subtitle>{candidate.info.city}, {candidate.info.state}</Card.Subtitle>

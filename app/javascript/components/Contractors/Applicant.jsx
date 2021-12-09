@@ -28,7 +28,7 @@ const Applicant = (props) => {
             rating: '',
             distance: '',
         }
-        let candidate = applicants.find(applicant => applicant.employee_id == profile.id)
+        let candidate = applicants.find(applicant => applicant.employee_id == profile.employee_id)
             if (!!candidate) {
                 oObj.info = profile,
                 oObj.rating = candidate.rating,
