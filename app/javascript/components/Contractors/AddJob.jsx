@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import { Form, Button, FloatingLabel, Row, Col, InputGroup } from 'react-bootstrap'
 import {useFormik} from 'formik'
 import * as yup from 'yup'
+import TextareaAutoSize from 'react-textarea-autosize'
+
 
 export default function AddJob(props) {
 
@@ -19,6 +21,16 @@ export default function AddJob(props) {
         } else {
             formik.setFieldValue('zipcode', postal)
         }
+    }
+
+    const handleAutosize = () => {
+        return (
+            <div>
+                <FloatingLabel label="Description" style={{opacity:.65, transform: `scale(`+.85+`) translateY(-`+.5+`) translateX(`+.15+`rem)`}}>                        
+                    <TextareaAutoSize minRows={5} style={{width:100+`%`, paddingTop: 25+`px`, paddingLeft:10+`px`}}/>
+                </FloatingLabel>
+            </div>
+        )
     }
 
     // useEffect(() => {
@@ -242,10 +254,13 @@ export default function AddJob(props) {
                 </FloatingLabel>
                 </Form.Group>
                 </Row>
-                
-                <FloatingLabel label="Description">
-                    <Form.Control as="textarea" name="description" onChange={formik.handleChange} />
-                </FloatingLabel>
+                <Row className="mb-3">
+                    <Form.Group as={Col} class="textarea">
+                        {/* <FloatingLabel label="Description">                         */}
+                            <Form.Control as={handleAutosize} name="Description" style={{ minHeight: '100px', "margin-top": 15+"px"}} value={formik.values.description} />
+                        {/* </FloatingLabel> */}
+                    </Form.Group>
+                    </Row>
             <Row className="desired">
                 <Form.Group as={Col}>
                 <div className="jobtype">

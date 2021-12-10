@@ -444,11 +444,25 @@ h1, h2 {
   text-decoration: underline;
 }
 
+.addJob-form {
+  margin: 20px;
+  display: grid;
+  justify-content: center;
+}
+
+.editJob-form {
+  margin: 20px;
+  display: grid;
+  justify-content: center;
+}
+
 // .modal-body td:nth-child(2) {
 //   display: flex;
 //   justify-content: right;
 // }
-
+.form-floating.textarea label {
+  min-width: 90%;
+}
 
 .job-info td:nth-child(2) {
   display: flex;

@@ -31,7 +31,6 @@ document.addEventListener('DOMContentLoaded', () => {
   render(
     <Provider store={store}>
       <Router>
-
         <ScrollToTop />
         <App />
       </Router>

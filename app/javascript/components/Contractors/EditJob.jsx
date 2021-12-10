@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom'
 import { Form, Button, FloatingLabel, Row, Col, InputGroup } from 'react-bootstrap'
 import { useFormik } from 'formik'
 import * as yup from 'yup'
+import TextareaAutoSize from 'react-textarea-autosize'
+
 
 export default function EditJob(props) {
 
@@ -162,7 +164,8 @@ export default function EditJob(props) {
             seasonend: job.seasonend,
             minpay: job.minpay,
             paytype: job.paytype,
-            industry: job.industry
+            industry: job.industry,
+            license: job.license
         },
         validationSchema: schema,
         onSubmit: values => {
@@ -245,10 +248,13 @@ export default function EditJob(props) {
                 </FloatingLabel>
                 </Form.Group>
                 </Row>
-                
-                <FloatingLabel label="Description">
-                    <Form.Control as="textarea" name="description" onChange={formik.handleChange} />
-                </FloatingLabel>
+                <Row className="mb-3">
+                    <Form.Group as={Col}>
+                        <FloatingLabel label="Description">
+                            <Form.Control as="textarea" name="Description" style={{ minHeight: '100px', "margin-top": 15+"px"}} value={formik.values.description} />
+                        </FloatingLabel>
+                    </Form.Group>
+                    </Row>
             <Row className="desired">
                 <Form.Group as={Col}>
                 <div className="jobtype">
