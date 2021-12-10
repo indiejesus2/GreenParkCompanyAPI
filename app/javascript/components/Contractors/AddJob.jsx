@@ -300,18 +300,30 @@ export default function AddJob(props) {
 
                 </Row>
                 <Row className="mb-3">
-                <Form.Group as={Col}>
+    
+    <Form.Group as={Col}>
+        <Form.Label>
+            Pay Type:
+        </Form.Label>
+        <Form.Select name="paytype" label="paytype" value={formik.values.paytype} onChange={formik.handleChange} defaultValue={formik.values.paytype}>
+                <option>Hourly</option>
+                <option>Salary</option>
+        </Form.Select>
+    </Form.Group>
+        <Form.Group as={Col}>
                 <Form.Label>
                     Minimum Pay Rate: 
                 </Form.Label>
-                <Form.Control type="text" name="minpay" onChange={formik.handleChange} value={formik.values.minpay}/>
-                </Form.Group>
-                <Form.Group as={Col}>
-                <Form.Select name="paytype" onChange={formik.handleChange} value={formik.values.paytype} defaultSelect={formik.values.paytype}>
-                        <option value="hourly">"Hourly"</option>
-                        <option value="yearly">"Yearly"</option>
-                </Form.Select>                        
-                </Form.Group>
+                <InputGroup>
+                    <InputGroup.Text>$</InputGroup.Text>
+                    <Form.Control type="text" name="minpay" onChange={formik.handleChange} value={formik.values.minpay}/>
+                </InputGroup>
+        </Form.Group>
+    </Row>
+                <Row>
+                    <Form.Group as={Col}>
+                        <Form.Check type="checkbox" name="license" label="Driver's License" value={formik.values.license} onChange={formik.handleChange} defaultChecked={formik.values.license}/>
+                    </Form.Group>
                 </Row>
                 <div className="submit">
                     <Button type="submit" value="Add Job" onClick={formik.handleSubmit}>Add Job</Button>
