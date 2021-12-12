@@ -147,7 +147,7 @@ export default function EditProfile(props) {
         "Maintenance",
         "Electric",
         "Landscape",   
-        "Other"
+        "Other/None"
     ]
 
     const [show, setShow] = useState(false);

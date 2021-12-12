@@ -123,7 +123,7 @@ export default function EditJob(props) {
         "Maintenance",
         "Electric",
         "Landscape",   
-        "Other"
+        "Other/None"
     ]
 
     const jobtypes = [
@@ -165,7 +165,8 @@ export default function EditJob(props) {
             minpay: job.minpay,
             paytype: job.paytype,
             industry: job.industry,
-            license: job.license
+            license: job.license,
+            description: job.description
         },
         validationSchema: schema,
         onSubmit: values => {
@@ -250,8 +251,8 @@ export default function EditJob(props) {
                 </Row>
                 <Row className="mb-3">
                     <Form.Group as={Col}>
-                        <FloatingLabel label="Description">
-                            <Form.Control as="textarea" name="Description" style={{ minHeight: '100px', "margin-top": 15+"px"}} value={formik.values.description} />
+                        <FloatingLabel label="description">
+                            <Form.Control as="textarea" name="description" style={{ minHeight: '100px', "margin-top": 15+"px"}} value={formik.values.description} onChange={formik.handleChange} />
                         </FloatingLabel>
                     </Form.Group>
                     </Row>

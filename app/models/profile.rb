@@ -21,7 +21,12 @@ class Profile < ApplicationRecord
   end
 
   def proximity    
-    jobs = Job.where("industry = ?", industry).near(address, 100)
+    distance = !!commute ? commute : 100
+    if industry != "Other/None"
+      jobs = Job.where("industry = ?", industry).near(address, distance)
+    else
+      jobs = Job.near(address, distance)
+    end
     jobs.each {|job|
       if Applicant.where(job_id: job.id, employee_id: employee_id).length == 0 && !job.applicants.detect{|applicant| applicant.employee_id == employee_id}
         Applicant.create(employee_id: "#{employee_id}", employer_id: "#{job.employer_id}", job_id: "#{job.id}", distance: distance_to(job))
@@ -87,6 +92,7 @@ class Profile < ApplicationRecord
         # if a job's industry or address is changed, current applicants must be checked to see if they are a match.
         # if industry doesn't match applicant industry or Profile isn't near the updated address
         if applicant.profile.industry != industry || Profile.near(address, 100).include?(applicant.profile) != true
+
           Applicant.destroy(applicant.id)
         end
       }

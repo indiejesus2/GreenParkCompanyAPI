@@ -26,7 +26,7 @@ export default function AddJob(props) {
     const handleAutosize = () => {
         return (
             <div>
-                <FloatingLabel label="Description" style={{opacity:.65, transform: `scale(`+.85+`) translateY(-`+.5+`) translateX(`+.15+`rem)`}}>                        
+                <FloatingLabel label="description" style={{opacity:.65, transform: `scale(`+.85+`) translateY(-`+.5+`) translateX(`+.15+`rem)`}}>                        
                     <TextareaAutoSize minRows={5} style={{width:100+`%`, paddingTop: 25+`px`, paddingLeft:10+`px`}}/>
                 </FloatingLabel>
             </div>
@@ -133,7 +133,7 @@ export default function AddJob(props) {
         "Maintenance",
         "Electric",
         "Landscape",   
-        "Other"
+        "Other/None"
     ]
 
     const jobtypes = [
@@ -171,7 +171,8 @@ export default function AddJob(props) {
             seasonend: '',
             minpay: 0,
             paytype: "Hourly",
-            industry: ''
+            industry: '',
+            description: ''
         },
         validationSchema: schema,
         onSubmit: values => {
@@ -257,7 +258,7 @@ export default function AddJob(props) {
                 <Row className="mb-3">
                     <Form.Group as={Col} class="textarea">
                         {/* <FloatingLabel label="Description">                         */}
-                            <Form.Control as={handleAutosize} name="Description" style={{ minHeight: '100px', "margin-top": 15+"px"}} value={formik.values.description} />
+                            <Form.Control as={handleAutosize} name="description" style={{ minHeight: '100px', "margin-top": 15+"px"}} value={formik.values.description} onChange={formik.handleChange} />
                         {/* </FloatingLabel> */}
                     </Form.Group>
                     </Row>

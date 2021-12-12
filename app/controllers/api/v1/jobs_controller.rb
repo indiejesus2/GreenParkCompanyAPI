@@ -46,6 +46,7 @@ class Api::V1::JobsController < ApplicationController
     def update
         @job.update(job_params)
         if @job.save
+            @job.updated
             render json: JobSerializer.new(@job)
         else
             render json: @job.errors

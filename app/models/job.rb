@@ -6,7 +6,7 @@ class Job < ApplicationRecord
     has_many :experiences, through: :employees
     geocoded_by :address
     before_save :proximity, :potential
-    before_update :updated 
+    # before_update :updated 
     after_validation :geocode
 
   def address
@@ -14,7 +14,11 @@ class Job < ApplicationRecord
   end
 
   def proximity
-    profiles = Profile.where("industry = ?", industry).near(address, 100)
+    if industry != "Other/None"
+      profiles = Profile.where("industry = ?", industry).near(address, 100)
+    else
+      profiles = Profile.near(address, 100)
+    end
     profiles.each {|profile|
       if Applicant.where(job_id: id, employee_id: profile.employee_id).length == 0 
         Applicant.create(employee_id: "#{profile.employee_id}", employer_id: "#{employer_id}", job_id: "#{id}", distance: distance_to(profile))
@@ -80,8 +84,10 @@ class Job < ApplicationRecord
       applicants.each{|applicant|
         # if a job's industry or address is changed, current applicants must be checked to see if they are a match.
         # if industry doesn't match applicant industry or Profile isn't near the updated address
-        if applicant.profile.industry != industry || Profile.near(address, 100).include?(applicant.profile) != true
-          Applicant.destroy(applicant.id)
+        if industry != "Other/None"
+          if applicant.profile.industry != industry || Profile.near(address, 100).include?(applicant.profile) != true
+            Applicant.destroy(applicant.id)
+          end
         end
       }
     end
