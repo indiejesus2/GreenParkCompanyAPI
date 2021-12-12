@@ -59,7 +59,7 @@ export default function contractorsReducer(state = {contractor: [], jobs: [], ap
             // })
             if(state.jobs) {
                 return {
-                    ...state, jobs: [...state.jobs, action.payload], loading: false
+                    ...state, jobs: [...state.jobs, action.payload], loading: false, applicants: action.payload.applicants
                 }
             } else {
                 return {
@@ -74,10 +74,10 @@ export default function contractorsReducer(state = {contractor: [], jobs: [], ap
                     return job
                 }
             })
-            return {...state, jobs: edited, loading: false}
+            return {...state, jobs: edited, loading: false, applicants: action.payload.applicants}
         case 'DELETE_JOB':
             let deleted = state.jobs.filter(job => job.id != action.payload.id)
-            return {...state, jobs: deleted, loading: false}
+            return {...state, jobs: deleted, loading: false, applicants: action.payload.applicants}
         case 'ERROR_CONTRACTOR':
             return {
                 contractor: [...state.contractor],
