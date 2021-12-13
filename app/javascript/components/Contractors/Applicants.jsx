@@ -14,12 +14,14 @@ const Applicants = (props) => {
             info: '',
             rating: '',
             distance: '',
+            interested: false
         }
         let candidate = applicants.find(applicant => applicant.employee_id == profile.employee_id)
             if (profile.employee_id == candidate.employee_id) {
                 oObj.info = profile,
                 oObj.rating = candidate.rating,
-                oObj.distance = candidate.distance
+                oObj.distance = candidate.distance,
+                oObj.interested = candidate.interested
             }
         return oObj
     })
@@ -71,6 +73,40 @@ const Applicants = (props) => {
         return matches
     }
 
+    const rate = (rating) => {
+        if (rating == 6 || rating == 5) {
+            return (
+                <span>
+                    {String.fromCharCode(9734) + String.fromCharCode(9734) + String.fromCharCode(9734) + String.fromCharCode(9734) + String.fromCharCode(9734)}
+                </span>
+            )
+        } else if (rating == 4) {
+            return (
+                <span>
+                    {String.fromCharCode(9734) + String.fromCharCode(9734) + String.fromCharCode(9734) + String.fromCharCode(9734)}
+                </span>
+            )
+        } else if (rating == 3) {
+            return (
+                <span>
+                    {String.fromCharCode(9734) + String.fromCharCode(9734) + String.fromCharCode(9734)}
+                </span>
+            )
+        } else if (rating == 2) {
+            return (
+                <span>
+                    {String.fromCharCode(9734) + String.fromCharCode(9734)}
+                </span>
+            )
+        } else if (rating == 1) {
+            return (
+                <span>
+                    {String.fromCharCode(9734)}
+                </span>
+            )
+        }
+    }
+
     
     const [state, setState] = useState({
         jobtype: false,
@@ -114,6 +150,16 @@ const Applicants = (props) => {
 
     const handleClear = () => {
         setCandidates(original)
+    }
+
+    const handleInterest = (candidate) => {
+        if (candidate.interested == true) {
+            return (
+                <div>
+                    {String.fromCharCode(2713)}
+                </div>
+            )
+        }
     }
     
     return (
@@ -160,10 +206,12 @@ const Applicants = (props) => {
                 <Card.Title>
                     {/* <Link to={`/contractors/${props.job.employer_id}/jobs/${props.job.id}/employees/${candidate.info.employee_id}`}> */}
                         <h3 style={{marginBlockEnd: 0 + `px`}}>{candidate.info.fname} {candidate.info.lname}</h3>
+                        {handleInterest(candidate)}
                     {/* </Link> */}
                 </Card.Title>
                     <Card.Subtitle>{candidate.info.city}, {candidate.info.state}</Card.Subtitle>
-                      <Card.Text>Match Score: {candidate.rating}</Card.Text>
+                    <Card.Subtitle as="h5">Rating: {rate(candidate.rating)}</Card.Subtitle>
+                      {/* <Card.Text>Match Score: {candidate.rating}</Card.Text> */}
                       <div className="matches">
                         {Object.entries(jobMatch(candidate.info)).map(([key, value]) =>
                             <Card.Text style={{ marginBlockEnd: 1 + `px`}}>{key}: {value}</Card.Text>

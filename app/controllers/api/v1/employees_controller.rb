@@ -1,5 +1,5 @@
 class Api::V1::EmployeesController < ApplicationController
-  before_action :set_employee, only: %i[ show edit update destroy ]
+  before_action :set_employee, only: %i[ show edit update destroy apply ]
   wrap_parameters :employee, include: [:name, :email, :password]
 
   # GET /employees or /employees.json
@@ -63,6 +63,13 @@ class Api::V1::EmployeesController < ApplicationController
     end
   end
 
+  def apply
+    @applicant = Applicant.find_by(employee_id: params[:id], job_id: params[:job_id])
+    @applicant.interested = @applicant.interested == false ? true : false
+    @applicant.save
+    render json: @employee.applicants
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_employee
@@ -73,4 +80,5 @@ class Api::V1::EmployeesController < ApplicationController
     def employee_params
       params.require(:employee).permit(:name, :email, :password)
     end
+
 end

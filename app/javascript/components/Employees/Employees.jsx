@@ -56,7 +56,7 @@ const Employees = props => {
             return (
                 <div>
                     <h2>{jobs.length} Potential Job Matches</h2>
-                    <Jobs jobs={jobs} employee={props.employee} profile={props.profile} applicants={props.applicants} />
+                    <Jobs jobs={jobs} employee={props.employee} profile={props.profile} applicants={props.applicants} handleInterest={props.handleInterest} />
                 </div>
             )
         }

@@ -75,6 +75,12 @@ export default function employeesReducer(state = {employee: [], profile: [], exp
                 fileLoading: false,
                 document: action.payload
             }
+        case 'UPDATE_APPLICATIONS':
+            debugger
+            return {
+                ...state,
+                applicants: action.payload
+            }
         case 'ERROR_EMPLOYEE':
             return {
                 ...state,

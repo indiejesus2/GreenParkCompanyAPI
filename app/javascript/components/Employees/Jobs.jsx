@@ -90,8 +90,18 @@ const Jobs = (props) => {
             return Object.entries(matches).splice(0, 3)
         }
 
-
-
+        const handleApply = (job) => {
+            let application = applicants.find(applicant => applicant.job_id == job.id)
+            if (application.interested == false) {
+                return (
+                    <Button onClick={() => props.handleInterest(application)}>Apply</Button>
+                )
+            } else {
+                return (
+                    <Button disabled>Applied!</Button>
+                )
+            }
+        }
 
         return (
             <div className="employees-jobs">
@@ -114,6 +124,7 @@ const Jobs = (props) => {
                         <Card.Text style={{ height: 63 + 'px', overflow: "clip", paddingBlock: 10 + 'px' }}>Description: {job.description} </Card.Text>
                     <div className="employee-jobs-buttons">
                         <Button onClick={() => handleShow(job)}>More Info</Button>
+                        {handleApply(job)}
                     </div>
                     </Card.Body>
                 </Card>

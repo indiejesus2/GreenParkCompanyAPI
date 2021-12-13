@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_02_235851) do
+ActiveRecord::Schema.define(version: 2021_12_13_015440) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "citext"
@@ -53,6 +53,8 @@ ActiveRecord::Schema.define(version: 2021_11_02_235851) do
     t.float "distance"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "interested", default: false
+    t.boolean "acceptance"
     t.index ["employee_id"], name: "index_applicants_on_employee_id"
     t.index ["employer_id"], name: "index_applicants_on_employer_id"
     t.index ["job_id"], name: "index_applicants_on_job_id"

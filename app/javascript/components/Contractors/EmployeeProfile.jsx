@@ -6,10 +6,21 @@ const EmployeeProfile = props => {
 
     const candidate = props.candidate
     const display = props.show == true ? "employee-profile" : "employee-profile d-none"
+    const interested = () => {
+        if (candidate.interested) {
+            return (
+                <div>
+                    <h5>Interested</h5>
+                </div>
+            )
+        }
+    }
     
     if (candidate == "") {
         return null
     }
+
+
     
         return (
             <div className={display}>
@@ -19,6 +30,7 @@ const EmployeeProfile = props => {
                 <Modal.Title>
                     <h2>{candidate.info.fname} {candidate.info.lname} - {candidate.info.city}, {candidate.info.state}</h2>
                     <h5>{candidate.info.industry}</h5>
+                    {interested()}
                 </Modal.Title>
                 </Modal.Header>
             <Modal.Body>

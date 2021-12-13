@@ -27,12 +27,14 @@ const Applicant = (props) => {
             info: '',
             rating: '',
             distance: '',
+            interested: false
         }
         let candidate = applicants.find(applicant => applicant.employee_id == profile.employee_id)
             if (!!candidate) {
                 oObj.info = profile,
                 oObj.rating = candidate.rating,
                 oObj.distance = candidate.distance
+                oObj.interested = candidate.interested
             }
         return oObj
     })
@@ -77,6 +79,40 @@ const Applicant = (props) => {
                     matches["License"] = "Yes"
                 } 
         return matches
+    }
+
+    const rate = (rating) => {
+        if (rating == 6 || rating == 5) {
+            return (
+                <span>
+                    {String.fromCharCode(9734) + String.fromCharCode(9734) + String.fromCharCode(9734) + String.fromCharCode(9734) + String.fromCharCode(9734)}
+                </span>
+            )
+        } else if (rating == 4) {
+            return (
+                <span>
+                    {String.fromCharCode(9734) + String.fromCharCode(9734) + String.fromCharCode(9734) + String.fromCharCode(9734)}
+                </span>
+            )
+        } else if (rating == 3) {
+            return (
+                <span>
+                    {String.fromCharCode(9734) + String.fromCharCode(9734) + String.fromCharCode(9734)}
+                </span>
+            )
+        } else if (rating == 2) {
+            return (
+                <span>
+                    {String.fromCharCode(9734) + String.fromCharCode(9734)}
+                </span>
+            )
+        } else if (rating == 1) {
+            return (
+                <span>
+                    {String.fromCharCode(9734)}
+                </span>
+            )
+        }
     }
     
     const [state, setState] = useState({
@@ -138,6 +174,16 @@ const Applicant = (props) => {
             )
         }
     }
+
+    const handleInterest = (candidate) => {
+        if (candidate.interested == true) {
+            return (
+                <div>
+                    {String.fromCharCode(2713)}
+                </div>
+            )
+        }
+    }
     
     
     return (
@@ -185,11 +231,13 @@ const Applicant = (props) => {
             <Card id={candidate.info.id} key={candidate.info.id} >
                 <Card.Title>
                     {/* <Link to={`/contractors/${props.job.employer_id}/jobs/${props.job.id}/employees/${candidate.info.employee_id}`}> */}
-                    <h3 style={{ marginBottom: 0+"px"}}>{candidate.info.fname} {candidate.info.lname}</h3>
+                    <h3 style={{ marginBottom: 0+"px"}}>{candidate.info.fname} {candidate.info.lname} </h3>
+                    {handleInterest(candidate)}
                     {/* </Link> */}
                 </Card.Title>
                     <Card.Subtitle>{candidate.info.city}, {candidate.info.state}</Card.Subtitle>
-                      <Card.Text>Match Score: {candidate.rating}</Card.Text>
+                    <Card.Subtitle as="h5">Match Score: {rate(candidate.rating)}</Card.Subtitle>
+                      {/* <Card.Text>Match Score: {candidate.rating}</Card.Text> */}
                       {/* <Card.Text>Info: {candidate.info} </Card.Text> */}
                       <div className="matches">
                         {Object.entries(handleMatches(candidate.info)).map(([key, value]) =>
