@@ -63,7 +63,7 @@ export default function contractorsReducer(state = {contractor: [], jobs: [], ap
                 }
             } else {
                 return {
-                    ...state, jobs: [action.payload], loading: false
+                    ...state, jobs: [action.payload], loading: false, applicants: action.payload.applicants
                 }
             }
         case 'EDIT_JOB':
