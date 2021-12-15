@@ -66,6 +66,10 @@ if (loading === true) {
         return (
             <Redirect to="/contractors/subscription" />
         )
+    } else if (jobs.length < 1) {
+        return (
+            <Redirect to="/contractors/addjob" />
+        )
     } else {
         return (
                 <div className="contractor">

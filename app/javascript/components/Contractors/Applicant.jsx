@@ -178,8 +178,8 @@ const Applicant = (props) => {
     const handleInterest = (candidate) => {
         if (candidate.interested == true) {
             return (
-                <div>
-                    {String.fromCharCode(2713)}
+                <div style={{ display: "contents"}}>
+                    {String.fromCharCode(9989)}
                 </div>
             )
         }
@@ -230,15 +230,10 @@ const Applicant = (props) => {
         {candidates.map(candidate => 
             <Card id={candidate.info.id} key={candidate.info.id} >
                 <Card.Title>
-                    {/* <Link to={`/contractors/${props.job.employer_id}/jobs/${props.job.id}/employees/${candidate.info.employee_id}`}> */}
-                    <h3 style={{ marginBottom: 0+"px"}}>{candidate.info.fname} {candidate.info.lname} </h3>
-                    {handleInterest(candidate)}
-                    {/* </Link> */}
+                    <h3 style={{ marginBottom: 0+"px"}}>{candidate.info.fname} {candidate.info.lname} {handleInterest(candidate)}</h3> 
                 </Card.Title>
                     <Card.Subtitle>{candidate.info.city}, {candidate.info.state}</Card.Subtitle>
                     <Card.Subtitle as="h5">Match Score: {rate(candidate.rating)}</Card.Subtitle>
-                      {/* <Card.Text>Match Score: {candidate.rating}</Card.Text> */}
-                      {/* <Card.Text>Info: {candidate.info} </Card.Text> */}
                       <div className="matches">
                         {Object.entries(handleMatches(candidate.info)).map(([key, value]) =>
                             <Card.Text style={{ marginBlockEnd: 1 + `px`}}>{key}: {value}</Card.Text>

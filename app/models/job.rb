@@ -13,6 +13,11 @@ class Job < ApplicationRecord
     [city, state].compact.join(', ')
   end
 
+  def company
+    @employer = self.employer
+    return @employer.name
+  end
+
   def proximity
     if industry != "Other/None"
       profiles = Profile.where("industry = ?", industry).near(address, 100)

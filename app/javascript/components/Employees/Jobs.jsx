@@ -114,7 +114,7 @@ const Jobs = (props) => {
                     <Card.Body>
                     <div className="d-flex justify-content-between">
                             <Card.Subtitle as="h5">Rating: {rate(applicants.find(applicant => applicant.job_id == job.id).rating)}</Card.Subtitle>
-                            <Card.Subtitle as="h5">Distance: {Math.round(applicants.find(applicant => applicant.job_id == job.id).distance)}</Card.Subtitle>
+                            <Card.Subtitle as="h5">Distance: {Math.round(applicants.find(applicant => applicant.job_id == job.id).distance)} Miles</Card.Subtitle>
                         </div>
                         <div className="matches">
                             {Object.values(jobMatch(job)).map(match =>
