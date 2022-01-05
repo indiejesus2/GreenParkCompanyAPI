@@ -140,7 +140,7 @@ export default function EditProfile(props) {
         "Evening"
     ]
 
-    const industries = [
+    const trades = [
         "--",
         "Plumbing",
         "Painting",
@@ -148,6 +148,16 @@ export default function EditProfile(props) {
         "Electric",
         "Landscape",   
         "Other/None"
+    ]
+
+    const commute = [
+        "5",
+        "10",
+        "15",
+        "25",
+        "50",
+        "75",
+        "100"
     ]
 
     const [show, setShow] = useState(false);
@@ -171,6 +181,7 @@ export default function EditProfile(props) {
             zipcode: employee.zipcode,
             phone: employee.phone,
             description: employee.description,
+            commute: employee.commute,
             license: employee.license,
             jobtype: employee.jobtype,
             schedule: employee.schedule,
@@ -179,7 +190,7 @@ export default function EditProfile(props) {
             seasonend: employee.seasonend,
             minpay: employee.minpay,
             paytype: employee.paytype,
-            industry: employee.industry,
+            trade: employee.trade,
         },
         onSubmit: values => {
             props.updateProfile(values)
@@ -238,18 +249,28 @@ export default function EditProfile(props) {
                         </FloatingLabel>
                     </Form.Group>
                     <Form.Group as={Col}>
-                <FloatingLabel label="Industry">
-                <Form.Select name="industry" id="industry" onChange={formik.handleChange} defaultValue={formik.initialValues.industry}>
-                        {industries.map(industry => 
-                            <option key={industry}>{industry}</option>
+                <FloatingLabel label="trade">
+                <Form.Select name="trade" id="trade" onChange={formik.handleChange} defaultValue={formik.initialValues.trade}>
+                        {trades.map(trade => 
+                            <option key={trade}>{trade}</option>
                             )}
                             </Form.Select>
                 </FloatingLabel>
                 </Form.Group> 
+                <Form.Group as={Col}>
+                    <FloatingLabel label="Commuting Distance">
+
+                        <Form.Select name="commute" id="commute" onChange={formik.handleChange} value={formik.values.commute} defaultValue={formik.values.commute}>
+                            {commute.map(miles => 
+                                <option key={miles} value={miles}>{miles} Miles</option>    
+                            )}
+                        </Form.Select>
+                    </FloatingLabel>
+                    </Form.Group>
                 </Row>
 
                     <Form.Group>
-                        <FloatingLabel label="Experience">
+                        <FloatingLabel label="Description">
                             <Form.Control as="textarea" name="description" style={{ height: '100px'}} value={formik.initialValues.description} onChange={formik.handleChange} />
                         </FloatingLabel>
                     </Form.Group>
@@ -348,6 +369,9 @@ export default function EditProfile(props) {
                         </Button>
                     </Form.Group>
                 </Row>
+                    <Link to={`/employees/${employee.id}/experience/add_experience`}>
+                        Add Experience
+                    </Link>
                 <div className="submit">
                     <Button type="submit" value="Save Changes" onClick={formik.handleSubmit}>Save Changes</Button>
                 </div>

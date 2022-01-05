@@ -92,6 +92,7 @@ const Jobs = (props) => {
 
         const handleApply = (job) => {
             let application = applicants.find(applicant => applicant.job_id == job.id)
+            byebug
             if (application.interested == false) {
                 return (
                     <Button onClick={() => props.handleInterest(application)}>Apply</Button>

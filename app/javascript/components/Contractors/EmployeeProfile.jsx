@@ -29,7 +29,7 @@ const EmployeeProfile = props => {
 
                 <Modal.Title>
                     <h2>{candidate.info.fname} {candidate.info.lname} - {candidate.info.city}, {candidate.info.state}</h2>
-                    <h5>{candidate.info.industry}</h5>
+                    <h5>{candidate.info.trade}</h5>
                     {interested()}
                 </Modal.Title>
                 </Modal.Header>

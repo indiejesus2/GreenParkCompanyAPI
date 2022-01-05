@@ -14,12 +14,13 @@ class JobSerializer
     #         "http://localhost:3000/api/v1/employers/#{object.employer_id}/jobs/#{object.id}/employees"
     #     }
     # }
-    attribute :company do |object|
-        @job = Job.find_by(object)
-        "#{@job.company}"
+    attributes :company do |object|
+        @employer = Employer.find_by_id(object.employer_id)
+        byebug
+        "#{@employer.name}"
     end
 
-    attributes :id, :employer_id, :status, :title, :city, :state, :zipcode, :jobtype, :schedule, :shifts, :seasonstart, :seasonend, :minpay, :paytype, :industry, :description, :applicants, :employees, :profiles, :experiences, :company
+    attributes :id, :employer_id, :status, :title, :city, :state, :zipcode, :jobtype, :schedule, :shifts, :seasonstart, :seasonend, :minpay, :paytype, :trade, :description, :applicants, :employees, :profiles, :experiences, :company, :employer
 
 
 end

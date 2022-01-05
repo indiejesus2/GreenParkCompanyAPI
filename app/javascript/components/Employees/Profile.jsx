@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react'
 import NavBar from '../NavBar'
 import {Link} from 'react-router-dom'
 // import FilePreview from 'react-preview-file'
-import FileViewer from 'react-file-viewer'
+// import FileViewer from 'react-file-viewer'
 import { Button, Table, Row, Col, Toast, Modal } from 'react-bootstrap'
 
 const Profile = props => {
@@ -68,7 +68,9 @@ const Profile = props => {
 
                 <div className="employee-title">
                     <h4>{employee.city}, {employee.state}</h4>
-                    <h4>{employee.industry}</h4>
+                    <h4>{employee.trade}</h4>
+                    <br />
+                    <p>{employee.description}</p>
                 </div>
                 {/* <Button variant="link" onClick={handlePreview}>
                     View Resume
@@ -125,7 +127,7 @@ const Profile = props => {
                     )}
                 </div>
                 <br />
-                <div className="edit-button">
+                <div className="d-flex justify-content-between">
                     <Link to={`/employees/${employee.id}/experience/add_experience`}>
                         Add Experience
                     </Link>

@@ -6,12 +6,32 @@ import { Form, FloatingLabel, Modal, Button } from 'react-bootstrap'
 export default function EditProfile(props) {
     
     const employer = props.contractor
+
+    const formatPhoneNumber = (value) => {
+
+        if (!value) return value;
+    
+        const phoneNumber = value.replace(/[^\d]/g, "");
+    
+        const phoneNumberLength = phoneNumber.length;
+    
+        if (phoneNumberLength < 4) return phoneNumber;
+    
+        if (phoneNumberLength < 7) {
+            return `(${phoneNumber.slice(0,3)}) ${phoneNumber.slice(3)}`
+        }
+    
+        return `(${phoneNumber.slice(0,3)}) ${phoneNumber.slice(3,6)}-${phoneNumber.slice(6, 10)}`;
+    
+    }
     
     const formik = useFormik({
         initialValues: {
             id: employer.id,
             email: employer.email,
             name: employer.name,
+            phone: employer.phone,
+            description: employer.description,
             subscription: employer.subscription
         },
         onSubmit: values => {
@@ -33,11 +53,17 @@ export default function EditProfile(props) {
                 </Modal.Header>
             <Modal.Body>
                 <Form onSubmit={formik.handleSubmit}>
+                    <FloatingLabel label="Company Name">
+                        <Form.Control type="text" name="name" value={formik.values.name} onChange={formik.handleChange} />
+                    </FloatingLabel>
                     <FloatingLabel label="Email">
                         <Form.Control type="text" name="email" value={formik.values.email} onChange={formik.handleChange} />
                     </FloatingLabel>
-                    <FloatingLabel label="Company Name">
-                        <Form.Control type="text" name="name" value={formik.values.name} onChange={formik.handleChange} />
+                    <FloatingLabel label="Phone Number">
+                        <Form.Control type="text" name="phone" value={formatPhoneNumber(formik.values.phone)} onChange={formik.handleChange} />
+                    </FloatingLabel>
+                    <FloatingLabel label="Description">
+                        <Form.Control type="text" name="description" value={formik.values.description} onChange={formik.handleChange} />
                     </FloatingLabel>
                     <FloatingLabel label="Subscription">
                         <Form.Control name="subscription" value={employer.subscription} readOnly />

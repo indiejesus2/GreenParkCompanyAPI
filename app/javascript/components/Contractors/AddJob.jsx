@@ -126,7 +126,7 @@ export default function AddJob(props) {
         "Wyoming"
     ]
 
-    const industries = [
+    const trades = [
         "--",
         "Plumbing",
         "Painting",
@@ -171,7 +171,7 @@ export default function AddJob(props) {
             seasonend: '',
             minpay: 0,
             paytype: "Hourly",
-            industry: '',
+            trade: '',
             description: ''
         },
         validationSchema: schema,
@@ -203,11 +203,11 @@ export default function AddJob(props) {
                 </FloatingLabel>
                 </Form.Group> 
                 <Form.Group as={Col}>
-                <FloatingLabel label="Industry">
+                <FloatingLabel label="trade">
 
-                <Form.Select name="industry" id="industry" onChange={formik.handleChange}>
-                        {industries.map(industry => 
-                            <option key={industry} defaultValue="--" value={industry}>{industry}</option>
+                <Form.Select name="trade" id="trade" onChange={formik.handleChange}>
+                        {trades.map(trade => 
+                            <option key={trade} defaultValue="--" value={trade}>{trade}</option>
                         )}
             </Form.Select>
                 </FloatingLabel>

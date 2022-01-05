@@ -21,7 +21,7 @@ class CreateProfiles < ActiveRecord::Migration[6.0]
       t.text :seasonend
       t.float :minpay
       t.integer :commute
-      t.text :industry
+      t.text :trade
       # t.boolean :military, default: false
       # t.text :certificates, array: true, default: []
       t.text :description

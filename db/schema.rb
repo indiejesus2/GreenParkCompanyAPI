@@ -81,8 +81,13 @@ ActiveRecord::Schema.define(version: 2021_12_13_015440) do
   create_table "employers", force: :cascade do |t|
     t.string "name"
     t.citext "email"
+    t.string "phone"
+    t.text "description"
     t.string "password_digest"
-    t.string "subscription"
+    t.boolean "monthly"
+    t.boolean "yearly"
+    t.boolean "trial"
+    t.integer "trial_period"
     t.boolean "status"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -119,7 +124,7 @@ ActiveRecord::Schema.define(version: 2021_12_13_015440) do
     t.text "seasonend"
     t.float "minpay"
     t.string "paytype", default: "Hourly"
-    t.text "industry"
+    t.text "trade"
     t.boolean "license"
     t.text "description"
     t.bigint "employer_id", null: false
@@ -148,7 +153,7 @@ ActiveRecord::Schema.define(version: 2021_12_13_015440) do
     t.text "seasonend"
     t.float "minpay"
     t.integer "commute"
-    t.text "industry"
+    t.text "trade"
     t.text "description"
     t.bigint "employee_id", null: false
     t.datetime "created_at", precision: 6, null: false

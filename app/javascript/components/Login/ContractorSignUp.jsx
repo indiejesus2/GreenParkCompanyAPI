@@ -22,11 +22,31 @@ export default function ContractorSignUp(props) {
 
     const handleShow = () => setShow(true);
 
+    const formatPhoneNumber = (value) => {
+
+        if (!value) return value;
+    
+        const phoneNumber = value.replace(/[^\d]/g, "");
+    
+        const phoneNumberLength = phoneNumber.length;
+    
+        if (phoneNumberLength < 4) return phoneNumber;
+    
+        if (phoneNumberLength < 7) {
+            return `(${phoneNumber.slice(0,3)}) ${phoneNumber.slice(3)}`
+        }
+    
+        return `(${phoneNumber.slice(0,3)}) ${phoneNumber.slice(3,6)}-${phoneNumber.slice(6, 10)}`;
+    
+    }
+
     const formik = useFormik({
         initialValues: {
             name: "",
             email: "",
             password: "",
+            phone: "",
+            description: "",
         },
         validationSchema: schema,
         onSubmit: values => {
@@ -81,9 +101,23 @@ export default function ContractorSignUp(props) {
                         isInvalid={formik.touched.password && formik.errors.password}
                         onBlur={formik.handleBlur}
                         />
-                            {formik.errors.password && formik.touched.password && (
-                                <div style={{ color: "red"}}>{formik.errors.password}</div>
-                            )}
+                        {formik.errors.password && formik.touched.password && (
+                            <div style={{ color: "red"}}>{formik.errors.password}</div>
+                        )}
+                    <Form.Label>Phone Number: </Form.Label>
+                    <Form.Control
+                        type="phone"
+                        name="phone"
+                        value={formatPhoneNumber(formik.values.phone)}
+                        onChange={formik.handleChange}
+                        />
+                    <Form.Label>Description: </Form.Label>
+                    <Form.Control
+                        type="description"
+                        name="description"
+                        value={formik.values.description}
+                        onChange={formik.handleChange}
+                        />
                         <Button variant="link" onClick={props.handleClick}>Already Have An Account?</Button>
                 </Form.Group>
                 </Modal.Body>

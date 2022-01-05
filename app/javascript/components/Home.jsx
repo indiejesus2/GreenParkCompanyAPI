@@ -11,14 +11,12 @@ class Home extends Component {
     render() {        
         return (
             <div className="homepage">
-                {/* <NavBar/> */}
-                    {/* <div className="homepage-container"> */}
+                    <div></div>
                     <Container>
                             <NavBar />
 
                         <div className="homepage-header">
                             <Image src="/images/blucollarlogo_wocollar.png" alt="BluCollar Logo" />
-                            {/* <h1>Start Your Career Path, Today!</h1> */}
                         </div>
                         <div className="homepage-body">
                             <div className="homepage-employees">
@@ -39,7 +37,6 @@ class Home extends Component {
                         </div>
                     </div>
                     </Container>
-                {/* </div> */}
             </div>
         )
     }

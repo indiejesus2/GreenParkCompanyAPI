@@ -206,7 +206,7 @@ const Basic = (props) => {
                     <Row className="mb-3">
                     <Form.Group as={Col}>
                         <FloatingLabel label="Description">
-                            <Form.Control as="textarea" name="Description" style={{ height: '100px', "margin-top": 15+"px"}} value={props.values.description} />
+                            <Form.Control as="textarea" name="description" style={{ height: '100px', "margin-top": 15+"px"}} value={props.values.description} onChange={props.handleChange} />
                         </FloatingLabel>
                     </Form.Group>
                     </Row>

@@ -4,8 +4,13 @@ class CreateEmployers < ActiveRecord::Migration[6.0]
     create_table :employers do |t|
       t.string :name
       t.citext :email
+      t.string :phone
+      t.text :description
       t.string :password_digest
-      t.string :subscription
+      t.boolean :monthly
+      t.boolean :yearly
+      t.boolean :trial
+      t.integer :trial_period
       t.boolean :status
       t.timestamps
     end

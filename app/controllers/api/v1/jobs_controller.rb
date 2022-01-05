@@ -46,7 +46,6 @@ class Api::V1::JobsController < ApplicationController
     def update
         @job.update(job_params)
         if @job.save
-            @job.updated
             render json: JobSerializer.new(@job)
         else
             render json: @job.errors
@@ -82,7 +81,7 @@ class Api::V1::JobsController < ApplicationController
     end
 
     def job_params
-        params.require(:job).permit(:industry, :title, :status, :city, :state, :zipcode, {jobtype: []}, {schedule: []}, {shifts: []}, :description, :seasonstart, :seasonend, :minpay, :paytype, :license, :employer_id)
+        params.require(:job).permit(:trade, :title, :status, :city, :state, :zipcode, {jobtype: []}, {schedule: []}, {shifts: []}, :description, :seasonstart, :seasonend, :minpay, :paytype, :license, :employer_id)
     end
 
 end

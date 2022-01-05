@@ -7,7 +7,7 @@ class Profile < ApplicationRecord
   # reverse_geocoded_by :latitude, :longitude
   after_validation :geocode
   before_save :proximity, :potential
-  before_update :updated
+  after_update :updateTrade, :updatedProximity
   # after_validation :proximity, :potential
 
   # after_validation :reverse_geocode
@@ -20,10 +20,14 @@ class Profile < ApplicationRecord
     [fname, lname].compact.join(' ')
   end
 
+  def employee
+    Employee.find_by_id(employee_id)
+  end
+
   def proximity    
     distance = !!commute ? commute : 100
-    if industry != "Other/None"
-      jobs = Job.where("industry = ?", industry).near(address, distance)
+    if trade != "Other/None"
+      jobs = Job.where("trade = ?", trade).near(address, distance)
     else
       jobs = Job.near(address, distance)
     end
@@ -85,18 +89,37 @@ class Profile < ApplicationRecord
     }
   end
 
-  def updated
-    applicants = Employee.find_by_id(employee_id).applicants
+  def updateTrade
+    applicants = employee.applicants
     if applicants.length > 0
       applicants.each{|applicant|
-        # if a job's industry or address is changed, current applicants must be checked to see if they are a match.
-        # if industry doesn't match applicant industry or Profile isn't near the updated address
-        if applicant.profile.industry != industry || Profile.near(address, 100).include?(applicant.profile) != true
+        # if a job's trade or address is changed, current applicants must be checked to see if they are a match.
+        # if trade doesn't match applicant trade or Profile isn't near the updated address
+        if applicant.profile.trade != trade && applicant.profile.trade != "Other/None"
 
           Applicant.destroy(applicant.id)
         end
       }
     end
   end
+
+  def updatedProximity
+    applicants = employee.applicants
+    jobs = employee.jobs
+    distance = !!commute ? commute : 100
+    jobs.each{|job|
+      applicant = Applicant.find_by(job_id: job.id)
+      if distance_to(job) > distance
+        Applicant.destroy(applicant.id) 
+      elsif applicant.distance != distance_to(job)
+        applicant.update(distance: distance_to(job))
+      end
+    }
+    # if applicants.length > 0
+    #   applicants.each{|applicant|
+    # }
+  end
+
+  # || Job.near(address, 100).include?(applicant.profile) != true
 
 end

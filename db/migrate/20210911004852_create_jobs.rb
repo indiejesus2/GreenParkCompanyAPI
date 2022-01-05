@@ -15,7 +15,7 @@ class CreateJobs < ActiveRecord::Migration[6.0]
       t.text :seasonend
       t.float :minpay
       t.string :paytype, default: "Hourly"
-      t.text :industry
+      t.text :trade
       t.boolean :license
       t.text :description
       t.references :employer, null: false, foreign_key: true

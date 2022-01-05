@@ -116,7 +116,7 @@ export default function EditJob(props) {
         "Wyoming"
     ]
 
-    const industries = [
+    const trades = [
         "--",
         "Plumbing",
         "Painting",
@@ -164,7 +164,7 @@ export default function EditJob(props) {
             seasonend: job.seasonend,
             minpay: job.minpay,
             paytype: job.paytype,
-            industry: job.industry,
+            trade: job.trade,
             license: job.license,
             description: job.description
         },
@@ -197,11 +197,11 @@ export default function EditJob(props) {
                 </FloatingLabel>
                 </Form.Group> 
                 <Form.Group as={Col}>
-                <FloatingLabel label="Industry">
+                <FloatingLabel label="trade">
 
-                <Form.Select name="industry" id="industry" onChange={formik.handleChange} defaultValue={formik.initialValues.industry}>
-                        {industries.map(industry => 
-                            <option key={industry}>{industry}</option>
+                <Form.Select name="trade" id="trade" onChange={formik.handleChange} defaultValue={formik.initialValues.trade}>
+                        {trades.map(trade => 
+                            <option key={trade}>{trade}</option>
                         )}
             </Form.Select>
                 </FloatingLabel>

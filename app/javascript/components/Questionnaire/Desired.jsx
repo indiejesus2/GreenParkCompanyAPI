@@ -49,7 +49,7 @@ const Desired = props => {
         "Evening"
     ]
 
-    const industries = [
+    const trades = [
         "--",
         "Plumbing",
         "Painting",
@@ -105,10 +105,10 @@ const Desired = props => {
                 <h1>Desired Position</h1>
                 <Row>
                     <Form.Group as={Col}>
-                    <FloatingLabel label="Industry">
-                        <Form.Select name="industry" id="industry" onChange={props.handleChange} value={props.values.industry} defaultValue={props.values.industry}>
-                            {industries.map(industry => 
-                                <option key={industry} value={industry}>{industry}</option>
+                    <FloatingLabel label="Trade">
+                        <Form.Select name="trade" id="trade" onChange={props.handleChange} value={props.values.trade} defaultValue={props.values.trade}>
+                            {trades.map(trade => 
+                                <option key={trade} value={trade}>{trade}</option>
                                 )}
                         </Form.Select>
                     </FloatingLabel>

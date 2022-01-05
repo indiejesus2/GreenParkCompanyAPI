@@ -44,6 +44,7 @@ const Main = (props) => {
             state: '',
             zipcode: '',
             phone: '',
+            description: '',
             license: false,
             jobtype: [],
             schedule: [],
@@ -53,7 +54,7 @@ const Main = (props) => {
             minpay: 0,
             maxpay: 0,
             paytype: "Hourly",
-            industry: '',
+            trade: '',
             commute: 25,
             file: null,
             experience: {

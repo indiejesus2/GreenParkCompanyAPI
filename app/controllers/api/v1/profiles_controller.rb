@@ -48,7 +48,7 @@ class Api::V1::ProfilesController < ApplicationController
     private
     
     def profile_params
-        params.require(:profile).permit(:fname, :lname, :city, :state, :zipcode, :phone, :license, {:jobtype => []}, {:schedule  => []}, {:shifts => []}, :seasonstart, :seasonend, :minpay, :paytype, :commute, :industry, :description, :employee_id)
+        params.require(:profile).permit(:fname, :lname, :city, :state, :zipcode, :phone, :license, {:jobtype => []}, {:schedule  => []}, {:shifts => []}, :seasonstart, :seasonend, :minpay, :paytype, :commute, :trade, :description, :employee_id)
     end
     
     def history_params
