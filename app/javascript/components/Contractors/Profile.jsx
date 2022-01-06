@@ -20,8 +20,9 @@ const Profile = props => {
                 <NavBar handleSignout={props.signOut} contractor={contractor} user="contractor" />
 
             <h5>Email: {contractor.email}</h5>
-            <h5>Subscription: {contractor.subscription}</h5>
-            {/* <h5>Status: {contractor.status == true ? "True" : "False"}</h5> */}
+            <h5>Phone Number: {contractor.phone}</h5>
+            <p>Description: {contractor.description}</p>
+            <h5>Subscription: {contractor.monthly == true ? "Monthly" : "Yearly"}</h5>
             <div className="edit-button">
                 <Button onClick={handleShow}>Edit Profile</Button>
             </div>

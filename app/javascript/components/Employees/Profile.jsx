@@ -66,12 +66,14 @@ const Profile = props => {
         </div>
             <div className="employee-profile">
 
-                <div className="employee-title">
-                    <h4>{employee.city}, {employee.state}</h4>
-                    <h4>{employee.trade}</h4>
-                    <br />
-                    <p>{employee.description}</p>
-                </div>
+                    <div className="d-flex justify-content-between">
+
+                        <h5>{employee.city}, {employee.state}</h5>
+                        <h5>{employee.trade}</h5>
+                    </div>
+                    <div className="employee-description">
+                        <p>{employee.description}</p>
+                    </div>
                 {/* <Button variant="link" onClick={handlePreview}>
                     View Resume
                 </Button>

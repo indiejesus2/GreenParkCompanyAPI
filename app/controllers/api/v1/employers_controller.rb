@@ -66,7 +66,7 @@ class Api::V1::EmployersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def employer_params
-      params.require(:employer).permit(:name, :email, :password, :subscription, :status)
+      params.require(:employer).permit(:name, :email, :phone, :password, :description, :status)
     end
 
 end

@@ -5,7 +5,8 @@ import NavBar from '../NavBar'
 
 const Subscription = (props) => {
 
-    const [subscription, setSubscription] = useState("")
+    const [monthly, setMonthly] = useState(false)
+    const [yearly, setYearly] = useState(false)
     const [id, setId] = useState(props.contractor.id)
     const [show, setShow] = useState(false)
 
@@ -15,13 +16,19 @@ const Subscription = (props) => {
 
     const handleClick = (e) => {
         e.preventDefault()
+        if (e.target.value == "Monthly") {
+            setMonthly(true)
+        } else {
+            setYearly(true)
+        }
         setSubscription(e.target.value)
         setShow(true)
     }
         
     const handleSubmit = () => {
         let values = {
-            subscription: subscription, 
+            monthly: monthly,
+            yearly: yearly,
             id: id
         }
         props.updateSubscription(values)

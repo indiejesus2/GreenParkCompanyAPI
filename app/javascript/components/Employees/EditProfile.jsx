@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import NavBar from '../NavBar'
 import { useFormik } from 'formik'
 import { Form, FloatingLabel, Button, Row, Col, InputGroup } from 'react-bootstrap'
+import {Link} from 'react-router-dom'
 import EmployeeFile from './EmployeeFile'
 
 export default function EditProfile(props) {
@@ -173,7 +174,7 @@ export default function EditProfile(props) {
 
     const formik = useFormik({      
         initialValues: {
-            employee_id: props.match.params.id,
+            employee_id: employee.employee_id,
             fname: employee.fname,
             lname: employee.lname,
             city: employee.city,

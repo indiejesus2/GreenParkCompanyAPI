@@ -32,7 +32,8 @@ export default function EditProfile(props) {
             name: employer.name,
             phone: employer.phone,
             description: employer.description,
-            subscription: employer.subscription
+            monthly: employer.monthly,
+            yearly: employer.yearly
         },
         onSubmit: values => {
             props.updateProfile(values)
@@ -63,10 +64,10 @@ export default function EditProfile(props) {
                         <Form.Control type="text" name="phone" value={formatPhoneNumber(formik.values.phone)} onChange={formik.handleChange} />
                     </FloatingLabel>
                     <FloatingLabel label="Description">
-                        <Form.Control type="text" name="description" value={formik.values.description} onChange={formik.handleChange} />
+                        <Form.Control as="textarea" name="description" value={formik.values.description} onChange={formik.handleChange} />
                     </FloatingLabel>
                     <FloatingLabel label="Subscription">
-                        <Form.Control name="subscription" value={employer.subscription} readOnly />
+                        <Form.Control name="subscription" value={employer.monthly == true ? "Monthly" : "Yearly"} readOnly />
                     </FloatingLabel>
                     <Modal.Footer>
                         <Button variant="success">Modify/Cancel Subscription</Button>
