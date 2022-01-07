@@ -13,11 +13,11 @@ const Employees = props => {
 
     const [state, setState] = useState({
         profile: props.profile ? props.profile : [],
-        currentStep: 2
     })
 
     const [jobs, setJobs] = useState(props.jobs)
     const [errors, setErrors] = useState(props.errors)
+    const [currentStep, setCurrentStep] = useState(props.currentStep ? props.currentStep : 2)
     
     useEffect(() => {
         if (props.errors != errors) {
@@ -28,18 +28,11 @@ const Employees = props => {
     })
 
     const handleClick = (e) => {
-        let currentStep = state.currentStep;
         // let direction = e.target.name;
         if (currentStep == 1){
-            setState( prevState => ({
-                ...prevState,
-                currentStep : currentStep+=1
-            }))
+            setCurrentStep(2)
         } else if (currentStep == 2) {
-            setState( prevState => ({
-                ...prevState,
-                currentStep : currentStep-=1
-            }))
+            setCurrentStep(1)
         }
     }
 
@@ -64,10 +57,10 @@ const Employees = props => {
 
     if (props.loggedIn === false) {
         return (
-                <div className="signin">
+            <div className="signin">
                     <Home />
-                    <EmployeeSignUp signUp={props.signUp} currentStep={state.currentStep} handleClick={handleClick} errors={errors} />
-                    <EmployeeSignIn signIn={props.signIn} currentStep={state.currentStep} handleClick={handleClick} errors={errors} />
+                    <EmployeeSignUp signUp={props.signUp} currentStep={currentStep} handleClick={handleClick} errors={errors} />
+                    <EmployeeSignIn signIn={props.signIn} currentStep={currentStep} handleClick={handleClick} errors={errors} />
                 </div>
         )
     } else if (state.profile.length === 0) {

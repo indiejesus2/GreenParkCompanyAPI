@@ -43,7 +43,12 @@ class EmployeesContainer extends Component {
             )
         } else if (this.props.loggedIn == false) {
             return (
-                <Route path='/employees' render={(routerProps) => <Employees {...routerProps} signIn={this.props.signIn} signUp={this.props.signUp} loggedIn={this.props.loggedIn} employee={this.props.employee} profile={this.props.profile}  jobs={this.props.jobs} loading={this.props.loading} createProfile={this.props.createProfile} errors={this.props.errors} signOut={this.props.signOut}/>}></Route>
+                <div>
+                    <Switch>
+                        <Route path='/employees/signIn' render={(routerProps) => <Employees {...routerProps} employee={this.props.employee} currentStep={1} loggedIn={false} />}></Route>
+                        <Route path='/employees' render={(routerProps) => <Employees {...routerProps} signIn={this.props.signIn} signUp={this.props.signUp} loggedIn={this.props.loggedIn} employee={this.props.employee} profile={this.props.profile}  jobs={this.props.jobs} loading={this.props.loading} createProfile={this.props.createProfile} errors={this.props.errors} signOut={this.props.signOut}/>}></Route>
+                    </Switch>
+                </div>
             )
         } else {
             return (
@@ -75,6 +80,7 @@ const mapStateToProps = state => {
         errors: state.employeesReducer.errors,
         file: state.employeesReducer.file,
         document: state.employeesReducer.document,
+        currentStep: 1,
         fileLoading: state.employeesReducer.fileLoading
     }
 }

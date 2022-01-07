@@ -32,12 +32,22 @@ const NavBar  = props => {
         } else {
             return (
             <div className="nav">
+                <div>
+
                 <Breadcrumb>
                     <Breadcrumb.Item linkAs={Link} linkProps={{ to: '/'}}>Home</Breadcrumb.Item>
                     <Breadcrumb.Item linkAs={Link} linkProps={{ to: '#'}}>About</Breadcrumb.Item>
                     <Breadcrumb.Item linkAs={Link} linkProps={{ to: '#'}}>Contact</Breadcrumb.Item>
-                    {/* <Breadcrumb.Item linkAs={Link} linkProps={{to: "/", onClick: props.handleSignout }} >Sign Out</Breadcrumb.Item> */}
                 </Breadcrumb>
+                </div>
+                <div>
+
+                <Breadcrumb>
+                    <Breadcrumb.Item linkAs={Link} linkProps={{ to: '/employees/signIn'}}>Employees Sign-In</Breadcrumb.Item>
+                    <Breadcrumb.Item linkAs={Link} linkProps={{ to: '/contractors/signIn'}}>Contractors Sign-In</Breadcrumb.Item>
+                </Breadcrumb>
+                </div>
+                    {/* <Breadcrumb.Item linkAs={Link} linkProps={{to: "/", onClick: props.handleSignout }} >Sign Out</Breadcrumb.Item> */}
             </div>
             )
         }

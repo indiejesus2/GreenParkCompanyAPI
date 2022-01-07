@@ -17,6 +17,7 @@ const Contractors = props => {
     const [jobs, setJobs] = useState(props.jobs ? props.jobs : [])
     const [errors, setErrors] = useState(props.errors)
     const [contractor, setContractor] = useState(props.contractor)
+    const [currentStep, setCurrentStep] = useState(props.currentStep ? props.currentStep : 2)
 
 
     useEffect(() => {
@@ -32,18 +33,11 @@ const Contractors = props => {
     })
 
     const handleClick = (e) => {
-        let currentStep = state.currentStep;
         // let direction = e.target.name;
         if (currentStep == 1){
-            setState( prevState => ({
-                ...prevState,
-                currentStep : currentStep+=1
-            }))
+            setCurrentStep(2)
         } else if (currentStep == 2) {
-            setState( prevState => ({
-                ...prevState,
-                currentStep : currentStep-=1
-            }))
+            setCurrentStep(1)
         }
     }
 
@@ -58,8 +52,8 @@ if (loading === true) {
         return (
             <div className="signin">
                 <Home />
-                <ContractorSignUp signUp={props.signUp} currentStep={state.currentStep} handleClick={handleClick} errors={errors} />
-                <ContractorSignIn signIn={props.signIn} currentStep={state.currentStep} handleClick={handleClick} errors={errors} />
+                <ContractorSignUp signUp={props.signUp} currentStep={currentStep} handleClick={handleClick} errors={errors} />
+                <ContractorSignIn signIn={props.signIn} currentStep={currentStep} handleClick={handleClick} errors={errors} />
             </div>
         )
     } else if (contractor.status!=true && contractor.subscription!=false) {
