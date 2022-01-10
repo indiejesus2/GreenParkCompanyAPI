@@ -126,9 +126,9 @@ const Applicants = (props) => {
                         }
                     })
                 })
-            }
+            } 
+            setCandidates(filtered)
         })
-        setCandidates(filtered)
     }
 
     const handleChange = (e) => {
@@ -161,6 +161,20 @@ const Applicants = (props) => {
             )
         }
     }
+
+    const handleApplied = (e) => {
+        let filtered = []
+        Object.entries(candidates).map(function([info, applicant]) {
+            if(applicant.interested == true) {
+                filtered.push(applicant)
+            }
+        })
+        if (e.currentTarget.checked == true) {
+            setCandidates(filtered)
+        } else {
+            setCandidates(original)
+        }
+    }
     
     return (
         <div className="applicants">
@@ -187,10 +201,11 @@ const Applicants = (props) => {
             <option value={100}>100 Miles</option>
         </Form.Control>
         <div className="search-buttons">
+            <Form.Check name="applied" id="applied" label="Applied Candidates" onChange={handleApplied}/>
             <Button onClick={handleClear}> Clear </Button>
             <Button type="submit"> Search </Button>
         </div>
-        </Form>
+            </Form>
         </div>
         {/* <Form.Label>
             Minimum Pay Rate: 

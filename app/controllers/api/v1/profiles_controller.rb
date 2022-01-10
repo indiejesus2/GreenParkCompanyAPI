@@ -28,7 +28,6 @@ class Api::V1::ProfilesController < ApplicationController
     end
 
     def update
-        byebug
         @profile = @employee.profile
         employee = {employee_id: @employee.id}
         @profile.update(profile_params)

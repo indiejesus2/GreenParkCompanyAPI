@@ -48,6 +48,7 @@ const Job = props => {
         <Modal show={props.show} onHide={props.handleClose} centered>
             <div className="job-info">
             <Modal.Title>
+                <h1>{job.company}</h1>
                 <h2>
                     {job.title} - {job.city}, {job.state} 
                 </h2>

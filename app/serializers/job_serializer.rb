@@ -16,7 +16,6 @@ class JobSerializer
     # }
     attributes :company do |object|
         @employer = Employer.find_by_id(object.employer_id)
-        byebug
         "#{@employer.name}"
     end
 

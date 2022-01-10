@@ -40,7 +40,8 @@ class Job < ApplicationRecord
         end
       }
     end
-    applicants.each {|applicant|
+    applicants = applicants.compact()
+    applicants.each{|applicant|
       if Applicant.where(job_id: id, employee_id: applicant.employee_id).length == 0 
         Applicant.create(employee_id: "#{applicant.employee_id}", employer_id: "#{employer_id}", job_id: "#{id}", distance: distance_to(applicant))
       end
@@ -101,7 +102,6 @@ class Job < ApplicationRecord
 
   def updateTrade
     applicants = self.applicants
-    byebug
     if applicants.length > 0
       applicants.each{|applicant|
         # if a job's trade or address is changed, current applicants must be checked to see if they are a match.

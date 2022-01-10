@@ -108,6 +108,7 @@ const Jobs = (props) => {
                 {jobs.map(job =>
                 <Card id={job.id} key={job.id} > 
                     <Card.Header>
+                        <Card.Title className="mb-2">{job.company}</Card.Title>
                        <Card.Title className="mb-2" as="h2">{job.title}</Card.Title>
                         <Card.Subtitle>Location: {job.city}, {job.state}</Card.Subtitle>
                     </Card.Header>

@@ -14,7 +14,7 @@ const Applicant = (props) => {
             job.profiles.map(function(profile) {
                 if (!profiles.some(apple => apple.id == profile.id)) {
                     profiles.push(profile)
-                }
+                } 
             })
         })
         return profiles
@@ -30,7 +30,13 @@ const Applicant = (props) => {
             interested: false
         }
         let candidate = applicants.find(applicant => applicant.employee_id == profile.employee_id)
-            if (!!candidate) {
+        let applied = applicants.filter(applicant => applicant.interested == true)
+            if (!!candidate && applied.some(applicant => applicant.employee_id == candidate.employee_id)) {
+                oObj.info = profile,
+                oObj.rating = candidate.rating,
+                oObj.distance = candidate.distance
+                oObj.interested = true
+            } else if (!!candidate) {
                 oObj.info = profile,
                 oObj.rating = candidate.rating,
                 oObj.distance = candidate.distance
@@ -120,6 +126,20 @@ const Applicant = (props) => {
         schedule: false,
         shifts: false,
     })
+
+    const handleApplied = (e) => {
+        let filtered = []
+        Object.entries(candidates).map(function([info, applicant]) {
+            if(applicant.interested == true) {
+                filtered.push(applicant)
+            }
+        })
+        if (e.currentTarget.checked == true) {
+            setCandidates(filtered)
+        } else {
+            setCandidates(original)
+        }
+    }
     
     // const handleSearch = (e) => {
     //     e.preventDefault()
@@ -189,6 +209,8 @@ const Applicant = (props) => {
     return (
         <div className="applicants">
             {header()}
+            <input type="checkbox" id="applied" name="applied" value="applied" onChange={handleApplied}/>
+            <label htmlFor="applied">Applied Candidates</label>
         {/* <div className="search">
             <Form onSubmit={handleSearch}>
             <label htmlFor="search">Search Candidates: </label>

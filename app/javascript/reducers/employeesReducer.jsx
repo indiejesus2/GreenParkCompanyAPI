@@ -15,15 +15,17 @@ export default function employeesReducer(state = {employee: [], profile: [], exp
                 loading: false
             }
         case 'SIGNIN_EMPLOYEE':
+            let employee = action.payload.employee.data.attributes
+            let jobs = action.payload.jobs.data.map(job=>job.attributes)
             return {
                 ...state,
-                employee: action.payload,
-                profile: action.payload.profile,
-                experience: action.payload.experiences,
-                jobs: action.payload.jobs,
-                applicants: action.payload.applicants,
-                file: action.payload.file,
-                document: action.payload.document,
+                employee: employee,
+                profile: employee.profile,
+                experience: employee.experiences,
+                jobs: jobs,
+                applicants: employee.applicants,
+                file: employee.file,
+                document: employee.document,
                 loggedIn: true,
                 loading: false
             }
