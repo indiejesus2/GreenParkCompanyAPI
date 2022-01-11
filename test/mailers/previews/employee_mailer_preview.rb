@@ -8,4 +8,8 @@ class EmployeeMailerPreview < ActionMailer::Preview
         EmployeeMailer.with(employee: Employee.first).jobs_email
     end
 
+    def applied_email
+        EmployeeMailer.with(employee: Employee.first, application: Employee.first.applicants.find_by(interested: true)).applied_email
+    end
+
 end

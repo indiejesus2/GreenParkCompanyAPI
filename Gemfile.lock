@@ -80,6 +80,8 @@ GEM
     chronic (0.10.2)
     concurrent-ruby (1.1.9)
     crass (1.0.6)
+    css_parser (1.11.0)
+      addressable
     dotenv (2.7.6)
     dotenv-rails (2.7.6)
       dotenv (= 2.7.6)
@@ -89,6 +91,7 @@ GEM
     geocoder (1.7.0)
     globalid (0.5.2)
       activesupport (>= 5.0)
+    htmlentities (4.3.4)
     i18n (1.8.10)
       concurrent-ruby (~> 1.0)
     jbuilder (2.11.2)
@@ -113,6 +116,13 @@ GEM
     nokogiri (1.12.5-x86_64-linux)
       racc (~> 1.4)
     pg (1.2.3)
+    premailer (1.15.0)
+      addressable
+      css_parser (>= 1.6.0)
+      htmlentities (>= 4.0.0)
+    premailer-rails (1.11.1)
+      actionmailer (>= 3)
+      premailer (~> 1.7, >= 1.7.9)
     public_suffix (4.0.6)
     puma (4.3.10)
       nio4r (~> 2.0)
@@ -226,6 +236,7 @@ DEPENDENCIES
   jwt (~> 2.2)
   listen (~> 3.2)
   pg (>= 0.18, < 2.0)
+  premailer-rails
   puma (~> 4.1)
   rack-cors
   rails (~> 6.1.4)

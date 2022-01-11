@@ -33,6 +33,8 @@ gem 'dotenv-rails'
 gem 'whenever', '~> 0.9.4'
 
 gem 'geocoder', '~> 1.3', '>= 1.3.7'
+
+gem 'premailer-rails'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
