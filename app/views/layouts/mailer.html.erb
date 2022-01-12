@@ -3,6 +3,47 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <style>
+      .jobs {
+        display: flex;
+        justify-content: space-around;
+        flex-flow: wrap; 
+      }
+
+      .job {
+        margin-inline: 25px;
+        margin-block-end: 25px;
+        
+        background-color: #eee;
+        border: #175785 1px solid;
+        width: 200px;
+        display: grid;
+        justify-content: center;
+      }
+
+      h1, h3, h4 {
+        text-align: center;
+        margin-block-end: 0px;
+        margin-block-start: 10px;
+      }
+
+      p {
+        text-align: center;
+      }
+
+      .job p {
+        margin-block: 5px;
+      }
+
+      .header {
+        background-color: #175785;
+        color: white;
+        width: 200px;
+        height: 50px;
+        margin-block-end: 10px;
+        padding-block: 10px;
+        display: grid;
+        justify-content: center;
+      }
       /* Email styles need to be inline */
     </style>
   </head>
