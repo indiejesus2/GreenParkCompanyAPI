@@ -1,19 +1,54 @@
 import React from 'react'
 import NavBar from '../NavBar'
+import { useFormik } from 'formik'
 import { Modal, Button } from 'react-bootstrap'
 
 const EmployeeProfile = props => {
 
     const candidate = props.candidate
     const display = props.show == true ? "employee-profile" : "employee-profile d-none"
-    const interested = () => {
-        if (candidate.interested) {
+    
+    // const interested = () => {
+    //     if (candidate.interested) {
+    //         return (
+    //             <div>
+    //                 <h5>Interested</h5>
+    //             </div>
+    //         )
+    //     }
+    // }
+
+    const formik = useFormik({
+        initialValues: {
+            id: candidate.id,
+            employee_id: candidate.employee_id,
+            employer_id: candidate.employer_id,
+            job_id: candidate.job_id,
+            acceptance: candidate.acceptance
+        },
+        onSubmit: values => {
+            props.editApplicant(values)
+            props.history.push(`/contractors/${values.id}/profile`)
+        }
+    })
+
+    const handleInterest = (candidate) => {
+        if (candidate.interested == true) {
             return (
-                <div>
-                    <h5>Interested</h5>
+                <div style={{ display: "contents"}}>
+                    {String.fromCharCode(9989)} Applied!
                 </div>
             )
         }
+    }
+
+    const handleApplicant = (status) => {
+        if (status = "false") {
+            formik.values.acceptance = false
+        } else if (status = "true") {
+            formik.values.acceptance = true
+        }
+        formik.handleSubmit()
     }
     
     if (candidate == "") {
@@ -30,7 +65,8 @@ const EmployeeProfile = props => {
                 <Modal.Title>
                     <h2>{candidate.info.fname} {candidate.info.lname} - {candidate.info.city}, {candidate.info.state}</h2>
                     <h5>{candidate.info.trade}</h5>
-                    {interested()}
+                    <h6>{handleInterest(candidate)}</h6>
+
                 </Modal.Title>
                 </Modal.Header>
             <Modal.Body>
@@ -49,8 +85,8 @@ const EmployeeProfile = props => {
                 Description: {candidate.info.description}
             </div>
             <Modal.Footer>
-                <Button>Accept</Button>
-                <Button>Decline</Button>
+                <Button onClick={() => handleApplicant("accept")}>Accept</Button>
+                <Button onClick={() => handleApplicant("decline")}>Decline</Button>
                 <Button onClick={props.handleClose}>Close</Button>
             </Modal.Footer>
             </Modal.Body>

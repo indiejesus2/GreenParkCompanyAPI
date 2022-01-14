@@ -12,16 +12,15 @@ const Applicants = (props) => {
     const original = profiles.map(profile => {
         let oObj = {
             info: '',
-            rating: '',
-            distance: '',
-            interested: false
+            application: ''
         }
-        let candidate = applicants.find(applicant => applicant.employee_id == profile.employee_id)
+        let candidate = applicants.find(applicant => applicant.employee_id == profile.employee_id && applicant.acceptance !== false)
             if (profile.employee_id == candidate.employee_id) {
                 oObj.info = profile,
-                oObj.rating = candidate.rating,
-                oObj.distance = candidate.distance,
-                oObj.interested = candidate.interested
+                oObj.application = candidate
+                // oObj.rating = candidate.rating,
+                // oObj.distance = candidate.distance,
+                // oObj.interested = candidate.interested
             }
         return oObj
     })
@@ -117,18 +116,20 @@ const Applicants = (props) => {
     const handleSearch = (e) => {
         e.preventDefault()
         let filtered = []
-        Object.entries(state).map(function([k, v]) {
-            if (v == true) {
-                original.map(function(profile) {
-                    job[k].map(function(i) {
-                        if (profile.info[k].includes(i) && !filtered.includes(profile)) {
+        if (!Object.entries(state).every(state => state[1] == false)) {
+            Object.entries(state).map(function([k, v]) {
+                if (v == true) {
+                    original.map(function(profile) {
+                        job[k].map(function(i) {
+                            if (profile.info[k].includes(i) && !filtered.includes(profile)) {
                                 filtered.push(profile)
-                        }
+                            }
+                        })
                     })
-                })
-            } 
-            setCandidates(filtered)
-        })
+                } 
+                setCandidates(filtered)
+            })
+        }
     }
 
     const handleChange = (e) => {
@@ -141,7 +142,7 @@ const Applicants = (props) => {
 
     const handleLocation = (e) => {
         const candidates = original.map(function(profile) {
-            if (profile.distance <= e.target.value) {
+            if (profile.application.distance <= parseInt(e.target.value)) {
                 return profile
             }
         })
@@ -156,7 +157,7 @@ const Applicants = (props) => {
         if (candidate.interested == true) {
             return (
                 <div style={{ display: "contents"}}>
-                    {String.fromCharCode(9989)}
+                    {String.fromCharCode(9989)} Applied!
                 </div>
             )
         }
@@ -219,10 +220,11 @@ const Applicants = (props) => {
         {candidates.map(candidate => 
             <Card id={candidate.info.id} key={candidate.info.id} >
                 <Card.Title>
-                    <h3 style={{ marginBottom: 0+"px"}}>{candidate.info.fname} {candidate.info.lname} {handleInterest(candidate)}</h3> 
+                    <h3 style={{ marginBottom: 0+"px"}}>{candidate.info.fname} {candidate.info.lname} </h3> 
+                    <h4>{handleInterest(candidate.application)}</h4>
                 </Card.Title>
                     <Card.Subtitle>{candidate.info.city}, {candidate.info.state}</Card.Subtitle>
-                    <Card.Subtitle as="h5">Rating: {rate(candidate.rating)}</Card.Subtitle>
+                    <Card.Subtitle as="h5">Rating: {rate(candidate.application.rating)}</Card.Subtitle>
                       <div className="matches">
                         {Object.entries(jobMatch(candidate.info)).map(([key, value]) =>
                             <Card.Text style={{ marginBlockEnd: 1 + `px`}}>{key}: {value}</Card.Text>

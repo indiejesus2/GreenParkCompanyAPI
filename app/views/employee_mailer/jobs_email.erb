@@ -9,12 +9,17 @@
     <p>
       Here are the latest jobs you match with. 
     </p>
-    <% @jobs.each do |job| %>
-        <h3><%= job.title %></h3>
-        <h4><%= job.employer.name %></h4>
-        <p><%= job.address %></p>
-        <p><%= job.description %></p>
-    <% end %>
+    <div class="jobs">
+        <% @jobs.each do |job| %>
+      <div class="job">
+          <span class="header">
+            <h3><%= job.employer.name %></h3>
+          </span>
+            <h4><%= job.title %></h4>
+            <p><%= job.address %></p>
+      </div>
+        <% end %>
+    </div>
     <p>
 
       To login to the site, just follow this link: <%= @url %>.

@@ -199,7 +199,7 @@ const Applicant = (props) => {
         if (candidate.interested == true) {
             return (
                 <div style={{ display: "contents"}}>
-                    {String.fromCharCode(9989)}
+                    {String.fromCharCode(9989)} Applied!
                 </div>
             )
         }
@@ -252,7 +252,8 @@ const Applicant = (props) => {
         {candidates.map(candidate => 
             <Card id={candidate.info.id} key={candidate.info.id} >
                 <Card.Title>
-                    <h3 style={{ marginBottom: 0+"px"}}>{candidate.info.fname} {candidate.info.lname} {handleInterest(candidate)}</h3> 
+                    <h3 style={{ marginBottom: 0+"px"}}>{candidate.info.fname} {candidate.info.lname}</h3> 
+                    <h4>{handleInterest(candidate)}</h4>
                 </Card.Title>
                     <Card.Subtitle>{candidate.info.city}, {candidate.info.state}</Card.Subtitle>
                     <Card.Subtitle as="h5">Match Score: {rate(candidate.rating)}</Card.Subtitle>

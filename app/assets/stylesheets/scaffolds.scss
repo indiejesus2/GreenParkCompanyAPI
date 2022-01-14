@@ -27,7 +27,6 @@ a {
 
 nav {
   margin-top: 10px;
-  padding-inline: 250px;
 }
 
 a:hover {
@@ -112,7 +111,7 @@ label {
 
 .nav {
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
 }
 
 .nav a {

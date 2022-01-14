@@ -14,6 +14,7 @@ class EmployerMailer < ApplicationMailer
         @employer = params[:employer]
         applicants = @employer.applicants
         @candidates = applicants.map{|applicant| applicant.profile}
+        @candidates = @candidates.take(5)
         mail(
             to: email_address_with_name(@employer.email, @employer.name),
             subject: "BluCollar - Candidate Matches"

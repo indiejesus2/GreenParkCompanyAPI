@@ -9,11 +9,14 @@
     <p>
       Here are the latest candidates you match with. 
     </p>
+    <div class="candidates">
     <% @candidates.each do |candidate| %>
+      <div class="candidate">
         <h3><%= candidate.name %></h3>
         <p><%= candidate.address %></p>
-        <p><%= candidate.description %></p>
+      </div>
     <% end %>
+    </div>
     <p>
 
       To login to the site, just follow this link: <a href=<%= @url %>>BluCollar</a>.
