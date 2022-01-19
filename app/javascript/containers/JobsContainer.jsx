@@ -6,6 +6,7 @@ import { signUpContractor } from '../actions/Contractors/signUpContractor'
 import { addJob } from '../actions/Contractors/addJob'
 import { editJob } from '../actions/Contractors/editJob'
 import { deleteJob } from '../actions/Contractors/deleteJob'
+import { editApplicant } from '../actions/Contractors/editApplicant'
 import Contractors from '../components/Contractors/Contractors'
 import ContractorSignUp from '../components/Login/ContractorSignUp'
 import AddJob from '../components/Contractors/AddJob'
@@ -22,10 +23,10 @@ class JobsContainer extends Component {
                     <NavBar handleSignout={this.props.signOut} contractor={this.props.contractor} user="contractor" />
                     <Switch>
                         <Route path='/contractors/:id/jobs/:job_id/editjob' render={(routerProps) => <EditJob {...routerProps} jobs={this.props.jobs} editJob={this.props.editJob} />}></Route>
-                        <Route path='/contractors/:id/jobs/:job_id' render={(routerProps) => <Job {...routerProps} contractor={this.props.contractor} jobs={this.props.jobs} applicants={this.props.applicants} candidates={this.props.candidates} profiles={this.props.profiles} fetchJob={this.props.fetchJob} /> } ></Route>
+                        <Route path='/contractors/:id/jobs/:job_id' render={(routerProps) => <Job {...routerProps} contractor={this.props.contractor} jobs={this.props.jobs} applicants={this.props.applicants} candidates={this.props.candidates} profiles={this.props.profiles} fetchJob={this.props.fetchJob} editApplicant={this.props.editApplicant} /> } ></Route>
                         <Route path='/contractors/addjob' render={(routerProps) => <AddJob {...routerProps} contractor={this.props.contractor} addJob={this.props.addJob}/>}></Route>
                         <Route path='/contractors/signup' render={(routerProps) => <ContractorsSignUp {...routerProps} loading={this.props.loading} signUpContractor={this.props.signUpContractor} />}></Route>
-                        <Route path='/contractors' render={(routerProps) => <Jobs {...routerProps} loading={this.props.loading} signIn={this.props.signIn} loggedIn={this.props.loggedIn} contractor={this.props.contractor} profile={this.props.profile} jobs={this.props.jobs} deleteJob={this.props.deleteJob}/>}></Route>
+                        <Route path='/contractors' render={(routerProps) => <Jobs {...routerProps} loading={this.props.loading} signIn={this.props.signIn} loggedIn={this.props.loggedIn} contractor={this.props.contractor} profile={this.props.profile} jobs={this.props.jobs} deleteJob={this.props.deleteJob} editApplicant={this.props.editApplicant} />}></Route>
                     </Switch>
                 </div>
             )
@@ -59,7 +60,8 @@ const mapDispatchToProps = dispatch => ({
     editJob: job => dispatch(editJob(job)),
     deleteJob: job => dispatch(deleteJob(job)),
     fetchJobs: contractor => dispatch(fetchJobs(contractor)),
-    fetchJob: job => dispatch(fetchJob(job))
+    fetchJob: job => dispatch(fetchJob(job)),
+    editApplicant: applicant => dispatch(editApplicant(applicant))
 
     // updateProfile: profile => dispatch(updateProfile(profile))
 })

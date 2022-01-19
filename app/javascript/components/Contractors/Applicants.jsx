@@ -235,7 +235,9 @@ const Applicants = (props) => {
                 )}
                 <EmployeeProfile 
                 show={show}
-                candidate={applicant}
+                candidate={applicant.info}
+                application={applicant.application}
+                editApplicant={props.editApplicant}
                 handleClose={handleClose}
                 />
         </div>

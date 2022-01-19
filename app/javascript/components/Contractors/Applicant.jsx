@@ -25,22 +25,26 @@ const Applicant = (props) => {
     const original = profiles.map(profile => {
         let oObj = {
             info: '',
-            rating: '',
-            distance: '',
-            interested: false
+            application: ''
+            // rating: '',
+            // distance: '',
+            // interested: false
         }
         let candidate = applicants.find(applicant => applicant.employee_id == profile.employee_id)
         let applied = applicants.filter(applicant => applicant.interested == true)
             if (!!candidate && applied.some(applicant => applicant.employee_id == candidate.employee_id)) {
                 oObj.info = profile,
-                oObj.rating = candidate.rating,
-                oObj.distance = candidate.distance
-                oObj.interested = true
+                oObj.application = candidate
+                // oObj.rating = candidate.rating,
+                // oObj.distance = candidate.distance
+                // oObj.interested = true
             } else if (!!candidate) {
                 oObj.info = profile,
-                oObj.rating = candidate.rating,
-                oObj.distance = candidate.distance
-                oObj.interested = candidate.interested
+                oObj.application = candidate
+                // oObj.info = profile,
+                // oObj.rating = candidate.rating,
+                // oObj.distance = candidate.distance
+                // oObj.interested = candidate.interested
             }
         return oObj
     })
@@ -253,10 +257,10 @@ const Applicant = (props) => {
             <Card id={candidate.info.id} key={candidate.info.id} >
                 <Card.Title>
                     <h3 style={{ marginBottom: 0+"px"}}>{candidate.info.fname} {candidate.info.lname}</h3> 
-                    <h4>{handleInterest(candidate)}</h4>
+                    <h4>{handleInterest(candidate.application)}</h4>
                 </Card.Title>
                     <Card.Subtitle>{candidate.info.city}, {candidate.info.state}</Card.Subtitle>
-                    <Card.Subtitle as="h5">Match Score: {rate(candidate.rating)}</Card.Subtitle>
+                    <Card.Subtitle as="h5">Match Score: {rate(candidate.application.rating)}</Card.Subtitle>
                       <div className="matches">
                         {Object.entries(handleMatches(candidate.info)).map(([key, value]) =>
                             <Card.Text style={{ marginBlockEnd: 1 + `px`}}>{key}: {value}</Card.Text>
@@ -269,7 +273,9 @@ const Applicant = (props) => {
                 )}
                 <EmployeeProfile 
                 show={show}
-                candidate={applicant}
+                candidate={applicant.info}
+                application={applicant.application}
+                editApplicant={props.editApplicant}
                 handleClose={handleClose}
                 />
         </div>

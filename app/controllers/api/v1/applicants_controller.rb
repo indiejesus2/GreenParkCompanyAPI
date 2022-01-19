@@ -1,4 +1,4 @@
-class Api::V1::JobsController < ApplicationController
+class Api::V1::ApplicantsController < ApplicationController
     before_action :set_employee
     before_action :set_employer
     before_action :set_job
@@ -48,7 +48,7 @@ class Api::V1::JobsController < ApplicationController
     def update
         @applicant.update(applicant_params)
         if @applicant.save
-            redirect_to api_v1_employer_jobs_path(@employer)
+            redirect_to api_v1_employer_jobs_path(@employer), status: 303
         else
             render json: @applicant.errors
         end
@@ -62,31 +62,33 @@ class Api::V1::JobsController < ApplicationController
 
     private
 
+    def applicant_params
+        params.require(:applicant).permit(:employee_id, :employer_id, :job_id, :acceptance)
+    end
+    
     def set_employee
-        if (params[:employee_id])
-            @employee = Employee.find(params[:employee_id])
+        if (applicant_params[:employee_id])
+            @employee = Employee.find(applicant_params[:employee_id])
         else
             nil
         end
     end
 
     def set_employer
-        if (params[:employer_id])
-            @employer = Employer.find(params[:employer_id])
+        if (applicant_params[:employer_id])
+            @employer = Employer.find(applicant_params[:employer_id])
         else
             nil
         end
     end
 
     def set_job
-        @job = Job.find(params[:id])
+        @job = Job.find(applicant_params[:job_id])
     end
 
     def set_applicant
         @applicant = Applicant.find_by(employee_id: @employee.id, employer_id: @employer.id, job_id: @job.id)
-
-    def applicant_params
-        params.require(:applicant).permit(:employee_id, :employer_id, :job_id, :acceptance)
     end
+
 
 end

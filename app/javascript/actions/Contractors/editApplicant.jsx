@@ -9,8 +9,9 @@ export const editApplicant = (applicant) => {
             },
             body: JSON.stringify({applicant})
         };
+        debugger
         return fetch(`/api/v1/applicants/${applicant.id}`, configObj)
         .then(resp => resp.json())
-        .then(jobs => dispatch({type: 'UPDATE_JOBS', payload: jobs}))
+        .then(jobs => dispatch({type: 'FETCH_JOBS', payload: jobs}))
     }
 }

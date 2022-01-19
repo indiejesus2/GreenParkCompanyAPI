@@ -56,7 +56,7 @@ const Job = props => {
                             </tbody>
                         </Table>
                     </Card.Body>
-                            <Applicants job={job}/>
+                            <Applicants job={job} editApplicant={props.editApplicant} />
                         </div>
 
             )

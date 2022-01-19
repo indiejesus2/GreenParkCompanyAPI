@@ -1,12 +1,16 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react';
 import NavBar from '../NavBar'
 import { useFormik } from 'formik'
 import { Modal, Button } from 'react-bootstrap'
+import { useHistory } from 'react-router-dom'
 
 const EmployeeProfile = props => {
 
-    const candidate = props.candidate
+    const candidate = props.candidate ? props.candidate : []
+    const application = props.application ? props.application : []
+    // const [application, setApplication] = useState(props.candidate.application)
     const display = props.show == true ? "employee-profile" : "employee-profile d-none"
+    const history = useHistory();
     
     // const interested = () => {
     //     if (candidate.interested) {
@@ -17,23 +21,29 @@ const EmployeeProfile = props => {
     //         )
     //     }
     // }
+    // useEffect(() => {
+    //     if (application != props.candidate.application) {
+    //         setApplication(props.candidate.application)
+    //     }
+    // }, [props.candidate])
 
     const formik = useFormik({
-        initialValues: {
-            id: candidate.id,
-            employee_id: candidate.employee_id,
-            employer_id: candidate.employer_id,
-            job_id: candidate.job_id,
-            acceptance: candidate.acceptance
+        initialValues:
+         {
+            id: application.id, 
+            employee_id: application.employee_id,
+            employer_id: application.employer_id,
+            job_id: application.job_id,
+            acceptance: application.acceptance
         },
         onSubmit: values => {
             props.editApplicant(values)
-            props.history.push(`/contractors/${values.id}/profile`)
+            history.push(`/contractors/${values.employer_id}/jobs/${values.job_id}`)
         }
     })
 
-    const handleInterest = (candidate) => {
-        if (candidate.interested == true) {
+    const handleInterest = (application) => {
+        if (application.interested == true) {
             return (
                 <div style={{ display: "contents"}}>
                     {String.fromCharCode(9989)} Applied!
@@ -43,12 +53,10 @@ const EmployeeProfile = props => {
     }
 
     const handleApplicant = (status) => {
-        if (status = "false") {
-            formik.values.acceptance = false
-        } else if (status = "true") {
-            formik.values.acceptance = true
-        }
-        formik.handleSubmit()
+        debugger
+        formik.setValues(application)
+        formik.setFieldValue('acceptance', status)
+        formik.handleSubmit(formik.values)
     }
     
     if (candidate == "") {
@@ -63,30 +71,30 @@ const EmployeeProfile = props => {
                 <Modal.Header>
 
                 <Modal.Title>
-                    <h2>{candidate.info.fname} {candidate.info.lname} - {candidate.info.city}, {candidate.info.state}</h2>
-                    <h5>{candidate.info.trade}</h5>
-                    <h6>{handleInterest(candidate)}</h6>
+                    <h2>{candidate.fname} {candidate.lname} - {candidate.city}, {candidate.state}</h2>
+                    <h5>{candidate.trade}</h5>
+                    <h6>{handleInterest(application)}</h6>
 
                 </Modal.Title>
                 </Modal.Header>
             <Modal.Body>
-            <span>{candidate.info.description}</span>
+            <span>{candidate.description}</span>
             <div className="work-schedule">
-                Job Type: {candidate.info.jobtype.join(', ')}
+                Job Type: {candidate.jobtype.join(', ')}
                 <br />
-                Work Schedule: {candidate.info.schedule.join(', ')}
+                Work Schedule: {candidate.schedule.join(', ')}
                 <br />
-                Shifts: {candidate.info.shifts.join(', ')}
+                Shifts: {candidate.shifts.join(', ')}
                 <br />
-                Season Availability: {candidate.info.seasonstart} - {candidate.info.seasonend}
+                Season Availability: {candidate.seasonstart} - {candidate.seasonend}
                 <br />
-                Minimum Pay: ${candidate.info.minpay} {candidate.info.paytype == "Hourly"?"per hour":"per year"}
+                Minimum Pay: ${candidate.minpay} {candidate.paytype == "Hourly"?"per hour":"per year"}
                 <br />
-                Description: {candidate.info.description}
+                Description: {candidate.description}
             </div>
             <Modal.Footer>
-                <Button onClick={() => handleApplicant("accept")}>Accept</Button>
-                <Button onClick={() => handleApplicant("decline")}>Decline</Button>
+                <Button onClick={() => handleApplicant(true)}>Accept</Button>
+                <Button onClick={() => handleApplicant(false)}>Decline</Button>
                 <Button onClick={props.handleClose}>Close</Button>
             </Modal.Footer>
             </Modal.Body>
