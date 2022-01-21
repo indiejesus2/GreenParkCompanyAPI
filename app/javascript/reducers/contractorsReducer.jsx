@@ -85,9 +85,12 @@ export default function contractorsReducer(state = {contractor: [], jobs: [], ap
                 loading: false,
                 errors: action.payload
             }
-        case 'LOGOUT_USER':
+        case 'LOGOUT_CONTRACTOR':
             return {
-                loggedIn: false
+                loggedIn: false,
+                contractor: [],
+                jobs: [],
+                applicants: []
             }
         default:
             return state

@@ -48,29 +48,30 @@ if (loading === true) {
             <span className="sr-only">Loading...</span>
         </div>
         )
-    } else if (props.loggedIn === false) {
+    } else if (props.loggedIn === true) {
         return (
-            <div className="signin">
-                <Home />
-                <ContractorSignUp signUp={props.signUp} currentStep={currentStep} handleClick={handleClick} errors={errors} />
-                <ContractorSignIn signIn={props.signIn} currentStep={currentStep} handleClick={handleClick} errors={errors} />
+            <div className="contractor">
+                <NavBar handleSignout={props.signOut} contractor={props.contractor} user="contractor" />
+                <Applicant contractor={contractor} jobs={jobs} applicants={props.applicants} editApplicant={props.editApplicant} />
+                {/* <JobsContainer jobs={jobs} contractor={contractor} candidates={props.candidates} profiles={props.profiles}/> */}
             </div>
         )
-    } else if (contractor.status!=true && contractor.subscription!=false) {
+    } else if (contractor.status==false) {
         return (
             <Redirect to="/contractors/subscription" />
         )
-    } else if (jobs.length < 1) {
+    } else if (props.loggedIn === true && jobs.length < 1) {
         return (
             <Redirect to="/contractors/addjob" />
         )
     } else {
         return (
-                <div className="contractor">
-                <NavBar handleSignout={props.signOut} contractor={props.contractor} user="contractor" />
-                    <Applicant contractor={contractor} jobs={jobs} applicants={props.applicants} editApplicant={props.editApplicant} />
-                    {/* <JobsContainer jobs={jobs} contractor={contractor} candidates={props.candidates} profiles={props.profiles}/> */}
-                </div>
+            <div className="signin">
+            <Home />
+            <ContractorSignUp signUp={props.signUp} currentStep={currentStep} handleClick={handleClick} errors={errors} />
+            <ContractorSignIn signIn={props.signIn} currentStep={currentStep} handleClick={handleClick} errors={errors} />
+        </div>
+
         )
     }
     

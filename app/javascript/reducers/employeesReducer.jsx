@@ -89,9 +89,16 @@ export default function employeesReducer(state = {employee: [], profile: [], exp
                 loggedIn: false,
                 errors: action.payload
             }
-            case 'LOGOUT_USER':
+            case 'LOGOUT_EMPLOYEE':
                 return {
-                    loggedIn: false
+                    loggedIn: false,
+                    employee: [],
+                    profile: [],
+                    experience: [],
+                    jobs: [],
+                    applicants: [],
+                    file: [],
+                    document: []
                 }
         default:
             return state
