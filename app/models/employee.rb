@@ -1,10 +1,10 @@
 class Employee < ApplicationRecord
   has_secure_password
-  has_one :profile
-  has_one :document
-  has_one_attached :file
-  has_many :experiences
-  has_many :applicants
+  has_one :profile, dependent: :destroy
+  has_one :document, dependent: :destroy
+  has_one_attached :file, dependent: :destroy
+  has_many :experiences, dependent: :destroy 
+  has_many :applicants, dependent: :destroy
   has_many :jobs, through: :applicants
   validates :email, uniqueness: true
 

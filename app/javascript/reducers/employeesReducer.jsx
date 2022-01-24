@@ -45,13 +45,17 @@ export default function employeesReducer(state = {employee: [], profile: [], exp
                 loading: false
             }
         case 'UPDATE_PROFILE':
+            let profile = action.payload.employee.data.attributes
+            let matches = action.payload.jobs.data.map(job=>job.attributes)
             return {
                 ...state,
-                employee: action.payload,
-                profile: action.payload.profile,
-                experience: action.payload.experiences,
-                jobs: action.payload.jobs,
-                applicants: action.payload.applicants,
+                employee: profile,
+                profile: profile.profile,
+                experience: profile.experiences,
+                jobs: matches,
+                applicants: profile.applicants,
+                file: profile.file,
+                document: profile.document,
                 loading: false
             }
         case 'ADD_EXPERIENCE':
