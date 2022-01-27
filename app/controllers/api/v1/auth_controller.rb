@@ -26,14 +26,11 @@ class Api::V1::AuthController < ApplicationController
     end
 
     def is_logged_in?
-        byebug
         if logged_in? && current_user
             @user = session[:contractor_id] ? "contractor" : "employee"
+            @contractor = Employer.find(session[:contractor_id])
             if @user == "contractor" 
-                render json: {
-                    user: @user,
-                    contractor: Employer.find(session[:contractor_id])
-                }
+                redirect_to api_v1_employer_path(@contractor)
                 # redirect_to api_v1_employer_jobs_path(employer_id: session[:contractor_id])
             elsif @user == "employee"
                 redirect_to api_v1_employee_path(id: session[:employee_id])

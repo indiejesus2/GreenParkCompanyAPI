@@ -7,6 +7,7 @@ class Employee < ApplicationRecord
   has_many :applicants, dependent: :destroy
   has_many :jobs, through: :applicants
   validates :email, uniqueness: true
+  validates :email, presence: true
 
 
   # def name

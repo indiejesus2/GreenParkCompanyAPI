@@ -8,6 +8,7 @@ import { updateProfile } from '../actions/Contractors/updateProfile'
 import { signOutContractor } from '../actions/signOutContractor'
 import { fetchJobs } from '../actions/Contractors/fetchJobs'
 import { editApplicant } from '../actions/Contractors/editApplicant'
+import { currentUser } from '../actions/currentUser'
 import Contractors from '../components/Contractors/Contractors'
 import Subscription from '../components/Contractors/Subscription'
 import Profile from '../components/Contractors/Profile'
@@ -20,11 +21,17 @@ import Logo from '../components/Logo'
 
 class ContractorsContainer extends Component {
 
+    componentDidUpdate() {
+        debugger
+        this.props.currentUser()
+    }
     // componentDidMount() {
-    //     // debugger
-    //     if (this.props.jobs && this.props.jobs.length == 0) {
-    //         this.props.fetchJobs(this.props.contractor)
-    //     }
+    //     debugger
+
+    // //     // debugger
+    // //     if (this.props.jobs && this.props.jobs.length == 0) {
+    // //         this.props.fetchJobs(this.props.contractor)
+    // //     }
     // }
 
     handleSignout = () => {
@@ -100,6 +107,7 @@ const mapDispatchToProps = dispatch => ({
     updateSubscription: (subscription, id) => dispatch(updateSubscription(subscription, id)),
     updateProfile: contractor => dispatch(updateProfile(contractor)),
     editApplicant: applicant => dispatch(editApplicant(applicant)),
+    currentUser: () => dispatch(currentUser()),
     signOutContractor: () => dispatch(signOutContractor())
 
     // updateProfile: profile => dispatch(updateProfile(profile))
