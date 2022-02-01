@@ -7,10 +7,10 @@ class Api::V1::JobsController < ApplicationController
         if @employee 
             # @jobs = Job.near(@employee.profile.address, @employee.profile.commute)
             @jobs = @employee.jobs
-            render json: {employee: EmployeeSerializer.new(@employee), jobs: JobSerializer.new(@jobs)}
+            render json: {employee: EmployeeSerializer.new(@employee), jobs: JobSerializer.new(@jobs)}, prerender: true
         elsif @employer
             @jobs = @employer.jobs
-            render json: {contractor: @employer, jobs: JobSerializer.new(@jobs), applicants: @employer.applicants}
+            render json: {contractor: @employer, jobs: JobSerializer.new(@jobs), applicants: @employer.applicants, prerender: true}
         else
             @jobs = Job.all
         end

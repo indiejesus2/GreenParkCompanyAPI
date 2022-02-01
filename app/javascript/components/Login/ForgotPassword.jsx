@@ -1,19 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import { useFormik } from 'formik'
-import Form from 'react-bootstrap/Form'
-import Button from 'react-bootstrap/Button'
-import Col from 'react-bootstrap/Col'
-import Modal from 'react-bootstrap/Modal'
-import Alert from 'react-bootstrap/Alert'
+import {Link} from 'react-router-dom'
+import {Button, Form, Modal, Alert} from 'react-bootstrap'
 import { useHistory } from 'react-router-dom'
-import * as yup from 'yup'
 
-export default function ContractorSignIn(props) {
-
-    const schema = yup.object().shape({
-        email: yup.string().email("Please enter a valid email address").required("Email is required."),
-        password: yup.string().required("Please enter a password.").min(6, "Password must have at least 6 characters")
-    })
+const ForgotPassword = props => {
 
     const [show, setShow] = useState(true)
     const history = useHistory();
@@ -35,15 +26,15 @@ export default function ContractorSignIn(props) {
     const formik = useFormik({
         initialValues: {
             email: "",
-            password: "",
+            user: props.user
         },
-        validationSchema: schema,
         onSubmit: values => {
-                props.signIn(values)
+                props.updatePassword(values)
+                history.push('/')
         },
     });
 
-    if(props.currentStep !== 1) {
+    if(props.currentStep !== 3) {
         return null
     }
     
@@ -55,6 +46,7 @@ export default function ContractorSignIn(props) {
             </Modal.Header>
             <Form noValidate onSubmit={formik.handleSubmit}>
             <Modal.Body>
+                <h2>Find Your BluCollar Account</h2>
                 <Alert show={alert}>
                     {props.errors}
                 </Alert>
@@ -75,28 +67,15 @@ export default function ContractorSignIn(props) {
                         <div style={{ color: "red"}}>{formik.errors.email}</div>
                     )}
                 </Form.Group>
-                <Form.Group md="4" controlId="validationFormik02">
-                    <Form.Label>Password: </Form.Label>
-                    <Form.Control
-                        type="password"
-                        name="password"
-                        value={formik.values.password}
-                        onChange={formik.handleChange}
-                        isInvalid={formik.errors.password}
-                        onBlur={formik.handleBlur}
-                        />
-                        {formik.errors.password && formik.touched.password && (
-                            <div style={{ color: "red"}}>{formik.errors.password}</div>
-                        )}
-                        <Button variant="link" onClick={props.handlePassword}>Forgot Password?</Button>
-                        <Button variant="link" onClick={props.handleClick}>Sign Up For An Account</Button>
-                </Form.Group>
             </Modal.Body>
             <Modal.Footer>
-                <Button variant="primary" type="submit">Sign-In</Button>
+                <Button variant="primary" type="submit">Find Profile</Button>
             </Modal.Footer>
             </Form>
         </Modal>
         </React.Fragment>
     )
+
 }
+
+export default ForgotPassword

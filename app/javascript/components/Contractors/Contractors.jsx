@@ -3,6 +3,7 @@ import { Redirect } from 'react-router-dom'
 import Home from '../Home'
 import ContractorSignIn from '../Login/ContractorSignIn'
 import ContractorSignUp from '../Login/ContractorSignUp'
+import ForgotPassword from '../Login/ForgotPassword'
 import Applicant from '../Contractors/Applicant'
 import JobsContainer from '../../containers/JobsContainer'
 import NavBar from '../NavBar'
@@ -42,9 +43,14 @@ const Contractors = props => {
     }
 
 
+    const handlePassword = () => {
+        setCurrentStep(3)
+    }
+
 if (loading === true) {
         return (
         <div className="spinner">
+            <NavBar handleSignout={props.signOut} contractor={props.contractor} user="contractor" />
             <span className="sr-only">Loading...</span>
         </div>
         )
@@ -68,8 +74,9 @@ if (loading === true) {
         return (
             <div className="signin">
             <Home />
-            <ContractorSignUp signUp={props.signUp} currentStep={currentStep} handleClick={handleClick} errors={errors} />
+            <ContractorSignUp signUp={props.signUp} currentStep={currentStep} handleClick={handleClick} handlePassword={handlePassword} errors={errors} />
             <ContractorSignIn signIn={props.signIn} currentStep={currentStep} handleClick={handleClick} errors={errors} />
+            <ForgotPassword currentStep={currentStep} updatePassword={props.updatePassword} user={"contractor"} />
         </div>
 
         )

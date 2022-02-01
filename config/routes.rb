@@ -21,6 +21,7 @@ Rails.application.routes.draw do
       post '/contractors/signup', to: 'employers#create'
       get '/current_user', to: 'auth#is_logged_in?'
       get '/findcity(/:zipcode)', to: 'auth#find_city'
+      post '/forgot_password', to: 'auth#forgot_password'
       get '/employees/(/:id)/applicants/(:job_id)', to: 'employees#apply'
     end
   end

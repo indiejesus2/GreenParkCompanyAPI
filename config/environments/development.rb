@@ -36,14 +36,10 @@ Rails.application.configure do
 
   config.action_mailer.perform_caching = false
 
-  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.delivery_method = :mailgun
   config.action_mailer.smtp_settings = {
-    port: 587,
-    address: 'smtp.mailgun.org',
-    domain: ENV['DOMAIN_NAME'],
-    user_name: ENV['SMTP_USER_NAME'],
-    password: ENV['SMTP_PASSWORD'],
-    authentication: :plain
+    api_key: ENV['API_SECRET_KEY'],
+    domain: ENV['DOMAIN_NAME']
   }
 
   # Print deprecation notices to the Rails logger.
@@ -70,7 +66,7 @@ Rails.application.configure do
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
-  config.session_store :cookie_store, key: '_interslice_session'
-  config.middleware.use ActionDispatch::Cookiesconfig.middleware.use 
-  config.session_store, config.session_options
+  # config.session_store :cookie_store, key: '_interslice_session'
+  # config.middleware.use ActionDispatch::Cookiesconfig.middleware.use 
+  # config.session_store, config.session_options
 end

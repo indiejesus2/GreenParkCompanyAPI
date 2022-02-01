@@ -51,6 +51,15 @@ class Api::V1::AuthController < ApplicationController
         }
     end
 
+    def forgot_password
+        if params[:user] = "employees"
+            @user = Employee.find_by(email: params[:email])
+        else
+            @user = Employer.find_by(email: params[:email])
+        end
+        byebug
+    end
+
         #     render json: {
         #         user: @user,
         #         current: current_user
