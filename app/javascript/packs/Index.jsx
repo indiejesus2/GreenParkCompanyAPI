@@ -6,7 +6,7 @@ import React from 'react'
 // import { render } from 'react-snapshot'
 import { Provider } from 'react-redux'
 import { BrowserRouter as Router } from 'react-router-dom'
-import { hashHistory } from 'react-router-dom'
+// import { hashHistory } from 'react-router-dom'
 import { createStore, applyMiddleware, combineReducers } from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import { store, persistor } from './configureStore'
@@ -36,7 +36,7 @@ const rootElement = document.getElementById("root")
 document.addEventListener('DOMContentLoaded', () => {
   render(
     <Provider store={store}>
-      <Router history={hashHistory} >
+      <Router>
         <PersistGate loading={null} persistor={persistor}>
           <ScrollToTop />
           <App />

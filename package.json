@@ -1,7 +1,7 @@
 {
   "name": "green_park_company",
   "private": true,
-  "homepage": ".",
+  "homepage": "http://blucollar.com",
   "dependencies": {
     "@babel/core": "^7.0.0",
     "@babel/plugin-proposal-private-methods": "^7.14.5",
