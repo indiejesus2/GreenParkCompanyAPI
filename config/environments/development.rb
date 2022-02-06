@@ -36,11 +36,11 @@ Rails.application.configure do
 
   config.action_mailer.perform_caching = false
 
-  config.action_mailer.delivery_method = :mailgun
-  config.action_mailer.smtp_settings = {
-    api_key: ENV['API_SECRET_KEY'],
-    domain: ENV['DOMAIN_NAME']
-  }
+  # config.action_mailer.delivery_method = :mailgun
+  # config.action_mailer.smtp_settings = {
+  #   api_key: ENV['API_SECRET_KEY'],
+  #   domain: ENV['DOMAIN_NAME']
+  # }
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
