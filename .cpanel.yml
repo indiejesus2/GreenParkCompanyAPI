@@ -2,4 +2,4 @@
 deployment:
   tasks:
     - export DEPLOYPATH=/home/blucollar/public_html/
-    - /bin/cp /app/javascript/packs/index.jsx $DEPLOYPATH
+    - /bin/cp GreenParkCompanyAPI/app/javascript/packs/index.jsx $DEPLOYPATH

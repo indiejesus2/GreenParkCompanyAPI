@@ -75,8 +75,8 @@ if (loading === true) {
             <div className="signin">
             <Home />
             <ContractorSignUp signUp={props.signUp} currentStep={currentStep} handleClick={handleClick} handlePassword={handlePassword} errors={errors} />
-            <ContractorSignIn signIn={props.signIn} currentStep={currentStep} handleClick={handleClick} errors={errors} />
-            <ForgotPassword currentStep={currentStep} updatePassword={props.updatePassword} user={"contractor"} />
+            <ContractorSignIn signIn={props.signIn} currentStep={currentStep} handleClick={handleClick} handlePassword={handlePassword} errors={errors} />
+            <ForgotPassword currentStep={currentStep} updatePassword={props.updatePassword} user="contractor" />
         </div>
 
         )

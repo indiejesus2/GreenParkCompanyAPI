@@ -1,4 +1,5 @@
 export const updatePassword = (user) => {
+    // debugger
     return (dispatch) => {
         const configObj = {
             method: "POST",

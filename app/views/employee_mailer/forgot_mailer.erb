@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <img src="/images/BluCollar-Logo.jpeg" alt="Logo" />
+    <p>Hello <%= @employee.name %>,</p>
+    <p>
+        You are receiving this email because you have requested a password reset for your BluCollar account.
+    </p>
+    <p>
+        Please use this to reset your password: <%= @user.password_reset_token %>
+    </p>
+    <p>
+        This code will expire one hour from password reset request.
+    </p>
+    <p>
+        To reset your password please enter your code in the form here: <a href=<%= @url %>>BluCollar</a>
+    </p>
+    <p>
+        IF you did not request your password to be reset please ignore this email and your password will stay as it is.
+    </p>
+
+    <p>BluCollar</p>
+  </body>
+</html>
