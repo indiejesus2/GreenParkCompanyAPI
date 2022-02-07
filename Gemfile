@@ -38,7 +38,7 @@ gem 'geocoder', '~> 1.3', '>= 1.3.7'
 
 gem 'premailer-rails'
 
-gem 'react-rails'
+# gem 'react-rails'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
