@@ -35,7 +35,7 @@ class Job < ApplicationRecord
       profiles = Profile.all
       applicants = profiles.map{|profile| 
       distance = !!profile.commute ? profile.commute : 100
-        if profile.distance_to(address) <= distance
+        if profile.trade = trade && profile.distance_to(address) <= distance
           profile
         end
       }

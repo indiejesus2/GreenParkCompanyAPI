@@ -27,11 +27,10 @@ export default function contractorsReducer(state = {contractor: [], jobs: [], ap
                 loading: false
             }
         case 'CURRENT_CONTRACTOR':
-            debugger
             return {
                 contractor: action.payload.user.contractor,
                 loggedIn: true,
-                loading: false
+                loading: true
             }
         case 'UPDATE_PROFILE':
             return {

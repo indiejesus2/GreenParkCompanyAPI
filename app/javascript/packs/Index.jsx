@@ -3,44 +3,36 @@
 // of the page.
 
 import React from 'react'
-// import { render } from 'react-snapshot'
+import { render } from 'react-dom'
 import { Provider } from 'react-redux'
 import { BrowserRouter as Router } from 'react-router-dom'
-// import { hashHistory } from 'react-router-dom'
 import { createStore, applyMiddleware, combineReducers } from 'redux';
 import thunkMiddleware from 'redux-thunk';
-import { store, persistor } from './configureStore'
-import { PersistGate } from 'redux-persist/integration/react'
-import { hydrate, render } from 'react-dom';
-import {ReactDOMServer} from 'react-dom/server'
-
-// import employeesReducer from '../reducers/employeesReducer'
-// import contractorsReducer from '../reducers/contractorsReducer'
-// import jobsReducer from '../reducers/jobsReducer';
-// import errorsReducer from '../reducers/errorsReducer'
+import employeesReducer from '../reducers/employeesReducer'
+import contractorsReducer from '../reducers/contractorsReducer'
+import jobsReducer from '../reducers/jobsReducer';
+import errorsReducer from '../reducers/errorsReducer'
 import App from '../components/App'
 import ScrollToTop from '../components/ScrollToTop'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
-// const rootReducer = combineReducers({
-//   employeesReducer,
-//   contractorsReducer,
-//   jobsReducer,
-//   errorsReducer
-// })
+const rootReducer = combineReducers({
+  employeesReducer,
+  contractorsReducer,
+  jobsReducer,
+  errorsReducer
+})
 
-// const store = createStore(rootReducer, applyMiddleware(thunkMiddleware))
-const rootElement = document.getElementById("root")
+const store = createStore(rootReducer, applyMiddleware(thunkMiddleware))
+
 
 document.addEventListener('DOMContentLoaded', () => {
   render(
     <Provider store={store}>
       <Router>
-        <PersistGate loading={null} persistor={persistor}>
-          <ScrollToTop />
-          <App />
-        </PersistGate>
+        <ScrollToTop />
+        <App />
       </Router>
     </Provider>,
     // document.body.style.backgroundColor="#3d8ac9",

@@ -1,9 +1,8 @@
 export const currentUser = () => {
     return (dispatch) => {
-    return fetch(`/api/v1/current_user`, {withCredentials: true})
+    return fetch(`/api/v1/signin`, {withCredentials: true})
     .then(resp => resp.json())
     .then(user => {
-        debugger
         if (user.user == "contractor") {
             dispatch({
                 type: 'CURRENT_CONTRACTOR',

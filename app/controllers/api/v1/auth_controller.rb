@@ -26,11 +26,14 @@ class Api::V1::AuthController < ApplicationController
     end
 
     def is_logged_in?
+        byebug
         if logged_in? && current_user
             @user = session[:contractor_id] ? "contractor" : "employee"
-            @contractor = Employer.find(session[:contractor_id])
             if @user == "contractor" 
-                redirect_to api_v1_employer_path(@contractor)
+                render json: {
+                    user: @user,
+                    contractor: Employer.find(session[:contractor_id])
+                }
                 # redirect_to api_v1_employer_jobs_path(employer_id: session[:contractor_id])
             elsif @user == "employee"
                 redirect_to api_v1_employee_path(id: session[:employee_id])
@@ -49,21 +52,6 @@ class Api::V1::AuthController < ApplicationController
             town: location.display_name.split(",")[0],
             state: location.state
         }
-    end
-
-    def forgot_password
-        if password_params[:user] == "employees"
-            @user = Employee.find_by(email: params[:email])
-            @temp = SecureRandom.random_number(100000)
-            EmployeeMailer.with(employee: @user, temp: @temp).forgot_email.deliver_later
-        elsif password_params[:user] == "contractor"
-            @user = Employer.find_by(email: params[:email])
-            EmployerMailer.with(employee: @user, temp: @temp).forgot_email.deliver_later
-        else
-            render json: {
-                error: "No profile found."
-            }    
-        end
     end
 
         #     render json: {
@@ -93,10 +81,6 @@ class Api::V1::AuthController < ApplicationController
 
     def employer_params
         params.require(:employer).permit(:employer, :email, :password)
-    end
-
-    def password_params
-        params.require(:auth).permit(:email, :user)
     end
 
 end

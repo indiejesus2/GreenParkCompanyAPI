@@ -21,7 +21,6 @@ class Api::V1::ProfilesController < ApplicationController
                     @history.save
                 end
             end
-            EmployeeMailer.with(employee: @employee).welcome_email.deliver_later
             redirect_to api_v1_employee_path(@employee)
         else
             render json: @profile.errors
@@ -40,7 +39,7 @@ class Api::V1::ProfilesController < ApplicationController
                     @history.save
                 end
             end
-            redirect_to api_v1_employee_jobs_path(@employee), status: 303
+            redirect_to api_v1_employee_path(@employee)
         else
             render json: @profile.errors
         end

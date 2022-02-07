@@ -1,6 +1,7 @@
 class Profile < ApplicationRecord
   belongs_to :employee
   has_one :document, through: :employee
+  has_many :experiences
   has_many :jobs, through: :employee
   geocoded_by :address
   # reverse_geocoded_by :latitude, :longitude
@@ -25,16 +26,16 @@ class Profile < ApplicationRecord
 
   def proximity    
     distance = !!commute ? commute : 100
-    industry = Job.where("trade = ?", trade).near(address, distance)
-    jobs = Job.where("trade = ", "Other/None").near(address, distance)
-    jobs.concat(industry)
-    if jobs.length > 0
-      jobs.each {|job|
-        if Applicant.where(job_id: job.id, employee_id: employee_id).length == 0 && !job.applicants.detect{|applicant| applicant.employee_id == employee_id}
-          Applicant.create(employee_id: "#{employee_id}", employer_id: "#{job.employer_id}", job_id: "#{job.id}", distance: distance_to(job))
-        end
-      }
+    if trade != "Other/None"
+      jobs = Job.where("trade = ?", trade).near(address, distance)
+    else
+      jobs = Job.near(address, distance)
     end
+    jobs.each {|job|
+      if Applicant.where(job_id: job.id, employee_id: employee_id).length == 0 && !job.applicants.detect{|applicant| applicant.employee_id == employee_id}
+        Applicant.create(employee_id: "#{employee_id}", employer_id: "#{job.employer_id}", job_id: "#{job.id}", distance: distance_to(job))
+      end
+    }
   end
 
   def findcity
@@ -109,10 +110,9 @@ class Profile < ApplicationRecord
     jobs.each{|job|
       applicant = Applicant.find_by(job_id: job.id)
       if distance_to(job) > distance
-        Applicant.destroy(applicant.id)
+        Applicant.destroy(applicant.id) 
       elsif applicant.distance != distance_to(job)
         applicant.update(distance: distance_to(job))
-        applicant.save
       end
     }
     # if applicants.length > 0

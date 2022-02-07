@@ -10,9 +10,9 @@ class ApplicationController < ActionController::Base
 
     def current_user
         if session[:employee_id]
-            @current_user = Employee.find(session[:employee_id])
+            @current_user = Employee.find(session[:user_id])
         elsif session[:contractor_id]
-            @current_user = Employer.find(session[:contractor_id])
+            @current_user = Employer.find(session[:user_id])
         end
     end
 
@@ -26,9 +26,9 @@ class ApplicationController < ActionController::Base
 
     def set_user
         if session[:employee_id]
-            @user = Employee.find(session[:employee_id])
+            @user = Employee.find(session[:user_id])
         elsif session[:contractor_id]
-            @user = Employer.find(session[:contractor_id])
+            @user = Employer.find(session[:user_id])
         end
     end
 

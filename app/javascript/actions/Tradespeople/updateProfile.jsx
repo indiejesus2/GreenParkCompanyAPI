@@ -11,8 +11,6 @@ export const updateProfile = (profile) => {
         dispatch({type: 'LOADING_EMPLOYEES'})
         return fetch(`/api/v1/employees/${profile.employee_id}/profiles/1`, configObj)
         .then(resp => resp.json())
-        .then(employee => {
-            dispatch({type: 'UPDATE_PROFILE', payload: employee})
-        })
+        .then(profile => dispatch({type: 'UPDATE_PROFILE', payload: profile.data.attributes}))
     }
 }

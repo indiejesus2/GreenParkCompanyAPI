@@ -1,8 +1,6 @@
 class Api::V1::EmployersController < ApplicationController
   before_action :set_employer, only: %i[ show edit update destroy ]
   wrap_parameters :employer, include: [:name, :email, :password]
-  per_request_react_rails_prerenderer
-
 
   # GET /employers or /employers.json
   def index
@@ -12,11 +10,7 @@ class Api::V1::EmployersController < ApplicationController
 
   # GET /employers/1 or /employers/1.json
   def show
-    # react_rails_prerenderer
-    # react_rails_prerenderer.context
-    # react_rails_prerenderer.context.exec("self.Store.setup()")
-    render json: EmployerSerializer.new(@employer), prerender: true
-    # react_rails_prerenderer.context.exec("self.Store.teardown()")
+    render json: EmployerSerializer.new(@employer)
   end
 
   # GET /employers/new

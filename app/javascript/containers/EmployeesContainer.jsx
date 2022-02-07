@@ -12,7 +12,6 @@ import { formatPhoneNumber } from '../actions/CommonWebblock/formatPhoneNumber'
 import { addExperience } from '../actions/Tradespeople/addExperience'
 import { editExperience } from '../actions/Tradespeople/editExperience'
 import { handleInterest } from '../actions/Tradespeople/handleInterest'
-import { updatePassword } from '../actions/updatePassword'
 import Employees from '../components/Employees/Employees'
 import Questionnaire from '../components/Questionnaire/Main'
 import Profile from '../components/Employees/Profile'
@@ -47,7 +46,7 @@ class EmployeesContainer extends Component {
                 <div>
                     <Switch>
                         <Route path='/employees/signIn' render={(routerProps) => <Employees {...routerProps} employee={this.props.employee} currentStep={1} loggedIn={false} signIn={this.props.signIn}/>}></Route>
-                        <Route path='/employees' render={(routerProps) => <Employees {...routerProps} signIn={this.props.signIn} signUp={this.props.signUp} loggedIn={this.props.loggedIn} employee={this.props.employee} profile={this.props.profile}  jobs={this.props.jobs} loading={this.props.loading} createProfile={this.props.createProfile} errors={this.props.errors} signOut={this.props.signOutEmployee} updatePassword={this.props.updatePassword} />}></Route>
+                        <Route path='/employees' render={(routerProps) => <Employees {...routerProps} signIn={this.props.signIn} signUp={this.props.signUp} loggedIn={this.props.loggedIn} employee={this.props.employee} profile={this.props.profile}  jobs={this.props.jobs} loading={this.props.loading} createProfile={this.props.createProfile} errors={this.props.errors} signOut={this.props.signOutEmployee}/>}></Route>
                     </Switch>
                 </div>
             )
@@ -98,7 +97,6 @@ const mapDispatchToProps = dispatch => ({
     findCity: postal => dispatch(findCity(postal)),
     formatPhoneNumber: value => dispatch(formatPhoneNumber(value)),
     handleInterest: application => dispatch(handleInterest(application)),
-    updatePassword: user => dispatch(updatePassword(user)),
     signOutEmployee: () => dispatch(signOutEmployee())
 })
 
