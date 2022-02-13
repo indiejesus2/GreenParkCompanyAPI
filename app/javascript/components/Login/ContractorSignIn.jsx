@@ -83,14 +83,13 @@ export default function ContractorSignIn(props) {
                         value={formik.values.password}
                         onChange={formik.handleChange}
                         isInvalid={formik.errors.password}
-                    onBlur={formik.handleBlur}
-
+                        onBlur={formik.handleBlur}
                         />
                         {formik.errors.password && formik.touched.password && (
                             <div style={{ color: "red"}}>{formik.errors.password}</div>
                         )}
+                        <Button variant="link" onClick={props.handlePassword}>Forgot Password?</Button>
                         <Button variant="link" onClick={props.handleClick}>Sign Up For An Account</Button>
-
                 </Form.Group>
             </Modal.Body>
             <Modal.Footer>

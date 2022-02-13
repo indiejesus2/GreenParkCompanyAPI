@@ -9,9 +9,9 @@ import NavBar from '../components/NavBar'
 
 const App = () => {
 
-    useEffect(() => {
-        currentUser()
-    })
+    // useEffect(() => {
+    //     currentUser()
+    // })
         
         return (
             <div>

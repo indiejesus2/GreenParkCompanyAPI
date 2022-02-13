@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import Home from '../Home'
 import EmployeeSignIn from '../Login/EmployeeSignIn'
 import EmployeeSignUp from '../Login/EmployeeSignUp'
+import ForgotPassword from '../Login/ForgotPassword'
 import Jobs from './Jobs'
 import Questionnaire from '../Questionnaire/Main'
 import NavBar from '../NavBar'
@@ -36,6 +37,10 @@ const Employees = props => {
         }
     }
 
+    const handlePassword = () => {
+        setCurrentStep(3)
+    }
+
     const handleJobs = () => {
         if (jobs.length == 0) {
             return (
@@ -59,8 +64,9 @@ const Employees = props => {
         return (
             <div className="signin">
                     <Home />
-                    <EmployeeSignUp signUp={props.signUp} currentStep={currentStep} handleClick={handleClick} errors={errors} />
-                    <EmployeeSignIn signIn={props.signIn} currentStep={currentStep} handleClick={handleClick} errors={errors} />
+                    <EmployeeSignUp signUp={props.signUp} currentStep={currentStep} handleClick={handleClick} handlePassword={handlePassword} errors={errors} />
+                    <EmployeeSignIn signIn={props.signIn} currentStep={currentStep} handleClick={handleClick} handlePassword={handlePassword} errors={errors} />
+                    <ForgotPassword currentStep={currentStep} updatePassword={props.updatePassword} user={"employee"} />
                 </div>
         )
     } else if (state.profile.length === 0) {

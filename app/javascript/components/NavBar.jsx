@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import {Link} from 'react-router-dom'
-import {Button, Breadcrumb} from 'react-bootstrap'
+import {Breadcrumb} from 'react-bootstrap'
 
-const NavBar  = props => {
+const NavBar = props => {
     
         if (props.user == "employee") {
             return (

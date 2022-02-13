@@ -1,19 +1,23 @@
 export const currentUser = () => {
     return (dispatch) => {
-    return fetch(`/api/v1/signin`, {withCredentials: true})
+    return fetch(`/api/v1/current_user`, {withCredentials: true})
     .then(resp => resp.json())
     .then(user => {
-        if (user.user == "contractor") {
+        if (user.data.type == "employer") {
             dispatch({
                 type: 'CURRENT_CONTRACTOR',
                 payload: user
             })
-        } else if (user.user == "employee") {
+        } else if (user.data.type == "employee") {
             dispatch({
                 type: 'CURRENT_EMPLOYEE',
                 payload: user
                 })
+        } else {
+            dispatch({
+                type: 'LOGOUT_EMPLOYEE',
+                type: 'LOGOUT_CONTRACTOR'
+            })
         }
-    })
-}
+    })}
 }

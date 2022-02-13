@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_13_015440) do
+ActiveRecord::Schema.define(version: 2022_02_07_010833) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "citext"
@@ -34,7 +34,7 @@ ActiveRecord::Schema.define(version: 2021_12_13_015440) do
     t.text "metadata"
     t.string "service_name", null: false
     t.bigint "byte_size", null: false
-    t.string "checksum", null: false
+    t.string "checksum"
     t.datetime "created_at", null: false
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
@@ -75,6 +75,8 @@ ActiveRecord::Schema.define(version: 2021_12_13_015440) do
     t.string "password_digest"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "password_reset_token"
+    t.datetime "password_reset_sent"
     t.index ["email"], name: "index_employees_on_email", unique: true
   end
 
@@ -91,6 +93,8 @@ ActiveRecord::Schema.define(version: 2021_12_13_015440) do
     t.boolean "status"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "password_reset_token"
+    t.datetime "password_reset_sent"
     t.index ["email"], name: "index_employers_on_email", unique: true
   end
 

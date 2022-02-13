@@ -166,7 +166,8 @@ const Applicants = (props) => {
     const handleApplied = (e) => {
         let filtered = []
         Object.entries(candidates).map(function([info, applicant]) {
-            if(applicant.interested == true) {
+            debugger
+            if(applicant.application.interested == true) {
                 filtered.push(applicant)
             }
         })
