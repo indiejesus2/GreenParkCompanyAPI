@@ -15,6 +15,7 @@ ActiveRecord::Schema.define(version: 2022_02_07_010833) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "citext"
   enable_extension "hstore"
+  enable_extension "pgcrypto"
   enable_extension "plpgsql"
 
   create_table "active_storage_attachments", force: :cascade do |t|
@@ -45,10 +46,10 @@ ActiveRecord::Schema.define(version: 2022_02_07_010833) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
-  create_table "applicants", force: :cascade do |t|
-    t.bigint "employee_id", null: false
-    t.bigint "employer_id", null: false
-    t.bigint "job_id", null: false
+  create_table "applicants", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "employee_id"
+    t.uuid "employer_id"
+    t.uuid "job_id"
     t.integer "rating", default: 0
     t.float "distance"
     t.datetime "created_at", precision: 6, null: false
@@ -60,17 +61,17 @@ ActiveRecord::Schema.define(version: 2022_02_07_010833) do
     t.index ["job_id"], name: "index_applicants_on_job_id"
   end
 
-  create_table "documents", force: :cascade do |t|
+  create_table "documents", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "filename"
     t.string "content_type"
     t.binary "file_contents"
-    t.bigint "employee_id", null: false
+    t.uuid "employee_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["employee_id"], name: "index_documents_on_employee_id"
   end
 
-  create_table "employees", force: :cascade do |t|
+  create_table "employees", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.citext "email"
     t.string "password_digest"
     t.datetime "created_at", precision: 6, null: false
@@ -80,7 +81,7 @@ ActiveRecord::Schema.define(version: 2022_02_07_010833) do
     t.index ["email"], name: "index_employees_on_email", unique: true
   end
 
-  create_table "employers", force: :cascade do |t|
+  create_table "employers", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name"
     t.citext "email"
     t.string "phone"
@@ -98,7 +99,7 @@ ActiveRecord::Schema.define(version: 2022_02_07_010833) do
     t.index ["email"], name: "index_employers_on_email", unique: true
   end
 
-  create_table "experiences", force: :cascade do |t|
+  create_table "experiences", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "title"
     t.string "company"
     t.string "city"
@@ -109,11 +110,11 @@ ActiveRecord::Schema.define(version: 2022_02_07_010833) do
     t.string "enddate"
     t.text "description"
     t.boolean "current"
-    t.bigint "employee_id", null: false
+    t.uuid "employee_id"
     t.index ["employee_id"], name: "index_experiences_on_employee_id"
   end
 
-  create_table "jobs", force: :cascade do |t|
+  create_table "jobs", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "title"
     t.boolean "status", default: false
     t.string "city"
@@ -131,7 +132,7 @@ ActiveRecord::Schema.define(version: 2022_02_07_010833) do
     t.text "trade"
     t.boolean "license"
     t.text "description"
-    t.bigint "employer_id", null: false
+    t.uuid "employer_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["employer_id"], name: "index_jobs_on_employer_id"
@@ -140,7 +141,7 @@ ActiveRecord::Schema.define(version: 2022_02_07_010833) do
     t.index ["shifts"], name: "index_jobs_on_shifts", using: :gin
   end
 
-  create_table "profiles", force: :cascade do |t|
+  create_table "profiles", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "fname"
     t.string "lname"
     t.string "city"
@@ -159,7 +160,7 @@ ActiveRecord::Schema.define(version: 2022_02_07_010833) do
     t.integer "commute", default: 100
     t.text "trade"
     t.text "description"
-    t.bigint "employee_id", null: false
+    t.uuid "employee_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "paytype"
@@ -171,11 +172,4 @@ ActiveRecord::Schema.define(version: 2022_02_07_010833) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "applicants", "employees"
-  add_foreign_key "applicants", "employers"
-  add_foreign_key "applicants", "jobs"
-  add_foreign_key "documents", "employees"
-  add_foreign_key "experiences", "employees"
-  add_foreign_key "jobs", "employers"
-  add_foreign_key "profiles", "employees"
 end

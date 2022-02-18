@@ -1,6 +1,6 @@
 class CreateJobs < ActiveRecord::Migration[6.0]
   def change
-    create_table :jobs do |t|
+    create_table :jobs, id: :uuid, default: 'gen_random_uuid()' do |t|
       t.string :title
       t.boolean :status, default: false
       t.string :city
@@ -18,11 +18,13 @@ class CreateJobs < ActiveRecord::Migration[6.0]
       t.text :trade
       t.boolean :license
       t.text :description
-      t.references :employer, null: false, foreign_key: true
+      t.references :employer, type: :uuid
+      # t.references :employer, null: false, foreign_key: true
       t.timestamps
     end
     add_index :jobs, :jobtype, using: 'gin'
     add_index :jobs, :schedule, using: 'gin'
     add_index :jobs, :shifts, using: 'gin'
+    add_index :jobs, :employer_id, unique: true
   end
 end

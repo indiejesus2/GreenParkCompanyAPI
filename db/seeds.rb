@@ -23,33 +23,33 @@
 
 # BluCollar
   Employee.create(email: "pl@paulleo.com", password: "abc123")
-  Employee.create(email: "jp@jonpotzer.com", password: "abc123")
-  Employee.create(email: "ib@irabrickman.com", password: "abc123")
-  Employee.create(email: "cb@chuckbowne.com", password: "abc123")
-  Employee.create(email: "td@tomdonaway.com", password: "abc123")
-  Employee.create(email: "rp@russpace.com", password: "abc123")
-  Employee.create(email: "am@alanmanowitz.com", password: "abc123")
-  Employee.create(email: "TL@tomlynar.com", password: "abc123")
-  Employee.create(email: "re@russevans.com", password: "abc123")
-  Employee.create(email: "wp@wayneparisi.com", password: "abc123")
-  Employee.create(email: "TT@tonytesta.com", password: "abc123")
-  Employee.create(email: "dp@daveprice.com", password: "abc123")
-  Employee.create(email: "rf@robferraro.com", password: "abc123")
-  Employee.create(email: "ol@olivialeo.com", password: "abc123")
-  Employee.create(email: "al@alexoleo.com", password: "abc123")
-  Employee.create(email: "joe.bruns@gmail.com", password: "abc123")
-  Employee.create(email: "cj@chrisjouan.com", password: "abc123")
-  Employee.create(email: "jon@potzer.com", password: "abc123")
-  Employee.create(email: "nm@nickmangold.com", password: "abc123")
-  Employee.create(email: "hello@gmail.com",  password: "abc123")
+  Employee.create(email: "jp@jonpotzer.com", password: "abc123", id: "34b050c5-4e3b-45ee-a09b-1919033570ca")
+  Employee.create(email: "ib@irabrickman.com", password: "abc123", id: "ec52a9d9-4c1a-4f20-a5be-ce3316d4222c")
+  Employee.create(email: "cb@chuckbowne.com", password: "abc123", id: "65f54cf8-6674-4222-b739-046ebe1f2b41")
+  Employee.create(email: "td@tomdonaway.com", password: "abc123", id: "d5e5f79f-a558-497b-96ce-e0fbe6f37d2c")
+  Employee.create(email: "rp@russpace.com", password: "abc123", id: "f0c283e0-7426-4b98-a707-507980c03e1e")
+  Employee.create(email: "am@alanmanowitz.com", password: "abc123", id: "c62f76ae-23ff-4f0b-a61a-579a1bd457f9")
+  Employee.create(email: "TL@tomlynar.com", password: "abc123", id: "6ae519eb-d451-46f9-aca9-fd101809547d")
+  Employee.create(email: "re@russevans.com", password: "abc123", id: "3bf6a6ed-9eca-4133-8ab6-f8f6210f09a6")
+  Employee.create(email: "wp@wayneparisi.com", password: "abc123", id: "5fccccfa-b537-415f-82c7-a205898d8b2a")
+  Employee.create(email: "TT@tonytesta.com", password: "abc123", id: "3156fd8c-380a-48e5-b071-cbe27e2722f2")
+  Employee.create(email: "dp@daveprice.com", password: "abc123", id: "a259a8b8-96a2-4ca6-b93d-042550ec84cd")
+  Employee.create(email: "rf@robferraro.com", password: "abc123", id: "edb4e6c2-6be0-4de6-8e37-d9111790b20d")
+  Employee.create(email: "ol@olivialeo.com", password: "abc123", id: "a22d5bde-4e29-4ecb-a45d-070dd4c796ac")
+  Employee.create(email: "al@alexoleo.com", password: "abc123", id: "d6dc8c51-c762-486c-a9fc-67ed2e0dac3b")
+  Employee.create(email: "joe.bruns@gmail.com", password: "abc123", id: "aaa0da7b-6701-45a2-933e-4ab3baca775a")
+  Employee.create(email: "cj@chrisjouan.com", password: "abc123", id: "af802683-4f3a-4a02-ae91-b77557e25afe")
+  Employee.create(email: "jon@potzer.com", password: "abc123", id: "b6bbcc26-77f0-450b-8244-a7e68624f7d3")
+  Employee.create(email: "nm@nickmangold.com", password: "abc123", id: "5a590f64-4f53-4ab3-89bc-9eb32348ff9d")
+  Employee.create(email: "hello@gmail.com",  password: "abc123", id: "c19f1e35-3673-4984-aacf-a0c68ea2628f")
 
-  Employer.create(name: "Elmer Painting", email: "ep@elmerpainting.com",  password: "abc123", monthly: true, yearly: false, status: true)
-  Employer.create(name: "Green Park Company", email: "gp@greenpark.com",  password: "abc123", monthly: true, yearly: false, status: true)
-  Employer.create(name: "Hickory Tree Landscaping", email: "ht@hickorytree.com",  password: "abc123", monthly: true, yearly: false, status: true)
-  Employer.create(name: "North Pole Insulation", email: "np@northpole.com",  password: "abc123", monthly: false, yearly: true, status: true)
-  Employer.create(name: "Star Max Framing", email: "st@starmax.com",  password: "abc123", monthly: true, yearly: false, status: true)
-  Employer.create(name: "Clear Choice Floors", email: "cc@clearchoice.com", password: "abc123", monthly: true, yearly: false, status: true)
-  Employer.create(name: "Oscar", email: "joe.bruns@gmail.com", password: "abc123", monthly: true, yearly: false, status: true)
+  Employer.create(name: "Elmer Painting", email: "ep@elmerpainting.com",  password: "abc123", monthly: true, yearly: false, status: true, id: "b65a2c63-46ef-4ab0-a6dc-4ae5f89ad002")
+  Employer.create(name: "Green Park Company", email: "gp@greenpark.com",  password: "abc123", monthly: true, yearly: false, status: true, id: "36bbe522-8bb0-479a-9961-e2f1feb385e1")
+  Employer.create(name: "Hickory Tree Landscaping", email: "ht@hickorytree.com",  password: "abc123", monthly: true, yearly: false, status: true, id: "65ab5ce3-b209-4789-9ab7-d6a0f53fcbfb")
+  Employer.create(name: "North Pole Insulation", email: "np@northpole.com",  password: "abc123", monthly: false, yearly: true, status: true, id: "51bb9509-ff1f-4ceb-b88f-cc26ad04c825")
+  Employer.create(name: "Star Max Framing", email: "st@starmax.com",  password: "abc123", monthly: true, yearly: false, status: true, id: "a2ae3409-802a-47b5-8970-3a1241ef7559")
+  Employer.create(name: "Clear Choice Floors", email: "cc@clearchoice.com", password: "abc123", monthly: true, yearly: false, status: true, id: "8235eb78-4877-4b46-a42e-5ba8c58b3473")
+  Employer.create(name: "Oscar", email: "joe.bruns@gmail.com", password: "abc123", monthly: true, yearly: false, status: true, id: "91a2312c-33cd-47a7-a23c-2604800b9fc3")
 
   Profile.create(
       fname: "Jon",
@@ -70,7 +70,7 @@
       commute: 25,
       trade: "Other/None",
       description: nil,
-      employee_id: 2,
+      employee_id: "34b050c5-4e3b-45ee-a09b-1919033570ca",
       paytype: "Hourly",
   )
  
@@ -94,7 +94,7 @@
       commute: 25,
       trade: "Maintenance",
       description: nil,
-      employee_id: 3,
+      employee_id: "ec52a9d9-4c1a-4f20-a5be-ce3316d4222c",
       paytype: "Hourly",
   )
  
@@ -118,7 +118,7 @@
       commute: 25,
       trade: "",
       description: nil,
-      employee_id: 4,
+      employee_id: "65f54cf8-6674-4222-b739-046ebe1f2b41",
       paytype: "Hourly",
   )
  
@@ -142,7 +142,7 @@
       commute: 25,
       trade: "",
       description: nil,
-      employee_id: 5,
+      employee_id: "d5e5f79f-a558-497b-96ce-e0fbe6f37d2c",
       paytype: "Hourly",
   )
  
@@ -166,7 +166,7 @@
       commute: 25,
       trade: "",
       description: nil,
-      employee_id: 6,
+      employee_id: "f0c283e0-7426-4b98-a707-507980c03e1e",
       paytype: "Hourly",
   )
  
@@ -190,7 +190,7 @@
       commute: 50,
       trade: "",
       description: nil,
-      employee_id: 7,
+      employee_id: "c62f76ae-23ff-4f0b-a61a-579a1bd457f9",
       paytype: "Hourly",
   )
  
@@ -214,7 +214,7 @@
       commute: 25,
       trade: "Other/None",
       description: nil,
-      employee_id: 8,
+      employee_id: "6ae519eb-d451-46f9-aca9-fd101809547d",
       paytype: "Hourly",
   )
  
@@ -238,8 +238,8 @@
       commute: 15,
       trade: "Other/None",
       description: nil,
-      employee_id: 9,
       paytype: "Hourly",
+      employee_id: "3bf6a6ed-9eca-4133-8ab6-f8f6210f09a6"
   )
  
  
@@ -262,7 +262,7 @@
       commute: 25,
       trade: "Other/None",
       description: nil,
-      employee_id: 10,
+      employee_id: "5fccccfa-b537-415f-82c7-a205898d8b2a",
       paytype: "Hourly",
   )
  
@@ -286,7 +286,7 @@
       commute: 25,
       trade: "Maintenance",
       description: nil,
-      employee_id: 11,
+      employee_id: "3156fd8c-380a-48e5-b071-cbe27e2722f2",
       paytype: "Hourly",
   )
  
@@ -310,7 +310,7 @@
       commute: 25,
       trade: "Other/None",
       description: nil,
-      employee_id: 13,
+      employee_id: "edb4e6c2-6be0-4de6-8e37-d9111790b20d",
       paytype: "Hourly",
   )
  
@@ -334,7 +334,7 @@
       commute: 25,
       trade: "Landscape",
       description: nil,
-      employee_id: 12,
+      employee_id: "a259a8b8-96a2-4ca6-b93d-042550ec84cd",
       paytype: "Hourly",
   )
  
@@ -358,7 +358,7 @@
       commute: 10,
       trade: "Other/None",
       description: nil,
-      employee_id: 14,
+      employee_id: "a22d5bde-4e29-4ecb-a45d-070dd4c796ac",
       paytype: "Hourly",
   )
  
@@ -382,7 +382,7 @@
       commute: 25,
       trade: "Other/None",
       description: nil,
-      employee_id: 18,
+      employee_id: "b6bbcc26-77f0-450b-8244-a7e68624f7d3",
       paytype: "Hourly",
   )
  
@@ -406,7 +406,7 @@
       commute: 15,
       trade: "Painting",
       description: nil,
-      employee_id: 15,
+      employee_id: "d6dc8c51-c762-486c-a9fc-67ed2e0dac3b",
       paytype: "Hourly",
   )
  
@@ -430,7 +430,7 @@
       commute: 25,
       trade: "Plumbing",
       description: nil,
-      employee_id: 16,
+      employee_id: "aaa0da7b-6701-45a2-933e-4ab3baca775a",
       paytype: "Hourly",
   )
  
@@ -454,7 +454,7 @@
       commute: 5,
       trade: "Other/None",
       description: nil,
-      employee_id: 17,
+      employee_id: "af802683-4f3a-4a02-ae91-b77557e25afe",
       paytype: "Hourly",
   )
  
@@ -478,7 +478,7 @@
       commute: 25,
       trade: "Other/None",
       description: nil,
-      employee_id: 19,
+      employee_id: "5a590f64-4f53-4ab3-89bc-9eb32348ff9d",
       paytype: "Hourly",
   )
  
@@ -502,8 +502,8 @@
       commute: 15,
       trade: "Landscape",
       description: nil,
-      employee_id: 1,
       paytype: "Hourly",
+      employee_id: "58029546-479f-46af-b1d0-40d566e1b365"
   )
  
  Profile.create(
@@ -525,7 +525,7 @@
      commute: 25,
      trade: "Electric",
      description: nil,
-     employee_id: 20,
+     employee_id: "c19f1e35-3673-4984-aacf-a0c68ea2628f",
      paytype: "Hourly"
  )
 
@@ -548,7 +548,7 @@
      trade: "Painting",
      license: false,
      description: "",
-     employer_id: 1,
+     employer_id: "b65a2c63-46ef-4ab0-a6dc-4ae5f89ad002",
  )
  Job.create(
      title: "Irrigation",
@@ -568,7 +568,7 @@
      trade: "Other/None",
      license: false,
      description: "",
-     employer_id: 2,
+     employer_id: "36bbe522-8bb0-479a-9961-e2f1feb385e1",
  )
  Job.create(
      title: "Landscaper",
@@ -588,7 +588,7 @@
      trade: "Landscape",
      license: true,
      description: "",
-     employer_id: 3,
+     employer_id: "65ab5ce3-b209-4789-9ab7-d6a0f53fcbfb",
  )
  Job.create(
      title: "Insulator",
@@ -608,7 +608,7 @@
      trade: "Other/None",
      license: true,
      description: "",
-     employer_id: 4,
+     employer_id: "51bb9509-ff1f-4ceb-b88f-cc26ad04c825",
  )
  Job.create(
      title: "Framer",
@@ -628,7 +628,7 @@
      trade: "Other/None",
      license: true,
      description: "",
-     employer_id: 5,
+     employer_id: "a2ae3409-802a-47b5-8970-3a1241ef7559",
  )
  Job.create(
      title: "Wood Floor Installer/Finisher",
@@ -648,7 +648,7 @@
      trade: "Other/None",
      license: true,
      description: "Install and finish wood floors throughout NJ  Long hours but good pay!",        
-     employer_id: 6,
+     employer_id: "8235eb78-4877-4b46-a42e-5ba8c58b3473",
  )
  Job.create(
      title: "Ceo",
@@ -668,7 +668,7 @@
      trade: "Plumbing",
      license: true,
      description: "",
-     employer_id: 7,
+     employer_id: "91a2312c-33cd-47a7-a23c-2604800b9fc3",
  )
  Job.create(
      title: "Electrical",
@@ -688,5 +688,5 @@
      trade: "Electric",
      license: true,
      description: "",
-     employer_id: 7,
+     employer_id: "91a2312c-33cd-47a7-a23c-2604800b9fc3",
  )
