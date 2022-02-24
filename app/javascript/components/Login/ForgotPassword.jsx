@@ -29,8 +29,8 @@ const ForgotPassword = props => {
             user: props.user
         },
         onSubmit: values => {
-                props.updatePassword(values)
-                history.push('/')
+            props.updatePassword(values)
+            history.push('/')
         },
     });
 

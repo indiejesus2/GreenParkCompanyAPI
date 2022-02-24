@@ -71,7 +71,10 @@ const Employees = props => {
         )
     } else if (state.profile.length === 0) {
         return (
-            <Questionnaire employee={props.employee} createProfile={props.createProfile} handleSignout={props.signOutEmployee} uploadFile={props.uploadFile} fileLoading={props.fileLoading} />
+            <div className="questionnaire">
+                <NavBar handleSignout={props.signOut} loggedIn={props.loggedIn} />
+                <Questionnaire employee={props.employee} createProfile={props.createProfile} handleSignout={props.signOutEmployee} uploadFile={props.uploadFile} fileLoading={props.fileLoading} />
+            </div>
         )
         
     } else {

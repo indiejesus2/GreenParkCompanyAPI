@@ -25,14 +25,6 @@ class ContractorsContainer extends Component {
     componentDidUpdate() {
         this.props.currentUser()
     }
-    // componentDidMount() {
-    //     debugger
-
-    // //     // debugger
-    // //     if (this.props.jobs && this.props.jobs.length == 0) {
-    // //         this.props.fetchJobs(this.props.contractor)
-    // //     }
-    // }
 
     handleSignout = () => {
         this.props.signOut()

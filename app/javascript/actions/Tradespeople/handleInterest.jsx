@@ -10,8 +10,9 @@ export const handleInterest = (application) => {
         };
         return fetch(`/api/v1/employees/${application.employee_id}/applicants/${application.job_id}`, {configObj})
         .then(resp => resp.json())
-        .then(applications => {
-            dispatch({type: 'UPDATE_APPLICATIONS', payload: applications})
+        .then(applications => {dispatch({type: 'UPDATE_APPLICATIONS', payload: applications})})
+        .catch(err => {
+            dispatch({type: 'ERROR_EMPLOYEE', payload: err})
         })
     }
 }

@@ -12,5 +12,8 @@ export const updateSubscription = (subscription) => {
         return fetch(`/api/v1/employers/${subscription.id}`, configObj)
         .then(resp => resp.json())
         .then(subscription => dispatch({type: 'UPDATE_SUBSCRIPTION', payload: subscription.data.attributes}))
+        .catch(err => {
+            dispatch({type: 'ERROR_CONTRACTOR', payload: err})
+        })
     }
 }

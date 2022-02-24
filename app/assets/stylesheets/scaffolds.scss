@@ -596,7 +596,7 @@ job-body .table {
 }
 
 .loading {
-  position: absolute;
+  position: relative;
   top: 20px;
   left: 25px;
 }
@@ -626,6 +626,31 @@ job-body .table {
 .modal-header {
   justify-content: center;
 }
+
+.applied {
+  position: relative;
+  right: 185px;
+}
+
+.homeApplied {
+  position: relative;
+  left: 185px
+}
+
+.homeApplied input {
+  display: block;
+  min-height: 1.5rem;
+  padding-left: 1.5em;
+  margin-bottom: .125rem;
+  float: left;
+  margin-left: -1.5em;
+  border-radius: .25em;
+}
+
+.applicants #proximity {
+  width: 50px;
+}
+
 
 // .homepage-contractors {
 //   margin-top: 40px;

@@ -141,6 +141,7 @@ const Applicants = (props) => {
     }
 
     const handleLocation = (e) => {
+        debugger
         const candidates = original.map(function(profile) {
             if (profile.application.distance <= parseInt(e.target.value)) {
                 return profile
@@ -151,6 +152,7 @@ const Applicants = (props) => {
 
     const handleClear = () => {
         setCandidates(original)
+        debugger
     }
 
     const handleInterest = (candidate) => {
@@ -197,13 +199,16 @@ const Applicants = (props) => {
             )}
         </Form.Control> */}
         <Form.Control as="select" name="proximity" id="proximity" onChange={handleLocation}> Proximity
+            <option value={100}>--</option>
             <option value={25}>25 Miles</option>
             <option value={50}>50 Miles</option>
             <option value={75}>75 Miles</option>
             <option value={100}>100 Miles</option>
         </Form.Control>
         <div className="search-buttons">
-            <Form.Check name="applied" id="applied" label="Applied Candidates" onChange={handleApplied}/>
+            <div className="applied">
+                <Form.Check name="applied" id="applied" label="Applied Candidates" onChange={handleApplied}/>
+            </div>
             <Button onClick={handleClear}> Clear </Button>
             <Button type="submit"> Search </Button>
         </div>

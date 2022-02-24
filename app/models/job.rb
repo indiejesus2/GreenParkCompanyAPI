@@ -27,7 +27,7 @@ def proximity
     profiles = Profile.all
     applicants = profiles.map{|profile| 
       distance = !!profile.commute ? profile.commute : 100
-      if profile.trade = trade && profile.distance_to(address) <= distance
+      if (profile.trade == trade || profile.trade == "Other/None") && profile.distance_to(address) <= distance
         profile
       end
     }

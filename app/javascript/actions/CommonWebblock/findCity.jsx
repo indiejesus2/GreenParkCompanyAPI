@@ -7,7 +7,7 @@ const findCity = async (postal) => {
         },
         body: JSON.stringify(postal)
     };
-    const resp = await fetch(`api/v1/findcity/${postal}`, { configObj })
+    const resp = await fetch(`/api/v1/findcity/${postal}`, { configObj })
     const data = await resp.json()
     if (data.town) {
         let location  = ["city" = data.town, "state" = data.state]

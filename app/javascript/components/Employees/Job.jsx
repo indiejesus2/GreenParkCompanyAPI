@@ -67,7 +67,15 @@ const Job = props => {
                 </div>
                 <div className="job-body">
 
-                <Table style={{"padding-top": "10px"}}>
+                <Table style={{"padding-top": "10px"}}>                
+                    <tr>
+                    <td>
+                        Trade:                         
+                    </td>
+                    <td>
+                        {job.trade}
+                    </td>
+                    </tr>
                     <tr>
                     <td>
                         Job Type:                         

@@ -22,7 +22,9 @@ Rails.application.routes.draw do
       get '/current_user', to: 'auth#is_logged_in?'
       get '/findcity(/:zipcode)', to: 'auth#find_city'
       post '/forgot_password', to: 'auth#forgot_password'
+      post '/reset_password' to: 'auth#reset_password'
       get '/employees/(/:id)/applicants/(:job_id)', to: 'employees#apply'
+      delete '/logout', to: 'auth#destroy'
     end
   end
 end

@@ -1,5 +1,4 @@
 export const fetchJobs = (employer) => {
-    debugger
     return (dispatch) => {
         const configObj = {
             method: "GET",
@@ -12,5 +11,8 @@ export const fetchJobs = (employer) => {
     return fetch(`/api/v1/contractors/${employer.id}/jobs`, configObj)
     .then(resp => resp.json())
     .then(job => dispatch({type: 'FETCH_JOBS', payload: job.data.attributes}))
+    .catch(err => {
+        dispatch({type: 'ERROR_CONTRACTOR', payload: err})
+    })
     }
 }

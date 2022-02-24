@@ -158,7 +158,7 @@ ActiveRecord::Schema.define(version: 2022_02_07_010833) do
     t.text "seasonend"
     t.float "minpay"
     t.integer "commute", default: 100
-    t.text "trade"
+    t.text "trade", default: "Other/None"
     t.text "description"
     t.uuid "employee_id"
     t.datetime "created_at", precision: 6, null: false

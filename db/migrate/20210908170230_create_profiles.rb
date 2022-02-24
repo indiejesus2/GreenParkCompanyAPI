@@ -21,7 +21,7 @@ class CreateProfiles < ActiveRecord::Migration[6.0]
       t.text :seasonend
       t.float :minpay
       t.integer :commute, default: "100"
-      t.text :trade
+      t.text :trade, default: "Other/None"
       # t.boolean :military, default: false
       # t.text :certificates, array: true, default: []
       t.text :description
@@ -34,7 +34,7 @@ class CreateProfiles < ActiveRecord::Migration[6.0]
     add_index :profiles, :jobtype, using: 'gin'
     add_index :profiles, :schedule, using: 'gin'
     add_index :profiles, :shifts, using: 'gin'
-    add_index :profiles, :employee_id, unique: true
+    # add_index :profiles, :employee_id, unique: true
     # add_index :profiles, :certificates, using: 'gin'
     #Ex:- add_index("admin_users", "username")
   end

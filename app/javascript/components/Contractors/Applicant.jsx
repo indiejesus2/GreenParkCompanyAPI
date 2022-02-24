@@ -7,6 +7,12 @@ const Applicant = (props) => {
        
     const [applicants, setApplicants] = useState(props.applicants)
     const [jobs, setJob] = useState(props.jobs)
+
+    useEffect(() => {
+        if (applicants != props.applicants){
+            setApplicants(props.applicants)
+        }
+    });
     
     const applications = () => {
         let profiles = []
@@ -194,6 +200,10 @@ const Applicant = (props) => {
             return (
                 <div className="newemployer">
                     <h1>{candidates.length} {candidates.length<=1?"Applicant":"Applicants!"}</h1>
+                    <div className='homeApplied'>
+                        <input type="checkbox" id="applied" name="applied" value="applied" onChange={handleApplied}/>
+                        <label htmlFor="applied">Applied Candidates</label>
+                    </div>
                 </div>
             )
         }
@@ -213,8 +223,7 @@ const Applicant = (props) => {
     return (
         <div className="applicants">
             {header()}
-            <input type="checkbox" id="applied" name="applied" value="applied" onChange={handleApplied}/>
-            <label htmlFor="applied">Applied Candidates</label>
+            
         {/* <div className="search">
             <Form onSubmit={handleSearch}>
             <label htmlFor="search">Search Candidates: </label>

@@ -13,6 +13,7 @@ import { addExperience } from '../actions/Tradespeople/addExperience'
 import { editExperience } from '../actions/Tradespeople/editExperience'
 import { handleInterest } from '../actions/Tradespeople/handleInterest'
 import { updatePassword } from '../actions/updatePassword'
+import { currentUser } from '../actions/currentUser'
 import Employees from '../components/Employees/Employees'
 import Questionnaire from '../components/Questionnaire/Main'
 import Profile from '../components/Employees/Profile'
@@ -23,6 +24,12 @@ import NavBar from '../components/NavBar'
 import Logo from '../components/Logo'
 
 class EmployeesContainer extends Component {
+
+    componentDidUpdate() {
+        if (!!this.props.employee) {
+            this.props.currentUser()
+        }
+    }
 
     handleSignout = () => {
         this.props.signOut()
@@ -99,6 +106,7 @@ const mapDispatchToProps = dispatch => ({
     formatPhoneNumber: value => dispatch(formatPhoneNumber(value)),
     handleInterest: application => dispatch(handleInterest(application)),
     updatePassword: user => dispatch(updatePassword(user)),
+    currentUser: () => dispatch(currentUser()),
     signOutEmployee: () => dispatch(signOutEmployee())
 })
 

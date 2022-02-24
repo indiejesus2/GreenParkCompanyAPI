@@ -26,7 +26,7 @@ const Job = props => {
                         <Table>
                             <tbody>
                                 <tr>
-                                    <td>trade:</td>
+                                    <td>Trade:</td>
                                     <td>{job.trade}</td>
                                 </tr>
                                 <tr>

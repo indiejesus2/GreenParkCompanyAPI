@@ -31,7 +31,6 @@ export default function contractorsReducer(state = {contractor: [], jobs: [], ap
                 ...state,
                 // contractor: action.payload.data.attributes,
                 loggedIn: true,
-                loading: false
             }
         case 'UPDATE_PROFILE':
             return {
@@ -81,7 +80,7 @@ export default function contractorsReducer(state = {contractor: [], jobs: [], ap
             return {...state, jobs: deleted, loading: false, applicants: action.payload.applicants}
         case 'ERROR_CONTRACTOR':
             return {
-                contractor: [...state.contractor],
+                ...state,
                 loggedIn: false,
                 loading: false,
                 errors: action.payload

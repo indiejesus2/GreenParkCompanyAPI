@@ -14,6 +14,6 @@ class CreateExperiences < ActiveRecord::Migration[6.0]
       t.references :employee, type: :uuid
       # t.references :employee, null: false, foreign_key: true
     end
-    add_index :experiences, :employee_id, unique: true
+    # add_index :experiences, :employee_id, unique: true
   end
 end

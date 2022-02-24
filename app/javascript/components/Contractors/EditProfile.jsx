@@ -1,11 +1,14 @@
 import React from 'react'
 import { useFormik } from 'formik'
+import { useHistory } from 'react-router-dom'
 import { Form, FloatingLabel, Modal, Button } from 'react-bootstrap'
 
 
 export default function EditProfile(props) {
     
     const employer = props.contractor
+
+    const history = useHistory()
 
     const formatPhoneNumber = (value) => {
 
@@ -37,7 +40,7 @@ export default function EditProfile(props) {
         },
         onSubmit: values => {
             props.updateProfile(values)
-            props.history.push(`/contractors/${values.id}/profile`)
+            history.push(`/contractors/${values.id}/profile`)
         }
     })
 

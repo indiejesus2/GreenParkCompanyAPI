@@ -25,6 +25,6 @@ class CreateJobs < ActiveRecord::Migration[6.0]
     add_index :jobs, :jobtype, using: 'gin'
     add_index :jobs, :schedule, using: 'gin'
     add_index :jobs, :shifts, using: 'gin'
-    add_index :jobs, :employer_id, unique: true
+    # add_index :jobs, :employer_id, unique: true
   end
 end

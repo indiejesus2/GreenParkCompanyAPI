@@ -1,3 +1,8 @@
 export const signOutContractor = () => {
-    return { type: 'LOGOUT_CONTRACTOR'}
+    return (dispatch) => {
+        dispatch({ type: 'LOGOUT_CONTRACTOR'})
+        return (fetch(`/api/v1/logout` ,{
+            method: "DELETE",
+        }))
+    }
 }

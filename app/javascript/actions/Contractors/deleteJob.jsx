@@ -5,8 +5,9 @@ export const deleteJob = (job) => {
             method: "DELETE",
         }))
         .then(resp => resp.json())
-        .then(job => 
-                dispatch({type: "DELETE_JOB", payload: job})
-        )
+        .then(job => dispatch({type: "DELETE_JOB", payload: job}))
+        .catch(err => {
+            dispatch({type: 'ERROR_CONTRACTOR', payload: err})
+        })
     }
 }

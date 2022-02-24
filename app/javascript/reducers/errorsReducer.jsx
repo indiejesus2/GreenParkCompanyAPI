@@ -4,7 +4,6 @@ export default function errorsReducer(state = [], action) {
             return action.payload
         case 'REMOVE_ERROR':
             return state.filter((error, i) => i !== action.payload.index);
-
         default:
             return state;
     }

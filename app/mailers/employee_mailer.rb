@@ -37,7 +37,11 @@ class EmployeeMailer < ApplicationMailer
     
   def password_reset(user)
     @user = user
-    mail to: user.email, subject: "Password Reset"
+    @url = 'https://blucollar-jobs.herokuapp.com'
+    @reset_url = 'https://blucollar-jobs.herokuapp.com/employees/reset_password'
+    mail(
+        to: user.email, subject: "Password Reset"
+    ) 
   end
 
 end

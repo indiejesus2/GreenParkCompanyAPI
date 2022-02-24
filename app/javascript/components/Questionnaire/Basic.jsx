@@ -53,7 +53,7 @@ const Basic = (props) => {
             },
             body: JSON.stringify(postal)
         };
-        const resp = await fetch(`api/v1/findcity/${postal}`, { configObj })
+        const resp = await fetch(`/api/v1/findcity/${postal}`, { configObj })
         const data = await resp.json()
         if (data.town) {
             props.setFieldValue('city', data.town)
@@ -157,10 +157,10 @@ const Basic = (props) => {
                             name="city" 
                             value={props.values.city} 
                             onChange={props.handleChange} 
-                            isInvalid={props.errors.city}
+                            isInvalid={props.errors.city && props.touched.city}
                             onBlur={props.handleBlur}
                             />
-                            {props.errors.city && (
+                            {props.errors.city && props.touched.city && (
                                 <div style={{ color: "red"}}>{props.errors.city}</div>
                             )}
                         </FloatingLabel>
@@ -171,13 +171,13 @@ const Basic = (props) => {
                             name="state" 
                             value={props.values.state} 
                             onChange={props.handleChange}
-                            isInvalid={props.errors.state}
+                            isInvalid={props.errors.state && props.touched.state}
                             onBlur={props.handleBlur}
                             >
                                 {Object.values(states).map(state => 
                                     <option  defaultValue="--">{state}</option>
                                 )}
-                            {props.errors.state && (
+                            {props.errors.state && props.touched.state && (
                                 <div style={{ color: "red"}}>{props.errors.state}</div>
                             )}
                             </Form.Select>

@@ -22,7 +22,7 @@
 # Job.create(title: "Electrician", status: true, city: "Howell", state: "NJ", zipcode: "08753", license: true, jobtype: ["Part Time"], schedule: ["Weekdays", "Weekends"], shifts: ["PM"], seasonstart: "Apr", seasonend: "Sept", minpay: 15.00, paytype: "Hourly", trade: "Electric", description: "Painting houses, rooms and everything in between.", employer_id: 1)
 
 # BluCollar
-  Employee.create(email: "pl@paulleo.com", password: "abc123")
+  Employee.create(email: "pl@paulleo.com", password: "abc123", id: "58029546-479f-46af-b1d0-40d566e1b365")
   Employee.create(email: "jp@jonpotzer.com", password: "abc123", id: "34b050c5-4e3b-45ee-a09b-1919033570ca")
   Employee.create(email: "ib@irabrickman.com", password: "abc123", id: "ec52a9d9-4c1a-4f20-a5be-ce3316d4222c")
   Employee.create(email: "cb@chuckbowne.com", password: "abc123", id: "65f54cf8-6674-4222-b739-046ebe1f2b41")
