@@ -30,6 +30,7 @@ require "capistrano/rvm"
 require "capistrano/rails"
 require "capistrano/bundler"
 require "capistrano/puma"
+install_plugin Capistrano::PUMA
 # require "capistrano/rbenv"
 # require "capistrano/chruby"
 # require "capistrano/bundler"
