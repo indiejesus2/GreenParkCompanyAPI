@@ -6,6 +6,7 @@ import EmployeesContainer from '../containers/EmployeesContainer'
 import ContractorsContainer from '../containers/ContractorsContainer'
 import { currentUser } from '../actions/currentUser'
 import NavBar from '../components/NavBar'
+import TempPassword from './Login/TempPassword';
 
 const App = () => {
 

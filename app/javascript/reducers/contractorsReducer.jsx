@@ -79,6 +79,7 @@ export default function contractorsReducer(state = {contractor: [], jobs: [], ap
             let deleted = state.jobs.filter(job => job.id != action.payload.id)
             return {...state, jobs: deleted, loading: false, applicants: action.payload.applicants}
         case 'ERROR_CONTRACTOR':
+            debugger
             return {
                 ...state,
                 loggedIn: false,

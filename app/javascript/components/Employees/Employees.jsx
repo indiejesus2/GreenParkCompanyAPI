@@ -4,6 +4,7 @@ import Home from '../Home'
 import EmployeeSignIn from '../Login/EmployeeSignIn'
 import EmployeeSignUp from '../Login/EmployeeSignUp'
 import ForgotPassword from '../Login/ForgotPassword'
+import TempPassword from '../Login/TempPassword'
 import Jobs from './Jobs'
 import Questionnaire from '../Questionnaire/Main'
 import NavBar from '../NavBar'
@@ -41,6 +42,10 @@ const Employees = props => {
         setCurrentStep(3)
     }
 
+    const handleValidation = () => {
+        setCurrentStep(4)
+    }
+
     const handleJobs = () => {
         if (jobs.length == 0) {
             return (
@@ -66,7 +71,7 @@ const Employees = props => {
                     <Home />
                     <EmployeeSignUp signUp={props.signUp} currentStep={currentStep} handleClick={handleClick} handlePassword={handlePassword} errors={errors} />
                     <EmployeeSignIn signIn={props.signIn} currentStep={currentStep} handleClick={handleClick} handlePassword={handlePassword} errors={errors} />
-                    <ForgotPassword currentStep={currentStep} updatePassword={props.updatePassword} user={"employee"} />
+                    <ForgotPassword currentStep={currentStep} updatePassword={props.updatePassword} handleValidation={handleValidation} user={"employee"} />
                 </div>
         )
     } else if (state.profile.length === 0) {

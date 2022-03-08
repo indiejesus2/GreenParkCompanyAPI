@@ -30,7 +30,12 @@ const ForgotPassword = props => {
         },
         onSubmit: values => {
             props.updatePassword(values)
-            history.push('/')
+            // props.handleValidation
+            if (props.user == "employee") {
+                history.push('/employees/reset_password')
+            } else {
+                history.push('/contractors/reset_password')
+            }
         },
     });
 

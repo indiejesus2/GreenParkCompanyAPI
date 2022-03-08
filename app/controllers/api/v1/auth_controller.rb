@@ -52,13 +52,17 @@ class Api::V1::AuthController < ApplicationController
     end
 
     def forgot_password
-        if password_params[:user] == "employees"
+        if password_params[:user] == "employee"
             @user = Employee.find_by(email: params[:email])
-            @temp = SecureRandom.random_number(100000)
-            EmployeeMailer.with(employee: @user, temp: @temp).forgot_email.deliver_later
+            @temp = SecureRandom.random_number(1000000)
+            @user.update(password_reset_token: @temp, password_reset_sent: Time.now)
+            @user.save
+            byebug
+            # EmployeeMailer.with(employee: @user, temp: @temp).password_reset.deliver_later
+            render json: @employee
         elsif password_params[:user] == "contractor"
             @user = Employer.find_by(email: params[:email])
-            EmployerMailer.with(employee: @user, temp: @temp).forgot_email.deliver_later
+            EmployerMailer.with(employee: @user, temp: @temp).password_reset.deliver_later
         else
             render json: {
                 error: "No profile found."
@@ -67,8 +71,21 @@ class Api::V1::AuthController < ApplicationController
     end
 
     def reset_password
+        byebug
         if reset_params[:user] == "employees"
-            
+            @user = Employee.find_by(email: params[:email])
+        else
+            @user = Employer.find_by(email: params[:email])
+        end
+        if @user.password_reset_token == reset_params[:token]
+            @user.update(password: reset_params[:password])
+            @user.save
+            # EmployeeMailer.with(employee: user).password_update.deliver_later 
+        else
+            render json: {
+                error: "Incorrect token/invalid email."
+            }
+        end
     end
 
         #     render json: {
@@ -102,6 +119,10 @@ class Api::V1::AuthController < ApplicationController
 
     def password_params
         params.require(:auth).permit(:email, :user)
+    end
+
+    def reset_params
+        params.require(:auth).permit(:email, :password, :token, :user)
     end
 
 end

@@ -14,12 +14,14 @@ import { editExperience } from '../actions/Tradespeople/editExperience'
 import { handleInterest } from '../actions/Tradespeople/handleInterest'
 import { updatePassword } from '../actions/updatePassword'
 import { currentUser } from '../actions/currentUser'
+import {resetPassword } from '../actions/resetPassword'
 import Employees from '../components/Employees/Employees'
 import Questionnaire from '../components/Questionnaire/Main'
 import Profile from '../components/Employees/Profile'
 import EditProfile from '../components/Employees/EditProfile'
 import AddExperience from '../components/Employees/AddExperience'
 import EditExperience from '../components/Employees/EditExperience'
+import TempPassword from '../components/Login/TempPassword'
 import NavBar from '../components/NavBar'
 import Logo from '../components/Logo'
 
@@ -53,8 +55,9 @@ class EmployeesContainer extends Component {
             return (
                 <div>
                     <Switch>
-                        <Route path='/employees/signIn' render={(routerProps) => <Employees {...routerProps} employee={this.props.employee} currentStep={1} loggedIn={false} signIn={this.props.signIn}/>}></Route>
-                        <Route path='/employees' render={(routerProps) => <Employees {...routerProps} signIn={this.props.signIn} signUp={this.props.signUp} loggedIn={this.props.loggedIn} employee={this.props.employee} profile={this.props.profile}  jobs={this.props.jobs} loading={this.props.loading} createProfile={this.props.createProfile} errors={this.props.errors} signOut={this.props.signOutEmployee} updatePassword={this.props.updatePassword} />}></Route>
+                        <Route path='/employees/reset_password' render={(routerProps)  => <TempPassword {...routerProps} employee={this.props.employee} currentStep={4} loggedIn={false} resetPassword={this.props.resetPassword} signIn={this.props.signIn} signUp={this.props.signUp} profile={this.props.profile} jobs={this.props.jobs} loading={this.props.loading} createProfile={this.props.createProfile} errors={this.props.errors} signOut={this.props.signOutEmployee} updatePassword={this.props.updatePassword}/>}></Route>
+                        <Route path='/employees/signIn' render={(routerProps) => <Employees {...routerProps} employee={this.props.employee} currentStep={1} loggedIn={false} signIn={this.props.signIn} signUp={this.props.signUp} profile={this.props.profile} jobs={this.props.jobs} loading={this.props.loading} createProfile={this.props.createProfile} errors={this.props.errors} signOut={this.props.signOutEmployee} updatePassword={this.props.updatePassword}/>}></Route>
+                        <Route path='/employees' render={(routerProps) => <Employees {...routerProps} signIn={this.props.signIn} signUp={this.props.signUp} loggedIn={this.props.loggedIn} employee={this.props.employee} profile={this.props.profile} jobs={this.props.jobs} loading={this.props.loading} createProfile={this.props.createProfile} errors={this.props.errors} signOut={this.props.signOutEmployee} updatePassword={this.props.updatePassword} />}></Route>
                     </Switch>
                 </div>
             )
@@ -106,6 +109,7 @@ const mapDispatchToProps = dispatch => ({
     formatPhoneNumber: value => dispatch(formatPhoneNumber(value)),
     handleInterest: application => dispatch(handleInterest(application)),
     updatePassword: user => dispatch(updatePassword(user)),
+    resetPassword: user => dispatch(resetPassword(user)),
     currentUser: () => dispatch(currentUser()),
     signOutEmployee: () => dispatch(signOutEmployee())
 })
