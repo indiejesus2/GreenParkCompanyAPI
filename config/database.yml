@@ -84,6 +84,6 @@ test:
 production:
   <<: *default
   database: postgres
-  username: rails
+  username: postgres
   password: <%= ENV['SECRET_KEY_BASE'] %>
   host: ''
