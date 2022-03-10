@@ -39,10 +39,9 @@ set :yarn_env_variables, {}
 # set :keep_releases, 5
 
 ## Linked Files & Directories (Default None):
-set :linked_files, %w{config/database.yml}
-set :linked_dirs,  %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system .bundle}
-set :linked_dirs, fetch(:linked_dirs, []).push('public/packs', 'node_modules')
-set :default_env, { 'NODE_ENV' => 'production' }
+# set :linked_files, %w{config/database.yml config/webpacker.yml}
+# set :linked_dirs,  %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system .bundle public/packs node_modules bin/webpack}
+# set :default_env, { 'NODE_ENV' => 'production' }
 
 append :linked_files, "config/master.key"
 
