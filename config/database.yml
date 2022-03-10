@@ -83,7 +83,7 @@ test:
 #
 production:
   <<: *default
-  # database: Green_Park_Company_production
+  database: postgres
   username: rails
   password: <%= ENV['SECRET_KEY_BASE'] %>
   host: ''
