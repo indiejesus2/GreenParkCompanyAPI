@@ -22,10 +22,11 @@ set :ssh_options,     { forward_agent: true, user: fetch(:user), keys: %w(~/.ssh
 set :puma_preload_app, true
 set :puma_worker_timeout, nil
 set :puma_init_active_record, true  # Change to false when not using ActiveRecord
+set :branch,        :main
+set :rvm_ruby_string, '3.0.3'
 
-## Defaults:
+# Defaults:
 # set :scm,           :git
-# set :branch,        :master
 # set :format,        :pretty
 # set :log_level,     :debug
 # set :keep_releases, 5
@@ -33,6 +34,8 @@ set :puma_init_active_record, true  # Change to false when not using ActiveRecor
 ## Linked Files & Directories (Default None):
 set :linked_files, %w{config/database.yml}
 set :linked_dirs,  %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
+
+append :linked_files, "config/master.key"
 
 namespace :puma do
     desc 'Create Directories for Puma Pids and Socket'
@@ -70,6 +73,25 @@ namespace :puma do
     task :restart do
       on roles(:app), in: :sequence, wait: 5 do
         invoke 'puma:restart'
+      end
+    end
+
+    desc 'Upload YAML files.'
+    task :upload_yml do
+      on roles(:app) do
+        execute "mkdir #{shared_path}/config -p"
+        upload! StringIO.new(File.read("config/database.yml")), "#{shared_path}/config/database.yml"
+        upload! StringIO.new(File.read("config/webpacker.yml")), "#{shared_path}/config/webpacker.yml"
+      end
+    end
+
+    namespace :check do
+      before :linked_files, :set_master_key do
+        on roles(:app), in: :sequence, wait: 10 do
+          unless test("[ -f #{shared_path}/config/master.key ]")
+            upload! 'config/master.key', "#{shared_path}/config/master.key"
+          end
+        end
       end
     end
   
