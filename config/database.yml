@@ -84,5 +84,5 @@ test:
 production:
   <<: *default
   database: Green_Park_Company_production
-  username: deploy
+  username: rails
   password: <%= ENV['SECRET_KEY_BASE'] %>
