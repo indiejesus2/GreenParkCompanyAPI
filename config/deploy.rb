@@ -24,6 +24,13 @@ set :puma_worker_timeout, nil
 set :puma_init_active_record, true  # Change to false when not using ActiveRecord
 set :branch,        :main
 set :rvm_ruby_string, '3.0.3'
+set :nvm_type, :user # or :system, depends on your nvm setup
+set :nvm_node, 'v8.5.0'
+set :nvm_map_bins, %w{node npm yarn}
+set :yarn_target_path, -> { release_path.join('client') } #
+set :yarn_flags, '--production --silent --no-progress' # default
+set :yarn_roles, :all # default
+set :yarn_env_variables, {}
 
 # Defaults:
 # set :scm,           :git
@@ -33,7 +40,9 @@ set :rvm_ruby_string, '3.0.3'
 
 ## Linked Files & Directories (Default None):
 set :linked_files, %w{config/database.yml}
-set :linked_dirs,  %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
+set :linked_dirs,  %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system .bundle}
+set :linked_dirs, fetch(:linked_dirs, []).push('public/packs', 'node_modules')
+set :default_env, { 'NODE_ENV' => 'production' }
 
 append :linked_files, "config/master.key"
 
