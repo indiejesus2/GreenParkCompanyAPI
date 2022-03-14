@@ -78,7 +78,7 @@ class Api::V1::AuthController < ApplicationController
             @user = Employer.find_by(email: params[:email])
         end
         if @user.password_reset_token == reset_params[:token]
-            @user.update(password: reset_params[:password])
+            @user.update(password: params[:password])
             @user.save
             # EmployeeMailer.with(employee: user).password_update.deliver_later 
         else

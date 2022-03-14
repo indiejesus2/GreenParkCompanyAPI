@@ -34,7 +34,7 @@ class Api::V1::JobsController < ApplicationController
     end
 
     def create
-        @job = @employer.jobs.new(job_params)
+        @job = Job.new(job_params)
         if @job.save
             # @employees = @employer.applicants.map {|applicant| applicant.employee }
             render json: JobSerializer.new(@job)

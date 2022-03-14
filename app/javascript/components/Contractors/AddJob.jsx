@@ -23,15 +23,15 @@ export default function AddJob(props) {
         }
     }
 
-    const handleAutosize = () => {
-        return (
-            <div>
-                <FloatingLabel label="description" style={{opacity:.65, transform: `scale(`+.85+`) translateY(-`+.5+`) translateX(`+.15+`rem)`}}>                        
-                    <TextareaAutoSize minRows={5} style={{width:100+`%`, paddingTop: 25+`px`, paddingLeft:10+`px`}}/>
-                </FloatingLabel>
-            </div>
-        )
-    }
+    // const handleAutosize = () => {
+    //     return (
+    //         <div>
+    //             <FloatingLabel label="description" style={{opacity:.65, transform: `scale(`+.85+`) translateY(-`+.5+`) translateX(`+.15+`rem)`}}>                        
+    //                 <TextareaAutoSize minRows={5} style={{width:100+`%`, paddingTop: 25+`px`, paddingLeft:10+`px`}}/>
+    //             </FloatingLabel>
+    //         </div>
+    //     )
+    // }
 
     // useEffect(() => {
     //     if(formik.values.zipcode.length == 5) {
@@ -256,11 +256,14 @@ export default function AddJob(props) {
                 </Form.Group>
                 </Row>
                 <Row className="mb-3">
-                    <Form.Group as={Col} class="textarea">
+                    <FloatingLabel label="Description">
+                        <Form.Control as="textarea" name="description" style={{ height: '100px', "margin-top": 15+"px"}} value={props.values.description} onChange={props.handleChange} />
+                    </FloatingLabel>
+                    {/* <Form.Group as={Col} class="textarea"> */}
                         {/* <FloatingLabel label="Description">                         */}
-                            <Form.Control as={handleAutosize} name="description" style={{ minHeight: '100px', "margin-top": 15+"px"}} value={formik.values.description} onChange={formik.handleChange} />
+                            {/* <Form.Control as={handleAutosize} name="description" style={{ minHeight: '100px', "margin-top": 15+"px"}} value={formik.values.description} onChange={formik.handleChange} /> */}
                         {/* </FloatingLabel> */}
-                    </Form.Group>
+                    {/* </Form.Group> */}
                     </Row>
             <Row className="desired">
                 <Form.Group as={Col}>

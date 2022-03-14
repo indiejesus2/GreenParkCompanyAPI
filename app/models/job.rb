@@ -5,7 +5,7 @@ class Job < ApplicationRecord
   has_many :profiles, through: :employees
   has_many :experiences, through: :employees
   geocoded_by :address
-  before_save :proximity, :potential
+  after_save :proximity, :potential
   after_update :updateTrade, :updatedProximity 
   after_validation :geocode
 
@@ -46,7 +46,7 @@ def proximity
       Applicant.create(employee_id: "#{applicant.employee_id}", employer_id: "#{employer_id}", job_id: "#{id}", distance: distance_to(applicant))
     end
   }
-  self.potential
+  byebug
 end
 
 def posted
