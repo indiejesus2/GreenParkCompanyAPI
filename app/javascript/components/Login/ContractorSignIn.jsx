@@ -36,6 +36,7 @@ export default function ContractorSignIn(props) {
         initialValues: {
             email: "",
             password: "",
+            user: "contractor"
         },
         validationSchema: schema,
         onSubmit: values => {

@@ -49,7 +49,7 @@ Rails.application.configure do
     user_name: ENV['SMTP_USER_NAME'],
     password: ENV['SMTP_PASSWORD'],
     authentication: :plain,
-    domain: 'blucollar.com'
+    domain: 'www.blucollar.com'
   }
 
 

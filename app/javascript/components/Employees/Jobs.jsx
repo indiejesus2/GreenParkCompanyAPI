@@ -1,6 +1,6 @@
 import { match } from 'assert'
 import React, { useState, useEffect } from 'react'
-import { Card, Button, Accordion, useAccordionButton } from 'react-bootstrap'
+import { Card, Button, Table, Accordion, useAccordionButton } from 'react-bootstrap'
 import Job from './Job'
 
 const Jobs = (props) => {
@@ -94,7 +94,7 @@ const Jobs = (props) => {
             let application = applicants.find(applicant => applicant.job_id == job.id)
             if (application.interested == false) {
                 return (
-                    <Button onClick={() => props.handleInterest(application)}>Apply</Button>
+                    <Button id="apply" onClick={() => props.handleInterest(application)}>Apply</Button>
                 )
             } else {
                 return (
@@ -107,26 +107,63 @@ const Jobs = (props) => {
             <div className="employees-jobs">
                 {jobs.map(job =>
                 <Card id={job.id} key={job.id} > 
-                    <Card.Header>
-                        <Card.Title className="mb-2">{job.company}</Card.Title>
-                       <Card.Title className="mb-2" as="h2">{job.title}</Card.Title>
-                        <Card.Subtitle>Location: {job.city}, {job.state}</Card.Subtitle>
-                    </Card.Header>
-                    <Card.Body>
-                    <div className="d-flex justify-content-between">
-                            <Card.Subtitle as="h5">Rating: {rate(applicants.find(applicant => applicant.job_id == job.id).rating)}</Card.Subtitle>
-                            <Card.Subtitle as="h5">Distance: {Math.round(applicants.find(applicant => applicant.job_id == job.id).distance)} Miles</Card.Subtitle>
-                        </div>
-                        <div className="matches">
+                    {/* <Card.Header>
+                    </Card.Header> */}
+                    <Card.Body className="d-flex">
+                        <Table style={{ "marginBottom": 2.5 + "px"}}>
+
+                    {/* <div className="d-flex justify-content-between"> */}
+                        {/* <Card.Title className="mb-2">{job.company}</Card.Title> */}
+                        <tbody>
+
+                        <tr>
+                            <td id="table-header" style={{ "border-bottom-width": 0 + "px", "border-right": 2 + "px solid white"}}>
+                                Company:  <span></span>
+                                {/* Distance: */}
+                            {/* </td>  */}
+                            {/* <td id="table-value-top" style={{ "border-bottom-width": 0 + "px", }}> */}
+                                {job.company}
+                                {/* {Math.round(applicants.find(applicant => applicant.job_id == job.id).distance)} Miles */}
+                            </td>
+                            <td id="table-header-location" style={{ "border-bottom-width": 0 + "px"}}>
+                                Distance:<span></span>  
+                                {/* Location: */}
+                            {/* </td>
+                            <td id="table-value-top" style={{ "border-bottom-width": 0 + "px"}}>  */}
+                                {Math.round(applicants.find(applicant => applicant.job_id == job.id).distance)} Miles
+                            </td>
+                        </tr>
+                    {/* //    as="h2" */}
+                        <tr>
+                            <td id="table-header-title" style={{ "border-bottom-width": 0 + "px", "border-right": 2 + "px solid white"}}>Job Title:  
+                            {/* </td> */}<span></span>
+                            {/* <td id="table-value-bottom" style={{ "border-bottom-width": 0 + "px", "border-right": 2 + "px solid white"}}> */}
+                                {job.title}
+                            </td>
+                                {/* as="h5" */}
+
+                            <td id="table-header-rating" style={{ "border-bottom-width": 0 + "px"}}>Rating:<span></span>  
+                            {/* <td id="table-value-bottom" style={{ "border-bottom-width": 0 + "px"}}>  */}
+                                {rate(applicants.find(applicant => applicant.job_id == job.id).rating)}
+                            </td>
+                            {/* </td> */}
+                                {/* {job.city}, {job.state} */}
+                        </tr>
+                        {/* <tr>
+                        </tr> */}
+                         </tbody>
+                        {/* </div> */}
+                        </Table>
+                            <div className="employee-jobs-buttons">
+                                    <Button id="details" onClick={() => handleShow(job)}>Details</Button>
+                                    {handleApply(job)}
+                            </div>
+                        {/* <div className="matches">
                             {Object.values(jobMatch(job)).map(match =>
                                 <Card.Text style={{ marginBlockEnd: 1 + `px`}}>{match[0]}: {match[1]}</Card.Text>
                                 )}
-                        </div>
-                        <Card.Text style={{ height: 63 + 'px', overflow: "clip", paddingBlock: 10 + 'px' }}>Description: {job.description} </Card.Text>
-                    <div className="employee-jobs-buttons">
-                        <Button onClick={() => handleShow(job)}>More Info</Button>
-                        {handleApply(job)}
-                    </div>
+                            </div> */}
+                        {/* <Card.Text style={{ height: 63 + 'px', overflow: "clip", paddingBlock: 10 + 'px' }}>Description: {job.description} </Card.Text> */}
                     </Card.Body>
                 </Card>
                 )}

@@ -193,13 +193,12 @@ export default function AddJob(props) {
                     name="title" 
                     onChange={formik.handleChange} 
                     value={formik.values.title} 
-                            onChange={formik.handleChange} 
-                            isInvalid={formik.touched.title && formik.errors.title}
-                            onBlur={formik.handleBlur}
-                            />
-                            {formik.errors.title && formik.touched.title && (
-                                <div style={{ color: "red"}}>{formik.errors.title}</div>
-                            )}
+                    isInvalid={formik.touched.title && formik.errors.title}
+                    onBlur={formik.handleBlur}
+                    />
+                        {formik.errors.title && formik.touched.title && (
+                            <div style={{ color: "red"}}>{formik.errors.title}</div>
+                        )}
                 </FloatingLabel>
                 </Form.Group> 
                 <Form.Group as={Col}>

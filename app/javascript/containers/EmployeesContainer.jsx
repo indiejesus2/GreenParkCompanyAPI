@@ -64,7 +64,7 @@ class EmployeesContainer extends Component {
         } else {
             return (
                 <div>
-                <Logo user="employee"/>
+                {/* <Logo user="employee"/> */}
                     <Switch>
                         <Route path='/employees/:id/experience/add_experience' render={(routerProps) => <AddExperience {...routerProps} employee={this.props.employee} profile={this.props.profile} addExperience={this.props.addExperience}/>}></Route>
                         <Route path='/employees/:id/experience/:id' render={(routerProps) => <EditExperience {...routerProps} employee={this.props.employee} profile={this.props.profile} experience={this.props.experience} updateProfile={this.props.updateProfile} uploadFile={this.props.uploadFile} editExperience={this.props.editExperience}/>}></Route>

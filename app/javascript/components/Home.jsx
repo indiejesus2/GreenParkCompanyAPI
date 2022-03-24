@@ -10,32 +10,15 @@ class Home extends Component {
     
     render() {        
         return (
-            <div className="homepage">
-                    <Container>
-                            <NavBar />
-
-                        <div className="homepage-header">
-                            <Image src="/images/blucollarlogo_wocollar.png" alt="BluCollar Logo" />
-                        </div>
-                        <div className="homepage-body">
-                            <div className="homepage-employees">
-                                <div style={{position: "relative", right: 2.5+"px" }}>
-                                    <h5>JobSeekers</h5>
-                                </div>
-                                <Link to="/employees">
-                                    <Button id="employees">Find Jobs</Button>
-                                </Link>
-                        </div>
-                        <div className="homepage-contractors">
-                        <div style={{position: "relative", right: 6+"px" }}>
-                                <h5>Contractors</h5>
+            <div>
+                <NavBar />
+                <div className="homepage">
+                        <Container>
+                            <div className="homepage-header">
+                                <Image src="/images/blucollarlogo-white.png" alt="BluCollar Logo" />
                             </div>
-                            <Link to="/contractors">
-                                <Button>Post Jobs</Button>
-                            </Link>
-                        </div>
-                    </div>
-                    </Container>
+                        </Container>
+                </div>
             </div>
         )
     }

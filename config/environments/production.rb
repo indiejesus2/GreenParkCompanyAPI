@@ -61,6 +61,24 @@ Rails.application.configure do
   # config.active_job.queue_name_prefix = "Green_Park_Company_production"
 
   config.action_mailer.perform_caching = false
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = true
+
+  config.action_mailer.delivery_method = :smtp
+  host = 'www.blucollar.com'
+  config.action_mailer.default_url_options = { :host => 'www.blucollar.com', protocol: 'http' }
+
+  config.action_mailer.perform_caching = false
+
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    port: 80,
+    address: 'in1-smtp.messagingengine.com',
+    # domain: ENV['DOMAIN_NAME'],
+    # user_name: ENV['SMTP_USER_NAME'],
+    # password: ENV['SMTP_PASSWORD'],
+    authentication: :plain,
+  }
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.

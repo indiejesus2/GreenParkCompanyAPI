@@ -8,6 +8,7 @@ import TempPassword from '../Login/TempPassword'
 import Jobs from './Jobs'
 import Questionnaire from '../Questionnaire/Main'
 import NavBar from '../NavBar'
+import SideNavBar from '../SideNavBar'
 import { Breadcrumb } from 'react-bootstrap'
 
 
@@ -58,7 +59,7 @@ const Employees = props => {
         } else {
             return (
                 <div>
-                    <h2>{jobs.length} Potential Job Matches</h2>
+                    <h2 style={{ "padding-inline-start": 55 + "px"}}>Congrats, you have {jobs.length} jobs that match your profile</h2>
                     <Jobs jobs={jobs} employee={props.employee} profile={props.profile} applicants={props.applicants} handleInterest={props.handleInterest} />
                 </div>
             )
@@ -85,7 +86,8 @@ const Employees = props => {
     } else {
         return (
             <div className="employees">
-                <NavBar handleSignout={props.signOut} profile={props.profile} user="employee" />
+                <NavBar handleSignout={props.signOut} profile={props.profile} loggedIn={props.loggedIn} user="employee" />
+                <SideNavBar profile={props.profile} user="employee"/>
                     {handleJobs()}
             </div>
         )

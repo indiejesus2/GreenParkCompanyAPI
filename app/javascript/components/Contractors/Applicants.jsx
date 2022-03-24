@@ -187,7 +187,7 @@ const Applicants = (props) => {
             <label htmlFor="search">Search Candidates: </label>
         <Form.Check inline name="jobtype" id="jobtype" label="Job Type" value={state.jobtype} onChange={handleChange}/> 
         <Form.Check inline name="schedule" id="schedule" value={state.schedule} label="Schedule" onChange={handleChange}/> 
-        <Form.Check inline name="shifts" id="shifts" label="Shifts" value={state.shifts} label="Shifts" onChange={handleChange}/>
+        <Form.Check inline name="shifts" id="shifts" label="Shifts" value={state.shifts} onChange={handleChange}/>
         {/* <Form.Control name="seasonstart" id="seasonstart" value="seasonstart" label="Season Start" onChange={handleChange}> 
             {months.map(month => 
                 <option value={month}>{month}</option>

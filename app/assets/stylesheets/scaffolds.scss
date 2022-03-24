@@ -2,16 +2,20 @@
 @import url('https://fonts.googleapis.com/css2?family=Sanchez&display=swap');
 
 body {
-  background-color: #3d8ac9;
-  font-family: 'Sanchez', serif;
-  color: #333;
+  background-color: #000000;
+  font-family: 'Noto Sans', sans-serif;
+  color: #ffffff;
 }
 
-body, p, ol, ul, td {
-  font-family: 'Sanchez', serif;
+body, p, ol, ul {
+  font-family: 'Noto Sans', sans-serif;
   // font-family: verdana, arial, helvetica, sans-serif;
   font-size: 13px;
-  line-height: 18px; }
+  line-height: 18px; 
+  color: #fff;
+}
+
+
 
 pre {
   background-color: #3d8ac9;
@@ -20,13 +24,23 @@ pre {
   font-size: 11px; }
 
 a {
-  color: #fff; }
+  color: #fff; 
+  font-family: 'Luam', serif;
+}
+
+h1, h2, h3, h4, h5, h6, h7 {
+  font-family: 'Luam', serif;
+  color: #ffffff
+}
+
+
 
 // a:visited {
 //   color: #666; }
 
 nav {
-  margin-top: 10px;
+  padding: 0px;
+  // margin-top: 10px;
 }
 
 a:hover {
@@ -98,8 +112,7 @@ label {
 .nav-sign {
   display: flex;
   justify-content: center;
-  background-color: #eee;
-  padding: 25px;
+  // padding: 25px;
 }
 
 .nav-links {
@@ -110,8 +123,8 @@ label {
 }
 
 .nav {
-  display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
+  padding-inline: 5px;
 }
 
 .nav a {
@@ -149,10 +162,6 @@ label {
 .homepage-header {
   display: flex;
   justify-content: center;
-  border-style: inset;
-  border-color: #113955;
-  padding: 50px;
-  background-color: #eee;
   // box-shadow: 5px 10px #3d8ac9;
 }
 
@@ -196,8 +205,8 @@ label {
 // }
 
 .homepage-image {
-  background-image: url("/images/BluCollar-Logo.jpeg");
-  background-color: #cccccc;
+  background-image: url("/images/blucollarlogo-white.png");
+  // background-color: #cccccc;
   // height: 500px;
   background-position: center;
   background-repeat: no-repeat;
@@ -251,6 +260,8 @@ h1, h2 {
 .employee-nav {
   display: grid;
   justify-content: center;
+  height: 175px;
+  font-family: 'Luam', serif;
 }
 
 .employee-nav nav {
@@ -322,14 +333,15 @@ h1, h2 {
   display: flex;
   justify-content: center;
   flex-flow: wrap;
+  padding-inline-start: 135px;
 }
 
 .employees-jobs .card {
-  width: 375px;
-  height: 300px;
+  width: 1514px;
+  // height: 112px;
   margin-inline: 25px;
-  margin-block-end: 45px;
-  background-color: #eee;
+  margin-block-end: 10px;
+  background-color: #202020;
   border: #175785;
 }
 
@@ -337,16 +349,26 @@ h1, h2 {
   padding-top: 5px
 }
 
-.employee-jobs-buttons {
-  display: flex;
-  justify-content: space-evenly;
+.employee-jobs-buttons button {
+  width: fit-content;
+  height: fit-content;
+  display: grid;
+  justify-items: end;
+}
+
+.employee-jobs-buttons #details {
+  background-color: #3FA1FC;
+}
+
+.employee-jobs-buttons #apply {
+  background-color: #0687FF;
 }
 
 .employer-jobs .card {
-  width: 225px;
+  width: 500px;
   margin-inline: 25px;
   margin-block-end: 45px;
-  background-color: #eee;
+  background-color: #202020;
   border-color: #175785;
 }
 .employees-jobs .card-header {
@@ -380,7 +402,7 @@ h1, h2 {
 .contractor .job {
   width: 50rem;
   margin-inline: 25px;
-  margin-block-end: 45px;
+  margin-block-end: 10px;
   background-color: #eee;
   border-color: #175785;
 }
@@ -421,7 +443,7 @@ h1, h2 {
 }
 
 .employees .card-body {
-  padding-top: 5px;
+  padding: 5px;
 }
 
 .employee {
@@ -650,6 +672,105 @@ job-body .table {
 .applicants #proximity {
   width: 50px;
 }
+
+.sidebarnav {
+  position: absolute;
+  border-right: 4px solid #777777;
+  height: 500px;
+}
+
+.employee .container {
+  position: absolute;
+  left: 82px;
+}
+
+td {
+  font-family: 'Noto Sans', serif;
+  font-weight: bold;
+  color: #FFFFFF;
+  // padding: 0px;
+  font-size: fit-content;
+  font-optical-sizing: large;
+  border-style: none;
+  width: 50%;
+  padding: 10px
+}
+
+table {
+  table-layout: fixed;
+  width: 100%;
+  border-collapse: collapse;
+}
+
+// .employees-jobs #table-header {
+//   font-style: oblique;
+//   width: 71px;
+//   // max-width: fit-content;
+//   padding-inline-start: 5px;
+//   padding-inline-end: 0px;
+// }
+
+// .employees-jobs #table-header-location {
+//   font-style: oblique;
+//   width: 75px;
+//   // max-width: fit-content;
+//   padding-inline-start: 5px;
+//   padding-inline-end: 0px;
+//   padding-bottom: 0px;
+// }
+
+// .employees-jobs #table-header-title {
+//   font-style: oblique;
+//   width: 71px;
+//   // max-width: fit-content;
+//   padding-inline-start: 5px;
+//   padding-inline-end: 0px;
+//   padding-bottom: 0px;
+// }
+
+// .employees-jobs #table-header-rating {
+//   font-style: oblique;
+//   width: 75px;
+//   // max-width: fit-content;
+//   padding-inline-start: 5px;
+//   padding-inline-end: 0px;
+//   padding-bottom: 0px;
+// }
+
+// .employees-jobs #table-value-top {
+//   font-style: oblique;
+//   padding-inline-start: 5px;
+//   padding-inline-end: 0px;
+//   width: 555px;
+//   padding-bottom: 0px;
+// }
+
+// .employees-jobs #table-value-bottom {
+//   font-style: oblique;
+//   padding-inline-start: 5px;
+//   padding-inline-end: 0px;
+//   width: 555px;
+//   padding-top: 0px
+// }
+
+// .employees-jobs-line {
+//   border-right: solid 1px #ffffff;
+//   // padding-left: 0px;
+//   height: 45px;
+//   position: relative;
+//   top: 15px;
+//   // height: 43.5px;
+//   display: inline-block
+// }
+
+.employee-jobs table, tbody, td, tfoot, th, thead, tr {
+	border-style: none;
+	border-bottom-width: 0px;
+}
+
+// .employees-jobs card {
+//   padding: 0px;
+// }
 
 
 // .homepage-contractors {

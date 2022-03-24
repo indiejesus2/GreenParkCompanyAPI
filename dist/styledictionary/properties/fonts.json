@@ -1,0 +1,151 @@
+{
+  "font": {
+    "Arial — 3pt": {
+      "family": {
+        "value": "Arial"
+      },
+      "weight": {
+        "value": "Regular"
+      }
+    },
+    "button-text": {
+      "family": {
+        "value": "Open Sans"
+      },
+      "weight": {
+        "value": "Bold"
+      }
+    },
+    "input-placeholder": {
+      "family": {
+        "value": "Noto Sans"
+      },
+      "weight": {
+        "value": "SemiBold"
+      }
+    },
+    "mission-alternate-header": {
+      "family": {
+        "value": "Muli"
+      },
+      "weight": {
+        "value": "Bold"
+      }
+    },
+    "Noto Sans — 16pt": {
+      "family": {
+        "value": "Noto Sans"
+      },
+      "weight": {
+        "value": "SemiBold"
+      }
+    },
+    "signin-header": {
+      "family": {
+        "value": "Muli"
+      },
+      "weight": {
+        "value": "Bold"
+      }
+    },
+    "mission-subheader": {
+      "family": {
+        "value": "Muli"
+      },
+      "weight": {
+        "value": "Bold"
+      }
+    },
+    "signin-text": {
+      "family": {
+        "value": "Muli"
+      },
+      "weight": {
+        "value": "Bold"
+      }
+    },
+    "mission-header": {
+      "family": {
+        "value": "Luam"
+      },
+      "weight": {
+        "value": "light"
+      }
+    },
+    "navbar-link": {
+      "family": {
+        "value": "Luam"
+      },
+      "weight": {
+        "value": "Regular"
+      }
+    },
+    "signin-link": {
+      "family": {
+        "value": "Noto Sans"
+      },
+      "weight": {
+        "value": "SemiBold"
+      }
+    },
+    "job-small-header": {
+      "family": {
+        "value": "Noto Sans"
+      },
+      "weight": {
+        "value": "Bold Italic"
+      }
+    },
+    "logo": {
+      "family": {
+        "value": "Luam"
+      },
+      "weight": {
+        "value": "Regular"
+      }
+    }
+  },
+  "size": {
+    "font": {
+      "Arial — 3pt": {
+        "value": "3"
+      },
+      "button-text": {
+        "value": "16"
+      },
+      "input-placeholder": {
+        "value": "16"
+      },
+      "mission-alternate-header": {
+        "value": "100"
+      },
+      "Noto Sans — 16pt": {
+        "value": "16"
+      },
+      "signin-header": {
+        "value": "33"
+      },
+      "mission-subheader": {
+        "value": "81"
+      },
+      "signin-text": {
+        "value": "16"
+      },
+      "mission-header": {
+        "value": "147"
+      },
+      "navbar-link": {
+        "value": "40"
+      },
+      "signin-link": {
+        "value": "16"
+      },
+      "job-small-header": {
+        "value": "27"
+      },
+      "logo": {
+        "value": "224"
+      }
+    }
+  }
+}
