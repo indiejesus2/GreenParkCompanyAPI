@@ -39,7 +39,7 @@ class LoginContainer extends Component {
                 <div>
                 <NavBar />
                 <Switch>
-                    <Route path='/signOut' render={(routerProps) => <SignOut {...routerProps} signOut={this.props.signOut}/>}></Route>
+                    <Route path='/home/signOut' render={(routerProps) => <SignOut {...routerProps} signOut={this.props.signOut}/>}></Route>
                     <Route path='/home/signUp' render={(routerProps) => <SignUp {...routerProps} signUp={this.props.signUp} currentStep={2} signOut={this.props.signOut}/>}></Route>
                     <Route path='/home/signin' render={(routerProps) => <SignIn {...routerProps} signIn={this.props.signIn} currentStep={1} signUp={this.props.signUp} signOut={this.props.signOut}/>}></Route>
                     {/* <Route path='/employees/signup' render={(routerProps) => <EmployeeSignUp {...routerProps} signUpEmployee={this.props.signUpEmployee} />}></Route> */}

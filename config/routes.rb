@@ -23,7 +23,7 @@ Rails.application.routes.draw do
       post '/forgot_password', to: 'auth#forgot_password'
       post '/reset_password', to: 'auth#reset_password'
       get '/employees/(/:id)/applicants/(:job_id)', to: 'employees#apply'
-      delete '/logout', to: 'auth#destroy'
+      delete '/signout', to: 'auth#destroy'
     end
   end
   root 'homepage#index'
