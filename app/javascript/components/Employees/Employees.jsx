@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 import Home from '../Home'
 import EmployeeSignIn from '../Login/EmployeeSignIn'
 import EmployeeSignUp from '../Login/SignUp'
@@ -59,13 +59,12 @@ const Employees = props => {
     }
 
     const handleJobs = () => {
-        debugger
         if (jobs.length == 0) {
             return (
                 <div>
-                    <p style={{ "padding-inline-start": 55 + "px"}}>
+                    <h2 style={{ "padding-inline-start": 160 + "px"}}>
                         "We're working hard to find some matches."
-                    </p>
+                    </h2>
                 </div>
             )
         } else if (currentStep == 1) {
