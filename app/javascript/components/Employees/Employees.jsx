@@ -6,6 +6,7 @@ import EmployeeSignUp from '../Login/EmployeeSignUp'
 import ForgotPassword from '../Login/ForgotPassword'
 import TempPassword from '../Login/TempPassword'
 import Jobs from './Jobs'
+import Job from './Job'
 import Questionnaire from '../Questionnaire/Main'
 import NavBar from '../NavBar'
 import SideNavBar from '../SideNavBar'
@@ -20,7 +21,13 @@ const Employees = props => {
 
     const [jobs, setJobs] = useState(props.jobs)
     const [errors, setErrors] = useState(props.errors)
-    const [currentStep, setCurrentStep] = useState(props.currentStep ? props.currentStep : 2)
+    const [currentStep, setCurrentStep] = useState(1)
+    const [listing, setListing] = useState("")
+    
+    const handleJob = (job) => {
+        setListing(job)
+        setCurrentStep(2);
+    }
     
     useEffect(() => {
         if (props.errors != errors) {
@@ -39,6 +46,10 @@ const Employees = props => {
         }
     }
 
+    const handleClose = () => {
+        setStep(1)
+    }
+
     const handlePassword = () => {
         setCurrentStep(3)
     }
@@ -48,6 +59,7 @@ const Employees = props => {
     }
 
     const handleJobs = () => {
+        debugger
         if (jobs.length == 0) {
             return (
                 <div>
@@ -56,11 +68,17 @@ const Employees = props => {
                     </p>
                 </div>
             )
-        } else {
+        } else if (currentStep == 1) {
             return (
                 <div>
                     <h2 style={{ "padding-inline-start": 55 + "px"}}>Congrats, you have {jobs.length} jobs that match your profile</h2>
-                    <Jobs jobs={jobs} employee={props.employee} profile={props.profile} applicants={props.applicants} handleInterest={props.handleInterest} />
+                    <Jobs jobs={jobs} employee={props.employee} profile={props.profile} applicants={props.applicants} handleInterest={props.handleInterest} currentStep={currentStep} handleJob={handleJob} />
+                </div>
+            )
+        } else if (currentStep == 2) {
+            return (
+                <div>
+                  <Job currentStep={currentStep} job={listing} employee={props.employee} applicants={props.applicants} handleClick={props.handleClick}/>
                 </div>
             )
         }

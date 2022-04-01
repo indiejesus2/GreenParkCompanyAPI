@@ -12,7 +12,7 @@ const Logo = props => {
             <div className="nav-sign">
                 <span className="logo">
                     <Link to={home}>
-                        <img src="/images/blucollarlogo-white.png" alt="Logo" />
+                        <img src="/images/blucollar-logo-non-bold.png" alt="Logo" />
                     </Link>
                 </span>
             </div>

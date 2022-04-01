@@ -41,14 +41,18 @@ const Jobs = (props) => {
 
         const [jobs, setJobs] = useState(props.jobs)
         const [employee, setEmployee] = useState(props.employee)
-        const [show, setShow] = useState(false)
-        const [listing, setListing] = useState("")
+        const [currentStep, setStep] = useState(props.currentStep)
+        // const [listing, setListing] = useState("")
         const [applicants, setApplicants] = useState(props.applicants)
         const [profile, setProfle] = useState(props.profile)
         const handleClose = () => setShow(false);
         const handleShow = (job) => {
             setListing(job)
-            setShow(true);
+            setStep(2);
+        }
+
+        if(currentStep !== 1) {
+            return null
         }
 
         useEffect(() => {
@@ -118,31 +122,31 @@ const Jobs = (props) => {
 
                         <tr>
                             <td id="table-header" style={{ "border-bottom-width": 0 + "px", "border-right": 2 + "px solid white"}}>
-                                Company:  <span></span>
+                                Company: {job.company}
                                 {/* Distance: */}
                             {/* </td>  */}
                             {/* <td id="table-value-top" style={{ "border-bottom-width": 0 + "px", }}> */}
-                                {job.company}
+                                
                                 {/* {Math.round(applicants.find(applicant => applicant.job_id == job.id).distance)} Miles */}
                             </td>
                             <td id="table-header-location" style={{ "border-bottom-width": 0 + "px"}}>
-                                Distance:<span></span>  
+                                Distance:{Math.round(applicants.find(applicant => applicant.job_id == job.id).distance)} Miles
                                 {/* Location: */}
                             {/* </td>
-                            <td id="table-value-top" style={{ "border-bottom-width": 0 + "px"}}>  */}
-                                {Math.round(applicants.find(applicant => applicant.job_id == job.id).distance)} Miles
+                            <td id="table-value-top" style={{ "border-bottom-width":  0 + "px"}}>  */}
+                                
                             </td>
                         </tr>
                     {/* //    as="h2" */}
                         <tr>
-                            <td id="table-header-title" style={{ "border-bottom-width": 0 + "px", "border-right": 2 + "px solid white"}}>Job Title:  
-                            {/* </td> */}<span></span>
+                            <td id="table-header-title" style={{ "border-bottom-width": 0 + "px", "border-right": 2 + "px solid white"}}>Job Title:<span></span>
+                            {/* </td> */}
                             {/* <td id="table-value-bottom" style={{ "border-bottom-width": 0 + "px", "border-right": 2 + "px solid white"}}> */}
                                 {job.title}
                             </td>
                                 {/* as="h5" */}
 
-                            <td id="table-header-rating" style={{ "border-bottom-width": 0 + "px"}}>Rating:<span></span>  
+                            <td id="table-header-rating" style={{ "border-bottom-width": 0 + "px"}}>Rating:  
                             {/* <td id="table-value-bottom" style={{ "border-bottom-width": 0 + "px"}}>  */}
                                 {rate(applicants.find(applicant => applicant.job_id == job.id).rating)}
                             </td>
@@ -155,7 +159,7 @@ const Jobs = (props) => {
                         {/* </div> */}
                         </Table>
                             <div className="employee-jobs-buttons">
-                                    <Button id="details" onClick={() => handleShow(job)}>Details</Button>
+                                    <Button id="details" onClick={() => props.handleJob(job)}>Details</Button>
                                     {handleApply(job)}
                             </div>
                         {/* <div className="matches">
@@ -167,7 +171,7 @@ const Jobs = (props) => {
                     </Card.Body>
                 </Card>
                 )}
-                <Job show={show} job={listing} employee={employee} applicants={applicants} handleClose={handleClose} />
+                {/* <Job show={show} job={listing} employee={employee} applicants={applicants} handleClose={handleClose} /> */}
             </div>
         )
 

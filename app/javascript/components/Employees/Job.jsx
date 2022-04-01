@@ -1,11 +1,14 @@
 import React from 'react'
-import { Modal, Button, Table, Container, Row } from 'react-bootstrap'
+import { Modal, Button, Table, Container, Row, Card, CloseButton } from 'react-bootstrap'
 
 const Job = props => {
     
     const job = props.job
     const applicant = props.applicants.find(applicant => applicant.job_id == job.id)
+    const [currentStep, setStep] = useState(props.currentStep)
 
+
+    
     const rate = (rating) => {
         if (rating == 6 || rating == 5) {
             return (
@@ -44,10 +47,17 @@ const Job = props => {
         return null
     }
 
+    if(currentStep !== 2) {
+        return null
+    }
+
     return (
-        <Modal show={props.show} onHide={props.handleClose} centered>
-            <div className="job-info">
-            <Modal.Title>
+            <div className="employee-job"
+                style={{ "paddingInlineStart": 150 + "px", "paddingInlineEnd": 25 + "px"}}
+            >
+        <Card id={job.id} key={job.id} > 
+            <CloseButton onClick={props.handleClose}/>
+            {/* <Card.Title>
                 <h1>{job.company}</h1>
                 <h2>
                     {job.title} - {job.city}, {job.state} 
@@ -60,67 +70,113 @@ const Job = props => {
                             Distance: {Math.round(applicant.distance)} Miles
                         </span>
                 </div>
-            </Modal.Title>
-            <Modal.Body style={{"padding-top": "5px"}}>
-                <div className="description">
-                    <span>{job.description}</span>
-                </div>
-                <div className="job-body">
+            </Card.Title> */}
+            <Card.Body style={{"padding-top": "10px", "display": "flex"}}>
+                <div className="job-body"
+                        style={{"width": 50 + "%"}}
+                    >
+                    <div className="job-table">
 
-                <Table style={{"padding-top": "10px"}}>                
-                    <tr>
-                    <td>
-                        Trade:                         
-                    </td>
-                    <td>
-                        {job.trade}
-                    </td>
-                    </tr>
-                    <tr>
-                    <td>
-                        Job Type:                         
-                    </td>
-                    <td>
-                        {job.jobtype.join(', ')}
-                    </td>
-                    </tr>
-                    <tr>
-                    <td>
-                        Job Shifts: 
-                    </td>
-                    <td>
-                        {job.shifts.join(", ")}
-                    </td>
-                    </tr>
-                    <tr>
-                    <td>
-                        Schedule:
-                    </td>
-                    <td>
-                    {job.schedule.join(", ")}
-                    </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            Pay: 
+                    <Table>                
+                        <tr style={{ "border-bottom-width": 0 + "px"}}>
+                        <td style={{"padding": "0px" }}>
+                            Company:                         
                         </td>
-                        <td>
-                            ${job.minpay} {job.paytype}
+                        <td style={{"padding": "0px" }}>
+                            {job.company}
                         </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            Season: 
+                        </tr>
+                        <tr style={{ "border-bottom-width": 0 + "px"}}>
+                        <td style={{"padding": "0px" }}>
+                            Title:                         
                         </td>
-                        <td>
-                            {job.seasonstart} - {job.seasonend}
+                        <td style={{"padding": "0px" }}>
+                            {job.title}
                         </td>
-                    </tr>
-                </Table>
-                </div>
-            </Modal.Body>
+                        </tr>
+                        <tr style={{ "border-bottom-width": 0 + "px"}}>
+                        <td style={{"padding": "0px" }}>
+                            Location:                         
+                        </td>
+                        <td style={{"padding": "0px" }}>
+                            {job.city}, {job.state} {job.zipcode}
+                        </td>
+                        </tr>
+                        <tr style={{ "border-bottom-width": 0 + "px"}}>
+                        <td style={{"padding": "0px" }}>
+                            Job Type:                         
+                        </td>
+                        <td style={{"padding": "0px" }}>
+                            {job.jobtype.join(', ')}
+                        </td>
+                        </tr>
+                        <tr style={{ "border-bottom-width": 0 + "px"}}>
+                        <td style={{"padding": "0px" }}>
+                            Job Shifts: 
+                        </td>
+                        <td style={{"padding": "0px" }}>
+                            {job.shifts.join(", ")}
+                        </td>
+                        </tr>
+                        <tr style={{ "border-bottom-width": 0 + "px"}}>
+                        <td style={{"padding": "0px" }}>
+                            Schedule:
+                        </td>
+                        <td style={{"padding": "0px" }}>
+                        {job.schedule.join(", ")}
+                        </td>
+                        </tr>
+                        <tr style={{ "border-bottom-width": 0 + "px"}}>
+                            <td style={{"padding": "0px" }}>
+                                Pay: 
+                            </td>
+                            <td style={{"padding": "0px" }}>
+                                ${job.minpay} {job.paytype}
+                            </td>
+                        </tr>
+                        <tr style={{ "border-bottom-width": 0 + "px"}}>
+                            <td style={{"padding": "0px" }}>
+                                Match Rating: 
+                            </td>
+                            <td style={{"padding": "0px" }}>
+                                {rate(applicant.rating)}        
+                            </td>
+                        </tr>
+                        <tr style={{ "border-bottom-width": 0 + "px"}}>
+                            <td style={{"padding": "0px" }}>
+                                Distance: 
+                            </td>
+                            <td style={{"padding": "0px" }}>
+                                {Math.round(applicant.distance)} Miles        
+                            </td>
+                        </tr>
+                    </Table>
+                    </div>
+                    <div className="job-buttons">
+                        <Button>Apply Now</Button>
+                        <Button>Save for Later</Button>
+                    </div>
+                    </div>
+                    <div className="description"
+                        style={{"maxWidth": 50 + "%"}}
+                    >
+                        {/* <span>{job.description}</span> */}
+                        <div id="description-details">
+                            <h2>Job Details and Description</h2>
+                        </div>
+                        <div className="description-box">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                            </p>
+                        </div>
+                    </div>
+            </Card.Body>
+        </Card>
         </div>
-        </Modal>
     )
 
 }

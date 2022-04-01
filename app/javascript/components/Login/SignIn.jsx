@@ -4,11 +4,12 @@ import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import Col from 'react-bootstrap/Col'
 import Modal from 'react-bootstrap/Modal'
+import CloseButton from 'react-bootstrap/CloseButton'
 import Alert from 'react-bootstrap/Alert'
 import { useHistory } from 'react-router-dom'
 import * as yup from 'yup'
 
-export default function ContractorSignIn(props) {
+export default function SignIn(props) {
 
     const schema = yup.object().shape({
         email: yup.string().email("Please enter a valid email address").required("Email is required."),
@@ -36,11 +37,16 @@ export default function ContractorSignIn(props) {
         initialValues: {
             email: "",
             password: "",
-            user: "contractor"
+            user: "employee"
         },
         validationSchema: schema,
         onSubmit: values => {
                 props.signIn(values)
+                if (values.user == "employee") {
+                    history.push('/employees')
+                } else if (values.user == "contractor") {
+                    history.push('/contractors')
+                }
         },
     });
 
@@ -49,25 +55,44 @@ export default function ContractorSignIn(props) {
     }
     
     return (
-        <React.Fragment>    
-        <Modal show={show} animation centered onHide={handleClose}>
-            <Modal.Header>
+        <React.Fragment>
+        <Modal size="lg" show={show} animation centered onHide={handleClose} >
+            <div className="signIn" style={{
+                    "maxwidth": 771 + "px"
+                }}>
+            {/* <Modal.Header>
                 <img src="/images/blucollarlogo.png" alt="Blue Collar Logo" className="signIn"/>
-            </Modal.Header>
-            <Form noValidate onSubmit={formik.handleSubmit}>
-            <Modal.Body>
+            </Modal.Header> */}
+            <CloseButton />
+            <Form noValidate onSubmit={formik.handleSubmit}
+                style={{
+                    "width": 50 + "%"
+                }}>
+            <Modal.Body
+                style={{
+                    "paddingBlock": 0 + "px"
+                }}
+            >
+                    <h1>Sign In</h1>
+                <div id="newUser">
+                    <span>New user?</span><Button variant="link" onClick={props.handleClick}>Create An Account</Button>
+                </div>
                 <Alert show={alert}>
                     {props.errors}
                 </Alert>
                 <Form.Group md="4" controlId="validationFormik01">
-                <Form.Label>Email: </Form.Label>
                 <Form.Control
                     type="text"
                     name="email"
+                    placeholder="Email"
                     value={formik.values.email}
                     onChange={formik.handleChange}
                     isInvalid={formik.errors.email}
                     onBlur={formik.handleBlur}
+                    style={{
+                        "padding": 5 + "px",
+                        "marginBottom": 10 + "px"
+                    }}
                     />
                     {/* <Form.Control.Feedback type="invalid" tooltip>
                         {formik.errors.email}
@@ -77,26 +102,52 @@ export default function ContractorSignIn(props) {
                     )}
                 </Form.Group>
                 <Form.Group md="4" controlId="validationFormik02">
-                    <Form.Label>Password: </Form.Label>
                     <Form.Control
                         type="password"
                         name="password"
+                        placeholder="Password"
                         value={formik.values.password}
                         onChange={formik.handleChange}
                         isInvalid={formik.errors.password}
                         onBlur={formik.handleBlur}
+                        style={{
+                            "padding": 5 + "px",
+                            "marginBottom": 10 + "px"
+                        }}
                         />
                         {formik.errors.password && formik.touched.password && (
                             <div style={{ color: "red"}}>{formik.errors.password}</div>
-                        )}
-                        <Button variant="link" onClick={props.handlePassword}>Forgot Password?</Button>
-                        <Button variant="link" onClick={props.handleClick}>Sign Up For An Account</Button>
+                            )}
                 </Form.Group>
+                <Form.Group md="4" id="signInOptions">
+                    <Form.Label>Sign In As</Form.Label>
+                        <Form.Select onChange={formik.handleChange} name="user" value={formik.values.user}
+                            style={{
+                                "width": 63 + "%",
+                                "height": 50 + "%"
+                            }}
+                        >
+                            <option value="employee">Employee</option>
+                            <option value="contractor">Contractor</option>
+                        </Form.Select>
+                </Form.Group>
+                <Button variant="link" onClick={props.handlePassword}
+                    style={{
+                        "width": 100 + "%",
+                        "paddingRight": 0 + "px",
+                        "display": "flex",
+                        "justifyContent": "end"
+                    }}
+                >Forgot Password?</Button>
+                <div>
+                    <Button variant="primary" type="submit" style={{ "width": 100 + "%"}}>Sign-In</Button>
+                </div>
             </Modal.Body>
-            <Modal.Footer>
-                <Button variant="primary" type="submit">Sign-In</Button>
-            </Modal.Footer>
             </Form>
+            <div id="collar">
+                    <img src="/images/blucollarO.png" alt="collar" />
+            </div>
+        </div>    
         </Modal>
         </React.Fragment>
     )

@@ -54,7 +54,6 @@ class ContractorsContainer extends Component {
         } else {
         return (
             <div>
-            <Logo user="contractor"/>
                 <Switch>
                 <Route path='/contractors/:id/jobs/:job_id/employees/:employee_id' render={(routerProps) => <EmployeeProfile {...routerProps} loading={this.props.loading} contractor={this.props.contractor} jobs={this.props.jobs} signOut={this.props.signOutContractor} />}></Route>
                 <Route path='/contractors/:id/profile' render={(routerProps) => <Profile {...routerProps} contractor={this.props.contractor} signOut={this.props.signOutContractor} updateProfile={this.props.updateProfile} />}></Route>

@@ -17,7 +17,7 @@ const App = () => {
         return (
             <div>
                 <Switch>
-                    <Route path="/" exact component={LoginContainer}></Route>
+                    <Route path="/home" component={LoginContainer}></Route>
                     {/* // exact render={(routerProps) => <Home {...routerProps} signIn={this.props.signIn}/>}></Route> */}
                     <Route path="/employees" component={EmployeesContainer}></Route>
                     <Route path="/contractors" component={ContractorsContainer}></Route>

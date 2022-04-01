@@ -48,7 +48,7 @@ const Profile = props => {
 
     return (
         <div className="employee">
-            <NavBar handleSignout={props.signOut} profile={props.profile} user="employee" />
+            <NavBar handleSignout={props.signOut} profile={props.profile} loggedin={props.loggedin} user="employee" />
         <div className="update">
         <Row>
                 <Col>
