@@ -116,13 +116,15 @@ const Basic = (props) => {
     ]
     
     return(
+        <div >
+
         <React.Fragment>
         <Modal show animation backdrop centered>
             
-        <Modal.Header className="justify-content-center">
-            <Modal.Title className="questionlogo"><img src="/images/blucollar_O.png" alt="BluCollar Logo" /></Modal.Title>
+        <Modal.Header className="justify-content-center" style={{ "backgroundColor": "#373737"}}>
+            <Modal.Title className="questionlogo"><img src="/images/blucollar_logo-non-bold.png" alt="BluCollar Logo" /></Modal.Title>
         </Modal.Header>
-            <Modal.Body>
+            <Modal.Body style={{ "backgroundColor": "#373737"}}>
 
             <Row className="mb-3">
 
@@ -135,6 +137,7 @@ const Basic = (props) => {
                             onChange={props.handleChange}
                             isInvalid={props.touched.fname && props.errors.fname}
                             onBlur={props.handleBlur}
+                            style={{ "backgroundColor": "#2f2f2f", "color": "#fff"}}
                             />
                                 {props.errors.fname && props.touched.fname && (
                                     <div style={{ color: "red"}}>{props.errors.fname}</div>
@@ -144,7 +147,7 @@ const Basic = (props) => {
                     <Form.Group as={Col}>
 
                         <FloatingLabel label="Last Name">
-                            <Form.Control type="text" name="lname" value={props.values.lname} onChange={props.handleChange} />
+                            <Form.Control type="text" name="lname" style={{ "backgroundColor": "#2f2f2f", "color": "#fff"}} value={props.values.lname} onChange={props.handleChange} />
                         </FloatingLabel>
                         </Form.Group>
                     </Row>
@@ -159,6 +162,7 @@ const Basic = (props) => {
                             onChange={props.handleChange} 
                             isInvalid={props.errors.city && props.touched.city}
                             onBlur={props.handleBlur}
+                            style={{ "backgroundColor": "#2f2f2f", "color": "#fff"}}
                             />
                             {props.errors.city && props.touched.city && (
                                 <div style={{ color: "red"}}>{props.errors.city}</div>
@@ -173,13 +177,14 @@ const Basic = (props) => {
                             onChange={props.handleChange}
                             isInvalid={props.errors.state && props.touched.state}
                             onBlur={props.handleBlur}
+                            style={{ "backgroundColor": "#2f2f2f", "color": "#fff"}}
                             >
                                 {Object.values(states).map(state => 
                                     <option  defaultValue="--">{state}</option>
                                 )}
                             {props.errors.state && props.touched.state && (
                                 <div style={{ color: "red"}}>{props.errors.state}</div>
-                            )}
+                                )}
                             </Form.Select>
                         </FloatingLabel>
                         </Form.Group>
@@ -187,26 +192,33 @@ const Basic = (props) => {
                         <FloatingLabel label="Zip-Code">
                             <Form.Control type="text" name="zipcode" 
                             value={props.values.zipcode} 
-                            onChange={handlePostal} />
+                            onChange={handlePostal} 
+                            isInvalid={props.errors.zipcode && props.touched.zipcode}
+                            onBlur={props.handleBlur}
+                            style={{ "backgroundColor": "#2f2f2f", "color": "#fff"}}
+                            />
+                            {props.errors.zipcode && props.touched.zipcode && (
+                                <div style={{ color: "red"}}>{props.errors.zipcode}</div>
+                            )}
                         </FloatingLabel>
                         </Form.Group>
                     </Row>
                     <Row>
                     <Form.Group as={Col}>
                         <FloatingLabel label="Phone">
-                            <Form.Control type="text" name="phone" value={formatPhoneNumber(props.values.phone)} onChange={props.handleChange} />
+                            <Form.Control type="text" name="phone" style={{ "backgroundColor": "#2f2f2f", "color": "#fff"}} value={formatPhoneNumber(props.values.phone)} onChange={props.handleChange} />
                         </FloatingLabel>
                     </Form.Group>
                     <Form.Group as={Col}>
                         <FloatingLabel label="E-mail">
-                            <Form.Control type="text" name="e-mail" value={props.email} disabled/>
+                            <Form.Control type="text" name="e-mail"  style={{ "backgroundColor": "#2f2f2f", "color": "#fff"}} value={props.email} disabled/>
                         </FloatingLabel>
                     </Form.Group>
                     </Row>
                     <Row className="mb-3">
                     <Form.Group as={Col}>
                         <FloatingLabel label="Description">
-                            <Form.Control as="textarea" name="description" style={{ height: '100px', "margin-top": 15+"px"}} value={props.values.description} onChange={props.handleChange} />
+                            <Form.Control as="textarea" name="description"  style={{ backgroundColor: "#2f2f2f", "color": "#fff", height: '100px', "margin-top": 15+"px"}} value={props.values.description} onChange={props.handleChange} />
                         </FloatingLabel>
                     </Form.Group>
                     </Row>
@@ -218,6 +230,7 @@ const Basic = (props) => {
             </Modal.Footer>
         </Modal>
         </React.Fragment>
+        </div>
     )
 }
 

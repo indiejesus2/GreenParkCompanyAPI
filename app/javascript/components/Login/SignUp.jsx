@@ -6,7 +6,7 @@ import { useHistory } from 'react-router-dom'
 import * as yup from 'yup'
 
 
-export default function EmployeeSignUp(props) {
+export default function SignUp(props) {
 
     const [show, setShow] = useState(true)
     const history = useHistory();
@@ -34,12 +34,16 @@ export default function EmployeeSignUp(props) {
         initialValues: {
             email: "",
             password: "",
+            user: "employee"
         },
         validationSchema: schema,
         onSubmit: values => {
             props.signUp(values)
-            handleClose
-            history.push('/employees')
+            if (values.user == "employee") {
+                history.push('/employees')
+            } else if (values.user == "contractor") {
+                history.push('/contractors')
+            }
         },
     });
 
@@ -49,15 +53,28 @@ export default function EmployeeSignUp(props) {
 
     return (
         <React.Fragment>    
-        <Modal show={show} animation centered onHide={handleClose}>
-            <Modal.Header><h1>Create a Free Account</h1>
-            <p>Find a job today!</p></Modal.Header>
+        <Modal size="lg" show={show} animation centered onHide={handleClose}>
+            <div className="signIn">
 
-            <Form onSubmit={formik.handleSubmit}>
-            <Modal.Body>
+
+
+            <Form onSubmit={formik.handleSubmit}
+                style={{
+                    "width": 50 + "%"
+                }}
+            >
+            <Modal.Body
+                style={{
+                    "paddingBlock": 0 + "px"
+                }}
+            >
+                <h1>Sign Up</h1>
+            <div id="newUser">
+                    <span>Already user??</span><Button variant="link" onClick={props.handleClick}>Sign In</Button>
+                </div>
             <Alert show={alert}>
                     {props.errors}
-                </Alert>
+            </Alert>
                 <Form.Group md="4" controlId="validationFormik01">
                 <Form.Label>Email: </Form.Label>
                 <Form.Control
@@ -67,6 +84,10 @@ export default function EmployeeSignUp(props) {
                     onChange={formik.handleChange}
                     isInvalid={formik.touched.email && formik.errors.email}
                     onBlur={formik.handleBlur}
+                    style={{
+                        "padding": 5 + "px",
+                        "marginBottom": 10 + "px"
+                    }}
                     />
                         {formik.errors.email && formik.touched.email && (
                             <div style={{ color: "red"}}>{formik.errors.email}</div>
@@ -79,17 +100,39 @@ export default function EmployeeSignUp(props) {
                         onChange={formik.handleChange}
                         isInvalid={formik.touched.password && formik.errors.password}
                         onBlur={formik.handleBlur}
+                        style={{
+                            "padding": 5 + "px",
+                            "marginBottom": 10 + "px"
+                        }}
                         />
                             {formik.errors.password && formik.touched.password && (
                                 <div style={{ color: "red"}}>{formik.errors.password}</div>
                             )}
-                        <Button variant="link" onClick={props.handleClick}>Already Have An Account?</Button>
                 </Form.Group>
+                <Form.Group md="4" id="signInOptions">
+                    <Form.Label>Sign In As</Form.Label>
+                        <Form.Select onChange={formik.handleChange} name="user" value={formik.values.user}
+                            style={{
+                                "width": 63 + "%",
+                                "height": 50 + "%"
+                            }}
+                        >
+                            <option value="employee">Employee</option>
+                            <option value="contractor">Contractor</option>
+                        </Form.Select>
+                </Form.Group>
+                <div>
+                    <Button variant="primary" type="submit" style={{ "width": 100 + "%"}}>Sign Up</Button>
+                </div>
                 </Modal.Body>
-                <Modal.Footer>
+                {/* <Modal.Footer>
                     <Button variant="primary" type="submit">Sign-Up</Button>
-                </Modal.Footer>
+                </Modal.Footer> */}
                 </Form>
+                <div id="collar">
+                    <img src="/images/blucollarO.png" alt="collar" />
+            </div>
+            </div>
         </Modal>
         </React.Fragment>
     )

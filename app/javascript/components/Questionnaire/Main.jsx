@@ -31,7 +31,8 @@ const Main = (props) => {
     const schema = yup.object().shape({
         fname: yup.string().required(),
         city: yup.string().required(),
-        state: yup.string().required()
+        state: yup.string().required(),
+        zipcode: yup.string().required()
     })
 
     const formik = useFormik({
@@ -78,9 +79,10 @@ const Main = (props) => {
             // } else if (currentStep === 2 && direction === "next") {
                 //     setStep(step+1)
             } else {
-            formik.setErrors({city: "Please enter a city", state: "Please enter a state"})
+            formik.setErrors({city: "Please enter a city", state: "Please enter a state", zipcode: "Please enter a zip-code"})
             formik.setFieldTouched('city')
             formik.setFieldTouched('state')
+            formik.setFieldTouched('zipcode')
         }
     }
 

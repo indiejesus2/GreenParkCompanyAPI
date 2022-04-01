@@ -6,7 +6,7 @@ export default class SignOut extends Component {
     render() {
         this.props.signOut()
         return (
-            <Redirect to='/' />
+            <Redirect to='/home' />
         )
     }
 }

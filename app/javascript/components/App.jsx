@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { Provider } from 'react-redux'
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom'
 import LoginContainer from '../containers/LoginContainer'
 import EmployeesContainer from '../containers/EmployeesContainer'
 import ContractorsContainer from '../containers/ContractorsContainer'
@@ -17,6 +17,7 @@ const App = () => {
         return (
             <div>
                 <Switch>
+                    <Redirect from="/" to="/home" exact />
                     <Route path="/home" component={LoginContainer}></Route>
                     {/* // exact render={(routerProps) => <Home {...routerProps} signIn={this.props.signIn}/>}></Route> */}
                     <Route path="/employees" component={EmployeesContainer}></Route>

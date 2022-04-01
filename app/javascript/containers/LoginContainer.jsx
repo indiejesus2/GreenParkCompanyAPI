@@ -3,9 +3,10 @@ import { connect } from 'react-redux'
 import { Route, Switch, Redirect } from 'react-router-dom'
 import Home from '../components/Home'
 import SignIn from '../components/Login/SignIn'
-import EmployeeSignUp from '../components/Login/EmployeeSignUp'
+import SignUp from '../components/Login/SignUp'
+import SignOut from '../components/Login/SignOut'
 import {signIn} from '../actions/Tradespeople/signIn'
-import { signUpEmployee } from '../actions/Tradespeople/signUpEmployee'
+import {signUp} from '../actions/Tradespeople/signUp'
 import NavBar from '../components/NavBar'
 
 // import SignOut from '../components/Login/SignOut'
@@ -37,10 +38,11 @@ class LoginContainer extends Component {
                 <div>
                 <NavBar />
                 <Switch>
+                    <Route path='/signOut' render={(routerProps) => <SignOut signOut={this.props.signOut}/>}></Route>
+                    <Route path='/home/signUp' render={(routerProps) => <SignUp {...routerProps} signUp={this.props.signUp} currentStep={2} signOut={this.props.signOut}/>}></Route>
                     <Route path='/home/signin' render={(routerProps) => <SignIn {...routerProps} signIn={this.props.signIn} currentStep={1} signUp={this.props.signUp} signOut={this.props.signOut}/>}></Route>
                     {/* <Route path='/employees/signup' render={(routerProps) => <EmployeeSignUp {...routerProps} signUpEmployee={this.props.signUpEmployee} />}></Route> */}
                     <Route path='/home' render={(routerProps) => <Home {...routerProps} />}></Route>
-                    <Redirect from="/" to="/home" />
                 </Switch>
                 </div>
             )
@@ -51,12 +53,14 @@ class LoginContainer extends Component {
 const mapStateToProps = state => {
     return {
         employee: state.employeesReducer.employee,
+        contractor: state.contractorsReducer.contractor,
         loading: state.employeesReducer.loading,
     }
 }
 
 const mapDispatchToProps = dispatch => ({
-    signIn: employee => dispatch(signIn(employee)),
+    signIn: user => dispatch(signIn(user)),
+    signUp: user => dispatch(signUp(user)),
     signOut: () => dispatch(signOut())
 })
 
