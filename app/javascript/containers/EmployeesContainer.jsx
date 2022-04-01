@@ -2,9 +2,9 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Route, Switch, Link } from 'react-router-dom'
 import {signIn} from '../actions/Tradespeople/signIn'
-import { signUpEmployee } from '../actions/Tradespeople/signUp'
+import { signUp } from '../actions/Tradespeople/signUp'
 import { createProfile } from '../actions/Tradespeople/createProfile'
-import { signOutEmployee } from '../actions/signOut'
+import { signOut } from '../actions/signOut'
 import { updateProfile } from '../actions/Tradespeople/updateProfile'
 import { uploadFile } from '../actions/Tradespeople/uploadFile'
 import { findCity } from '../actions/Tradespeople/findCity'
@@ -99,7 +99,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => ({
     signIn: employee => dispatch(signIn(employee)),
-    signUp: employee => dispatch(signUpEmployee(employee)),
+    signUp: employee => dispatch(signUp(employee)),
     createProfile: profile => dispatch(createProfile(profile)),
     fetchJobs: employee => dispatch(fetchJobs(employee)),
     updateProfile: profile => dispatch(updateProfile(profile)),
@@ -112,7 +112,7 @@ const mapDispatchToProps = dispatch => ({
     updatePassword: user => dispatch(updatePassword(user)),
     resetPassword: user => dispatch(resetPassword(user)),
     currentUser: () => dispatch(currentUser()),
-    signOutEmployee: () => dispatch(signOutEmployee())
+    signOut: () => dispatch(signOut())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(EmployeesContainer)
