@@ -63,7 +63,7 @@ const Employees = props => {
         if (jobs.length == 0) {
             return (
                 <div>
-                    <p>
+                    <p style={{ "padding-inline-start": 55 + "px"}}>
                         "We're working hard to find some matches."
                     </p>
                 </div>
@@ -85,14 +85,15 @@ const Employees = props => {
     }
 
     if (props.loggedIn === false) {
-        return (
-            <div className="signin">
-                    <Home />
-                    <EmployeeSignUp signUp={props.signUp} currentStep={currentStep} handleClick={handleClick} handlePassword={handlePassword} errors={errors} />
-                    <EmployeeSignIn signIn={props.signIn} currentStep={currentStep} handleClick={handleClick} handlePassword={handlePassword} errors={errors} />
-                    <ForgotPassword currentStep={currentStep} updatePassword={props.updatePassword} handleValidation={handleValidation} user={"employee"} />
-                </div>
-        )
+        <Redirect to="/home" />
+        // return (
+        //     <div className="signin">
+        //             <Home />
+        //             <EmployeeSignUp signUp={props.signUp} currentStep={currentStep} handleClick={handleClick} handlePassword={handlePassword} errors={errors} />
+        //             <EmployeeSignIn signIn={props.signIn} currentStep={currentStep} handleClick={handleClick} handlePassword={handlePassword} errors={errors} />
+        //             <ForgotPassword currentStep={currentStep} updatePassword={props.updatePassword} handleValidation={handleValidation} user={"employee"} />
+        //         </div>
+        // )
     } else if (state.profile.length === 0) {
         return (
             <div className="questionnaire">

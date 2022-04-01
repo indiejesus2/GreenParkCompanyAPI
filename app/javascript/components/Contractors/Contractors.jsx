@@ -115,12 +115,13 @@ if (loading === true) {
         )
     } else {
         return (
-            <div className="signin">
-            <Home />
-            <ContractorSignUp signUp={props.signUp} currentStep={currentStep} handleClick={handleClick} handlePassword={handlePassword} errors={errors} />
-            <ContractorSignIn signIn={props.signIn} currentStep={currentStep} handleClick={handleClick} handlePassword={handlePassword} errors={errors} />
-            <ForgotPassword currentStep={currentStep} updatePassword={props.updatePassword} user="contractor" />
-        </div>
+            <Redirect to="/home" />
+        //     <div className="signin">
+        //     <Home />
+        //     <ContractorSignUp signUp={props.signUp} currentStep={currentStep} handleClick={handleClick} handlePassword={handlePassword} errors={errors} />
+        //     <ContractorSignIn signIn={props.signIn} currentStep={currentStep} handleClick={handleClick} handlePassword={handlePassword} errors={errors} />
+        //     <ForgotPassword currentStep={currentStep} updatePassword={props.updatePassword} user="contractor" />
+        // </div>
 
         )
     }
