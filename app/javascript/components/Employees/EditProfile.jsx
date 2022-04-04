@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import NavBar from '../NavBar'
 import { useFormik } from 'formik'
 import { Form, FloatingLabel, Button, Row, Col, InputGroup } from 'react-bootstrap'
-import {Link} from 'react-router-dom'
+import {Link, Redirect} from 'react-router-dom'
 import EmployeeFile from './EmployeeFile'
 
 export default function EditProfile(props) {
@@ -33,6 +33,10 @@ export default function EditProfile(props) {
         } else {
             formik.setFieldValue('zipcode', postal)
         }
+    }
+
+    const handleExperience = () => {
+        props.history.push(`/employees/${employee.id}/experience/add_experience`)
     }
 
     const findCity = async (postal) => {
@@ -201,7 +205,6 @@ export default function EditProfile(props) {
 
     return (
         <div className="profile">
-                <NavBar handleSignout={props.signOut} profile={props.profile} user="employee" />
 
             <h1>Edit Profile</h1>
             <div className="input">
@@ -210,13 +213,13 @@ export default function EditProfile(props) {
 
                     <Form.Group as={Col}>
                         <FloatingLabel label="First Name">
-                            <Form.Control type="text" name="fname" value={formik.values.fname} onChange={formik.handleChange} />
+                            <Form.Control type="text" name="fname" value={formik.values.fname} style={{ "backgroundColor": "#2f2f2f", "color": "#fff"}} onChange={formik.handleChange} />
                         </FloatingLabel>
                     </Form.Group> 
                     <Form.Group as={Col}>
 
                         <FloatingLabel label="Last Name">
-                            <Form.Control type="text" name="lname" value={formik.values.lname} onChange={formik.handleChange} />
+                            <Form.Control type="text" name="lname" value={formik.values.lname} style={{ "backgroundColor": "#2f2f2f", "color": "#fff"}} onChange={formik.handleChange} />
                         </FloatingLabel>
                         </Form.Group>
                     </Row>
@@ -224,12 +227,12 @@ export default function EditProfile(props) {
 
                     <Form.Group as={Col}>
                         <FloatingLabel label="City">
-                            <Form.Control type="text" name="city" value={formik.values.city} onChange={formik.handleChange} />
+                            <Form.Control type="text" name="city" value={formik.values.city} style={{ "backgroundColor": "#2f2f2f", "color": "#fff"}} onChange={formik.handleChange} />
                         </FloatingLabel>
                         </Form.Group> 
                     <Form.Group as={Col}>
                         <FloatingLabel label="State">
-                        <Form.Select name="state" onChange={formik.handleChange} value={formik.values.state}>
+                        <Form.Select name="state" onChange={formik.handleChange} style={{ "backgroundColor": "#2f2f2f", "color": "#fff"}} value={formik.values.state}>
                             {states.map(state => 
                                 <option defaultValue={formik.initialValues.state == state}>{state}</option>
                             )}
@@ -238,7 +241,7 @@ export default function EditProfile(props) {
                         </Form.Group>
                     <Form.Group as={Col}>
                         <FloatingLabel label="Zip-Code">
-                            <Form.Control type="text" name="zipcode" value={formik.values.zipcode} onChange={handlePostal} />
+                            <Form.Control type="text" name="zipcode" value={formik.values.zipcode} style={{ "backgroundColor": "#2f2f2f", "color": "#fff"}} onChange={handlePostal} />
                         </FloatingLabel>
                         </Form.Group>
                     </Row>
@@ -246,12 +249,12 @@ export default function EditProfile(props) {
 
                     <Form.Group as={Col}>
                         <FloatingLabel label="Phone">
-                            <Form.Control type="text" name="phone" value={formatPhoneNumber(formik.values.phone)} onChange={formik.handleChange} />
+                            <Form.Control type="text" name="phone" value={formatPhoneNumber(formik.values.phone)} style={{ "backgroundColor": "#2f2f2f", "color": "#fff"}} onChange={formik.handleChange} />
                         </FloatingLabel>
                     </Form.Group>
                     <Form.Group as={Col}>
-                <FloatingLabel label="trade">
-                <Form.Select name="trade" id="trade" onChange={formik.handleChange} defaultValue={formik.initialValues.trade}>
+                <FloatingLabel label="Trade">
+                <Form.Select name="trade" id="trade" onChange={formik.handleChange} defaultValue={formik.initialValues.trade} style={{ "backgroundColor": "#2f2f2f", "color": "#fff"}}>
                         {trades.map(trade => 
                             <option key={trade}>{trade}</option>
                             )}
@@ -259,9 +262,9 @@ export default function EditProfile(props) {
                 </FloatingLabel>
                 </Form.Group> 
                 <Form.Group as={Col}>
-                    <FloatingLabel label="Commuting Distance">
+                    <FloatingLabel label="Commute">
 
-                        <Form.Select name="commute" id="commute" onChange={formik.handleChange} value={formik.values.commute} defaultValue={formik.values.commute}>
+                        <Form.Select name="commute" id="commute" onChange={formik.handleChange} value={formik.values.commute} defaultValue={formik.values.commute} style={{ "backgroundColor": "#2f2f2f", "color": "#fff"}}>
                             {commute.map(miles => 
                                 <option key={miles} value={miles}>{miles} Miles</option>    
                             )}
@@ -272,45 +275,44 @@ export default function EditProfile(props) {
 
                     <Form.Group>
                         <FloatingLabel label="Description">
-                            <Form.Control as="textarea" name="description" style={{ height: '100px'}} value={formik.initialValues.description} onChange={formik.handleChange} />
+                            <Form.Control as="textarea" name="description" style={{ height: '100px', backgroundColor: '#2f2f2f', color: '#fff'}} value={formik.values.description} onChange={formik.handleChange} />
                         </FloatingLabel>
                     </Form.Group>
-                    <Row className="desired">
-                    <Form.Group as={Col}>
-                    <div className="jobtype">
-                        <Form.Label htmlFor="job type"> Job-Type: </Form.Label>
+                    <Row className="mb-3 mt-3">
+                    <Form.Group as={Col} style={{ backgroundColor: "#2f2f2f", color: "#fff", border: "1px solid white", paddingTop: "0.625rem", paddingBottom: ".625rem", paddingInline: ".75rem", marginInline: "10px"}}>
+                    {/* <div className="jobtype"> */}
+                        <Form.Label style={{ opacity: ".65", transform: "scale(.85) translateY(-.5rem) translateX(.15rem)"}} htmlFor="job type"> Job-Type: </Form.Label>
                         {jobtypes.map(job => 
                             <Form.Check name="jobtype" label={job} value={job} id={job} key={job} onChange={formik.handleChange} defaultChecked={formik.values.jobtype.includes(job)}/>
                         )}
-                    </div>
+                    {/* </div> */}
                     </Form.Group>
-                    <Form.Group as={Col}>
+                    <Form.Group as={Col} style={{ backgroundColor: "#2f2f2f", color: "#fff", border: "1px solid white", paddingTop: "0.625rem", paddingBottom: ".625rem", paddingInline: ".75rem", marginInline: "10px"}}>
 
-                    <div className="schedule">
-                        <Form.Label htmlFor="schedule">Schedule: </Form.Label>
+                    {/* <div className="schedule"> */}
+                        <Form.Label style={{ opacity: ".65", transform: "scale(.85) translateY(-.5rem) translateX(.15rem)"}} htmlFor="schedule">Schedule: </Form.Label>
                         {schedule.map(day => 
                             <Form.Check name="schedule" id={day} label={day} value={day} key={day} onChange={formik.handleChange} 
                             defaultChecked={formik.values.schedule.includes(day)}
                             />
                             )}
-                    </div>
+                    {/* </div> */}
                             </Form.Group>
-                            <Form.Group as={Col}>
-
-                <div className="shifts">
-                    <Form.Label>Shifts: </Form.Label>
+                            <Form.Group as={Col} style={{ backgroundColor: "#2f2f2f", color: "#fff", border: "1px solid white", paddingTop: "0.625rem", paddingBottom: ".625rem", paddingInline: ".75rem", marginInline: "10px"}}>
+                {/* <div className="shifts"> */}
+                    <Form.Label style={{ opacity: ".65", transform: "scale(.85) translateY(-.5rem) translateX(.15rem)"}}>Shifts: </Form.Label>
                     {shifts.map(shift =>                             
                         <Form.Check name="shifts" label={shift} value={shift} key={shift} onChange={formik.handleChange} defaultChecked={formik.values.shifts.includes(shift)} />
                         )}
-                </div>
+                {/* </div> */}
                         </Form.Group>
                 </Row>
 
-                    <Form.Label>Season Availability: </Form.Label>
+                    {/* <Form.Label>Season Availability: </Form.Label>
                 <Row className="mb-3">
-                <Form.Group as={Col}>
+                <Form.Group as={Col}> */}
                 {/* <div className="seasonal"> */}
-                    <FloatingLabel label="Seasonal Start">
+                    {/* <FloatingLabel label="Seasonal Start">
 
                     <Form.Select name="seasonstart" onChange={formik.handleChange} defaultValue={formik.values.seasonstart}> 
                         {months.map(month =>
@@ -327,17 +329,17 @@ export default function EditProfile(props) {
                         <option >{month}</option>
                         )}
                     </Form.Select>
-                    </FloatingLabel>
+                    </FloatingLabel> */}
                 {/* </div> */}
-                </Form.Group>
+                {/* </Form.Group>
 
-                </Row>
+                </Row> */}
                 <Row className="mb-3">
                 <Form.Group as={Col}>
                     <Form.Label>
                         Pay Type:
                     </Form.Label>
-                    <Form.Select name="paytype" label="paytype" value={formik.values.paytype} onChange={formik.handleChange} defaultValue={formik.values.paytype}>
+                    <Form.Select name="paytype" label="paytype" value={formik.values.paytype} onChange={formik.handleChange} defaultValue={formik.values.paytype} style={{ "backgroundColor": "#2f2f2f", "color": "#fff"}}>
                             <option>Hourly</option>
                             <option>Annually</option>
                     </Form.Select>
@@ -349,15 +351,16 @@ export default function EditProfile(props) {
                     </Form.Label>
                     <InputGroup>
                         <InputGroup.Text>$</InputGroup.Text>
-                    <Form.Control type="text" name="minpay" onChange={formik.handleChange} value={formik.values.minpay}/>
+                    <Form.Control type="text" name="minpay" onChange={formik.handleChange} value={formik.values.minpay} style={{ "backgroundColor": "#2f2f2f", "color": "#fff"}}/>
                     </InputGroup>
                 </Form.Group>
                 </Row>
-                <Row>
+                <Row className="mb-3">
                     <Form.Group as={Col}>
-                        <Form.Check name="license" label="Driver's License" value={formik.values.license} onChange={formik.handleChange} defaultChecked={formik.values.license} />
+                        <Form.Check name="license" label="Driver's License" value={formik.values.license} onChange={formik.handleChange} defaultChecked={formik.values.license}/>
                     </Form.Group>
-                    <Form.Group as={Col}>
+                </Row>
+                <div className="d-flex justify-content-around">
                         <Button onClick={handleShow} className="d-flex justify-content-right">
                             Upload Resume/CV
                             <EmployeeFile 
@@ -368,12 +371,9 @@ export default function EditProfile(props) {
                             // uploadFile={} 
                             />
                         </Button>
-                    </Form.Group>
-                </Row>
-                    <Link to={`/employees/${employee.id}/experience/add_experience`}>
+                    <Button value="Add Experience" onClick={handleExperience}>
                         Add Experience
-                    </Link>
-                <div className="submit">
+                    </Button>
                     <Button type="submit" value="Save Changes" onClick={formik.handleSubmit}>Save Changes</Button>
                 </div>
                     </Form>

@@ -84,7 +84,9 @@ const Employees = props => {
     }
 
     if (props.loggedIn === false) {
-        <Redirect to="/home" />
+        return (
+            <Redirect to="/home" />
+        )
         // return (
         //     <div className="signin">
         //             <Home />
@@ -103,10 +105,8 @@ const Employees = props => {
         
     } else {
         return (
-            <div className="employees">
-                <NavBar handleSignout={props.signOut} profile={props.profile} loggedIn={props.loggedIn} user="employee" />
-                <SideNavBar profile={props.profile} user="employee"/>
-                    {handleJobs()}
+            <div>
+                {handleJobs()}
             </div>
         )
     }

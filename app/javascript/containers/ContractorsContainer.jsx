@@ -42,15 +42,15 @@ class ContractorsContainer extends Component {
                 </div>
                 </div>
             )
-        } else if (this.props.loggedIn == false) {
-            return (
-                <div>
-                    <Switch>
-                        <Route path='/contractors/signIn' render={(routerProps) => <Contractors {...routerProps} currentStep={1} signIn={this.props.signIn} signUp={this.props.signUp} contractor={this.props.contractor} updateSubscription={this.props.updateSubscription} errors={this.props.errors} signOut={this.props.signOut} updatePassword={this.props.updatePassword}/>}></Route>
-                        <Route path='/contractors' render={(routerProps) => <Contractors {...routerProps} loading={this.props.loading} signIn={this.props.signIn} signUp={this.props.signUp} loggedIn={this.props.loggedIn} contractor={this.props.contractor} profile={this.props.profile} jobs={this.props.jobs} updateSubscription={this.props.updateSubscription} errors={this.props.errors} signOut={this.props.signOut} updatePassword={this.props.updatePassword}/>}></Route>
-                    </Switch>
-                </div>
-            )
+        // } else if (this.props.loggedIn == false) {
+        //     return (
+        //         <div>
+        //             <Switch>
+        //                 <Route path='/contractors/signIn' render={(routerProps) => <Contractors {...routerProps} currentStep={1} signIn={this.props.signIn} signUp={this.props.signUp} contractor={this.props.contractor} updateSubscription={this.props.updateSubscription} errors={this.props.errors} signOut={this.props.signOut} updatePassword={this.props.updatePassword}/>}></Route>
+        //                 <Route path='/contractors' render={(routerProps) => <Contractors {...routerProps} loading={this.props.loading} signIn={this.props.signIn} signUp={this.props.signUp} loggedIn={this.props.loggedIn} contractor={this.props.contractor} profile={this.props.profile} jobs={this.props.jobs} updateSubscription={this.props.updateSubscription} errors={this.props.errors} signOut={this.props.signOut} updatePassword={this.props.updatePassword}/>}></Route>
+        //             </Switch>
+        //         </div>
+        //     )
         } else {
         return (
             <div>

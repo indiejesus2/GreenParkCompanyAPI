@@ -80,20 +80,19 @@ export default function AddExperience(props) {
     })
 
     return (
-        <div className="experience">
-            <NavBar handleSignout={props.signOut} profile={props.profile} user="employee" />
+        <div className="profile">
             <h1>Edit Experience</h1>
             <div className="input">
-`           <Form className="experience-form">
+`           <Form className="profile-form">
                 <Row className="mb-3">
                     <Form.Group as={Col} >
                         <FloatingLabel label="Title">
-                        <Form.Control type="text" name="title" value={formik.values.title} onChange={formik.handleChange} />
+                        <Form.Control type="text" name="title" value={formik.values.title} style={{ "backgroundColor": "#2f2f2f", "color": "#fff"}} onChange={formik.handleChange} />
                     </FloatingLabel>
                     </Form.Group>
                     <Form.Group as={Col}>
                         <FloatingLabel label="Company">
-                            <Form.Control type="text" name="company" value={formik.values.company} onChange={formik.handleChange} />
+                            <Form.Control type="text" name="company" value={formik.values.company} style={{ "backgroundColor": "#2f2f2f", "color": "#fff"}} onChange={formik.handleChange} />
                         </FloatingLabel>
                     </Form.Group>
                 </Row>
@@ -101,12 +100,12 @@ export default function AddExperience(props) {
                 <Row className="mb-3">
                     <Form.Group as={Col}>
                         <FloatingLabel label="City">
-                            <Form.Control type="text" name="city" value={formik.values.city} onChange={formik.handleChange} />
+                            <Form.Control type="text" name="city" value={formik.values.city} style={{ "backgroundColor": "#2f2f2f", "color": "#fff"}} onChange={formik.handleChange} />
                         </FloatingLabel>
                     </Form.Group>
                     <Form.Group as={Col}>
                     <FloatingLabel label="State">
-                        <Form.Select name="state" value={formik.values.state} onChange={formik.handleChange}>
+                        <Form.Select name="state" value={formik.values.state} style={{ "backgroundColor": "#2f2f2f", "color": "#fff"}} onChange={formik.handleChange}>
                         {states.map(state => 
                             <option defaultValue="--">{state}</option>
                         )}
@@ -115,7 +114,7 @@ export default function AddExperience(props) {
                     </Form.Group>
                     <Form.Group as={Col}>
                     <FloatingLabel label="ZipCode">
-                        <Form.Control type="text" name="zipcode" value={formik.values.zipcode} onChange={formik.handleChange} />
+                        <Form.Control type="text" name="zipcode" value={formik.values.zipcode} style={{ "backgroundColor": "#2f2f2f", "color": "#fff"}} onChange={formik.handleChange} />
                     </FloatingLabel>
                     </Form.Group>
                 </Row>
@@ -123,12 +122,12 @@ export default function AddExperience(props) {
                 <Row className="mb-3">
                     <Form.Group as={Col}>
                         <FloatingLabel label="Start Date">
-                            <Form.Control type="date" name="startdate" value={formik.values.startdate} onChange={formik.handleChange} />
+                            <Form.Control type="date" name="startdate" value={formik.values.startdate} style={{ "backgroundColor": "#2f2f2f", "color": "#fff"}} onChange={formik.handleChange} />
                         </FloatingLabel>
                     </Form.Group>
                     <Form.Group as={Col}>
                         <FloatingLabel label="End Date">
-                            <Form.Control type="date" name="enddate" value={formik.values.enddate} onChange={formik.handleChange} />
+                            <Form.Control type="date" name="enddate" value={formik.values.enddate} style={{ "backgroundColor": "#2f2f2f", "color": "#fff"}} onChange={formik.handleChange} />
                         </FloatingLabel>
                     </Form.Group>
                 </Row>
@@ -136,7 +135,7 @@ export default function AddExperience(props) {
                 <Row className="mb-3">
                     <Form.Group as={Col}>
                         <FloatingLabel label="Description">
-                            <Form.Control as="textarea" name="description" value={formik.values.description} onChange={formik.handleChange} />
+                            <Form.Control as="textarea" name="description" value={formik.values.description} style={{ "backgroundColor": "#2f2f2f", "color": "#fff"}} onChange={formik.handleChange} />
                         </FloatingLabel>
                     </Form.Group>
                 </Row>

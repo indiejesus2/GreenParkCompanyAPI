@@ -1,6 +1,6 @@
 import { assertConditionalExpression } from "@babel/types"
 
-export default function employeesReducer(state = {employee: [], profile: [], experience: [], jobs: [], applicants: [], file: [], document: [], loggedIn: false, loading: false, fileLoading: false}, action) {
+export default function employeesReducer(state = {employee: [], profile: [], experience: [], jobs: [], applicants: [], file: [], document: [], errors: [], loggedIn: false, loading: false, fileLoading: false}, action) {
     switch(action.type) {
         case 'LOADING_EMPLOYEES':
             return {
@@ -81,17 +81,17 @@ export default function employeesReducer(state = {employee: [], profile: [], exp
                 document: action.payload
             }
         case 'UPDATE_APPLICATIONS':
-            debugger
             return {
                 ...state,
                 applicants: action.payload
             }
         case 'ERROR_EMPLOYEE':
+            debugger
             return {
                 ...state,
                 loading: false,
                 loggedIn: false,
-                errors: action.payload
+                employeeErrors: action.payload
             }
             case 'LOGOUT_EMPLOYEE':
                 return {
@@ -102,7 +102,8 @@ export default function employeesReducer(state = {employee: [], profile: [], exp
                     jobs: [],
                     applicants: [],
                     file: [],
-                    document: []
+                    document: [],
+                    errors: []
                 }
         default:
             return state

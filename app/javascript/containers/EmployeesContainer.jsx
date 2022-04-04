@@ -23,6 +23,7 @@ import AddExperience from '../components/Employees/AddExperience'
 import EditExperience from '../components/Employees/EditExperience'
 import TempPassword from '../components/Login/TempPassword'
 import NavBar from '../components/NavBar'
+import SideNavBar from '../components/SideNavBar'
 import Logo from '../components/Logo'
 
 class EmployeesContainer extends Component {
@@ -51,19 +52,21 @@ class EmployeesContainer extends Component {
                         </div>
                 </div>
             )
-        } else if (this.props.loggedIn == false) {
-            return (
-                <div>
-                    <Switch>
-                        <Route path='/employees/reset_password' render={(routerProps)  => <TempPassword {...routerProps} employee={this.props.employee} currentStep={4} loggedIn={false} resetPassword={this.props.resetPassword} signIn={this.props.signIn} signUp={this.props.signUp} profile={this.props.profile} jobs={this.props.jobs} loading={this.props.loading} createProfile={this.props.createProfile} errors={this.props.errors} signOut={this.props.signOutEmployee} updatePassword={this.props.updatePassword} user={"employees"} />}></Route>
-                        <Route path='/employees/signIn' render={(routerProps) => <Employees {...routerProps} employee={this.props.employee} currentStep={1} loggedIn={false} signIn={this.props.signIn} signUp={this.props.signUp} profile={this.props.profile} jobs={this.props.jobs} loading={this.props.loading} createProfile={this.props.createProfile} errors={this.props.errors} signOut={this.props.signOutEmployee} updatePassword={this.props.updatePassword}/>}></Route>
-                        <Route path='/employees' render={(routerProps) => <Employees {...routerProps} signIn={this.props.signIn} signUp={this.props.signUp} loggedIn={this.props.loggedIn} employee={this.props.employee} profile={this.props.profile} jobs={this.props.jobs} loading={this.props.loading} createProfile={this.props.createProfile} errors={this.props.errors} signOut={this.props.signOutEmployee} updatePassword={this.props.updatePassword} />}></Route>
-                    </Switch>
-                </div>
-            )
+        // } else if (this.props.loggedIn == false) {
+        //     return (
+        //         <div>
+        //             <Switch>
+        //                 <Route path='/employees/reset_password' render={(routerProps)  => <TempPassword {...routerProps} employee={this.props.employee} currentStep={4} loggedIn={false} resetPassword={this.props.resetPassword} signIn={this.props.signIn} signUp={this.props.signUp} profile={this.props.profile} jobs={this.props.jobs} loading={this.props.loading} createProfile={this.props.createProfile} errors={this.props.errors} signOut={this.props.signOutEmployee} updatePassword={this.props.updatePassword} user={"employees"} />}></Route>
+        //                 <Route path='/employees/signIn' render={(routerProps) => <Employees {...routerProps} employee={this.props.employee} currentStep={1} loggedIn={false} signIn={this.props.signIn} signUp={this.props.signUp} profile={this.props.profile} jobs={this.props.jobs} loading={this.props.loading} createProfile={this.props.createProfile} errors={this.props.errors} signOut={this.props.signOutEmployee} updatePassword={this.props.updatePassword}/>}></Route>
+        //                 <Route path='/employees' render={(routerProps) => <Employees {...routerProps} signIn={this.props.signIn} signUp={this.props.signUp} loggedIn={this.props.loggedIn} employee={this.props.employee} profile={this.props.profile} jobs={this.props.jobs} loading={this.props.loading} createProfile={this.props.createProfile} errors={this.props.errors} signOut={this.props.signOutEmployee} updatePassword={this.props.updatePassword} />}></Route>
+        //             </Switch>
+        //         </div>
+        //     )
         } else {
             return (
-                <div>
+                <div className="employees">
+                    <NavBar handleSignout={this.props.signOut} profile={this.props.profile} loggedIn={this.props.loggedIn} user="employee" />
+                    <SideNavBar profile={this.props.profile} user="employee"/>
                 {/* <Logo user="employee"/> */}
                     <Switch>
                         <Route path='/employees/:id/experience/add_experience' render={(routerProps) => <AddExperience {...routerProps} employee={this.props.employee} profile={this.props.profile} addExperience={this.props.addExperience} loggedIn={this.props.loggedIn}/>}></Route>

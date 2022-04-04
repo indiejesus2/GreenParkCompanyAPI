@@ -44,7 +44,8 @@ class Api::V1::EmployersController < ApplicationController
   # PATCH/PUT /employers/1 or /employers/1.json
   def update
       if @employer.update(employer_params)
-        if !@employer.subscription.empty?
+        bybug
+        if !@employer.monthly.empty? || !@employer.yearly.empty?
           @employer.status = true
           @employer.save
         end
