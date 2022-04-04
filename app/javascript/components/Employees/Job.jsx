@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { Modal, Button, Table, Container, Row, Card, CloseButton } from 'react-bootstrap'
 
 const Job = props => {

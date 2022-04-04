@@ -35,6 +35,7 @@ class Profile < ApplicationRecord
         end
       }
     end
+    byebug
   end
 
   def findcity
@@ -92,9 +93,10 @@ class Profile < ApplicationRecord
     applicants = employee.applicants
     if applicants.length > 0
       applicants.each{|applicant|
+      job = Job.find_by(id: applicant.job_id)
         # if a job's trade or address is changed, current applicants must be checked to see if they are a match.
         # if trade doesn't match applicant trade or Profile isn't near the updated address
-        if applicant.profile.trade != trade && applicant.profile.trade != "Other/None"
+        if job.trade != trade && job.trade != "Other/None"
 
           Applicant.destroy(applicant.id)
         end
