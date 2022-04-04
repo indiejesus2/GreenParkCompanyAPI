@@ -70,7 +70,7 @@ export default function SignUp(props) {
             >
                 <h1>Sign Up</h1>
             <div id="newUser">
-                    <span>Already user??</span><Button variant="link" onClick={props.handleClick}>Sign In</Button>
+                    <span>Already user?</span><Button variant="link" onClick={props.handleClick}>Sign In</Button>
                 </div>
             <Alert show={alert}>
                     {props.errors}
