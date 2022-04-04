@@ -33,18 +33,18 @@ class LoginContainer extends Component {
     // }
 
     render() {
-        debugger
-        if (!!this.props.employeeErrors) {
-            return (
-                <div>
-                <NavBar />
-                <Switch>
-                    <Route path='/home/signin' render={(routerProps) => <SignIn {...routerProps} signIn={this.props.signIn} currentStep={1} signUp={this.props.signUp} employeesErrors={this.props.employeesErrors} signOut={this.props.signOut}/>}></Route>
-                    {/* <Route path='/employees/signup' render={(routerProps) => <EmployeeSignUp {...routerProps} signUpEmployee={this.props.signUpEmployee} />}></Route> */}
-                    {/* <Route path='/home' render={(routerProps) => <Home {...routerProps} />}></Route> */}
-                </Switch>
-                </div>            
-            )
+        // debugger
+        // if (!!this.props.employeeErrors) {
+        //     return (
+        //         <div>
+        //         <NavBar />
+        //         <Switch>
+        //             <Route path='/home/signin' render={(routerProps) => <SignIn {...routerProps} signIn={this.props.signIn} currentStep={1} signUp={this.props.signUp} employeesErrors={this.props.employeesErrors} signOut={this.props.signOut}/>}></Route>
+        //             {/* <Route path='/employees/signup' render={(routerProps) => <EmployeeSignUp {...routerProps} signUpEmployee={this.props.signUpEmployee} />}></Route> */}
+        //             {/* <Route path='/home' render={(routerProps) => <Home {...routerProps} />}></Route> */}
+        //         </Switch>
+        //         </div>            
+        //     )
         // } else if (this.props.loggedIn == true) {
         //     return (
         //         <div>
@@ -53,7 +53,7 @@ class LoginContainer extends Component {
         //             </Switch>
         //         </div>
         //     )
-        } else {
+        // } else {
             return(
                 <div>
                 <NavBar />
@@ -67,7 +67,7 @@ class LoginContainer extends Component {
                 </div>
             )
         }
-    }
+    // }
 }
 
 const mapStateToProps = state => {
