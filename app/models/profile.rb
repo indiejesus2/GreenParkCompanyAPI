@@ -27,7 +27,7 @@ class Profile < ApplicationRecord
     distance = !!commute ? commute : 100
     industry = Job.where("trade = ?", trade).near(address, distance)
     jobs = Job.where("trade = ?", "Other/None").near(address, distance)
-    jobs.merge(industry)
+    jobs = industry.or(jobs)
     if jobs.length > 0
       jobs.each {|job|
         if Applicant.where(job_id: job.id, employee_id: employee_id).length == 0 && !job.applicants.detect{|applicant| applicant.employee_id == employee_id}
@@ -35,7 +35,6 @@ class Profile < ApplicationRecord
         end
       }
     end
-    byebug
   end
 
   def findcity
