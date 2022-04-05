@@ -25,6 +25,10 @@ export default function SignIn(props) {
         setShow(false)
     }
 
+    const handleClick = () => {
+        history.push('/home/signUp')
+    }
+
     useEffect(() => {
         if (props.errors) {
             setAlert(true)
@@ -75,7 +79,7 @@ export default function SignIn(props) {
             >
                     <h1>Sign In</h1>
                 <div id="newUser">
-                    <span>New user?</span><Button variant="link" onClick={props.handleClick}>Create An Account</Button>
+                    <span>New user?</span><Button variant="link" onClick={handleClick}>Create An Account</Button>
                 </div>
                 <Alert show={alert}>
                     {props.errors}

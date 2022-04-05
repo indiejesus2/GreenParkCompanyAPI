@@ -30,6 +30,10 @@ export default function SignUp(props) {
 
     const handleShow = () => setShow(true);
 
+    const handleClick = () => {
+        history.push('/home/signIn')
+    }
+
     const formik = useFormik({
         initialValues: {
             email: "",
@@ -70,7 +74,7 @@ export default function SignUp(props) {
             >
                 <h1>Sign Up</h1>
             <div id="newUser">
-                    <span>Already user?</span><Button variant="link" onClick={props.handleClick}>Sign In</Button>
+                    <span>Already user?</span><Button variant="link" onClick={handleClick}>Sign In</Button>
                 </div>
             <Alert show={alert}>
                     {props.errors}
