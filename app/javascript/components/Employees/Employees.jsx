@@ -70,7 +70,7 @@ const Employees = props => {
         } else if (currentStep == 1) {
             return (
                 <div>
-                    <h2 style={{ "padding-inline-start": 55 + "px"}}>Congrats, you have {jobs.length} jobs that match your profile</h2>
+                    <h2 style={{ "padding-inline-start": 160 + "px"}}>Congrats, you have {jobs.length} jobs that match your profile</h2>
                     <Jobs jobs={jobs} employee={props.employee} profile={props.profile} applicants={props.applicants} handleInterest={props.handleInterest} currentStep={currentStep} handleJob={handleJob} />
                 </div>
             )

@@ -130,7 +130,7 @@ const Jobs = (props) => {
                                 {/* {Math.round(applicants.find(applicant => applicant.job_id == job.id).distance)} Miles */}
                             </td>
                             <td id="table-header-location" style={{ "border-bottom-width": 0 + "px"}}>
-                                Distance:{Math.round(applicants.find(applicant => applicant.job_id == job.id).distance)} Miles
+                                Distance: {Math.round(applicants.find(applicant => applicant.job_id == job.id).distance)}<span></span>Miles
                                 {/* Location: */}
                             {/* </td>
                             <td id="table-value-top" style={{ "border-bottom-width":  0 + "px"}}>  */}
@@ -139,16 +139,15 @@ const Jobs = (props) => {
                         </tr>
                     {/* //    as="h2" */}
                         <tr>
-                            <td id="table-header-title" style={{ "border-bottom-width": 0 + "px", "border-right": 2 + "px solid white"}}>Job Title:<span></span>
+                            <td id="table-header-title" style={{ "border-bottom-width": 0 + "px", "border-right": 2 + "px solid white"}}>Job Title: {job.title}<span></span>
                             {/* </td> */}
                             {/* <td id="table-value-bottom" style={{ "border-bottom-width": 0 + "px", "border-right": 2 + "px solid white"}}> */}
-                                {job.title}
                             </td>
                                 {/* as="h5" */}
 
-                            <td id="table-header-rating" style={{ "border-bottom-width": 0 + "px"}}>Rating:  
+                            <td id="table-header-rating" style={{ "border-bottom-width": 0 + "px"}}>Rating: {rate(applicants.find(applicant => applicant.job_id == job.id).rating)}<span></span>  
                             {/* <td id="table-value-bottom" style={{ "border-bottom-width": 0 + "px"}}>  */}
-                                {rate(applicants.find(applicant => applicant.job_id == job.id).rating)}
+                                
                             </td>
                             {/* </td> */}
                                 {/* {job.city}, {job.state} */}
