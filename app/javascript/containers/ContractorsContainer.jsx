@@ -19,6 +19,8 @@ import JobsContainer from '../containers/JobsContainer'
 import AddJob from '../components/Contractors/AddJob'
 import Applicant from '../components/Contractors/Applicant'
 import Logo from '../components/Logo'
+import NavBar from '../components/NavBar'
+import SideNavBar from '../components/SideNavBar'
 
 class ContractorsContainer extends Component {
 
@@ -54,15 +56,17 @@ class ContractorsContainer extends Component {
         } else {
         return (
             <div>
+                <NavBar handleSignout={this.props.signOut} contractor={this.props.contractor} loggedIn={this.props.loggedIn} user="contractor" />
+                <SideNavBar contractor={this.props.contractor} user="contractor"/>
                 <Switch>
-                <Route path='/contractors/:id/jobs/:job_id/employees/:employee_id' render={(routerProps) => <EmployeeProfile {...routerProps} loading={this.props.loading} contractor={this.props.contractor} jobs={this.props.jobs} signOut={this.props.signOutContractor} />}></Route>
-                <Route path='/contractors/:id/profile' render={(routerProps) => <Profile {...routerProps} contractor={this.props.contractor} signOut={this.props.signOutContractor} updateProfile={this.props.updateProfile} />}></Route>
-                <Route path='/contractors/:id/editprofile' render={(routerProps) => <EditProfile {...routerProps} contractor={this.props.contractor} signOut={this.props.signOutContractor} />}></Route>
-                <Route path='/contractors/:id/jobs' render={(routerProps) => <JobsContainer {...routerProps} jobs={this.props.jobs} contractor={this.props.contractor} candidates={this.props.candidates} profiles={this.props.profiles} work_history={this.props.work_history} editApplicant={this.props.editApplicant} signOut={this.props.signOutContractor}/>}></Route>
-                <Route path='/contractors/addjob' render={(routerProps) => <JobsContainer {...routerProps} contractor={this.props.contractor} addJob={this.props.addJob}/>}></Route>
-                <Route path='/contractors/:id/applicants' render={(routerProps) => <Applicant {...routerProps} jobs={this.props.jobs} contractor={this.props.contractor} applicants={this.props.applicants} profiles={this.props.profiles} work_history={this.props.work_history} editApplicant={this.props.editApplicant} />}></Route>
-                <Route path='/contractors/signIn'> <Redirect to="/contractors" /> </Route>
-                <Route exact path='/signout' render={(routerProps) => <SignOut {...routerProps} signoutUser={this.props.signoutContractorUser} user={this.props.user}/> }/>
+                    <Route path='/contractors/:id/jobs/:job_id/employees/:employee_id' render={(routerProps) => <EmployeeProfile {...routerProps} loading={this.props.loading} contractor={this.props.contractor} jobs={this.props.jobs} signOut={this.props.signOutContractor} />}></Route>
+                    <Route path='/contractors/:id/profile' render={(routerProps) => <Profile {...routerProps} contractor={this.props.contractor} signOut={this.props.signOutContractor} updateProfile={this.props.updateProfile} />}></Route>
+                    <Route path='/contractors/:id/editprofile' render={(routerProps) => <EditProfile {...routerProps} contractor={this.props.contractor} signOut={this.props.signOutContractor} />}></Route>
+                    <Route path='/contractors/:id/jobs' render={(routerProps) => <JobsContainer {...routerProps} jobs={this.props.jobs} contractor={this.props.contractor} candidates={this.props.candidates} profiles={this.props.profiles} work_history={this.props.work_history} editApplicant={this.props.editApplicant} signOut={this.props.signOutContractor}/>}></Route>
+                    <Route path='/contractors/addjob' render={(routerProps) => <JobsContainer {...routerProps} contractor={this.props.contractor} addJob={this.props.addJob}/>}></Route>
+                    <Route path='/contractors/:id/applicants' render={(routerProps) => <Applicant {...routerProps} jobs={this.props.jobs} contractor={this.props.contractor} applicants={this.props.applicants} profiles={this.props.profiles} work_history={this.props.work_history} editApplicant={this.props.editApplicant} />}></Route>
+                    <Route path='/contractors/signIn'> <Redirect to="/contractors" /> </Route>
+                    <Route exact path='/signout' render={(routerProps) => <SignOut {...routerProps} signoutUser={this.props.signoutContractorUser} user={this.props.user}/> }/>
                 {/* candidates={this.props.candidates} profiles={this.props.profiles} work_history={this.props.work_history} fetchEmployee={this.props.fetchEmployee} */}
                     {/* <Route path='/contractors/:id/jobs/:job_id' render={(routerProps) => <Job {...routerProps} contractor={this.props.contractor} jobs={this.props.jobs} candidates={this.props.candidates} /> } ></Route>
                     <Route path='/contractors/addjob' render={(routerProps) => <AddJob {...routerProps} contractor={this.props.contractor} addJob={this.props.addJob}/>}></Route> */}

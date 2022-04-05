@@ -46,7 +46,6 @@ def proximity
       Applicant.create(employee_id: "#{applicant.employee_id}", employer_id: "#{employer_id}", job_id: "#{id}", distance: distance_to(applicant))
     end
   }
-  byebug
 end
 
 def posted

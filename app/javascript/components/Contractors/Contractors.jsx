@@ -98,8 +98,6 @@ if (loading === true) {
     } else if (props.loggedIn === true) {
         return (
             <div className="contractor">
-                <NavBar handleSignout={props.signOut} contractor={contractor} user="contractor" loggedIn={props.loggedIn} />
-                <SideNavBar contractor={contractor} user="contractor"/>
                 {handleApplicants()}
                 {/* <Applicant contractor={contractor} jobs={jobs} applicants={props.applicants} editApplicant={props.editApplicant} /> */}
                 {/* <JobsContainer jobs={jobs} contractor={contractor} candidates={props.candidates} profiles={props.profiles}/> */}

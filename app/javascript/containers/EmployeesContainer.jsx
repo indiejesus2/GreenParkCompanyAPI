@@ -58,6 +58,7 @@ class EmployeesContainer extends Component {
             return (
                 <div>
                      <Switch>
+                        <NavBar handleSignout={this.props.signOut} loggedIn={this.props.loggedIn} user="employee" />
                         <Route path='/employees' render={(routerProps) => <Employees {...routerProps} signIn={this.props.signIn} signUp={this.props.signUp} loggedIn={this.props.loggedIn} employee={this.props.employee} profile={this.props.profile} jobs={this.props.jobs} loading={this.props.loading} createProfile={this.props.createProfile} errors={this.props.errors} signOut={this.props.signOutEmployee} updatePassword={this.props.updatePassword} />}></Route>
                      </Switch>
                 </div>

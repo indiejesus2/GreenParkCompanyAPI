@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { Form, Button, Card } from 'react-bootstrap'
+import { Form, Button, Card, Table } from 'react-bootstrap'
 import EmployeeProfile from './EmployeeProfile'
 
 const Applicants = (props) => {

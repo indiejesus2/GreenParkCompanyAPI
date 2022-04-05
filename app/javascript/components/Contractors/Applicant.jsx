@@ -301,9 +301,7 @@ const Applicant = (props) => {
                                 
                                 {/* {Math.round(applicants.find(applicant => applicant.job_id == job.id).distance)} Miles */}
                             </td>
-                            <td id="table-header-rating" style={{ "border-bottom-width": 0 + "px"}}>Rating: 
-                            {/* <td id="table-value-bottom" style={{ "border-bottom-width": 0 + "px"}}>  */}
-                                {rate(candidate.application.rating)}
+                            <td id="table-header-rating" style={{ "border-bottom-width": 0 + "px"}}>Rating: {rate(candidate.application.rating)}
                             </td>
                         </tr>
                     {/* //    as="h2" */}
