@@ -46,11 +46,17 @@ const ForgotPassword = props => {
     return (
         <React.Fragment>    
         <Modal show={show} animation centered onHide={handleClose}>
-            <Modal.Header>
-                <img src="/images/blucollarlogo.png" alt="Blue Collar Logo" className="signIn"/>
-            </Modal.Header>
-            <Form noValidate onSubmit={formik.handleSubmit}>
+            <div className="signIn" style={{
+                    "maxwidth": 771 + "px"
+                }}>
+
+            <Form noValidate onSubmit={formik.handleSubmit} style={{
+                    "maxwidth": 771 + "px"
+                }}>
             <Modal.Body>
+                style={{
+                    "maxwidth": 771 + "px"
+                }}
                 <h2>Find Your BluCollar Account</h2>
                 <Alert show={alert}>
                     {props.errors}
@@ -64,19 +70,44 @@ const ForgotPassword = props => {
                     onChange={formik.handleChange}
                     isInvalid={formik.errors.email}
                     onBlur={formik.handleBlur}
+                    style={{
+                        "padding": 5 + "px",
+                        "marginBottom": 10 + "px"
+                    }}
                     />
                     {/* <Form.Control.Feedback type="invalid" tooltip>
                         {formik.errors.email}
                     </Form.Control.Feedback> */}
                     {formik.errors.email && formik.touched.email && (
                         <div style={{ color: "red"}}>{formik.errors.email}</div>
-                    )}
+                        )}
+                </Form.Group>
+                <Form.Group md="4" id="signInOptions">
+                    <Form.Label>User: </Form.Label>
+                        <Form.Select onChange={formik.handleChange} name="user" value={formik.values.user}
+                            style={{
+                                "width": 63 + "%",
+                                "height": 50 + "%"
+                            }}
+                        >
+                            <option value="employee">Employee</option>
+                            <option value="contractor">Contractor</option>
+                        </Form.Select>
                 </Form.Group>
             </Modal.Body>
             <Modal.Footer>
-                <Button variant="primary" type="submit">Find Profile</Button>
+                <Button variant="primary" type="submit" style={{
+                        "width": 100 + "%",
+                        "paddingRight": 0 + "px",
+                        "display": "flex",
+                        "justifyContent": "end"
+                    }}>Find Profile</Button>
             </Modal.Footer>
             </Form>
+            </div>
+            <div id="collar">
+                    <img src="/images/blucollarO.png" alt="collar" />
+            </div>
         </Modal>
         </React.Fragment>
     )
