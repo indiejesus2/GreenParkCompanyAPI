@@ -114,7 +114,7 @@ export default function SignUp(props) {
                             )}
                 </Form.Group>
                 <Form.Group md="4" id="signInOptions">
-                    <Form.Label>Sign In As</Form.Label>
+                    <Form.Label>Sign Up As</Form.Label>
                         <Form.Select onChange={formik.handleChange} name="user" value={formik.values.user}
                             style={{
                                 "width": 63 + "%",
