@@ -13,7 +13,7 @@ const SideNavBar = props => {
                     <Nav.Link as={Link} to={`/employees/${props.profile.id}/profile`}>
                         My Profile
                     </Nav.Link>
-                    {/* <Nav.Link href={{to: "/signOut", onClick: props.handleSignout }} >Sign Out</Nav.Link> */}
+                    <Nav.Link as={Link} to="/home/signOut">Sign Out</Nav.Link>
                 </Nav>
                 {/* <Breadcrumb>
                 </Breadcrumb> */}
@@ -36,6 +36,7 @@ const SideNavBar = props => {
                     <Nav.Link as={Link} to={`/contractors/${props.contractor.id}/profile`}>
                         Profile
                     </Nav.Link>
+                    <Nav.Link as={Link} to="/home/signOut">Sign Out</Nav.Link>
                     {/* <Nav.Link as={Link} to={`/contractors/${props.contractor.id}/jobs`}>
                         Jobs
                     </Nav.Link> */}

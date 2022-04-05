@@ -130,7 +130,7 @@ const Jobs = (props) => {
                                 {/* {Math.round(applicants.find(applicant => applicant.job_id == job.id).distance)} Miles */}
                             </td>
                             <td id="table-header-location" style={{ "border-bottom-width": 0 + "px"}}>
-                                Distance: {Math.round(applicants.find(applicant => applicant.job_id == job.id).distance)}<span></span>Miles
+                                Distance: {Math.round(applicants.find(applicant => applicant.job_id == job.id).distance)} Miles
                                 {/* Location: */}
                             {/* </td>
                             <td id="table-value-top" style={{ "border-bottom-width":  0 + "px"}}>  */}

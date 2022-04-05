@@ -6,8 +6,6 @@ const Job = props => {
     const job = props.job
     const applicant = props.applicants.find(applicant => applicant.job_id == job.id)
     const [currentStep, setStep] = useState(props.currentStep)
-
-
     
     const rate = (rating) => {
         if (rating == 6 || rating == 5) {

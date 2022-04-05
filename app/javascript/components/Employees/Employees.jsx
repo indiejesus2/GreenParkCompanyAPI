@@ -77,7 +77,7 @@ const Employees = props => {
         } else if (currentStep == 2) {
             return (
                 <div>
-                  <Job currentStep={currentStep} job={listing} employee={props.employee} applicants={props.applicants} handleClick={props.handleClick}/>
+                  <Job currentStep={currentStep} job={listing} employee={props.employee} applicants={props.applicants} handleClick={handleClick} handleClose={handleClose} />
                 </div>
             )
         }

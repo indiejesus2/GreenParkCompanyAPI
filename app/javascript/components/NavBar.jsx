@@ -35,9 +35,9 @@ const NavBar = props => {
                             }}
                         >
                             <Nav>
-                                <Nav.Link href='/'>HOME</Nav.Link>
-                                <Nav.Link href='#'>ABOUT</Nav.Link>
-                                <Nav.Link href='#'>CONTACT</Nav.Link>
+                                <Nav.Link href='/employees'>HOME</Nav.Link>
+                                <Nav.Link href='/employees'>ABOUT</Nav.Link>
+                                <Nav.Link href='/employees'>CONTACT</Nav.Link>
                                 {/* <Nav.Link href={{to: "/", onClick: props.handleSignout }} >Sign-Out</Nav.Link> */}
                             </Nav>
                         </Navbar.Collapse>
@@ -80,9 +80,9 @@ const NavBar = props => {
                             }}
                         >
                             <Nav>
-                                <Nav.Link href='/'>HOME</Nav.Link>
-                                <Nav.Link href='#'>ABOUT</Nav.Link>
-                                <Nav.Link href='#'>CONTACT</Nav.Link>
+                                <Nav.Link href='/contractor'>HOME</Nav.Link>
+                                <Nav.Link href='/contractor'>ABOUT</Nav.Link>
+                                <Nav.Link href='/contractor'>CONTACT</Nav.Link>
                                 {/* <Nav.Link href={{to: "/", onClick: props.handleSignout }} >Sign-Out</Nav.Link> */}
                             </Nav>
                         </Navbar.Collapse>
