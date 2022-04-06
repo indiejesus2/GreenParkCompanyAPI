@@ -4,6 +4,15 @@ import { Navbar, Nav, Container, Breadcrumb} from 'react-bootstrap'
 import Logo from '../components/Logo'
 
 const NavBar = props => {
+
+    const handleQuestion = () => {
+        if (!!props.profile) {
+            return (
+                <h1 className="position-relative" style={{ bottom: 50 + "px"}}>{props.profile.fname.toUpperCase()}'S EMPLOYEE DASHBOARD</h1>
+            )
+        }
+    }
+
     if (props.loggedIn == true && props.user == "employee") {
         
             return (
@@ -41,7 +50,7 @@ const NavBar = props => {
                                 {/* <Nav.Link href={{to: "/", onClick: props.handleSignout }} >Sign-Out</Nav.Link> */}
                             </Nav>
                         </Navbar.Collapse>
-                    <h1 className="position-relative" style={{ bottom: 50 + "px"}}>{props.profile.fname.toUpperCase()}'S EMPLOYEE DASHBOARD</h1>                    
+                    {handleQuestion()}                    
                     </Container>
                 </Navbar>
                 {/* <div className="nav"> */}

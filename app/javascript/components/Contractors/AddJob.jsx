@@ -261,7 +261,7 @@ export default function AddJob(props) {
                 </Row>
                 <Row className="mb-3">
                     <FloatingLabel label="Description">
-                        <Form.Control as="textarea" name="description" style={{ "backgroundColor": "#2f2f2f", "color": "#fff" }} value={formik.values.description} onChange={props.handleChange} />
+                        <Form.Control as="textarea" name="description" style={{ "backgroundColor": "#2f2f2f", "color": "#fff", height: "25%" }} value={formik.values.description} onChange={formik.handleChange} />
                     </FloatingLabel>
                     {/* <Form.Group as={Col} class="textarea"> */}
                         {/* <FloatingLabel label="Description">                         */}

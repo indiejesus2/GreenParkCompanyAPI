@@ -20,7 +20,6 @@ class JobsContainer extends Component {
     render() {
             return (
                 <div className="jobs">
-                    <NavBar handleSignout={this.props.signOut} contractor={this.props.contractor} user="contractor" />
                     <Switch>
                         <Route path='/contractors/:id/jobs/:job_id/editjob' render={(routerProps) => <EditJob {...routerProps} jobs={this.props.jobs} editJob={this.props.editJob} />}></Route>
                         <Route path='/contractors/:id/jobs/:job_id' render={(routerProps) => <Job {...routerProps} contractor={this.props.contractor} jobs={this.props.jobs} applicants={this.props.applicants} candidates={this.props.candidates} profiles={this.props.profiles} fetchJob={this.props.fetchJob} editApplicant={this.props.editApplicant} /> } ></Route>

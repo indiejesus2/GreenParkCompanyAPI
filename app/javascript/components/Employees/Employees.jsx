@@ -83,6 +83,7 @@ const Employees = props => {
         }
     }
 
+
     if (props.loggedIn === false) {
         return (
             <Redirect to="/home" />
@@ -95,18 +96,22 @@ const Employees = props => {
         //             <ForgotPassword currentStep={currentStep} updatePassword={props.updatePassword} handleValidation={handleValidation} user={"employee"} />
         //         </div>
         // )
-    } else if (state.profile.length === 0) {
+    } else if (state.profile.length == 0) {
+
         return (
             <div className="questionnaire">
-                <NavBar handleSignout={props.signOut} loggedIn={props.loggedIn} />
+                <NavBar handleSignout={props.signOut} profile={props.profile} loggedIn={props.loggedIn} user="employee" />
                 <Questionnaire employee={props.employee} createProfile={props.createProfile} handleSignout={props.signOutEmployee} uploadFile={props.uploadFile} fileLoading={props.fileLoading} />
             </div>
         )
         
     } else {
+
         return (
-            <div>
-                {handleJobs()}
+            <div className="employees">
+                    <NavBar handleSignout={props.signOut} profile={props.profile} loggedIn={props.loggedIn} user="employee" />
+                    <SideNavBar profile={props.profile} user="employee"/>
+                    {handleJobs()}
             </div>
         )
     }
