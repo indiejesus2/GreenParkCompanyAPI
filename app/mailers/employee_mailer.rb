@@ -1,5 +1,5 @@
 class EmployeeMailer < ApplicationMailer
-    default from: 'notifications@example.com'
+    default from: 'postmaster@mg.blucollar.com'
 
     def welcome_email
         @employee = params[:employee]
@@ -23,8 +23,8 @@ class EmployeeMailer < ApplicationMailer
         @url = 'https://blucollar-jobs.herokuapp.com'
         @job_url = 'https://blucollar-jobs.herokuapp.com'
         @employee = params[:employee]
-        @application = params[:application]
-        @jobs = @employee.jobs.sort_by{|job| job.id}
+        @application = @employee.applicants.find{|applicant| applicant.id == params[:application]}
+        @jobs = @employee.jobs
         @applicant = @jobs.find_index{|job| job.id == @application.job_id}
         @job = Job.find{|job| job.id == @application.job_id}
         @jobs = @jobs.reject{|job| job.id == @job.id}
@@ -36,7 +36,6 @@ class EmployeeMailer < ApplicationMailer
 
     
   def password_reset
-    byebug
     @user = params[:employee]
     @temp = params[:temp]
     @employee = @user.profile    
