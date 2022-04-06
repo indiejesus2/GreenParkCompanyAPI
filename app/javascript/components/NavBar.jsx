@@ -6,7 +6,7 @@ import Logo from '../components/Logo'
 const NavBar = props => {
 
     const handleQuestion = () => {
-        if (!!props.profile) {
+        if (props.profile.fname) {
             return (
                 <h1 className="position-relative" style={{ bottom: 50 + "px"}}>{props.profile.fname.toUpperCase()}'S EMPLOYEE DASHBOARD</h1>
             )
