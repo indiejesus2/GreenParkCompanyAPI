@@ -6,6 +6,11 @@ require 'rails/all'
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
+Dotenv::Railtie.load
+
+api_key: ENV['API_MYAPIKEY']
+domain: ENV['DOMAIN_NAME']
+
 module GreenParkCompany
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
