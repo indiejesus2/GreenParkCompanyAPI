@@ -13,6 +13,14 @@ const NavBar = props => {
         }
     }
 
+    const handleSubscription = () => {
+        if (props.contractor.name) {
+            return (
+                <h1 className="position-relative" style={{ bottom: 50 + "px"}}>{props.contractor.name.toUpperCase()}'S DASHBOARD</h1>
+            )
+        }
+    }
+
     if (props.loggedIn == true && props.user == "employee") {
         
             return (
@@ -95,7 +103,7 @@ const NavBar = props => {
                                 {/* <Nav.Link href={{to: "/", onClick: props.handleSignout }} >Sign-Out</Nav.Link> */}
                             </Nav>
                         </Navbar.Collapse>
-                    <h1 className="position-relative" style={{ bottom: 50 + "px"}}>{props.contractor.name.toUpperCase()}'S DASHBOARD</h1>                    
+                        {handleSubscription()}
                     </Container>
                 </Navbar>
                 {/* <div className="nav"> */}

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_04_05_025356) do
+ActiveRecord::Schema.define(version: 2022_04_07_014545) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "citext"
@@ -89,11 +89,11 @@ ActiveRecord::Schema.define(version: 2022_04_05_025356) do
     t.string "phone"
     t.text "description"
     t.string "password_digest"
-    t.boolean "monthly"
-    t.boolean "yearly"
+    t.boolean "monthly", default: false
+    t.boolean "yearly", default: false
     t.boolean "trial"
     t.integer "trial_period"
-    t.boolean "status"
+    t.boolean "status", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "password_reset_token"

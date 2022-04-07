@@ -95,17 +95,20 @@ if (loading === true) {
             <span className="sr-only">Loading...</span>
         </div>
         )
+    } else if (contractor.status == false) {
+        return (
+            <Redirect to="/contractors/subscription" />
+        )        
     } else if (props.loggedIn === true) {
+        debugger
         return (
             <div className="contractor">
+                <NavBar handleSignout={props.signOut} contractor={props.contractor} loggedIn={props.loggedIn} user="contractor" />
+                <SideNavBar contractor={props.contractor} user="contractor"/>
                 {handleApplicants()}
                 {/* <Applicant contractor={contractor} jobs={jobs} applicants={props.applicants} editApplicant={props.editApplicant} /> */}
                 {/* <JobsContainer jobs={jobs} contractor={contractor} candidates={props.candidates} profiles={props.profiles}/> */}
             </div>
-        )
-    } else if (contractor.status==false) {
-        return (
-            <Redirect to="/contractors/subscription" />
         )
     } else if (props.loggedIn === true && jobs.length < 1) {
         return (

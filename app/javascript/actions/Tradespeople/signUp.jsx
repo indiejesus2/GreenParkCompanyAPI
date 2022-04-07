@@ -29,7 +29,7 @@ export const signUp = (user) => {
                     'Content-Type': 'application/json',
                     'Accept': 'application/json'
                 },
-                body: JSON.stringify(contractor)
+                body: JSON.stringify(user)
             };
             dispatch({type: 'FETCH_CONTRACTOR'})
             return fetch('/api/v1/employers', configObj)

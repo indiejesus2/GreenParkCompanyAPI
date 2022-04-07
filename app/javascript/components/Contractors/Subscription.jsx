@@ -37,7 +37,7 @@ const Subscription = (props) => {
 
     return (
         <div className="subscription">
-            <NavBar handleSignout={props.signOut}/>
+            <NavBar handleSignout={props.signOut} contractor={props.contractor} loggedIn={props.loggedIn} user="contractor" />
             <h1>Subscription</h1>
             <div className="subscriptions">
 

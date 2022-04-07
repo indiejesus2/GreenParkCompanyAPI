@@ -70,21 +70,21 @@ Rails.application.configure do
 
   # config.action_mailer.perform_caching = false
 
-  config.action_mailer.delivery_method = :smtp
-  config.action_mailer.smtp_settings = {
-    port: 587,
-    address: 'smtp.mailgun.org',
-    domain: ENV['DOMAIN_NAME'],
-    user_name: ENV['SMTP_USER_NAME'],
-    password: ENV['SMTP_PASSWORD'],
-    authentication: :plain,
-  }
-
-  # config.action_mailer.delivery_method = :mailgun
-  # config.action_mailer.mailgun_settings = {
-  #   api_key: ENV['API-MYAPIKEY'],
-  #   domain: ENV['DOMAIN_NAME']
+  # config.action_mailer.delivery_method = :smtp
+  # config.action_mailer.smtp_settings = {
+  #   port: 587,
+  #   address: 'smtp.mailgun.org',
+  #   domain: ENV['DOMAIN_NAME'],
+  #   user_name: ENV['SMTP_USER_NAME'],
+  #   password: ENV['SMTP_PASSWORD'],
+  #   authentication: :plain,
   # }
+
+  config.action_mailer.delivery_method = :mailgun
+  config.action_mailer.mailgun_settings = {
+    api_key: ENV['API-MYAPIKEY'],
+    domain: ENV['DOMAIN_NAME']
+  }
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.

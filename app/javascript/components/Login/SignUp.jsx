@@ -59,9 +59,6 @@ export default function SignUp(props) {
         <React.Fragment>    
         <Modal size="lg" show={show} animation centered onHide={handleClose}>
             <div className="signIn">
-
-
-
             <Form onSubmit={formik.handleSubmit}
                 style={{
                     "width": 50 + "%"

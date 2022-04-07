@@ -81,7 +81,7 @@ export default function AddExperience(props) {
 
     return (
         <div className="profile">
-            <h1>Edit Experience</h1>
+            <h1>Add Experience</h1>
             <div className="input">
 `           <Form className="profile-form">
                 <Row className="mb-3">

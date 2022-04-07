@@ -127,37 +127,34 @@ const Desired = props => {
                     </Form.Group>
 
             </Row>
-            <Row className="desired">
-
-        <Form.Group as={Col}>
-        <div className="job type">
-            <Form.Label htmlFor="job type"> Job-Type: </Form.Label>
-            {jobtypes.map(job => 
-                <Form.Check name="jobtype" label={job} style={{ "backgroundColor": "#2f2f2f", "color": "#fff"}} value={job} id={job} key={job} onChange={props.handleChange} defaultChecked={props.values.jobtype.includes(job)} />
-            )}
-        </div>
-        </Form.Group>
-        <Form.Group as={Col}>
-            
-        <div className="schedule">
-            <Form.Label htmlFor="schedule">Schedule: </Form.Label>
-            {schedule.map(day => 
-                <Form.Check name="schedule" style={{ "backgroundColor": "#2f2f2f", "color": "#fff"}} id={day} label={day} value={day} key={day} onChange={props.handleChange} defaultChecked={props.values.schedule.includes(day)}/>
-                )}
-        </div>
-                </Form.Group>
-                <Form.Group as={Col}>
-            
-        <div className="shifts">
-        <Form.Label>Shifts: </Form.Label>
-        {shifts.map(shift =>                             
-            <Form.Check name="shifts" style={{ "backgroundColor": "#2f2f2f", "color": "#fff"}} label={shift} value={shift} key={shift} onChange={props.handleChange} defaultChecked={props.values.shifts.includes(shift)}/>
-            )}
-        </div>
-            </Form.Group>
-        </Row>
+    <Row className="mb-3">
+    <Form.Group as={Col} style={{ "backgroundColor": "#2f2f2f", "color": "#fff", border: "1px solid white", paddingTop: "0.625rem", paddingBottom: ".625rem", paddingInline: ".75rem", marginInline: "10px"}}>
+    <Form.Label style={{ opacity: ".65", transform: "scale(.85) translateY(-.5rem) translateX(.15rem)"}} htmlFor="job type"> Job-Type: </Form.Label>
+        {jobtypes.map(job => 
+            <Form.Check name="jobtype" label={job} value={job} id={job} key={job} onChange={props.handleChange} defaultChecked={props.values.jobtype.includes(job)}/>
+        )}
+    </Form.Group>
+    <Form.Group as={Col} style={{ "backgroundColor": "#2f2f2f", "color": "#fff", border: "1px solid white", paddingTop: "0.625rem", paddingBottom: ".625rem", paddingInline: ".75rem", marginInline: "10px"}}>
         
-        <Form.Label>Season Availability: </Form.Label>
+    {/* <div className="schedule"> */}
+    <Form.Label style={{ opacity: ".65", transform: "scale(.85) translateY(-.5rem) translateX(.15rem)"}} htmlFor="schedule">Schedule: </Form.Label>
+        {schedule.map(day => 
+            <Form.Check name="schedule" id={day} label={day} value={day} key={day} onChange={props.handleChange} defaultChecked={props.values.schedule.includes(day)}/>
+            )}
+    {/* </div> */}
+            </Form.Group>
+            <Form.Group as={Col} style={{ "backgroundColor": "#2f2f2f", "color": "#fff", border: "1px solid white", paddingTop: "0.625rem", paddingBottom: ".625rem", paddingInline: ".75rem", marginInline: "10px"}}>
+        
+    {/* <div className="shifts"> */}
+    <Form.Label style={{ opacity: ".65", transform: "scale(.85) translateY(-.5rem) translateX(.15rem)"}}>Shifts: </Form.Label>
+    {shifts.map(shift =>                             
+        <Form.Check name="shifts" label={shift} value={shift} key={shift} onChange={props.handleChange} defaultChecked={props.values.shifts.includes(shift)}/>
+        )}
+    {/* </div> */}
+        </Form.Group>
+    </Row>
+        
+        {/* <Form.Label>Season Availability: </Form.Label>
         <Row className="mb-3">
         <Form.Group as={Col}>
         <FloatingLabel label="Seasonal Start">
@@ -178,9 +175,9 @@ const Desired = props => {
             )}
         </Form.Select>
         </FloatingLabel>
-        </Form.Group>
+        </Form.Group>z
             
-        </Row>
+        </Row> */}
         <Row className="mb-3">
     
         <Form.Group as={Col}>
@@ -204,7 +201,7 @@ const Desired = props => {
         </Row>
         <Row>
             <Form.Group as={Col}>
-                <Form.Check type="checkbox" style={{ "backgroundColor": "#2f2f2f", "color": "#fff"}} name="license" label="Driver's License" value={props.values.license} onChange={props.handleChange} defaultChecked={props.values.license}/>
+                <Form.Check type="checkbox" style={{ color: "#fff" }} name="license" label="Driver's License" value={props.values.license} onChange={props.handleChange} defaultChecked={props.values.license}/>
             </Form.Group>
             <Form.Group as={Col}>
                         <Button variant="link" onClick={handleShow} className="d-flex justify-content-right">
