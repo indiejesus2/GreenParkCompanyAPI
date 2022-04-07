@@ -8,8 +8,8 @@ Bundler.require(*Rails.groups)
 
 Dotenv::Railtie.load
 
-api_key: ENV['API_MYAPIKEY']
-domain: ENV['DOMAIN_NAME']
+API_MYAPIKEY = ENV['API_MYAPIKEY']
+DOMAIN = ENV['DOMAIN_NAME']
 
 module GreenParkCompany
   class Application < Rails::Application
