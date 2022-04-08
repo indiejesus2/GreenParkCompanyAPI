@@ -107,6 +107,7 @@ namespace :puma do
   
     before :starting,     :check_revision
     after  :finishing,    :compile_assets
+    after  :finishing,    :check
     after  :finishing,    :cleanup
     after  :finishing,    :restart
   end
