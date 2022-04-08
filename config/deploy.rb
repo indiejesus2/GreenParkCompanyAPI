@@ -44,7 +44,7 @@ set :yarn_env_variables, {}
 # set :default_env, { 'NODE_ENV' => 'production' }
 
 append :linked_files, "config/master.key" 
-append :linked_files, ".env"
+# append :linked_files, ".env"
 
 namespace :puma do
     desc 'Create Directories for Puma Pids and Socket'
