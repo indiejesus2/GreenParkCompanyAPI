@@ -43,7 +43,8 @@ set :yarn_env_variables, {}
 # set :linked_dirs,  %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system .bundle public/packs node_modules bin/webpack}
 # set :default_env, { 'NODE_ENV' => 'production' }
 
-append :linked_files, %w{config/master.key .env}
+append :linked_files, "config/master.key" 
+append :linked_files, ".env"
 
 namespace :puma do
     desc 'Create Directories for Puma Pids and Socket'
