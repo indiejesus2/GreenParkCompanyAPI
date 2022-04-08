@@ -43,7 +43,7 @@ set :yarn_env_variables, {}
 # set :linked_dirs,  %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system .bundle public/packs node_modules bin/webpack}
 # set :default_env, { 'NODE_ENV' => 'production' }
 
-append :linked_files, "config/master.key"
+append :linked_files, {"config/master.key", ".env"}
 
 namespace :puma do
     desc 'Create Directories for Puma Pids and Socket'
@@ -98,6 +98,7 @@ namespace :puma do
         on roles(:app), in: :sequence, wait: 10 do
           unless test("[ -f #{shared_path}/config/master.key ]")
             upload! 'config/master.key', "#{shared_path}/config/master.key"
+            upload! '.env', "#{shared_path}/.env"
           end
         end
       end
