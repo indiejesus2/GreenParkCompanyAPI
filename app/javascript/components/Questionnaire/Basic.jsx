@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { Modal, Form, FloatingLabel, Button, Row, Col } from 'react-bootstrap'
+import { Modal, Form, FloatingLabel, Button, Row, Col, Image } from 'react-bootstrap'
 // import Button from 'react-bootstrap/Button'
 // import Form from 'react-bootstrap/Form'
 
@@ -122,7 +122,9 @@ const Basic = (props) => {
         <Modal show animation backdrop centered>
             
         <Modal.Header className="justify-content-center" style={{ "backgroundColor": "#373737"}}>
-            <Modal.Title className="questionlogo"><img src="/images/blucollar_logo-non-bold.png" alt="BluCollar Logo" /></Modal.Title>
+            <Modal.Title className="questionlogo">
+                <Image fluid="true" src="/images/blucollar-logo-non-bold.png" alt="BluCollar Logo" />
+            </Modal.Title>
         </Modal.Header>
             <Modal.Body style={{ "backgroundColor": "#373737"}}>
 

@@ -43,9 +43,9 @@ class Api::V1::EmployersController < ApplicationController
 
   # PATCH/PUT /employers/1 or /employers/1.json
   def update
-      if @employer.update(employer_params)
-        bybug
-        if !@employer.monthly.empty? || !@employer.yearly.empty?
+      @employer.update(employer_params)
+      if @employer.save
+        if !!@employer.monthly || !!@employer.yearly
           @employer.status = true
           @employer.save
         end
@@ -73,7 +73,7 @@ class Api::V1::EmployersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def employer_params
-      params.require(:employer).permit(:name, :email, :phone, :password, :description, :status)
+      params.require(:employer).permit(:name, :email, :phone, :password, :description, :status, :monthly, :yearly, :id)
     end
 
 end

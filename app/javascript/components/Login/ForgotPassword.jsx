@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useFormik } from 'formik'
 import {Link} from 'react-router-dom'
-import {Button, Form, Modal, Alert} from 'react-bootstrap'
+import {Button, Form, Modal, Alert, Image} from 'react-bootstrap'
 import { useHistory } from 'react-router-dom'
 
 const ForgotPassword = props => {
@@ -106,7 +106,7 @@ const ForgotPassword = props => {
             </Form>
             </div>
             <div id="collar">
-                    <img src="/images/blucollarO.png" alt="collar" />
+                    <Image fluid="true" src="/images/blucollarO.png" alt="collar" />
             </div>
         </Modal>
         </React.Fragment>

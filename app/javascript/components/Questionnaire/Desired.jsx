@@ -101,7 +101,9 @@ const Desired = props => {
             <Modal show animation backdrop centered>
             
         <Modal.Header className="justify-content-center" style={{ "backgroundColor": "#373737"}}>
-            <Modal.Title className="questionlogo"><img src="/images/blucollar_logo-non-bold.png" alt="BluCollar Logo" /></Modal.Title>
+            <Modal.Title className="questionlogo">
+                <Image fluid="true" src="/images/blucollar-logo-non-bold.png" alt="BluCollar Logo" />
+            </Modal.Title>
         </Modal.Header>
             <Modal.Body style={{ "backgroundColor": "#373737"}}>
                 <h1>Desired Position</h1>

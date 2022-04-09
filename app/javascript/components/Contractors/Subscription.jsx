@@ -21,7 +21,6 @@ const Subscription = (props) => {
         } else {
             setYearly(true)
         }
-        setSubscription(e.target.value)
         setShow(true)
     }
         

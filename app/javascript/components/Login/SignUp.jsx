@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Modal, Form, Col, Button, Alert } from 'react-bootstrap'
+import { Modal, Form, Col, Button, Alert, Image } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { useFormik } from 'formik'
 import { useHistory } from 'react-router-dom'
@@ -131,7 +131,7 @@ export default function SignUp(props) {
                 </Modal.Footer> */}
                 </Form>
                 <div id="collar">
-                    <img src="/images/blucollarO.png" alt="collar" />
+                    <Image fluid="true" src="/images/blucollarO.png" alt="collar" />
             </div>
             </div>
         </Modal>

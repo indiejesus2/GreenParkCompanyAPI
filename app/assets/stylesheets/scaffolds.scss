@@ -379,17 +379,16 @@ label {
 //   right: 300px;
 // }
 
+
 .employees-jobs {
   display: flex;
   justify-content: center;
   flex-flow: wrap;
-  padding-inline-start: 135px;
+  padding-inline: 15px;
 }
 
 .employees-jobs .card {
-  width: 1514px;
-  // height: 112px;
-  margin-inline: 25px;
+  max-width: 1514px;
   margin-block-end: 10px;
   background-color: #202020;
   border: #175785;
@@ -518,9 +517,9 @@ label {
   justify-content: center;
 }
 
-.questionlogo img {
-  width: 25%
-}
+// .questionlogo img {
+//   width: auto;
+// }
 
 // .contractor .card-body {
 //   padding-inline: 50px;
@@ -786,9 +785,7 @@ job-body .table {
 }
 
 .sidebarnav {
-  position: absolute;
-  border-right: 4px solid #777777;
-  height: 500px;
+  min-width: fit-content;
 }
 
 .employee .container {
@@ -829,14 +826,14 @@ tbody tr td:first-child {
   word-break: break-all;
 }
 
-.profile {
-  padding-left: 150px;
-
-}
-
 .input {
   background-color: #262424;
   padding-block: 10px;
+}
+
+.dashboard {
+  border-left: 4px solid #777777;
+  padding-inline: 15px;
 }
 // .employees-jobs #table-header {
 //   font-style: oblique;

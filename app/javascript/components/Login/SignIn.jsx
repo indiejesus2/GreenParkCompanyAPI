@@ -1,11 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useFormik } from 'formik'
-import Form from 'react-bootstrap/Form'
-import Button from 'react-bootstrap/Button'
-import Col from 'react-bootstrap/Col'
-import Modal from 'react-bootstrap/Modal'
-import CloseButton from 'react-bootstrap/CloseButton'
-import Alert from 'react-bootstrap/Alert'
+import { Form, Button, Modal, CloseButton, Alert, Image} from 'react-bootstrap'
 import { useHistory } from 'react-router-dom'
 import * as yup from 'yup'
 
@@ -149,7 +144,7 @@ export default function SignIn(props) {
             </Modal.Body>
             </Form>
             <div id="collar">
-                    <img src="/images/blucollarO.png" alt="collar" />
+                <Image fluid="true" src="/images/blucollarO.png" alt="collar" />
             </div>
         </div>    
         </Modal>

@@ -68,13 +68,13 @@ const Contractors = props => {
             )
         } else if (currentStep == 1) {
             return (
-                <div>
+                <div className="dashboard">
                     <Applicant contractor={contractor} jobs={jobs} applicants={props.applicants} editApplicant={props.editApplicant} currentStep={currentStep} handleApplicant={handleApplicant} />
                 </div>
             )
         } else if (currentStep == 2) {
             return (
-            <div>
+            <div className="dashboard">
                 <EmployeeProfile 
                 candidate={applicant.info}
                 application={applicant.application}
@@ -97,10 +97,16 @@ if (loading === true) {
         )
     } else if (contractor.status == false) {
         return (
-            <Redirect to="/contractors/subscription" />
+            <div>
+                <NavBar handleSignout={props.signOut} contractor={props.contractor} />
+                <Redirect to="/contractors/subscription" />
+            </div>
         )        
+    } else if (props.loggedIn === true && jobs.length < 1) {
+        return (
+            <Redirect to="/contractors/addjob" />
+        )
     } else if (props.loggedIn === true) {
-        debugger
         return (
             <div className="contractor">
                 <NavBar handleSignout={props.signOut} contractor={props.contractor} loggedIn={props.loggedIn} user="contractor" />
@@ -109,10 +115,6 @@ if (loading === true) {
                 {/* <Applicant contractor={contractor} jobs={jobs} applicants={props.applicants} editApplicant={props.editApplicant} /> */}
                 {/* <JobsContainer jobs={jobs} contractor={contractor} candidates={props.candidates} profiles={props.profiles}/> */}
             </div>
-        )
-    } else if (props.loggedIn === true && jobs.length < 1) {
-        return (
-            <Redirect to="/contractors/addjob" />
         )
     } else {
         return (

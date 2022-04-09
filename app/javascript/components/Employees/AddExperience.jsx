@@ -2,7 +2,7 @@ import React from 'react'
 import NavBar from '../NavBar'
 import { useFormik } from 'formik'
 import { Form, FloatingLabel, Button, Row, Col} from 'react-bootstrap'
-
+import SideNavBar from '../SideNavBar'
 
 export default function AddExperience(props) {
 
@@ -80,7 +80,11 @@ export default function AddExperience(props) {
     })
 
     return (
-        <div className="profile">
+        <div className="employees">
+        <NavBar handleSignout={props.signOut} profile={props.profile} loggedIn={props.loggedIn} user="employee" />
+        <div className="d-flex">
+            <SideNavBar profile={props.profile} user="employee"/>
+            <div className="dashboard">
             <h1>Add Experience</h1>
             <div className="input">
 `           <Form className="profile-form">
@@ -151,5 +155,7 @@ export default function AddExperience(props) {
                 </Form>
                 </div>
             </div>
+            </div>
+        </div>
         )
     }

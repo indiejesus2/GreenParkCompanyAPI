@@ -3,6 +3,8 @@ import { Form, Button, FloatingLabel, Row, Col, InputGroup } from 'react-bootstr
 import {useFormik} from 'formik'
 import * as yup from 'yup'
 import TextareaAutoSize from 'react-textarea-autosize'
+import NavBar from '../NavBar'
+import SideNavBar from '../SideNavBar'
 
 
 export default function AddJob(props) {
@@ -182,7 +184,11 @@ export default function AddJob(props) {
     })
 
     return (
-        <div className="profile">
+        <div className="employees">
+        <NavBar handleSignout={props.signOut} contractor={props.contractor} loggedIn={props.loggedIn} user="contractor" />
+        <div className="d-flex" id="body">
+            <SideNavBar contractor={props.contractor} user="contractor"/>
+        <div className="dashboard">
             <h1>Add Job</h1>
             <div className="input">
 
@@ -353,6 +359,8 @@ export default function AddJob(props) {
                 </div>
             </Form>
             </div>
+        </div>
+        </div>
         </div>
     )
 

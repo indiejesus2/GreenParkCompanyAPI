@@ -4,6 +4,8 @@ import { Form, Button, FloatingLabel, Row, Col, InputGroup } from 'react-bootstr
 import { useFormik } from 'formik'
 import * as yup from 'yup'
 import TextareaAutoSize from 'react-textarea-autosize'
+import NavBar from '../NavBar'
+import SideNavBar from '../SideNavBar'
 
 
 export default function EditJob(props) {
@@ -187,13 +189,12 @@ export default function EditJob(props) {
                     name="title" 
                     onChange={formik.handleChange} 
                     value={formik.values.title} 
-                            onChange={formik.handleChange} 
-                            isInvalid={formik.touched.title && formik.errors.title}
-                            onBlur={formik.handleBlur}
-                            />
-                            {formik.errors.title && formik.touched.title && (
-                                <div style={{ color: "red"}}>{formik.errors.title}</div>
-                            )}
+                    isInvalid={formik.touched.title && formik.errors.title}
+                    onBlur={formik.handleBlur}
+                    />
+                        {formik.errors.title && formik.touched.title && (
+                            <div style={{ color: "red"}}>{formik.errors.title}</div>
+                        )}
                 </FloatingLabel>
                 </Form.Group> 
                 <Form.Group as={Col}>

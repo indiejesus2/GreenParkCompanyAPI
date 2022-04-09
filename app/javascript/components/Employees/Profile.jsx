@@ -57,6 +57,10 @@ const Profile = props => {
 
     return (
         <div>
+            <div className="employees">
+            <NavBar handleSignout={props.signOut} profile={props.profile} loggedIn={props.loggedIn} user="employee" />
+            <div className="d-flex">
+                <SideNavBar profile={props.profile} user="employee"/>
         {/* <div className="update">
         <Row>
                 <Col>
@@ -73,7 +77,7 @@ const Profile = props => {
             </Row>
         </div> */}
             <div className="employee-job"
-                 style={{ "paddingInlineStart": 150 + "px", "paddingInlineEnd": 25 + "px"}}
+                 style={{ "paddingInlineStart": 15 + "px", "paddingInlineEnd": 25 + "px"}}
             >
                 <Card id={employee.id} key={employee.id}>
             <CloseButton onClick={props.handleClose}/>
@@ -214,6 +218,8 @@ const Profile = props => {
             </Card>
             </div>
         </div>
+        </div>
+    </div>
     )
 }
                         {/* <h5>{employee.city}, {employee.state}</h5>

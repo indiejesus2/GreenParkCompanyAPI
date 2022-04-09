@@ -47,7 +47,7 @@ const Employees = props => {
     }
 
     const handleClose = () => {
-        setStep(1)
+        setCurrentStep(1)
     }
 
     const handlePassword = () => {
@@ -61,22 +61,22 @@ const Employees = props => {
     const handleJobs = () => {
         if (jobs.length == 0) {
             return (
-                <div>
-                    <h2 style={{ "padding-inline-start": 160 + "px"}}>
+                <div className="dashboard">
+                    <h2 style={{ "padding-inline-start": 15 + "px"}}>
                         "We're working hard to find some matches."
                     </h2>
                 </div>
             )
         } else if (currentStep == 1) {
             return (
-                <div>
-                    <h2 style={{ "padding-inline-start": 160 + "px"}}>Congrats, you have {jobs.length} jobs that match your profile</h2>
+                <div className="dashboard">
+                    <h2 style={{ "padding-inline-start": 15 + "px"}}>Congrats, you have {jobs.length} jobs that match your profile</h2>
                     <Jobs jobs={jobs} employee={props.employee} profile={props.profile} applicants={props.applicants} handleInterest={props.handleInterest} currentStep={currentStep} handleJob={handleJob} />
                 </div>
             )
         } else if (currentStep == 2) {
             return (
-                <div>
+                <div className="dashboard">
                   <Job currentStep={currentStep} job={listing} employee={props.employee} applicants={props.applicants} handleClick={handleClick} handleClose={handleClose} />
                 </div>
             )
@@ -100,7 +100,7 @@ const Employees = props => {
 
         return (
             <div className="questionnaire">
-                <NavBar handleSignout={props.signOut} profile={props.profile} loggedIn={props.loggedIn} user="employee" />
+                <NavBar handleSignout={props.signOut} profile={props.profile} loggedIn={props.loggedIn} />
                 <Questionnaire employee={props.employee} createProfile={props.createProfile} handleSignout={props.signOutEmployee} uploadFile={props.uploadFile} fileLoading={props.fileLoading} />
             </div>
         )
@@ -110,8 +110,10 @@ const Employees = props => {
         return (
             <div className="employees">
                     <NavBar handleSignout={props.signOut} profile={props.profile} loggedIn={props.loggedIn} user="employee" />
-                    <SideNavBar profile={props.profile} user="employee"/>
-                    {handleJobs()}
+                    <div className="d-flex">
+                        <SideNavBar profile={props.profile} user="employee"/>
+                        {handleJobs()}
+                    </div>
             </div>
         )
     }
