@@ -179,9 +179,46 @@ const Applicants = (props) => {
             setCandidates(original)
         }
     }
+
+    const handleApplications = () => {
+        let filtered = []
+        Object.entries(candidates).map(function([info, applicant]) {
+            if(applicant.application.interested == true) {
+                filtered.push(applicant)
+            }
+        })
+        if (filtered.length > 0) {
+            return (
+                    <div className='homeApplied'>
+                        <input type="checkbox" id="applied" name="applied" value="applied" onChange={handleApplied}/>
+                        <label htmlFor="applied">Applied Candidates</label>
+                    </div>
+            )
+        }
+    }
+
+    const header = () => {
+        if (candidates.length==0) {
+            return (
+                <div className="newemployer" style={{ "padding-inline-start": 160 + "px"}}>
+                    <h1>Future Applicants</h1>
+                    <h3>We're working hard to find applicants.</h3>
+                </div>
+            )
+        } else {
+            return (
+                <div className="newemployer">
+                    <h1 style={{ "padding-inline-start": 160 + "px"}}>{candidates.length} {candidates.length<=1?"Applicant":"Applicants!"}</h1>
+                    {handleApplications()}
+                </div>
+            )
+        }
+    }
     
     return (
         <div className="applicants">
+            {header()}
+
         {/* <div className="search">
             <Form onSubmit={handleSearch}>
             <label htmlFor="search">Search Candidates: </label>
@@ -222,7 +259,7 @@ const Applicants = (props) => {
             Maximum Pay Rate: 
         </Form.Label>
         <Form.Control type="text" name="maxpay" onChange={props.handleChange} /> */}
-        <div className="candidates">
+        <div className="employees-jobs">
         {candidates.map(candidate => 
             <Card id={candidate.info.id} key={candidate.info.id} >
 
@@ -235,7 +272,7 @@ const Applicants = (props) => {
 
                         <tr>
                             <td id="table-header" style={{ "border-bottom-width": 0 + "px", "border-right": 2 + "px solid white"}}>
-                                Name: {candidate.info.name}
+                                Name: {candidate.info.fname} {candidate.info.lname}
                                 {/* Distance: */}
                             {/* </td>  */}
                             {/* <td id="table-value-top" style={{ "border-bottom-width": 0 + "px", }}> */}
@@ -282,7 +319,10 @@ const Applicants = (props) => {
                             <Card.Text style={{ marginBlockEnd: 1 + `px`}}>{key}: {value}</Card.Text>
                             )}
                         </div> */}
-                      <Button onClick={() => handleShow(candidate)}>View Profile</Button>
+                    <div className="employee-jobs-buttons">
+                      <Button onClick={() => props.handleApplicant(candidate)}>Details</Button>
+                      <Button onClick={() => handleShow(candidate)}>Contact</Button>
+                    </div>
                       </Card.Body>
                 </Card>
                 )}

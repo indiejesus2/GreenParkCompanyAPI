@@ -102,9 +102,7 @@ const EmployeeProfile = props => {
     }
     
         return (
-            <div className={"employee-job"}
-                style={{ "paddingInlineStart": 150 + "px", "paddingInlineEnd": 25 + "px"}}
-            >
+            <div className={"employee-job"}>
             <Card id={candidate.id} key={candidate.id}>
             <CloseButton onClick={props.handleClose}/>
             <Card.Body style={{"padding-top": "10px", "display": "flex"}}>

@@ -178,11 +178,17 @@ export default function EditJob(props) {
     })
 
     return (
-        <div className="editJob">
-            <h1>Edit Job</h1>
-                <Form onSubmit={formik.handleSubmit} className="editJob-form">
-            <Row className="mb-3">
-            <Form.Group as={Col} >
+        <div className="employees">
+        <NavBar handleSignout={props.signOut} contractor={props.contractor} loggedIn={props.loggedIn} user="contractor" />
+        <div className="d-flex" id="body">
+            <SideNavBar contractor={props.contractor} user="contractor"/>
+        <div className="dashboard">
+            <h1>Add Job</h1>
+            <div className="input">
+
+                <Form onSubmit={formik.handleSubmit} className="profile-form">
+                <Row className="mb-3">
+                <Form.Group as={Col} >
                 <FloatingLabel label="Title">
                     <Form.Control 
                     type="text" 
@@ -191,6 +197,7 @@ export default function EditJob(props) {
                     value={formik.values.title} 
                     isInvalid={formik.touched.title && formik.errors.title}
                     onBlur={formik.handleBlur}
+                    style={{ "backgroundColor": "#2f2f2f", "color": "#fff"}}
                     />
                         {formik.errors.title && formik.touched.title && (
                             <div style={{ color: "red"}}>{formik.errors.title}</div>
@@ -198,11 +205,11 @@ export default function EditJob(props) {
                 </FloatingLabel>
                 </Form.Group> 
                 <Form.Group as={Col}>
-                <FloatingLabel label="trade">
+                <FloatingLabel label="Trade">
 
-                <Form.Select name="trade" id="trade" onChange={formik.handleChange} defaultValue={formik.initialValues.trade}>
+                <Form.Select name="trade" id="trade" onChange={formik.handleChange} style={{ "backgroundColor": "#2f2f2f", "color": "#fff"}}>
                         {trades.map(trade => 
-                            <option key={trade}>{trade}</option>
+                            <option key={trade} defaultValue="--" value={trade}>{trade}</option>
                         )}
             </Form.Select>
                 </FloatingLabel>
@@ -216,7 +223,8 @@ export default function EditJob(props) {
                             type="text" 
                             name="city" 
                             value={formik.values.city} 
-                            onChange={formik.handleChange} 
+                            onChange={formik.handleChange}
+                            style={{ "backgroundColor": "#2f2f2f", "color": "#fff"}} 
                             isInvalid={formik.touched.city && formik.errors.city}
                             onBlur={formik.handleBlur}
                             />
@@ -231,11 +239,12 @@ export default function EditJob(props) {
                             name="state" 
                             value={formik.values.state} 
                             onChange={formik.handleChange}
+                            style={{ "backgroundColor": "#2f2f2f", "color": "#fff"}}
                             isInvalid={formik.touched.state && formik.errors.state}
                             onBlur={formik.handleBlur}
                             >
                                 {states.map(state => 
-                                    <option  defaultValue={formik.initialValues.state == state}>{state}</option>
+                                    <option  defaultValue="--">{state}</option>
                                 )}
                             {formik.errors.state && formik.touched.state && (
                                 <div style={{ color: "red"}}>{formik.errors.state}</div>
@@ -246,77 +255,80 @@ export default function EditJob(props) {
                 <Form.Group as={Col}>
 
                 <FloatingLabel label="ZipCode">
-                    <Form.Control type="text" name="zipcode" value={formik.values.zipcode} onChange={handlePostal} />
+                    <Form.Control type="text" name="zipcode" onChange={handlePostal} value={formik.values.zipcode} style={{ "backgroundColor": "#2f2f2f", "color": "#fff"}}/>
                 </FloatingLabel>
                 </Form.Group>
                 </Row>
                 <Row className="mb-3">
-                    <Form.Group as={Col}>
-                        <FloatingLabel label="description">
-                            <Form.Control as="textarea" name="description" style={{ minHeight: '100px', "margin-top": 15+"px"}} value={formik.values.description} onChange={formik.handleChange} />
-                        </FloatingLabel>
-                    </Form.Group>
+                    <FloatingLabel label="Description">
+                        <Form.Control as="textarea" name="description" style={{ "backgroundColor": "#2f2f2f", "color": "#fff", height: "175px" }} value={formik.values.description} onChange={formik.handleChange} />
+                    </FloatingLabel>
+                    {/* <Form.Group as={Col} class="textarea"> */}
+                        {/* <FloatingLabel label="Description">                         */}
+                            {/* <Form.Control as={handleAutosize} name="description" style={{ minHeight: '100px', "margin-top": 15+"px"}} value={formik.values.description} onChange={formik.handleChange} style={{ "backgroundColor": "#2f2f2f", "color": "#fff"}} /> */}
+                        {/* </FloatingLabel> */}
+                    {/* </Form.Group> */}
                     </Row>
-            <Row className="desired">
-                <Form.Group as={Col}>
-                <div className="jobtype">
-                    <Form.Label htmlFor="jobtype"> Job-Type: </Form.Label>
+            <Row className="mb-3">
+                <Form.Group as={Col} style={{ "backgroundColor": "#2f2f2f", "color": "#fff", border: "1px solid white", paddingTop: "0.625rem", paddingBottom: ".625rem", paddingInline: ".75rem", marginInline: "10px"}}>
+                {/* <div className="jobtype"> */}
+                <Form.Label style={{ opacity: ".65", transform: "scale(.85) translateY(-.5rem) translateX(.15rem)"}} htmlFor="job type"> Job-Type: </Form.Label>
                     {jobtypes.map(job => 
-                        <Form.Check name="jobtype" label={job} value={job} defaultChecked={formik.values.jobtype.includes(job)} id={job} key={job} onChange={formik.handleChange} />
+                        <Form.Check name="jobtype" label={job} value={job} id={job} key={job} onChange={formik.handleChange}/>
                     )}
-                </div>
+                {/* </div> */}
                 </Form.Group>
-                <Form.Group as={Col}>
+                <Form.Group as={Col} style={{ "backgroundColor": "#2f2f2f", "color": "#fff", border: "1px solid white", paddingTop: "0.625rem", paddingBottom: ".625rem", paddingInline: ".75rem", marginInline: "10px"}}>
                     
-                <div className="schedule">
-                    <Form.Label htmlFor="schedule">Schedule: </Form.Label>
+                {/* <div className="schedule"> */}
+                <Form.Label style={{ opacity: ".65", transform: "scale(.85) translateY(-.5rem) translateX(.15rem)"}} htmlFor="schedule">Schedule: </Form.Label>
                     {schedule.map(day => 
-                        <Form.Check name="schedule" id={day} label={day} value={day} defaultChecked={formik.values.schedule.includes(day)} key={day} onChange={formik.handleChange} />
+                        <Form.Check name="schedule" id={day} label={day} value={day} key={day} onChange={formik.handleChange}/>
                         )}
-                </div>
+                {/* </div> */}
                         </Form.Group>
-                        <Form.Group as={Col}>
+                        <Form.Group as={Col} style={{ "backgroundColor": "#2f2f2f", "color": "#fff", border: "1px solid white", paddingTop: "0.625rem", paddingBottom: ".625rem", paddingInline: ".75rem", marginInline: "10px"}}>
                     
-                <div className="shifts">
-                <Form.Label>Shifts: </Form.Label>
+                {/* <div className="shifts"> */}
+                <Form.Label style={{ opacity: ".65", transform: "scale(.85) translateY(-.5rem) translateX(.15rem)"}}>Shifts: </Form.Label>
                 {shifts.map(shift =>                             
-                    <Form.Check name="shifts" label={shift} value={shift} defaultChecked={formik.values.shifts.includes(shift)} key={shift} onChange={formik.handleChange} />
+                    <Form.Check name="shifts" label={shift} value={shift} key={shift} onChange={formik.handleChange}/>
                     )}
-                </div>
+                {/* </div> */}
                     </Form.Group>
                 </Row>
 
-                <Form.Label>Season Availability: </Form.Label>
-                <Row className="mb-3">
+                {/* <Form.Label>Season Availability: </Form.Label> */}
+                {/* <Row className="mb-3">
                 <Form.Group as={Col}>
                 <FloatingLabel label="Seasonal Start">
 
-                <Form.Select name="seasonstart" onChange={formik.handleChange} defaultValue={formik.values.seasonstart} > 
+                <Form.Select name="seasonstart" onChange={formik.handleChange} style={{ "backgroundColor": "#2f2f2f", "color": "#fff"}} > 
                     {months.map(month =>
-                        <option >{month}</option>
+                            <option key={month}>{month}</option>
                     )}
                 </Form.Select>
-                    </FloatingLabel>
+                </FloatingLabel>
                     </Form.Group>
                     <Form.Group as={Col}>
                     <FloatingLabel label="Seasonal End">
 
-                <Form.Select name="seasonend" onChange={formik.handleChange} defaultValue={formik.values.seasonend} > 
+                <Form.Select name="seasonend" onChange={formik.handleChange} style={{ "backgroundColor": "#2f2f2f", "color": "#fff"}}> 
                     {months.map(month => 
-                        <option>{month}</option>
+                    <option>{month}</option>
                     )}
                 </Form.Select>
                 </FloatingLabel>
                 </Form.Group>
 
-                </Row>
+            </Row> */}
                 <Row className="mb-3">
     
     <Form.Group as={Col}>
         <Form.Label>
             Pay Type:
         </Form.Label>
-        <Form.Select name="paytype" label="paytype" value={formik.values.paytype} onChange={formik.handleChange} defaultValue={formik.values.paytype}>
+        <Form.Select name="paytype" label="paytype" value={formik.values.paytype} onChange={formik.handleChange} style={{ "backgroundColor": "#2f2f2f", "color": "#fff"}} defaultValue={formik.values.paytype}>
                 <option>Hourly</option>
                 <option>Salary</option>
         </Form.Select>
@@ -327,22 +339,22 @@ export default function EditJob(props) {
                 </Form.Label>
                 <InputGroup>
                     <InputGroup.Text>$</InputGroup.Text>
-                    <Form.Control type="text" name="minpay" onChange={formik.handleChange} value={formik.values.minpay}/>
+                    <Form.Control type="text" name="minpay" onChange={formik.handleChange} style={{ "backgroundColor": "#2f2f2f", "color": "#fff"}} value={formik.values.minpay}/>
                 </InputGroup>
         </Form.Group>
     </Row>
                 <Row>
                     <Form.Group as={Col}>
-                        <Form.Check type="checkbox" name="license" label="Driver's License" value={formik.values.license} onChange={formik.handleChange} defaultChecked={formik.values.license}/>
+                        <Form.Check type="checkbox" name="license" label="Driver's License" value={formik.values.license} onChange={formik.handleChange} style={{ color: "#fff"}} defaultChecked={formik.values.license}/>
                     </Form.Group>
                 </Row>
-                <div className="submit d-flex justify-content-between">
-                    <Button type="submit" value="Edit Job" onClick={formik.handleSubmit}>Edit Job</Button>
-                    <Link to={`/contractors/${job.employer_id}/jobs/${job.id}`} >
-                            <Button>View Job</Button>
-                    </Link>
+                <div className="submit">
+                    <Button type="submit" value="Add Job" onClick={formik.handleSubmit}>Add Job</Button>
                 </div>
             </Form>
+            </div>
+        </div>
+        </div>
         </div>
     )
 }

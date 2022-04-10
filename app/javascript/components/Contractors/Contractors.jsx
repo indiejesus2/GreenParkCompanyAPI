@@ -110,8 +110,10 @@ if (loading === true) {
         return (
             <div className="contractor">
                 <NavBar handleSignout={props.signOut} contractor={props.contractor} loggedIn={props.loggedIn} user="contractor" />
-                <SideNavBar contractor={props.contractor} user="contractor"/>
-                {handleApplicants()}
+                <div className="d-flex">
+                    <SideNavBar contractor={props.contractor} user="contractor"/>
+                    {handleApplicants()}
+                </div>
                 {/* <Applicant contractor={contractor} jobs={jobs} applicants={props.applicants} editApplicant={props.editApplicant} /> */}
                 {/* <JobsContainer jobs={jobs} contractor={contractor} candidates={props.candidates} profiles={props.profiles}/> */}
             </div>

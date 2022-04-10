@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react'
-import { Button } from 'react-bootstrap'
+import { Button, Table } from 'react-bootstrap'
 import EditProfile from '../Contractors/EditProfile'
 import NavBar from '../NavBar'
+import SideNavBar from '../SideNavBar'
 
 const Profile = props => {
 
@@ -16,8 +17,11 @@ const Profile = props => {
     }
 
     return (
-        <div className="employer-profile">
-                <NavBar handleSignout={props.signOut} contractor={contractor} user="contractor" />
+        <div className="employees">
+            <NavBar handleSignout={props.signOut} loggedIn={props.loggedIn} contractor={contractor} user="contractor" />
+            <div className="d-flex">
+                <SideNavBar contractor={props.contractor} user="contractor"/>
+                <div className="dashboard">
 
             <h5>Email: {contractor.email}</h5>
             <h5>Phone Number: {contractor.phone}</h5>
@@ -27,6 +31,8 @@ const Profile = props => {
                 <Button onClick={handleShow}>Edit Profile</Button>
             </div>
             <EditProfile contractor={contractor} show={show} updateProfile={props.updateProfile} handleClose={handleClose}/>
+            </div>
+            </div>
         </div>
     )
 }

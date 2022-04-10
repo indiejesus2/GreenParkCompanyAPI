@@ -199,7 +199,7 @@ const Applicant = (props) => {
         } else {
             return (
                 <div className="newemployer">
-                    <h1 style={{ "padding-inline-start": 160 + "px"}}>{candidates.length} {candidates.length<=1?"Applicant":"Applicants!"}</h1>
+                    <h2>{candidates.length} {candidates.length<=1?"Applicant":"Applicants!"}</h2>
                     {handleApplications()}
                 </div>
             )

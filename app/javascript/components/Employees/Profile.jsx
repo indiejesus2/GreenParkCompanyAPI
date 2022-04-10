@@ -56,8 +56,7 @@ const Profile = props => {
     // const type = props.document?props.document.split("/")[1] : []
 
     return (
-        <div>
-            <div className="employees">
+        <div className="employees">
             <NavBar handleSignout={props.signOut} profile={props.profile} loggedIn={props.loggedIn} user="employee" />
             <div className="d-flex">
                 <SideNavBar profile={props.profile} user="employee"/>
@@ -217,7 +216,6 @@ const Profile = props => {
             </Card.Body>
             </Card>
             </div>
-        </div>
         </div>
     </div>
     )
