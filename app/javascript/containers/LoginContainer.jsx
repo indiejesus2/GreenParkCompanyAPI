@@ -6,6 +6,7 @@ import SignIn from '../components/Login/SignIn'
 import SignUp from '../components/Login/SignUp'
 import ForgotPassword from '../components/Login/ForgotPassword'
 import SignOut from '../components/Login/SignOut'
+import About from '../components/About'
 import {signIn} from '../actions/Tradespeople/signIn'
 import {signUp} from '../actions/Tradespeople/signUp'
 import {updatePassword} from '../actions/updatePassword'
@@ -60,6 +61,7 @@ class LoginContainer extends Component {
                 <div>
                 <NavBar />
                 <Switch>
+                    <Route path='/home/about' render={(routerProps) => <About {...routerProps} signOut={this.props.signOut} user="none"/>}></Route>
                     <Route path='/home/forgotPassword' render={(routerProps) => <ForgotPassword {...routerProps} updatePassword={this.props.updatePassword} currentStep={3} signOut={this.props.signOut}/>}></Route>
                     <Route path='/home/signOut' render={(routerProps) => <SignOut {...routerProps} signOut={this.props.signOut}/>}></Route>
                     <Route path='/home/signUp' render={(routerProps) => <SignUp {...routerProps} signUp={this.props.signUp} currentStep={2} employeesErrors={this.props.employeesErrors} signOut={this.props.signOut}/>}></Route>

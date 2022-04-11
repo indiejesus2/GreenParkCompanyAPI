@@ -532,7 +532,6 @@
  
  Job.create(
      title: "Painter",
-     status: false,
      city: "Elizabeth",
      state: "New Jersey",
      zipcode: "07206",
@@ -552,7 +551,6 @@
  )
  Job.create(
      title: "Irrigation",
-     status: false,
      city: "Roselle Park",
      state: "New Jersey",
      zipcode: "07204",
@@ -572,7 +570,6 @@
  )
  Job.create(
      title: "Landscaper",
-     status: false,
      city: "Chatham Township",
      state: "New Jersey",
      zipcode: "07928",
@@ -592,7 +589,6 @@
  )
  Job.create(
      title: "Insulator",
-     status: false,
      city: "Readington Township",
      state: "New Jersey",
      zipcode: "08889",
@@ -612,7 +608,6 @@
  )
  Job.create(
      title: "Framer",
-     status: false,
      city: "Fanwood",
      state: "New Jersey",
      zipcode: "07076",
@@ -632,7 +627,6 @@
  )
  Job.create(
      title: "Wood Floor Installer/Finisher",
-     status: false,
      city: "Long Branch",
      state: "New Jersey",
      zipcode: "07740",
@@ -652,7 +646,6 @@
  )
  Job.create(
      title: "Ceo",
-     status: false,
      city: "Madison",
      state: "New Jersey",
      zipcode: "07940",
@@ -672,7 +665,6 @@
  )
  Job.create(
      title: "Electrical",
-     status: false,
      city: "Madison",
      state: "New Jersey",
      zipcode: "07940",

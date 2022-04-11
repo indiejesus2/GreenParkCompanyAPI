@@ -4,10 +4,73 @@ import { Card, Form, Button, Table, CloseButton } from 'react-bootstrap'
 import Applicants from './Applicants'
 import NavBar from '../NavBar'
 import SideNavBar from '../SideNavBar'
+import EmployeeProfile from './EmployeeProfile'
 
 const Job = props => {
    
     const job = props.jobs.find(job => job.id == props.match.params.job_id)
+    const [currentStep, setStep] = useState(1)
+    const [applicant, setApplicant] = useState("")
+
+
+    const handleApplicants = () => {
+        if (currentStep == 1) {
+            return (
+                <Applicants job={job} editApplicant={props.editApplicant} handleApplicant={handleApplicant} />
+            )
+        } else if (currentStep == 2) {
+            return (
+                <EmployeeProfile 
+                candidate={applicant.info}
+                application={applicant.application}
+                editApplicant={props.editApplicant}
+                handleClose={handleClose}
+                job={job}
+                currentStep={currentStep}
+                />
+            )
+        }
+    }
+
+    const handleJob = () => {
+        props.history.push(`/contractors/${props.contractor.id}/jobs`)
+    }
+
+    const handleEdit = () => {
+        props.history.push(`/contractors/${props.contractor.id}/jobs/${job.id}/editjob`)
+    }
+
+    const handleDelete = () => {
+        props.deleteJob(job)
+        handleJob()
+    }
+
+    const handlePause = () => {
+        if (job.status == false) {
+            job.status = false
+        } else {
+            job.status = true
+        }
+        props.editJob(job)
+    }
+
+    const handleActivation = () => {
+        debugger
+        if (job.status == true) {
+            <Button onClick={() => handlePause()}>Pause Job</Button>
+        } else {
+            <Button onClick={() => handlePause()}>Activate Job</Button>
+        }
+    }
+
+    const handleApplicant = (candidate) => {
+        setApplicant(candidate)
+        setStep(2);
+    }
+
+    const handleClose = () => {
+        setStep(1)
+    }
 
         return (
                 <div className="employees">
@@ -21,14 +84,15 @@ const Job = props => {
                             >
                                 <h2>Job Listing</h2>
                                 <Card id={job.id} key={job.id} > 
-                                    <CloseButton onClick={props.handleClose}/>
+                                    <CloseButton onClick={() => handleJob()}/>
                                     <Card.Body style={{"padding-top": "10px", "display": "flex"}}>
                                         <div className="job-body"
                                                 style={{"width": 50 + "%"}}
                                             >
                                             <div className="job-table">
 
-                                            <Table>                
+                                            <Table>
+                                                <tbody>
                                                 <tr style={{ "border-bottom-width": 0 + "px"}}>
                                                 <td style={{"padding": "0px" }}>
                                                     Title:                         
@@ -85,12 +149,13 @@ const Job = props => {
                                                         ${job.minpay} {job.paytype}
                                                     </td>
                                                 </tr>
+                                                </tbody>                
                                             </Table>
                                             </div>
                                             <div className="job-buttons">
-                                                <Button>Edit Job</Button>
-                                                <Button>Pause Job</Button>
-                                                <Button>Delete Job</Button>
+                                                <Button onClick={() => handleEdit()}>Edit Job</Button>
+                                                {handleActivation()}
+                                                <Button onClick={() => handleDelete()}>Delete Job</Button>
                                             </div>
                                             </div>
                                             <div className="description"
@@ -101,21 +166,15 @@ const Job = props => {
                                                     <h2>Job Details</h2>
                                                 </div>
                                                 <div className="description-box">
-                                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                                                    </p>
+                                                    {job.description}
                                                 </div>
                                             </div>
                                     </Card.Body>
                                 </Card>
                             </div>
-                            <div className="mt-5">
+                            <div className="mt-3">
                                 <h2>Applicants</h2>
-                                <Applicants job={job} editApplicant={props.editApplicant} />
+                                {handleApplicants()}
                             </div>
                             </div>
                         </div>

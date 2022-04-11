@@ -30,8 +30,10 @@ class Profile < ApplicationRecord
     jobs = industry.or(jobs)
     if jobs.length > 0
       jobs.each {|job|
-        if Applicant.where(job_id: job.id, employee_id: employee_id).length == 0 && !job.applicants.detect{|applicant| applicant.employee_id == employee_id}
-          Applicant.create(employee_id: "#{employee_id}", employer_id: "#{job.employer_id}", job_id: "#{job.id}", distance: distance_to(job))
+        if job.status == true
+          if Applicant.where(job_id: job.id, employee_id: employee_id).length == 0 && !job.applicants.detect{|applicant| applicant.employee_id == employee_id}
+            Applicant.create(employee_id: "#{employee_id}", employer_id: "#{job.employer_id}", job_id: "#{job.id}", distance: distance_to(job))
+          end
         end
       }
     end
@@ -57,7 +59,7 @@ class Profile < ApplicationRecord
     }
     employee = Employee.find_by_id(employee_id)
     employee.jobs.each{|job|
-      
+      if job.status == true
         @rating = 1
         if job.minpay <= @types[:minpay] && job.paytype == @types[:paytype]
           @rating+=1
@@ -85,6 +87,7 @@ class Profile < ApplicationRecord
           applicant.update(rating: @rating)
           applicant.save
         end
+      end
     }
   end
 
@@ -93,12 +96,14 @@ class Profile < ApplicationRecord
     if applicants.length > 0
       applicants.each{|applicant|
       job = Job.find_by(id: applicant.job_id)
+        if job.status == true
         # if a job's trade or address is changed, current applicants must be checked to see if they are a match.
         # if trade doesn't match applicant trade or Profile isn't near the updated address
         if job.trade != trade && job.trade != "Other/None"
 
           Applicant.destroy(applicant.id)
         end
+      end
       }
     end
   end
@@ -108,12 +113,14 @@ class Profile < ApplicationRecord
     jobs = employee.jobs
     distance = !!commute ? commute : 100
     jobs.each{|job|
-      applicant = Applicant.find_by(job_id: job.id)
-      if distance_to(job) > distance
-        Applicant.destroy(applicant.id)
-      elsif applicant.distance != distance_to(job)
-        applicant.update(distance: distance_to(job))
-        applicant.save
+      if job.status == true
+        applicant = Applicant.find_by(job_id: job.id)
+        if distance_to(job) > distance
+          Applicant.destroy(applicant.id)
+        elsif applicant.distance != distance_to(job)
+          applicant.update(distance: distance_to(job))
+          applicant.save
+        end
       end
     }
     # if applicants.length > 0

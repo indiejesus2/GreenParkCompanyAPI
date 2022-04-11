@@ -25,6 +25,7 @@ const NavBar = props => {
         
             return (
                 <div className="employee-nav">
+                    <Logo />    
                 <Navbar collapseOnSelect expand='lg' variant="dark">
                     <Container className="d-grid justify-content-center"
                         style={{
@@ -32,7 +33,6 @@ const NavBar = props => {
                         }}
                     >    
                         <Navbar.Brand style={{ margin: 0 + "px", padding: 0 + "px" }}>
-                            <Logo />    
                         </Navbar.Brand>
                         <Navbar.Toggle aria-controls='basic-navbar-nav' 
                             style={{
@@ -167,7 +167,7 @@ const NavBar = props => {
                     }}
                 >
                     <Breadcrumb.Item linkAs={Link} linkProps={{ to: '/'}}>HOME</Breadcrumb.Item>
-                    <Breadcrumb.Item linkAs={Link} linkProps={{ to: '#'}}>ABOUT</Breadcrumb.Item>
+                    <Breadcrumb.Item linkAs={Link} linkProps={{ to: '/home/about'}}>ABOUT</Breadcrumb.Item>
                     <Breadcrumb.Item linkAs={Link} linkProps={{ to: '#'}}>CONTACT</Breadcrumb.Item>
                 </Breadcrumb>
                 </div>

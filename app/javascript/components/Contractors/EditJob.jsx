@@ -207,9 +207,9 @@ export default function EditJob(props) {
                 <Form.Group as={Col}>
                 <FloatingLabel label="Trade">
 
-                <Form.Select name="trade" id="trade" onChange={formik.handleChange} style={{ "backgroundColor": "#2f2f2f", "color": "#fff"}}>
+                <Form.Select name="trade" id="trade" onChange={formik.handleChange} defaultValue={formik.initialValues.trade} style={{ "backgroundColor": "#2f2f2f", "color": "#fff"}}>
                         {trades.map(trade => 
-                            <option key={trade} defaultValue="--" value={trade}>{trade}</option>
+                            <option key={trade} value={trade}>{trade}</option>
                         )}
             </Form.Select>
                 </FloatingLabel>
@@ -244,7 +244,7 @@ export default function EditJob(props) {
                             onBlur={formik.handleBlur}
                             >
                                 {states.map(state => 
-                                    <option  defaultValue="--">{state}</option>
+                                    <option  defaultValue={formik.initialValues.state == state}>{state}</option>
                                 )}
                             {formik.errors.state && formik.touched.state && (
                                 <div style={{ color: "red"}}>{formik.errors.state}</div>
@@ -274,7 +274,7 @@ export default function EditJob(props) {
                 {/* <div className="jobtype"> */}
                 <Form.Label style={{ opacity: ".65", transform: "scale(.85) translateY(-.5rem) translateX(.15rem)"}} htmlFor="job type"> Job-Type: </Form.Label>
                     {jobtypes.map(job => 
-                        <Form.Check name="jobtype" label={job} value={job} id={job} key={job} onChange={formik.handleChange}/>
+                        <Form.Check name="jobtype" label={job} value={job} id={job} key={job} onChange={formik.handleChange} defaultChecked={formik.values.jobtype.includes(job)}/>
                     )}
                 {/* </div> */}
                 </Form.Group>
@@ -283,7 +283,7 @@ export default function EditJob(props) {
                 {/* <div className="schedule"> */}
                 <Form.Label style={{ opacity: ".65", transform: "scale(.85) translateY(-.5rem) translateX(.15rem)"}} htmlFor="schedule">Schedule: </Form.Label>
                     {schedule.map(day => 
-                        <Form.Check name="schedule" id={day} label={day} value={day} key={day} onChange={formik.handleChange}/>
+                        <Form.Check name="schedule" id={day} label={day} value={day} key={day} onChange={formik.handleChange} defaultChecked={formik.values.schedule.includes(day)}/>
                         )}
                 {/* </div> */}
                         </Form.Group>
@@ -292,7 +292,7 @@ export default function EditJob(props) {
                 {/* <div className="shifts"> */}
                 <Form.Label style={{ opacity: ".65", transform: "scale(.85) translateY(-.5rem) translateX(.15rem)"}}>Shifts: </Form.Label>
                 {shifts.map(shift =>                             
-                    <Form.Check name="shifts" label={shift} value={shift} key={shift} onChange={formik.handleChange}/>
+                    <Form.Check name="shifts" label={shift} value={shift} key={shift} onChange={formik.handleChange} defaultChecked={formik.values.shifts.includes(shift)}/>
                     )}
                 {/* </div> */}
                     </Form.Group>
@@ -349,7 +349,7 @@ export default function EditJob(props) {
                     </Form.Group>
                 </Row>
                 <div className="submit">
-                    <Button type="submit" value="Add Job" onClick={formik.handleSubmit}>Add Job</Button>
+                    <Button type="submit" value="Edit Job" onClick={formik.handleSubmit}>Edit Job</Button>
                 </div>
             </Form>
             </div>

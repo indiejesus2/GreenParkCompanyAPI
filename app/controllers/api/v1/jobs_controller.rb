@@ -6,7 +6,7 @@ class Api::V1::JobsController < ApplicationController
     def index
         if @employee 
             # @jobs = Job.near(@employee.profile.address, @employee.profile.commute)
-            @jobs = @employee.jobs
+            @jobs = @employee.jobs.filter{|job| job.status == true}
             render json: {employee: EmployeeSerializer.new(@employee), jobs: JobSerializer.new(@jobs)}, prerender: true
         elsif @employer
             @jobs = @employer.jobs
@@ -46,7 +46,7 @@ class Api::V1::JobsController < ApplicationController
 
     def update
         @job.update(job_params)
-        if @job.save
+        if @job.save            
             render json: JobSerializer.new(@job)
         else
             render json: @job.errors

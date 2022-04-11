@@ -19,8 +19,7 @@ import JobsContainer from '../containers/JobsContainer'
 import AddJob from '../components/Contractors/AddJob'
 import Applicant from '../components/Contractors/Applicant'
 import Logo from '../components/Logo'
-import NavBar from '../components/NavBar'
-import SideNavBar from '../components/SideNavBar'
+import About from '../components/About'
 
 class ContractorsContainer extends Component {
 
@@ -57,6 +56,7 @@ class ContractorsContainer extends Component {
         return (
             <div>
                 <Switch>
+                    <Route path='/contractors/about' render={(routerProps) => <About {...routerProps} signOut={this.props.signOut} user="contractor"/>}></Route>
                     <Route path='/contractors/:id/jobs/:job_id/employees/:employee_id' render={(routerProps) => <EmployeeProfile {...routerProps} loading={this.props.loading} contractor={this.props.contractor} jobs={this.props.jobs} signOut={this.props.signOutContractor} />}></Route>
                     <Route path='/contractors/:id/profile' render={(routerProps) => <Profile {...routerProps} contractor={this.props.contractor} signOut={this.props.signOutContractor} updateProfile={this.props.updateProfile} />}></Route>
                     <Route path='/contractors/:id/editprofile' render={(routerProps) => <EditProfile {...routerProps} contractor={this.props.contractor} signOut={this.props.signOutContractor} />}></Route>

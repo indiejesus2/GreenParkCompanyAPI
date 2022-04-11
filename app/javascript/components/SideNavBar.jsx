@@ -15,6 +15,14 @@ const SideNavBar = props => {
                     </Nav.Link>
                     <Nav.Link as={Link} to="/home/signOut">Sign Out</Nav.Link>
                 </Nav>
+                <Nav defaultActiveKey="/" className="flex-column">
+                    <Nav.Link as={Link} to="/employees/about">
+                        About
+                    </Nav.Link>
+                    <Nav.Link as={Link} to={`/employees`}>
+                        Contact
+                    </Nav.Link>
+                </Nav>
                 {/* <Breadcrumb>
                 </Breadcrumb> */}
             </div>
@@ -41,6 +49,14 @@ const SideNavBar = props => {
                         Jobs
                     </Nav.Link> */}
                     {/* <Nav.Link href={{to: "/signOut", onClick: props.handleSignout }} >Sign Out</Nav.Link> */}
+                </Nav>
+                <Nav defaultActiveKey="/" className="flex-column">
+                    <Nav.Link as={Link} to="/contractors/about">
+                        About
+                    </Nav.Link>
+                    <Nav.Link as={Link} to={`/contractors`}>
+                        Contact
+                    </Nav.Link>
                 </Nav>
         {/* <h1>{props.contractor.name}</h1> */}
                 {/* <Breadcrumb>

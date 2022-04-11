@@ -191,7 +191,7 @@ const Applicant = (props) => {
     const header = () => {
         if (candidates.length==0) {
             return (
-                <div className="newemployer" style={{ "padding-inline-start": 160 + "px"}}>
+                <div className="newemployer">
                     <h1>Future Applicants</h1>
                     <h3>We're working hard to find applicants.</h3>
                 </div>
