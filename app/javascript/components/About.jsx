@@ -6,7 +6,7 @@ import NavBar from './NavBar'
 const About = () => {
 
     const handleNav = () => {
-        if (user == "employee" || "contractor") {
+        if (props.user == "employee" || "contractor") {
             return (
                 <NavBar />
             )
