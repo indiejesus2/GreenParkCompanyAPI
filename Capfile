@@ -28,6 +28,7 @@ install_plugin Capistrano::SCM::Git
 #
 require "capistrano/rvm"
 require "capistrano/rails"
+require 'capistrano/faster_assets'
 require "capistrano/bundler"
 require "capistrano/puma"
 require 'dotenv'
