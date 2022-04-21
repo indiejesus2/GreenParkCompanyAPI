@@ -61,6 +61,12 @@ const Contractors = props => {
         setStep(1)
     }
 
+    const handleContact = (candidate) => {
+        // let job = jobs.find(job=>job.id == applicant.application.job_id)
+        let person = job.employees.find(employee => employee.id == candidate.employee_id)
+        window.location.href = ("mailto:" + person.email + "?subject=" + job.title + " - " + props.contractor.name)        
+    }
+
     const handleApplicants = () => {
         if (jobs.length < 1) {
             return (
@@ -82,6 +88,9 @@ const Contractors = props => {
                 handleClose={handleClose}
                 job={job}
                 currentStep={currentStep}
+                handleContact={handleContact}
+                contractor={contractor}
+                files={props.files}
                 />
             </div>
             )

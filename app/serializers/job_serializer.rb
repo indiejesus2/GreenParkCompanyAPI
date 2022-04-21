@@ -23,6 +23,11 @@ class JobSerializer
         object.created_at.strftime("%B %d, %Y")
     end
 
+    # attributes :files do |object|
+    #     byebug
+        
+    # end
+
     attributes :id, :employer_id, :status, :title, :city, :state, :zipcode, :jobtype, :schedule, :shifts, :seasonstart, :seasonend, :minpay, :paytype, :trade, :description, :applicants, :employees, :profiles, :experiences, :company, :employer, :created_at
 
 

@@ -3,12 +3,12 @@ export const currentUser = () => {
     return fetch(`/api/v1/current_user`, {withCredentials: true})
     .then(resp => resp.json())
     .then(user => {
-        if (user.data.type == "employer") {
+        if (!!user.contractor) {
             dispatch({
                 type: 'CURRENT_CONTRACTOR',
                 payload: user
             })
-        } else if (user.data.type == "employee") {
+        } else if (!!user.employee) {
             dispatch({
                 type: 'CURRENT_EMPLOYEE',
                 payload: user

@@ -197,6 +197,11 @@ const Applicants = (props) => {
         }
     }
 
+    const handleContact = (candidate) => {
+        let person = job.employees.find(employee => employee.id == candidate.info.employee_id)
+        window.location.href = ("mailto:" + person.email + "?subject=" + job.title + " - " + props.contractor.name)        
+    }
+
     const header = () => {
         if (candidates.length==0) {
             return (
@@ -321,7 +326,7 @@ const Applicants = (props) => {
                         </div> */}
                     <div className="employee-jobs-buttons">
                       <Button onClick={() => props.handleApplicant(candidate)}>Details</Button>
-                      <Button onClick={() => handleShow(candidate)}>Contact</Button>
+                      <Button onClick={() => handleContact(candidate)}>Contact</Button>
                     </div>
                       </Card.Body>
                 </Card>
@@ -332,6 +337,9 @@ const Applicants = (props) => {
                 application={applicant.application}
                 editApplicant={props.editApplicant}
                 handleClose={handleClose}
+                handleContact={handleContact}
+                contractor={props.contractor}
+                files={props.files}
                 />
         </div>
                 </div>

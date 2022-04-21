@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_04_07_014545) do
+ActiveRecord::Schema.define(version: 2022_04_18_215252) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "citext"
@@ -55,9 +55,9 @@ ActiveRecord::Schema.define(version: 2022_04_07_014545) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "interested", default: false
-    t.boolean "acceptance"
-    t.boolean "savedJob"
-    t.boolean "savedApplicant"
+    t.boolean "acceptance", default: false
+    t.boolean "savedJob", default: false
+    t.boolean "savedApplicant", default: false
     t.index ["employee_id"], name: "index_applicants_on_employee_id"
     t.index ["employer_id"], name: "index_applicants_on_employer_id"
     t.index ["job_id"], name: "index_applicants_on_job_id"

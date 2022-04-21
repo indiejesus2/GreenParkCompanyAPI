@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Modal, Form, FloatingLabel, Button, Row, Col, InputGroup } from 'react-bootstrap'
+import { Modal, Form, FloatingLabel, Button, Row, Col, InputGroup, Image } from 'react-bootstrap'
 import EmployeeFile from '../Employees/EmployeeFile'
 
 const Desired = props => {
@@ -107,7 +107,7 @@ const Desired = props => {
         </Modal.Header>
             <Modal.Body style={{ "backgroundColor": "#373737"}}>
                 <h1>Desired Position</h1>
-                <Row>
+                <Row className="mb-3">
                     <Form.Group as={Col}>
                     <FloatingLabel label="Trade">
                         <Form.Select name="trade" id="trade" style={{ "backgroundColor": "#2f2f2f", "color": "#fff"}} onChange={props.handleChange} value={props.values.trade} defaultValue={props.values.trade}>
@@ -130,13 +130,13 @@ const Desired = props => {
 
             </Row>
     <Row className="mb-3">
-    <Form.Group as={Col} style={{ "backgroundColor": "#2f2f2f", "color": "#fff", border: "1px solid white", paddingTop: "0.625rem", paddingBottom: ".625rem", paddingInline: ".75rem", marginInline: "10px"}}>
+    <Form.Group as={Col} style={{ "backgroundColor": "#2f2f2f", "color": "#fff", border: "1px solid white", borderRadius: "0.25rem", paddingTop: "0.625rem", paddingBottom: ".625rem", paddingInline: ".75rem", marginInline: "10px"}}>
     <Form.Label style={{ opacity: ".65", transform: "scale(.85) translateY(-.5rem) translateX(.15rem)"}} htmlFor="job type"> Job-Type: </Form.Label>
         {jobtypes.map(job => 
             <Form.Check name="jobtype" label={job} value={job} id={job} key={job} onChange={props.handleChange} defaultChecked={props.values.jobtype.includes(job)}/>
         )}
     </Form.Group>
-    <Form.Group as={Col} style={{ "backgroundColor": "#2f2f2f", "color": "#fff", border: "1px solid white", paddingTop: "0.625rem", paddingBottom: ".625rem", paddingInline: ".75rem", marginInline: "10px"}}>
+    <Form.Group as={Col} style={{ "backgroundColor": "#2f2f2f", "color": "#fff", border: "1px solid white", borderRadius: "0.25rem", paddingTop: "0.625rem", paddingBottom: ".625rem", paddingInline: ".75rem", marginInline: "10px"}}>
         
     {/* <div className="schedule"> */}
     <Form.Label style={{ opacity: ".65", transform: "scale(.85) translateY(-.5rem) translateX(.15rem)"}} htmlFor="schedule">Schedule: </Form.Label>
@@ -145,7 +145,7 @@ const Desired = props => {
             )}
     {/* </div> */}
             </Form.Group>
-            <Form.Group as={Col} style={{ "backgroundColor": "#2f2f2f", "color": "#fff", border: "1px solid white", paddingTop: "0.625rem", paddingBottom: ".625rem", paddingInline: ".75rem", marginInline: "10px"}}>
+            <Form.Group as={Col} style={{ "backgroundColor": "#2f2f2f", "color": "#fff", border: "1px solid white", borderRadius: "0.25rem", paddingTop: "0.625rem", paddingBottom: ".625rem", paddingInline: ".75rem", marginInline: "10px"}}>
         
     {/* <div className="shifts"> */}
     <Form.Label style={{ opacity: ".65", transform: "scale(.85) translateY(-.5rem) translateX(.15rem)"}}>Shifts: </Form.Label>

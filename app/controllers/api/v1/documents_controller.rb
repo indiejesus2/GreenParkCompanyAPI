@@ -10,6 +10,7 @@ class Api::V1::DocumentsController < ApplicationController
     end
 
     def create
+        # byebug
         @employee.file.attach(params[:file])
         if @employee.save
             render json: EmployeeSerializer.new(@employee)
@@ -18,7 +19,7 @@ class Api::V1::DocumentsController < ApplicationController
 
     private
         def document_params
-            params.permit(:file, :employee_id)
+            params.permit(:filename, :employee_id, :content_type, )
         end
 
     def set_employee

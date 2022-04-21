@@ -1,5 +1,5 @@
 class Api::V1::EmployeesController < ApplicationController
-  before_action :set_employee, only: %i[ show edit update destroy apply ]
+  before_action :set_employee, only: %i[ show edit update destroy apply saveJob ]
   wrap_parameters :employee, include: [:name, :email, :password]
 
   # GET /employees or /employees.json
@@ -68,6 +68,13 @@ class Api::V1::EmployeesController < ApplicationController
     @applicant.interested = @applicant.interested == false ? true : false
     @applicant.save
     EmployeeMailer.with(employee: @employee, application: @applicant.id).applied_email.deliver_later
+    render json: @employee.applicants
+  end
+
+  def saveJob
+    @applicant = Applicant.find_by(employee_id: params[:id], job_id: params[:job_id])
+    @applicant.savedJob = @applicant.savedJob == false ? true : false
+    @applicant.save
     render json: @employee.applicants
   end
 

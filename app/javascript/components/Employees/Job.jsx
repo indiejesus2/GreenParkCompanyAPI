@@ -151,8 +151,8 @@ const Job = props => {
                     </Table>
                     </div>
                     <div className="job-buttons">
-                        <Button>Apply Now</Button>
-                        <Button>Save for Later</Button>
+                        {props.handleApply(job)}
+                        {props.handleSavedJob(job)}
                     </div>
                     </div>
                     <div className="description"

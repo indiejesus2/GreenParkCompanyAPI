@@ -12,11 +12,16 @@ const Job = props => {
     const [currentStep, setStep] = useState(1)
     const [applicant, setApplicant] = useState("")
 
+    const handleContact = (candidate) => {
+        let person = job.employees.find(employee => employee.id == candidate.employee_id)
+        window.location.href = ("mailto:" + person.email + "?subject=" + job.title + " - " + props.contractor.name)
+    }
+
 
     const handleApplicants = () => {
         if (currentStep == 1) {
             return (
-                <Applicants job={job} editApplicant={props.editApplicant} handleApplicant={handleApplicant} />
+                <Applicants job={job} contractor={props.contractor} editApplicant={props.editApplicant} handleApplicant={handleApplicant} />
             )
         } else if (currentStep == 2) {
             return (
@@ -27,6 +32,9 @@ const Job = props => {
                 handleClose={handleClose}
                 job={job}
                 currentStep={currentStep}
+                contractor={props.contractor}
+                handleContact={handleContact}
+                files={props.files}
                 />
             )
         }

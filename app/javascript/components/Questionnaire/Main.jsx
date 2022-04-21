@@ -11,7 +11,6 @@ import { Alert, Button } from 'react-bootstrap'
 
 const Main = (props) => {
 
-
     const history = useHistory()
 
     const [state, setState] = useState({
@@ -37,7 +36,7 @@ const Main = (props) => {
 
     const formik = useFormik({
         initialValues: {
-            employee_id: props.employee ? props.employee.id : 1,
+            employee_id: !!props.employee ? props.employee.id : 1,
             show: true,
             fname: '',
             lname: '',
@@ -76,9 +75,9 @@ const Main = (props) => {
             setStep(step-1)
         } else if (currentStep < 2 && direction == "next" && formik.values.city !== "" && formik.values.state !== "") {
             setStep(step+1)
-            // } else if (currentStep === 2 && direction === "next") {
-                //     setStep(step+1)
-            } else {
+        } else if (currentStep === 2 && direction === "next") {
+            setStep(step+1)
+        } else {
             formik.setErrors({city: "Please enter a city", state: "Please enter a state", zipcode: "Please enter a zip-code"})
             formik.setFieldTouched('city')
             formik.setFieldTouched('state')

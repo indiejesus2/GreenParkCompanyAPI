@@ -1,14 +1,18 @@
 import React, { useState, useEffect } from 'react'
-import { Card } from 'react-bootstrap'
+import { Card, Image } from 'react-bootstrap'
 import Logo from './Logo'
 import NavBar from './NavBar'
 
-const About = () => {
+const About = props => {
 
     const handleNav = () => {
-        if (props.user == "employee" || "contractor") {
+        if (props.user == "employee") {
             return (
-                <NavBar />
+                <NavBar profile={props.profile} />
+            )
+        } else if (props.user == "contractor") {
+            return (
+                <NavBar contractor={props.contractor} />
             )
         }
     }
@@ -21,123 +25,332 @@ const About = () => {
                 paddingInline: 25 + "px"
             }}
         >
-            <Logo />
             <div>
                 <h1
                     style={{
-                        fontSize: "xxx-large",
-                        fontWeight: "lighter"
+                        font: "normal normal 300 147px/60px Luam",
+                        fontSize: 147 + "px",
+                        fontSize: "8vw",
+                        letterSpacing: "-0.73px",
+                        color: "#FFFFFF",
+                        opacity: 1,
+                        marginBottom: 1.5 + "rem"
                     }}
                 >Our Mission</h1>
             </div>
+            <div className='d-flex'
+                style={{
+                    position: "relative",
+                    left: 235 + "px",
+                    width: "fit-content"
+                }}
+            >
+
             <div 
                 style={{
-                    height: 100 + "px",
-                    width: 50 + "px",
-                    borderLeft: 2 + "px solid gray",
-                    borderBottom: 2 + "px solid gray",
-                    width: 50 + "px"
+                    width: 110 + "px",
+                    borderLeft: 3 + "px solid #FFFFFF",
+                    borderBottom: 3 + "px solid #FFFFFF",
+                    height: 253 + "px",
+                    opacity: 1,
+                    
                 }}
-            ></div>
+                ></div>
             <div>
                 <h3
                     style={{
-                        fontSize: "xx-large",
-                        display: "flex",
-                        fontWeight: "bold",
-                        justifyContent: "center",
+                        position: "relative",
+                        top: 225 + "px",
+                        font: "normal normal bold 81px/44px Muli",
+                        fontSize: 81 + "px",
+                        fontSize: "4vw",
+                        letterSpacing: 0.32 + "px",
+                        color: "#EEEEEE",
+                        opacity: 1,
+                        marginLeft: 15 + "px"
                     }}
-                >Anyone looking for a job</h3>
+                    >Anyone looking for a job</h3>
+                </div>
+            </div>
+            <div>
                 <h2
                     style={{
-                        fontSize: "xxx-large",
-                        fontWeight: "bold",
+                        marginTop:75 + "px",
                         display: "flex",
-                        justifyContent: "center"
+                        justifyContent: "center",
+                        font: "normal normal bold 100px/44px Muli",
+                        fontSize: 100 + "px",
+                        fontSize: "5vw",
+                        letterSpacing:  0.4 + "px",
+                        color: "#3FA1FC",
+                        opacity: 1
                     }}
                 >Should be able to find one!</h2>
             </div>
-            <p style={{ fontStyle: "italic"}}><span id="blu" style={{ color: "blue"}}>BluCollar</span> was created on the principle that anyone looking for a job OR anyone looking for an employee should be able to find a perfect match. It is designed to find a promising job match so that both parties can start a career relationship on the right footing.</p>
-            <div className="d-flex justify-content-center">
-                <h1>Our Ideals</h1>
-            </div>
-            <div>
-                <p style={{ fontStyle: "italic"}}>Work is what we spend most of our time doing. Why not be happy before an interview takes place.  The idea is to get an ideal match with both the employee and employer, ensuring an easy transition.</p>
-            </div>
-            <div className="d-flex justify-content-between mt-3">
-                <div className="aboutCard"
+            <div className="midBorder"
+                style={{
+                    width: "50%",
+                    display: "flex",
+                    justifyContent: "space-between",
+                    marginBlockStart: 30 + "px"
+                }}
+            >
+                <div></div>
+                <div
                     style={{
-                        borderRight: 2 + "px gray solid"
+                        borderRight: 3 + "px solid #FFFFFF",
+                        height: 94 + "px",
+                        opacity: 1,
                     }}
+                ></div>
+            </div>
+            <div 
+                style={{
+                    marginTop: 15 + "px",
+                    font: "italic normal 300 52px/74px Noto Sans",
+                    fontSize: 52 + "px",
+                    fontSize: "3vw",
+                    letterSpacing:  0 + "px",
+                    opacity: 1
+                }}
+            >
+                <p style={{ fontStyle: "italic"}}><span id="blu" style={{ color: "#3FA1FC"}}>BluCollar</span> was created on the principle that anyone looking for a job OR anyone looking for an employee should be able to find a perfect match. It is designed to find a promising job match so that both parties can start a career relationship on the right footing.</p>
+            </div>
+            <div className="d-flex justify-content-center">
+                <h1
+                    style={{
+                        font: "normal normal 300 147px/60px Luam",
+                        fontSize: 52 + "px",
+                        fontSize: "5vw",
+                        letterSpacing:  -0.73 + "px",
+                        color: "#FFFFFF"
+                    }}
+                >Our Ideals</h1>
+            </div>
+                <div className="midBorder"
+                    style={{
+                        width: "50%",
+                        display: "flex",
+                        justifyContent: "space-between",
+                        marginBlockStart: 30 + "px"
+                    }}
+                >
+                    <div></div>
+                    <div
+                        style={{
+                            borderRight: 3 + "px solid #FFFFFF",
+                            height: 94 + "px",
+                            opacity: 1,
+                        }}
+                    ></div>
+                </div>
+            <div>
+                <p style={{
+                        marginTop: 50 + "px",
+                        font: "italic normal 300 52px/74px Noto Sans",
+                        fontSize: 52 + "px",
+                        fontSize: "3vw",
+                        letterSpacing:  0 + "px",
+                        opacity: 1
+                }}>
+                    Work is what we spend most of our time doing. Why not be happy before an interview takes place.  The idea is to get an ideal match with both the employee and employer, ensuring an easy transition.</p>
+            </div>
+            <div className="d-flex justify-content-between mt3">
+                <div className="aboutCard"
+                    // style={{
+                    //     borderRight: 2 + "px gray solid"
+                    // }}
                 >
                     <Card
                         style={{
-                            backgroundColor: "gray",
-                            width: 500 + "px"
+                            background: "#373737 0% 0% no-repeat padding-box",
+                            boxShadow: "8px 16px 32px #0000001A",
+                            borderRadius: 24 + "px",
+                            opacity: 1,
+                            width: 533 + "px",
+                            height: 343 + "px",
+                            display: "flex",
+                            alignItems: "center"
                         }}
                     >
                         <Card.Title>
-                            <h5>Simplicity</h5>
+                            <h5
+                                style={{
+                                    font: "italic normal bold 51px/70px Noto Sans",
+                                    fontSize: "3vw",
+                                    letterSpacing: 0 + "px",
+                                    color: "#3FA1FC",
+                                    opacity: 1
+                            }}
+                            >Simplicity</h5>
                         </Card.Title>
-                        <Card.Body>
-                            <p>Finding a job should not be difficult.</p>
+                        <Card.Body
+                            style={{
+                                display: "flex",
+                                alignItems: "center"
+                            }}
+                        >
+                            <p
+                            style={{
+                                font: "normal normal 300 38px/52px Noto Sans",
+                                fontSize: "3vw",
+                                letterSpacing: "0px",
+                                color: "#EEEEEE",
+                                opacity: 1,
+                                display: "flex",
+                                justifyContent: "center"
+                            }}
+                            >Finding a job should not be difficult.</p>
                         </Card.Body>
                     </Card>
                 </div>
                 <div className="aboutCard">
                     <Card
                         style={{
-                            backgroundColor: "gray",
-                            width: 500 + "px"
+                            background: "#373737 0% 0% no-repeat padding-box",
+                            boxShadow: "8px 16px 32px #0000001A",
+                            borderRadius: 24 + "px",
+                            opacity: 1,
+                            width: 533 + "px",
+                            height: 343 + "px",
+                            display: "flex",
+                            alignItems: "center"
                         }}
                     >
                         <Card.Title>
-                            <h5>Collaboration</h5>
+                            <h5
+                                style={{
+                                    font: "italic normal bold 51px/70px Noto Sans",
+                                    fontSize: "3vw",
+                                    letterSpacing: 0 + "px",
+                                    color: "#3FA1FC",
+                                    opacity: 1
+                            }}
+                            >Collaboration</h5>
                         </Card.Title>
-                        <Card.Body>
-                            <p>We work toward the success of both the employee and employer.</p>
+                        <Card.Body
+                            style={{
+                                display: "flex",
+                                justifyContent: "center"
+                            }}
+                        >
+                            <p
+                                style={{
+                                    font: "normal normal 300 38px/52px Noto Sans",
+                                    fontSize: "3vw",
+                                    letterSpacing: "0px",
+                                    color: "#EEEEEE",
+                                    opacity: 1,
+                                    display: "flex",
+                                    justifyContent: "center"
+                                }}
+                            >We work toward the success of both the employee and employer.</p>
                         </Card.Body>
                     </Card>
                 </div>
             </div>
-            <div className="mt-3">
+            <div className="mt-5 d-flex justify-content-center">
                 <div className="aboutCard">
                     <Card
                         style={{
-                            backgroundColor: "gray",
-                            width: 500 + "px"
+                            background: "#373737 0% 0% no-repeat padding-box",
+                            boxShadow: "8px 16px 32px #0000001A",
+                            borderRadius: 24 + "px",
+                            opacity: 1,
+                            width: 847 + "px",
+                            height: 404 + "px",
+                            display: "flex",
+                            alignItems: "center"
                         }}
                     >
                         <Card.Title>
-                            <h5>Care</h5>
+                            <h5
+                                style={{
+                                    font: "italic normal bold 51px/70px Noto Sans",
+                                    fontSize: "3vw",
+                                    letterSpacing: 0 + "px",
+                                    color: "#3FA1FC",
+                                    opacity: 1
+                            }}
+                            >Care</h5>
                         </Card.Title>
-                        <Card.Body>
-                        <p>We all have jobs and know the trials and tribulations that come with employment. We want to consider the perspectives of others and  make the connection count.</p>
+                        <Card.Body
+                        style={{
+                            display: "flex",
+                            justifyContent: "center"
+                        }}
+                        >
+                        <p
+                            style={{
+                                font: "normal normal 300 38px/52px Noto Sans",
+                                fontSize: "3vw",
+                                letterSpacing: "0px",
+                                color: "#EEEEEE",
+                                opacity: 1,
+                                display: "flex",
+                                justifyContent: "center"
+                            }}
+                        >We all have jobs and know the trials and tribulations that come with employment. We want to consider the perspectives of others and  make the connection count.</p>
                         </Card.Body>
                     </Card>
                 </div>
             </div>
             <h1 className="aboutHeader"
                 style={{
-                    fontSize:"xxx-large",
                     display: "flex",
-                    justifyContent: "right"
+                    justifyContent: "right",
+                    font: "normal normal 300 147px/68px Luam",
+                    fontSize: "4vw",
+                    letterSpacing:  -0.73 + "px",
+                    color: "#EEEEEE",
+                    opacity: 1,
                 }}
             >About</h1>
-            <div className="d-flex">
-                <div clasName="aboutImg">
-                    <div className="d-flex">
-                        <img src="" alt="" />
-                        <img src="" alt="" />
+            <div className="d-flex justify-content-between">
+                <div className="aboutImg"
+                    style={{
+                        width: 52 + "%"
+                    }}
+                >
+                    <div className="d-flex justify-content-between mb-5">
+                        <div>
+                            <Image fluid="true" src="/images/about-worker-top-left.png" alt="" />
+                        </div>
+                        <div>
+                            <Image fluid="true" src="/images/about-worker-top-right.png" alt="" />
+                        </div>
                     </div>
-                    <img src="" alt="" />
+                    <Image fluid="true" src="/images/about-worker.png" alt="" />
                 </div>
-                <div>
-                    <p><span style={{ color: "blue"}}>BluCollar's</span> roots go back decades when employment in the trades was a right of passage for the new generation of young employees entering the workforce.</p>
-
-                    <p>High School students were, and are, a tremendous resource that help, and continue to help build businesses that make the country's economy run. </p>
-
-                    <p>The recent demand for employees and the unsustainable college costs have created  a perfect environment for the newest generation to continue helping build economy receiving high pay rates that have never been seen before.</p>
+                <div className="d-grid justify-content-right"
+                    style={{
+                        width: 48 + "%"
+                    }}
+                >
+                    <p style={{
+                            font: "normal normal normal 37px/42px Noto Sans;",
+                            fontSize: "2vw",
+                            letterSpacing:  0 + "px",
+                            color: "#D2D2D2"
+                    }}>
+                        <span style={{ color: "#3FA1FC"}}>BluCollar's</span> roots go back decades  when employment in the trades was a right of passage for the new generation of young employees entering the workforce.
+                    </p>
+                    <p style={{
+                            font: "normal normal normal 37px/42px Noto Sans;",
+                            fontSize: "2vw",
+                            letterSpacing:  0 + "px",
+                            color: "#D2D2D2"
+                    }}>
+                        High School students were, and are, a tremendous resource that help, and continue to help build businesses that make the country's economy run.
+                    </p>
+                    <p style={{
+                            font: "normal normal normal 37px/42px Noto Sans;",
+                            fontSize: "2vw",
+                            letterSpacing:  0 + "px",
+                            color: "#D2D2D2"
+                    }}>
+                        The recent demand for employees and the unsustainable college costs have created a perfect environment for the newest generation to continue helping build economy receiving high pay rates that have never been seen before.
+                    </p>
                 </div>
             </div>
         </div>

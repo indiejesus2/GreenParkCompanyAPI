@@ -30,11 +30,20 @@ export default function employeesReducer(state = {employee: [], profile: [], exp
                 loading: false
             }
         case 'CURRENT_EMPLOYEE':
+            let current = action.payload.employee.data.attributes
+            let currentJobs = action.payload.jobs.data.map(job=>job.attributes)
             return {
                 ...state,
-                employee: action.payload.user,
-                loggedIn: true
-            }    
+                employee: current,
+                profile: current.profile,
+                experience: current.experiences,
+                jobs: currentJobs,
+                applicants: current.applicants,
+                file: current.file,
+                document: current.document,
+                loggedIn: true,
+                loading: false
+            }
         case 'CREATE_PROFILE':
             return {
                 ...state,
@@ -75,6 +84,7 @@ export default function employeesReducer(state = {employee: [], profile: [], exp
                 fileLoading: true
             }
         case 'UPLOAD_FILE':
+            debugger
             return {
                 ...state,
                 fileLoading: false,

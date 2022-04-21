@@ -63,7 +63,7 @@ class Api::V1::ApplicantsController < ApplicationController
     private
 
     def applicant_params
-        params.require(:applicant).permit(:employee_id, :employer_id, :job_id, :acceptance)
+        params.require(:applicant).permit(:employee_id, :employer_id, :job_id, :acceptance, :savedJob, :savedApplicant)
     end
     
     def set_employee

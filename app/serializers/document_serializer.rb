@@ -4,5 +4,5 @@ class DocumentSerializer
     # has_many :applicants, through: :jobs
     # has_many :employees, through: :applicants
     # byebug
-    attributes :filename, :contenttype
+    attributes :id, :filename, :contenttype
 end

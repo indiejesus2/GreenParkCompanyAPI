@@ -15,6 +15,7 @@ const EmployeeFile = props => {
 
     const handleSubmit = () => {
         let data = new FormData()
+        debugger
         data.append("file", file, file.name)
         data.append('employee_id', id)
         props.uploadFile(data)
@@ -29,9 +30,14 @@ const EmployeeFile = props => {
         }
     }
 
+    const handleClose = () => {
+        history.push('/');
+        setShow(false)
+    }
+
     return (
         <div className="employee-file">
-            <Modal show={show} backdrop centered>
+            <Modal show={show} backdrop centered onHide={handleClose} >
                 <Modal.Header>
                     <Modal.Title>
                         Upload Document

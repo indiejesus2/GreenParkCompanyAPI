@@ -1,7 +1,10 @@
 class ApplicationController < ActionController::Base
+    
+    include Rails.application.routes.url_helpers
+
     protect_from_forgery with: :null_session
     skip_before_action :verify_authenticity_token
-
+    
     helper_method :logged_in?, :current_user, :authorized_user?, :logout!, :set_user
 
     def logged_in?

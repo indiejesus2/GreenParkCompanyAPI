@@ -1,16 +1,11 @@
 import React, {useState, useEffect} from 'react'
 import { Link, Redirect } from 'react-router-dom'
-import Home from '../Home'
-import EmployeeSignIn from '../Login/EmployeeSignIn'
-import EmployeeSignUp from '../Login/SignUp'
-import ForgotPassword from '../Login/ForgotPassword'
-import TempPassword from '../Login/TempPassword'
 import Jobs from './Jobs'
 import Job from './Job'
 import Questionnaire from '../Questionnaire/Main'
 import NavBar from '../NavBar'
 import SideNavBar from '../SideNavBar'
-import { Breadcrumb } from 'react-bootstrap'
+import { Button } from 'react-bootstrap'
 
 
 const Employees = props => {
@@ -58,6 +53,40 @@ const Employees = props => {
         setCurrentStep(4)
     }
 
+    const handleHeading = () => {
+        if (props.savedJobs == false) {
+            <h2 style={{ "padding-inline-start": 15 + "px"}}>Congrats, you have {jobs.length} jobs that match your profile</h2>
+        } else {
+            <h2 style={{ "padding-inline-start": 15 + "px"}}>Saved Jobs</h2>
+        }
+    }
+
+    const handleApply = (job) => {
+        let application = props.applicants.find(applicant => applicant.job_id == job.id)
+        if (application.interested == false) {
+            return (
+                <Button id="apply" onClick={() => props.handleInterest(application)}>Apply Now</Button>
+            )
+        } else {
+            return (
+                <Button disabled>Applied</Button>
+            )
+        }
+    }
+
+    const handleSavedJob = (job) => {
+        let application = props.applicants.find(applicant => applicant.job_id == job.id)
+        if (application.savedJob == true) {
+            return (
+                <Button onClick={() => props.handleSave(application)}>Unsave</Button>
+            )
+        } else {
+            return (
+                <Button onClick={() => props.handleSave(application)}>Save for Later</Button>
+            )
+        }
+    }
+
     const handleJobs = () => {
         if (jobs.length == 0) {
             return (
@@ -68,45 +97,34 @@ const Employees = props => {
                 </div>
             )
         } else if (currentStep == 1) {
+            // debugger
             return (
                 <div className="dashboard">
-                    <h2 style={{ "padding-inline-start": 15 + "px"}}>Congrats, you have {jobs.length} jobs that match your profile</h2>
-                    <Jobs jobs={jobs} employee={props.employee} profile={props.profile} applicants={props.applicants} handleInterest={props.handleInterest} currentStep={currentStep} handleJob={handleJob} />
+                    {handleHeading()}
+                    <Jobs jobs={jobs} employee={props.employee} profile={props.profile} applicants={props.applicants} handleApply={handleApply} currentStep={currentStep} handleJob={handleJob} savedJobs={props.savedJobs} handleSave={props.handleSave} />
                 </div>
             )
         } else if (currentStep == 2) {
             return (
                 <div className="dashboard">
-                  <Job currentStep={currentStep} job={listing} employee={props.employee} applicants={props.applicants} handleClick={handleClick} handleClose={handleClose} />
+                  <Job currentStep={currentStep} job={listing} employee={props.employee} applicants={props.applicants} handleClick={handleClick} handleClose={handleClose} handleApply={handleApply} handleSave={props.handleSave} handleSavedJob={handleSavedJob} />
                 </div>
             )
         }
     }
 
-
     if (props.loggedIn === false) {
         return (
             <Redirect to="/home" />
         )
-        // return (
-        //     <div className="signin">
-        //             <Home />
-        //             <EmployeeSignUp signUp={props.signUp} currentStep={currentStep} handleClick={handleClick} handlePassword={handlePassword} errors={errors} />
-        //             <EmployeeSignIn signIn={props.signIn} currentStep={currentStep} handleClick={handleClick} handlePassword={handlePassword} errors={errors} />
-        //             <ForgotPassword currentStep={currentStep} updatePassword={props.updatePassword} handleValidation={handleValidation} user={"employee"} />
-        //         </div>
-        // )
     } else if (state.profile.length == 0) {
-
         return (
             <div className="questionnaire">
                 <NavBar handleSignout={props.signOut} profile={props.profile} loggedIn={props.loggedIn} />
                 <Questionnaire employee={props.employee} createProfile={props.createProfile} handleSignout={props.signOutEmployee} uploadFile={props.uploadFile} fileLoading={props.fileLoading} />
             </div>
         )
-        
     } else {
-
         return (
             <div className="employees">
                     <NavBar handleSignout={props.signOut} profile={props.profile} loggedIn={props.loggedIn} user="employee" />

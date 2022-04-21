@@ -9,8 +9,16 @@ class Api::V1::JobsController < ApplicationController
             @jobs = @employee.jobs.filter{|job| job.status == true}
             render json: {employee: EmployeeSerializer.new(@employee), jobs: JobSerializer.new(@jobs)}, prerender: true
         elsif @employer
+            @files = {}
             @jobs = @employer.jobs
-            render json: {contractor: @employer, jobs: JobSerializer.new(@jobs), applicants: @employer.applicants, prerender: true}
+            @employees = @jobs.map{|job| job.employees}
+            @applicants = @employees[0].map{|employee| employee}
+            @applicants.each{|applicant|
+                if applicant.file.attached?
+                    @files[applicant.id] = applicant.file.url
+                end
+            }
+            render json: {contractor: @employer, jobs: JobSerializer.new(@jobs), applicants: @employer.applicants, files: @files}, prerender: true
         else
             @jobs = Job.all
         end

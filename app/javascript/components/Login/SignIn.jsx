@@ -62,7 +62,7 @@ export default function SignIn(props) {
             {/* <Modal.Header>
                 <img src="/images/blucollarlogo.png" alt="Blue Collar Logo" className="signIn"/>
             </Modal.Header> */}
-            <CloseButton />
+            <CloseButton onClick={handleClose} />
             <Form noValidate onSubmit={formik.handleSubmit}
                 style={{
                     "width": 50 + "%"
@@ -72,14 +72,23 @@ export default function SignIn(props) {
                     "paddingBlock": 0 + "px"
                 }}
             >
-                    <h1>Sign In</h1>
-                <div id="newUser">
-                    <span>New user?</span><Button variant="link" onClick={handleClick}>Create An Account</Button>
-                </div>
+                    <h1>Sign In</h1>            
                 <Alert show={alert}>
                     {props.errors}
                 </Alert>
-                <Form.Group md="4" controlId="validationFormik01">
+                <Form.Group className="mb-3" md="4" id="signInOptions">
+                    <Form.Label>Sign In As</Form.Label>
+                        <Form.Select onChange={formik.handleChange} name="user" value={formik.values.user}
+                            style={{
+                                "width": 63 + "%",
+                                "height": 50 + "%"
+                            }}
+                        >
+                            <option value="employee">Employee</option>
+                            <option value="contractor">Contractor</option>
+                        </Form.Select>
+                </Form.Group>
+                <Form.Group className="mb-3" md="4" controlId="validationFormik01">
                 <Form.Control
                     type="text"
                     name="email"
@@ -90,7 +99,6 @@ export default function SignIn(props) {
                     onBlur={formik.handleBlur}
                     style={{
                         "padding": 5 + "px",
-                        "marginBottom": 10 + "px"
                     }}
                     />
                     {/* <Form.Control.Feedback type="invalid" tooltip>
@@ -100,7 +108,7 @@ export default function SignIn(props) {
                         <div style={{ color: "red"}}>{formik.errors.email}</div>
                     )}
                 </Form.Group>
-                <Form.Group md="4" controlId="validationFormik02">
+                <Form.Group className="mb-3" md="4" controlId="validationFormik02">
                     <Form.Control
                         type="password"
                         name="password"
@@ -117,18 +125,6 @@ export default function SignIn(props) {
                         {formik.errors.password && formik.touched.password && (
                             <div style={{ color: "red"}}>{formik.errors.password}</div>
                             )}
-                </Form.Group>
-                <Form.Group md="4" id="signInOptions">
-                    <Form.Label>Sign In As</Form.Label>
-                        <Form.Select onChange={formik.handleChange} name="user" value={formik.values.user}
-                            style={{
-                                "width": 63 + "%",
-                                "height": 50 + "%"
-                            }}
-                        >
-                            <option value="employee">Employee</option>
-                            <option value="contractor">Contractor</option>
-                        </Form.Select>
                 </Form.Group>
                 <Button variant="link" onClick={props.handlePassword}
                     style={{

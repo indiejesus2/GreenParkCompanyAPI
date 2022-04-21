@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Route, Switch, Redirect, useHistory } from 'react-router-dom'
 import Home from '../components/Home'
+import Login from '../components/Login/Login'
 import SignIn from '../components/Login/SignIn'
 import SignUp from '../components/Login/SignUp'
 import ForgotPassword from '../components/Login/ForgotPassword'
@@ -35,7 +36,20 @@ class LoginContainer extends Component {
     //     }
     // }
 
+    handleClick = () => {
+        // let direction , = e.target.name;
+        if (this.props.currentStep == 1){
+            this.props.currentStep = 2
+        } else if (this.props.currentStep == 2) {
+            this.props.currentStep = 1
+        }
+    }
+
+    
     render() {
+        if (!!this.props.employeesErrors) {
+            debugger
+        } else {
         // debugger
         // if (!!this.props.employeeErrors) {
         //     return (
@@ -70,7 +84,7 @@ class LoginContainer extends Component {
                     <Route path='/home' render={(routerProps) => <Home {...routerProps} />}></Route>
                 </Switch>
                 </div>
-            )
+            )}
         }
     // }
 }
@@ -80,6 +94,8 @@ const mapStateToProps = state => {
         employee: state.employeesReducer.employee,
         contractor: state.contractorsReducer.contractor,
         employeeErrors: state.employeesReducer.employeeErrors,
+        contractorsErrors: state.contractorsReducer.contractorsErrors,
+        currentStep: 0
         // loading: state.employeesReducer.loading,
     }
 }
@@ -88,7 +104,7 @@ const mapDispatchToProps = dispatch => ({
     signIn: user => dispatch(signIn(user)),
     signUp: user => dispatch(signUp(user)),
     updatePassword: user => dispatch(updatePassword(user)),
-    handleStep: () => dispatch(handleStep()),
+    // handleClick: () => dispatch(handleClick()),
     signOut: () => dispatch(signOut())
 })
 

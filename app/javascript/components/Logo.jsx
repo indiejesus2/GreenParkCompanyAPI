@@ -9,7 +9,12 @@ const Logo = props => {
 
     return (
         <div className="nav-og">
-            <div className="nav-sign">
+            <div className="nav-sign"
+                // style={{
+                //     position: "relative",
+                //     bottom: 4 + "rem"
+                // }}
+            >
                 <span className="logo">
                     <Link to={home}>
                         <img src="/images/blucollar-logo-non-bold.png" alt="Logo" />

@@ -5,6 +5,7 @@ body {
   background-color: #000000;
   font-family: 'Noto Sans', sans-serif;
   color: #ffffff;
+  margin: 5px;
 }
 
 body, p, ol, ul, label, span, input, select {
@@ -175,6 +176,7 @@ label {
 .nav {
   justify-content: space-between;
   padding-top: 10px;
+  margin-bottom: 1.5rem !important;
 }
 
 .nav a {
@@ -229,14 +231,51 @@ label {
   height: auto;
 }
 
-// @media (max-width: 700px) {
-//   .homepage-header img {
-//     width: 300px;
-//   }
-//   .signIn {
-//     width: 275px;
-//   }
-// }
+@media only screen and (max-width: 1000px) {
+  .navCollapse {
+    display: none !important;
+  }
+  
+  .sidebarnav {
+    display: none;
+  }
+
+  .dashboard {
+    border: 0px !important;
+  }
+  
+  .employee-nav {
+    display: flex !important;
+    justify-content: center !important; 
+  }
+  
+  .upperCollapseNav {
+    position: relative;
+    left: 8%;
+    top: 10px;
+  }
+
+  .nav-sign {
+    position: relative;
+    left: 3.5%;
+  }
+}
+
+@media only screen and (min-width: 1000px) {
+  .upperCollapseNav {
+    display: none;
+  }
+
+  .nav-sign {
+    position: inherit !important;
+  }
+
+}
+
+.navCollapse {
+  display: flex;
+  justify-content: space-between;
+}
 
 // .homepage-cards {
 // }
@@ -308,9 +347,8 @@ label {
 // }
 
 .employee-nav {
-  display: grid;
-  justify-content: center;
-  height: 175px;
+
+  // height: 175px;
   font-family: 'Luam', serif;
 }
 
@@ -833,7 +871,6 @@ tbody tr td:first-child {
 
 .dashboard {
   border-left: 4px solid #777777;
-  padding-inline: 15px;
 }
 // .employees-jobs #table-header {
 //   font-style: oblique;

@@ -2,6 +2,7 @@ class Document < ApplicationRecord
   belongs_to :employee
 
   def initialize(params = {})
+    byebug
     file = params
     super
     if file

@@ -6,7 +6,8 @@ const Applicant = (props) => {
        
     const [applicants, setApplicants] = useState(props.applicants)
     const [currentStep, setStep] = useState(props.currentStep)
-    const [jobs, setJob] = useState(props.jobs)
+    const [jobs, setJobs] = useState(props.jobs)
+    const [job, setJob] = useState([])
 
     useEffect(() => {
         if (applicants != props.applicants){
@@ -206,6 +207,12 @@ const Applicant = (props) => {
         }
     }
 
+    const handleContact = (candidate) => {
+        let job = jobs.find(job=>job.id == candidate.application.job_id)
+        let person = job.employees.find(employee => employee.id == candidate.info.employee_id)
+        window.location.href = ("mailto:" + person.email + "?subject=" + job.title + " - " + props.contractor.name)        
+    }
+
     const handleApplications = () => {
         let filtered = []
         Object.entries(candidates).map(function([info, applicant]) {
@@ -340,8 +347,8 @@ const Applicant = (props) => {
                             )}
                         </div> */}
                     <div className="employee-jobs-buttons">
-                      <Button onClick={() => props.handleApplicant(candidate)}>Details</Button>
-                      <Button onClick={() => handleShow(candidate)}>Contact</Button>
+                        <Button onClick={() => props.handleApplicant(candidate)}>Details</Button>
+                        <Button onClick={() => handleContact(candidate)}>Contact</Button>                                        
                     </div>
                       </Card.Body>
                 </Card>
