@@ -109,7 +109,7 @@ const About = props => {
                     marginTop: 15 + "px",
                     font: "italic normal 300 52px/74px Noto Sans",
                     fontSize: 52 + "px",
-                    fontSize: "2.8vw",
+                    fontSize: "2.75vw",
                     letterSpacing:  0 + "px",
                     opacity: 1
                 }}
@@ -177,7 +177,7 @@ const About = props => {
                 <p style={{
                         font: "italic normal 300 52px/74px Noto Sans",
                         fontSize: 52 + "px",
-                        fontSize: "2.8vw",
+                        fontSize: "2.75vw",
                         letterSpacing:  0 + "px",
                         opacity: 1
                 }}>
@@ -216,7 +216,7 @@ const About = props => {
                             <p
                             style={{
                                 font: "normal normal 300 38px/52px Noto Sans",
-                                fontSize: "3vw",
+                                fontSize: "2.75vw",
                                 letterSpacing: "0px",
                                 color: "#EEEEEE",
                                 opacity: 1,
@@ -255,7 +255,7 @@ const About = props => {
                             <p
                                 style={{
                                     font: "normal normal 300 38px/52px Noto Sans",
-                                    fontSize: "3vw",
+                                    fontSize: "2.75vw",
                                     letterSpacing: "0px",
                                     color: "#EEEEEE",
                                     opacity: 1,
@@ -295,7 +295,7 @@ const About = props => {
                         <p
                             style={{
                                 font: "normal normal 300 38px/52px Noto Sans",
-                                fontSize: "3vw",
+                                fontSize: "2.75vw",
                                 letterSpacing: "0px",
                                 color: "#EEEEEE",
                                 opacity: 1,
