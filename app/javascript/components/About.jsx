@@ -109,24 +109,54 @@ const About = props => {
                     marginTop: 15 + "px",
                     font: "italic normal 300 52px/74px Noto Sans",
                     fontSize: 52 + "px",
-                    fontSize: "3vw",
+                    fontSize: "2.8vw",
                     letterSpacing:  0 + "px",
                     opacity: 1
                 }}
             >
                 <p style={{ fontStyle: "italic"}}><span id="blu" style={{ color: "#3FA1FC"}}>BluCollar</span> was created on the principle that anyone looking for a job OR anyone looking for an employee should be able to find a perfect match. It is designed to find a promising job match so that both parties can start a career relationship on the right footing.</p>
+                <div 
+                    style={{
+                        width: 500 + "px",
+                        borderTop: "3px solid #ffffff", 
+                        position: "relative", 
+                        bottom: "50px",
+                        left: "621px"}}>
+                </div>
+                <div 
+                    style={{
+                        height: 160 + "px",
+                        borderRight: "3px solid #ffffff", 
+                        width: 76.45 + "%",
+                        position: "relative", 
+                        bottom: "52px",
+                    }}>
+                </div>
+                <div 
+                    style={{
+                        width: 225 + "px",
+                        borderTop: "3px solid #ffffff", 
+                        position: "relative", 
+                        bottom: "54px",
+                        left: "897px"}}>
+                </div>
             </div>
-            <div className="d-flex justify-content-center">
+            <div className="d-grid"
+                style={{
+                    position: "relative",
+                    bottom: 95 + "px"
+                }}
+            >
                 <h1
                     style={{
                         font: "normal normal 300 147px/60px Luam",
                         fontSize: 52 + "px",
-                        fontSize: "5vw",
+                        fontSize: "6vw",
                         letterSpacing:  -0.73 + "px",
-                        color: "#FFFFFF"
+                        color: "#FFFFFF",
+                        textAlign: "center"
                     }}
                 >Our Ideals</h1>
-            </div>
                 <div className="midBorder"
                     style={{
                         width: "50%",
@@ -134,7 +164,7 @@ const About = props => {
                         justifyContent: "space-between",
                         marginBlockStart: 30 + "px"
                     }}
-                >
+                    >
                     <div></div>
                     <div
                         style={{
@@ -142,14 +172,12 @@ const About = props => {
                             height: 94 + "px",
                             opacity: 1,
                         }}
-                    ></div>
-                </div>
-            <div>
+                        ></div>
+                        </div>
                 <p style={{
-                        marginTop: 50 + "px",
                         font: "italic normal 300 52px/74px Noto Sans",
                         fontSize: 52 + "px",
-                        fontSize: "3vw",
+                        fontSize: "2.8vw",
                         letterSpacing:  0 + "px",
                         opacity: 1
                 }}>
@@ -169,8 +197,8 @@ const About = props => {
                             opacity: 1,
                             width: 533 + "px",
                             height: 343 + "px",
-                            display: "flex",
-                            alignItems: "center"
+                            alignItems: "center",
+                            paddingBlock: 25 + "px"
                         }}
                     >
                         <Card.Title>
@@ -184,12 +212,7 @@ const About = props => {
                             }}
                             >Simplicity</h5>
                         </Card.Title>
-                        <Card.Body
-                            style={{
-                                display: "flex",
-                                alignItems: "center"
-                            }}
-                        >
+                        <Card.Body>
                             <p
                             style={{
                                 font: "normal normal 300 38px/52px Noto Sans",
@@ -197,8 +220,7 @@ const About = props => {
                                 letterSpacing: "0px",
                                 color: "#EEEEEE",
                                 opacity: 1,
-                                display: "flex",
-                                justifyContent: "center"
+                                textAlign: "center"
                             }}
                             >Finding a job should not be difficult.</p>
                         </Card.Body>
@@ -213,8 +235,8 @@ const About = props => {
                             opacity: 1,
                             width: 533 + "px",
                             height: 343 + "px",
-                            display: "flex",
-                            alignItems: "center"
+                            alignItems: "center",
+                            paddingBlock: 25 + "px"
                         }}
                     >
                         <Card.Title>
@@ -224,16 +246,12 @@ const About = props => {
                                     fontSize: "3vw",
                                     letterSpacing: 0 + "px",
                                     color: "#3FA1FC",
-                                    opacity: 1
+                                    opacity: 1,
+                                    paddingBottom: 0 + "px"
                             }}
                             >Collaboration</h5>
                         </Card.Title>
-                        <Card.Body
-                            style={{
-                                display: "flex",
-                                justifyContent: "center"
-                            }}
-                        >
+                        <Card.Body>
                             <p
                                 style={{
                                     font: "normal normal 300 38px/52px Noto Sans",
@@ -241,8 +259,7 @@ const About = props => {
                                     letterSpacing: "0px",
                                     color: "#EEEEEE",
                                     opacity: 1,
-                                    display: "flex",
-                                    justifyContent: "center"
+                                    textAlign: "center"
                                 }}
                             >We work toward the success of both the employee and employer.</p>
                         </Card.Body>
@@ -274,12 +291,7 @@ const About = props => {
                             }}
                             >Care</h5>
                         </Card.Title>
-                        <Card.Body
-                        style={{
-                            display: "flex",
-                            justifyContent: "center"
-                        }}
-                        >
+                        <Card.Body>
                         <p
                             style={{
                                 font: "normal normal 300 38px/52px Noto Sans",
@@ -287,8 +299,7 @@ const About = props => {
                                 letterSpacing: "0px",
                                 color: "#EEEEEE",
                                 opacity: 1,
-                                display: "flex",
-                                justifyContent: "center"
+                                textAlign: "center"
                             }}
                         >We all have jobs and know the trials and tribulations that come with employment. We want to consider the perspectives of others and  make the connection count.</p>
                         </Card.Body>
@@ -322,13 +333,14 @@ const About = props => {
                     </div>
                     <Image fluid="true" src="/images/about-worker.png" alt="" />
                 </div>
-                <div className="d-grid justify-content-right"
+                <div className="d-grid"
                     style={{
-                        width: 48 + "%"
+                        width: 48 + "%",
+                        textAlign: "right"
                     }}
                 >
                     <p style={{
-                            font: "normal normal normal 37px/42px Noto Sans;",
+                            font: "normal normal normal 37px/42px Noto Sans",
                             fontSize: "2vw",
                             letterSpacing:  0 + "px",
                             color: "#D2D2D2"
