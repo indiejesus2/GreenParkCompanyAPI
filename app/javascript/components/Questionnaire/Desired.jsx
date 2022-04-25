@@ -219,7 +219,7 @@ const Desired = props => {
                     </Form.Group>
         </Row>
             </Modal.Body>
-                <Modal.Footer>        
+                <Modal.Footer style={{ "backgroundColor": "#373737"}}>        
                 <Button variant="link" name="next" style={{margin: 0+"px", padding:5+"px"}} onClick={props.handleClick}>
                     +Add Previous Experience
                 </Button>

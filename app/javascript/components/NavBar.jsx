@@ -24,11 +24,7 @@ const NavBar = props => {
     const history = useHistory()
 
     const handleLogo = () => {
-        if (history.location.pathname != "/home") {
-            return (
-                    <Logo />
-            )
-        }
+        
     }
 
     if (props.loggedIn == true && props.user == "employee") {
@@ -193,8 +189,8 @@ const NavBar = props => {
                                         Profile
                                     </Nav.Link>
                                 </Nav>
-                                <Nav defaultActiveKey="/" className="flex-column me-auto"> eventKey="5"
-                                    <Nav.Link as={Link} to="/contractors/about"
+                                <Nav defaultActiveKey="/" className="flex-column me-auto"> 
+                                    <Nav.Link as={Link} to="/contractors/about" eventKey="5"
                                         style={{
                                             color: "#fff",
                                             fontFamily: 'Luam, serif',
@@ -261,10 +257,13 @@ const NavBar = props => {
                     </div>
                     {handleSubscription()}
                 </div>
-            )            
+            )
+        } else if (history.location.pathname != "/home") {
+                return (
+                        <Logo />
+                )
         } else {
             return (
-            <div className="nav">
                 <div
                     style={{
                         display: "flex",
@@ -272,29 +271,25 @@ const NavBar = props => {
                         width: 100 + "%"
                     }}
                 >
-
-                <Breadcrumb
-                    style={{
-                        "padding-inline": 15 + "px"
-                    }}
-                >
-                    <Breadcrumb.Item linkAs={Link} linkProps={{ to: '/'}}>HOME</Breadcrumb.Item>
-                    <Breadcrumb.Item linkAs={Link} linkProps={{ to: '/home/about'}}>ABOUT</Breadcrumb.Item>
-                    <Breadcrumb.Item linkAs={Link} linkProps={{ to: '#'}}>CONTACT</Breadcrumb.Item>
-                </Breadcrumb>
-                {handleLogo()}
-
-                <Breadcrumb
-                    style={{
-                        "padding-inline": 15 + "px"
-                    }}
-                >
-                    <Breadcrumb.Item linkAs={Link} linkProps={{ to: '/home/signIn'}}>LOGIN</Breadcrumb.Item>
-                    <Breadcrumb.Item linkAs={Link} linkProps={{ to: '/home/signUp'}}>CREATE ACCOUNT</Breadcrumb.Item>
-                </Breadcrumb>
+                    <Nav
+                        style={{
+                            "font-size": "x-large",
+                        }}
+                        >
+                        <Nav.Link as={Link} to="/home">HOME</Nav.Link>
+                        <Nav.Link as={Link} to="/home/about">ABOUT</Nav.Link>
+                        <Nav.Link as={Link} to="/home/contact">CONTACT</Nav.Link>
+                    </Nav>
+                    <Nav
+                        style={{
+                            "font-size": "x-large",
+                        }}
+                        >
+                        <Nav.Link as={Link} to="/home/signIn">LOGIN</Nav.Link>
+                        <Nav.Link as={Link} to="/home/signUp">CREATE ACCOUNT</Nav.Link>
+                    </Nav>
                 </div>
-                    {/* <Breadcrumb.Item linkAs={Link} linkProps={{to: "/", onClick: props.handleSignout }} >Sign Out</Breadcrumb.Item> */}
-            </div>
+    
             )
         }
 }

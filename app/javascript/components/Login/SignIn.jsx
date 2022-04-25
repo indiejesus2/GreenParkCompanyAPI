@@ -21,7 +21,7 @@ export default function SignIn(props) {
     }
 
     const handleClick = () => {
-        history.push('/home/signUp')
+        history.push('/home/forgotPassword')
     }
 
     useEffect(() => {
@@ -62,7 +62,7 @@ export default function SignIn(props) {
             {/* <Modal.Header>
                 <img src="/images/blucollarlogo.png" alt="Blue Collar Logo" className="signIn"/>
             </Modal.Header> */}
-            <CloseButton onClick={handleClose} />
+
             <Form noValidate onSubmit={formik.handleSubmit}
                 style={{
                     "width": 50 + "%"
@@ -126,7 +126,7 @@ export default function SignIn(props) {
                             <div style={{ color: "red"}}>{formik.errors.password}</div>
                             )}
                 </Form.Group>
-                <Button variant="link" onClick={props.handlePassword}
+                <Button variant="link" onClick={handleClick}
                     style={{
                         "width": 100 + "%",
                         "paddingRight": 0 + "px",
@@ -142,6 +142,13 @@ export default function SignIn(props) {
             <div id="collar">
                 <Image fluid="true" src="/images/blucollarO.png" alt="collar" />
             </div>
+            <CloseButton onClick={handleClose} 
+                    style={{
+                        position: "relative",
+                        bottom: 15 + "px",
+                        right: 15 + "px"
+                    }}
+            />
         </div>    
         </Modal>
         </React.Fragment>

@@ -45,68 +45,78 @@ const ForgotPassword = props => {
     
     return (
         <React.Fragment>    
-        <Modal show={show} animation centered onHide={handleClose}>
+        <Modal size="lg" show={show} animation centered onHide={handleClose}>
             <div className="signIn" style={{
-                    "maxwidth": 771 + "px"
-                }}>
-
-            <Form noValidate onSubmit={formik.handleSubmit} style={{
-                    "maxwidth": 771 + "px"
-                }}>
-            <Modal.Body>
-                style={{
-                    "maxwidth": 771 + "px"
-                }}
-                <h2>Find Your BluCollar Account</h2>
-                <Alert show={alert}>
-                    {props.errors}
-                </Alert>
-                <Form.Group md="4" controlId="validationFormik01">
-                <Form.Label>Email: </Form.Label>
-                <Form.Control
-                    type="text"
-                    name="email"
-                    value={formik.values.email}
-                    onChange={formik.handleChange}
-                    isInvalid={formik.errors.email}
-                    onBlur={formik.handleBlur}
+                "maxwidth": 771 + "px"
+            }}>
+                <Form noValidate onSubmit={formik.handleSubmit} 
                     style={{
-                        "padding": 5 + "px",
-                        "marginBottom": 10 + "px"
+                        "width": 50 + "%"
+                    }}>
+                <Modal.Body
+                    style={{
+                        "paddingBlock": 0 + "px"
                     }}
-                    />
-                    {/* <Form.Control.Feedback type="invalid" tooltip>
-                        {formik.errors.email}
-                    </Form.Control.Feedback> */}
-                    {formik.errors.email && formik.touched.email && (
-                        <div style={{ color: "red"}}>{formik.errors.email}</div>
-                        )}
-                </Form.Group>
-                <Form.Group md="4" id="signInOptions">
-                    <Form.Label>User: </Form.Label>
-                        <Form.Select onChange={formik.handleChange} name="user" value={formik.values.user}
-                            style={{
-                                "width": 63 + "%",
-                                "height": 50 + "%"
-                            }}
-                        >
-                            <option value="employee">Employee</option>
-                            <option value="contractor">Contractor</option>
-                        </Form.Select>
-                </Form.Group>
-            </Modal.Body>
-            <Modal.Footer>
-                <Button variant="primary" type="submit" style={{
-                        "width": 100 + "%",
-                        "paddingRight": 0 + "px",
-                        "display": "flex",
-                        "justifyContent": "end"
-                    }}>Find Profile</Button>
-            </Modal.Footer>
-            </Form>
-            </div>
-            <div id="collar">
-                    <Image fluid="true" src="/images/blucollarO.png" alt="collar" />
+                >
+                    <h2>Find Your BluCollar Account</h2>
+                    <Alert show={alert}>
+                        {props.errors}
+                    </Alert>
+                    <Form.Group className="mb-3" md="4" controlId="validationFormik01">
+                    <Form.Label>Email: </Form.Label>
+                    <Form.Control
+                        type="text"
+                        name="email"
+                        value={formik.values.email}
+                        onChange={formik.handleChange}
+                        isInvalid={formik.errors.email}
+                        onBlur={formik.handleBlur}
+                        style={{
+                            "padding": 5 + "px"
+                        }}
+                        />
+                        {/* <Form.Control.Feedback type="invalid" tooltip>
+                            {formik.errors.email}
+                        </Form.Control.Feedback> */}
+                        {formik.errors.email && formik.touched.email && (
+                            <div style={{ color: "red"}}>{formik.errors.email}</div>
+                            )}
+                    </Form.Group>
+                    <Form.Group md="4" id="signInOptions">
+                        <Form.Label>User: </Form.Label>
+                            <Form.Select onChange={formik.handleChange} name="user" value={formik.values.user}
+                                style={{
+                                    "width": 63 + "%",
+                                    "height": 50 + "%"
+                                }}
+                            >
+                                <option value="employee">Employee</option>
+                                <option value="contractor">Contractor</option>
+                            </Form.Select>
+                    </Form.Group>
+                </Modal.Body>
+                <Modal.Footer 
+                    style={{
+                        borderTop: "none"
+                    }}
+                >
+                    <Button variant="primary" type="submit" style={{
+                            "width": 100 + "%",
+                            "paddingRight": 0 + "px",
+                            "textAlign": "center"
+                        }}>Find Profile</Button>
+                </Modal.Footer>
+                </Form>
+                <div id="collar">
+                        <Image fluid="true" src="/images/blucollarO.png" alt="collar" />
+                </div>
+                <CloseButton onClick={handleClose} 
+                    style={{
+                        position: "relative",
+                        bottom: 15 + "px",
+                        right: 15 + "px"
+                    }}
+                />
             </div>
         </Modal>
         </React.Fragment>

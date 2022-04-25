@@ -240,6 +240,15 @@ const Applicant = (props) => {
         }
     }
 
+    const handleJob = (application) => {
+        let job = jobs.find(job=>job.id==application.job_id)
+        return (
+            <span>
+                Job Title: {job.title}
+            </span>
+        )
+    }
+
     if(currentStep !== 1) {
         return null
     }
@@ -313,10 +322,10 @@ const Applicant = (props) => {
                         </tr>
                     {/* //    as="h2" */}
                         <tr>
-                            <td id="table-header-title" style={{ "border-bottom-width": 0 + "px", "border-right": 2 + "px solid white"}}>Location: <span></span>
+                            <td id="table-header-title" style={{ "border-bottom-width": 0 + "px", "border-right": 2 + "px solid white"}}>
                             {/* </td> */}
                             {/* <td id="table-value-bottom" style={{ "border-bottom-width": 0 + "px", "border-right": 2 + "px solid white"}}> */}
-                                {candidate.info.city}, {candidate.info.state}
+                                {handleJob(candidate.application)}
                             </td>
                                 {/* as="h5" */}
                             <td id="table-header-location" style={{ "border-bottom-width": 0 + "px"}}>

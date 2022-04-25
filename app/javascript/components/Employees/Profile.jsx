@@ -80,7 +80,13 @@ const Profile = props => {
                  style={{ "paddingInlineStart": 15 + "px", "paddingInlineEnd": 25 + "px"}}
             >
                 <Card id={employee.id} key={employee.id}>
-            <CloseButton onClick={props.handleClose}/>
+                <CloseButton onClick={props.handleClose} 
+                    style={{
+                        position: "relative",
+                        bottom: 15 + "px",
+                        right: 15 + "px"
+                    }}
+                />
             <Card.Body style={{"padding-top": "10px", "display": "flex"}}>
                 <div className="job-body"
                         style={{"width": 50 + "%"}}
@@ -128,14 +134,6 @@ const Profile = props => {
                             {employee.phone}
                         </td>
                         </tr>
-                        {/* <tr style={{ "border-bottom-width": 0 + "px"}}>
-                        <td style={{"padding": "0px" }}>
-                            Email:                  
-                        </td>
-                        <td style={{"padding": "0px" }}>
-                            {employee.commute}
-                        </td>
-                        </tr> */}
                         <tr style={{ "border-bottom-width": 0 + "px"}}>
                         <td style={{"padding": "0px" }}>
                             Job Type:                         

@@ -225,7 +225,7 @@ const Basic = (props) => {
                     </Form.Group>
                     </Row>
             </Modal.Body>
-            <Modal.Footer>
+            <Modal.Footer style={{ "backgroundColor": "#373737"}}>
                 <Button variant="primary" name="next" onClick={props.handleClick}>
                     Next
                 </Button>

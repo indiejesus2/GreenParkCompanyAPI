@@ -291,10 +291,10 @@ const Applicants = (props) => {
                         </tr>
                     {/* //    as="h2" */}
                         <tr>
-                            <td id="table-header-title" style={{ "border-bottom-width": 0 + "px", "border-right": 2 + "px solid white"}}>Location:<span></span>
+                            <td id="table-header-title" style={{ "border-bottom-width": 0 + "px", "border-right": 2 + "px solid white"}}>Job Title:<span></span>
                             {/* </td> */}
                             {/* <td id="table-value-bottom" style={{ "border-bottom-width": 0 + "px", "border-right": 2 + "px solid white"}}> */}
-                                {candidate.info.city}, {candidate.info.state}
+                                {job.title}
                             </td>
                                 {/* as="h5" */}
                             <td id="table-header-location" style={{ "border-bottom-width": 0 + "px"}}>

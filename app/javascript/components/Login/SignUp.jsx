@@ -61,7 +61,6 @@ export default function SignUp(props) {
         <React.Fragment>    
             <Modal size="lg" show={show} animation centered onHide={handleClose}>
                 <div className="signIn">
-                    <CloseButton onClick={handleClose} />
                     <Form onSubmit={formik.handleSubmit}
                         style={{
                             "width": 50 + "%"
@@ -136,6 +135,13 @@ export default function SignUp(props) {
                     <div id="collar">
                         <Image fluid="true" src="/images/blucollarO.png" alt="collar" />
                     </div>
+                    <CloseButton onClick={handleClose} 
+                        style={{
+                            position: "relative",
+                            bottom: 15 + "px",
+                            right: 15 + "px"
+                        }}
+                    />
                 </div>
             </Modal>
         </React.Fragment>

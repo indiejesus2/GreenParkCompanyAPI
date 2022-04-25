@@ -3,6 +3,7 @@ export const currentUser = () => {
     return fetch(`/api/v1/current_user`, {withCredentials: true})
     .then(resp => resp.json())
     .then(user => {
+        debugger
         if (!!user.contractor) {
             dispatch({
                 type: 'CURRENT_CONTRACTOR',
