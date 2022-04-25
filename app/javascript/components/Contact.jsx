@@ -97,7 +97,7 @@ const Contact = props => {
                                 <Row className="mb-3">
                                 <Form.Group as={Col} controlId="validationFormik02">
                                     <Form.Control
-                                        type="textarea"
+                                        as="textarea"
                                         name="msg"
                                         placeholder="Write Your Message Here"
                                         value={formik.values.msg}
