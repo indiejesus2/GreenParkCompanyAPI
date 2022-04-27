@@ -100,7 +100,7 @@ namespace :puma do
           unless test("[ -f #{shared_path}/config/master.key ]")
             upload! 'config/master.key', "#{shared_path}/config/master.key"
             upload! '.env', "#{shared_path}/.env"
-            upload! 'config/credentials/production.key', "#{shared_path}/config/production.key"
+            upload! 'config/credentials/production.key', "#{shared_path}/config/credentials/production.key"
           end
         end
       end
