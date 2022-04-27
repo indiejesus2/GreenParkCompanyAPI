@@ -1,6 +1,6 @@
 import { bindActionCreators } from "redux"
 
-export default function contractorsReducer(state = {contractor: [], jobs: [], applicants: [], loggedIn: false, loading: false, files: []}, action) {
+export default function contractorsReducer(state = {contractor: [], jobs: [], applicants: [], loggedIn: false, loading: false, contractorErrors: [], files: []}, action) {
     switch(action.type) {
         case 'FETCH_CONTRACTOR':
             return {
@@ -81,19 +81,24 @@ export default function contractorsReducer(state = {contractor: [], jobs: [], ap
             let deleted = state.jobs.filter(job => job.id != action.payload.id)
             return {...state, jobs: deleted, loading: false, applicants: action.payload.applicants}
         case 'ERROR_CONTRACTOR':
-            debugger
             return {
                 ...state,
                 loggedIn: false,
                 loading: false,
-                errors: action.payload
+                contractorErrors: action.payload
+            }
+        case 'CLEAR_CONTRACTOR_ERRORS':
+            return {
+                ...state,
+                contractorErrors: []
             }
         case 'LOGOUT_CONTRACTOR':
             return {
                 loggedIn: false,
                 contractor: [],
                 jobs: [],
-                applicants: []
+                applicants: [],
+                contractorErrors: []
             }
         default:
             return state

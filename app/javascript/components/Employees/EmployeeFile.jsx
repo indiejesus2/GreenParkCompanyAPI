@@ -38,15 +38,15 @@ const EmployeeFile = props => {
     return (
         <div className="employee-file">
             <Modal show={show} backdrop centered onHide={handleClose} >
-                <Modal.Header>
-                    <Modal.Title>
+                <Modal.Header style={{ "backgroundColor": "#373737"}}>
+                    <Modal.Title style={{ color: "#fff" }}>
                         Upload Document
                     </Modal.Title>
                 </Modal.Header>
-                <Modal.Body>
+                <Modal.Body style={{ "backgroundColor": "#373737"}}>
                 <Form.Group>
                         <Form.Label>Upload Document:</Form.Label>
-                        <Form.Control type="file" name="file" size="sm" onChange={(event) => handleChange(event)} />
+                        <Form.Control type="file" name="file" size="sm" onChange={(event) => handleChange(event)} style={{ "backgroundColor": "#2f2f2f", "color": "#fff"}} />
                 </Form.Group>
                 <Button onClick={handleSubmit}>Upload Document</Button>
                 </Modal.Body>

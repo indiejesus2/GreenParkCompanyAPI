@@ -188,22 +188,22 @@ const Profile = props => {
                             <p>
                                 {employee.description}
                             </p>
-                            {/* <h3 style={{ "fontWeight": "bold"}}>Past Experience: </h3>
-                                {props.experience.map(history => 
-                                <div>
-                                    <h5>{history.company}</h5>
-                                    <h6>{history.title}: {history.city}, {history.state}</h6>
-                                    <p>{history.startdate} to {history.current?"Present":history.enddate}</p>
-                                    <p>{history.description}</p>
-                                    <Link to={`/employees/${props.employee.id}/experience/${history.id}`}>
-                                        Edit Experience
-                                    </Link>
-                                </div>
-                                )} */}
                             </div>
                         </div>
             </Card.Body>
             </Card>
+                <h3 style={{ "fontWeight": "bold"}}>Past Experience: </h3>
+                    {props.experience.map(history => 
+                        <div>
+                            <h5>{history.company}</h5>
+                            <h6>{history.title}: {history.city}, {history.state}</h6>
+                            <p>{history.startdate} to {history.current?"Present":history.enddate}</p>
+                            <p>{history.description}</p>
+                            <Link to={`/employees/${props.employee.id}/experience/${history.id}`}>
+                                Edit Experience
+                            </Link>
+                        </div>
+                    )}
             </div>
         </div>
     </div>

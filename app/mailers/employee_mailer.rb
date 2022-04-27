@@ -3,7 +3,7 @@ class EmployeeMailer < ApplicationMailer
 
     def welcome_email
         @employee = params[:employee]
-        @url = 'https://blucollar-jobs.herokuapp.com'
+        @url = 'https://www.blucollar.com'
         mail(
             to: email_address_with_name(@employee.email, @employee.profile.name),
             subject: "Welcome to BluCollar!"
@@ -20,8 +20,8 @@ class EmployeeMailer < ApplicationMailer
     end
 
     def applied_email
-        @url = 'https://blucollar-jobs.herokuapp.com'
-        @job_url = 'https://blucollar-jobs.herokuapp.com'
+        @url = 'http://www.blucollar.com'
+        @job_url = 'http://www.blucollar.com'
         @employee = params[:employee]
         @application = @employee.applicants.find{|applicant| applicant.id == params[:application]}
         @jobs = @employee.jobs
@@ -39,8 +39,8 @@ class EmployeeMailer < ApplicationMailer
     @user = params[:employee]
     @temp = params[:temp]
     @employee = @user.profile    
-    @url = 'https://blucollar-jobs.herokuapp.com'
-    @reset_url = 'https://blucollar-jobs.herokuapp.com/employees/reset_password'
+    @url = 'http://www.blucollar.com'
+    @reset_url = 'http://www.blucollarcom/home/reset_password'
     mail(
         to: @user.email, subject: "Password Reset"
     ) 

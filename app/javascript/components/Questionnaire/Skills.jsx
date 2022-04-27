@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import {Modal, Button, Form, Accordion} from 'react-bootstrap'
+import {Modal, Button, Form, Accordion, Image} from 'react-bootstrap'
 import NavBar from '../NavBar'
 import Experience from './Experience'
 
@@ -13,12 +13,14 @@ const Skills = props => {
     return(
         <React.Fragment>
         <Modal show animation backdrop>
-        <Modal.Header className="justify-content-center">
-            <Modal.Title className="questionlogo"><img src="/images/blucollar_O.png" alt="BluCollar Logo" /></Modal.Title>
+        <Modal.Header className="justify-content-center" style={{ "backgroundColor": "#373737"}}>
+            <Modal.Title className="questionlogo">
+                <Image fluid="true" src="/images/blucollar-logo-non-bold.png" alt="BluCollar Logo" />
+            </Modal.Title>
 
             {/* <Modal.Title><img src="/images/blucollar_icon.png" alt="BluCollar Logo" /></Modal.Title> */}
         </Modal.Header>
-            <Modal.Body>
+            <Modal.Body style={{ "backgroundColor": "#373737"}}>
                 <Form.Label>
                     Experience:
                 </Form.Label>
@@ -27,32 +29,32 @@ const Skills = props => {
 
             <Accordion defaultActiveKey="0">
                 <Accordion.Item eventKey="0">
-                    <Accordion.Header>
+                    <Accordion.Header style={{ "backgroundColor": "#2f2f2f", "color": "#fff"}}>
                         Most Recent Job
                     </Accordion.Header>
-                        <Accordion.Body>
+                        <Accordion.Body  style={{ "backgroundColor": "#373737"}}>
                             <Experience handleChange={props.handleChange} values={props.values} id={0}/>
                         </Accordion.Body>
                 </Accordion.Item>
                 <Accordion.Item eventKey="1">
-                    <Accordion.Header>
+                    <Accordion.Header style={{ "backgroundColor": "#2f2f2f", "color": "#fff"}}>
                         Job #2
                     </Accordion.Header>
-                        <Accordion.Body>
+                        <Accordion.Body  style={{ "backgroundColor": "#373737"}}>
                             <Experience handleChange={props.handleChange} values={props.values} id={1}/>
                         </Accordion.Body>
                 </Accordion.Item>
                 <Accordion.Item eventKey="2">
-                    <Accordion.Header>
+                    <Accordion.Header style={{ "backgroundColor": "#2f2f2f", "color": "#fff"}}>
                         Job #3
                     </Accordion.Header>
-                        <Accordion.Body>
+                        <Accordion.Body  style={{ "backgroundColor": "#373737"}}>
                             <Experience handleChange={props.handleChange} values={props.values} id={2}/>
                         </Accordion.Body>
                 </Accordion.Item>
             </Accordion>
             </Modal.Body>
-            <Modal.Footer>
+            <Modal.Footer style={{ "backgroundColor": "#373737"}}>
                 <Button variant="primary" name="previous" onClick={props.handleClick}>
                     Complete Profile
                 </Button>

@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom'
 import {Button, Form, Modal, Alert, Image, CloseButton} from 'react-bootstrap'
 import { useHistory } from 'react-router-dom'
 
-const ForgotPassword = props => {
+export default function ForgotPassword(props) {
 
     const [show, setShow] = useState(true)
     const history = useHistory();
@@ -26,16 +26,12 @@ const ForgotPassword = props => {
     const formik = useFormik({
         initialValues: {
             email: "",
-            user: props.user
+            user: "employee"
         },
         onSubmit: values => {
             props.updatePassword(values)
+            history.push('/home/reset_password')
             // props.handleValidation
-            if (props.user == "employee") {
-                history.push('/employees/reset_password')
-            } else {
-                history.push('/contractors/reset_password')
-            }
         },
     });
 
@@ -123,5 +119,3 @@ const ForgotPassword = props => {
     )
 
 }
-
-export default ForgotPassword

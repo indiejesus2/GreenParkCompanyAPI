@@ -320,7 +320,8 @@ const About = props => {
             <div className="d-flex justify-content-between">
                 <div className="aboutImg"
                     style={{
-                        width: 52 + "%"
+                        width: 52 + "%",
+                        maxWidth: 782 + "px"
                     }}
                 >
                     <div className="d-flex justify-content-between mb-5">

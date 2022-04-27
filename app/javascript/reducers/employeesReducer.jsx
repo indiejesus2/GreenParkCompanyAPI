@@ -1,6 +1,6 @@
 import { assertConditionalExpression } from "@babel/types"
 
-export default function employeesReducer(state = {employee: [], profile: [], experience: [], jobs: [], applicants: [], file: [], document: [], errors: [], loggedIn: false, loading: false, fileLoading: false}, action) {
+export default function employeesReducer(state = {employee: [], profile: [], experience: [], jobs: [], applicants: [], file: [], document: [], employeeErrors: [], loggedIn: false, loading: false, fileLoading: false}, action) {
     switch(action.type) {
         case 'LOADING_EMPLOYEES':
             return {
@@ -84,7 +84,6 @@ export default function employeesReducer(state = {employee: [], profile: [], exp
                 fileLoading: true
             }
         case 'UPLOAD_FILE':
-            debugger
             return {
                 ...state,
                 fileLoading: false,
@@ -96,25 +95,29 @@ export default function employeesReducer(state = {employee: [], profile: [], exp
                 applicants: action.payload
             }
         case 'ERROR_EMPLOYEE':
-            debugger
             return {
                 ...state,
                 loading: false,
                 loggedIn: false,
                 employeeErrors: action.payload
             }
-            case 'LOGOUT_EMPLOYEE':
-                return {
-                    loggedIn: false,
-                    employee: [],
-                    profile: [],
-                    experience: [],
-                    jobs: [],
-                    applicants: [],
-                    file: [],
-                    document: [],
-                    errors: []
-                }
+        case 'CLEAR_EMPLOYEE_ERRORS':
+            return {
+                ...state,
+                employeeErrors: []
+            }
+        case 'LOGOUT_EMPLOYEE':
+            return {
+                loggedIn: false,
+                employee: [],
+                profile: [],
+                experience: [],
+                jobs: [],
+                applicants: [],
+                file: [],
+                document: [],
+                employeeErrors: []
+            }
         default:
             return state
     }

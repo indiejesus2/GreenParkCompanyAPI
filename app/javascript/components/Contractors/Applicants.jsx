@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { Form, Button, Card, Table } from 'react-bootstrap'
 import EmployeeProfile from './EmployeeProfile'
 
+
 const Applicants = (props) => {
     
     const [job, setJob] = useState(props.job)
@@ -35,13 +36,23 @@ const Applicants = (props) => {
         setApplicant(candidate)
         setShow(true);
     }
+
+    const saved = () => {
+        let savedApplicants = candidates.map(candidate => candidate.application.accepted == true)
+        return savedApplicants
+    }
     
-    // useEffect(() => {
-    //     setJob(props.job) 
-    //     setApplicants(props.job.applicants.sort(applicant=>applicant.rating))
-    //     setProfiles(props.job.profiles)
-    //     setCandidates(original)
-    // })
+    useEffect(() => {
+        if (props.savedApplicants == true && saved != candidates) {
+            setCandidates(saved)
+        } else if (props.savedApplicants == false && props.applicants != applicants) {
+            setCandidates(original)
+        }
+        // setJob(props.job) 
+        // setApplicants(props.job.applicants.sort(applicant=>applicant.rating))
+        // setProfiles(props.job.profiles)
+        // setCandidates(original)
+    })
 
     const jobMatch = (profile) => {
         let matches = {}
@@ -168,7 +179,6 @@ const Applicants = (props) => {
     const handleApplied = (e) => {
         let filtered = []
         Object.entries(candidates).map(function([info, applicant]) {
-            debugger
             if(applicant.application.interested == true) {
                 filtered.push(applicant)
             }
@@ -200,6 +210,14 @@ const Applicants = (props) => {
     const handleContact = (candidate) => {
         let person = job.employees.find(employee => employee.id == candidate.info.employee_id)
         window.location.href = ("mailto:" + person.email + "?subject=" + job.title + " - " + props.contractor.name)        
+    }
+    
+    const handleAcceptance = (candidate) => {
+        let person = job.employees.find(employee => employee.id == candidate.info.employee_id)
+    }
+
+    const handleDenial = (candidate) => {
+        let person = job.employees.find(employee => employee.id == candidate.info.employee_id)
     }
 
     const header = () => {

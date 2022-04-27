@@ -103,6 +103,30 @@ const EmployeeProfile = props => {
         }
     }
 
+    const handleAcceptance = () => {
+        if (application.acceptance != true) {
+            return (
+                <Button onClick={() => handleApplicant(true)}>Accept Applicant</Button>
+            )
+        } else {
+            return (
+                <Button disabled>Accept Applicant</Button>
+            )
+        }
+    }
+    
+    const handleDecline = () => {
+        if (application.acceptance == true) {
+            return (
+                <Button onClick={() => handleApplicant(false)}>Decline Applicant</Button>
+            )
+        } else {
+            return (
+                <Button disabled>Decline Applicant</Button>
+            )
+        }
+    }
+
     const handleResume = () => {
         if (file.length>0) {
             return (
@@ -205,11 +229,11 @@ const EmployeeProfile = props => {
                     </Table>
                     </div>
                     <div className="job-buttons">
-                        <Button>Accept Application</Button>
+                        {handleAcceptance()}
                         {handleResume()}
                     </div>
                     <div className="job-buttons">
-                        <Button>Decline Applicant</Button>
+                        {handleDecline()}
                         <Button onClick={() => props.handleContact(candidate)}>Contact Applicant</Button>
                     </div>
                     </div>
@@ -261,15 +285,19 @@ const EmployeeProfile = props => {
                 <Button onClick={props.handleClose}>Close</Button>
             </Modal.Footer>
             </Modal.Body>
-                {props.work_history.map(history => 
-            <div className="work-history" key={history.id}>
-            Experience:
-            <p>{history.title}</p>
-            <p>{history.company}</p>
-            </div>
-            )}
-        <button onClick={handleClick}>Edit Profile</button>
+            <button onClick={handleClick}>Edit Profile</button>
         </Modal>  */}
+            <div className="work-history">
+                <h3>Experience:</h3>
+                {props.work_history.map(history => 
+                    <Card  key={history.id}>
+                        <Card.Body>
+                            <p>{history.title}</p>
+                            <p>{history.company}</p>
+                        </Card.Body>
+                    </Card>
+                )}
+            </div>
         </div>
         )
         // else {

@@ -54,36 +54,50 @@ class Api::V1::AuthController < ApplicationController
     def forgot_password
         if password_params[:user] == "employee"
             @user = Employee.find_by(email: params[:email])
-            @temp = SecureRandom.random_number(1000000)
-            @user.update(password_reset_token: @temp, password_reset_sent: Time.now)
-            @user.save
-            byebug
-            # EmployeeMailer.with(employee: @user, temp: @temp).password_reset.deliver_later
-            render json: @employee
+            if !!@user
+                @temp = SecureRandom.random_number(1000000)
+                @user.update(password_reset_token: @temp, password_reset_sent: Time.now)
+                @user.save
+                EmployeeMailer.with(employee: @user, temp: @temp).password_reset.deliver_later
+                render json: @employee
+            else
+                render json: {
+                    error: "No profile found.", status: 401
+                }
+            end                
         elsif password_params[:user] == "contractor"
             @user = Employer.find_by(email: params[:email])
-            EmployerMailer.with(employee: @user, temp: @temp).password_reset.deliver_later
+            if !!@user
+                @temp = SecureRandom.random_number(1000000)
+                @user.update(password_reset_token: @temp, password_reset_sent: Time.now)
+                @user.save
+                EmployerMailer.with(employer: @user, temp: @temp).password_reset.deliver_later
+            else
+                render json: {
+                    error: "No profile found.", status: 401
+                }
+            end    
         else
             render json: {
-                error: "No profile found."
+                error: "No profile found.", status: 401
             }    
         end
     end
 
     def reset_password
-        byebug
-        if reset_params[:user] == "employees"
-            @user = Employee.find_by(email: params[:email])
+        if reset_params[:user] == "employee"
+            @user = Employee.find_by(email: reset_params[:email])
         else
-            @user = Employer.find_by(email: params[:email])
+            @user = Employer.find_by(email: reset_params[:email])
         end
+        byebug
         if @user.password_reset_token == reset_params[:token]
             @user.update(password: params[:password])
             @user.save
             # EmployeeMailer.with(employee: user).password_update.deliver_later 
         else
             render json: {
-                error: "Incorrect token/invalid email."
+                error: "Incorrect token/invalid email.", status: 401
             }
         end
     end

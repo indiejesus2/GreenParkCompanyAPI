@@ -15,6 +15,7 @@ import {signUp} from '../actions/Tradespeople/signUp'
 import {updatePassword} from '../actions/updatePassword'
 import {resetPassword} from '../actions/resetPassword'
 import { currentUser } from '../actions/currentUser'
+import { clearEmployeeErrors } from '../actions/clearEmployeeErrors'
 import {signOut} from '../actions/signOut'
 import NavBar from '../components/NavBar'
 
@@ -45,6 +46,7 @@ class LoginContainer extends Component {
     //     }
     // }
 
+
     handleRedirect = () => {
         debugger
     }
@@ -68,43 +70,49 @@ class LoginContainer extends Component {
         //     )
         // } else {
         // debugger
-        // if (!!this.props.employeeErrors) {
-        //     return (
-        //         <div>
-        //         <NavBar />
-        //         <Switch>
-        //             <Route path='/home/signin' render={(routerProps) => <SignIn {...routerProps} signIn={this.props.signIn} currentStep={1} signUp={this.props.signUp} employeesErrors={this.props.employeesErrors} signOut={this.props.signOut}/>}></Route>
-        //             {/* <Route path='/employees/signup' render={(routerProps) => <EmployeeSignUp {...routerProps} signUpEmployee={this.props.signUpEmployee} />}></Route> */}
-        //             {/* <Route path='/home' render={(routerProps) => <Home {...routerProps} />}></Route> */}
-        //         </Switch>
-        //         </div>            
-        //     )
-        // } else if (this.props.loggedIn == true) {
-        //     return (
-        //         <div>
-        //             <Switch>                        
-        //                 <Route path='/employees' render={(routerProps) => <Employees {...routerProps} signIn={this.props.signIn} signUp={this.props.signUp} loggedIn={this.props.loggedIn} employee={this.props.employee} profile={this.props.profile} jobs={this.props.jobs} loading={this.props.loading} createProfile={this.props.createProfile} errors={this.props.errors} signOut={this.props.signOutEmployee} updatePassword={this.props.updatePassword} />}></Route>
-        //             </Switch>
-        //         </div>
-        //     )
-        // } else {
+        if (this.props.employeeErrors == "Incorrect Username/Password" || this.props.contractorErrors == "Incorrect Username/Password") {
+            debugger
+            // const history = useHistory();
+            return (
+                // ('/home/signIn')
+                // <Redirect to="/home/signIn" />
+                <div>
+                    <NavBar />
+                        <SignIn signIn={this.props.signIn} currentStep={1} signUp={this.props.signUp} employeeErrors={this.props.employeeErrors} contractorErrors={this.props.contractorErrors} signOut={this.props.signOut} clearEmployeeErrors={this.props.clearEmployeeErrors} clearContractorErrors={this.props.clearContractorErrors}/>
+                </div>            
+            )
+        } else if (this.props.employeeErrors == "Email is associated with an existing account." || this.props.contractorErrors == "Email is associated with an existing account.") {
+            <div>
+                    <NavBar />
+                        <SignIn signIn={this.props.signIn} currentStep={1} signUp={this.props.signUp} contractorErrors={this.props.contractorErrors} employeeErrors={this.props.employeeErrors} signOut={this.props.signOut} clearEmployeeErrors={this.props.clearEmployeeErrors} clearContractorErrors={this.props.clearContractorErrors}/>
+                </div>
+        } else if (this.props.loggedIn == true) {
+            debugger
+            return (
+                <div>
+                    <Switch>                        
+                        <Route path='/employees' render={(routerProps) => <Employees {...routerProps} signIn={this.props.signIn} signUp={this.props.signUp} loggedIn={this.props.loggedIn} employee={this.props.employee} profile={this.props.profile} jobs={this.props.jobs} loading={this.props.loading} createProfile={this.props.createProfile} errors={this.props.errors} signOut={this.props.signOutEmployee} updatePassword={this.props.updatePassword} />}></Route>
+                    </Switch>
+                </div>
+            )
+        } else {
             return(
                 <div>
                 <NavBar />
                 <Switch>
                     <Route path='/home/contact' render={(routerProps) => <Contact {...routerProps} currentStep={5} signOut={this.props.signOut} user="none"/>}></Route>
                     <Route path='/home/about' render={(routerProps) => <About {...routerProps} signOut={this.props.signOut} user="none"/>}></Route>
-                    <Route path='/home/tempPassword' render={(routerProps) => <TempPassword {...routerProps} resetPassword={this.props.resetPassword} currentStep={4} signOut={this.props.signOut}/>}></Route>
-                    <Route path='/home/forgotPassword' render={(routerProps) => <ForgotPassword {...routerProps} updatePassword={this.props.updatePassword} currentStep={3} signOut={this.props.signOut} employeesErrors={this.props.employeesErrors} contractorsErrors={this.props.contractorsErrors} />}></Route>
+                    <Route path='/home/reset_password' render={(routerProps) => <TempPassword {...routerProps} resetPassword={this.props.resetPassword} currentStep={4} signOut={this.props.signOut}/>}></Route>
+                    <Route path='/home/forgot_password' render={(routerProps) => <ForgotPassword {...routerProps} updatePassword={this.props.updatePassword} currentStep={3} signOut={this.props.signOut} employeesErrors={this.props.employeesErrors} contractorErrors={this.props.contractorErrors} />}></Route>
                     <Route path='/home/signOut' render={(routerProps) => <SignOut {...routerProps} signOut={this.props.signOut}/>}></Route>
-                    <Route path='/home/signUp' render={(routerProps) => <SignUp {...routerProps} signUp={this.props.signUp} currentStep={2} employeesErrors={this.props.employeesErrors} signOut={this.props.signOut}/>}></Route>
-                    <Route path='/home/signin' render={(routerProps) => <SignIn {...routerProps} signIn={this.props.signIn} currentStep={1} signUp={this.props.signUp} employeesErrors={this.props.employeesErrors} signOut={this.props.signOut}/>}></Route>
+                    <Route path='/home/signUp' render={(routerProps) => <SignUp {...routerProps} signUp={this.props.signUp} currentStep={2} employeeErrors={this.props.employeeErrors} contractorErrors={this.props.contractorErrors} signOut={this.props.signOut} clearEmployeeErrors={this.props.clearEmployeeErrors} clearContractorErrors={this.props.clearContractorErrors}/>}></Route>
+                    <Route path='/home/signin' render={(routerProps) => <SignIn {...routerProps} signIn={this.props.signIn} currentStep={1} signUp={this.props.signUp} employeeErrors={this.props.employeeErrors} contractorErrors={this.props.contractorErrors} signOut={this.props.signOut} clearEmployeeErrors={this.props.clearEmployeeErrors} clearContractorErrors={this.props.clearContractorErrors}/>}></Route>
                     {/* <Route path='/employees/signup' render={(routerProps) => <EmployeeSignUp {...routerProps} signUpEmployee={this.props.signUpEmployee} />}></Route> */}
                     <Route path='/home' render={(routerProps) => <Home {...routerProps} />}></Route>
                 </Switch>
                 </div>
             )
-        // }
+        }
     }
 }
 
@@ -113,7 +121,7 @@ const mapStateToProps = state => {
         employee: state.employeesReducer.employee,
         contractor: state.contractorsReducer.contractor,
         employeeErrors: state.employeesReducer.employeeErrors,
-        contractorsErrors: state.contractorsReducer.contractorsErrors,
+        contractorErrors: state.contractorsReducer.contractorErrors,
         // currentStep: 0,
         currentContractor: state.contractorsReducer.currentContractor,
         currentEmployee: state.contractorsReducer.currentEmployee
@@ -125,7 +133,10 @@ const mapDispatchToProps = dispatch => ({
     signIn: user => dispatch(signIn(user)),
     signUp: user => dispatch(signUp(user)),
     updatePassword: user => dispatch(updatePassword(user)),
+    resetPassword: user => dispatch(resetPassword(user)),
     currentUser: () => dispatch(currentUser()),
+    clearEmployeeErrors: () => dispatch(clearEmployeeErrors()),
+    clearContractorErrors: () => dispatch(clearContractorErrors()),
     // handleClick: () => dispatch(handleClick()),
     signOut: () => dispatch(signOut())
 })

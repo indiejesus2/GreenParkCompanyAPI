@@ -17,15 +17,17 @@ export default function SignIn(props) {
 
     const handleClose = () => {
         history.push('/');
+        props.clearEmployeeErrors()
+        props.clearContractorErrors()
         setShow(false)
     }
 
     const handleClick = () => {
-        history.push('/home/forgotPassword')
+        history.push('/home/forgot_password')
     }
 
     useEffect(() => {
-        if (props.errors) {
+        if (props.employeeErrors.length > 0 || props.contractorErrors.length > 0) {
             setAlert(true)
         }
     })
@@ -52,6 +54,8 @@ export default function SignIn(props) {
     if(props.currentStep !== 1) {
         return null
     }
+
+    // debugger
     
     return (
         <React.Fragment>
@@ -74,7 +78,7 @@ export default function SignIn(props) {
             >
                     <h1>Sign In</h1>            
                 <Alert show={alert}>
-                    {props.errors}
+                    {props.employeeErrors}
                 </Alert>
                 <Form.Group className="mb-3" md="4" id="signInOptions">
                     <Form.Label>Sign In As</Form.Label>
