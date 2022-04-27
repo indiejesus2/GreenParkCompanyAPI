@@ -10,6 +10,8 @@ Dotenv::Railtie.load
 
 API_MYAPIKEY = ENV['API_MYAPIKEY']
 DOMAIN_NAME = ENV['DOMAIN_NAME']
+ACCESS_KEY_ID = ENV['ACCESS_KEY_ID']
+SECRET_ACCESS_KEY = ENV['SECRET_ACCESS_KEY']
 
 module GreenParkCompany
   class Application < Rails::Application
