@@ -1,1 +1,1 @@
-Dotenv.require_keys("API_MYAPIKEY", "DOMAIN_NAME")
+Dotenv.require_keys("API_MYAPIKEY", "DOMAIN_NAME",  "AWS_ACCESS_KEY_ID", "AWS_SECRET_ACCESS_KEY")
