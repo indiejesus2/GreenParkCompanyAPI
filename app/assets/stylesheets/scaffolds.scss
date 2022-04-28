@@ -4,9 +4,9 @@
 
 @font-face {
   font-family: "Luam";
-  src: local('Luam Regular'), url('../../../fonts/Luam-Regular.woff') format('woff');
-  src: local('Luam Bold'), url('../../../fonts/Luam-Bold.woff') format('woff');
-  src: local('Luam_light Regular'), url('../../../fonts/Luam-Light.woff') format('woff');
+  src: local('Luam Regular'), url('/fonts/Luam-Regular.woff') format('woff');
+  src: local('Luam Bold'), url('/fonts/Luam-Bold.woff') format('woff');
+  src: local('Luam_light Regular'), url('/fonts/Luam-Light.woff') format('woff');
 }
 
 body {
