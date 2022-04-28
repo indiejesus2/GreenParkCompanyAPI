@@ -33,6 +33,7 @@ require "capistrano/rails"
 require "capistrano/bundler"
 require "capistrano/puma"
 require 'dotenv'
+Dotenv.load
 install_plugin Capistrano::Puma
 install_plugin Capistrano::Puma::Daemon
 # require "capistrano/rbenv"
