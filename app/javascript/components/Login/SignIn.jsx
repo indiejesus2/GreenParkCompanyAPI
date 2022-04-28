@@ -27,7 +27,7 @@ export default function SignIn(props) {
     }
 
     useEffect(() => {
-        if (props.employeeErrors.length > 0 || props.contractorErrors.length > 0) {
+        if (props.employeeErrors != "" || props.contractorErrors != "") {
             setAlert(true)
         }
     })

@@ -1,6 +1,6 @@
 import { assertConditionalExpression } from "@babel/types"
 
-export default function employeesReducer(state = {employee: [], profile: [], experience: [], jobs: [], applicants: [], file: [], document: [], employeeErrors: [], loggedIn: false, loading: false, fileLoading: false}, action) {
+export default function employeesReducer(state = {employee: [], profile: [], experience: [], jobs: [], applicants: [], file: [], document: [], employeeErrors: "", loggedIn: false, loading: false, fileLoading: false}, action) {
     switch(action.type) {
         case 'LOADING_EMPLOYEES':
             return {
