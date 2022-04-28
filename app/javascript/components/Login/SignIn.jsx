@@ -14,11 +14,13 @@ export default function SignIn(props) {
     const [show, setShow] = useState(true)
     const history = useHistory();
     const [alert, setAlert] = useState(false)
+    const [error, setError] = useState("")
 
     const handleClose = () => {
         history.push('/');
         props.clearEmployeeErrors()
         props.clearContractorErrors()
+        setError("")
         setShow(false)
     }
 
@@ -29,6 +31,7 @@ export default function SignIn(props) {
     useEffect(() => {
         if (props.employeeErrors != "" || props.contractorErrors != "") {
             setAlert(true)
+            setError(props.employeeErrors!=""?props.employeeErrors:props.contractorErrors)
         }
     })
 
@@ -78,7 +81,7 @@ export default function SignIn(props) {
             >
                     <h1>Sign In</h1>            
                 <Alert show={alert}>
-                    {props.employeeErrors}
+                    {error}
                 </Alert>
                 <Form.Group className="mb-3" md="4" id="signInOptions">
                     <Form.Label>Sign In As</Form.Label>

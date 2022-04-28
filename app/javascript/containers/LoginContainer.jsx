@@ -16,6 +16,7 @@ import {updatePassword} from '../actions/updatePassword'
 import {resetPassword} from '../actions/resetPassword'
 import { currentUser } from '../actions/currentUser'
 import { clearEmployeeErrors } from '../actions/clearEmployeeErrors'
+import { clearContractorErrors } from '../actions/clearContractorErrors'
 import {signOut} from '../actions/signOut'
 import NavBar from '../components/NavBar'
 
@@ -71,7 +72,6 @@ class LoginContainer extends Component {
         // } else {
         // debugger
         if (this.props.employeeErrors == "Incorrect Username/Password" || this.props.contractorErrors == "Incorrect Username/Password") {
-            debugger
             // const history = useHistory();
             return (
                 // ('/home/signIn')
@@ -82,10 +82,12 @@ class LoginContainer extends Component {
                 </div>            
             )
         } else if (this.props.employeeErrors == "Email is associated with an existing account." || this.props.contractorErrors == "Email is associated with an existing account.") {
-            <div>
+            return (
+                <div>
                     <NavBar />
-                        <SignIn signIn={this.props.signIn} currentStep={1} signUp={this.props.signUp} contractorErrors={this.props.contractorErrors} employeeErrors={this.props.employeeErrors} signOut={this.props.signOut} clearEmployeeErrors={this.props.clearEmployeeErrors} clearContractorErrors={this.props.clearContractorErrors}/>
+                        <SignUp signIn={this.props.signIn} currentStep={2} signUp={this.props.signUp} contractorErrors={this.props.contractorErrors} employeeErrors={this.props.employeeErrors} signOut={this.props.signOut} clearEmployeeErrors={this.props.clearEmployeeErrors} clearContractorErrors={this.props.clearContractorErrors}/>
                 </div>
+            )
         } else if (this.props.loggedIn == true) {
             debugger
             return (

@@ -22,6 +22,10 @@ const Profile = props => {
         props.history.push(`/employees/${employee.id}/experience/add_experience`)
     }
 
+    const handleClose = () => {
+        props.history.push('/employees')
+    }
+
     // useEffect(() => {
     //     debugger
     //     if (props.employee.applicants.length !== applications.length) {
@@ -80,13 +84,6 @@ const Profile = props => {
                  style={{ "paddingInlineStart": 15 + "px", "paddingInlineEnd": 25 + "px"}}
             >
                 <Card id={employee.id} key={employee.id}>
-                <CloseButton onClick={props.handleClose} 
-                    style={{
-                        position: "relative",
-                        bottom: 15 + "px",
-                        right: 15 + "px"
-                    }}
-                />
             <Card.Body style={{"padding-top": "10px", "display": "flex"}}>
                 <div className="job-body"
                         style={{"width": 50 + "%"}}
@@ -191,6 +188,13 @@ const Profile = props => {
                             </div>
                         </div>
             </Card.Body>
+            <CloseButton onClick={handleClose} 
+                    style={{
+                        position: "relative",
+                        bottom: 15 + "px",
+                        right: 15 + "px"
+                    }}
+                />
             </Card>
                 <h3 style={{ "fontWeight": "bold"}}>Past Experience: </h3>
                     {props.experience.map(history => 
