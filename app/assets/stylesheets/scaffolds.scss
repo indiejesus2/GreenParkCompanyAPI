@@ -2,7 +2,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Sanchez&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital@0;1&display=swap');
 
-
+@font-face {
+  font-family: "Luam";
+  src: local('Luam Regular'), url('../../../fonts/Luam-Regular.woff') format('woff');
+  src: local('Luam Bold'), url('../../../fonts/Luam-Bold.woff') format('woff');
+  src: local('Luam_light Regular'), url('../../../fonts/Luam-Light.woff') format('woff');
+}
 
 body {
   background-color: #000000;
