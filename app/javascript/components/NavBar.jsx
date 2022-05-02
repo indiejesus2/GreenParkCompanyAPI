@@ -264,72 +264,71 @@ const NavBar = props => {
                 )
         } else {
             return (
-                <div className="home-nav">
+                // <div className="home-nav">
 
-                <div className="homeCollapseNav">
-                    <Navbar collapseOnSelect expand='sm' variant="dark">
-                        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                        <Navbar.Collapse id="basic-navbar-nav">
-                                <Nav defaultActiveKey="/" className="flex-column me-auto">
-                                    <Nav.Link as={Link} to="/home" eventKey="1"
-                                        style={{
-                                            color: "#fff",
-                                            fontFamily: 'Luam, serif',
-                                            fontSize: "x-large",
-                                        }}
-                                    >
-                                        Home
-                                    </Nav.Link>
-                                </Nav>
-                                <Nav defaultActiveKey="/" className="flex-column me-auto">
-                                    <Nav.Link as={Link} to="/home/about" eventKey="2"
-                                        style={{
-                                            color: "#fff",
-                                            fontFamily: 'Luam, serif',
-                                            fontSize: "x-large",
-                                        }}
-                                    >
-                                        About
-                                    </Nav.Link>
-                                </Nav>
-                                <Nav defaultActiveKey="/" className="flex-column me-auto">
-                                    <Nav.Link as={Link} to="/home/contact" eventKey="3"
-                                        style={{
-                                            color: "#fff",
-                                            fontFamily: 'Luam, serif',
-                                            fontSize: "x-large",
-                                        }}
-                                    >
-                                        Contact
-                                    </Nav.Link>
-                                </Nav>
-                                <Nav defaultActiveKey="/" className="flex-column me-auto">
-                                    <Nav.Link as={Link} to="/home/signIn" eventKey="4"
-                                        style={{
-                                            color: "#fff",
-                                            fontFamily: 'Luam, serif',
-                                            fontSize: "x-large",
-                                        }}
-                                    >
-                                        Sign In
-                                    </Nav.Link>
-                                </Nav>
-                                <Nav defaultActiveKey="/" className="flex-column me-auto">
-                                    <Nav.Link as={Link} to="/home/signUp" eventKey="5"
-                                        style={{
-                                            color: "#fff",
-                                            fontFamily: 'Luam, serif',
-                                            fontSize: "x-large",
-                                        }}
-                                    >
-                                        Create Account
-                                    </Nav.Link>
-                                </Nav>
-                        </Navbar.Collapse>
-                    </Navbar>
-                </div>
-                <div className="navCollapse"
-
+                // <div className="homeCollapseNav">
+                //     <Navbar collapseOnSelect expand='sm' variant="dark">
+                //         <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                //         <Navbar.Collapse id="basic-navbar-nav">
+                //                 <Nav defaultActiveKey="/" className="flex-column me-auto">
+                //                     <Nav.Link as={Link} to="/home" eventKey="1"
+                //                         style={{
+                //                             color: "#fff",
+                //                             fontFamily: 'Luam, serif',
+                //                             fontSize: "x-large",
+                //                         }}
+                //                     >
+                //                         Home
+                //                     </Nav.Link>
+                //                 </Nav>
+                //                 <Nav defaultActiveKey="/" className="flex-column me-auto">
+                //                     <Nav.Link as={Link} to="/home/about" eventKey="2"
+                //                         style={{
+                //                             color: "#fff",
+                //                             fontFamily: 'Luam, serif',
+                //                             fontSize: "x-large",
+                //                         }}
+                //                     >
+                //                         About
+                //                     </Nav.Link>
+                //                 </Nav>
+                //                 <Nav defaultActiveKey="/" className="flex-column me-auto">
+                //                     <Nav.Link as={Link} to="/home/contact" eventKey="3"
+                //                         style={{
+                //                             color: "#fff",
+                //                             fontFamily: 'Luam, serif',
+                //                             fontSize: "x-large",
+                //                         }}
+                //                     >
+                //                         Contact
+                //                     </Nav.Link>
+                //                 </Nav>
+                //                 <Nav defaultActiveKey="/" className="flex-column me-auto">
+                //                     <Nav.Link as={Link} to="/home/signIn" eventKey="4"
+                //                         style={{
+                //                             color: "#fff",
+                //                             fontFamily: 'Luam, serif',
+                //                             fontSize: "x-large",
+                //                         }}
+                //                     >
+                //                         Sign In
+                //                     </Nav.Link>
+                //                 </Nav>
+                //                 <Nav defaultActiveKey="/" className="flex-column me-auto">
+                //                     <Nav.Link as={Link} to="/home/signUp" eventKey="5"
+                //                         style={{
+                //                             color: "#fff",
+                //                             fontFamily: 'Luam, serif',
+                //                             fontSize: "x-large",
+                //                         }}
+                //                     >
+                //                         Create Account
+                //                     </Nav.Link>
+                //                 </Nav>
+                //         </Navbar.Collapse>
+                //     </Navbar>
+                // </div>
+                <div className="homeCollapse"
                     style={{
                         display: "flex",
                         justifyContent: "space-between",
@@ -354,7 +353,7 @@ const NavBar = props => {
                         <Nav.Link as={Link} to="/home/signUp">CREATE ACCOUNT</Nav.Link>
                     </Nav>
                 </div>
-            </div>
+            // </div>
             )
         }
 }

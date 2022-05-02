@@ -38,14 +38,16 @@ const SideNavBar = props => {
                     <Nav.Link as={Link} to="/contractors">
                         Applicants
                     </Nav.Link>
-                    
-                    <Nav.Link as={Link} to={"/home/signOut"}>Sign Out</Nav.Link>
-                    {/* <Nav.Link as={Link} to={`/contractors/${props.contractor.id}/jobs`}>
+                    <Nav.Link as={Link} to={`/contractors/${props.contractor.id}/jobs`}>
                         Jobs
-                    </Nav.Link> */}
+                    </Nav.Link>
+                    <Nav.Link as={Link} to={`/contractors/${props.contractor.id}/profile`}>
+                        Profile
+                    </Nav.Link>
+                    <Nav.Link as={Link} to={"/home/signOut"}>Sign Out</Nav.Link>
                     {/* <Nav.Link href={{to: "/signOut", onClick: props.handleSignout }} >Sign Out</Nav.Link> */}
                 </Nav>
-                <div className="sideNavCollapse">
+                {/* <div className="sideNavCollapse">
                     <Nav defaultActiveKey="/" className="flex-column">
                         <Nav.Link as={Link} to="/contractors/about">
                             About
@@ -54,7 +56,7 @@ const SideNavBar = props => {
                             Contact
                         </Nav.Link>
                     </Nav>
-                </div>
+                </div> */}
         {/* <h1>{props.contractor.name}</h1> */}
                 {/* <Breadcrumb>
                     <Breadcrumb.Item linkAs={Link} linkProps={{ to: `/contractors`}}>Applicants</Breadcrumb.Item>    

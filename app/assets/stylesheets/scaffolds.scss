@@ -261,9 +261,7 @@ a:hover {
   }
 
   .homeCollapseNav {
-    position: relative;
-    right: 8%;
-    top: 10px;
+    display: none !important
   }
 }
 
@@ -279,7 +277,7 @@ a:hover {
     top: 10px;
   }
   
-
+  
 }
 
 @media only screen and (max-width: 1000px) {
