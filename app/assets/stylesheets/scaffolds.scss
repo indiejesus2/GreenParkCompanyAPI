@@ -113,7 +113,8 @@ nav {
 }
 
 a:hover {
-  opacity: 0.5; }
+  color: white;
+  opacity: 0.75; }
 
 th {
   padding-bottom: 5px; }
@@ -202,7 +203,8 @@ label {
 }
 
 a:hover {
-  opacity: 0.5; }
+  color: white !important;
+  opacity: 0.75; }
 
 // a {
 //   margin: 5px;
