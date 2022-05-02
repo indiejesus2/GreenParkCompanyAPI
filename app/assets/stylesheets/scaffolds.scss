@@ -244,6 +244,44 @@ a:hover {
   height: auto;
 }
 
+@media only screen and (max-width: 760px) {
+  // .home-nav {
+  //   display: flex !important;
+  //   justify-content: right !important;
+  // }
+
+  // .homeCollapseNav {
+  //   position: relative;
+  //   right: 8%;
+  //   top: 10px;
+  // }
+  .home-nav {
+    display: flex !important;
+    justify-content: space-between !important;
+  }
+
+  .homeCollapseNav {
+    position: relative;
+    right: 8%;
+    top: 10px;
+  }
+}
+
+@media only screen and (max-width: 580px) {
+  .home-nav {
+    display: flex !important;
+    justify-content: right !important;
+  }
+
+  .homeCollapseNav {
+    position: relative;
+    right: 8%;
+    top: 10px;
+  }
+  
+
+}
+
 @media only screen and (max-width: 1000px) {
   .navCollapse {
     display: none !important;
@@ -273,15 +311,15 @@ a:hover {
     left: 3.5%;
   }
 
-  .home-nav {
-    display: flex !important;
-    justify-content: right !important;
-  }
+  // .home-nav {
+  //   display: flex !important;
+  //   justify-content: right !important;
+  // }
 
-  .homeCollapseNav {
-    display: flex;
-    justify-content: space-between;
-  }
+  // .homeCollapseNav {
+  //   display: flex;
+  //   justify-content: space-between;
+  // }
 }
 
 @media only screen and (min-width: 1000px) {
