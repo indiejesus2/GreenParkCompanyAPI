@@ -358,6 +358,7 @@ const Applicants = (props) => {
                 handleContact={handleContact}
                 contractor={props.contractor}
                 files={props.files}
+                job={props.job}
                 />
         </div>
                 </div>

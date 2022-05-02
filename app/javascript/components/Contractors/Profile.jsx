@@ -13,7 +13,7 @@ const Profile = props => {
     const handleShow = () => setShow(true)
 
     const handleClick = () => {
-        setShow(true)
+        props.history.push(`/contractors/${contrator.id}/editprofile`)
     }
 
     return (
@@ -30,7 +30,6 @@ const Profile = props => {
             <div className="edit-button">
                 <Button onClick={handleShow}>Edit Profile</Button>
             </div>
-            <EditProfile contractor={contractor} show={show} updateProfile={props.updateProfile} handleClose={handleClose}/>
             </div>
             </div>
         </div>

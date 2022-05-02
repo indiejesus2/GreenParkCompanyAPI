@@ -53,8 +53,6 @@ const Contact = props => {
                         }}  
                     >
                         <h1>Contact Us</h1>
-                        <p>226 Chestnut St, Roselle Park NJ  </p>
-                        <p>(+1)908 482 1951</p>
                             <Row className="mb-3">
                                 <Form.Group as={Col}>
                                     <Form.Control

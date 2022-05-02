@@ -42,9 +42,10 @@ export default function ForgotPassword(props) {
     return (
         <React.Fragment>    
         <Modal size="lg" show={show} animation centered onHide={handleClose}>
-            <div className="signIn" style={{
-                "maxwidth": 771 + "px"
-            }}>
+            <div className="signIn" 
+                style={{
+                    paddingInlineStart: 20 + "px"
+                }}>
                 <Form noValidate onSubmit={formik.handleSubmit} 
                     style={{
                         "width": 50 + "%"

@@ -1,5 +1,5 @@
 @import "/bootstrap/scss/bootstrap";
-// @import 
+// @import url('https://fonts.googleapis.com/css2?family=Sanchez&display=swap');
 // @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital@0;1&display=swap');
 
 @font-face {
@@ -11,7 +11,9 @@
 
 @font-face {
   font-family: "Noto Sans";
-  src: url('https://fonts.googleapis.com/css2?family=Sanchez&display=swap');
+  src: local('Noto Sans'), url('/fonts/NotoSans-Regular.woff') format('woff');
+  src: local('Noto Sans Bold'), url('/fonts/NotoSans-Bold.woff') format('woff');
+  src: local('Noto Sans Regular'), url('/fonts/NotoSans-Light.woff') format('woff');
 }
 
 body {
@@ -63,13 +65,13 @@ h1, h2, h3, h4, h5, h6, h7 {
 }
 
 .signIn {
-  background-color: #373737;
+  background-color: #565656;
   display: flex;
   padding-block: 25px;
 }
 
 .signIn img {
-  width: 45%;
+  width: 7.5rem;
 }
 
 .signIn #collar {
@@ -111,7 +113,7 @@ nav {
 }
 
 a:hover {
-  text-decoration: underline; }
+  opacity: 0.5; }
 
 th {
   padding-bottom: 5px; }
@@ -199,10 +201,8 @@ label {
   text-decoration: none;
 }
 
-.nav a:hover {
-  // color: #3d8ac9;
-  text-decoration: underline;
-}
+a:hover {
+  opacity: 0.5; }
 
 // a {
 //   margin: 5px;
@@ -264,13 +264,23 @@ label {
   
   .upperCollapseNav {
     position: relative;
-    left: 8%;
+    right: 8%;
     top: 10px;
   }
 
   .nav-sign {
     position: relative;
     left: 3.5%;
+  }
+
+  .home-nav {
+    display: flex !important;
+    justify-content: right !important;
+  }
+
+  .homeCollapseNav {
+    display: flex;
+    justify-content: space-between;
   }
 }
 
@@ -484,7 +494,7 @@ label {
 
 .employee-job .card {
   background-color: #262424;
-  padding-block: 15px;
+  // padding-block: 15px;
   padding-inline: 7.5px;
 }
 

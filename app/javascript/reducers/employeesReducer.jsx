@@ -17,6 +17,7 @@ export default function employeesReducer(state = {employee: [], profile: [], exp
         case 'SIGNIN_EMPLOYEE':
             let employee = action.payload.employee.data.attributes
             let jobs = action.payload.jobs.data.map(job=>job.attributes)
+            debugger
             return {
                 ...state,
                 employee: employee,
@@ -78,6 +79,9 @@ export default function employeesReducer(state = {employee: [], profile: [], exp
                 }
             })
             return {...state, experience: edited, loading: false}
+        case 'DELETE_EXPERIENCE':
+            let deleted = state.experience.filter(exp => exp.id != action.payload.id)
+            {return {...state, experience: deleted, loading: false}}
         case 'LOADING_FILE':
             return {
                 ...state,

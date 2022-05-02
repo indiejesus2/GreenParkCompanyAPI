@@ -25,6 +25,8 @@ class Api::V1::ExperiencesController < ApplicationController
     end
 
     def destroy
+        @experience.destroy
+        render json: @experience
     end
 
 private

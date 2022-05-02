@@ -109,6 +109,7 @@ const Jobs = (props) => {
 
     return (
         <div className="employees-jobs">
+            <h1>Jobs</h1>
             {jobs.map(job =>
             <Card id={job.id} key={job.id} > 
                 {/* <Card.Header>
@@ -121,12 +122,13 @@ const Jobs = (props) => {
                     <tr>
                         <td id="table-header" style={{ "border-bottom-width": 0 + "px", "border-right": 2 + "px solid white"}}>
                             Company: {job.company}
+                        </td>
                             {/* Distance: */}
                         {/* </td>  */}
                         {/* <td id="table-value-top" style={{ "border-bottom-width": 0 + "px", }}> */}
                             
                             {/* {Math.round(applicants.find(applicant => applicant.job_id == job.id).distance)} Miles */}
-                        </td>
+                        
                         <td id="table-header-location" style={{ "border-bottom-width": 0 + "px"}}>
                             Distance: {Math.round(applicants.find(applicant => applicant.job_id == job.id).distance)} Miles
                             {/* Location: */}

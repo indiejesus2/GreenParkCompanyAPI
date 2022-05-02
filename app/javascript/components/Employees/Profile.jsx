@@ -21,6 +21,10 @@ const Profile = props => {
     const handleExperience = () => {
         props.history.push(`/employees/${employee.id}/experience/add_experience`)
     }
+    
+    const handleEdit = (history) => {
+        props.history.push(`/employees/${props.employee.id}/experience/${history.id}`)
+    }
 
     const handleClose = () => {
         props.history.push('/employees')
@@ -83,6 +87,7 @@ const Profile = props => {
             <div className="employee-job"
                  style={{ "paddingInlineStart": 15 + "px", "paddingInlineEnd": 25 + "px"}}
             >
+                <h1>Profile</h1>
                 <Card id={employee.id} key={employee.id}>
             <Card.Body style={{"padding-top": "10px", "display": "flex"}}>
                 <div className="job-body"
@@ -187,27 +192,52 @@ const Profile = props => {
                             </p>
                             </div>
                         </div>
-            </Card.Body>
-            <CloseButton onClick={handleClose} 
-                    style={{
-                        position: "relative",
-                        bottom: 15 + "px",
-                        right: 15 + "px"
-                    }}
-                />
+                </Card.Body>
+                    <CloseButton onClick={handleClose} 
+                        style={{
+                            position: "relative",
+                            bottom: 15 + "px",
+                            right: 15 + "px"
+                        }}
+                    />
             </Card>
+                <div className="employees-jobs">
+
                 <h3 style={{ "fontWeight": "bold"}}>Past Experience: </h3>
                     {props.experience.map(history => 
-                        <div>
-                            <h5>{history.company}</h5>
-                            <h6>{history.title}: {history.city}, {history.state}</h6>
-                            <p>{history.startdate} to {history.current?"Present":history.enddate}</p>
-                            <p>{history.description}</p>
-                            <Link to={`/employees/${props.employee.id}/experience/${history.id}`}>
-                                Edit Experience
-                            </Link>
-                        </div>
+                        <Card id={history.id} key={history.id}>
+                            <Card.Body className='d-flex'>
+                                <Table style={{ "marginBottom": 2.5 + "px"}}>
+                                    <tbody>
+                                        <tr>
+                                            <td id="table-header" style={{ "border-bottom-width": 0 + "px", "border-right": 2 + "px solid white"}}>
+                                                Company: {history.company}
+                                            </td>
+                                            <td id="table-header" style={{ "border-bottom-width": 0 + "px", "border-right": 2 + "px solid white"}}>
+                                                Location: {history.city}, {history.state}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td id="table-header" style={{ "border-bottom-width": 0 + "px", "border-right": 2 + "px solid white"}}>
+                                                Title: {history.title}
+                                                
+                                            </td>
+                                            <td id="table-header" style={{ "border-bottom-width": 0 + "px", "border-right": 2 + "px solid white"}}>
+                                                From {history.startdate} to {history.current?"Present":history.enddate}
+                                            </td>
+                                        </tr>
+                                    </tbody>                                   
+                                </Table>
+                                {/* <p>
+                                    {history.description}
+                                </p> */}
+                                <Button id="editExperience" onClick={() => handleEdit(history)}>
+                                    Edit Experience
+                                </Button>
+                            </Card.Body>
+                        </Card>
                     )}
+                </div>
             </div>
         </div>
     </div>

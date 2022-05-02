@@ -33,7 +33,7 @@ const NavBar = props => {
                 <div>
 
                 <div className="employee-nav">
-                    <Logo />
+                    <Logo user={props.user}/>
                     <div className="upperCollapseNav">
 
                         <Navbar collapseOnSelect expand='lg' variant="dark">
@@ -143,7 +143,7 @@ const NavBar = props => {
                     <div>
     
                     <div className="employee-nav">
-                        <Logo />
+                        <Logo user={props.user}/>
 
                         <div className="upperCollapseNav">
     
@@ -179,7 +179,7 @@ const NavBar = props => {
                                     >
                                         Add Job
                                     </Nav.Link>
-                                    <Nav.Link as={Link} to={`/contractors/${props.contractor.name}/profile`} eventKey="4"
+                                    <Nav.Link as={Link} to={`/contractors/${props.contractor.id}/profile`} eventKey="4"
                                         style={{
                                             color: "#fff",
                                             fontFamily: 'Luam, serif',
@@ -264,13 +264,78 @@ const NavBar = props => {
                 )
         } else {
             return (
-                <div
+                <div className="home-nav">
+
+                <div className="homeCollapseNav">
+                    <Navbar collapseOnSelect expand='sm' variant="dark">
+                        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                        <Navbar.Collapse id="basic-navbar-nav">
+                                <Nav defaultActiveKey="/" className="flex-column me-auto">
+                                    <Nav.Link as={Link} to="/home" eventKey="1"
+                                        style={{
+                                            color: "#fff",
+                                            fontFamily: 'Luam, serif',
+                                            fontSize: "x-large",
+                                        }}
+                                    >
+                                        Home
+                                    </Nav.Link>
+                                </Nav>
+                                <Nav defaultActiveKey="/" className="flex-column me-auto">
+                                    <Nav.Link as={Link} to="/home/about" eventKey="2"
+                                        style={{
+                                            color: "#fff",
+                                            fontFamily: 'Luam, serif',
+                                            fontSize: "x-large",
+                                        }}
+                                    >
+                                        About
+                                    </Nav.Link>
+                                </Nav>
+                                <Nav defaultActiveKey="/" className="flex-column me-auto">
+                                    <Nav.Link as={Link} to="/home/contact" eventKey="3"
+                                        style={{
+                                            color: "#fff",
+                                            fontFamily: 'Luam, serif',
+                                            fontSize: "x-large",
+                                        }}
+                                    >
+                                        Contact
+                                    </Nav.Link>
+                                </Nav>
+                                <Nav defaultActiveKey="/" className="flex-column me-auto">
+                                    <Nav.Link as={Link} to="/home/signIn" eventKey="4"
+                                        style={{
+                                            color: "#fff",
+                                            fontFamily: 'Luam, serif',
+                                            fontSize: "x-large",
+                                        }}
+                                    >
+                                        Sign In
+                                    </Nav.Link>
+                                </Nav>
+                                <Nav defaultActiveKey="/" className="flex-column me-auto">
+                                    <Nav.Link as={Link} to="/home/signUp" eventKey="5"
+                                        style={{
+                                            color: "#fff",
+                                            fontFamily: 'Luam, serif',
+                                            fontSize: "x-large",
+                                        }}
+                                    >
+                                        Create Account
+                                    </Nav.Link>
+                                </Nav>
+                        </Navbar.Collapse>
+                    </Navbar>
+                </div>
+                <div className="navCollapse"
+
                     style={{
                         display: "flex",
                         justifyContent: "space-between",
                         width: 100 + "%"
                     }}
-                >
+                    >
                     <Nav
                         style={{
                             "font-size": "x-large",
@@ -289,7 +354,7 @@ const NavBar = props => {
                         <Nav.Link as={Link} to="/home/signUp">CREATE ACCOUNT</Nav.Link>
                     </Nav>
                 </div>
-    
+            </div>
             )
         }
 }

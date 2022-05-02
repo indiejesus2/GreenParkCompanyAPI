@@ -11,6 +11,7 @@ import { findCity } from '../actions/Tradespeople/findCity'
 import { formatPhoneNumber } from '../actions/CommonWebblock/formatPhoneNumber'
 import { addExperience } from '../actions/Tradespeople/addExperience'
 import { editExperience } from '../actions/Tradespeople/editExperience'
+import { deleteExperience } from '../actions/Tradespeople/deleteExperience'
 import { handleInterest } from '../actions/Tradespeople/handleInterest'
 import { handleSave } from '../actions/Tradespeople/handleSave'
 import { updatePassword } from '../actions/updatePassword'
@@ -23,9 +24,7 @@ import EditProfile from '../components/Employees/EditProfile'
 import AddExperience from '../components/Employees/AddExperience'
 import EditExperience from '../components/Employees/EditExperience'
 import About from '../components/About'
-import TempPassword from '../components/Login/TempPassword'
-import NavBar from '../components/NavBar'
-import SideNavBar from '../components/SideNavBar'
+import Contact from '../components/Contact'
 import Logo from '../components/Logo'
 
 class EmployeesContainer extends Component {
@@ -74,9 +73,10 @@ class EmployeesContainer extends Component {
                     <SideNavBar profile={this.props.profile} user="employee"/> */}
                 {/* <Logo user="employee"/> */}
                     <Switch>
-                        <Route path='/employees/about' render={(routerProps) => <About {...routerProps} signOut={this.props.signOut} user="employee"  profile={this.props.profile} />}></Route>
+                        <Route path='/employees/contact' render={(routerProps) => <Contact {...routerProps} signOut={this.props.signOut} user="employee" profile={this.props.profile} />}></Route>
+                        <Route path='/employees/about' render={(routerProps) => <About {...routerProps} signOut={this.props.signOut} user="employee" profile={this.props.profile} />}></Route>
                         <Route path='/employees/:id/experience/add_experience' render={(routerProps) => <AddExperience {...routerProps} employee={this.props.employee} profile={this.props.profile} addExperience={this.props.addExperience} loggedIn={this.props.loggedIn}/>}></Route>
-                        <Route path='/employees/:id/experience/:id' render={(routerProps) => <EditExperience {...routerProps} employee={this.props.employee} profile={this.props.profile} experience={this.props.experience} updateProfile={this.props.updateProfile} uploadFile={this.props.uploadFile} editExperience={this.props.editExperience} loggedIn={this.props.loggedIn}/>}></Route>
+                        <Route path='/employees/:id/experience/:id' render={(routerProps) => <EditExperience {...routerProps} employee={this.props.employee} profile={this.props.profile} experience={this.props.experience} updateProfile={this.props.updateProfile} uploadFile={this.props.uploadFile} editExperience={this.props.editExperience} deleteExperience={this.props.deleteExperience} loggedIn={this.props.loggedIn}/>}></Route>
                         <Route path='/employees/:id/edit_profile' render={(routerProps) => <EditProfile {...routerProps} employee={this.props.employee} profile={this.props.profile} experience={this.props.experience} updateProfile={this.props.updateProfile} uploadFile={this.props.uploadFile} fileLoading={this.props.fileLoading} loggedIn={this.props.loggedIn}/>}></Route>
                         <Route path='/employees/:id/profile' render={(routerProps) => <Profile {...routerProps} employee={this.props.employee} profile={this.props.profile} experience={this.props.experience} document={this.props.document} loggedIn={this.props.loggedIn}/>}></Route>
                         <Route path='/employees/questionnaire' render={(routerProps) => <Questionnaire {...routerProps} employee={this.props.employee} createProfile={this.props.createProfile} loading={this.props.loading} findCity={this.props.findCity} formatPhoneNumber={this.props.formatPhoneNumber} uploadFile={this.props.uploadFile}/>}></Route>
@@ -116,6 +116,7 @@ const mapDispatchToProps = dispatch => ({
     uploadFile: (file, id) => dispatch(uploadFile(file, id)),
     addExperience: (experience) => dispatch(addExperience(experience)),
     editExperience: (experience) => dispatch(editExperience(experience)),
+    deleteExperience: (experience) => dispatch(deleteExperience(experience)),
     findCity: postal => dispatch(findCity(postal)),
     formatPhoneNumber: value => dispatch(formatPhoneNumber(value)),
     handleInterest: application => dispatch(handleInterest(application)),

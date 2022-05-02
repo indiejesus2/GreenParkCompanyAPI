@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Route, Switch, Redirect, useHistory } from 'react-router-dom'
 import Home from '../components/Home'
-import Login from '../components/Login/Login'
+
 import SignIn from '../components/Login/SignIn'
 import SignUp from '../components/Login/SignUp'
 import ForgotPassword from '../components/Login/ForgotPassword'
@@ -19,11 +19,6 @@ import { clearEmployeeErrors } from '../actions/clearEmployeeErrors'
 import { clearContractorErrors } from '../actions/clearContractorErrors'
 import {signOut} from '../actions/signOut'
 import NavBar from '../components/NavBar'
-
-
-// import SignOut from '../components/Login/SignOut'
-// import signOut from '../actions/signOut'
-// import { updateProfile } from '../actions/Tradespeople/updateProfile'
 
 class LoginContainer extends Component {
 

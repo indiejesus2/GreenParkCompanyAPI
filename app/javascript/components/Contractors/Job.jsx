@@ -7,6 +7,7 @@ import SideNavBar from '../SideNavBar'
 import EmployeeProfile from './EmployeeProfile'
 
 const Job = props => {
+
    
     const job = props.jobs.find(job => job.id == props.match.params.job_id)
     const [currentStep, setStep] = useState(1)
@@ -19,6 +20,7 @@ const Job = props => {
 
 
     const handleApplicants = () => {
+        debugger
         if (currentStep == 1) {
             return (
                 <Applicants job={job} contractor={props.contractor} editApplicant={props.editApplicant} handleApplicant={handleApplicant} />
@@ -41,7 +43,8 @@ const Job = props => {
     }
 
     const handleJob = () => {
-        props.history.push(`/contractors/${props.contractor.id}/jobs`)
+        // props.history.push(`/contractors/${props.contractor.id}/jobs`)
+        props.history.push(`/contractors`)
     }
 
     const handleEdit = () => {
@@ -63,7 +66,7 @@ const Job = props => {
     }
 
     const handleActivation = () => {
-        debugger
+        // debugger
         if (job.status == true) {
             <Button onClick={() => handlePause()}>Pause Job</Button>
         } else {
@@ -91,8 +94,8 @@ const Job = props => {
                                 style={{ "paddingInlineStart": 15 + "px", "paddingInlineEnd": 25 + "px"}}
                             >
                                 <h2>Job Listing</h2>
-                                <Card id={job.id} key={job.id} > 
-                                    <CloseButton onClick={() => handleJob()}/>
+                                <Card id={job.id} key={job.id} >
+                                <CloseButton variant="white" onClick={() => handleJob()} style={{color: "#3fa1fc", position: "relative", top: 15+"px", right: 15+"px", alignSelf:"end"}}/> 
                                     <Card.Body style={{"padding-top": "10px", "display": "flex"}}>
                                         <div className="job-body"
                                                 style={{"width": 50 + "%"}}

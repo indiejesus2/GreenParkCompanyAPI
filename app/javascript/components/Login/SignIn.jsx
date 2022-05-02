@@ -61,10 +61,10 @@ export default function SignIn(props) {
     // debugger
     
     return (
-        <React.Fragment>
-        <Modal size="lg" show={show} animation centered onHide={handleClose} >
-            <div className="signIn" style={{
-                    "maxwidth": 771 + "px"
+        <Modal show animation centered onHide={handleClose} >
+            <div className="signIn" 
+                style={{
+                    paddingInlineStart: 20 + "px"
                 }}>
             {/* <Modal.Header>
                 <img src="/images/blucollarlogo.png" alt="Blue Collar Logo" className="signIn"/>
@@ -72,14 +72,21 @@ export default function SignIn(props) {
 
             <Form noValidate onSubmit={formik.handleSubmit}
                 style={{
-                    "width": 50 + "%"
+                    "width": 66 + "%"
                 }}>
             <Modal.Body
                 style={{
                     "paddingBlock": 0 + "px"
                 }}
             >
-                    <h1>Sign In</h1>            
+                    <h1
+                            style={{
+                                textAlign: "end",
+                                position: "relative",
+                                left: 26 + "px",
+                                bottom: 15 + "px"
+                            }}
+                        >Sign In</h1>            
                 <Alert show={alert}>
                     {error}
                 </Alert>
@@ -158,6 +165,5 @@ export default function SignIn(props) {
             />
         </div>    
         </Modal>
-        </React.Fragment>
     )
 }

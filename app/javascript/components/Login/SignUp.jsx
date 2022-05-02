@@ -64,11 +64,15 @@ export default function SignUp(props) {
 
     return (
         <React.Fragment>    
-            <Modal size="lg" show={show} animation centered onHide={handleClose}>
-                <div className="signIn">
+            <Modal show animation centered rounded onHide={handleClose}>
+                <div className="signIn"
+                    style={{
+                        paddingInlineStart: 20 + "px"
+                    }}
+                >                
                     <Form onSubmit={formik.handleSubmit}
                         style={{
-                            "width": 50 + "%"
+                            "width": 66 + "%"
                         }}
                     >
                     <Modal.Body
@@ -76,7 +80,14 @@ export default function SignUp(props) {
                             "paddingBlock": 0 + "px"
                         }}
                     >
-                        <h1>Sign Up</h1>
+                        <h1
+                            style={{
+                                textAlign: "end",
+                                position: "relative",
+                                left: 26 + "px",
+                                bottom: 15 + "px"
+                            }}
+                        >Sign Up</h1>
                     {/* <div id="newUser">
                             <span>Already user?</span><Button variant="link" onClick={handleClick}>Sign In</Button>
                         </div> */}
@@ -132,10 +143,10 @@ export default function SignUp(props) {
                         <div>
                             <Button variant="primary" type="submit" style={{ "width": 100 + "%"}}>Sign Up</Button>
                         </div>
-                        </Modal.Body>
                         {/* <Modal.Footer>
                             <Button variant="primary" type="submit">Sign-Up</Button>
                         </Modal.Footer> */}
+                    </Modal.Body>
                     </Form>
                     <div id="collar">
                         <Image fluid="true" src="/images/blucollarO.png" alt="collar" />

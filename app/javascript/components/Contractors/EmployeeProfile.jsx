@@ -6,14 +6,17 @@ import { useHistory } from 'react-router-dom'
 
 const EmployeeProfile = props => {
 
+    debugger
+
     const candidate = props.candidate ? props.candidate : []
     const application = props.application ? props.application : []
     // const [application, setApplication] = useState(props.candidate.application)
     const display = props.show == true ? "employee-profile" : "employee-profile d-none"
     const history = useHistory();
     const [currentStep, setStep] = useState(props.currentStep)
-    const files = Object.entries(props.files)
+    const files = props.files ? Object.entries(props.files) : []
     const file = files.filter(file => file[0] == candidate.employee_id)
+    const experience = props.job.experiences.filter(experience => experience.employee_id == candidate.employee_id)
     
     // const interested = () => {
     //     if (candidate.interested) {
@@ -144,9 +147,10 @@ const EmployeeProfile = props => {
     }
     
         return (
-            <div className={"employee-job"}>
-            <Card id={candidate.id} key={candidate.id}>
-            <CloseButton onClick={props.handleClose}/>
+            <div className={"employee-job"} style={{marginInline: 25 + "px"}}>
+                <h1>Candidate Profile</h1>
+            <Card id={candidate.id} key={candidate.id}>            
+            <CloseButton variant="white" onClick={props.handleClose} style={{color: "#3fa1fc", position: "relative", top: 15+"px", right: 15+"px", alignSelf:"end"}}/>
             <Card.Body style={{"padding-top": "10px", "display": "flex"}}>
                 <div className="job-body"
                         style={{"width": 50 + "%"}}
@@ -250,10 +254,42 @@ const EmployeeProfile = props => {
                             </p>
                             {/* <h3 style={{ "fontWeight": "bold"}}>Past Experience: </h3>
                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p> */}
+                        
+                        <div>
+                            <h2>Past Experience</h2>
+                        {experience.map(history => 
+                            <div className="work-history" key={history.id} style={{display: "grid"}}>                                
+                                <Table style={{ "marginBottom": 2.5 + "px"}}>
+                                    <tbody>
+                                        <tr>
+                                            <td id="table-header" style={{ "border-bottom-width": 0 + "px", "border-right": 2 + "px solid white"}}>
+                                                Company: {history.company}
+                                            </td>
+                                            <td id="table-header" style={{ "border-bottom-width": 0 + "px", "border-right": 2 + "px solid white"}}>
+                                                Location: {history.city}, {history.state}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td id="table-header" style={{ "border-bottom-width": 0 + "px", "border-right": 2 + "px solid white"}}>
+                                                Title: {history.title}
+                                                
+                                            </td>
+                                            <td id="table-header" style={{ "border-bottom-width": 0 + "px", "border-right": 2 + "px solid white"}}>
+                                                From {history.startdate} to {history.current?"Present":history.enddate}
+                                            </td>
+                                        </tr>
+                                    </tbody>                                   
+                                </Table>
+                                <p>
+                                    {history.description}
+                                </p>
+                            </div>
+                        )}
+                        </div>
                         </div>
                     </div>
             </Card.Body>
-            </Card>
+            </Card>            
             {/* <Modal show={props.show}>
                 <Modal.Header>
 
@@ -287,17 +323,7 @@ const EmployeeProfile = props => {
             </Modal.Body>
             <button onClick={handleClick}>Edit Profile</button>
         </Modal>  */}
-            <div className="work-history">
-                <h3>Experience:</h3>
-                {props.work_history.map(history => 
-                    <Card  key={history.id}>
-                        <Card.Body>
-                            <p>{history.title}</p>
-                            <p>{history.company}</p>
-                        </Card.Body>
-                    </Card>
-                )}
-            </div>
+
         </div>
         )
         // else {

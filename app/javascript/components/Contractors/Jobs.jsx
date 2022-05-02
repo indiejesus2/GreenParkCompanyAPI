@@ -24,11 +24,11 @@ const [jobs, setJobs] = useState(props.jobs ? props.jobs : [])
     }
 
     return (
-        <div className="employees">
-            <NavBar handleSignout={props.signOut} contractor={props.contractor} loggedIn={props.loggedIn} user="contractor" />
-                <div className="d-flex">
-                <SideNavBar contractor={props.contractor} user="contractor"/>
-                    <div className="dashboard">
+        // <div className="employees">
+        //     <NavBar handleSignout={props.signOut} contractor={props.contractor} loggedIn={props.loggedIn} user="contractor" />
+        //         <div className="d-flex">
+        //         <SideNavBar contractor={props.contractor} user="contractor"/>
+        //             <div className="dashboard">
 
                     <div className="employees-jobs">
                         {jobs.map(job =>
@@ -64,9 +64,9 @@ const [jobs, setJobs] = useState(props.jobs ? props.jobs : [])
                         </Card>
                     )}
                     </div>
-                    </div>
-                </div>
-            </div>
+            //         </div>
+            //     </div>
+            // </div>
         )
     }
 

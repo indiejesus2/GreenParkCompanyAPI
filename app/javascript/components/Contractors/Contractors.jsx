@@ -1,9 +1,5 @@
 import React, {useState, useEffect} from 'react'
 import { Redirect } from 'react-router-dom'
-import Home from '../Home'
-import ContractorSignIn from '../Login/SignIn'
-import ContractorSignUp from '../Login/ContractorSignUp'
-import ForgotPassword from '../Login/ForgotPassword'
 import Applicant from './Applicant'
 import EmployeeProfile from './EmployeeProfile'
 import JobsContainer from '../../containers/JobsContainer'
@@ -75,7 +71,9 @@ const Contractors = props => {
         } else if (currentStep == 1) {
             return (
                 <div className="dashboard">
-                    <Applicant contractor={contractor} jobs={jobs} applicants={props.applicants} editApplicant={props.editApplicant} currentStep={currentStep} handleApplicant={handleApplicant} />
+                    <JobsContainer jobs={jobs} contractor={contractor} candidates={props.candidates} profiles={props.profiles} files={props.files} />
+                    {/* <JobsContainer jobs={props.jobs} contractor={props.contractor} candidates={props.candidates} profiles={props.profiles} editApplicant={props.editApplicant} signOut={props.signOutContractor} files={props.files}/> */}
+                    {/* <Applicant contractor={contractor} jobs={jobs} applicants={props.applicants} editApplicant={props.editApplicant} currentStep={currentStep} handleApplicant={handleApplicant} /> */}
                 </div>
             )
         } else if (currentStep == 2) {
@@ -104,6 +102,8 @@ if (loading === true) {
             <span className="sr-only">Loading...</span>
         </div>
         )
+    } else if (contractor.name == "") {
+        <Redirect to={`/contractors/${contractor.id}/editprofile`} />
     } else if (contractor.status == false) {
         return (
             <div>
@@ -124,19 +124,11 @@ if (loading === true) {
                     {handleApplicants()}
                 </div>
                 {/* <Applicant contractor={contractor} jobs={jobs} applicants={props.applicants} editApplicant={props.editApplicant} /> */}
-                {/* <JobsContainer jobs={jobs} contractor={contractor} candidates={props.candidates} profiles={props.profiles}/> */}
             </div>
         )
     } else {
         return (
             <Redirect to="/home" />
-        //     <div className="signin">
-        //     <Home />
-        //     <ContractorSignUp signUp={props.signUp} currentStep={currentStep} handleClick={handleClick} handlePassword={handlePassword} errors={errors} />
-        //     <ContractorSignIn signIn={props.signIn} currentStep={currentStep} handleClick={handleClick} handlePassword={handlePassword} errors={errors} />
-        //     <ForgotPassword currentStep={currentStep} updatePassword={props.updatePassword} user="contractor" />
-        // </div>
-
         )
     }
     

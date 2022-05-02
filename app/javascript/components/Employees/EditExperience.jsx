@@ -60,6 +60,7 @@ export default function EditExperience(props) {
         "Wyoming"
     ]
 
+
     const experience = props.experience.find(exp => exp.id == props.match.params.id)
 
     const formik = useFormik({      
@@ -154,6 +155,9 @@ export default function EditExperience(props) {
                 
                 <div className="submit">
                     <Button type="submit" value="Save Changes" onClick={formik.handleSubmit}>Save Changes</Button>
+                </div>
+                <div className="delete">
+                    <Button value="Delete Experience" onClick={() => props.deleteExperience(experience)}>Delete Experience</Button>
                 </div>
                 </Form>
             </div>
