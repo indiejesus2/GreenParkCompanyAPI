@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Link, Redirect } from 'react-router-dom'
 import Home from '../Home'
+import About from '../About'
 import SignIn from '../Login/SignIn'
 import SignUp from '../Login/SignUp'
 import ForgotPassword from '../Login/ForgotPassword'
@@ -47,12 +48,17 @@ const Login = props => {
     }
 
     return (
+        <div>
             <div className="signin">
-                    <Home />
-                    <SignUp signUp={props.signUp} currentStep={props.currentStep} handleClick={handleClick} handlePassword={handlePassword} errors={errors} handleClose={handleClose} />
-                    <SignIn signIn={props.signIn} currentStep={props.currentStep} handleClick={handleClick} handlePassword={handlePassword} errors={errors} handleClose={handleClose} />
-                    <ForgotPassword currentStep={props.currentStep} updatePassword={props.updatePassword} handleValidation={handleValidation} user={"employee"} handleClose={handleClose} />
-                </div>
+                <Home />
+                <About />
+                {/* <SignUp signUp={props.signUp} currentStep={props.currentStep} handleClick={handleClick} handlePassword={handlePassword} errors={errors} handleClose={handleClose} />
+                <SignIn signIn={props.signIn} currentStep={props.currentStep} handleClick={handleClick} handlePassword={handlePassword} errors={errors} handleClose={handleClose} />
+                <ForgotPassword currentStep={props.currentStep} updatePassword={props.updatePassword} handleValidation={handleValidation} user={"employee"} handleClose={handleClose} /> */}
+            </div>
+            <div className="about">
+            </div>
+        </div>
         )
 }
 

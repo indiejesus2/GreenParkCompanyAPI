@@ -86,7 +86,9 @@ export default function AddExperience(props) {
             <SideNavBar profile={props.profile} user="employee"/>
             <div className="dashboard">
             <h1>Add Experience</h1>
-            <div className="input">
+            <div className="input"
+                style={{ "paddingInlineStart": 15 + "px", "paddingInlineEnd": 25 + "px"}}
+            >
 `           <Form className="profile-form">
                 <Row className="mb-3">
                     <Form.Group as={Col} >

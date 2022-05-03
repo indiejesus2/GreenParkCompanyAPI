@@ -91,7 +91,9 @@ export default function EditExperience(props) {
             <div className="dashboard">
 
             <h1>Edit Experience</h1>
-            <div className="input">
+            <div className="input"
+                style={{ "paddingInlineStart": 15 + "px", "paddingInlineEnd": 25 + "px"}}
+            >
                 <Form className="profile-form">
                 <Row className="mb-3">
                     <Form.Group as={Col} >

@@ -213,7 +213,9 @@ export default function EditProfile(props) {
             <div className="dashboard">
 
             <h1>Edit Profile</h1>
-            <div className="input">
+            <div className="input"
+                style={{ "paddingInlineStart": 15 + "px", "paddingInlineEnd": 25 + "px"}}
+            >
                 <Form onSubmit={formik.handleSubmit} className="profile-form">
                     <Row className="mb-3">
 

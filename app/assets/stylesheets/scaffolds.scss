@@ -246,7 +246,7 @@ a:hover {
   height: auto;
 }
 
-@media only screen and (max-width: 760px) {
+@media only screen and (min-width: 580px) {
   // .home-nav {
   //   display: flex !important;
   //   justify-content: right !important;
@@ -257,6 +257,13 @@ a:hover {
   //   right: 8%;
   //   top: 10px;
   // }
+
+  .homeCollapse {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+  }
+
   .home-nav {
     display: flex !important;
     justify-content: space-between !important;
@@ -265,6 +272,8 @@ a:hover {
   .homeCollapseNav {
     display: none !important
   }
+
+
 }
 
 @media only screen and (max-width: 580px) {
@@ -277,6 +286,10 @@ a:hover {
     position: relative;
     right: 8%;
     top: 10px;
+  }
+
+  .homeCollapse {
+    display: none !important;
   }
   
   
@@ -329,6 +342,11 @@ a:hover {
 
   .nav-sign {
     position: inherit !important;
+  }
+
+  .navCollapse {
+    position: relative;
+    bottom: 80px;
   }
 
 }

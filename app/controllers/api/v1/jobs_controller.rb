@@ -12,12 +12,14 @@ class Api::V1::JobsController < ApplicationController
             @files = {}
             @jobs = @employer.jobs
             @employees = @jobs.map{|job| job.employees}
-            @applicants = @employees[0].map{|employee| employee}
-            @applicants.each{|applicant|
-                if applicant.file.attached?
-                    @files[applicant.id] = applicant.file.url
-                end
-            }
+            if @employees.length > 0 
+                @applicants = @employees[0].map{|employee| employee}
+                @applicants.each{|applicant|
+                    if applicant.file.attached?
+                        @files[applicant.id] = applicant.file.url
+                    end
+                }
+            end
             render json: {contractor: @employer, jobs: JobSerializer.new(@jobs), applicants: @employer.applicants, files: @files}, prerender: true
         else
             @jobs = Job.all

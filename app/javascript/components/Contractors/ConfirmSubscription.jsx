@@ -13,22 +13,21 @@ const ConfirmSubscription = (props) => {
     })
 
     return (
-        <React.Fragment>    
-        <Modal show={show} animation backdrop >
-
-            <Modal.Header>
-            Confirm Subscription </Modal.Header>
-
-            <Modal.Body>
-                Please confirm the subscription type.
-                </Modal.Body>
-                <Modal.Footer>
-
-                    <Button onClick={handleClose}>Cancel</Button>
-                    <Button onClick={props.handleSubmit}>Confirm</Button>
-                </Modal.Footer>
-        </Modal>
-                        </React.Fragment>
+        <div className="signIn">
+            <React.Fragment>    
+                <Modal show={show} animation backdrop >
+                    <Modal.Header>
+                    Confirm Subscription </Modal.Header>
+                    <Modal.Body>
+                        Please confirm the subscription type.
+                        </Modal.Body>
+                        <Modal.Footer>
+                            <Button onClick={handleClose}>Cancel</Button>
+                            <Button onClick={props.handleSubmit}>Confirm</Button>
+                        </Modal.Footer>
+                </Modal>
+            </React.Fragment>
+        </div>
     )
 }
 

@@ -91,7 +91,7 @@ const Job = props => {
                             <div className="dashboard">
 
                             <div className="employee-job"
-                                style={{ "paddingInlineStart": 15 + "px", "paddingInlineEnd": 25 + "px"}}
+                                style={{ "paddingInlineStart": 15 + "px", "paddingInlineEnd": 25 + "px", "marginBottom": 25 + "px"}}
                             >
                                 <h2>Job Listing</h2>
                                 <Card id={job.id} key={job.id} >
@@ -184,7 +184,7 @@ const Job = props => {
                                 </Card>
                             </div>
                             <div className="mt-3">
-                                <h2>Applicants</h2>
+                                {/* <h2>Applicants</h2> */}
                                 {handleApplicants()}
                             </div>
                             </div>

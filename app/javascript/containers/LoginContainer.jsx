@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Route, Switch, Redirect, useHistory } from 'react-router-dom'
 import Home from '../components/Home'
+import Login from '../components/Login/Login'
 
 import SignIn from '../components/Login/SignIn'
 import SignUp from '../components/Login/SignUp'
@@ -95,6 +96,8 @@ class LoginContainer extends Component {
         } else {
             return(
                 <div>
+
+                <div>
                 <NavBar />
                 <Switch>
                     <Route path='/home/contact' render={(routerProps) => <Contact {...routerProps} currentStep={5} signOut={this.props.signOut} user="none"/>}></Route>
@@ -105,8 +108,9 @@ class LoginContainer extends Component {
                     <Route path='/home/signUp' render={(routerProps) => <SignUp {...routerProps} signUp={this.props.signUp} currentStep={2} employeeErrors={this.props.employeeErrors} contractorErrors={this.props.contractorErrors} signOut={this.props.signOut} clearEmployeeErrors={this.props.clearEmployeeErrors} clearContractorErrors={this.props.clearContractorErrors}/>}></Route>
                     <Route path='/home/signin' render={(routerProps) => <SignIn {...routerProps} signIn={this.props.signIn} currentStep={1} signUp={this.props.signUp} employeeErrors={this.props.employeeErrors} contractorErrors={this.props.contractorErrors} signOut={this.props.signOut} clearEmployeeErrors={this.props.clearEmployeeErrors} clearContractorErrors={this.props.clearContractorErrors}/>}></Route>
                     {/* <Route path='/employees/signup' render={(routerProps) => <EmployeeSignUp {...routerProps} signUpEmployee={this.props.signUpEmployee} />}></Route> */}
-                    <Route path='/home' render={(routerProps) => <Home {...routerProps} />}></Route>
+                    <Route path='/home' render={(routerProps) => <Login {...routerProps} />}></Route>
                 </Switch>
+                </div>
                 </div>
             )
         }

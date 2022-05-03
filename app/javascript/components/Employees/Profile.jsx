@@ -89,85 +89,88 @@ const Profile = props => {
             >
                 <h1>Profile</h1>
                 <Card id={employee.id} key={employee.id}>
+                <CloseButton variant="white" onClick={handleClose} style={{color: "#3fa1fc", position: "relative", top: 15+"px", right: 15+"px", alignSelf:"end"}}/> 
             <Card.Body style={{"padding-top": "10px", "display": "flex"}}>
                 <div className="job-body"
                         style={{"width": 50 + "%"}}
                     >
                     <div className="job-table">
 
-                    <Table>                
-                        <tr style={{ "border-bottom-width": 0 + "px"}}>
-                        <td style={{"padding": "0px" }}>
-                            Name:                         
-                        </td>
-                        <td style={{"padding": "0px" }}>
-                            {employee.fname} {employee.lname}
-                        </td>
-                        </tr>                    
-                        <tr style={{ "border-bottom-width": 0 + "px"}}>
-                        <td style={{"padding": "0px" }}>
-                            Trade:                         
-                        </td>
-                        <td style={{"padding": "0px" }}>
-                            {employee.trade}
-                        </td>
-                        </tr>                    
-                        <tr style={{ "border-bottom-width": 0 + "px"}}>
-                        <td style={{"padding": "0px" }}>
-                            Location:                         
-                        </td>
-                        <td style={{"padding": "0px" }}>
-                            {employee.city}, {employee.state} {employee.zipcode}
-                        </td>
-                        </tr>
-                        <tr style={{ "border-bottom-width": 0 + "px"}}>
-                        <td style={{"padding": "0px" }}>
-                            Commute:                         
-                        </td>
-                        <td style={{"padding": "0px" }}>
-                            {employee.commute}
-                        </td>
-                        </tr>
-                        <tr style={{ "border-bottom-width": 0 + "px"}}>
-                        <td style={{"padding": "0px" }}>
-                            Phone Number:                         
-                        </td>
-                        <td style={{"padding": "0px" }}>
-                            {employee.phone}
-                        </td>
-                        </tr>
-                        <tr style={{ "border-bottom-width": 0 + "px"}}>
-                        <td style={{"padding": "0px" }}>
-                            Job Type:                         
-                        </td>
-                        <td style={{"padding": "0px" }}>
-                            {employee.jobtype.join(', ')}
-                        </td>
-                        </tr>
-                        <tr style={{ "border-bottom-width": 0 + "px"}}>
-                        <td style={{"padding": "0px" }}>
-                            Job Shifts: 
-                        </td>
-                        <td style={{"padding": "0px" }}>
-                            {employee.shifts.join(", ")}
-                        </td>
-                        </tr>
-                        <tr style={{ "border-bottom-width": 0 + "px"}}>
-                        <td style={{"padding": "0px" }}>
-                            Schedule:
-                        </td>
-                        <td style={{"padding": "0px" }}>
-                        {employee.schedule.join(", ")}
-                        </td>
-                        </tr>
-                        <tr style={{ "border-bottom-width": 0 + "px"}}>
+                    <Table>
+                        <tbody>
+                            <tr style={{ "border-bottom-width": 0 + "px"}}>
                             <td style={{"padding": "0px" }}>
-                                Pay: 
+                                Name:                         
                             </td>
                             <td style={{"padding": "0px" }}>
-                                ${employee.minpay} {employee.paytype}
+                                {employee.fname} {employee.lname}
                             </td>
-                        </tr>
+                            </tr>                    
+                            <tr style={{ "border-bottom-width": 0 + "px"}}>
+                            <td style={{"padding": "0px" }}>
+                                Trade:                         
+                            </td>
+                            <td style={{"padding": "0px" }}>
+                                {employee.trade}
+                            </td>
+                            </tr>                    
+                            <tr style={{ "border-bottom-width": 0 + "px"}}>
+                            <td style={{"padding": "0px" }}>
+                                Location:                         
+                            </td>
+                            <td style={{"padding": "0px" }}>
+                                {employee.city}, {employee.state} {employee.zipcode}
+                            </td>
+                            </tr>
+                            <tr style={{ "border-bottom-width": 0 + "px"}}>
+                            <td style={{"padding": "0px" }}>
+                                Commute:                         
+                            </td>
+                            <td style={{"padding": "0px" }}>
+                                {employee.commute}
+                            </td>
+                            </tr>
+                            <tr style={{ "border-bottom-width": 0 + "px"}}>
+                            <td style={{"padding": "0px" }}>
+                                Phone Number:                         
+                            </td>
+                            <td style={{"padding": "0px" }}>
+                                {employee.phone}
+                            </td>
+                            </tr>
+                            <tr style={{ "border-bottom-width": 0 + "px"}}>
+                            <td style={{"padding": "0px" }}>
+                                Job Type:                         
+                            </td>
+                            <td style={{"padding": "0px" }}>
+                                {employee.jobtype.join(', ')}
+                            </td>
+                            </tr>
+                            <tr style={{ "border-bottom-width": 0 + "px"}}>
+                            <td style={{"padding": "0px" }}>
+                                Job Shifts: 
+                            </td>
+                            <td style={{"padding": "0px" }}>
+                                {employee.shifts.join(", ")}
+                            </td>
+                            </tr>
+                            <tr style={{ "border-bottom-width": 0 + "px"}}>
+                            <td style={{"padding": "0px" }}>
+                                Schedule:
+                            </td>
+                            <td style={{"padding": "0px" }}>
+                            {employee.schedule.join(", ")}
+                            </td>
+                            </tr>
+                            <tr style={{ "border-bottom-width": 0 + "px"}}>
+                                <td style={{"padding": "0px" }}>
+                                    Pay: 
+                                </td>
+                                <td style={{"padding": "0px" }}>
+                                    ${employee.minpay} {employee.paytype}
+                                </td>
+                            </tr>
+                        </tbody>                
                     </Table>
                     </div>
                     <div className="job-buttons">
@@ -193,13 +196,6 @@ const Profile = props => {
                             </div>
                         </div>
                 </Card.Body>
-                    <CloseButton onClick={handleClose} 
-                        style={{
-                            position: "relative",
-                            bottom: 15 + "px",
-                            right: 15 + "px"
-                        }}
-                    />
             </Card>
                 <div className="employees-jobs">
 

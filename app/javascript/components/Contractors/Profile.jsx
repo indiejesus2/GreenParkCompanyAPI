@@ -1,19 +1,23 @@
 import React, { useState, useEffect } from 'react'
-import { Button, Table } from 'react-bootstrap'
+import { Button, Table, Card, CloseButton } from 'react-bootstrap'
 import EditProfile from '../Contractors/EditProfile'
 import NavBar from '../NavBar'
 import SideNavBar from '../SideNavBar'
 
 const Profile = props => {
 
-    const [show, setShow] = useState(false)
+    // const [show, setShow] = useState(false)
     const [contractor, setContractor] = useState(props.contractor)
 
-    const handleClose = () => setShow(false)
-    const handleShow = () => setShow(true)
+    // const handleClose = () => setShow(false)
+    // const handleShow = () => setShow(true)
 
     const handleClick = () => {
         props.history.push(`/contractors/${contrator.id}/editprofile`)
+    }
+
+    const handleClose = () => {
+        props.history.push('/contractors')
     }
 
     return (
@@ -22,14 +26,66 @@ const Profile = props => {
             <div className="d-flex">
                 <SideNavBar contractor={props.contractor} user="contractor"/>
                 <div className="dashboard">
-
-            <h5>Email: {contractor.email}</h5>
-            <h5>Phone Number: {contractor.phone}</h5>
-            <p>Description: {contractor.description}</p>
-            <h5>Subscription: {contractor.monthly == true ? "Monthly" : "Yearly"}</h5>
-            <div className="edit-button">
-                <Button onClick={handleShow}>Edit Profile</Button>
-            </div>
+                    <div className="employee-job"
+                        style={{ "paddingInlineStart": 15 + "px", "paddingInlineEnd": 25 + "px"}}
+                    >
+                    <h1>Profile</h1>
+                    <Card>
+                        <CloseButton variant="white" onClick={handleClose} style={{color: "#3fa1fc", position: "relative", top: 15+"px", right: 15+"px", alignSelf:"end"}}/> 
+                        <Card.Body>
+                            <div className="job-body"
+                                style={{"width": 50 + "%"}}
+                            >
+                            <div className="job-table">
+                            <Table>
+                                <tbody>
+                                    <tr style={{ "border-bottom-width": 0 + "px"}}>
+                                        <td style={{"padding": "0px" }}>
+                                            Email: 
+                                        </td>
+                                        <td style={{"padding": "0px" }}>
+                                            {contractor.email}
+                                        </td>
+                                    </tr>
+                                    <tr style={{ "border-bottom-width": 0 + "px"}}>
+                                        <td style={{"padding": "0px" }}>
+                                            Phone Number: 
+                                        </td>
+                                        <td style={{"padding": "0px" }}>
+                                            {contractor.phone}
+                                        </td>
+                                    </tr>
+                                    <tr style={{ "border-bottom-width": 0 + "px"}}>
+                                        <td style={{"padding": "0px" }}>
+                                            Subscription: 
+                                        </td>
+                                        <td style={{"padding": "0px" }}>
+                                            {contractor.monthly == true ? "Monthly" : "Yearly"}
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </Table>
+                            </div>
+                                <div className="edit-button">
+                                    <Button onClick={handleClick}>Edit Profile</Button>
+                                </div>
+                            </div>                                
+                                        <div className="description"
+                                                style={{"width": 50 + "%"}}
+                                        >
+                        {/* <span>{job.description}</span> */}
+                                        <div id="description-details">
+                                            <h2>Description:</h2>
+                                        </div>
+                                        <div className="description-box">
+                                        <p>
+                                            {contractor.description}
+                                        </p>
+                                        </div>
+                                    </div>
+                        </Card.Body>
+                    </Card>
+                    </div>
             </div>
             </div>
         </div>
