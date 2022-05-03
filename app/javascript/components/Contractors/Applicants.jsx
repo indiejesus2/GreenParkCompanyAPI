@@ -237,6 +237,19 @@ const Applicants = (props) => {
             )
         }
     }
+
+    const handleNavBar = () => {
+        if (props.history.location.includes("job")) {
+            return (
+                <div className="contractor">
+                <NavBar handleSignout={props.signOut} contractor={props.contractor} loggedIn={props.loggedIn} user="contractor" />
+                <div className="d-flex">
+                    <SideNavBar contractor={props.contractor} user="contractor"/>
+                </div>
+                </div>
+            )
+        }
+    }
     
     return (
         <div className="applicants">

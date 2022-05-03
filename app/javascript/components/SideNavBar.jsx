@@ -36,11 +36,11 @@ const SideNavBar = props => {
         <div className="sidebarnav">
                 <Nav defaultActiveKey="/" className="flex-column">
                     <Nav.Link as={Link} to="/contractors">
-                        Applicants
-                    </Nav.Link>
-                    <Nav.Link as={Link} to={`/contractors/${props.contractor.id}/jobs`}>
                         Jobs
                     </Nav.Link>
+                    {/* <Nav.Link as={Link} to={`/contractors/${props.contractor.id}/jobs`}>
+                        Jobs
+                    </Nav.Link> */}
                     <Nav.Link as={Link} to={`/contractors/${props.contractor.id}/profile`}>
                         Profile
                     </Nav.Link>

@@ -13,7 +13,7 @@ const Profile = props => {
     // const handleShow = () => setShow(true)
 
     const handleClick = () => {
-        props.history.push(`/contractors/${contrator.id}/editprofile`)
+        props.history.push(`/contractors/${contractor.id}/editprofile`)
     }
 
     const handleClose = () => {
@@ -24,7 +24,7 @@ const Profile = props => {
         <div className="employees">
             <NavBar handleSignout={props.signOut} loggedIn={props.loggedIn} contractor={contractor} user="contractor" />
             <div className="d-flex">
-                <SideNavBar contractor={props.contractor} user="contractor"/>
+                <SideNavBar contractor={contractor} user="contractor"/>
                 <div className="dashboard">
                     <div className="employee-job"
                         style={{ "paddingInlineStart": 15 + "px", "paddingInlineEnd": 25 + "px"}}

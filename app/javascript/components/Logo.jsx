@@ -1,10 +1,12 @@
 import React, { useState } from 'react'
-import {Link} from 'react-router-dom'
+import {Link, useHistory} from 'react-router-dom'
 
 const Logo = props => {
 
+    const history = useHistory()
+
     const [home] = useState(
-        props.user == "contractor" ? '/contractors' : '/employees'
+        history.location.pathname.includes("contractor") ? '/contractors' : '/employees'
     )
 
     return (

@@ -2,6 +2,8 @@ import React from 'react'
 import { useFormik } from 'formik'
 import { useHistory } from 'react-router-dom'
 import { Form, FloatingLabel, Modal, Button, Row, Col } from 'react-bootstrap'
+import NavBar from '../NavBar'
+import SideNavBar from '../SideNavBar'
 
 export default function EditProfile(props) {
     
@@ -54,7 +56,7 @@ export default function EditProfile(props) {
     const handleSideNav = () => {
         if (employer.status == true) {
             return (
-                <SideNavBar profile={props.profile} user="contractor"/>
+                <SideNavBar contractor={employer} user="contractor"/>
             )
         }
     }
@@ -84,7 +86,7 @@ export default function EditProfile(props) {
         <div className="employees">
             <NavBar handleSignout={props.signOut} profile={props.profile} loggedIn={props.loggedIn} user="contractor" />
             <div className="d-flex">
-                {handleSideNav}
+                {handleSideNav()}
 
                 <div className="dashboard">
                     <h1>Edit Profile</h1>
@@ -95,28 +97,28 @@ export default function EditProfile(props) {
                         <Row className="mb-3">
                         <Form.Group as={Col}>
                         <FloatingLabel label="Company Name">
-                            <Form.Control type="text" name="name" value={formik.values.name} onChange={formik.handleChange} />
+                            <Form.Control type="text" name="name" style={{ "backgroundColor": "#2f2f2f", "color": "#fff"}} value={formik.values.name} onChange={formik.handleChange} />
                         </FloatingLabel>
                         </Form.Group>
                         </Row>
                         <Row className="mb-3">
                         <Form.Group as={Col}>
                         <FloatingLabel label="Email">
-                            <Form.Control type="text" name="email" value={formik.values.email} onChange={formik.handleChange} />
+                            <Form.Control type="text" name="email" style={{ "backgroundColor": "#2f2f2f", "color": "#fff"}} value={formik.values.email} onChange={formik.handleChange} />
                         </FloatingLabel>
                         <FloatingLabel label="Phone Number">
-                            <Form.Control type="text" name="phone" value={formatPhoneNumber(formik.values.phone)} onChange={formik.handleChange} />
+                            <Form.Control type="text" name="phone" style={{ "backgroundColor": "#2f2f2f", "color": "#fff"}} value={formatPhoneNumber(formik.values.phone)} onChange={formik.handleChange} />
                         </FloatingLabel>
                         </Form.Group>
                         </Row>
                         <Row className="mb-3">
                         <Form.Group as={Col}>
                         <FloatingLabel label="Description">
-                            <Form.Control as="textarea" name="description" value={formik.values.description} onChange={formik.handleChange} />
+                            <Form.Control as="textarea" name="description" style={{ "backgroundColor": "#2f2f2f", "color": "#fff"}} value={formik.values.description} onChange={formik.handleChange} />
                         </FloatingLabel>
                         </Form.Group>
                         </Row>
-                        {handleSubscription}
+                        {handleSubscription()}
                     </Form>
                     </div>
                 </div>

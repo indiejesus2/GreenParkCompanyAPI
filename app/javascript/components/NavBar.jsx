@@ -159,9 +159,9 @@ const NavBar = props => {
                                             fontSize: "x-large",
                                         }}
                                     >
-                                        Applicants
+                                        Jobs
                                     </Nav.Link>
-                                    <Nav.Link as={Link} to={`/contractors/${props.contractor.id}/jobs`} eventKey="2"
+                                    {/* <Nav.Link as={Link} to={`/contractors/${props.contractor.id}/jobs`} eventKey="2"
                                         style={{
                                             color: "#fff",
                                             fontFamily: 'Luam, serif',
@@ -169,7 +169,7 @@ const NavBar = props => {
                                         }}
                                     >
                                         Jobs
-                                    </Nav.Link>
+                                    </Nav.Link> */}
                                     <Nav.Link as={Link} to={`/contractors/addjob`} eventKey="3"
                                         style={{
                                             color: "#fff",
