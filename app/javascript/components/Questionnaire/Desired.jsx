@@ -203,7 +203,7 @@ const Desired = props => {
         </Row>
         <Row>
             <Form.Group as={Col}>
-                <Form.Check type="checkbox" style={{ color: "#fff" }} name="license" label="Driver's License" value={props.values.license} onChange={props.handleChange} defaultChecked={props.values.license}/>
+                <Form.Check type="checkbox" style={{ color: "#fff" }} name="license" label="Check for Valid Identification" value={props.values.license} onChange={props.handleChange} defaultChecked={props.values.license}/>
             </Form.Group>
             <Form.Group as={Col}>
                         <Button variant="link" onClick={handleShow} className="d-flex justify-content-right">

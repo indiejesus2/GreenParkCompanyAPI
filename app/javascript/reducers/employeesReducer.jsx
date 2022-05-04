@@ -17,7 +17,6 @@ export default function employeesReducer(state = {employee: [], profile: [], exp
         case 'SIGNIN_EMPLOYEE':
             let employee = action.payload.employee.data.attributes
             let jobs = action.payload.jobs.data.map(job=>job.attributes)
-            debugger
             return {
                 ...state,
                 employee: employee,

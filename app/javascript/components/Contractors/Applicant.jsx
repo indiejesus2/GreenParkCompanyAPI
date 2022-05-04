@@ -1,13 +1,16 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { Form, Button, Card, Table } from 'react-bootstrap'
+import NavBar from '../NavBar'
+import SideNavBar from '../SideNavBar'
+import EmployeeProfile from './EmployeeProfile'
 
 const Applicant = (props) => {
        
     const [applicants, setApplicants] = useState(props.applicants)
-    const [currentStep, setStep] = useState(props.currentStep)
     const [jobs, setJobs] = useState(props.jobs)
     const [job, setJob] = useState([])
+    const [currentStep, setStep] = useState(1)
 
     useEffect(() => {
         if (applicants != props.applicants){
@@ -56,17 +59,107 @@ const Applicant = (props) => {
         return oObj
     })
     
-    const [show, setShow] = useState(false)
     const [applicant, setApplicant] = useState("")
     const [candidates, setCandidates] = useState(original)
+    
     const handleClose = () => {
-        setShow(false);
+        setStep(1)
     }
+
     const handleApplicant = (candidate) => {
         setApplicant(candidate)
+        setJob(jobs.filter(job => job.id == candidate.application.job_id))
         setStep(2);
     }
 
+    const handleApplicants = () => {
+        if (currentStep == 1) {
+            return (
+                <div className="employees-jobs">
+                    {header()}
+                    {candidates.map(candidate => 
+                    <Card id={candidate.info.id} key={candidate.info.id} >
+
+                        <Card.Body className="d-flex">
+                            <Table style={{ "marginBottom": 2.5 + "px"}}>
+
+                    {/*     <div className="d-flex justify-content-between"> */}
+                            {/* <Card.Title className="mb-2">{job.company}</Card.Title> */}
+                            <tbody>
+
+                            <tr>
+                                <td id="table-header" style={{ "border-bottom-width": 0 + "px", "border-right": 2 + "px solid white"}}>
+                                    Name: {candidate.info.fname} {candidate.info.lname}
+                                    {/* Distance: */}
+                                {/* </td>  */}
+                                {/* <td id="table-value-top" style={{ "border-bottom-width": 0 + "px", }}> */}
+
+                                    {/* {Math.round(applicants.find(applicant => applicant.job_id == job.id).distance)} Miles */}
+                                </td>
+                                <td id="table-header-rating" style={{ "border-bottom-width": 0 + "px"}}>Rating: {rate(candidate.application.rating)}
+                                </td>
+                            </tr>
+                    {/*     //    as="h2" */}
+                            <tr>
+                                <td id="table-header-title" style={{ "border-bottom-width": 0 + "px", "border-right": 2 + "px solid white"}}>
+                                {/* </td> */}
+                                {/* <td id="table-value-bottom" style={{ "border-bottom-width": 0 + "px", "border-right": 2 + "px solid white"}}> */}
+                                    {handleJob(candidate.application)}
+                                </td>
+                                    {/* as="h5" */}
+                                <td id="table-header-location" style={{ "border-bottom-width": 0 + "px"}}>
+                                    Distance: {Math.round(candidate.application.distance)} Miles
+                                    {/* Location: */}
+                                {/* </td>
+                                <td id="table-value-top" style={{ "border-bottom-width":  0 + "px"}}>  */}
+
+                                </td>
+
+                                {/* </td> */}
+                                    {/* {job.city}, {job.state} */}
+                            </tr>
+                            {/* <tr>
+                            </tr> */}
+                             </tbody>
+                            {/* </div> */}
+                            </Table>
+                {/* <Car    d.Title>
+                    <h3     style={{ marginBottom: 0+"px"}}>{candidate.info.fname} {candidate.info.lname} </h3> 
+                    <h4>    {handleInterest(candidate.application)}</h4>
+                </Card.T    itle> */}
+                    {/*     <Card.Subtitle>{candidate.info.city}, {candidate.info.state}</Card.Subtitle>
+                    <Car    d.Subtitle as="h5">Rating: {rate(candidate.application.rating)}</Card.Subtitle>
+                      <d    iv className="matches">
+                            {Object.entries(jobMatch(candidate.info)).map(([key, value]) =>
+                                <Card.Text style={{ marginBlockEnd: 1 + `px`}}>{key}: {value}</Card.Text>
+                                )}
+                            </div> */}
+                    <div className="employee-jobs-buttons">
+                        <Button onClick={() => handleApplicant(candidate)}>Details</Button>
+                        <Button onClick={() => handleContact(candidate)}>Contact</Button>                                        
+                    </div>
+                      </Card.Body>
+                </Card>
+                )}
+                </div>
+                // <Applicants job={job} contractor={props.contractor} editApplicant={props.editApplicant} handleApplicant={handleApplicant} />
+            )
+        } else if (currentStep == 2) {
+            return (
+                <EmployeeProfile 
+                candidate={applicant.info}
+                application={applicant.application}
+                editApplicant={props.editApplicant}
+                handleClose={handleClose}
+                handleContact={handleContact}
+                currentStep={currentStep}
+                contractor={props.contractor}
+                files={props.files}
+                job={job}
+                />
+            )
+        }
+    }
 
     const handleMatches = (profile) => {
         let matches = {}
@@ -249,14 +342,19 @@ const Applicant = (props) => {
         )
     }
 
-    if(currentStep !== 1) {
-        return null
-    }
+    // if(currentStep !== 1) {
+    //     return null
+    // }
     
     
     return (
-        <div className="applicants">
-            {header()}
+        <div className="employees">
+            <NavBar handleSignout={props.signOut} contractor={props.contractor} loggedIn={props.loggedIn} user="contractor" />
+                <div className="d-flex">
+                <SideNavBar contractor={props.contractor} user="contractor"/>
+                    <div className="dashboard">
+                        <div className="applicants">
+                                {handleApplicants()}
             
         {/* <div className="search">
             <Form onSubmit={handleSearch}>
@@ -297,74 +395,12 @@ const Applicant = (props) => {
 
 {/* <div className="candidates">
  */}
-    <div className="employees-jobs">
-        {candidates.map(candidate => 
-            <Card id={candidate.info.id} key={candidate.info.id} >
-
-            <Card.Body className="d-flex">
-                        <Table style={{ "marginBottom": 2.5 + "px"}}>
-
-                    {/* <div className="d-flex justify-content-between"> */}
-                        {/* <Card.Title className="mb-2">{job.company}</Card.Title> */}
-                        <tbody>
-
-                        <tr>
-                            <td id="table-header" style={{ "border-bottom-width": 0 + "px", "border-right": 2 + "px solid white"}}>
-                                Name: {candidate.info.fname} {candidate.info.lname}
-                                {/* Distance: */}
-                            {/* </td>  */}
-                            {/* <td id="table-value-top" style={{ "border-bottom-width": 0 + "px", }}> */}
-                                
-                                {/* {Math.round(applicants.find(applicant => applicant.job_id == job.id).distance)} Miles */}
-                            </td>
-                            <td id="table-header-rating" style={{ "border-bottom-width": 0 + "px"}}>Rating: {rate(candidate.application.rating)}
-                            </td>
-                        </tr>
-                    {/* //    as="h2" */}
-                        <tr>
-                            <td id="table-header-title" style={{ "border-bottom-width": 0 + "px", "border-right": 2 + "px solid white"}}>
-                            {/* </td> */}
-                            {/* <td id="table-value-bottom" style={{ "border-bottom-width": 0 + "px", "border-right": 2 + "px solid white"}}> */}
-                                {handleJob(candidate.application)}
-                            </td>
-                                {/* as="h5" */}
-                            <td id="table-header-location" style={{ "border-bottom-width": 0 + "px"}}>
-                                Distance: {Math.round(candidate.application.distance)} Miles
-                                {/* Location: */}
-                            {/* </td>
-                            <td id="table-value-top" style={{ "border-bottom-width":  0 + "px"}}>  */}
-                                
-                            </td>
-
-                            {/* </td> */}
-                                {/* {job.city}, {job.state} */}
-                        </tr>
-                        {/* <tr>
-                        </tr> */}
-                         </tbody>
-                        {/* </div> */}
-                        </Table>
-                {/* <Card.Title>
-                    <h3 style={{ marginBottom: 0+"px"}}>{candidate.info.fname} {candidate.info.lname} </h3> 
-                    <h4>{handleInterest(candidate.application)}</h4>
-                </Card.Title> */}
-                    {/* <Card.Subtitle>{candidate.info.city}, {candidate.info.state}</Card.Subtitle>
-                    <Card.Subtitle as="h5">Rating: {rate(candidate.application.rating)}</Card.Subtitle>
-                      <div className="matches">
-                        {Object.entries(jobMatch(candidate.info)).map(([key, value]) =>
-                            <Card.Text style={{ marginBlockEnd: 1 + `px`}}>{key}: {value}</Card.Text>
-                            )}
-                        </div> */}
-                    <div className="employee-jobs-buttons">
-                        <Button onClick={() => props.handleApplicant(candidate)}>Details</Button>
-                        <Button onClick={() => handleContact(candidate)}>Contact</Button>                                        
-                    </div>
-                      </Card.Body>
-                </Card>
-                )}
-
-        </div>
+    
+                
                 </div>
+            </div>
+        </div>
+    </div>
     )
     
 }

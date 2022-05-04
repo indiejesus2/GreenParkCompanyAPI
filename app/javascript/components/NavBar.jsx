@@ -161,15 +161,15 @@ const NavBar = props => {
                                     >
                                         Jobs
                                     </Nav.Link>
-                                    {/* <Nav.Link as={Link} to={`/contractors/${props.contractor.id}/jobs`} eventKey="2"
+                                    <Nav.Link as={Link} to={`/contractors/${props.contractor.id}/applicants`} eventKey="2"
                                         style={{
                                             color: "#fff",
                                             fontFamily: 'Luam, serif',
                                             fontSize: "x-large",
                                         }}
                                     >
-                                        Jobs
-                                    </Nav.Link> */}
+                                        Applicants
+                                    </Nav.Link>
                                     <Nav.Link as={Link} to={`/contractors/addjob`} eventKey="3"
                                         style={{
                                             color: "#fff",
@@ -258,7 +258,7 @@ const NavBar = props => {
                     {handleSubscription()}
                 </div>
             )
-        } else if (history.location.pathname != "/home") {
+        } else if (history.location.pathname != "/home" && history.location.pathname != "/home/about") {
                 return (
                         <Logo />
                 )

@@ -32,13 +32,21 @@ const Profile = props => {
                     <h1>Profile</h1>
                     <Card>
                         <CloseButton variant="white" onClick={handleClose} style={{color: "#3fa1fc", position: "relative", top: 15+"px", right: 15+"px", alignSelf:"end"}}/> 
-                        <Card.Body>
+                        <Card.Body style={{"padding-top": "10px", "display": "flex"}}>
                             <div className="job-body"
                                 style={{"width": 50 + "%"}}
                             >
                             <div className="job-table">
                             <Table>
                                 <tbody>
+                                    <tr style={{ "border-bottom-width": 0 + "px"}}>
+                                        <td style={{"padding": "0px" }}>
+                                            Company Name: 
+                                        </td>
+                                        <td style={{"padding": "0px" }}>
+                                            {contractor.name}
+                                        </td>
+                                    </tr>
                                     <tr style={{ "border-bottom-width": 0 + "px"}}>
                                         <td style={{"padding": "0px" }}>
                                             Email: 
@@ -66,7 +74,7 @@ const Profile = props => {
                                 </tbody>
                             </Table>
                             </div>
-                                <div className="edit-button">
+                                <div className="d-flex justify-content-center">
                                     <Button onClick={handleClick}>Edit Profile</Button>
                                 </div>
                             </div>                                

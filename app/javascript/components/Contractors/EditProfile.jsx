@@ -84,15 +84,15 @@ export default function EditProfile(props) {
 
     return (
         <div className="employees">
-            <NavBar handleSignout={props.signOut} profile={props.profile} loggedIn={props.loggedIn} user="contractor" />
+            <NavBar handleSignout={props.signOut} contractor={employer} loggedIn={props.loggedIn} user="contractor" />
             <div className="d-flex">
                 {handleSideNav()}
 
-                <div className="dashboard">
+                <div className="dashboard"
+                    style={{ "paddingInlineStart": 15 + "px", "paddingInlineEnd": 25 + "px"}}
+                >
                     <h1>Edit Profile</h1>
-                    <div className="input"
-                        style={{ "paddingInlineStart": 15 + "px", "paddingInlineEnd": 25 + "px"}}
-                    >
+                    <div className="input">
                     <Form onSubmit={formik.handleSubmit} className="profile-form">
                         <Row className="mb-3">
                         <Form.Group as={Col}>
@@ -106,6 +106,10 @@ export default function EditProfile(props) {
                         <FloatingLabel label="Email">
                             <Form.Control type="text" name="email" style={{ "backgroundColor": "#2f2f2f", "color": "#fff"}} value={formik.values.email} onChange={formik.handleChange} />
                         </FloatingLabel>
+                        </Form.Group>
+                        </Row>
+                        <Row className="mb-3">
+                        <Form.Group as={Col}>
                         <FloatingLabel label="Phone Number">
                             <Form.Control type="text" name="phone" style={{ "backgroundColor": "#2f2f2f", "color": "#fff"}} value={formatPhoneNumber(formik.values.phone)} onChange={formik.handleChange} />
                         </FloatingLabel>

@@ -365,7 +365,7 @@ export default function EditProfile(props) {
                 </Row>
                 <Row className="mb-3">
                     <Form.Group as={Col}>
-                        <Form.Check name="license" label="Driver's License" value={formik.values.license} onChange={formik.handleChange} defaultChecked={formik.values.license}/>
+                        <Form.Check name="license" label="Check for Valid Identification" value={formik.values.license} onChange={formik.handleChange} defaultChecked={formik.values.license}/>
                     </Form.Group>
                 </Row>
                 <div className="d-flex justify-content-around">

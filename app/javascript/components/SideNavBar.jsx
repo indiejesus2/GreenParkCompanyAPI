@@ -38,9 +38,9 @@ const SideNavBar = props => {
                     <Nav.Link as={Link} to="/contractors">
                         Jobs
                     </Nav.Link>
-                    {/* <Nav.Link as={Link} to={`/contractors/${props.contractor.id}/jobs`}>
-                        Jobs
-                    </Nav.Link> */}
+                    <Nav.Link as={Link} to={`/contractors/${props.contractor.id}/applicants`}>
+                        Applicants
+                    </Nav.Link>
                     <Nav.Link as={Link} to={`/contractors/${props.contractor.id}/profile`}>
                         Profile
                     </Nav.Link>

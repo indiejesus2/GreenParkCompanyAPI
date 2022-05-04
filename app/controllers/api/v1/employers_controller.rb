@@ -1,6 +1,6 @@
 class Api::V1::EmployersController < ApplicationController
   before_action :set_employer, only: %i[ show edit update destroy ]
-  wrap_parameters :employer, include: [:name, :email, :password]
+  # wrap_parameters :employer, include: [:name, :email, :password]
   # per_request_react_rails_prerenderer
 
 

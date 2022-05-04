@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react'
-import { Link, Redirect } from 'react-router-dom'
+import React, { useState, useEffect, useRef } from 'react'
+import { Link, Redirect, useHistory } from 'react-router-dom'
 import Home from '../Home'
 import About from '../About'
 import SignIn from '../Login/SignIn'
@@ -9,8 +9,18 @@ import TempPassword from '../Login/TempPassword'
 
 const Login = props => {
 
+
     const [errors, setErrors] = useState(props.customerErrors ? props.customerErrors : props.contractorErrors)
-    const [currentStep, setCurrentStep] = useState(props.currentStep )
+    const [currentStep, setCurrentStep] = useState(props.currentStep)
+    const myRef = useRef(null)
+    const history = useHistory()
+
+
+    const handleScroll = () => {
+        if (history.location.pathname.includes("about")) {
+            myRef.current.scrollIntoView()
+        }
+    }
 
     
 
@@ -47,11 +57,18 @@ const Login = props => {
         setCurrentStep(4)
     }
 
+    history.location.pathname != "/home"
+
     return (
         <div>
             <div className="signin">
-                <Home />
-                <About />
+                {handleScroll()}
+                <div>
+                    <Home />
+                </div>
+                <div ref={myRef}>
+                    <About />
+                </div>
                 {/* <SignUp signUp={props.signUp} currentStep={props.currentStep} handleClick={handleClick} handlePassword={handlePassword} errors={errors} handleClose={handleClose} />
                 <SignIn signIn={props.signIn} currentStep={props.currentStep} handleClick={handleClick} handlePassword={handlePassword} errors={errors} handleClose={handleClose} />
                 <ForgotPassword currentStep={props.currentStep} updatePassword={props.updatePassword} handleValidation={handleValidation} user={"employee"} handleClose={handleClose} /> */}

@@ -16,7 +16,7 @@ const EmployeeProfile = props => {
     const [currentStep, setStep] = useState(props.currentStep)
     const files = props.files ? Object.entries(props.files) : []
     const file = files.filter(file => file[0] == candidate.employee_id)
-    const experience = props.job.experiences.filter(experience => experience.employee_id == candidate.employee_id)
+    const experience = props.job.experiences ? props.job.experiences.filter(experience => experience.employee_id == candidate.employee_id) : []
     
     // const interested = () => {
     //     if (candidate.interested) {
@@ -147,7 +147,7 @@ const EmployeeProfile = props => {
     }
     
         return (
-            <div className={"employee-job"} style={{marginInline: 25 + "px"}}>
+            <div className={"employee-job"} style={{marginInlineStart: 15 + "px", marginInlineEnd: 25+"px", marginBottom: 25+"px"}}>
                 <h1>Candidate Profile</h1>
             <Card id={candidate.id} key={candidate.id}>            
             <CloseButton variant="white" onClick={props.handleClose} style={{color: "#3fa1fc", position: "relative", top: 15+"px", right: 15+"px", alignSelf:"end"}}/>
