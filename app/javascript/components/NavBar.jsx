@@ -147,7 +147,7 @@ const NavBar = props => {
 
                         <div className="upperCollapseNav">
     
-                            <Navbar collapseOnSelect expand='lg' variant="dark">
+                        <Navbar collapseOnSelect expand='lg' variant="dark">
                     {/* <Container> */}
                         <Navbar.Toggle aria-controls="basic-navbar-nav" />
                         <Navbar.Collapse id="basic-navbar-nav">
@@ -264,12 +264,16 @@ const NavBar = props => {
                 )
         } else {
             return (
-                <div className="home-nav">
+                <div>
 
                 <div className="homeCollapseNav">
-                    <Navbar collapseOnSelect expand='md' variant="dark">
-                        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                        <Navbar.Collapse id="basic-navbar-nav">
+                    <Navbar collapseOnSelect expand='md' variant="dark" className="upperCollapseNav">
+                        <div className="home-nav">
+                            <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                        </div>
+                        <div style={{textAlign: "center", zIndex:1, background:"black", position: "relative"}}>
+
+                        <Navbar.Collapse id="basic-navbar-nav" style={{}}>
                                 <Nav defaultActiveKey="/" className="flex-column me-1 mb-0">
                                     <Nav.Link as={Link} to="/home" eventKey="1"
                                         style={{
@@ -326,6 +330,7 @@ const NavBar = props => {
                                     </Nav.Link>
                                 </Nav>
                         </Navbar.Collapse>
+                                    </div>
                     </Navbar>
                 </div>
                 <div className="homeCollapse">

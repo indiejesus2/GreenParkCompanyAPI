@@ -273,7 +273,9 @@ a:hover {
     display: none !important
   }
 
-
+  .signIn Form {
+    width: 66%
+  }
 }
 
 @media only screen and (max-width: 580px) {
@@ -283,16 +285,27 @@ a:hover {
   }
 
   .homeCollapseNav {
-    position: relative;
-    right: 8%;
-    top: 10px;
+    padding-block-start: 15px;
+    padding-inline: 15px;
   }
 
   .homeCollapse {
     display: none !important;
   }
   
-  
+  .upperCollapseNav {
+    display: flow-root !important;
+    top: 0px !important;
+    right: 0% !important;
+  }
+
+  .signIn #collar {
+    display: none !important;
+  }
+
+  .signIn Form {
+    width: 100%
+  }
 }
 
 @media only screen and (max-width: 1000px) {
@@ -319,10 +332,10 @@ a:hover {
     top: 10px;
   }
 
-  .nav-sign {
-    position: relative;
-    left: 3.5%;
-  }
+  // .nav-sign {
+  //   position: relative;
+  //   left: 3.5%;
+  // }
 
   // .home-nav {
   //   display: flex !important;
@@ -348,7 +361,49 @@ a:hover {
     position: relative;
     bottom: 80px;
   }
+}
 
+@media only screen and (max-width: 580px) {
+  .signIn {
+    justify-content: center;
+  }
+  
+  .signIn #header {
+    text-align: center !important;
+    bottom: 10px !important;
+    left: 0px !important;
+  }
+
+  .signIn #closeButton {
+    position: relative !important;
+    bottom: 10px !important;
+  }
+
+  .signIn #choiceLabel {
+    text-align: center !important;
+  }
+
+}
+
+.signIn #header {
+  text-align: end;
+  position: relative;
+  left: 26px;
+  bottom: 15px;
+}
+
+.signIn {
+  padding-inline-start: 20px;
+}
+
+.signIn #closeButton {
+  position: relative;
+  bottom: 15px;
+  right: 15px;
+}
+
+.signIn #collar {
+  display: flexbox;
 }
 
 .navCollapse {

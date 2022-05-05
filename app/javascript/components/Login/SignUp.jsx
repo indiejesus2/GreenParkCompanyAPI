@@ -60,34 +60,46 @@ export default function SignUp(props) {
         return null
     }
 
+    const handleModal = () => {
+        if (window.screen.availWidth <= 320) {
+            return "sm"
+        }
+    }
+
+    const handleImg = () => {
+        if (window.screen.availWidth > 320) {
+            return (
+                "none"
+            )    
+        }
+    }
+
+    const handleWidth = () => {
+        if (window.screen.availWidth > 580) {
+            return ("66%")
+        } else {
+            return ("100%")
+        }
+    }
+
     
 
     return (
         <React.Fragment>    
-            <Modal show animation centered rounded onHide={handleClose}>
+            <Modal show animation centered rounded onHide={handleClose} size={handleModal}>
                 <div className="signIn"
                     style={{
                         paddingInlineStart: 20 + "px"
                     }}
                 >                
                     <Form onSubmit={formik.handleSubmit}
-                        style={{
-                            "width": 66 + "%"
-                        }}
                     >
                     <Modal.Body
                         style={{
                             "paddingBlock": 0 + "px"
                         }}
                     >
-                        <h1
-                            style={{
-                                textAlign: "end",
-                                position: "relative",
-                                left: 26 + "px",
-                                bottom: 15 + "px"
-                            }}
-                        >Sign Up</h1>
+                        <h1 id="header">Sign Up</h1>
                     {/* <div id="newUser">
                             <span>Already user?</span><Button variant="link" onClick={handleClick}>Sign In</Button>
                         </div> */}
@@ -148,16 +160,13 @@ export default function SignUp(props) {
                         </Modal.Footer> */}
                     </Modal.Body>
                     </Form>
-                    <div id="collar">
-                        <Image fluid="true" src="/images/blucollarO.png" alt="collar" />
-                    </div>
-                    <CloseButton onClick={handleClose} 
-                        style={{
-                            position: "relative",
-                            bottom: 15 + "px",
-                            right: 15 + "px"
-                        }}
-                    />
+                    <div id="collar" >
+                    <Image fluid="true" src="/images/blucollarO.png" alt="collar" />
+                </div>
+            
+            <div id="closeButton">
+                <CloseButton onClick={handleClose} />
+            </div>
                 </div>
             </Modal>
         </React.Fragment>

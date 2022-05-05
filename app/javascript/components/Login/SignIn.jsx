@@ -6,6 +6,7 @@ import * as yup from 'yup'
 
 export default function SignIn(props) {
 
+
     const schema = yup.object().shape({
         email: yup.string().email("Please enter a valid email address").required("Email is required."),
         password: yup.string().required("Please enter a password.").min(6, "Password must have at least 6 characters")
@@ -58,40 +59,52 @@ export default function SignIn(props) {
         return null
     }
 
+    const handleModal = () => {
+        if (window.screen.availWidth <= 320) {
+            return "sm"
+        }
+    }
+
+    // const handleImg = () => {
+    //     if (window.screen.availWidth > 580) {
+    //         return (
+    //             "none"
+    //         )    
+    //     }
+    // }
+
+    const handleWidth = () => {
+        if (window.screen.availWidth > 580) {
+            return ("66%")
+        } else {
+            return ("100%")
+        }
+    }
+
     // debugger
     
     return (
-        <Modal show animation centered onHide={handleClose} >
-            <div className="signIn" 
-                style={{
-                    paddingInlineStart: 20 + "px"
-                }}>
+        <Modal show animation centered onHide={handleClose} size={handleModal} >
+            <div className="signIn">
             {/* <Modal.Header>
                 <img src="/images/blucollarlogo.png" alt="Blue Collar Logo" className="signIn"/>
             </Modal.Header> */}
 
             <Form noValidate onSubmit={formik.handleSubmit}
-                style={{
-                    "width": 66 + "%"
-                }}>
+            >
             <Modal.Body
                 style={{
                     "paddingBlock": 0 + "px"
                 }}
             >
-                    <h1
-                            style={{
-                                textAlign: "end",
-                                position: "relative",
-                                left: 26 + "px",
-                                bottom: 15 + "px"
-                            }}
-                        >Sign In</h1>            
+                    <h1 id="header">Sign In</h1>            
                 <Alert show={alert}>
                     {error}
                 </Alert>
                 <Form.Group className="mb-3" md="4" id="signInOptions">
-                    <Form.Label>Sign In As</Form.Label>
+                    <div id="choiceLabel">
+                        <Form.Label>Sign In As</Form.Label>
+                    </div>
                         <Form.Select onChange={formik.handleChange} name="user" value={formik.values.user}
                             style={{
                                 "width": 63 + "%",
@@ -153,16 +166,13 @@ export default function SignIn(props) {
                 </div>
             </Modal.Body>
             </Form>
-            <div id="collar">
-                <Image fluid="true" src="/images/blucollarO.png" alt="collar" />
+            <div id="collar" >
+                    <Image fluid="true" src="/images/blucollarO.png" alt="collar" />
+                </div>
+            
+            <div id="closeButton">
+                <CloseButton onClick={handleClose} />
             </div>
-            <CloseButton onClick={handleClose} 
-                    style={{
-                        position: "relative",
-                        bottom: 15 + "px",
-                        right: 15 + "px"
-                    }}
-            />
         </div>    
         </Modal>
     )

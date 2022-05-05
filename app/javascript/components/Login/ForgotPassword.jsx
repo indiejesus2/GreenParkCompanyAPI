@@ -38,24 +38,43 @@ export default function ForgotPassword(props) {
     if(props.currentStep !== 3) {
         return null
     }
+
+    const handleModal = () => {
+        if (window.screen.availWidth <= 320) {
+            return "sm"
+        } else {
+            return "lg"
+        }
+    }
+
+    const handleImg = () => {
+        if (window.screen.availWidth > 320) {
+            return (
+                "none"
+            )    
+        }
+    }
+
+    const handleWidth = () => {
+        if (window.screen.availWidth > 580) {
+            return ("66%")
+        } else {
+            return ("100%")
+        }
+    }
     
     return (
         <React.Fragment>    
-        <Modal size="lg" show={show} animation centered onHide={handleClose}>
-            <div className="signIn" 
-                style={{
-                    paddingInlineStart: 20 + "px"
-                }}>
+        <Modal show={show} animation centered onHide={handleClose} size={handleModal}>
+            <div className="signIn">
                 <Form noValidate onSubmit={formik.handleSubmit} 
-                    style={{
-                        "width": 50 + "%"
-                    }}>
+                >
                 <Modal.Body
                     style={{
                         "paddingBlock": 0 + "px"
                     }}
                 >
-                    <h2>Find Your BluCollar Account</h2>
+                    <h2 id="header">Find Your BluCollar Account</h2>
                     <Alert show={alert}>
                         {props.errors}
                     </Alert>
@@ -104,16 +123,13 @@ export default function ForgotPassword(props) {
                         }}>Find Profile</Button>
                 </Modal.Footer>
                 </Form>
-                <div id="collar">
-                        <Image fluid="true" src="/images/blucollarO.png" alt="collar" />
+                <div id="collar" >
+                    <Image fluid="true" src="/images/blucollarO.png" alt="collar" />
                 </div>
-                <CloseButton onClick={handleClose} 
-                    style={{
-                        position: "relative",
-                        bottom: 15 + "px",
-                        right: 15 + "px"
-                    }}
-                />
+            
+                <div id="closeButton">
+                    <CloseButton onClick={handleClose} />
+                </div>
             </div>
         </Modal>
         </React.Fragment>
