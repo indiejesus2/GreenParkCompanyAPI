@@ -9,7 +9,7 @@ class Home extends Component {
     
     render() {        
         return (
-            <div style={{minHeight: 625+"px"}}>
+            <div style={{minHeight: 800+"px"}}>
                 <div className="homepage">
                         {/* <Container> */}
                             <div className="homepage-header">
