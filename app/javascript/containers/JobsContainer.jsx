@@ -12,6 +12,7 @@ import EditJob from '../components/Contractors/EditJob'
 import Job from '../components/Contractors/Job'
 import Jobs from '../components/Contractors/Jobs'
 import NavBar from '../components/NavBar'
+import Contractors from '../components/Contractors/Contractors'
 
 class JobsContainer extends Component {
   

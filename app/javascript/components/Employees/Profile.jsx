@@ -84,9 +84,12 @@ const Profile = props => {
                 </Col>
             </Row>
         </div> */}
+        <div className="dashboard">
+
             <div className="employee-job"
                  style={{ "paddingInlineStart": 15 + "px", "paddingInlineEnd": 25 + "px"}}
-            >
+            >   
+
                 <h1>Profile</h1>
                 <Card id={employee.id} key={employee.id}>
                 <CloseButton variant="white" onClick={handleClose} style={{color: "#3fa1fc", position: "relative", top: 15+"px", right: 15+"px", alignSelf:"end"}}/> 
@@ -235,6 +238,7 @@ const Profile = props => {
                     )}
                 </div>
             </div>
+        </div>
         </div>
     </div>
     )

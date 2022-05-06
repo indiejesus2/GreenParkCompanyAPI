@@ -1,6 +1,6 @@
 export const editJob = (job) => {
     return (dispatch) => {
-        dispatch({type: 'LOADING_JOBS'})
+        dispatch({type: 'FETCH_CONTRACTOR'})
         const configObj = {
             method: "PATCH",
             headers: {

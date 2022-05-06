@@ -31,7 +31,8 @@ const Main = (props) => {
         fname: yup.string().required(),
         city: yup.string().required(),
         state: yup.string().required(),
-        zipcode: yup.string().required()
+        zipcode: yup.string().required(),
+        trade: yup.string().required()
     })
 
     const formik = useFormik({

@@ -7,7 +7,7 @@ class Job < ApplicationRecord
   geocoded_by :address
   before_create :posted
   after_save :proximity, :potential
-  after_update :updateTrade, :updatedProximity
+  # after_update :updateTrade, :updatedProximity
   after_validation :geocode
 
 def address
@@ -105,35 +105,38 @@ def potential
 end
 
 def updateTrade
-  if status == true
+  # if status == true
     applicants = self.applicants
     if applicants.length > 0
       applicants.each{|applicant|
         # if a job's trade or address is changed, current applicants must be checked to see if they are a match.
         # if trade doesn't match applicant trade or Profile isn't near the updated address
-        if applicant.profile.trade != trade && applicant.profile.trade != "Other/None"
-
-          Applicant.destroy(applicant.id)
+        if applicant.profile.trade != trade && applicant.profile.trade != "Other/None" && trade != "Other/None"
+          applicant.destroy
+          # applicant.save
+          # Applicant.destroy(applicant.id)
         end
       }
     end
-  end
+  # end
 end
 
 def updatedProximity
-  if status == true
+  # if status == true
     applicants = self.applicants
     # distance = !!commute ? commute : 100
     applicants.each{|applicant| 
       profile = Profile.find_by(employee_id: applicant.employee_id)
       distance = !!profile.commute ? profile.commute : 100
       if profile.distance_to(self) > distance
-        Applicant.destroy(applicant.id) 
+        applicant.destroy
+        # applicant.save
+        # Applicant.destroy(applicant.id) 
       elsif applicant.distance != profile.distance_to(self)
-        applicant.update(distance: distance_to(self))
+        applicant.update(distance: profile.distance_to(self))
       end
     }
-  end
+  # end
   # if applicants.length > 0
   #   applicants.each{|applicant|
   # }

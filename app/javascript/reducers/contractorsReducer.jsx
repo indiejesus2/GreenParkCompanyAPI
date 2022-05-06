@@ -34,7 +34,6 @@ export default function contractorsReducer(state = {contractor: [], jobs: [], ap
                 loggedIn: true,
             }
         case 'UPDATE_CONTRACTOR':
-            debugger
             return {
                 ...state,
                 contractor: action.payload,
@@ -69,6 +68,7 @@ export default function contractorsReducer(state = {contractor: [], jobs: [], ap
                 }
             }
         case 'EDIT_JOB':
+            debugger
             let edited = state.jobs.map(job => {
                 if(job.id === action.payload.id) {
                     return action.payload

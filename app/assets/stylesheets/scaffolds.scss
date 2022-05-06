@@ -11,9 +11,9 @@
 
 @font-face {
   font-family: "Noto Sans";
-  src: local('Noto Sans'), url('/fonts/NotoSans-Regular.woff') format('woff');
-  src: local('Noto Sans Bold'), url('/fonts/NotoSans-Bold.woff') format('woff');
-  src: local('Noto Sans Regular'), url('/fonts/NotoSans-Light.woff') format('woff');
+  src: local('Noto Sans'), url('/fonts/NotoSans-Regular.ttf') format('ttf');
+  src: local('Noto Sans Bold'), url('/fonts/NotoSans-Bold.ttf') format('ttf');
+  src: local('Noto Sans Regular'), url('/fonts/NotoSans-Light.ttf') format('ttf');
 }
 
 body {
@@ -276,6 +276,34 @@ a:hover {
   .signIn Form {
     width: 66%
   }
+}
+
+@media only screen and (min-width: 768px) {
+  .employeeCollapseNav {
+    display: none !important
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .employee-nav-toggle {
+    display: flex;
+    justify-content: end;
+    padding-inline: 15px;
+    position: relative;
+    bottom: 65px;
+  }
+
+  .employee-nav {
+    scale: 75%;
+  }
+
+  .employeeCollapseNav nav {
+    display: block !important;
+  }
+
+  // .navCollapse {
+  //   display: none;
+  // }
 }
 
 @media only screen and (max-width: 580px) {
@@ -554,8 +582,8 @@ a:hover {
 
 
 .employees-jobs {
-  display: flex;
-  justify-content: center;
+  // display: flex;
+  // justify-content: center;
   flex-flow: wrap;
   padding-inline: 15px;
 }

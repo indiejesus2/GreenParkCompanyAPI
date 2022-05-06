@@ -6,7 +6,6 @@ import { useHistory } from 'react-router-dom'
 
 const EmployeeProfile = props => {
 
-    debugger
 
     const candidate = props.candidate ? props.candidate : []
     const application = props.application ? props.application : []

@@ -34,14 +34,18 @@ const NavBar = props => {
 
                 <div className="employee-nav">
                     <Logo user={props.user}/>
-                    <div className="upperCollapseNav">
+                </div>
+                    <div className="employeeCollapseNav">
 
-                        <Navbar collapseOnSelect expand='lg' variant="dark">
+                        <Navbar collapseOnSelect expand='lg' variant="dark" >
                 {/* <Container> */}
-                    <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                    <div className="employee-nav-toggle">
+                        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                    </div>
+                    <div style={{textAlign: "center", zIndex:1, background:"black", position: "relative"}}>
                     <Navbar.Collapse id="basic-navbar-nav">
                             <Nav defaultActiveKey="/" className="flex-column me-auto">
-                                <Nav.Link as={Link} to="/employees" eventKey="1"
+                                <Nav.Link as={Link} to="/employees" eventKey="1" onClick={props.handleClick}
                                     style={{
                                         color: "#fff",
                                         fontFamily: 'Luam, serif',
@@ -59,7 +63,7 @@ const NavBar = props => {
                                 >
                                     My Profile
                                 </Nav.Link>
-                                <Nav.Link as={Link} to={`/employees/saved_jobs`} eventKey="3"
+                                <Nav.Link as={Link} to={`/employees/saved_jobs`} onClick={props.handleClick} eventKey="3"
                                     style={{
                                         color: "#fff",
                                         fontFamily: 'Luam, serif',
@@ -100,6 +104,8 @@ const NavBar = props => {
                         {/* <Breadcrumb>
                         </Breadcrumb> */}
                     </Navbar.Collapse>
+                    </div>
+
                 {/* </Container> */}
             </Navbar>
             </div>
@@ -129,13 +135,13 @@ const NavBar = props => {
                                 <Nav.Link as={Link} to="/home/signOut">SIGN-OUT</Nav.Link>
                             </Nav>
                         {/* </Navbar.Collapse> */}
+
                 </div>                        
+                {handleQuestion()}
                 {/* <div className="nav"> */}
                     {/* <Breadcrumb>
                         <Breadcrumb.Item linkAs={Link} linkProps={{to: "/", onClick: props.handleSignout }} >Sign Out</Breadcrumb.Item>
                     </Breadcrumb> */}
-                </div>
-                {handleQuestion()}
             </div>
             )
         } else if (props.loggedIn == true && props.user == "contractor") {

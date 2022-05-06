@@ -85,14 +85,13 @@ export default function SignUp(props) {
     
 
     return (
-        <React.Fragment>    
-            <Modal show animation centered rounded onHide={handleClose} size={handleModal}>
+            <Modal show animation centered onHide={handleClose} size={handleModal}>
                 <div className="signIn"
                     style={{
                         paddingInlineStart: 20 + "px"
                     }}
                 >                
-                    <Form onSubmit={formik.handleSubmit}
+                    <Form noValidate onSubmit={formik.handleSubmit}
                     >
                     <Modal.Body
                         style={{
@@ -106,7 +105,7 @@ export default function SignUp(props) {
                     <Alert show={alert}>
                             {error}
                     </Alert>
-                    <Form.Group md="4" id="signInOptions">
+                    <Form.Group className="mb-3" md="4" id="signInOptions">
                         <Form.Label>Sign Up As</Form.Label>
                             <Form.Select onChange={formik.handleChange} name="user" value={formik.values.user}
                                 style={{
@@ -169,6 +168,5 @@ export default function SignUp(props) {
             </div>
                 </div>
             </Modal>
-        </React.Fragment>
     )
 }

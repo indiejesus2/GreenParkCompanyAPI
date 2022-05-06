@@ -22,6 +22,7 @@ const Employees = props => {
     const handleJob = (job) => {
         setListing(job)
         setCurrentStep(2);
+        props.history.push(`/employees/${props.employee.id}/job/${job.id}`)
     }
     
     useEffect(() => {
@@ -127,9 +128,9 @@ const Employees = props => {
     } else {
         return (
             <div className="employees">
-                    <NavBar handleSignout={props.signOut} profile={props.profile} loggedIn={props.loggedIn} user="employee" />
+                    <NavBar handleSignout={props.signOut} handleClick={handleClick} profile={props.profile} loggedIn={props.loggedIn} user="employee" />
                     <div className="d-flex">
-                        <SideNavBar profile={props.profile} user="employee"/>
+                        <SideNavBar profile={props.profile} handleClick={handleClick} user="employee"/>
                         {handleJobs()}
                     </div>
             </div>

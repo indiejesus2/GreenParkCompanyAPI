@@ -57,7 +57,7 @@ const Login = props => {
         setCurrentStep(4)
     }
 
-    history.location.pathname != "/home"
+    // history.location.pathname != "/home"
 
     return (
         <div>
@@ -73,8 +73,8 @@ const Login = props => {
                 <SignIn signIn={props.signIn} currentStep={props.currentStep} handleClick={handleClick} handlePassword={handlePassword} errors={errors} handleClose={handleClose} />
                 <ForgotPassword currentStep={props.currentStep} updatePassword={props.updatePassword} handleValidation={handleValidation} user={"employee"} handleClose={handleClose} /> */}
             </div>
-            <div className="about">
-            </div>
+            {/* <div className="about">
+            </div> */}
         </div>
         )
 }

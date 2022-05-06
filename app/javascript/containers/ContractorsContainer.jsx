@@ -24,9 +24,9 @@ import Contact from '../components/Contact'
 
 class ContractorsContainer extends Component {
 
-    componentDidUpdate() {
-        this.props.currentUser()
-    }
+    // componentDidUpdate() {
+    //     this.props.currentUser()
+    // }
 
     handleSignout = () => {
         this.props.signOut()

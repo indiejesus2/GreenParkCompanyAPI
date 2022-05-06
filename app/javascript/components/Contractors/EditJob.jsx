@@ -183,7 +183,7 @@ export default function EditJob(props) {
         <div className="d-flex" id="body">
             <SideNavBar contractor={props.contractor} user="contractor"/>
         <div className="dashboard">
-            <h1>Add Job</h1>
+            <h1>Edit Job</h1>
             <div className="input"
                 style={{ "paddingInlineStart": 15 + "px", "paddingInlineEnd": 25 + "px"}}
             >
@@ -351,7 +351,7 @@ export default function EditJob(props) {
                     </Form.Group>
                 </Row>
                 <div className="submit">
-                    <Button type="submit" value="Edit Job" onClick={formik.handleSubmit}>Edit Job</Button>
+                    <Button type="submit" value="Save Changes" onClick={formik.handleSubmit}>Save Changes</Button>
                 </div>
             </Form>
             </div>

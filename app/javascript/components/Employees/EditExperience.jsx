@@ -83,6 +83,11 @@ export default function EditExperience(props) {
         }
     })
 
+    const handleExperience = (experience) => {
+        props.deleteExperience(experience)
+        props.history.push(`/employees/${values.employee_id}/profile`)
+    }
+
     return (
         <div className="employees">
         <NavBar handleSignout={props.signOut} profile={props.profile} loggedIn={props.loggedIn} user="employee" />
@@ -159,7 +164,7 @@ export default function EditExperience(props) {
                     <Button type="submit" value="Save Changes" onClick={formik.handleSubmit}>Save Changes</Button>
                 </div>
                 <div className="delete">
-                    <Button value="Delete Experience" onClick={() => props.deleteExperience(experience)}>Delete Experience</Button>
+                    <Button value="Delete Experience" onClick={() => props.handleExperience(experience)}>Delete Experience</Button>
                 </div>
                 </Form>
             </div>
