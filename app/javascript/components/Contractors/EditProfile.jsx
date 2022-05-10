@@ -32,7 +32,10 @@ export default function EditProfile(props) {
     const handleSubscription = () => {
         if (employer.status != true) {
             return (
-                <Button>Modify/Cancel Subscription</Button>
+                <div className="d-flex justify-content-around">
+                    {/* <Button>Modify/Cancel Subscription</Button> */}
+                    <Button type="submit" onClick={formik.handleSubmit}>Save Changes</Button>
+                </div>
             )
         } else {
             return (
@@ -86,8 +89,8 @@ export default function EditProfile(props) {
         <div className="employees">
             <NavBar handleSignout={props.signOut} contractor={employer} loggedIn={props.loggedIn} user="contractor" />
             <div className="d-flex">
-                {handleSideNav()}
-
+                {/* {handleSideNav()} */}
+                <SideNavBar contractor={employer} user="contractor"/>
                 <div className="dashboard"
                     style={{ "paddingInlineStart": 15 + "px", "paddingInlineEnd": 25 + "px"}}
                 >

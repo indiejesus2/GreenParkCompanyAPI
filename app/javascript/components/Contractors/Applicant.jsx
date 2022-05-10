@@ -20,13 +20,15 @@ const Applicant = (props) => {
     
     const applications = () => {
         let profiles = []
-        jobs.map(job => {
-            job.profiles.map(function(profile) {
-                if (!profiles.some(apple => apple.id == profile.id)) {
-                    profiles.push(profile)
-                } 
+        if (!!jobs) {
+            jobs.map(job => {
+                job.profiles.map(function(profile) {
+                    if (!profiles.some(apple => apple.id == profile.id)) {
+                        profiles.push(profile)
+                    } 
+                })
             })
-        })
+        }
         return profiles
     }
     

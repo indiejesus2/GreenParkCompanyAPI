@@ -35,6 +35,7 @@ class Api::V1::ProfilesController < ApplicationController
         if @profile.save
             if !!history_params 
                 for history in history_params
+                    byebug
                     together = history.merge(employee)
                     @history = Experience.new(together)
                     @history.save

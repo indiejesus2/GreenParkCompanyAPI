@@ -30,7 +30,8 @@ export default function SignIn(props) {
     }
 
     useEffect(() => {
-        if (props.employeeErrors != "" || props.contractorErrors != "") {
+        if (props.employeeErrors.length != 0 || props.contractorErrors.length != 0) {
+            debugger
             setAlert(true)
             setError(props.employeeErrors!=""?props.employeeErrors:props.contractorErrors)
         }

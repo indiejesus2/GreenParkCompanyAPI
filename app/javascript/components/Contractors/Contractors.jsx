@@ -19,6 +19,7 @@ const Contractors = props => {
 
 
     useEffect(() => {
+        debugger
         if (props.errors != errors) {
             setErrors(props.errors)
         } else if (props.loading != loading) {
@@ -102,8 +103,10 @@ if (loading === true) {
             <span className="sr-only">Loading...</span>
         </div>
         )
-    } else if (contractor.name == "") {
-        <Redirect to={`/contractors/${contractor.id}/editprofile`} />
+    } else if (!contractor.name) {
+        return (
+            <Redirect to={`/contractors/${contractor.id}/editprofile`} />
+        )
     } else if (contractor.status == false) {
         return (
             <div>
@@ -127,6 +130,7 @@ if (loading === true) {
             </div>
         )
     } else {
+        debugger
         return (
             <Redirect to="/home" />
         )

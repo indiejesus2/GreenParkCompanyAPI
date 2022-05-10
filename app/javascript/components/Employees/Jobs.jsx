@@ -103,13 +103,21 @@ const Jobs = (props) => {
             if (profile.license == job.license) {
                 matches["License"] = "Yes"
             }
-            
         return Object.entries(matches).splice(0, 3)
+    }
+
+    const handleHeading = () => {
+        if (props.savedJobs == false) {
+            <h1>My Matches</h1>
+        } else {
+            <h1>Saved Jobs</h1>
+        }
     }
 
     return (
         <div className="employees-jobs">
-            <h1>Jobs</h1>
+            {/* <h1>My Matches</h1> */}
+            {handleHeading()}
             {jobs.map(job =>
             <Card id={job.id} key={job.id} > 
                 {/* <Card.Header>
