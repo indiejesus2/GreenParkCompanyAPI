@@ -61,9 +61,9 @@ const Jobs = (props) => {
         setStep(2);
     }
 
-    if(currentStep !== 1) {
-        return null
-    }
+    // if(currentStep !== 1) {
+    //     return null
+    // }
 
     useEffect(() => {
         if (props.savedJobs == true && saved != jobs) {
@@ -108,9 +108,13 @@ const Jobs = (props) => {
 
     const handleHeading = () => {
         if (props.savedJobs == false) {
-            <h1>My Matches</h1>
+            return (
+                <h1>My Matches</h1>
+            )
         } else {
-            <h1>Saved Jobs</h1>
+            return (
+                <h1>Saved Jobs</h1>
+            )
         }
     }
 

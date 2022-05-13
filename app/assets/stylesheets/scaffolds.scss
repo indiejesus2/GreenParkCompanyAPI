@@ -585,7 +585,7 @@ a:hover {
   // display: flex;
   // justify-content: center;
   flex-flow: wrap;
-  padding-inline: 15px;
+  // padding-inline: 15px;
 }
 
 .employees-jobs .card {
@@ -1033,7 +1033,11 @@ tbody tr td:first-child {
 }
 
 .dashboard {
-  border-left: 4px solid #777777;
+  border-left: 4px solid #777777; 
+  padding-inline-start: 15px; 
+  padding-inline-end: 25px; 
+  margin-bottom: 25px;
+
 }
 // .employees-jobs #table-header {
 //   font-style: oblique;

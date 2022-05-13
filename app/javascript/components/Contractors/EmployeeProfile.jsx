@@ -146,7 +146,7 @@ const EmployeeProfile = props => {
     }
     
         return (
-            <div className={"employee-job"} style={{marginInlineStart: 15 + "px", marginInlineEnd: 25+"px", marginBottom: 25+"px"}}>
+            <div className={"employee-job"}>
                 <h1>Candidate Profile</h1>
             <Card id={candidate.id} key={candidate.id}>            
             <CloseButton variant="white" onClick={props.handleClose} style={{color: "#3fa1fc", position: "relative", top: 15+"px", right: 15+"px", alignSelf:"end"}}/>

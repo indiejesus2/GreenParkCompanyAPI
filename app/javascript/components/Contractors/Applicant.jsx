@@ -287,14 +287,14 @@ const Applicant = (props) => {
     const header = () => {
         if (candidates.length==0) {
             return (
-                <div className="newemployer" style={{paddingInline: 15+"px"}}>
+                <div className="newemployer">
                     <h1>Future Applicants</h1>
                     <h3>We're working hard to find applicants.</h3>
                 </div>
             )
         } else {
             return (
-                <div className="newemployer" style={{paddingInline: 15+"px"}}>
+                <div className="newemployer">
                     <h2>{candidates.length} {candidates.length<=1?"Applicant":"Applicants!"}</h2>
                     {handleApplications()}
                 </div>

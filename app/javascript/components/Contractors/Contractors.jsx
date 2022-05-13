@@ -19,10 +19,7 @@ const Contractors = props => {
 
 
     useEffect(() => {
-        debugger
-        if (props.errors != errors) {
-            setErrors(props.errors)
-        } else if (props.loading != loading) {
+        if (props.loading != loading) {
             setLoading(props.loading)
         } else if (props.contractor != contractor) {
             setContractor(props.contractor)
@@ -72,6 +69,7 @@ const Contractors = props => {
         } else if (currentStep == 1) {
             return (
                 <div className="dashboard">
+                    <h2>Posted Jobs</h2>
                     <JobsContainer jobs={jobs} contractor={contractor} candidates={props.candidates} profiles={props.profiles} files={props.files} />
                     {/* <JobsContainer jobs={props.jobs} contractor={props.contractor} candidates={props.candidates} profiles={props.profiles} editApplicant={props.editApplicant} signOut={props.signOutContractor} files={props.files}/> */}
                     {/* <Applicant contractor={contractor} jobs={jobs} applicants={props.applicants} editApplicant={props.editApplicant} currentStep={currentStep} handleApplicant={handleApplicant} /> */}
@@ -80,6 +78,7 @@ const Contractors = props => {
         } else if (currentStep == 2) {
             return (
             <div className="dashboard">
+                <h2>Employee Profile</h2>
                 <EmployeeProfile 
                 candidate={applicant.info}
                 application={applicant.application}

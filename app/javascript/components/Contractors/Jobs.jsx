@@ -45,7 +45,7 @@ const [jobs, setJobs] = useState(props.jobs ? props.jobs : [])
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td id="table-header-title" style={{ "border-bottom-width": 0 + "px", "border-right": 2 + "px solid white"}}>Applcants: {job.profiles.length}
+                                            <td id="table-header-title" style={{ "border-bottom-width": 0 + "px", "border-right": 2 + "px solid white"}}>Applicants: {job.profiles.length}
                                             </td>
                                             <td id="table-header-rating" style={{ "border-bottom-width": 0 + "px"}}>Date Posted: {job.createdDate}
                                             </td>

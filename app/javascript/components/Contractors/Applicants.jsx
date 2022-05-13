@@ -32,6 +32,7 @@ const Applicants = (props) => {
     const handleClose = () => {
         setShow(false);
     }
+
     const handleShow = (candidate) => {
         setApplicant(candidate)
         setShow(true);
@@ -152,7 +153,6 @@ const Applicants = (props) => {
     }
 
     const handleLocation = (e) => {
-        debugger
         const candidates = original.map(function(profile) {
             if (profile.application.distance <= parseInt(e.target.value)) {
                 return profile
@@ -223,14 +223,14 @@ const Applicants = (props) => {
     const header = () => {
         if (candidates.length==0) {
             return (
-                <div className="newemployer" style={{paddingInline: 15+"px"}}>
+                <div className="newemployer">
                     <h1>Future Applicants</h1>
                     <h3>We're working hard to find applicants.</h3>
                 </div>
             )
         } else {
             return (
-                <div className="newemployer" style={{paddingInline: 15+"px"}}>
+                <div className="newemployer">
                     <h1>{candidates.length} {candidates.length<=1?"Applicant":"Applicants!"}</h1>
                     {handleApplications()}
                 </div>
