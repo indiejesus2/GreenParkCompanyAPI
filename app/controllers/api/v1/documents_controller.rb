@@ -14,6 +14,8 @@ class Api::V1::DocumentsController < ApplicationController
         @employee.file.attach(params[:file])
         if @employee.save
             render json: EmployeeSerializer.new(@employee)
+        else
+            format.json { render json: @employee.errors, status: :unprocessable_entity }
         end
     end
 
@@ -22,8 +24,8 @@ class Api::V1::DocumentsController < ApplicationController
             params.permit(:filename, :employee_id, :content_type, )
         end
 
-    def set_employee
-        @employee = Employee.find(params[:employee_id])
-    end
+        def set_employee
+            @employee = Employee.find(params[:employee_id])
+        end
 
 end

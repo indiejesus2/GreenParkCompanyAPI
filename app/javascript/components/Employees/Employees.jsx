@@ -44,6 +44,7 @@ const Employees = props => {
 
     const handleClose = () => {
         setCurrentStep(1)
+        props.history.push(`/employees`)
     }
 
     const handlePassword = () => {

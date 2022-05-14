@@ -98,6 +98,7 @@ export default function employeesReducer(state = {employee: [], profile: [], exp
                 applicants: action.payload
             }
         case 'ERROR_EMPLOYEE':
+            debugger
             return {
                 ...state,
                 loading: false,
