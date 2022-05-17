@@ -93,9 +93,9 @@ const Profile = props => {
                 <h1>Profile</h1>
                 <Card id={employee.id} key={employee.id}>
                 <CloseButton variant="white" onClick={handleClose} style={{color: "#3fa1fc", position: "relative", top: 15+"px", right: 15+"px", alignSelf:"end"}}/> 
-            <Card.Body style={{"padding-top": "10px"}}>
+            <Card.Body style={{"padding-top": "10px", "display": "flex"}}>
                 <div className="job-body"
-                        // style={{"width": 50 + "%"}}
+                        style={{"width": 50 + "%"}}
                     >
                     <div className="job-table">
 
@@ -176,9 +176,17 @@ const Profile = props => {
                         </tbody>                
                     </Table>
                     </div>
+                    <div className="job-buttons">
+                        <Button onClick={handleProfile}>                            
+                                Edit Profile
+                        </Button>
+                        <Button onClick={handleExperience}>
+                            Add/Edit Experience
+                        </Button>
+                    </div>
                     </div>
                     <div className="description"
-                        // style={{"width": 50 + "%"}}
+                        style={{"width": 50 + "%"}}
                     >
                         {/* <span>{job.description}</span> */}
                         <div id="description-details">
@@ -191,14 +199,6 @@ const Profile = props => {
                             </div>
                         </div>
                 </Card.Body>
-                    <div className="job-buttons">
-                        <Button onClick={handleProfile}>                            
-                                Edit Profile
-                        </Button>
-                        <Button onClick={handleExperience}>
-                            Add/Edit Experience
-                        </Button>
-                    </div>
             </Card>
                 <div className="employees-jobs">
 

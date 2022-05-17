@@ -37,4 +37,3 @@ yarn-debug.log*
 blucollar
 blucollar.pub
 .env
-/config/master.key

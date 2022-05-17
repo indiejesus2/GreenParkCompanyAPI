@@ -373,7 +373,7 @@ export default function EditProfile(props) {
                             Upload Resume/CV
                             <EmployeeFile 
                             show={show} 
-                            employee={props.employee}
+                            employee={employee}
                             uploadFile={props.uploadFile}
                             fileLoading={props.fileLoading}
                             // uploadFile={} 

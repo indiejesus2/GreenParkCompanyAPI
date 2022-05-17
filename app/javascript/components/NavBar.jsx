@@ -6,7 +6,7 @@ import Logo from '../components/Logo'
 const NavBar = props => {
 
     const handleQuestion = () => {
-        if (props.profile.fname && history.location.pathname != "/employees/about") {
+        if (props.profile.fname) {
             return (
                 <h1 className="d-flex justify-content-center">{props.profile.fname.toUpperCase()}'S EMPLOYEE DASHBOARD</h1>
             )
@@ -14,7 +14,7 @@ const NavBar = props => {
     }
 
     const handleSubscription = () => {
-        if (props.contractor.name && history.location.pathname != "/contractors/about") {
+        if (props.contractor.name) {
             return (
                 <h1 className="d-flex justify-content-center">{props.contractor.name.toUpperCase()}'S DASHBOARD</h1>
             )
@@ -31,10 +31,10 @@ const NavBar = props => {
         
             return (
                 <div>
-                    <div className="employee-nav">
-                        <Logo user={props.user}/>
-                    </div>
-                    {handleQuestion()}
+
+                <div className="employee-nav">
+                    <Logo user={props.user}/>
+                </div>
                     <div className="employeeCollapseNav">
 
                         <Navbar collapseOnSelect expand='lg' variant="dark" >
@@ -42,7 +42,7 @@ const NavBar = props => {
                     <div className="employee-nav-toggle">
                         <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     </div>
-                    <div style={{textAlign: "center", zIndex:1, background:"black", position: "relative", bottom: 50+"px"}}>
+                    <div style={{textAlign: "center", zIndex:1, background:"black", position: "relative"}}>
                     <Navbar.Collapse id="basic-navbar-nav">
                             <Nav defaultActiveKey="/" className="flex-column me-auto">
                                 <Nav.Link as={Link} to="/employees" eventKey="1" onClick={props.handleClick}
@@ -137,6 +137,7 @@ const NavBar = props => {
                         {/* </Navbar.Collapse> */}
 
                 </div>                        
+                {handleQuestion()}
                 {/* <div className="nav"> */}
                     {/* <Breadcrumb>
                         <Breadcrumb.Item linkAs={Link} linkProps={{to: "/", onClick: props.handleSignout }} >Sign Out</Breadcrumb.Item>
@@ -147,18 +148,14 @@ const NavBar = props => {
             return (
                     <div>
     
-                        <div className="employee-nav">
-                            <Logo user={props.user}/>
-                        </div>
-                            {handleSubscription()}
-                        <div className="employeeCollapseNav">
+                    <div className="employee-nav">
+                        <Logo user={props.user}/>
+
+                        <div className="upperCollapseNav">
     
-                            <Navbar collapseOnSelect expand='lg' variant="dark">
+                        <Navbar collapseOnSelect expand='lg' variant="dark">
                     {/* <Container> */}
-                        <div className="employee-nav-toggle">
-                            <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                        </div>
-                        <div style={{textAlign: "center", zIndex:1, background:"black", position: "relative", bottom: 50+"px"}}>
+                        <Navbar.Toggle aria-controls="basic-navbar-nav" />
                         <Navbar.Collapse id="basic-navbar-nav">
                                 <Nav defaultActiveKey="/" className="flex-column me-auto">
                                     <Nav.Link as={Link} to="/contractors" eventKey="1"
@@ -168,7 +165,7 @@ const NavBar = props => {
                                             fontSize: "x-large",
                                         }}
                                     >
-                                        My Jobs
+                                        Jobs
                                     </Nav.Link>
                                     <Nav.Link as={Link} to={`/contractors/${props.contractor.id}/applicants`} eventKey="2"
                                         style={{
@@ -195,7 +192,7 @@ const NavBar = props => {
                                             fontSize: "x-large",
                                         }}
                                     >
-                                        My Profile
+                                        Profile
                                     </Nav.Link>
                                 </Nav>
                                 <Nav defaultActiveKey="/" className="flex-column me-auto"> 
@@ -229,8 +226,6 @@ const NavBar = props => {
                             {/* <Breadcrumb>
                             </Breadcrumb> */}
                         </Navbar.Collapse>
-                        </div>
-
                     {/* </Container> */}
                 </Navbar>
                 </div>
@@ -265,6 +260,8 @@ const NavBar = props => {
                         {/* <Breadcrumb>
                             <Breadcrumb.Item linkAs={Link} linkProps={{to: "/", onClick: props.handleSignout }} >Sign Out</Breadcrumb.Item>
                         </Breadcrumb> */}
+                    </div>
+                    {handleSubscription()}
                 </div>
             )
         } else if (history.location.pathname != "/home" && history.location.pathname != "/home/about") {

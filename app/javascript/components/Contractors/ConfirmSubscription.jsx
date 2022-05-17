@@ -16,7 +16,8 @@ const ConfirmSubscription = (props) => {
         <div className="signIn">
             <React.Fragment>    
                 <Modal show={show} animation backdrop >
-                    <Modal.Header>Confirm Subscription</Modal.Header>
+                    <Modal.Header>
+                    Confirm Subscription </Modal.Header>
                     <Modal.Body>
                         Please confirm the subscription type.
                         </Modal.Body>

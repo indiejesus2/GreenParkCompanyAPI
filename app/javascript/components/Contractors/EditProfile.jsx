@@ -91,7 +91,9 @@ export default function EditProfile(props) {
             <div className="d-flex">
                 {/* {handleSideNav()} */}
                 <SideNavBar contractor={employer} user="contractor"/>
-                <div className="dashboard">
+                <div className="dashboard"
+                    style={{ "paddingInlineStart": 15 + "px", "paddingInlineEnd": 25 + "px"}}
+                >
                     <h1>Edit Profile</h1>
                     <div className="input">
                     <Form onSubmit={formik.handleSubmit} className="profile-form">

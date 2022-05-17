@@ -16,7 +16,7 @@ const Employees = props => {
 
     const [jobs, setJobs] = useState(props.jobs)
     const [errors, setErrors] = useState(props.errors)
-    const [currentStep, setCurrentStep] = useState(0)
+    const [currentStep, setCurrentStep] = useState(1)
     const [listing, setListing] = useState("")
     
     const handleJob = (job) => {
@@ -28,12 +28,8 @@ const Employees = props => {
     useEffect(() => {
         if (props.errors != errors) {
             setErrors(props.errors)
-        } else if (props.jobs && props.jobs != jobs) {
+        } else if (props.jobs && props.job != jobs) {
             setJobs(props.jobs)
-        } else if (listing == "" && props.history.location.pathname.includes("job")) {
-            let path = props.history.location.pathname.split("/")
-            let job = jobs.filter(job => job.id == path[4])
-            handleJob(job)
         }
     })
 
@@ -48,7 +44,6 @@ const Employees = props => {
 
     const handleClose = () => {
         setCurrentStep(1)
-        props.history.push(`/employees`)
     }
 
     const handlePassword = () => {
@@ -102,9 +97,8 @@ const Employees = props => {
                     </h2>
                 </div>
             )
-        } else if (props.history.location.pathname == "/employees" || props.history.location.pathname == "/employees/saved_jobs") {
+        } else if (currentStep == 1) {
             // debugger
-            // setCurrentStep(1)
             return (
                 <div className="dashboard">
                     {handleHeading()}
@@ -112,8 +106,6 @@ const Employees = props => {
                 </div>
             )
         } else if (currentStep == 2) {
-            // history.location.path.includes("employees") && history.location.path.includes("job/")
-            // setCurrentStep(2)
             return (
                 <div className="dashboard">
                   <Job currentStep={currentStep} job={listing} employee={props.employee} applicants={props.applicants} handleClick={handleClick} handleClose={handleClose} handleApply={handleApply} handleSave={props.handleSave} handleSavedJob={handleSavedJob} />

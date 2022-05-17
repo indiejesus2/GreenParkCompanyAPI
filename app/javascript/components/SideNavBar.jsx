@@ -47,6 +47,7 @@ const SideNavBar = props => {
                     <Nav.Link as={Link} to={`/contractors/${props.contractor.id}/profile`}>
                         Profile
                     </Nav.Link>
+                    <Nav.Link as={Link} to={"/home/signOut"}>Sign Out</Nav.Link>
                     {/* <Nav.Link href={{to: "/signOut", onClick: props.handleSignout }} >Sign Out</Nav.Link> */}
                 </Nav>
                 {/* <div className="sideNavCollapse">

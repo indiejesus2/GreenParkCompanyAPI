@@ -183,7 +183,7 @@ export default function EditJob(props) {
         <div className="d-flex" id="body">
             <SideNavBar contractor={props.contractor} user="contractor"/>
         <div className="dashboard">
-            <h2>Edit Job</h2>
+            <h1>Edit Job</h1>
             <div className="input"
                 style={{ "paddingInlineStart": 15 + "px", "paddingInlineEnd": 25 + "px"}}
             >
