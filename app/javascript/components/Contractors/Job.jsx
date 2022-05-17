@@ -20,7 +20,6 @@ const Job = props => {
 
 
     const handleApplicants = () => {
-        debugger
         if (currentStep == 1) {
             return (
                 <Applicants job={job} contractor={props.contractor} editApplicant={props.editApplicant} handleApplicant={handleApplicant} />
@@ -92,11 +91,11 @@ const Job = props => {
 
                             <div className="employee-job">
                                 <h2>Job Listing</h2>
-                                <Card id={job.id} key={job.id} >
+                                <Card id={job.id} key={job.id}>
                                 <CloseButton variant="white" onClick={() => handleJob()} style={{color: "#3fa1fc", position: "relative", top: 15+"px", right: 15+"px", alignSelf:"end"}}/> 
-                                    <Card.Body style={{"padding-top": "10px", "display": "flex"}}>
+                                    <Card.Body style={{"padding-top": "10px"}}>
                                         <div className="job-body"
-                                                style={{"width": 50 + "%"}}
+                                                // style={{"width": 50 + "%"}}
                                             >
                                             <div className="job-table">
 
@@ -168,7 +167,7 @@ const Job = props => {
                                             </div>
                                             </div>
                                             <div className="description"
-                                                style={{"maxWidth": 50 + "%"}}
+                                                // style={{"maxWidth": 50 + "%"}}
                                             >
                                                 {/* <span>{job.description}</span> */}
                                                 <div id="description-details">

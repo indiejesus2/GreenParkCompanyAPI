@@ -57,8 +57,8 @@ class ContractorsContainer extends Component {
         return (
             <div>
                 <Switch>
-                    <Route path='/contractors/contact' render={(routerProps) => <Contact {...routerProps} signOut={this.props.signOut} user="contractor" contractor={this.props.contractor} />}></Route>
-                    <Route path='/contractors/about' render={(routerProps) => <About {...routerProps} signOut={this.props.signOut} user="contractor" contractor={this.props.contractor} />}></Route>
+                    <Route path='/contractors/contact' render={(routerProps) => <Contact {...routerProps} loggedIn={this.props.loggedIn} signOut={this.props.signOut} user="contractor" contractor={this.props.contractor} />}></Route>
+                    <Route path='/contractors/about' render={(routerProps) => <About {...routerProps} loggedIn={this.props.loggedIn} signOut={this.props.signOut} user="contractor" contractor={this.props.contractor} />}></Route>
                     <Route path='/contractors/:id/jobs/:job_id/employees/:employee_id' render={(routerProps) => <EmployeeProfile {...routerProps} loading={this.props.loading} contractor={this.props.contractor} jobs={this.props.jobs} signOut={this.props.signOutContractor} files={this.props.files} />}></Route>
                     <Route path='/contractors/:id/profile' render={(routerProps) => <Profile {...routerProps} loggedIn={this.props.loggedIn} contractor={this.props.contractor} signOut={this.props.signOutContractor} updateProfile={this.props.updateProfile} />}></Route>
                     <Route path='/contractors/:id/editprofile' render={(routerProps) => <EditProfile {...routerProps} loggedIn={this.props.loggedIn} contractor={this.props.contractor} updateProfile={this.props.updateProfile} signOut={this.props.signOutContractor} />}></Route>

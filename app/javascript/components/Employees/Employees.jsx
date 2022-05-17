@@ -28,8 +28,12 @@ const Employees = props => {
     useEffect(() => {
         if (props.errors != errors) {
             setErrors(props.errors)
-        } else if (props.jobs && props.job != jobs) {
+        } else if (props.jobs && props.jobs != jobs) {
             setJobs(props.jobs)
+        } else if (listing == "" && props.history.location.pathname.includes("job")) {
+            let path = props.history.location.pathname.split("/")
+            let job = jobs.filter(job => job.id == path[4])
+            handleJob(job)
         }
     })
 

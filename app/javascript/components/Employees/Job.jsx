@@ -2,10 +2,38 @@ import React, { useState, useEffect } from 'react'
 import { Modal, Button, Table, Container, Row, Card, CloseButton } from 'react-bootstrap'
 
 const Job = props => {
-    
+
     const job = props.job
     const applicant = props.applicants.find(applicant => applicant.job_id == job.id)
     const [currentStep, setStep] = useState(props.currentStep)
+    const [width, setWidth] = useState("")
+    const [card, setCard] = useState("")
+
+    const size = useWindowSize();
+
+    function useWindowSize() {
+        const [windowSize, setWindowSize] = useState({
+            width: undefined,
+            height: undefined
+        });
+
+        useEffect(() => {
+            function handleResize() {
+                setWindowSize({
+                    width: window.innerWidth,
+                    height: window.innerHeight
+                });
+            }
+            
+            window.addEventListener("resize", handleResize);
+            
+            handleResize();
+            
+            return () => window.removeEventListener("resize", handleResize);
+        }, []);
+
+        return windowSize;
+    }
     
     const rate = (rating) => {
         if (rating == 6 || rating == 5) {
@@ -49,6 +77,22 @@ const Job = props => {
         return null
     }
 
+    // const handleCard = () => {
+    //     if (size.width <= 580) {
+    //         setCard("grid")
+    //     } else {
+    //         setCard("flex")
+    //     }
+    // }
+
+    // handleWidth = () => {
+    //     if (size.width <= 580) {
+    //         setWidth(100)
+    //     } else {
+    //         setWidth(50)
+    //     }
+    // }
+
     return (
             <div className="employee-job"
                 style={{ "paddingInlineStart": 15 + "px", "paddingInlineEnd": 25 + "px"}}
@@ -70,9 +114,9 @@ const Job = props => {
                         </span>
                 </div>
             </Card.Title> */}
-            <Card.Body style={{"padding-top": "10px", "display": "flex"}}>
+            <Card.Body style={{"padding-top": "10px"}}>
                 <div className="job-body"
-                        style={{"width": 50 + "%"}}
+                        // style={{"width": width + "%"}}
                     >
                     <div className="job-table">
 
@@ -151,13 +195,9 @@ const Job = props => {
                         </tr>
                     </Table>
                     </div>
-                    <div className="job-buttons">
-                        {props.handleApply(job)}
-                        {props.handleSavedJob(job)}
-                    </div>
                     </div>
                     <div className="description"
-                        style={{"maxWidth": 50 + "%"}}
+                        // style={{"maxWidth": width + "%"}}
                     >
                         {/* <span>{job.description}</span> */}
                         <div id="description-details">
@@ -168,6 +208,10 @@ const Job = props => {
                         </div>
                     </div>
             </Card.Body>
+                    <div className="job-buttons mb-2">
+                        {props.handleApply(job)}
+                        {props.handleSavedJob(job)}
+                    </div>
                     {/* <CloseButton onClick={props.handleClose} 
                         style={{
                             position: "relative",

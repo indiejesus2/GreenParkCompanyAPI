@@ -73,8 +73,8 @@ class EmployeesContainer extends Component {
                     <SideNavBar profile={this.props.profile} user="employee"/> */}
                 {/* <Logo user="employee"/> */}
                     <Switch>
-                        <Route path='/employees/contact' render={(routerProps) => <Contact {...routerProps} signOut={this.props.signOut} user="employee" profile={this.props.profile} />}></Route>
-                        <Route path='/employees/about' render={(routerProps) => <About {...routerProps} signOut={this.props.signOut} user="employee" profile={this.props.profile} />}></Route>
+                        <Route path='/employees/contact' render={(routerProps) => <Contact {...routerProps} loggedIn={this.props.loggedIn} signOut={this.props.signOut} user="employee" profile={this.props.profile} />}></Route>
+                        <Route path='/employees/about' render={(routerProps) => <About {...routerProps} loggedIn={this.props.loggedIn} signOut={this.props.signOut} user="employee" profile={this.props.profile} />}></Route>
                         <Route path='/employees/:id/experience/add_experience' render={(routerProps) => <AddExperience {...routerProps} employee={this.props.employee} profile={this.props.profile} addExperience={this.props.addExperience} loggedIn={this.props.loggedIn}/>}></Route>
                         <Route path='/employees/:id/experience/:id' render={(routerProps) => <EditExperience {...routerProps} employee={this.props.employee} profile={this.props.profile} experience={this.props.experience} updateProfile={this.props.updateProfile} uploadFile={this.props.uploadFile} editExperience={this.props.editExperience} deleteExperience={this.props.deleteExperience} loggedIn={this.props.loggedIn}/>}></Route>
                         <Route path='/employees/:id/edit_profile' render={(routerProps) => <EditProfile {...routerProps} employee={this.props.employee} profile={this.props.profile} experience={this.props.experience} updateProfile={this.props.updateProfile} uploadFile={this.props.uploadFile} fileLoading={this.props.fileLoading} loggedIn={this.props.loggedIn}/>}></Route>

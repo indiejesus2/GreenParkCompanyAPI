@@ -26,6 +26,7 @@ export default function contractorsReducer(state = {contractor: [], jobs: [], ap
                 applicants: action.payload.applicants,
                 files: action.payload.files,
                 loggedIn: true,
+                contractorErrors: [],
                 loading: false
             }
         case 'CURRENT_CONTRACTOR':
