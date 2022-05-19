@@ -62,7 +62,7 @@ const Profile = props => {
     const schedule = employee.schedule.length > 0 ? employee.schedule : []
     const shifts = employee.shifts.length > 0 ? employee.shifts : []
     // const file = props.employee.file
-    const type = props.document?props.document.split("/")[1] : []
+    // const type = props.document?props.document.split("/")[1] : []
 
     return (
         <div className="employees">
