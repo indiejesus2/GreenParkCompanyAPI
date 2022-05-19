@@ -16,7 +16,7 @@ digitalocean:
   # <%= Rails.application.credentials.dig(:digitalocean, :aws_secret_access_key) %>
   
   region: us-east-1
-  bucket: bc-resume
+  bucket: bc_resume
 
 # Remember not to checkin your GCS keyfile to a repository
 # google:
