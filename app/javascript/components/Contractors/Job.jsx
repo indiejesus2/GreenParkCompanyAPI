@@ -20,7 +20,6 @@ const Job = props => {
 
 
     const handleApplicants = () => {
-        debugger
         if (currentStep == 1) {
             return (
                 <Applicants job={job} contractor={props.contractor} editApplicant={props.editApplicant} handleApplicant={handleApplicant} />
@@ -76,7 +75,7 @@ const Job = props => {
 
     const handleApplicant = (candidate) => {
         setApplicant(candidate)
-        setStep(2);
+        setStep(2)
     }
 
     const handleClose = () => {
@@ -90,15 +89,13 @@ const Job = props => {
                             <SideNavBar contractor={props.contractor} user="contractor"/>
                             <div className="dashboard">
 
-                            <div className="employee-job"
-                                style={{ "paddingInlineStart": 15 + "px", "paddingInlineEnd": 25 + "px", "marginBottom": 25 + "px"}}
-                            >
+                            <div className="employee-job">
                                 <h2>Job Listing</h2>
-                                <Card id={job.id} key={job.id} >
+                                <Card id={job.id} key={job.id}>
                                 <CloseButton variant="white" onClick={() => handleJob()} style={{color: "#3fa1fc", position: "relative", top: 15+"px", right: 15+"px", alignSelf:"end"}}/> 
-                                    <Card.Body style={{"padding-top": "10px", "display": "flex"}}>
+                                    <Card.Body style={{"padding-top": "10px"}}>
                                         <div className="job-body"
-                                                style={{"width": 50 + "%"}}
+                                                // style={{"width": 50 + "%"}}
                                             >
                                             <div className="job-table">
 
@@ -170,7 +167,7 @@ const Job = props => {
                                             </div>
                                             </div>
                                             <div className="description"
-                                                style={{"maxWidth": 50 + "%"}}
+                                                // style={{"maxWidth": 50 + "%"}}
                                             >
                                                 {/* <span>{job.description}</span> */}
                                                 <div id="description-details">

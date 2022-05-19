@@ -27,6 +27,7 @@ export default function employeesReducer(state = {employee: [], profile: [], exp
                 file: employee.file,
                 document: employee.document,
                 loggedIn: true,
+                employeeErrors: [],
                 loading: false
             }
         case 'CURRENT_EMPLOYEE':

@@ -5,6 +5,32 @@ import Job from './Job'
 
 const Jobs = (props) => {
 
+    const size = useWindowSize();
+
+    function useWindowSize() {
+        const [windowSize, setWindowSize] = useState({
+            width: undefined,
+            height: undefined
+        });
+
+        useEffect(() => {
+            function handleResize() {
+                setWindowSize({
+                    width: window.innerWidth,
+                    height: window.innerHeight
+                });
+            }
+            
+            window.addEventListener("resize", handleResize);
+            
+            handleResize();
+            
+            return () => window.removeEventListener("resize", handleResize);
+        }, []);
+
+        return windowSize;
+    }
+
     const rate = (rating) => {
         if (rating == 6 || rating == 5) {
             return (
@@ -61,9 +87,9 @@ const Jobs = (props) => {
         setStep(2);
     }
 
-    if(currentStep !== 1) {
-        return null
-    }
+    // if(currentStep !== 1) {
+    //     return null
+    // }
 
     useEffect(() => {
         if (props.savedJobs == true && saved != jobs) {
@@ -108,9 +134,83 @@ const Jobs = (props) => {
 
     const handleHeading = () => {
         if (props.savedJobs == false) {
-            <h1>My Matches</h1>
+            return (
+                <h1>My Matches</h1>
+            )
         } else {
-            <h1>Saved Jobs</h1>
+            return (
+                <h1>Saved Jobs</h1>
+            )
+        }
+    }
+
+    const handleTable = (job) => {
+        if (size.width > 580) {
+            return (
+                <div className="d-flex">
+                    <Table style={{ "marginBottom": 2.5 + "px"}}>
+                        <tbody>
+                            <tr>
+                                <td id="table-header" style={{ "border-bottom-width": 0 + "px", "border-right": 2 + "px solid white"}}>
+                                    Company: {job.company}
+                                </td>
+                                <td id="table-header-location" style={{ "border-bottom-width": 0 + "px"}}>
+                                    Distance: {Math.round(applicants.find(applicant => applicant.job_id == job.id).distance)} Miles
+                                </td>
+                            </tr>
+                {/* //    as="h2" */}
+                            <tr>
+                                <td id="table-header-title" style={{ "border-bottom-width": 0 + "px", "border-right": 2 + "px solid white"}}>
+                                    Job Title: {job.title}<span></span>
+                                </td>
+                                    {/* as="h5" */}
+                                <td id="table-header-rating" style={{ "border-bottom-width": 0 + "px"}}>
+                                    Rating: {rate(applicants.find(applicant => applicant.job_id == job.id).rating)}<span></span>  
+
+                                </td>
+                            </tr>
+                        </tbody>
+                    </Table>
+                        <div className="employee-jobs-buttons">
+                                <Button id="details" onClick={() => props.handleJob(job)}>Details</Button>
+                                {props.handleApply(job)}
+                        </div>
+                </div>
+            )
+        } else {
+            // if (size.width <=580)
+            return (
+                <div>
+                    <Table style={{ "marginBottom": 2.5 + "px"}}>
+                        <tbody>
+                            <tr>
+                                <td id="table-header" style={{ "border-bottom-width": 0 + "px"}}>
+                                    Company: {job.company}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td id="table-header-location" style={{ "border-bottom-width": 0 + "px"}}>
+                                    Distance: {Math.round(applicants.find(applicant => applicant.job_id == job.id).distance)} Miles
+                                </td>
+                            </tr>
+                            <tr>
+                                <td id="table-header-title" style={{ "border-bottom-width": 0 + "px"}}>
+                                    Job Title: {job.title}<span></span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td id="table-header-rating" style={{ "border-bottom-width": 0 + "px"}}>
+                                    Rating: {rate(applicants.find(applicant => applicant.job_id == job.id).rating)}<span></span>  
+                                </td>
+                            </tr>
+                        </tbody>
+                    </Table>
+                    <div className="employee-jobs-buttons">
+                            <Button id="details" onClick={() => props.handleJob(job)}>Details</Button>
+                            {props.handleApply(job)}
+                    </div>
+                </div>
+            )
         }
     }
 
@@ -123,51 +223,8 @@ const Jobs = (props) => {
                 {/* <Card.Header>
                 </Card.Header> */}
                 <Card.Body className="d-flex">
-                    <Table style={{ "marginBottom": 2.5 + "px"}}>
-                {/* <div className="d-flex justify-content-between"> */}
-                    {/* <Card.Title className="mb-2">{job.company}</Card.Title> */}
-                    <tbody>
-                    <tr>
-                        <td id="table-header" style={{ "border-bottom-width": 0 + "px", "border-right": 2 + "px solid white"}}>
-                            Company: {job.company}
-                        </td>
-                            {/* Distance: */}
-                        {/* </td>  */}
-                        {/* <td id="table-value-top" style={{ "border-bottom-width": 0 + "px", }}> */}
-                            
-                            {/* {Math.round(applicants.find(applicant => applicant.job_id == job.id).distance)} Miles */}
-                        
-                        <td id="table-header-location" style={{ "border-bottom-width": 0 + "px"}}>
-                            Distance: {Math.round(applicants.find(applicant => applicant.job_id == job.id).distance)} Miles
-                            {/* Location: */}
-                        {/* </td>
-                        <td id="table-value-top" style={{ "border-bottom-width":  0 + "px"}}>  */}
-                            
-                        </td>
-                    </tr>
-                {/* //    as="h2" */}
-                    <tr>
-                        <td id="table-header-title" style={{ "border-bottom-width": 0 + "px", "border-right": 2 + "px solid white"}}>Job Title: {job.title}<span></span>
-                        {/* </td> */}
-                        {/* <td id="table-value-bottom" style={{ "border-bottom-width": 0 + "px", "border-right": 2 + "px solid white"}}> */}
-                        </td>
-                            {/* as="h5" */}
-                        <td id="table-header-rating" style={{ "border-bottom-width": 0 + "px"}}>Rating: {rate(applicants.find(applicant => applicant.job_id == job.id).rating)}<span></span>  
-                        {/* <td id="table-value-bottom" style={{ "border-bottom-width": 0 + "px"}}>  */}
-                            
-                        </td>
-                        {/* </td> */}
-                            {/* {job.city}, {job.state} */}
-                    </tr>
-                    {/* <tr>
-                    </tr> */}
-                     </tbody>
-                    {/* </div> */}
-                    </Table>
-                        <div className="employee-jobs-buttons">
-                                <Button id="details" onClick={() => props.handleJob(job)}>Details</Button>
-                                {props.handleApply(job)}
-                        </div>
+                    {handleTable(job)}
+                    
                     {/* <div className="matches">
                         {Object.values(jobMatch(job)).map(match =>
                             <Card.Text style={{ marginBlockEnd: 1 + `px`}}>{match[0]}: {match[1]}</Card.Text>

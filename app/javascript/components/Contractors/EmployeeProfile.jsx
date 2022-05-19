@@ -146,13 +146,13 @@ const EmployeeProfile = props => {
     }
     
         return (
-            <div className={"employee-job"} style={{marginInlineStart: 15 + "px", marginInlineEnd: 25+"px", marginBottom: 25+"px"}}>
+            <div className={"employee-job"}>
                 <h1>Candidate Profile</h1>
             <Card id={candidate.id} key={candidate.id}>            
             <CloseButton variant="white" onClick={props.handleClose} style={{color: "#3fa1fc", position: "relative", top: 15+"px", right: 15+"px", alignSelf:"end"}}/>
-            <Card.Body style={{"padding-top": "10px", "display": "flex"}}>
+            <Card.Body style={{"padding-top": "10px"}}>
                 <div className="job-body"
-                        style={{"width": 50 + "%"}}
+                        // style={{"width": 50 + "%"}}
                     >
                     <div className="job-table">
 
@@ -231,17 +231,17 @@ const EmployeeProfile = props => {
                         </tr>
                     </Table>
                     </div>
-                    <div className="job-buttons">
+                    {/* <div className="job-buttons">
                         {handleAcceptance()}
                         {handleResume()}
                     </div>
                     <div className="job-buttons">
                         {handleDecline()}
                         <Button onClick={() => props.handleContact(candidate)}>Contact Applicant</Button>
-                    </div>
+                    </div> */}
                     </div>
                     <div className="description"
-                        style={{"width": 50 + "%"}}
+                        // style={{"width": 50 + "%"}}
                     >
                         {/* <span>{job.description}</span> */}
                         <div id="description-details">
@@ -288,15 +288,21 @@ const EmployeeProfile = props => {
                         </div>
                     </div>
             </Card.Body>
+            <div className="job-buttons">
+                        {handleAcceptance()}
+                        {handleResume()}
+                    </div>
+                    <div className="job-buttons">
+                        {handleDecline()}
+                        <Button onClick={() => props.handleContact(candidate)}>Contact Applicant</Button>
+                    </div>
             </Card>            
             {/* <Modal show={props.show}>
                 <Modal.Header>
-
                 <Modal.Title>
                     <h2>{candidate.fname} {candidate.lname} - {candidate.city}, {candidate.state}</h2>
                     <h5>{candidate.trade}</h5>
                     <h6>{handleInterest(application)}</h6>
-
                 </Modal.Title>
                 </Modal.Header>
             <Modal.Body>

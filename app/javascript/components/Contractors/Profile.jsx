@@ -26,15 +26,13 @@ const Profile = props => {
             <div className="d-flex">
                 <SideNavBar contractor={contractor} user="contractor"/>
                 <div className="dashboard">
-                    <div className="employee-job"
-                        style={{ "paddingInlineStart": 15 + "px", "paddingInlineEnd": 25 + "px"}}
-                    >
+                    <div className="employee-job">
                     <h1>Profile</h1>
                     <Card>
                         <CloseButton variant="white" onClick={handleClose} style={{color: "#3fa1fc", position: "relative", top: 15+"px", right: 15+"px", alignSelf:"end"}}/> 
-                        <Card.Body style={{"padding-top": "10px", "display": "flex"}}>
+                        <Card.Body style={{"padding-top": "10px"}}>
                             <div className="job-body"
-                                style={{"width": 50 + "%"}}
+                                // style={{"width": 50 + "%"}}
                             >
                             <div className="job-table">
                             <Table>
@@ -74,12 +72,10 @@ const Profile = props => {
                                 </tbody>
                             </Table>
                             </div>
-                                <div className="d-flex justify-content-center">
-                                    <Button onClick={handleClick}>Edit Profile</Button>
-                                </div>
+                                
                             </div>                                
                                         <div className="description"
-                                                style={{"width": 50 + "%"}}
+                                                // style={{"width": 50 + "%"}}
                                         >
                         {/* <span>{job.description}</span> */}
                                         <div id="description-details">
@@ -92,6 +88,9 @@ const Profile = props => {
                                         </div>
                                     </div>
                         </Card.Body>
+                        <div className="d-flex justify-content-center">
+                                    <Button onClick={handleClick}>Edit Profile</Button>
+                                </div>
                     </Card>
                     </div>
             </div>

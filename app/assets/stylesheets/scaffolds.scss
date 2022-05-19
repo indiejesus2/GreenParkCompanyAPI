@@ -278,23 +278,42 @@ a:hover {
   }
 }
 
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 975px) {
   .employeeCollapseNav {
     display: none !important
   }
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 775px) {
+  .employee-job Card {
+    display: grid;
+  }
+
+  .job-body {
+    width: 100%
+  }
+
+  .description {
+    max-width: 100%
+  }
+
+  .job-body {
+    border-right: 0px !important;
+  }
+}
+
+@media only screen and (max-width: 1000px) {
   .employee-nav-toggle {
     display: flex;
     justify-content: end;
     padding-inline: 15px;
     position: relative;
-    bottom: 65px;
   }
 
   .employee-nav {
-    scale: 75%;
+    bottom: 7rem;
+    right: 3rem;
+    // scale: 75%
   }
 
   .employeeCollapseNav nav {
@@ -306,7 +325,7 @@ a:hover {
   // }
 }
 
-@media only screen and (max-width: 580px) {
+@media only screen and (max-width: 680px) {
   .home-nav {
     display: flex !important;
     justify-content: right !important;
@@ -334,6 +353,21 @@ a:hover {
   .signIn Form {
     width: 100%
   }
+
+  .employee-jobs-buttons {
+    display: flex !important;
+    justify-content: space-evenly;
+  }
+
+  .employee-nav img {
+    scale: 65%;
+  }
+
+  .employee-nav-toggle {
+    scale: 85%;
+    bottom: 7rem;
+    left: 0.5rem;
+  }
 }
 
 @media only screen and (max-width: 1000px) {
@@ -351,7 +385,7 @@ a:hover {
   
   .employee-nav {
     display: flex !important;
-    justify-content: center !important; 
+    justify-content: center; 
   }
   
   .upperCollapseNav {
@@ -387,8 +421,21 @@ a:hover {
 
   .navCollapse {
     position: relative;
-    bottom: 80px;
+    bottom: 125px;
   }
+
+  .employee-job Card {
+    display: flex;
+  }
+
+  .job-body {
+    width: 50%
+  }
+
+  .description {
+    max-width: 50%
+  }
+  
 }
 
 @media only screen and (max-width: 580px) {
@@ -593,6 +640,7 @@ a:hover {
   margin-block-end: 10px;
   background-color: #202020;
   border: #175785;
+  padding-bottom: 2rem;
 }
 
 .employees-jobs .matches {
@@ -636,6 +684,7 @@ a:hover {
   background-color: #262424;
   // padding-block: 15px;
   padding-inline: 7.5px;
+  margin-bottom: 15px;
 }
 
 .job-buttons {
@@ -1034,6 +1083,11 @@ tbody tr td:first-child {
 
 .dashboard {
   border-left: 4px solid #777777;
+  padding-inline-start: 15px; 
+  padding-inline-end: 25px; 
+  margin-bottom: 25px;
+  position: relative;
+  bottom: 50px;
 }
 // .employees-jobs #table-header {
 //   font-style: oblique;
