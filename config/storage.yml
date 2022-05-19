@@ -10,12 +10,12 @@ local:
 digitalocean:
   service: S3
   endpoint: https://bc-resume.nyc3.digitaloceanspaces.com/
-access_key_id: <%= Rails.application.credentials.dig(:digitalocean, :aws_access_key_id) %>
+  access_key_id: <%= Rails.application.credentials.dig(:digitalocean, :aws_access_key_id) %>
   # <%= ENV['ACCESS_KEY_ID'] %>
   secret_access_key: <%= Rails.application.credentials.dig(:digitalocean, :aws_secret_access_key) %>
   # <%= ENV['ACCESS_KEY_ID'] %>
   region: us-east-1
-  bucket: bc-resume
+  bucket: [bc-resume]
 
 # Remember not to checkin your GCS keyfile to a repository
 # google:
