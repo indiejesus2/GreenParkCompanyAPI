@@ -122,7 +122,7 @@ const Employees = props => {
         }
     }
 
-    if (loading === true) {
+    if (props.loading === true) {
         return (
         <div className="spinner">
             <NavBar handleSignout={props.signOut} contractor={props.contractor} user="contractor" />
