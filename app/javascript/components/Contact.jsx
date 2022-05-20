@@ -28,7 +28,7 @@ const Contact = props => {
         },
         validationSchema: schema,
         onSubmit: values => {
-                props.contactMsg(values)
+            props.contactMsg(values)
         },
     });
 
@@ -114,7 +114,7 @@ const Contact = props => {
                                 </Form.Group>
                                 </Row>
                                 <div>
-                    <Button variant="primary" type="submit" style={{ "width": 100 + "%"}}>Sign-In</Button>
+                    <Button variant="primary" type="submit" style={{ "width": 100 + "%"}}>Submit Feedback</Button>
                 </div>
                     </Modal.Body>
                     </Form>

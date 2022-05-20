@@ -19,6 +19,7 @@ import { currentUser } from '../actions/currentUser'
 import { clearEmployeeErrors } from '../actions/clearEmployeeErrors'
 import { clearContractorErrors } from '../actions/clearContractorErrors'
 import {signOut} from '../actions/signOut'
+import { contactMsg } from '../actions/contactMsg'
 import NavBar from '../components/NavBar'
 
 class LoginContainer extends Component {
@@ -100,7 +101,7 @@ class LoginContainer extends Component {
                 <div>
                 <NavBar />
                 <Switch>
-                    <Route path='/home/contact' render={(routerProps) => <Contact {...routerProps} currentStep={5} signOut={this.props.signOut} user="none"/>}></Route>
+                    <Route path='/home/contact' render={(routerProps) => <Contact {...routerProps} currentStep={5} signOut={this.props.signOut} user="none" contactMsg={this.props.contactMsg}/>}></Route>
                     <Route path='/home/about' render={(routerProps) => <Login {...routerProps} signOut={this.props.signOut} user="none"/>}></Route>
                     <Route path='/home/reset_password' render={(routerProps) => <TempPassword {...routerProps} resetPassword={this.props.resetPassword} currentStep={4} signOut={this.props.signOut}/>}></Route>
                     <Route path='/home/forgot_password' render={(routerProps) => <ForgotPassword {...routerProps} updatePassword={this.props.updatePassword} currentStep={3} signOut={this.props.signOut} employeesErrors={this.props.employeesErrors} contractorErrors={this.props.contractorErrors} />}></Route>
@@ -138,6 +139,7 @@ const mapDispatchToProps = dispatch => ({
     currentUser: () => dispatch(currentUser()),
     clearEmployeeErrors: () => dispatch(clearEmployeeErrors()),
     clearContractorErrors: () => dispatch(clearContractorErrors()),
+    contactMsg: msg => dispatch(contactMsg(msg)),
     // handleClick: () => dispatch(handleClick()),
     signOut: () => dispatch(signOut())
 })

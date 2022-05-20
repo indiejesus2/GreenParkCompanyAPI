@@ -24,6 +24,7 @@ Rails.application.routes.draw do
       post '/reset_password', to: 'auth#reset_password'
       get '/employees/(/:id)/applicants/(:job_id)', to: 'employees#apply'
       get '/employees/(/:id)/jobs/(:job_id)/save', to: 'employees#saveJob'
+      post '/contact' to: 'auth#contact'
       delete '/signout', to: 'auth#destroy'
     end
   end

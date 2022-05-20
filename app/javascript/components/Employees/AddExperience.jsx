@@ -82,9 +82,10 @@ export default function AddExperience(props) {
     return (
         <div className="employees">
         <NavBar handleSignout={props.signOut} profile={props.profile} loggedIn={props.loggedIn} user="employee" />
-        <div className="d-flex">
+        <div className="page">
             <SideNavBar profile={props.profile} user="employee"/>
             <div className="dashboard">
+                <div className="employee-job">
             <h1>Add Experience</h1>
             <div className="input"
                 style={{ "paddingInlineStart": 15 + "px", "paddingInlineEnd": 25 + "px"}}
@@ -155,6 +156,7 @@ export default function AddExperience(props) {
                 </div>
                 
                 </Form>
+                </div>
                 </div>
             </div>
             </div>

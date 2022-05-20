@@ -188,10 +188,11 @@ export default function AddJob(props) {
             style={{ "paddingInlineStart": 15 + "px", "paddingInlineEnd": 25 + "px"}}
         >
         <NavBar handleSignout={props.signOut} contractor={props.contractor} loggedIn={props.loggedIn} user="contractor" />
-        <div className="d-flex" id="body">
+        <div className="page" id="body">
             <SideNavBar contractor={props.contractor} user="contractor"/>
         <div className="dashboard">
             <h1>Add Job</h1>
+            <div className="employee-job">
             <div className="input"
                 style={{ "paddingInlineStart": 15 + "px", "paddingInlineEnd": 25 + "px"}}
             >
@@ -362,6 +363,7 @@ export default function AddJob(props) {
                     <Button type="submit" value="Add Job" onClick={formik.handleSubmit}>Add Job</Button>
                 </div>
             </Form>
+            </div>
             </div>
         </div>
         </div>

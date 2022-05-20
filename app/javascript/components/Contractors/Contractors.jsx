@@ -5,6 +5,7 @@ import EmployeeProfile from './EmployeeProfile'
 import JobsContainer from '../../containers/JobsContainer'
 import NavBar from '../NavBar'
 import SideNavBar from '../SideNavBar'
+import { Image } from 'react-bootstrap'
 
 const Contractors = props => {
 
@@ -100,7 +101,10 @@ if (loading === true) {
         return (
         <div className="spinner">
             <NavBar handleSignout={props.signOut} contractor={props.contractor} user="contractor" />
-            <span className="sr-only">Loading...</span>
+            <div className="homepage-header">
+                <Image fluid="true" src="/images/blucollarO.png" alt="collar" />
+                <span className="sr-only">Loading...</span>
+            </div>
         </div>
         )
     } else if (!contractor.name) {
@@ -122,7 +126,7 @@ if (loading === true) {
         return (
             <div className="contractor">
                 <NavBar handleSignout={props.signOut} contractor={props.contractor} loggedIn={props.loggedIn} user="contractor" />
-                <div className="d-flex">
+                <div className="page">
                     <SideNavBar contractor={props.contractor} user="contractor"/>
                     {handleApplicants()}
                 </div>

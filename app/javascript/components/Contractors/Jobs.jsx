@@ -54,23 +54,27 @@ const [jobs, setJobs] = useState(props.jobs ? props.jobs : [])
             return (
                 <div className="d-flex">
                     <Table style={{ "marginBottom": 2.5 + "px"}}>
-                                    <tbody>
-                                        <tr>
-                                            <td id="table-header" style={{ "border-bottom-width": 0 + "px", "border-right": 2 + "px solid white"}}>
-                                                Title: {job.title}
-                                            </td>
-                                            <td id="table-header-location" style={{ "border-bottom-width": 0 + "px"}}>
-                                                Location: {job.city}, {job.state} {job.zipcode}
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td id="table-header-title" style={{ "border-bottom-width": 0 + "px", "border-right": 2 + "px solid white"}}>Applicants: {job.profiles.length}
-                                            </td>
-                                            <td id="table-header-rating" style={{ "border-bottom-width": 0 + "px"}}>Date Posted: {job.createdDate}
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </Table>
+                        <tbody>
+                            <tr>
+                                <td id="table-header" style={{ "border-bottom-width": 0 + "px", "border-right": 2 + "px solid white"}}>
+                                    Title: {job.title}
+                                </td>
+                                <td id="table-header-location" style={{ "border-bottom-width": 0 + "px"}}>
+                                    Location: {job.city}, {job.state} {job.zipcode}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td id="table-header-title" style={{ "border-bottom-width": 0 + "px", "border-right": 2 + "px solid white"}}>Applicants: {job.profiles.length}
+                                </td>
+                                <td id="table-header-rating" style={{ "border-bottom-width": 0 + "px"}}>Date Posted: {job.createdDate}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </Table>
+                    <div className="employee-jobs-buttons">
+                        <Button id="job" onClick={() => handleJob(job)}>View Job</Button>
+                        <Button id="edit_job" onClick={() => handleEdit(job)}>Edit Job</Button>
+                    </div>
                 </div>
             )
         } else {
@@ -100,6 +104,10 @@ const [jobs, setJobs] = useState(props.jobs ? props.jobs : [])
                             </tr>
                         </tbody>
                     </Table>
+                    <div className="employee-jobs-buttons">
+                        <Button id="job" onClick={() => handleJob(job)}>View Job</Button>
+                        <Button id="edit_job" onClick={() => handleEdit(job)}>Edit Job</Button>
+                    </div>
                 </div>
             )
         }
@@ -113,6 +121,7 @@ const [jobs, setJobs] = useState(props.jobs ? props.jobs : [])
         //             <div className="dashboard">
 
                     <div className="employees-jobs">
+                        <h1>Posted Jobs</h1>
                         {jobs.map(job =>
                             <Card id={job.id} key={job.id}>
                                 <Card.Body className="d-flex">
@@ -122,10 +131,6 @@ const [jobs, setJobs] = useState(props.jobs ? props.jobs : [])
                                             {handleApply(job)}
                                     </div> */}
                             </Card.Body>
-                                <div className="employee-jobs-buttons">
-                                    <Button id="job" onClick={() => handleJob(job)}>View Job</Button>
-                                    <Button id="edit_job" onClick={() => handleEdit(job)}>Edit Job</Button>
-                                </div>
                         </Card>
                     )}
                     </div>

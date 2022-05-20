@@ -17,6 +17,7 @@ import { handleSave } from '../actions/Tradespeople/handleSave'
 import { updatePassword } from '../actions/updatePassword'
 import { currentUser } from '../actions/currentUser'
 import {resetPassword } from '../actions/resetPassword'
+import { contactMsg } from '../actions/contactMsg'
 import Employees from '../components/Employees/Employees'
 import Questionnaire from '../components/Questionnaire/Main'
 import Profile from '../components/Employees/Profile'
@@ -73,7 +74,7 @@ class EmployeesContainer extends Component {
                     <SideNavBar profile={this.props.profile} user="employee"/> */}
                 {/* <Logo user="employee"/> */}
                     <Switch>
-                        <Route path='/employees/contact' render={(routerProps) => <Contact {...routerProps} loggedIn={this.props.loggedIn} signOut={this.props.signOut} user="employee" profile={this.props.profile} />}></Route>
+                        <Route path='/employees/contact' render={(routerProps) => <Contact {...routerProps} loggedIn={this.props.loggedIn} signOut={this.props.signOut} user="employee" profile={this.props.profile} contactMsg={this.props.contactMsg} />}></Route>
                         <Route path='/employees/about' render={(routerProps) => <About {...routerProps} loggedIn={this.props.loggedIn} signOut={this.props.signOut} user="employee" profile={this.props.profile} />}></Route>
                         <Route path='/employees/:id/experience/add_experience' render={(routerProps) => <AddExperience {...routerProps} employee={this.props.employee} profile={this.props.profile} addExperience={this.props.addExperience} loggedIn={this.props.loggedIn}/>}></Route>
                         <Route path='/employees/:id/experience/:id' render={(routerProps) => <EditExperience {...routerProps} employee={this.props.employee} profile={this.props.profile} experience={this.props.experience} updateProfile={this.props.updateProfile} uploadFile={this.props.uploadFile} editExperience={this.props.editExperience} deleteExperience={this.props.deleteExperience} loggedIn={this.props.loggedIn}/>}></Route>
@@ -124,6 +125,7 @@ const mapDispatchToProps = dispatch => ({
     handleSave: application => dispatch(handleSave(application)),
     updatePassword: user => dispatch(updatePassword(user)),
     resetPassword: user => dispatch(resetPassword(user)),
+    contactMsg: msg => dispatch(contactMsg(msg)),
     currentUser: () => dispatch(currentUser()),
     signOut: () => dispatch(signOut())
 })

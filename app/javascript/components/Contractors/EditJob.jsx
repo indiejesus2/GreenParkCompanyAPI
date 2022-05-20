@@ -180,12 +180,13 @@ export default function EditJob(props) {
     return (
         <div className="employees">
         <NavBar handleSignout={props.signOut} contractor={props.contractor} loggedIn={props.loggedIn} user="contractor" />
-        <div className="d-flex" id="body">
+        <div className="page" id="body">
             <SideNavBar contractor={props.contractor} user="contractor"/>
         <div className="dashboard">
             <h1>Edit Job</h1>
+            <div className="employee-job">
             <div className="input"
-                style={{ "paddingInlineStart": 15 + "px", "paddingInlineEnd": 25 + "px"}}
+                // style={{ "paddingInlineStart": 15 + "px", "paddingInlineEnd": 25 + "px"}}
             >
 
                 <Form onSubmit={formik.handleSubmit} className="profile-form">
@@ -354,6 +355,7 @@ export default function EditJob(props) {
                     <Button type="submit" value="Save Changes" onClick={formik.handleSubmit}>Save Changes</Button>
                 </div>
             </Form>
+            </div>
             </div>
         </div>
         </div>

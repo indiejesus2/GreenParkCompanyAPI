@@ -91,9 +91,10 @@ export default function EditExperience(props) {
     return (
         <div className="employees">
         <NavBar handleSignout={props.signOut} profile={props.profile} loggedIn={props.loggedIn} user="employee" />
-        <div className="d-flex">
+        <div className="page">
             <SideNavBar profile={props.profile} user="employee"/>
             <div className="dashboard">
+                <div className="employee-job">
 
             <h1>Edit Experience</h1>
             <div className="input"
@@ -167,6 +168,8 @@ export default function EditExperience(props) {
                     <Button value="Delete Experience" onClick={() => props.handleExperience(experience)}>Delete Experience</Button>
                 </div>
                 </Form>
+                </div>
+
             </div>
         </div>
         </div>

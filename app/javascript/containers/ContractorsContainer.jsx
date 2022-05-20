@@ -10,6 +10,7 @@ import { fetchJobs } from '../actions/Contractors/fetchJobs'
 import { editApplicant } from '../actions/Contractors/editApplicant'
 import { currentUser } from '../actions/currentUser'
 import { updatePassword } from '../actions/updatePassword'
+import { contactMsg } from '../actions/contactMsg'
 import Contractors from '../components/Contractors/Contractors'
 import Subscription from '../components/Contractors/Subscription'
 import Profile from '../components/Contractors/Profile'
@@ -57,7 +58,7 @@ class ContractorsContainer extends Component {
         return (
             <div>
                 <Switch>
-                    <Route path='/contractors/contact' render={(routerProps) => <Contact {...routerProps} loggedIn={this.props.loggedIn} signOut={this.props.signOut} user="contractor" contractor={this.props.contractor} />}></Route>
+                    <Route path='/contractors/contact' render={(routerProps) => <Contact {...routerProps} loggedIn={this.props.loggedIn} signOut={this.props.signOut} user="contractor" contractor={this.props.contractor} contactMsg={this.props.contactMsg} />}></Route>
                     <Route path='/contractors/about' render={(routerProps) => <About {...routerProps} loggedIn={this.props.loggedIn} signOut={this.props.signOut} user="contractor" contractor={this.props.contractor} />}></Route>
                     <Route path='/contractors/:id/jobs/:job_id/employees/:employee_id' render={(routerProps) => <EmployeeProfile {...routerProps} loading={this.props.loading} contractor={this.props.contractor} jobs={this.props.jobs} signOut={this.props.signOutContractor} files={this.props.files} />}></Route>
                     <Route path='/contractors/:id/profile' render={(routerProps) => <Profile {...routerProps} loggedIn={this.props.loggedIn} contractor={this.props.contractor} signOut={this.props.signOutContractor} updateProfile={this.props.updateProfile} />}></Route>
@@ -98,6 +99,7 @@ const mapDispatchToProps = dispatch => ({
     updateProfile: contractor => dispatch(updateProfile(contractor)),
     editApplicant: applicant => dispatch(editApplicant(applicant)),
     updatePassword: user => dispatch(updatePassword(user)),
+    contactMsg: msg => dispatch(contactMsg(msg)),
     currentUser: () => dispatch(currentUser()),
     signOutContractor: () => dispatch(signOutContractor())
 })

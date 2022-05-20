@@ -424,7 +424,7 @@ a:hover {
     bottom: 125px;
   }
 
-  .employee-job Card {
+  .employee-job .card-body {
     display: flex;
   }
 
@@ -486,6 +486,10 @@ a:hover {
   justify-content: space-between;
 }
 
+.employee-job {
+  padding-inline-start: 15px; 
+  padding-inline-end: 25px;
+}
 // .homepage-cards {
 // }
 
@@ -640,7 +644,7 @@ a:hover {
   margin-block-end: 10px;
   background-color: #202020;
   border: #175785;
-  padding-bottom: 2rem;
+  padding-bottom: 0.5rem;
 }
 
 .employees-jobs .matches {
@@ -685,6 +689,7 @@ a:hover {
   // padding-block: 15px;
   padding-inline: 7.5px;
   margin-bottom: 15px;
+  padding-bottom: 2rem;
 }
 
 .job-buttons {
@@ -1079,6 +1084,7 @@ tbody tr td:first-child {
 .input {
   background-color: #262424;
   padding-block: 10px;
+  // "paddingInlineStart": 15 + "px", "paddingInlineEnd": 25 + "px"
 }
 
 .dashboard {
@@ -1086,8 +1092,12 @@ tbody tr td:first-child {
   padding-inline-start: 15px; 
   padding-inline-end: 25px; 
   margin-bottom: 25px;
+}
+
+.page {
+  display: flex;
   position: relative;
-  bottom: 50px;
+  bottom: 5.5rem;
 }
 // .employees-jobs #table-header {
 //   font-style: oblique;

@@ -5,7 +5,7 @@ import Job from './Job'
 import Questionnaire from '../Questionnaire/Main'
 import NavBar from '../NavBar'
 import SideNavBar from '../SideNavBar'
-import { Button } from 'react-bootstrap'
+import { Button, Image } from 'react-bootstrap'
 
 
 const Employees = props => {
@@ -30,7 +30,7 @@ const Employees = props => {
             setErrors(props.errors)
         } else if (props.jobs && props.jobs != jobs) {
             setJobs(props.jobs)
-        } else if (listing == "" && props.history.location.pathname.includes("job")) {
+        } else if (listing == "" && props.history.location.pathname.includes("/job/")) {
             let path = props.history.location.pathname.split("/")
             let job = jobs.filter(job => job.id == path[4])
             handleJob(job)
@@ -97,7 +97,7 @@ const Employees = props => {
         if (jobs.length == 0) {
             return (
                 <div className="dashboard">
-                    <h2 style={{ "padding-inline-start": 15 + "px"}}>
+                    <h2 style={{ paddingInlineStart: 15 + "px"}}>
                         "We're working hard to find some matches."
                     </h2>
                 </div>
@@ -122,7 +122,17 @@ const Employees = props => {
         }
     }
 
-    if (props.loggedIn === false) {
+    if (loading === true) {
+        return (
+        <div className="spinner">
+            <NavBar handleSignout={props.signOut} contractor={props.contractor} user="contractor" />
+            <div className="homepage-header">
+                <Image fluid="true" src="/images/blucollarO.png" alt="collar" />
+                <span className="sr-only">Loading...</span>
+            </div>
+        </div>
+        )
+    } else if (props.loggedIn === false) {
         return (
             <Redirect to="/home" />
         )
@@ -137,7 +147,7 @@ const Employees = props => {
         return (
             <div className="employees">
                     <NavBar handleSignout={props.signOut} handleClick={handleClick} profile={props.profile} loggedIn={props.loggedIn} user="employee" />
-                    <div className="d-flex">
+                    <div className="page">
                         <SideNavBar profile={props.profile} handleClick={handleClick} user="employee"/>
                         {handleJobs()}
                     </div>

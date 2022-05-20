@@ -67,7 +67,7 @@ const Profile = props => {
     return (
         <div className="employees">
             <NavBar handleSignout={props.signOut} profile={props.profile} loggedIn={props.loggedIn} user="employee" />
-            <div className="d-flex">
+            <div className="page">
                 <SideNavBar profile={props.profile} user="employee"/>
         {/* <div className="update">
         <Row>
@@ -86,9 +86,7 @@ const Profile = props => {
         </div> */}
         <div className="dashboard">
 
-            <div className="employee-job"
-                 style={{ "paddingInlineStart": 15 + "px", "paddingInlineEnd": 25 + "px"}}
-            >   
+            <div className="employee-job">   
 
                 <h1>Profile</h1>
                 <Card id={employee.id} key={employee.id}>

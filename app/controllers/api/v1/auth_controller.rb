@@ -102,6 +102,13 @@ class Api::V1::AuthController < ApplicationController
         end
     end
 
+    def contact
+        @name = contact_params[:name]
+        @email = contact_params[:email]
+        @msg = contact_params[:msg]
+        EmployeeMailer.with(name: @name, email: @email, msg: @msg).contact_email.deliver_later
+    end
+
         #     render json: {
         #         user: @user,
         #         current: current_user
@@ -137,6 +144,10 @@ class Api::V1::AuthController < ApplicationController
 
     def reset_params
         params.require(:auth).permit(:email, :password, :token, :user)
+    end
+
+    def contact_params
+        params.require(:contact).permit(:name, :email, :msg)
     end
 
 end

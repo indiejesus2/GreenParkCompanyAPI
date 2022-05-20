@@ -23,7 +23,7 @@ const Profile = props => {
     return (
         <div className="employees">
             <NavBar handleSignout={props.signOut} loggedIn={props.loggedIn} contractor={contractor} user="contractor" />
-            <div className="d-flex">
+            <div className="page">
                 <SideNavBar contractor={contractor} user="contractor"/>
                 <div className="dashboard">
                     <div className="employee-job">

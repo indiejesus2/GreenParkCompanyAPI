@@ -88,13 +88,12 @@ export default function EditProfile(props) {
     return (
         <div className="employees">
             <NavBar handleSignout={props.signOut} contractor={employer} loggedIn={props.loggedIn} user="contractor" />
-            <div className="d-flex">
+            <div className="page">
                 {/* {handleSideNav()} */}
                 <SideNavBar contractor={employer} user="contractor"/>
-                <div className="dashboard"
-                    style={{ "paddingInlineStart": 15 + "px", "paddingInlineEnd": 25 + "px"}}
-                >
+                <div className="dashboard">
                     <h1>Edit Profile</h1>
+                    <div className="employee-job">
                     <div className="input">
                     <Form onSubmit={formik.handleSubmit} className="profile-form">
                         <Row className="mb-3">
@@ -127,6 +126,7 @@ export default function EditProfile(props) {
                         </Row>
                         {handleSubscription()}
                     </Form>
+                    </div>
                     </div>
                 </div>
             </div>

@@ -207,15 +207,14 @@ export default function EditProfile(props) {
     return (
         <div className="employees">
         <NavBar handleSignout={props.signOut} profile={props.profile} loggedIn={props.loggedIn} user="employee" />
-        <div className="d-flex">
+        <div className="page">
             <SideNavBar profile={props.profile} user="employee"/>
 
             <div className="dashboard">
+                <div className="employee-job">
 
             <h1>Edit Profile</h1>
-            <div className="input"
-                style={{ "paddingInlineStart": 15 + "px", "paddingInlineEnd": 25 + "px"}}
-            >
+            <div className="input">
                 <Form onSubmit={formik.handleSubmit} className="profile-form">
                     <Row className="mb-3">
 
@@ -243,7 +242,7 @@ export default function EditProfile(props) {
                         <Form.Select name="state" onChange={formik.handleChange} style={{ "backgroundColor": "#2f2f2f", "color": "#fff"}} value={formik.values.state}>
                             {states.map(state => 
                                 <option defaultValue={formik.initialValues.state == state}>{state}</option>
-                            )}
+                                )}
                         </Form.Select>
                         </FloatingLabel>
                         </Form.Group>
@@ -275,7 +274,7 @@ export default function EditProfile(props) {
                         <Form.Select name="commute" id="commute" onChange={formik.handleChange} value={formik.values.commute} defaultValue={formik.values.commute} style={{ "backgroundColor": "#2f2f2f", "color": "#fff"}}>
                             {commute.map(miles => 
                                 <option key={miles} value={miles}>{miles} Miles</option>    
-                            )}
+                                )}
                         </Form.Select>
                     </FloatingLabel>
                     </Form.Group>
@@ -292,7 +291,7 @@ export default function EditProfile(props) {
                         <Form.Label style={{ opacity: ".65", transform: "scale(.85) translateY(-.5rem) translateX(.15rem)"}} htmlFor="job type"> Job-Type: </Form.Label>
                         {jobtypes.map(job => 
                             <Form.Check name="jobtype" label={job} value={job} id={job} key={job} onChange={formik.handleChange} defaultChecked={formik.values.jobtype.includes(job)}/>
-                        )}
+                            )}
                     {/* </div> */}
                     </Form.Group>
                     <Form.Group as={Col} style={{ backgroundColor: "#2f2f2f", color: "#fff", border: "1px solid white", paddingTop: "0.625rem", paddingBottom: ".625rem", paddingInline: ".75rem", marginInline: "10px"}}>
@@ -318,26 +317,26 @@ export default function EditProfile(props) {
 
                     {/* <Form.Label>Season Availability: </Form.Label>
                 <Row className="mb-3">
-                <Form.Group as={Col}> */}
+            <Form.Group as={Col}> */}
                 {/* <div className="seasonal"> */}
                     {/* <FloatingLabel label="Seasonal Start">
 
-                    <Form.Select name="seasonstart" onChange={formik.handleChange} defaultValue={formik.values.seasonstart}> 
-                        {months.map(month =>
-                                <option>{month}</option>
-                        )}
-                    </Form.Select>
-                        </FloatingLabel>
-                        </Form.Group>
-                        <Form.Group as={Col}>
-                        <FloatingLabel label="Seasonal End">
-
-                    <Form.Select name="seasonend" onChange={formik.handleChange} defaultValue={formik.values.seasonend}> 
-                        {months.map(month => 
-                        <option >{month}</option>
-                        )}
-                    </Form.Select>
-                    </FloatingLabel> */}
+<Form.Select name="seasonstart" onChange={formik.handleChange} defaultValue={formik.values.seasonstart}> 
+{months.map(month =>
+    <option>{month}</option>
+    )}
+    </Form.Select>
+    </FloatingLabel>
+    </Form.Group>
+    <Form.Group as={Col}>
+    <FloatingLabel label="Seasonal End">
+    
+    <Form.Select name="seasonend" onChange={formik.handleChange} defaultValue={formik.values.seasonend}> 
+    {months.map(month => 
+        <option >{month}</option>
+        )}
+        </Form.Select>
+    </FloatingLabel> */}
                 {/* </div> */}
                 {/* </Form.Group>
 
@@ -385,6 +384,7 @@ export default function EditProfile(props) {
                     <Button type="submit" value="Save Changes" onClick={formik.handleSubmit}>Save Changes</Button>
                 </div>
                     </Form>
+                </div>
             </div>
         </div>
         </div>

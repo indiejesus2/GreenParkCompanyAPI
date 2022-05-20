@@ -94,9 +94,7 @@ const Job = props => {
     // }
 
     return (
-            <div className="employee-job"
-                style={{ "paddingInlineStart": 15 + "px", "paddingInlineEnd": 25 + "px"}}
-            >
+        <div className="employee-job">
         <Card id={job.id} key={job.id} >
         <CloseButton variant="white" onClick={props.handleClose} style={{color: "#3fa1fc", position: "relative", top: 15+"px", right: 15+"px", alignSelf:"end"}}/>  
             {/* <CloseButton onClick={props.handleClose}/> */}
