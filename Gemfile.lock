@@ -262,6 +262,7 @@ GEM
     sshkit (1.21.2)
       net-scp (>= 1.1.2)
       net-ssh (>= 2.8.0)
+    stripe (6.2.0)
     thor (1.2.1)
     tilt (2.0.10)
     turbolinks (5.2.1)
@@ -328,6 +329,7 @@ DEPENDENCIES
   selenium-webdriver
   spring
   spring-watcher-listen (~> 2.0.0)
+  stripe
   turbolinks (~> 5)
   tzinfo-data
   web-console (>= 3.3.0)

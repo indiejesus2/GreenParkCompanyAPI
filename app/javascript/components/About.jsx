@@ -5,6 +5,32 @@ import NavBar from './NavBar'
 
 const About = props => {
 
+    const size = useWindowPosition();
+
+    function useWindowPosition() {
+        const [windowPosition, setWindowPosition] = useState({
+            width: undefined,
+            height: undefined
+        });
+
+        useEffect(() => {
+            function handleScroll() {
+                setWindowPosition({
+                    width: window.scrollX,
+                    height: window.scrollY
+                });
+            }
+            
+            window.addEventListener("scroll", handleScroll);
+            
+            handleScroll();
+            
+            return () => window.removeEventListener("scroll", handleScroll);
+        }, []);
+
+        return windowPosition;
+    }
+
     const handleNav = () => {
         if (props.user == "employee") {
             return (
@@ -14,15 +40,35 @@ const About = props => {
             return (
                 <NavBar contractor={props.contractor} user="contractor" loggedIn={props.loggedIn}/>
             )
+        } 
+        // else {
+        //     return (
+        //         <NavBar />
+        //     )
+        // }
+    }
+
+    const handleHome = () => {
+        // debugger
+        if (size.height > 500) {
+            return (
+                <NavBar />
+            )
         } else {
             return (
-                <Navbar />
+                <div></div>
             )
         }
     }
-
+    
     return (
-        <Image style={{width: 100 + '%'}} src="/images/main page.png" alt="About page" />
+        <div>
+            <div className="navSticky">
+                {handleHome()}
+                {handleNav()}
+            </div>
+            <Image style={{width: 100 + '%'}} src="/images/main page.png" alt="About page" />
+        </div>
     )
 }
 

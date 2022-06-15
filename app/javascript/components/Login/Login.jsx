@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react'
 import { Link, Redirect, useHistory } from 'react-router-dom'
 import Home from '../Home'
 import About from '../About'
+import NavBar from '../NavBar'
 import SignIn from '../Login/SignIn'
 import SignUp from '../Login/SignUp'
 import ForgotPassword from '../Login/ForgotPassword'
@@ -9,18 +10,62 @@ import TempPassword from '../Login/TempPassword'
 
 const Login = props => {
 
+    const size = useWindowPosition();
+
+    function useWindowPosition() {
+        const [windowPosition, setWindowPosition] = useState({
+            width: undefined,
+            height: undefined
+        });
+
+        useEffect(() => {
+            function handleScroll() {
+                setWindowPosition({
+                    width: window.scrollX,
+                    height: window.scrollY
+                });
+            }
+            
+            window.addEventListener("scroll", handleScroll);
+            
+            handleScroll();
+            
+            return () => window.removeEventListener("scroll", handleScroll);
+        }, []);
+
+        return windowPosition;
+    }
+
 
     const [errors, setErrors] = useState(props.customerErrors ? props.customerErrors : props.contractorErrors)
     const [currentStep, setCurrentStep] = useState(props.currentStep)
-    const myRef = useRef(null)
+    const myRef = useRef()
     const history = useHistory()
 
 
     const handleScroll = () => {
+        // debugger
         if (history.location.pathname.includes("about")) {
+            Redirect
             myRef.current.scrollIntoView()
         }
     }
+
+
+    const handleHome = () => {
+        // debugger
+        if (size.height > 45) {
+            return (
+                <div></div>
+            )
+        } else {
+            return (
+                <NavBar />
+            )
+        }
+    }
+
+    
 
     
 
@@ -61,12 +106,15 @@ const Login = props => {
 
     return (
         <div>
+            <div className="navSticky">
+                {handleHome()}
+            </div>
             <div className="signin">
                 {handleScroll()}
                 <div>
                     <Home />
                 </div>
-                <div ref={myRef}>
+                <div ref={myRef} style={{paddingTop: 35+"px"}}>
                     <About />
                 </div>
                 {/* <SignUp signUp={props.signUp} currentStep={props.currentStep} handleClick={handleClick} handlePassword={handlePassword} errors={errors} handleClose={handleClose} />

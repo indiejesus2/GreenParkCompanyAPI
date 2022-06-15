@@ -70,7 +70,7 @@ export default function contractorsReducer(state = {contractor: [], jobs: [], ap
                 }
             }
         case 'EDIT_JOB':
-            debugger
+            // debugger
             let edited = state.jobs.map(job => {
                 if(job.id === action.payload.id) {
                     return action.payload
@@ -82,6 +82,12 @@ export default function contractorsReducer(state = {contractor: [], jobs: [], ap
         case 'DELETE_JOB':
             let deleted = state.jobs.filter(job => job.id != action.payload.id)
             return {...state, jobs: deleted, loading: false, applicants: action.payload.applicants}
+        case 'ADD_PAYMENT':
+            return {
+                ...state,
+                loading: false,
+                contractor: action.payload
+            }
         case 'ERROR_CONTRACTOR':
             return {
                 ...state,

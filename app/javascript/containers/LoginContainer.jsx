@@ -44,8 +44,8 @@ class LoginContainer extends Component {
     //     }
     // }
 
-
     handleRedirect = () => {
+        this.props.currentUser()
         debugger
     }
 
@@ -85,21 +85,21 @@ class LoginContainer extends Component {
                         <SignUp signIn={this.props.signIn} currentStep={2} signUp={this.props.signUp} contractorErrors={this.props.contractorErrors} employeeErrors={this.props.employeeErrors} signOut={this.props.signOut} clearEmployeeErrors={this.props.clearEmployeeErrors} clearContractorErrors={this.props.clearContractorErrors}/>
                 </div>
             )
-        } else if (this.props.loggedIn == true) {
-            debugger
-            return (
-                <div>
-                    <Switch>                        
-                        <Route path='/employees' render={(routerProps) => <Employees {...routerProps} signIn={this.props.signIn} signUp={this.props.signUp} loggedIn={this.props.loggedIn} employee={this.props.employee} profile={this.props.profile} jobs={this.props.jobs} loading={this.props.loading} createProfile={this.props.createProfile} errors={this.props.errors} signOut={this.props.signOutEmployee} updatePassword={this.props.updatePassword} />}></Route>
-                    </Switch>
-                </div>
-            )
+        // } else if (this.handleRedirect()) {
+        //     debugger
+        //     return (
+        //         <div>
+        //             <Switch>                        
+        //                 <Route path='/employees' render={(routerProps) => <Employees {...routerProps} signIn={this.props.signIn} signUp={this.props.signUp} loggedIn={this.props.loggedIn} employee={this.props.employee} profile={this.props.profile} jobs={this.props.jobs} loading={this.props.loading} createProfile={this.props.createProfile} errors={this.props.errors} signOut={this.props.signOutEmployee} updatePassword={this.props.updatePassword} />}></Route>
+        //             </Switch>
+        //         </div>
+        //     )
         } else {
             return(
                 <div>
 
                 <div>
-                <NavBar />
+                {/* <NavBar /> */}
                 <Switch>
                     <Route path='/home/contact' render={(routerProps) => <Contact {...routerProps} currentStep={5} signOut={this.props.signOut} user="none" contactMsg={this.props.contactMsg}/>}></Route>
                     <Route path='/home/about' render={(routerProps) => <Login {...routerProps} signOut={this.props.signOut} user="none"/>}></Route>

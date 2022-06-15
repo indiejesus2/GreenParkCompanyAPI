@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { Provider } from 'react-redux'
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom'
+import ErrorBoundary from '../components/ErrorBoundary'
 import LoginContainer from '../containers/LoginContainer'
 import EmployeesContainer from '../containers/EmployeesContainer'
 import ContractorsContainer from '../containers/ContractorsContainer'
@@ -16,6 +17,7 @@ const App = () => {
         
         return (
             <div>
+                <ErrorBoundary>
                 <Switch>
                     <Redirect from="/" to="/home" exact />
                     <Route path="/home" component={LoginContainer}></Route>
@@ -23,6 +25,7 @@ const App = () => {
                     <Route path="/employees" component={EmployeesContainer}></Route>
                     <Route path="/contractors" component={ContractorsContainer}></Route>
                 </Switch>
+                </ErrorBoundary>
             </div>
         )
 }

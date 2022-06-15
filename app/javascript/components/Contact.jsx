@@ -29,6 +29,7 @@ const Contact = props => {
         validationSchema: schema,
         onSubmit: values => {
             props.contactMsg(values)
+            history.push("/")
         },
     });
 

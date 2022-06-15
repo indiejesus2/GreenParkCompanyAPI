@@ -12,7 +12,7 @@ const Contractors = props => {
     const [loading, setLoading] = useState(props.loading)
     const [jobs, setJobs] = useState(props.jobs ? props.jobs : [])
     const [applicants, setApplicants] = useState(props.applicants)
-    const [errors, setErrors] = useState(props.errors)
+    const [errors, setErrors] = useState(props.contractorErrors)
     const [contractor, setContractor] = useState(props.contractor)
     const [currentStep, setStep] = useState(1)
     const [applicant, setApplicant] = useState("")
@@ -20,9 +20,8 @@ const Contractors = props => {
 
 
     useEffect(() => {
-        debugger
-        if (props.errors != errors) {
-            setErrors(props.errors)
+        if (props.contractorErrors != errors) {
+            setErrors(props.contractorErrors)
         } else if (props.loading != loading) {
             setLoading(props.loading)
         } else if (props.contractor != contractor) {

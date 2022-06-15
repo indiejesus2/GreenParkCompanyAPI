@@ -67,7 +67,29 @@ h1, h2, h3, h4, h5, h6, h7 {
 .signIn {
   background-color: #565656;
   display: flex;
+  justify-content: center;
   padding-block: 25px;
+}
+
+.stripeModal {
+  background-color: #565656;
+  display: grid;
+  justify-content: center;
+  padding-block: 25px;
+}
+// .stripeModal form {
+//   width: 50%;
+//   display: flex;
+//   justify-content: center;
+// }
+
+.stripeModal h1 {
+  text-align: center;
+}
+
+.stripeModal .cardInfo {
+  display: flex;
+  justify-content: center;
 }
 
 .signIn img {
@@ -262,15 +284,12 @@ a:hover {
       display: flex;
       justify-content: space-between;
       width: 100%;
+      
   }
 
   .home-nav {
     display: flex !important;
     justify-content: space-between !important;
-  }
-
-  .homeCollapseNav {
-    display: none !important
   }
 
   .signIn Form {
@@ -280,6 +299,10 @@ a:hover {
 
 @media only screen and (min-width: 975px) {
   .employeeCollapseNav {
+    display: none !important
+  }
+
+  .homeCollapseNav {
     display: none !important
   }
 }
@@ -325,7 +348,7 @@ a:hover {
   // }
 }
 
-@media only screen and (max-width: 680px) {
+@media only screen and (max-width: 976px) {
   .home-nav {
     display: flex !important;
     justify-content: right !important;
@@ -334,6 +357,7 @@ a:hover {
   .homeCollapseNav {
     padding-block-start: 15px;
     padding-inline: 15px;
+    
   }
 
   .homeCollapse {
@@ -354,6 +378,10 @@ a:hover {
     width: 100%
   }
 
+  .signIn #header {
+    text-align: center !important;
+  }
+
   .employee-jobs-buttons {
     display: flex !important;
     justify-content: space-evenly;
@@ -366,11 +394,14 @@ a:hover {
   .employee-nav-toggle {
     scale: 85%;
     bottom: 7rem;
-    left: 0.5rem;
+  }
+
+  .page {
+    bottom: 2rem;
   }
 }
 
-@media only screen and (max-width: 1000px) {
+@media only screen and (max-width: 976px) {
   .navCollapse {
     display: none !important;
   }
@@ -410,7 +441,7 @@ a:hover {
   // }
 }
 
-@media only screen and (min-width: 1000px) {
+@media only screen and (min-width: 976px) {
   .upperCollapseNav {
     display: none;
   }
@@ -458,6 +489,26 @@ a:hover {
     text-align: center !important;
   }
 
+  .employee-nav {
+    justify-content: left;
+  }
+
+  .page {
+    bottom: 3.5rem !important;
+  }
+
+}
+
+// @media screen and (position) {
+  
+// }
+
+.navSticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: black;
+  z-index: 0;
 }
 
 .signIn #header {

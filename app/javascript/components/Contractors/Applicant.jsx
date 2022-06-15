@@ -12,6 +12,32 @@ const Applicant = (props) => {
     const [job, setJob] = useState([])
     const [currentStep, setStep] = useState(1)
 
+    const size = useWindowSize();
+
+    function useWindowSize() {
+        const [windowSize, setWindowSize] = useState({
+            width: undefined,
+            height: undefined
+        });
+
+        useEffect(() => {
+            function handleResize() {
+                setWindowSize({
+                    width: window.innerWidth,
+                    height: window.innerHeight
+                });
+            }
+            
+            window.addEventListener("resize", handleResize);
+            
+            handleResize();
+            
+            return () => window.removeEventListener("resize", handleResize);
+        }, []);
+
+        return windowSize;
+    }
+
     useEffect(() => {
         if (applicants != props.applicants){
             setApplicants(props.applicants)
@@ -83,59 +109,7 @@ const Applicant = (props) => {
                     <Card id={candidate.info.id} key={candidate.info.id} >
 
                         <Card.Body className="d-flex">
-                            <Table style={{ "marginBottom": 2.5 + "px"}}>
-
-                    {/*     <div className="d-flex justify-content-between"> */}
-                            {/* <Card.Title className="mb-2">{job.company}</Card.Title> */}
-                            <tbody>
-
-                            <tr>
-                                <td id="table-header" style={{ "border-bottom-width": 0 + "px", "border-right": 2 + "px solid white"}}>
-                                    Name: {candidate.info.fname} {candidate.info.lname}
-                                    {/* Distance: */}
-                                {/* </td>  */}
-                                {/* <td id="table-value-top" style={{ "border-bottom-width": 0 + "px", }}> */}
-
-                                    {/* {Math.round(applicants.find(applicant => applicant.job_id == job.id).distance)} Miles */}
-                                </td>
-                                <td id="table-header-rating" style={{ "border-bottom-width": 0 + "px"}}>Rating: {rate(candidate.application.rating)}
-                                </td>
-                            </tr>
-                    {/*     //    as="h2" */}
-                            <tr>
-                                <td id="table-header-title" style={{ "border-bottom-width": 0 + "px", "border-right": 2 + "px solid white"}}>
-                                {/* </td> */}
-                                {/* <td id="table-value-bottom" style={{ "border-bottom-width": 0 + "px", "border-right": 2 + "px solid white"}}> */}
-                                    {handleJob(candidate.application)}
-                                </td>
-                                    {/* as="h5" */}
-                                <td id="table-header-location" style={{ "border-bottom-width": 0 + "px"}}>
-                                    Distance: {Math.round(candidate.application.distance)} Miles
-                                    {/* Location: */}
-                                {/* </td>
-                                <td id="table-value-top" style={{ "border-bottom-width":  0 + "px"}}>  */}
-
-                                </td>
-
-                                {/* </td> */}
-                                    {/* {job.city}, {job.state} */}
-                            </tr>
-                            {/* <tr>
-                            </tr> */}
-                             </tbody>
-                            {/* </div> */}
-                            </Table>
-                {/* <Car    d.Title>
-                    <h3     style={{ marginBottom: 0+"px"}}>{candidate.info.fname} {candidate.info.lname} </h3> 
-                    <h4>    {handleInterest(candidate.application)}</h4>
-                </Card.T    itle> */}
-                    {/*     <Card.Subtitle>{candidate.info.city}, {candidate.info.state}</Card.Subtitle>
-                    <Car    d.Subtitle as="h5">Rating: {rate(candidate.application.rating)}</Card.Subtitle>
-                      <d    iv className="matches">
-                            {Object.entries(jobMatch(candidate.info)).map(([key, value]) =>
-                                <Card.Text style={{ marginBlockEnd: 1 + `px`}}>{key}: {value}</Card.Text>
-                                )}
-                            </div> */}
+                            {handleTable(candidate)}
                     <div className="employee-jobs-buttons">
                         <Button onClick={() => handleApplicant(candidate)}>Details</Button>
                         <Button onClick={() => handleContact(candidate)}>Contact</Button>                                        
@@ -342,6 +316,60 @@ const Applicant = (props) => {
                 Job Title: {job.title}
             </span>
         )
+    }
+
+    const handleTable = (candidate) => {
+        if (size.width > 580) {
+            return (
+                <Table style={{ "marginBottom": 2.5 + "px"}}>
+                    <tbody>
+                        <tr>
+                            <td id="table-header" style={{ "border-bottom-width": 0 + "px", "border-right": 2 + "px solid white"}}>
+                                Name: {candidate.info.fname} {candidate.info.lname}
+                            </td>
+                            <td id="table-header-rating" style={{ "border-bottom-width": 0 + "px"}}>Rating:
+                                {rate(candidate.application.rating)}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td id="table-header-title" style={{ "border-bottom-width": 0 + "px", "border-right": 2 + "px solid white"}}>Job Title:<span></span>
+                                {handleJob(candidate.application)}
+                            </td>
+                            <td id="table-header-location" style={{ "border-bottom-width": 0 + "px"}}>
+                                Distance:{Math.round(candidate.application.distance)} Miles
+                            </td>
+                        </tr>
+                     </tbody>
+                </Table>
+            )
+        } else {
+            return (
+                <Table style={{ "marginBottom": 2.5 + "px"}}>
+                    <tbody>
+                        <tr>
+                            <td id="table-header" style={{ "border-bottom-width": 0 + "px"}}>
+                                Name: {candidate.info.fname} {candidate.info.lname}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td id="table-header-rating" style={{ "border-bottom-width": 0 + "px"}}>Rating:
+                                {rate(candidate.application.rating)}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td id="table-header-title" style={{ "border-bottom-width": 0 + "px"}}>Job Title:<span></span>
+                                {handleJob(candidate.application)}
+                            </td>
+                        </tr>                        
+                        <tr>
+                            <td id="table-header-location" style={{ "border-bottom-width": 0 + "px"}}>
+                                Distance:{Math.round(candidate.application.distance)} Miles
+                            </td>
+                        </tr>
+                     </tbody>
+                </Table>
+            )
+        }
     }
 
     // if(currentStep !== 1) {

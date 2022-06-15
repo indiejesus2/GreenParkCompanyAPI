@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_04_18_215252) do
+ActiveRecord::Schema.define(version: 2022_06_05_020634) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "citext"
@@ -98,6 +98,7 @@ ActiveRecord::Schema.define(version: 2022_04_18_215252) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "password_reset_token"
     t.datetime "password_reset_sent"
+    t.string "stripe_id"
     t.index ["email"], name: "index_employers_on_email", unique: true
   end
 
@@ -143,6 +144,16 @@ ActiveRecord::Schema.define(version: 2022_04_18_215252) do
     t.index ["shifts"], name: "index_jobs_on_shifts", using: :gin
   end
 
+  create_table "plans", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.integer "interval"
+    t.integer "price_cents"
+    t.string "stripe_price_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "profiles", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "fname"
     t.string "lname"
@@ -172,6 +183,19 @@ ActiveRecord::Schema.define(version: 2022_04_18_215252) do
     t.index ["shifts"], name: "index_profiles_on_shifts", using: :gin
   end
 
+  create_table "subscriptions", force: :cascade do |t|
+    t.bigint "plan_id", null: false
+    t.uuid "employer_id", null: false
+    t.boolean "active"
+    t.string "stripe_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["employer_id"], name: "index_subscriptions_on_employer_id"
+    t.index ["plan_id"], name: "index_subscriptions_on_plan_id"
+  end
+
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "subscriptions", "employers"
+  add_foreign_key "subscriptions", "plans"
 end

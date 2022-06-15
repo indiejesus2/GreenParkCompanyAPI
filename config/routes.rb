@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  get 'subscriptions/show'
+  get 'subscriptions/create'
+  get 'subscriptions/update'
   namespace :api do
     namespace :v1 do
       resources :employees do
@@ -11,6 +14,7 @@ Rails.application.routes.draw do
         resources :jobs do 
           resources :employees
         end
+        resources :subscriptions
       end
       resources :jobs
       resources :documents

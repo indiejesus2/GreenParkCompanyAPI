@@ -5,6 +5,52 @@ import Logo from '../components/Logo'
 
 const NavBar = props => {
 
+    const size = useWindowPosition();
+
+    function useWindowPosition() {
+        const [windowPosition, setWindowPosition] = useState({
+            width: undefined,
+            height: undefined
+        });
+
+        useEffect(() => {
+            function handleScroll() {
+                setWindowPosition({
+                    width: window.scrollX,
+                    height: window.scrollY
+                });
+            }
+            
+            window.addEventListener("scroll", handleScroll);
+            
+            handleScroll();
+            
+            return () => window.removeEventListener("scroll", handleScroll);
+        }, []);
+
+        return windowPosition;
+    }
+
+    const handleHome = () => {
+        // debugger
+        if (size.height > 450) {
+            return (
+                <div className="employee-nav">
+                        <Logo user={props.user}/>
+                </div>
+            )
+        }
+    }
+
+    const handlePosition = () => {
+        if (size.height > 450) {
+            return (
+                {position: "relative",
+                bottom: 85 + "px"}
+            )
+        }
+    }
+
     const handleQuestion = () => {
         if (props.profile.fname && history.location.pathname != "/employees/about") {
             return (
@@ -27,6 +73,61 @@ const NavBar = props => {
         
     }
 
+    const handleCollapse = () => {
+        if (size.height > 450) {
+            return (
+                <div className="homeCollapse"
+                    style={{
+                        position: "relative",
+                        bottom: 75 + "px"
+                    }}
+                >
+                <Nav
+                style={{
+                    "font-size": "x-large",
+                }}
+                >
+                <Nav.Link as={Link} to="/home">HOME</Nav.Link>
+                <Nav.Link as={Link} to="/home/about">ABOUT</Nav.Link>
+                <Nav.Link as={Link} to="/home/contact">CONTACT</Nav.Link>
+            </Nav>
+            <Nav
+                style={{
+                    "font-size": "x-large",
+                }}
+                >
+                <Nav.Link as={Link} to="/home/signIn">LOGIN</Nav.Link>
+                <Nav.Link as={Link} to="/home/signUp">CREATE ACCOUNT</Nav.Link>
+            </Nav>
+        </div>
+                )
+        } else {
+            return (
+                <div className="homeCollapse">
+            <Nav
+                style={{
+                    "font-size": "x-large",
+                }}
+                >
+                <Nav.Link as={Link} to="/home">HOME</Nav.Link>
+                <Nav.Link as={Link} to="/home/about">ABOUT</Nav.Link>
+                <Nav.Link as={Link} to="/home/contact">CONTACT</Nav.Link>
+            </Nav>
+            <Nav
+                style={{
+                    "font-size": "x-large",
+                }}
+                >
+                <Nav.Link as={Link} to="/home/signIn">LOGIN</Nav.Link>
+                <Nav.Link as={Link} to="/home/signUp">CREATE ACCOUNT</Nav.Link>
+            </Nav>
+        </div>
+            )
+        }
+
+        
+    }
+
     if (props.loggedIn == true && props.user == "employee") {
         
             return (
@@ -37,7 +138,7 @@ const NavBar = props => {
                     {handleQuestion()}
                     <div className="employeeCollapseNav">
 
-                        <Navbar collapseOnSelect expand='lg' variant="dark" >
+                        <Navbar collapseOnSelect expand='1000px' variant="dark" >
                 {/* <Container> */}
                     <div className="employee-nav-toggle">
                         <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -267,15 +368,22 @@ const NavBar = props => {
                         </Breadcrumb> */}
                 </div>
             )
-        } else if (history.location.pathname != "/home" && history.location.pathname != "/home/about") {
+        } else if (history.location.pathname != "/home") {
                 return (
                         <Logo />
                 )
         } else {
             return (
-                <div>
-
-                <div className="homeCollapseNav">
+                <div 
+                    style={{
+                        marginBlockEnd: 25+"px",
+                        height: 50 + "px"
+                    }}
+                >
+                    {handleHome()}
+                <div className="homeCollapseNav"
+                    style={handlePosition()}
+                >
                     <Navbar collapseOnSelect expand='md' variant="dark" className="upperCollapseNav">
                         <div className="home-nav">
                             <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -342,25 +450,7 @@ const NavBar = props => {
                                     </div>
                     </Navbar>
                 </div>
-                <div className="homeCollapse">
-                    <Nav
-                        style={{
-                            "font-size": "x-large",
-                        }}
-                        >
-                        <Nav.Link as={Link} to="/home">HOME</Nav.Link>
-                        <Nav.Link as={Link} to="/home/about">ABOUT</Nav.Link>
-                        <Nav.Link as={Link} to="/home/contact">CONTACT</Nav.Link>
-                    </Nav>
-                    <Nav
-                        style={{
-                            "font-size": "x-large",
-                        }}
-                        >
-                        <Nav.Link as={Link} to="/home/signIn">LOGIN</Nav.Link>
-                        <Nav.Link as={Link} to="/home/signUp">CREATE ACCOUNT</Nav.Link>
-                    </Nav>
-                </div>
+                {handleCollapse()}
             </div>
             )
         }
