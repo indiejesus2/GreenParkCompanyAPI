@@ -86,8 +86,8 @@ Rails.application.configure do
     domain: ENV['DOMAIN_NAME']
   }
 
-  config.stripe.secret_key = Rails.application.credentials.stripe[:production][:secret_key]
-  config.stripe.publishable_key = Rails.application.credentials.stripe[:production][:publishable_key]
+  # config.stripe.secret_key = Rails.application.credentials.stripe[:production][:secret_key]
+  # config.stripe.publishable_key = Rails.application.credentials.stripe[:production][:publishable_key]
 
 
   # Ignore bad email addresses and do not raise email delivery errors.
