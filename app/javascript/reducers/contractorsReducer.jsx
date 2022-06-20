@@ -20,6 +20,7 @@ export default function contractorsReducer(state = {contractor: [], jobs: [], ap
                 loading: false
             }
         case 'SIGNIN_CONTRACTOR':
+            debugger
             return {
                 contractor: action.payload.contractor,
                 jobs: action.payload.jobs.data.map(job => job.attributes),
@@ -89,9 +90,10 @@ export default function contractorsReducer(state = {contractor: [], jobs: [], ap
                 contractor: action.payload
             }
         case 'ERROR_CONTRACTOR':
+            debugger
             return {
                 ...state,
-                loggedIn: false,
+                // loggedIn: false,
                 loading: false,
                 contractorErrors: action.payload
             }

@@ -17,6 +17,8 @@ export default function SignIn(props) {
     const [alert, setAlert] = useState(false)
     const [error, setError] = useState("")
 
+    // debugger
+
     const handleClose = () => {
         history.push('/');
         props.clearEmployeeErrors()
@@ -30,6 +32,7 @@ export default function SignIn(props) {
     }
 
     useEffect(() => {
+        // debugger
         if (props.employeeErrors != error || props.contractorErrors != error) {
             setAlert(true)
             setError(props.employeeErrors!=""?props.employeeErrors:props.contractorErrors)

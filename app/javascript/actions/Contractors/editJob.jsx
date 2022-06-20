@@ -13,6 +13,7 @@ export const editJob = (job) => {
         .then(resp => resp.json())
         .then(job => dispatch({type: 'EDIT_JOB', payload: job.data.attributes}))
         .catch(err => {
+            debugger
             dispatch({type: 'ERROR_CONTRACTOR', payload: err})
         })
     }

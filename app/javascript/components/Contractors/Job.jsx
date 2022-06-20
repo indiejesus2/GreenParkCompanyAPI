@@ -8,7 +8,6 @@ import EmployeeProfile from './EmployeeProfile'
 
 const Job = props => {
 
-   
     const job = props.jobs.find(job => job.id == props.match.params.job_id)
     const [currentStep, setStep] = useState(1)
     const [applicant, setApplicant] = useState("")

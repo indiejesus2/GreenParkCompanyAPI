@@ -26,20 +26,25 @@ class Api::V1::AuthController < ApplicationController
     end
 
     def is_logged_in?
-        if logged_in? && current_user
-            @user = session[:contractor_id] ? "contractor" : "employee"
-            if @user == "contractor" 
-                redirect_to api_v1_employer_jobs_path(employer_id: current_user.id)
-                # redirect_to api_v1_employer_jobs_path(employer_id: session[:contractor_id])
-            elsif @user == "employee"
-                redirect_to api_v1_employee_jobs_path(employee_id: current_user.id)
-            end
-        else
+        if !logged_in? && !current_user
+        #     @user = session[:contractor_id] ? "contractor" : "employee"
+        #     if @user == "contractor" 
+        #         redirect_to api_v1_employer_jobs_path(employer_id: current_user.id)
+        #         # redirect_to api_v1_employer_jobs_path(employer_id: session[:contractor_id])
+        #     elsif @user == "employee"
+        #         redirect_to api_v1_employee_jobs_path(employee_id: current_user.id)
+        #     end
+        # else
             logout!
             render json: {
                 status: 200,
                 logged_out: true
             }
+        # else
+        #     render json: {
+        #         status: 200
+        #         # logged_in: logged_in?
+        #     }
         end
     end
 

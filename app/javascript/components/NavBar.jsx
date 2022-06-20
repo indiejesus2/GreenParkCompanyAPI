@@ -368,7 +368,7 @@ const NavBar = props => {
                         </Breadcrumb> */}
                 </div>
             )
-        } else if (history.location.pathname != "/home") {
+        } else if (history.location.pathname != "/home" && history.location.pathname != "/home/about") {
                 return (
                         <Logo />
                 )

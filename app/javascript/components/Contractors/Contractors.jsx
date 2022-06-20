@@ -106,6 +106,10 @@ if (loading === true) {
             </div>
         </div>
         )
+    } else if (props.loggedIn === false) {
+        return (
+            <Redirect to="/home" />
+        )
     } else if (!contractor.name) {
         return (
             <Redirect to={`/contractors/${contractor.id}/editprofile`} />
