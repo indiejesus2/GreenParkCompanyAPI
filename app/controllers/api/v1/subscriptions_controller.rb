@@ -11,6 +11,11 @@ class Api::V1::SubscriptionsController < ApplicationController
     @subscription = Subscription.new(subscription_params)
     if @subscription.save
       @employer.update(status: true)
+      if @subscription.plan_id == 1
+        @emploer.update(monthly: true)
+      else 
+        @employer.update(yearly: true)
+      end
       render json: EmployerSerializer.new(@employer)
       # render json: @subscription, status: :created
     else

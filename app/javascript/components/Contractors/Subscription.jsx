@@ -58,12 +58,12 @@ const Subscription = (props) => {
     const handleClick = (duration) => {
         // e.preventDefault()
         if (duration == "Monthly") {
-            setPlan(3)
-            formik.setFieldValue('plan_id', 3)
+            setPlan(1)
+            formik.setFieldValue('plan_id', 1)
             // setActive(true)
         } else {
-            setPlan(4)
-            formik.setFieldValue('plan_id', 4)
+            setPlan(2)
+            formik.setFieldValue('plan_id', 2)
         }
         setActive(true)
         formik.setFieldValue('active', true)
@@ -71,7 +71,7 @@ const Subscription = (props) => {
     }
 
     const handleMonthly = () => {
-        if (plan == 3) {
+        if (plan == 1) {
             // formik.setFieldValue('plan_id', plan)
             // formik.setFieldValue('active', active)
             return (
@@ -87,7 +87,7 @@ const Subscription = (props) => {
     const handleYearly = () => {
         // formik.setFieldValue('plan_id', plan)
         // formik.setFieldValue('active', active)
-        if (plan == 4) {
+        if (plan == 2) {
             return (
                 <Button value="Yearly" onClick={() => handleClick("Yearly")} style={{backgroundColor: "green"}}>Yearly</Button>
             )
