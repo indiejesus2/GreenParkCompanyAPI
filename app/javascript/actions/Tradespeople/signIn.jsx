@@ -40,6 +40,7 @@ export const signIn = (user) => {
             return fetch(`/api/v1/signin`, configObj)
             .then(resp => resp.json())
             .then(employer => {
+                debugger
                 if (employer.error) {
                     dispatch({
                         type: 'ERROR_CONTRACTOR',

@@ -8,6 +8,8 @@ import NavBar from '../NavBar'
 
 const Subscription = (props) => {
 
+    debugger
+
     const [monthly, setMonthly] = useState(false)
     const [yearly, setYearly] = useState(false)
     const [id, setId] = useState(props.contractor.id)
@@ -57,13 +59,14 @@ const Subscription = (props) => {
         // e.preventDefault()
         if (duration == "Monthly") {
             setPlan(3)
+            formik.setFieldValue('plan_id', 3)
             // setActive(true)
         } else {
             setPlan(4)
+            formik.setFieldValue('plan_id', 4)
         }
         setActive(true)
-        formik.setFieldValue('plan_id', plan)
-        formik.setFieldValue('active', active)
+        formik.setFieldValue('active', true)
         // setShowForm(true)
     }
 

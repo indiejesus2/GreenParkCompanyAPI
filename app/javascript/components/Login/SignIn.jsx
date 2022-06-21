@@ -32,7 +32,7 @@ export default function SignIn(props) {
     }
 
     useEffect(() => {
-        // debugger
+        debugger
         if (props.employeeErrors != error || props.contractorErrors != error) {
             setAlert(true)
             setError(props.employeeErrors!=""?props.employeeErrors:props.contractorErrors)

@@ -90,7 +90,7 @@ export default function AddExperience(props) {
             <div className="input"
                 style={{ "paddingInlineStart": 15 + "px", "paddingInlineEnd": 25 + "px"}}
             >
-`           <Form className="profile-form">
+           <Form className="profile-form">
                 <Row className="mb-3">
                     <Form.Group as={Col} >
                         <FloatingLabel label="Title">

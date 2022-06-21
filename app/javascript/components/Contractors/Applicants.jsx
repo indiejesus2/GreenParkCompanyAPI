@@ -234,11 +234,11 @@ const Applicants = (props) => {
                 <Card id={candidate.info.id} key={candidate.info.id} >                
                     <Card.Body className="d-flex">
                         {handleTable(candidate)}
+                        <div className="employee-jobs-buttons">
+                            <Button onClick={() => props.handleApplicant(candidate)}>Details</Button>
+                            <Button onClick={() => handleContact(candidate)}>Contact</Button>
+                        </div>
                     </Card.Body>
-                    <div className="employee-jobs-buttons">
-                      <Button onClick={() => props.handleApplicant(candidate)}>Details</Button>
-                      <Button onClick={() => handleContact(candidate)}>Contact</Button>
-                    </div>
                 </Card>
             )}
                 <EmployeeProfile 

@@ -45,6 +45,8 @@ class Api::V1::JobsController < ApplicationController
 
     def create
         @job = Job.new(job_params)
+        # @job.proximity
+        # @job.potential
         if @job.save
             # @employees = @employer.applicants.map {|applicant| applicant.employee }
             render json: JobSerializer.new(@job)
@@ -53,11 +55,13 @@ class Api::V1::JobsController < ApplicationController
             render json: @job.errors
         end
     end
-
+    
     def update
         @job.update(job_params)
         @job.updateTrade
         @job.updatedProximity
+        # @job.proximity
+        # @job.potential
         if @job.save            
             render json: JobSerializer.new(@job)
         else

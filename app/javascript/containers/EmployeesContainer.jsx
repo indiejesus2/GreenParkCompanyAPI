@@ -30,12 +30,12 @@ import Logo from '../components/Logo'
 
 class EmployeesContainer extends Component {
 
-    componentDidUpdate() {
-        // debugger
-        if (!!this.props.employee) {
-            this.props.currentUser()
-        }
-    }
+    // componentDidUpdate() {
+    //     // debugger
+    //     if (!!this.props.employee) {
+    //         this.props.currentUser()
+    //     }
+    // }
 
     handleSignout = () => {
         this.props.signOut()

@@ -30,12 +30,12 @@ class ContractorsContainer extends Component {
     //     this.props.currentUser()
     // }
 
-    componentDidUpdate() {
-        // debugger
-        if (!!this.props.contractor) {
-            this.props.currentUser()
-        }
-    }
+    // componentDidUpdate() {
+    //     // debugger
+    //     if (!!this.props.contractor) {
+    //         this.props.currentUser()
+    //     }
+    // }
 
     handleSignout = () => {
         this.props.signOut()
