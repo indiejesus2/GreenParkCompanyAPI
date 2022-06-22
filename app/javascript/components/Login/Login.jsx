@@ -10,31 +10,31 @@ import TempPassword from '../Login/TempPassword'
 
 const Login = props => {
 
-    const size = useWindowPosition();
+    // const size = useWindowPosition();
 
-    function useWindowPosition() {
-        const [windowPosition, setWindowPosition] = useState({
-            width: undefined,
-            height: undefined
-        });
+    // function useWindowPosition() {
+    //     const [windowPosition, setWindowPosition] = useState({
+    //         width: undefined,
+    //         height: undefined
+    //     });
 
-        useEffect(() => {
-            function handleScroll() {
-                setWindowPosition({
-                    width: window.scrollX,
-                    height: window.scrollY
-                });
-            }
+    //     useEffect(() => {
+    //         function handleScroll() {
+    //             setWindowPosition({
+    //                 width: window.scrollX,
+    //                 height: window.scrollY
+    //             });
+    //         }
             
-            window.addEventListener("scroll", handleScroll);
+    //         window.addEventListener("scroll", handleScroll);
             
-            handleScroll();
+    //         handleScroll();
             
-            return () => window.removeEventListener("scroll", handleScroll);
-        }, []);
+    //         return () => window.removeEventListener("scroll", handleScroll);
+    //     }, []);
 
-        return windowPosition;
-    }
+    //     return windowPosition;
+    // }
 
 
     const [errors, setErrors] = useState(props.customerErrors ? props.customerErrors : props.contractorErrors)
@@ -106,9 +106,9 @@ const Login = props => {
 
     return (
         <div>
-            <div className="navSticky">
+            {/* <div className="navSticky">
                 {handleHome()}
-            </div>
+            </div> */}
             <div className="signin">
                 {handleScroll()}
                 <div>

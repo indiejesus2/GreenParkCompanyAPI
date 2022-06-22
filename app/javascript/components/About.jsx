@@ -5,31 +5,31 @@ import NavBar from './NavBar'
 
 const About = props => {
 
-    const size = useWindowPosition();
+    // const size = useWindowPosition();
 
-    function useWindowPosition() {
-        const [windowPosition, setWindowPosition] = useState({
-            width: undefined,
-            height: undefined
-        });
+    // function useWindowPosition() {
+    //     const [windowPosition, setWindowPosition] = useState({
+    //         width: undefined,
+    //         height: undefined
+    //     });
 
-        useEffect(() => {
-            function handleScroll() {
-                setWindowPosition({
-                    width: window.scrollX,
-                    height: window.scrollY
-                });
-            }
+    //     useEffect(() => {
+    //         function handleScroll() {
+    //             setWindowPosition({
+    //                 width: window.scrollX,
+    //                 height: window.scrollY
+    //             });
+    //         }
             
-            window.addEventListener("scroll", handleScroll);
+    //         window.addEventListener("scroll", handleScroll);
             
-            handleScroll();
+    //         handleScroll();
             
-            return () => window.removeEventListener("scroll", handleScroll);
-        }, []);
+    //         return () => window.removeEventListener("scroll", handleScroll);
+    //     }, []);
 
-        return windowPosition;
-    }
+    //     return windowPosition;
+    // }
 
     const handleNav = () => {
         if (props.user == "employee") {
@@ -49,17 +49,21 @@ const About = props => {
     }
 
     const handleHome = () => {
-        // debugger
+        debugger
         if (props.user == "employee" || props.user == "contractor") {
-            {handleNav()}
-        } else if (size.height > 500) {
             return (
-                <NavBar />
+                <div>
+                    {handleNav()}
+                </div>
             )
         } else {
             return (
-                <div></div>
+                <NavBar />
             )
+        // } else {
+        //     return (
+        //         <div></div>
+        //     )
         }
     }
     
@@ -67,6 +71,7 @@ const About = props => {
         <div>
             <div className="navSticky">
                 {handleHome()}
+                {/* <NavBar /> */}
             </div>
             <Image style={{width: 100 + '%'}} src="/images/main page.png" alt="About page" />
         </div>

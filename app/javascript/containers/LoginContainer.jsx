@@ -67,7 +67,7 @@ class LoginContainer extends Component {
         //         </div>
         //     )
         // } else {
-        debugger
+        // debugger
         if (this.props.employeeErrors == "Incorrect Username/Password" || this.props.contractorErrors == "Incorrect Username/Password") {
             // const history = useHistory();
             return (

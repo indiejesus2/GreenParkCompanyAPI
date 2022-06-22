@@ -1,15 +1,59 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom'
 import Card from 'react-bootstrap/Card'
 import CardGroup from 'react-bootstrap/CardGroup'
 import { Button, Stack, Container, Image } from 'react-bootstrap'
 import {Element} from 'react-scroll'
+import NavBar from './NavBar'
 
-class Home extends Component {
+const Home = props => {
+
+    const size = useWindowPosition();
+
+    function useWindowPosition() {
+        const [windowPosition, setWindowPosition] = useState({
+            width: undefined,
+            height: undefined
+        });
+
+        useEffect(() => {
+            function handleScroll() {
+                setWindowPosition({
+                    width: window.scrollX,
+                    height: window.scrollY
+                });
+            }
+            
+            window.addEventListener("scroll", handleScroll);
+            
+            handleScroll();
+            
+            return () => window.removeEventListener("scroll", handleScroll);
+        }, []);
+
+        return windowPosition;
+    }
+
+    const handleHome = () => {
+        // debugger
+        if (size.height < 50) {
+            return (
+                <NavBar />
+            )
+        } else {
+            return (
+                <div></div>
+            )
+        }
+    }
     
-    render() {        
+            
         return (
             <div style={{minHeight: 800+"px"}}>
+                {/* <div className="navSticky">
+                    {handleHome()}
+                </div> */}
+                <NavBar />
                 <div className="homepage">
                         {/* <Container> */}
                             <div className="homepage-header">
@@ -25,7 +69,7 @@ class Home extends Component {
                 </div> */}
             </div>
         )
-    }
+    
 } 
 
 export default Home
