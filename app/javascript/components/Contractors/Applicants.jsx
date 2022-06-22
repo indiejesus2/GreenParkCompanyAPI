@@ -41,7 +41,8 @@ const Applicants = (props) => {
             info: '',
             application: ''
         }
-        let candidate = applicants.find(applicant => applicant.employee_id == profile.employee_id && applicant.acceptance !== false)
+        let candidate = applicants.find(applicant => applicant.employee_id == profile.employee_id)
+        // && applicant.acceptance !== false
             if (profile.employee_id == candidate.employee_id) {
                 oObj.info = profile,
                 oObj.application = candidate

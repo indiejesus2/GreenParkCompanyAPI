@@ -50,7 +50,9 @@ const About = props => {
 
     const handleHome = () => {
         // debugger
-        if (size.height > 500) {
+        if (props.user == "employee" || props.user == "contractor") {
+            {handleNav()}
+        } else if (size.height > 500) {
             return (
                 <NavBar />
             )
@@ -65,7 +67,6 @@ const About = props => {
         <div>
             <div className="navSticky">
                 {handleHome()}
-                {handleNav()}
             </div>
             <Image style={{width: 100 + '%'}} src="/images/main page.png" alt="About page" />
         </div>
