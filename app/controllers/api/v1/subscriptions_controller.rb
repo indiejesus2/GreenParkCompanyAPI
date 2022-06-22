@@ -12,7 +12,7 @@ class Api::V1::SubscriptionsController < ApplicationController
     if @subscription.save
       @employer.update(status: true)
       if @subscription.plan_id == 1
-        @emploer.update(monthly: true)
+        @employer.update(monthly: true)
       else 
         @employer.update(yearly: true)
       end
