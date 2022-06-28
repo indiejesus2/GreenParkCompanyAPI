@@ -13,21 +13,27 @@ class Api::V1::SubscriptionsController < ApplicationController
       @employer.update(status: true)
       if @subscription.plan_id == 1
         @employer.update(monthly: true)
-      else 
+      elsif @subscription.plan_id == 2
         @employer.update(yearly: true)
       end
-      render json: EmployerSerializer.new(@employer)
-      # render json: @subscription, status: :created
+      render json: {contractor: @employer, subscription: SubscriptionSerializer.new(@employer.subscription)}, prerender: true
     else
-      render json: @subscription.errors, status: :unprocessable_entity
+      render json: {error: @subscription.errors.first, status: :unprocessable_entity}
     end
   end
   
   def update
     if @subscription.update(subscription_params)
+      if @subscription.active == false
+        @employer.update(status: false)
+      elsif @subscription.plan_id == 1 && @employer.monthly == false
+        @employer.update(monthly: true)
+      elsif @subscription.plan_id == 2 && @employer.yearly == false
+        @employer.update(yearly: true)
+      end
       render json: @subscription
     else
-      render json: @subscription.errors, status: :unprocessable_entity
+      render json: {error: @subscription.errors, status: :unprocessable_entity}
     end
   end
   

@@ -96,17 +96,19 @@ const Contractors = props => {
         }
     }
 
-if (loading === true) {
-        return (
-        <div className="spinner">
-            <NavBar handleSignout={props.signOut} contractor={props.contractor} user="contractor" />
-            <div className="homepage-header">
-                <Image fluid="true" src="/images/blucollarO.png" alt="collar" />
-                <span className="sr-only">Loading...</span>
-            </div>
-        </div>
-        )
-    } else if (props.loggedIn === false) {
+    
+// if (loading === true) {
+//         return (
+//         <div className="spinner">
+//             <NavBar handleSignout={props.signOut} contractor={props.contractor} user="contractor" />
+//             <div className="homepage-header">
+//                 <Image fluid="true" src="/images/blucollarO.png" alt="collar" />
+//                 <span className="sr-only">Loading...</span>
+//             </div>
+//         </div>
+//         )
+//     } else 
+    if (props.loggedIn === false) {
         return (
             <Redirect to="/home" />
         )

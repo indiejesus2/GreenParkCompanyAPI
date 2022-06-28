@@ -11,7 +11,7 @@ export default function SignUp(props) {
     const [show, setShow] = useState(true)
     const history = useHistory();
     const [alert, setAlert] = useState(false)
-    const [error, setError] = useState("")
+    const [error, setError] = useState(props.employeeErrors!=""?props.employeeErrors:props.contractorErrors)
 
     const schema = yup.object().shape({
         email: yup.string().email("Please enter a valid email address").required("Email is required."),
@@ -27,11 +27,12 @@ export default function SignUp(props) {
     }
 
     useEffect(() => {
-        if (props.employeeErrors != "" || props.contractorErrors != "") {
+        if(!Array.isArray(error)) {
+        // if (props.employeeErrors != "" || props.contractorErrors != "") {
             setAlert(true)
-            setError(props.employeeErrors!=""?props.employeeErrors:props.contractorErrors)
+            // setError(props.employeeErrors!=""?props.employeeErrors:props.contractorErrors)
         }
-    })
+    }, [error])
 
     const handleShow = () => setShow(true);
 

@@ -20,6 +20,8 @@ const Profile = props => {
         props.history.push('/contractors')
     }
 
+    debugger
+
     return (
         <div className="employees">
             <NavBar handleSignout={props.signOut} loggedIn={props.loggedIn} contractor={contractor} user="contractor" />
@@ -68,6 +70,19 @@ const Profile = props => {
                                         <td style={{"padding": "0px" }}>
                                             {contractor.monthly == true ? "Monthly" : "Yearly"}
                                         </td>
+                                    </tr>
+                                    <tr style={{ "border-bottom-width": 0 + "px"}}>
+                                        <td style={{"padding": "0px" }}>
+                                            Next Billing Date: 
+                                        </td>
+                                        <td style={{"padding": "0px" }}>
+                                            {new Date(props.subscription.next_billing*1000).toLocaleDateString()}
+                                            {/* {moment(new Date)}
+                                            {contractor.monthly == true ? "Monthly" : "Yearly"} */}
+                                        </td>
+                                    </tr>
+                                    <tr>
+
                                     </tr>
                                 </tbody>
                             </Table>

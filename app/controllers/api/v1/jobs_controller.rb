@@ -20,7 +20,7 @@ class Api::V1::JobsController < ApplicationController
                     end
                 }
             end
-            render json: {contractor: @employer, jobs: JobSerializer.new(@jobs), applicants: @employer.applicants, files: @files}, prerender: true
+            render json: {contractor: @employer, jobs: JobSerializer.new(@jobs), applicants: @employer.applicants, files: @files, subscription: SubscriptionSerializer.new(@employer.subscription)}, prerender: true
         else
             @jobs = Job.all
         end

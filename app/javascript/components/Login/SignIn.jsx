@@ -15,7 +15,7 @@ export default function SignIn(props) {
     const [show, setShow] = useState(true)
     const history = useHistory();
     const [alert, setAlert] = useState(false)
-    const [error, setError] = useState("")
+    const [error, setError] = useState(!!props.employeeErrors?props.employeeErrors:props.contractorErrors)
 
     // debugger
 
@@ -31,14 +31,7 @@ export default function SignIn(props) {
         history.push('/home/forgot_password')
     }
 
-    useEffect(() => {
-        // debugger
-        if (props.employeeErrors != error || props.contractorErrors != error) {
-            setAlert(true)
-            setError(props.employeeErrors!=""?props.employeeErrors:props.contractorErrors)
-        }
-    })
-
+    
     const handleShow = () => setShow(true);
 
     const formik = useFormik({
@@ -57,6 +50,14 @@ export default function SignIn(props) {
                 }
         },
     });
+    
+    useEffect(() => {
+        if(!Array.isArray(error)) {
+        // if (props.employeeErrors !=error || props.contractorErrors != error) {
+            setAlert(true)
+            // setError(props.employeeErrors!=""?props.employeeErrors:props.contractorErrors)
+        }
+    }, [error])
 
     if(props.currentStep !== 1) {
         return null

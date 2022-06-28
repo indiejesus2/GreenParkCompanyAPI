@@ -32,9 +32,8 @@ class LoginContainer extends Component {
     //     }
     // }
 
-    //     componentDidUpdate() {
-    //     // debugger
-    //         this.props.currentUser()
+    // componentDidUpdate() {
+    //     this.props.currentUser()
     // }
 
     // componentDidUpdate() {
@@ -60,15 +59,24 @@ class LoginContainer extends Component {
 
     
     render() {
-        // if (this.props.employee || this.props.contractor) {
-        //     return (
-        //         <div>
-        //             {handleRedirect()}
-        //         </div>
-        //     )
+        if ((!Array.isArray(this.props.employee) || !Array.isArray(this.props.contractor) && this.props.history.location.pathname!="/home/signOut")) {
+            if(!Array.isArray(this.props.contractor)) {
+                return (
+                    <Redirect to="/contractors" />
+                )
+            } else {
+                return (
+                    <Redirect to="/employees" />
+                )
+            }
+            // return (
+            //     <div>
+            //         {handleRedirect()}
+            //     </div>
+            // )
         // } else {
         // debugger
-        if (this.props.employeeErrors == "Incorrect Username/Password" || this.props.contractorErrors == "Incorrect Username/Password") {
+        } else if (this.props.employeeErrors == "Incorrect Username/Password" || this.props.contractorErrors == "Incorrect Username/Password") {
             // const history = useHistory();
             return (
                 // ('/home/signIn')
@@ -140,6 +148,7 @@ const mapDispatchToProps = dispatch => ({
     clearEmployeeErrors: () => dispatch(clearEmployeeErrors()),
     clearContractorErrors: () => dispatch(clearContractorErrors()),
     contactMsg: msg => dispatch(contactMsg(msg)),
+    // handleRedirect: () => dispatch(handleRedirect()),
     // handleClick: () => dispatch(handleClick()),
     signOut: () => dispatch(signOut())
 })

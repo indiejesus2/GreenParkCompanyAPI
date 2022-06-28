@@ -4,6 +4,7 @@ class Employer < ApplicationRecord
   validates :stripe_id, presence: true, uniqueness: true
   has_many :jobs, dependent: :destroy
   has_many :applicants, through: :jobs
+  has_one :subscription
   before_validation :create_stripe_reference, on: :create  
   
   def create_stripe_reference

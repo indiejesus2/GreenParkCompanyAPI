@@ -1,4 +1,4 @@
-export const addPayment = (payment) => {
+export const updatePayment = (cancellation) => {
     return (dispatch) => {
         dispatch({type: 'FETCH_CONTRACTOR'})
         const configObj = {
@@ -7,7 +7,7 @@ export const addPayment = (payment) => {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json'
             },
-            body: JSON.stringify(payment)
+            body: JSON.stringify(cancellation)
         };
         return fetch(`/api/v1/employers/${payment.employer_id}/subscriptions`, configObj)
         .then(resp => resp.json())
@@ -15,7 +15,7 @@ export const addPayment = (payment) => {
             if (payment.error) {
                 dispatch({type: 'ERROR_CONTRACTOR', payload: payment.error})
             } else {
-                dispatch({type: 'ADD_PAYMENT', payload: payment})
+                dispatch({type: 'UPDATE_PAYMENT', payload: payment.data.attributes})
             }
         })
         // .catch(err => {

@@ -53,6 +53,9 @@ export const signIn = (user) => {
                     })
                 }
             })
+            .catch(err => {
+                dispatch({type: 'ERROR_CONTRACTOR', payload: err})
+            })
         } 
     }
 }

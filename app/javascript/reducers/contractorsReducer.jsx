@@ -1,6 +1,6 @@
 import { bindActionCreators } from "redux"
 
-export default function contractorsReducer(state = {contractor: [], jobs: [], applicants: [], loggedIn: false, loading: false, contractorErrors: "", files: []}, action) {
+export default function contractorsReducer(state = {contractor: [], jobs: [], applicants: [], loggedIn: false, loading: false, contractorErrors: [], files: [], subscription: []}, action) {
     switch(action.type) {
         case 'FETCH_CONTRACTOR':
             return {
@@ -25,6 +25,7 @@ export default function contractorsReducer(state = {contractor: [], jobs: [], ap
                 jobs: action.payload.jobs.data.map(job => job.attributes),
                 applicants: action.payload.applicants,
                 files: action.payload.files,
+                subscription: action.payload.subscription.data.attributes,
                 loggedIn: true,
                 contractorErrors: [],
                 loading: false
@@ -36,7 +37,6 @@ export default function contractorsReducer(state = {contractor: [], jobs: [], ap
                 loggedIn: true,
             }
         case 'UPDATE_CONTRACTOR':
-            debugger
             return {
                 ...state,
                 contractor: action.payload,
@@ -54,13 +54,6 @@ export default function contractorsReducer(state = {contractor: [], jobs: [], ap
                 loading: false
             }
         case 'ADD_JOB':
-            // let addition = state.jobs.map(job => {
-            //     if(job.id === action.payload.id) {
-            //         return action.payload
-            //     } else {
-            //         return job
-            //     }
-            // })
             if(state.jobs) {
                 return {
                     ...state, jobs: [...state.jobs, action.payload], loading: false, applicants: action.payload.applicants
@@ -71,7 +64,6 @@ export default function contractorsReducer(state = {contractor: [], jobs: [], ap
                 }
             }
         case 'EDIT_JOB':
-            // debugger
             let edited = state.jobs.map(job => {
                 if(job.id === action.payload.id) {
                     return action.payload
@@ -84,16 +76,16 @@ export default function contractorsReducer(state = {contractor: [], jobs: [], ap
             let deleted = state.jobs.filter(job => job.id != action.payload.id)
             return {...state, jobs: deleted, loading: false, applicants: action.payload.applicants}
         case 'ADD_PAYMENT':
-            return {
-                ...state,
-                loading: false,
-                contractor: action.payload
-            }
-        case 'ERROR_CONTRACTOR':
             debugger
             return {
                 ...state,
-                // loggedIn: false,
+                loading: false,
+                contractor: action.payload.contractor,
+                subscription: action.payload.subscription.data.attributes
+            }
+        case 'ERROR_CONTRACTOR':
+            return {
+                ...state,
                 loading: false,
                 contractorErrors: action.payload
             }

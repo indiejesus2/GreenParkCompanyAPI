@@ -10,19 +10,19 @@ const ConfirmSubscription = (props) => {
     
     useEffect(() => {
         setShow(props.show)
-    })
+    }, [props.show])
 
     return (
         <div className="signIn">
             <React.Fragment>    
                 <Modal show={show} animation backdrop >
                     <Modal.Header>
-                    Confirm Subscription </Modal.Header>
+                    Cancel Subscription </Modal.Header>
                     <Modal.Body>
-                        Please confirm the subscription type.
+                        Please confirm the cancellation.
                         </Modal.Body>
                         <Modal.Footer>
-                            <Button onClick={handleClose}>Cancel</Button>
+                            <Button onClick={handleClose}>Go Back</Button>
                             <Button onClick={props.handleSubmit}>Confirm</Button>
                         </Modal.Footer>
                 </Modal>

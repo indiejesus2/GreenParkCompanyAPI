@@ -1,6 +1,6 @@
 import React from 'react'
 import { useFormik } from 'formik'
-import { useHistory } from 'react-router-dom'
+import { useHistory, Redirect } from 'react-router-dom'
 import { Form, FloatingLabel, Modal, Button, Row, Col } from 'react-bootstrap'
 import NavBar from '../NavBar'
 import SideNavBar from '../SideNavBar'
@@ -29,18 +29,21 @@ export default function EditProfile(props) {
     
     }
 
+    const modifySubscription = () => {
+        history.push("/contractors/subscription")
+        // <Redirect to="/contractors/subscription" />
+    }
+
     const handleSubscription = () => {
         if (employer.status != true) {
             return (
                 <div className="d-flex justify-content-around">
-                    {/* <Button>Modify/Cancel Subscription</Button> */}
                     <Button type="submit" onClick={formik.handleSubmit}>Save Changes</Button>
                 </div>
             )
         } else {
             return (
-                    <div>
-
+                <div>
                         <Row className="mb-3">
                             <Form.Group as={Col}>
                             <FloatingLabel label="Subscription">
@@ -49,6 +52,7 @@ export default function EditProfile(props) {
                             </Form.Group>
                         </Row>
                         <div className="d-flex justify-content-around">
+                            <Button onClick={modifySubscription()}>Modify/Cancel Subscription</Button>
                             <Button type="submit" onClick={formik.handleSubmit}>Save Changes</Button>
                         </div>
                     </div>

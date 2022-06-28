@@ -8,33 +8,21 @@ import NavBar from '../NavBar'
 
 const Subscription = (props) => {
 
-    debugger
-
     const [monthly, setMonthly] = useState(false)
     const [yearly, setYearly] = useState(false)
     const [id, setId] = useState(props.contractor.id)
     const [show, setShow] = useState(false)
     const [showForm, setShowForm] = useState(false)
-    const [plan, setPlan] = useState(-1)
-    const [active, setActive] = useState(false)
+    const [plan, setPlan] = useState(!!props.subscription?props.subscription.plan_id:"")
+    const [active, setActive] = useState(!!props.subscription?props.subscription.active:false)
 
     const schema = yup.object().shape({
         card_number: yup.string().required(),
-        // exp_month: yup.string().required(),
-        // exp_year: yup.string().required(),
-        cvc: yup.string().required()
+        exp_month: yup.string().required(),
+        exp_year: yup.string().required(),
+        cvc: yup.string().required(),
+        plan_id: yup.string().required("Please select a plan")
     })
-
-    // userEffect(() => {
-    //     setId(props.contractor.id)
-    // })
-
-    // useEffect(() => {
-    //     setId(props.contractor.id)
-    //     // props.errors
-    // }, (props.contractor))
-
-
     
     const formik = useFormik({
         initialValues: {
@@ -49,21 +37,30 @@ const Subscription = (props) => {
         },
         validationSchema: schema,
         onSubmit: values => {
-            props.addPayment(values)
-            props.history.push("/contractors")
+            if (props.contractor.status == true && active == true) {
+                props.updatePayment(values)
+            // } else if (props.subscription.active == true && active == false){
+            //     props.cancelPayment(values)
+            } else {
+                props.addPayment(values)
+            }
+            props.history.push(`/contractors`)
         }
         // props.updateSubscription(values)
     })
     
     const handleClick = (duration) => {
+        // e.stopPropagation()
         // e.preventDefault()
         if (duration == "Monthly") {
-            setPlan(1)
-            formik.setFieldValue('plan_id', 1)
+            setPlan(3)
+            // formik.setFieldValue('plan_id', 1)
+            formik.setFieldValue('plan_id', 3)
             // setActive(true)
         } else {
-            setPlan(2)
-            formik.setFieldValue('plan_id', 2)
+            setPlan(4)
+            // formik.setFieldValue('plan_id', 2)
+            formik.setFieldValue('plan_id', 4)
         }
         setActive(true)
         formik.setFieldValue('active', true)
@@ -71,9 +68,7 @@ const Subscription = (props) => {
     }
 
     const handleMonthly = () => {
-        if (plan == 1) {
-            // formik.setFieldValue('plan_id', plan)
-            // formik.setFieldValue('active', active)
+        if (plan == 3) {
             return (
                 <Button value="Monthly" onClick={() => handleClick("Monthly")} style={{backgroundColor: "green"}}>Monthly</Button>
             )
@@ -85,27 +80,39 @@ const Subscription = (props) => {
     }
     
     const handleYearly = () => {
-        // formik.setFieldValue('plan_id', plan)
-        // formik.setFieldValue('active', active)
-        if (plan == 2) {
+        if (plan == 4) {
             return (
                 <Button value="Yearly" onClick={() => handleClick("Yearly")} style={{backgroundColor: "green"}}>Yearly</Button>
             )
         } else {
             return (
-                <Button value="Yearly" onClick={() => handleClick("Yearly")}>Yearly</Button>
+                <Button value="Yearly" onClick={() => handleClick("Yearly")} isinvalid={formik.errors.plan_id}>Yearly</Button>
             )
         }
     }
 
+    const handleCancelation = () => {
+        setActive(false)
+        let cancellation = {
+            id: id,
+            active: active
+        } 
+        props.cancelPayment(cancellation)
+    }
+
     const handleConfirmation = () => {
-        setShowForm(false)
         setShow(true)
+    }
+
+    const handleNavBar = () => {
+        if (props.contractor.status == true) {
+            <NavBar handleSignout={props.signOut} contractor={props.contractor} loggedIn={props.loggedIn} user="contractor" />
+        }
     }
 
     return (
         <div className="subscription">
-            {/* <NavBar handleSignout={props.signOut} contractor={props.contractor} loggedIn={props.loggedIn} user="contractor" /> */}
+            {handleNavBar()}
         <Modal show animation centered fullscreen>
             <Modal.Body
                 style={{
@@ -147,12 +154,14 @@ const Subscription = (props) => {
                 values={formik.values}
                 handleConfirmation={formik.handleSubmit}
                 contractor={props.contractor}
+                subscription={props.subscription}
                 touched={formik.touched}
                 onBlur={formik.handleBlur}
                 stripeErrors={props.contractorErrors}
                 errors={formik.errors}
             />
-            {/* <ConfirmSubscription handleSubmit={handleSubmit} show={show} /> */}
+            {/* {cancellation()} */}
+            <ConfirmSubscription handleSubmit={handleCancelation} show={show} />
             </Form>
             </Modal.Body>
         </Modal>
