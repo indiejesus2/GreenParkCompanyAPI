@@ -344,7 +344,9 @@ export default function AddJob(props) {
             </Form>
             )
         } else {
-            <Form onSubmit={formik.handleSubmit} className="profile-form">
+            return (
+
+                <Form onSubmit={formik.handleSubmit} className="profile-form">
                 <Row className="mb-3">
                     <Form.Group as={Col} >
                         <FloatingLabel label="Title">
@@ -498,6 +500,7 @@ export default function AddJob(props) {
                     <Button type="submit" value="Add Job" onClick={formik.handleSubmit}>Add Job</Button>
                 </div>
             </Form>
+                )
         }
     }
 

@@ -78,7 +78,7 @@ export default function SignIn(props) {
 
     const handleError = () => {
         if (!Array.isArray(contractorError)) {
-            formik.setFieldValue(user, "contractor")
+            formik.setFieldValue('user', "contractor")
         }
     }
 
