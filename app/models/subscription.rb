@@ -33,10 +33,12 @@ class Subscription < ApplicationRecord
         employer.stripe_id,
         { source: generate_card_token }
       )
-      Stripe::Subscription.update({
-        stripe_id,
-        default_payment_method: generate_card_token.card.id
-      })
+      Stripe::Subscription.update(
+        stripe_id, 
+        {
+          default_payment_method: generate_card_token.card.id
+        }
+      )
     rescue Stripe::InvalidRequestError => e
       errors.errors.push(e.message)
     rescue Stripe::CardError => e
