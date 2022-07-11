@@ -20,12 +20,20 @@ export default function contractorsReducer(state = {contractor: [], jobs: [], ap
                 loading: false
             }
         case 'SIGNIN_CONTRACTOR':
+            // debugger
+            const subscription = () => {
+                if (!!action.payload.subscription.data) {
+                    return action.payload.subscription.data.attributes
+                } else {
+                    return action.payload.subscription.data
+                }
+            }
             return {
                 contractor: action.payload.contractor,
                 jobs: action.payload.jobs.data.map(job => job.attributes),
                 applicants: action.payload.applicants,
                 files: action.payload.files,
-                subscription: action.payload.subscription.data.attributes,
+                subscription: subscription(),
                 loggedIn: true,
                 contractorErrors: [],
                 loading: false
@@ -76,7 +84,15 @@ export default function contractorsReducer(state = {contractor: [], jobs: [], ap
             let deleted = state.jobs.filter(job => job.id != action.payload.id)
             return {...state, jobs: deleted, loading: false, applicants: action.payload.applicants}
         case 'ADD_PAYMENT':
-            debugger
+            // debugger
+            return {
+                ...state,
+                loading: false,
+                contractor: action.payload.contractor,
+                subscription: action.payload.subscription.data.attributes
+            }
+        case 'UPDATE_PAYMENT':
+            // debugger
             return {
                 ...state,
                 loading: false,

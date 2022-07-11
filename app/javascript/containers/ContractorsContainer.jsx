@@ -4,6 +4,7 @@ import { Route, Switch, Redirect } from 'react-router-dom'
 import { signInContractor } from '../actions/Contractors/signInContractor'
 import { signUpContractor } from '../actions/Contractors/signUpContractor'
 import { updateSubscription } from '../actions/Contractors/updateSubscription'
+import { updatePayment } from '../actions/Contractors/updatePayment'
 import { updateProfile } from '../actions/Contractors/updateProfile'
 import { signOutContractor } from '../actions/signOutContractor'
 import { fetchJobs } from '../actions/Contractors/fetchJobs'
@@ -77,13 +78,13 @@ class ContractorsContainer extends Component {
                     <Route path='/contractors/about' render={(routerProps) => <About {...routerProps} loggedIn={this.props.loggedIn} signOut={this.props.signOut} user="contractor" contractor={this.props.contractor} />}></Route>
                     <Route path='/contractors/:id/jobs/:job_id/employees/:employee_id' render={(routerProps) => <EmployeeProfile {...routerProps} loading={this.props.loading} contractor={this.props.contractor} jobs={this.props.jobs} signOut={this.props.signOutContractor} files={this.props.files} />}></Route>
                     <Route path='/contractors/:id/profile' render={(routerProps) => <Profile {...routerProps} loggedIn={this.props.loggedIn} contractor={this.props.contractor} signOut={this.props.signOutContractor} updateProfile={this.props.updateProfile} subscription={this.props.subscription}/>}></Route>
-                    <Route path='/contractors/:id/editprofile' render={(routerProps) => <EditProfile {...routerProps} loggedIn={this.props.loggedIn} contractor={this.props.contractor} updateProfile={this.props.updateProfile} signOut={this.props.signOutContractor} subscription={this.props.subscription}/>}></Route>
+                    <Route path='/contractors/:id/editprofile' render={(routerProps) => <EditProfile {...routerProps} loggedIn={this.props.loggedIn} contractor={this.props.contractor} updateProfile={this.props.updateProfile} signOut={this.props.signOutContractor} subscription={this.props.subscription} updatePayment={this.props.updatePayment}/>}></Route>
                     <Route path='/contractors/:id/jobs' render={(routerProps) => <JobsContainer {...routerProps} jobs={this.props.jobs} contractor={this.props.contractor} candidates={this.props.candidates} profiles={this.props.profiles}  editApplicant={this.props.editApplicant} signOut={this.props.signOutContractor} files={this.props.files}/>}></Route>
                     <Route path='/contractors/addjob' render={(routerProps) => <JobsContainer {...routerProps} contractor={this.props.contractor} addJob={this.props.addJob}/>}></Route>
                     <Route path='/contractors/:id/applicants' render={(routerProps) => <Applicant {...routerProps} loggedIn={this.props.loggedIn} jobs={this.props.jobs} contractor={this.props.contractor} applicants={this.props.applicants} profiles={this.props.profiles}  editApplicant={this.props.editApplicant} files={this.props.files}/>}></Route>
                     <Route exact path='/signout' render={(routerProps) => <SignOut {...routerProps} signoutUser={this.props.signoutContractorUser} user={this.props.user}/> }/>
-                    <Route path='/contractors/subscription' render={(routerProps) => <Subscription {...routerProps} contractor={this.props.contractor} updateSubscription={this.props.updateSubscription} signOut={this.props.signOutContractor} loggedIn={this.props.loggedIn} addPayment={this.props.addPayment} contractorErrors={this.props.contractorErrors} subscription={this.props.subscription}/>}></Route>
-                    <Route path='/contractors' render={(routerProps) => <Contractors {...routerProps} loading={this.props.loading} signIn={this.props.signIn} signUp={this.props.signUp} loggedIn={this.props.loggedIn} contractor={this.props.contractor} profile={this.props.profile} jobs={this.props.jobs} applicants={this.props.applicants} updateSubscription={this.props.updateSubscription} editApplicant={this.props.editApplicant} errors={this.props.errors} signOut={this.props.signOutContractor} files={this.props.files} contractorErrors={this.props.contractorErrors} subscription={this.props.subscription}/>}></Route>
+                    <Route path='/contractors/subscription' render={(routerProps) => <Subscription {...routerProps} contractor={this.props.contractor} updateSubscription={this.props.updateSubscription} signOut={this.props.signOutContractor} loggedIn={this.props.loggedIn} addPayment={this.props.addPayment} updatePayment={this.props.updatePayment} contractorErrors={this.props.contractorErrors} subscription={this.props.subscription}/>}></Route>
+                    <Route path='/contractors' render={(routerProps) => <Contractors {...routerProps} loading={this.props.loading} signIn={this.props.signIn} signUp={this.props.signUp} loggedIn={this.props.loggedIn} contractor={this.props.contractor} profile={this.props.profile} jobs={this.props.jobs} applicants={this.props.applicants} updateSubscription={this.props.updateSubscription} editApplicant={this.props.editApplicant} errors={this.props.errors} signOut={this.props.signOutContractor} files={this.props.files} contractorErrors={this.props.contractorErrors} subscription={this.props.subscription} updatePayment={this.props.updatePayment}/>}></Route>
                 </Switch>
             </div>
         )}
@@ -113,6 +114,7 @@ const mapDispatchToProps = dispatch => ({
     fetchEmployee: id => dispatch(fetchEmployee(id)),
     updateSubscription: (subscription, id) => dispatch(updateSubscription(subscription, id)),
     addPayment: payment => dispatch(addPayment(payment)),
+    updatePayment: payment => dispatch(updatePayment(payment)),
     updateProfile: contractor => dispatch(updateProfile(contractor)),
     editApplicant: applicant => dispatch(editApplicant(applicant)),
     updatePassword: user => dispatch(updatePassword(user)),

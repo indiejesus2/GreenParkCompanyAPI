@@ -313,16 +313,14 @@ a:hover {
   }
 
   .job-body {
-    width: 100%
+    width: 100%;
+    border-right: 0px !important;
   }
 
   .description {
     max-width: 100%
   }
 
-  .job-body {
-    border-right: 0px !important;
-  }
 }
 
 @media only screen and (max-width: 1000px) {
@@ -469,7 +467,7 @@ a:hover {
   
 }
 
-@media only screen and (max-width: 580px) {
+@media only screen and (max-width: 748px) {
   .signIn {
     justify-content: center;
   }
@@ -497,11 +495,13 @@ a:hover {
     bottom: 3.5rem !important;
   }
 
-}
+  .dashboard {
+    width: 100%;
+    padding-inline-start: 10px !important;
+    padding-inline-end: 0px !important;
+  }
 
-// @media screen and (position) {
-  
-// }
+}
 
 .navSticky {
   position: fixed;
@@ -542,30 +542,11 @@ a:hover {
   padding-inline-start: 15px; 
   padding-inline-end: 25px;
 }
-// .homepage-cards {
-// }
-
-// .homepage-body .card{
-// }
-// .homepage .cards {
-  // display: flex;
-  // justify-content: center;
-  // background-color: #cccccc;
-  // border: black 1px solid;
-  // padding: 10px;
-  // margin: 10px;
-  // width: 100px;
-  // height: 50px;
-// }
 
 .homepage-image {
   background-image: url("/images/blucollarlogo-white.png");
-  // background-color: #cccccc;
-  // height: 500px;
   background-position: center;
   background-repeat: no-repeat;
-  // background-size: cover;
-  // position: relative;
 }
 
 .homepage .footer {
@@ -579,19 +560,6 @@ a:hover {
   flex-flow: wrap;
 }
 
-// .homepage-body .card {
-  // width: 100px;
-    // padding-left: 25px;
-    // padding-right: 25px;
-    // padding-top: 25px;
-    // margin-bottom: 25px;
-    // margin-right: 25px;
-    // margin-top: 25px;
-    // border: black solid 1px;
-    // background-color: blue;
-    // color: white;
-// }
-
 .card a {
   color: 	#113955;
 }
@@ -602,19 +570,8 @@ a:hover {
   background-color: inherit;
 }
 
-// .jobs {
-//   display: grid;
-//   justify-content: center;
-// }
-
-// h1, h2 {
-//   text-align: center;
-// }
-
 .employee-nav {
   max-height: 100px;
-
-  // height: 175px;
   font-family: 'Luam', serif;
 }
 
@@ -641,14 +598,9 @@ a:hover {
 }
 
 .candidates .card {
-  // width: 15rem;
-  // min-height: 12rem;
   padding: 10px;
   display: grid;
   justify-items: center;
-  // margin-inline: 50px;
-  // margin-block: 25px;
-  // background-color: #3d8ac9;
   width: 375px;
   height: 300px;
   margin-inline: 25px;
@@ -947,7 +899,7 @@ job-body .table {
   max-height: 185px;
   overflow-y: scroll;
   color: white;
-  min-width: 625px;
+  min-width: min-content;
 }
 
 .subtitle {
@@ -1031,6 +983,10 @@ job-body .table {
 .edit-button {
   display: flex;
   justify-content: right;
+}
+
+#editExperience {
+  height: fit-content;
 }
 
 .employer-profile button {
@@ -1152,6 +1108,14 @@ tbody tr td:first-child {
   display: flex;
   position: relative;
   bottom: 5.5rem;
+  margin-top: 25px;
+}
+
+.employeeTitle {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  bottom: 4rem;
 }
 // .employees-jobs #table-header {
 //   font-style: oblique;

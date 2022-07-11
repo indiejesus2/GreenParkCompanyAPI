@@ -53,9 +53,9 @@ const StripeForm = (props) => {
     const cancellation = () => {
         if (active == true) {
             return (
-                <div className="d-flex justify-center">
-                    <Button onClick={() => handleConfirmation()}>Cancel Subscription</Button>
-                </div>
+                <Button onClick={() => props.handleConfirmation()}>Cancel Subscription</Button>
+                // <div className="d-flex justify-center mt-3" style={{width: 100 + "%"}}>
+                // </div>
             )
         }
     }
@@ -65,7 +65,7 @@ const StripeForm = (props) => {
             <div className="stripeModal">
                 <React.Fragment>
                         <h1 id="header">Billing Information</h1>            
-                    <Alert show={alert}>
+                    <Alert show={alert} style={{ maxWidth: 500 + "px"}}>
                         {error}
                         {props.errors.plan_id && props.touched.plan_id && (
                             <div style={{ color: "red"}}>{props.errors.plan_id}</div>
@@ -93,26 +93,6 @@ const StripeForm = (props) => {
                             {props.errors.card_number && props.touched.card_number && (
                                 <div style={{ color: "red"}}>{props.errors.card_number}</div>
                                 )}
-                        </Form.Group>
-                        <Form.Group as={Col} controlId="validationprops02">
-
-                            <Form.Control
-                                type="text"
-                                name="cvc"
-                                placeholder="CVC"
-                                value={props.values.cvc}
-                                onChange={props.handleChange}
-                                isInvalid={props.errors.cvc && props.touched.cvc}
-                                onBlur={props.handleBlur}
-                                // style={{
-                                //     "padding": 5 + "px",
-                                //     "width": 15 + "%",
-                                //     "marginLeft": 5 + "px"
-                                // }}
-                                />
-                                {props.errors.cvc && props.touched.cvc && (
-                                    <div style={{ color: "red"}}>{props.errors.cvc}</div>
-                                    )}
                         </Form.Group>
                     </Row>
 
@@ -161,11 +141,33 @@ const StripeForm = (props) => {
                                 )}
                             </Form.Select>
                         </Form.Group>
+                        <Form.Group as={Col} controlId="validationprops02">
+
+                            <Form.Control
+                                type="text"
+                                name="cvc"
+                                placeholder="CVC"
+                                value={props.values.cvc}
+                                onChange={props.handleChange}
+                                isInvalid={props.errors.cvc && props.touched.cvc}
+                                onBlur={props.handleBlur}
+                                // style={{
+                                //     "padding": 5 + "px",
+                                //     "width": 15 + "%",
+                                //     "marginLeft": 5 + "px"
+                                // }}
+                                />
+                                {props.errors.cvc && props.touched.cvc && (
+                                    <div style={{ color: "red"}}>{props.errors.cvc}</div>
+                                    )}
+                        </Form.Group>
                     </Row>
-                    <div>
-                        <Button variant="primary" type="submit" onClick={props.handleConfirmation} style={{ "width": 100 + "%"}}>Submit Info</Button>
+                    <div className="d-flex justify-content-between">
+                        <Button variant="primary" type="submit" onClick={() => props.handleSubmit} 
+                        // style={{ "width": 100 + "%"}}
+                    >Submit Info</Button>
+                        {cancellation()}
                     </div>
-                    {cancellation()}
                 </React.Fragment>
             </div>
     )

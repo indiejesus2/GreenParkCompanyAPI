@@ -54,7 +54,7 @@ const NavBar = props => {
     const handleQuestion = () => {
         if (props.profile.fname && history.location.pathname != "/employees/about") {
             return (
-                <h1 className="d-flex justify-content-center">{props.profile.fname.toUpperCase()}'S EMPLOYEE DASHBOARD</h1>
+                <h1 className="employeeTitle">{props.profile.fname.toUpperCase()}'S EMPLOYEE DASHBOARD</h1>
             )
         }
     }
@@ -62,7 +62,7 @@ const NavBar = props => {
     const handleSubscription = () => {
         if (props.contractor.name && history.location.pathname != "/contractors/about") {
             return (
-                <h1 className="d-flex justify-content-center">{props.contractor.name.toUpperCase()}'S DASHBOARD</h1>
+                <h1 className="employeeTitle">{props.contractor.name.toUpperCase()}'S DASHBOARD</h1>
             )
         }
     }
@@ -128,6 +128,7 @@ const NavBar = props => {
         
     }
 
+
     if (props.loggedIn == true && props.user == "employee") {
         
             return (
@@ -135,7 +136,6 @@ const NavBar = props => {
                     <div className="employee-nav">
                         <Logo user={props.user}/>
                     </div>
-                    {handleQuestion()}
                     <div className="employeeCollapseNav">
 
                         <Navbar collapseOnSelect expand='1000px' variant="dark" >
@@ -242,6 +242,7 @@ const NavBar = props => {
                     {/* <Breadcrumb>
                         <Breadcrumb.Item linkAs={Link} linkProps={{to: "/", onClick: props.handleSignout }} >Sign Out</Breadcrumb.Item>
                     </Breadcrumb> */}
+                {handleQuestion()}
             </div>
             )
         } else if (props.loggedIn == true && props.user == "contractor") {
@@ -251,7 +252,6 @@ const NavBar = props => {
                         <div className="employee-nav">
                             <Logo user={props.user}/>
                         </div>
-                            {handleSubscription()}
                         <div className="employeeCollapseNav">
     
                             <Navbar collapseOnSelect expand='lg' variant="dark">
@@ -331,41 +331,27 @@ const NavBar = props => {
                             </Breadcrumb> */}
                         </Navbar.Collapse>
                         </div>
-
-                    {/* </Container> */}
-                </Navbar>
+                    </Navbar>
                 </div>
-                        <div className="navCollapse">
-    
-                            {/* <Navbar.Brand style={{ margin: 0 + "px", padding: 0 + "px" }}>
-                            </Navbar.Brand>
-                            <Navbar.Collapse id='basic-navbar-nav'
-                            
-                        > */}
-    
-                                <Nav
-                                    style={{
-                                        "font-size": "x-large",
-                                    }}
-                                    >
-                                    <Nav.Link as={Link} to="/contractors">HOME</Nav.Link>
-                                    <Nav.Link as={Link} to="/contractors/about">ABOUT</Nav.Link>
-                                    <Nav.Link as={Link} to="/contractors">CONTACT</Nav.Link>
-                                </Nav>
-    
-                                <Nav
-                                    style={{
-                                        "font-size": "x-large",
-                                    }}
-                                    >
-                                    <Nav.Link as={Link} to="/home/signOut">SIGN-OUT</Nav.Link>
-                                </Nav>
-                            {/* </Navbar.Collapse> */}
-                    </div>                        
-                    {/* <div className="nav"> */}
-                        {/* <Breadcrumb>
-                            <Breadcrumb.Item linkAs={Link} linkProps={{to: "/", onClick: props.handleSignout }} >Sign Out</Breadcrumb.Item>
-                        </Breadcrumb> */}
+                <div className="navCollapse">
+                        <Nav
+                            style={{
+                                "font-size": "x-large",
+                            }}
+                            >
+                            <Nav.Link as={Link} to="/contractors">HOME</Nav.Link>
+                            <Nav.Link as={Link} to="/contractors/about">ABOUT</Nav.Link>
+                            <Nav.Link as={Link} to="/contractors">CONTACT</Nav.Link>
+                        </Nav>
+                        <Nav
+                            style={{
+                                "font-size": "x-large",
+                            }}
+                            >
+                            <Nav.Link as={Link} to="/home/signOut">SIGN-OUT</Nav.Link>
+                        </Nav>                            
+                    </div>                       
+                    {handleSubscription()}
                 </div>
             )
         } else if (history.location.pathname != "/home" && history.location.pathname != "/home/about") {

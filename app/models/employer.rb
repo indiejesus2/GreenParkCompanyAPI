@@ -29,8 +29,17 @@ class Employer < ApplicationRecord
     save!
   end
 
-  def retrieve_stripe_reference
+  def retrieve_customer
     Stripe::Customer.retrieve(stripe_id)
+  end
+
+  def current_card
+    card = retrieve_customer.default_source
+    Stripe::Customer.retrieve_source(
+      stripe_id,
+      card,
+    )
+    return last4
   end
 
   private

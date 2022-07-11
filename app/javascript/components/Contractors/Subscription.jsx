@@ -13,8 +13,10 @@ const Subscription = (props) => {
     const [id, setId] = useState(props.contractor.id)
     const [show, setShow] = useState(false)
     const [showForm, setShowForm] = useState(false)
-    const [plan, setPlan] = useState(!!props.subscription?props.subscription.plan_id:"")
+    const [plan, setPlan] = useState(!!props.subscription&&!!props.subscription.active?props.subscription.plan_id:"")
     const [active, setActive] = useState(!!props.subscription?props.subscription.active:false)
+    const [nextBilling, setNextBilling] = useState(!!props.subscription?props.subscription.nextBilling:"")
+    const [stripe, setStripe] = useState(!!props.subscription?props.subscription.stripe_id:"")
 
     const schema = yup.object().shape({
         card_number: yup.string().required(),
@@ -27,7 +29,7 @@ const Subscription = (props) => {
     const formik = useFormik({
         initialValues: {
             employer_id: id,
-            stripe_id: props.contractor.stripe_id,
+            stripe_id: stripe,
             plan_id: plan,
             active: active,
             card_number: "",
@@ -37,7 +39,8 @@ const Subscription = (props) => {
         },
         validationSchema: schema,
         onSubmit: values => {
-            if (props.contractor.status == true && active == true) {
+            // if (props.contractor.status == true && active == true) {
+            if (stripe != "") {
                 props.updatePayment(values)
             // } else if (props.subscription.active == true && active == false){
             //     props.cancelPayment(values)
@@ -53,14 +56,16 @@ const Subscription = (props) => {
         // e.stopPropagation()
         // e.preventDefault()
         if (duration == "Monthly") {
-            setPlan(1)
-            formik.setFieldValue('plan_id', 1)
-            // formik.setFieldValue('plan_id', 3)
+            // setPlan(1)
+            // formik.setFieldValue('plan_id', 1)
+            setPlan(3)
+            formik.setFieldValue('plan_id', 3)
             // setActive(true)
         } else {
-            setPlan(2)
-            formik.setFieldValue('plan_id', 2)
-            // formik.setFieldValue('plan_id', 4)
+            // setPlan(2)
+            // formik.setFieldValue('plan_id', 2)
+            setPlan(4)
+            formik.setFieldValue('plan_id', 4)
         }
         setActive(true)
         formik.setFieldValue('active', true)
@@ -68,7 +73,8 @@ const Subscription = (props) => {
     }
 
     const handleMonthly = () => {
-        if (plan == 1) {
+        // if (plan == 1) {
+        if (plan == 3) {
             return (
                 <Button value="Monthly" onClick={() => handleClick("Monthly")} style={{backgroundColor: "green"}}>Monthly</Button>
             )
@@ -80,8 +86,9 @@ const Subscription = (props) => {
     }
     
     const handleYearly = () => {
-        if (plan == 2) {
-            return (
+        // if (plan == 2) {
+        if (plan == 4) {
+        return (
                 <Button value="Yearly" onClick={() => handleClick("Yearly")} style={{backgroundColor: "green"}}>Yearly</Button>
             )
         } else {
@@ -92,34 +99,41 @@ const Subscription = (props) => {
     }
 
     const handleCancelation = () => {
-        setActive(false)
         let cancellation = {
-            id: id,
-            active: active
+            id: props.subscription.id,
+            employer_id: id,
+            active: false,
+            stripe_id: props.subscription.stripe_id,
         } 
-        props.cancelPayment(cancellation)
+        props.updatePayment(cancellation)
     }
 
     const handleConfirmation = () => {
         setShow(true)
     }
 
+    
+
     const handleNavBar = () => {
-        if (props.contractor.status == true) {
-            <NavBar handleSignout={props.signOut} contractor={props.contractor} loggedIn={props.loggedIn} user="contractor" />
+        // debugger
+        if (nextBilling != "" && new Date(props.subscription.next_billing*1000) > new Date()) {
+            return (
+                <NavBar handleSignout={props.signOut} contractor={props.contractor} loggedIn={props.loggedIn} user="contractor" />
+            )
         }
     }
 
     return (
         <div className="subscription">
             {handleNavBar()}
-        <Modal show animation centered fullscreen>
+        {/* <Modal show animation centered>
             <Modal.Body
                 style={{
                     "paddingBlock": 0 + "px",
                     "backgroundColor": "black"
                 }}
-            >
+                > */}
+
             <Form onSubmit={formik.handleSubmit}>
 
             <h1>Subscription</h1>
@@ -152,19 +166,20 @@ const Subscription = (props) => {
             <StripeForm 
                 handleChange={formik.handleChange}
                 values={formik.values}
-                handleConfirmation={formik.handleSubmit}
+                handleSubmit={formik.handleSubmit}
                 contractor={props.contractor}
                 subscription={props.subscription}
                 touched={formik.touched}
                 onBlur={formik.handleBlur}
                 stripeErrors={props.contractorErrors}
                 errors={formik.errors}
+                handleConfirmation={handleConfirmation}
             />
             {/* {cancellation()} */}
             <ConfirmSubscription handleSubmit={handleCancelation} show={show} />
             </Form>
-            </Modal.Body>
-        </Modal>
+            {/* </Modal.Body>
+        </Modal> */}
         </div>
 
     )

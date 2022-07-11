@@ -3,5 +3,5 @@ class SubscriptionSerializer
     belongs_to :employer
     # has_many :employees, through: :applicants
     # byebug
-    attributes :active, :next_billing, :plan_id
+    attributes :id, :active, :next_billing, :plan_id, :stripe_id, :cancel_at, :stripe_active
 end

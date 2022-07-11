@@ -49,7 +49,7 @@ const About = props => {
     }
 
     const handleHome = () => {
-        // debugger
+        debugger
         if (props.user == "employee" || props.user == "contractor") {
             return (
                 <div>

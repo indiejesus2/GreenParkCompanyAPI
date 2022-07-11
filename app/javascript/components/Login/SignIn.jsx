@@ -6,18 +6,16 @@ import * as yup from 'yup'
 
 export default function SignIn(props) {
 
-
     const schema = yup.object().shape({
         email: yup.string().email("Please enter a valid email address").required("Email is required."),
         password: yup.string().required("Please enter a password.").min(6, "Password must have at least 6 characters")
     })
 
-    const [show, setShow] = useState(true)
     const history = useHistory();
     const [alert, setAlert] = useState(false)
-    const [error, setError] = useState(!!props.employeeErrors?props.employeeErrors:props.contractorErrors)
-
-    // debugger
+    const [error, setError] = useState(props.employeeErrors!=""?props.employeeErrors:props.contractorErrors)
+    const [employeeError, setEmployeeError] = useState(props.employeeErrors)
+    const [contractorError, setContractorError] = useState(props.contractorErrors)
 
     const handleClose = () => {
         history.push('/');
@@ -30,9 +28,6 @@ export default function SignIn(props) {
     const handleClick = () => {
         history.push('/home/forgot_password')
     }
-
-    
-    const handleShow = () => setShow(true);
 
     const formik = useFormik({
         initialValues: {
@@ -50,14 +45,26 @@ export default function SignIn(props) {
                 }
         },
     });
-    
+
     useEffect(() => {
         if(!Array.isArray(error)) {
-        // if (props.employeeErrors !=error || props.contractorErrors != error) {
+        // if (props.employeeErrors != "" || props.contractorErrors != "") {
             setAlert(true)
+            handleError()
             // setError(props.employeeErrors!=""?props.employeeErrors:props.contractorErrors)
         }
     }, [error])
+    
+    // useEffect(() => {
+    //     // debugger
+    //     if(!Array.isArray(contractorError)) {
+    //     // if (props.employeeErrors !=error || props.contractorErrors != error) {
+    //         setAlert(true)
+    //         // setError(props.employeeErrors!=""?props.employeeErrors:props.contractorErrors)
+    //     } else if (!Array.isArray(employeeError)) {
+    //         setAlert(true)
+    //     }
+    // }, [contractorError, employeeError])
 
     if(props.currentStep !== 1) {
         return null
@@ -66,6 +73,12 @@ export default function SignIn(props) {
     const handleModal = () => {
         if (window.screen.availWidth <= 320) {
             return "sm"
+        }
+    }
+
+    const handleError = () => {
+        if (!Array.isArray(contractorError)) {
+            formik.setFieldValue(user, "contractor")
         }
     }
 

@@ -9,6 +9,8 @@ import { Image } from 'react-bootstrap'
 
 const Contractors = props => {
 
+    // debugger
+
     const [loading, setLoading] = useState(props.loading)
     const [jobs, setJobs] = useState(props.jobs ? props.jobs : [])
     const [applicants, setApplicants] = useState(props.applicants)
@@ -116,7 +118,7 @@ const Contractors = props => {
         return (
             <Redirect to={`/contractors/${contractor.id}/editprofile`} />
         )
-    } else if (contractor.status == false) {
+    } else if (contractor.status == false || props.subscription.stripe_active == false) {
         return (
             <div>
                 <NavBar handleSignout={props.signOut} contractor={props.contractor} />

@@ -20,7 +20,17 @@ const Profile = props => {
         props.history.push('/contractors')
     }
 
-    debugger
+    const handleBilling = () => {
+        if (!!props.subscription && props.subscription.next_billing != props.subscription.cancel_at) {
+            return (
+                new Date(props.subscription.next_billing*1000).toLocaleDateString()
+            )
+        } else {
+            return (
+                "Cancelled"
+            )
+        }
+    }
 
     return (
         <div className="employees">
@@ -76,13 +86,16 @@ const Profile = props => {
                                             Next Billing Date: 
                                         </td>
                                         <td style={{"padding": "0px" }}>
-                                            {new Date(props.subscription.next_billing*1000).toLocaleDateString()}
-                                            {/* {moment(new Date)}
-                                            {contractor.monthly == true ? "Monthly" : "Yearly"} */}
+                                            {handleBilling()}
                                         </td>
                                     </tr>
-                                    <tr>
-
+                                    <tr style={{ "border-bottom-width": 0 + "px"}}>
+                                        <td style={{"padding": "0px" }}>
+                                            Card:
+                                        </td>
+                                        <td style={{"padding": "0px" }}>
+                                            {contractor.current_card}
+                                        </td>
                                     </tr>
                                 </tbody>
                             </Table>

@@ -8,6 +8,32 @@ import { Button, Table, Row, Col, Toast, Card, CloseButton } from 'react-bootstr
 
 const Profile = props => {
 
+    const size = useWindowSize();
+
+    function useWindowSize() {
+        const [windowSize, setWindowSize] = useState({
+            width: undefined,
+            height: undefined
+        });
+
+        useEffect(() => {
+            function handleResize() {
+                setWindowSize({
+                    width: window.innerWidth,
+                    height: window.innerHeight
+                });
+            }
+            
+            window.addEventListener("resize", handleResize);
+            
+            handleResize();
+            
+            return () => window.removeEventListener("resize", handleResize);
+        }, []);
+
+        return windowSize;
+    }
+
     const [show, setShow] = useState(false);
     const [preview, setPreview] = useState(false)
     const [applications, setApplications] = useState([])
@@ -57,12 +83,62 @@ const Profile = props => {
     }
 
     const employee = props.profile
-    const license = props.profile.license == true ? "Yes" : "No"
-    const jobtype = employee.jobtype.length > 0 ? employee.jobtype : []
-    const schedule = employee.schedule.length > 0 ? employee.schedule : []
-    const shifts = employee.shifts.length > 0 ? employee.shifts : []
-    // const file = props.employee.file
-    // const type = props.document?props.document.split("/")[1] : []
+
+    const handleTable = (history) => {
+        if (size.width > 580) {
+            return (
+                <Table style={{ "marginBottom": 2.5 + "px"}}>
+                <tbody>
+                    <tr>
+                        <td id="table-header" style={{ "border-bottom-width": 0 + "px", "border-right": 2 + "px solid white"}}>
+                            Company: {history.company}
+                        </td>
+                        <td id="table-header" style={{ "border-bottom-width": 0 + "px"}}>
+                            Location: {history.city}, {history.state}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td id="table-header" style={{ "border-bottom-width": 0 + "px", "border-right": 2 + "px solid white"}}>
+                            Title: {history.title}
+                            
+                        </td>
+                        <td id="table-header" style={{ "border-bottom-width": 0 + "px"}}>
+                            From {history.startdate} to {history.current?"Present":history.enddate}
+                        </td>
+                    </tr>
+                </tbody>                                   
+            </Table>
+            )
+        } else {
+            return (
+                <Table style={{ "marginBottom": 2.5 + "px", "maxWidth": 65 + "%"}}>
+                <tbody>
+                    <tr>
+                        <td id="table-header" style={{ "border-bottom-width": 0 + "px"}}>
+                            Company: {history.company}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td id="table-header" style={{ "border-bottom-width": 0 + "px"}}>
+                            Location: {history.city}, {history.state}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td id="table-header" style={{ "border-bottom-width": 0 + "px"}}>
+                            Title: {history.title}    
+                        </td>
+                    </tr>
+                    <tr>
+                        <td id="table-header" style={{ "border-bottom-width": 0 + "px"}}>
+                            From {history.startdate} to {history.current?"Present":history.enddate}
+                        </td>
+                    </tr>
+                </tbody>                                   
+            </Table>
+            )
+            
+        }
+    }
 
     return (
         <div className="employees">
@@ -90,7 +166,7 @@ const Profile = props => {
 
                 <h1>Profile</h1>
                 <Card id={employee.id} key={employee.id}>
-                <CloseButton variant="white" onClick={handleClose} style={{color: "#3fa1fc", position: "relative", top: 15+"px", right: 15+"px", alignSelf:"end"}}/> 
+                <CloseButton variant="white" onClick={handleClose} style={{color: "#3fa1fc", position: "relative", top: 10+"px", right: 10+"px", alignSelf:"end"}}/> 
             <Card.Body style={{"padding-top": "10px"}}>
                 <div className="job-body"
                         // style={{"width": 50 + "%"}}
@@ -175,10 +251,7 @@ const Profile = props => {
                     </Table>
                     </div>
                     </div>
-                    <div className="description"
-                        // style={{"width": 50 + "%"}}
-                    >
-                        {/* <span>{job.description}</span> */}
+                    <div className="description">
                         <div id="description-details">
                             <h2>Employee Information</h2>
                         </div>
@@ -198,43 +271,21 @@ const Profile = props => {
                         </Button>
                     </div>
             </Card>
+                </div>
                 <div className="employees-jobs">
-
                 <h3 style={{ "fontWeight": "bold"}}>Past Experience: </h3>
                     {props.experience.map(history => 
                         <Card id={history.id} key={history.id}>
                             <Card.Body className='d-flex'>
-                                <Table style={{ "marginBottom": 2.5 + "px"}}>
-                                    <tbody>
-                                        <tr>
-                                            <td id="table-header" style={{ "border-bottom-width": 0 + "px", "border-right": 2 + "px solid white"}}>
-                                                Company: {history.company}
-                                            </td>
-                                            <td id="table-header" style={{ "border-bottom-width": 0 + "px", "border-right": 2 + "px solid white"}}>
-                                                Location: {history.city}, {history.state}
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td id="table-header" style={{ "border-bottom-width": 0 + "px", "border-right": 2 + "px solid white"}}>
-                                                Title: {history.title}
-                                                
-                                            </td>
-                                            <td id="table-header" style={{ "border-bottom-width": 0 + "px", "border-right": 2 + "px solid white"}}>
-                                                From {history.startdate} to {history.current?"Present":history.enddate}
-                                            </td>
-                                        </tr>
-                                    </tbody>                                   
-                                </Table>
-                                {/* <p>
-                                    {history.description}
-                                </p> */}
-                                <Button id="editExperience" onClick={() => handleEdit(history)}>
-                                    Edit Experience
-                                </Button>
+                                {handleTable(history)}
+                                <div className='d-flex align-items-center'>
+                                    <Button id="editExperience" onClick={() => handleEdit(history)}>
+                                        Edit Experience
+                                    </Button>
+                                </div>
                             </Card.Body>
                         </Card>
                     )}
-                </div>
             </div>
         </div>
         </div>

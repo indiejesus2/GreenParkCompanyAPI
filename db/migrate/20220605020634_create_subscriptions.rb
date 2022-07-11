@@ -1,6 +1,6 @@
 class CreateSubscriptions < ActiveRecord::Migration[6.1]
   def change
-    create_table :subscriptions do |t|
+    create_table :subscriptions, id: :uuid, default: 'gen_random_uuid()' do |t|
       t.references :plan, null: false, foreign_key: true
       t.references :employer, null: false, foreign_key: true, type: :uuid
       t.boolean :active

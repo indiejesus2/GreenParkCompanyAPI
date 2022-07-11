@@ -14,6 +14,8 @@ const App = () => {
     // useEffect(() => {
     //     currentUser()
     // })
+
+    debugger
         
         return (
             <div>

@@ -52,7 +52,7 @@ export default function EditProfile(props) {
                             </Form.Group>
                         </Row>
                         <div className="d-flex justify-content-around">
-                            <Button onClick={modifySubscription()}>Modify/Cancel Subscription</Button>
+                            <Button onClick={() => modifySubscription()}>Modify/Cancel Subscription</Button>
                             <Button type="submit" onClick={formik.handleSubmit}>Save Changes</Button>
                         </div>
                     </div>

@@ -1,7 +1,7 @@
 class Api::V1::SubscriptionsController < ApplicationController
-  before_action :set_subscription, except: %i[create]   
+  before_action :set_subscription, only: %i[show, update]   
   before_action :set_employer
-  wrap_parameters :subscription, include: [:card_number, :exp_month, :exp_year, :cvc, :employer_id, :plan_id, :stripe_id, :active]
+  wrap_parameters :subscription, include: [:card_number, :exp_month, :exp_year, :cvc, :employer_id, :plan_id, :stripe_id, :active, :id]
   
   def show
     render json: @subscription
@@ -16,6 +16,7 @@ class Api::V1::SubscriptionsController < ApplicationController
       elsif @subscription.plan_id == 2
         @employer.update(yearly: true)
       end
+      EmployerMailer.with(employer: @employer).welcome_email.deliver_later
       render json: {contractor: @employer, subscription: SubscriptionSerializer.new(@employer.subscription)}, prerender: true
     else
       render json: {error: @subscription.errors.first, status: :unprocessable_entity}
@@ -23,15 +24,17 @@ class Api::V1::SubscriptionsController < ApplicationController
   end
   
   def update
-    if @subscription.update(subscription_params)
-      if @subscription.active == false
-        @employer.update(status: false)
-      elsif @subscription.plan_id == 1 && @employer.monthly == false
+    # if !subscription_params.card_number.includes(@employer.last_four)
+    @subscription.update(subscription_params)
+    # byebug
+    if @subscription.save
+      if @subscription.plan_id == 1 && @employer.monthly == false
         @employer.update(monthly: true)
       elsif @subscription.plan_id == 2 && @employer.yearly == false
         @employer.update(yearly: true)
       end
-      render json: @subscription
+      render json: {contractor: @employer, subscription: SubscriptionSerializer.new(@employer.subscription)}, prerender: true
+      # render json: @subscription
     else
       render json: {error: @subscription.errors, status: :unprocessable_entity}
     end
@@ -48,7 +51,7 @@ class Api::V1::SubscriptionsController < ApplicationController
     end      
     
     def subscription_params
-      params.require(:subscription).permit(:card_number, :exp_month, :exp_year, :cvc, :employer_id, :plan_id, :stripe_id, :active)
+      params.require(:subscription).permit(:card_number, :exp_month, :exp_year, :cvc, :employer_id, :plan_id, :stripe_id, :active, :id)
     end
 
 end

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <img src="images/blucollar-logo-non-bold.png" alt="Logo" />
+    <p>Hello <%= @employer.name %>,</p>
+    <p>
+      We have some exciting news! A candidate has applied for the <%= job.title %> position. Feel free to reach out to them to set up an interview.
+    </p>
+      <div class="candidate">
+        <h3><%= candidate.name %></h3>
+        <p><%= candidate.email %></p>
+        <p><%= candidate.address %></p>
+      </div>
+    <p>
+
+      To login to the site, just follow this link: <a href=<%= @url %>>BluCollar</a>.
+    </p>
+    <p>Happy hunting and have a great day!</p>
+    <p>BluCollar</p>
+  </body>
+</html>

@@ -29,7 +29,7 @@ const Home = props => {
             handleScroll();
             
             return () => window.removeEventListener("scroll", handleScroll);
-        }, []);
+        }, [size]);
 
         return windowPosition;
     }

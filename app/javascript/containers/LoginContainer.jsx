@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import { Route, Switch, Redirect, useHistory } from 'react-router-dom'
 import Home from '../components/Home'
 import Login from '../components/Login/Login'
-
 import SignIn from '../components/Login/SignIn'
 import SignUp from '../components/Login/SignUp'
 import ForgotPassword from '../components/Login/ForgotPassword'

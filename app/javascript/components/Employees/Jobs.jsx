@@ -99,7 +99,7 @@ const Jobs = (props) => {
         } else if (props.applicants && props.applicants != applicants) {
             setApplicants(props.applicants)
         }
-    })
+    }, [props.savedJobs])
 
 
     const jobMatch = (job) => {

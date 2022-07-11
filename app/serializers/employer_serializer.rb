@@ -8,5 +8,5 @@ class EmployerSerializer
 
     # has_many :employees, through: :applicants
     # byebug
-    attributes :id, :email, :name, :phone, :description, :monthly, :yearly, :trial, :trial_period, :status, :applicants, :subscription
+    attributes :id, :email, :name, :phone, :description, :monthly, :yearly, :trial, :trial_period, :status, :applicants, :subscription, :current_card
 end
