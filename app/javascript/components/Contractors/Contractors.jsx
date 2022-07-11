@@ -118,7 +118,8 @@ const Contractors = props => {
         return (
             <Redirect to={`/contractors/${contractor.id}/editprofile`} />
         )
-    } else if (contractor.status == false || props.subscription.stripe_active == false) {
+    } else if (contractor.status == false) {
+        // || props.subscription.stripe_active == false) {
         return (
             <div>
                 <NavBar handleSignout={props.signOut} contractor={props.contractor} />

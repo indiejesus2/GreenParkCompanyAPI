@@ -89,8 +89,8 @@ class Subscription < ApplicationRecord
     cancel_at = current_subscription.cancel_at
   end
 
-  def stripe_active
-    stripe_active = current_subscription.active
-  end
+  # def stripe_active
+  #   stripe_active = current_subscription.active
+  # end
 
 end
