@@ -82,7 +82,6 @@ class Subscription < ApplicationRecord
   end
 
   def next_billing
-    byebug
     nextBill = current_subscription.current_period_end
   end
 
