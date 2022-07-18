@@ -47,7 +47,7 @@ const Subscription = (props) => {
             } else {
                 props.addPayment(values)
             }
-            props.history.push(`/contractors`)
+            props.history.push(`/employers`)
         }
         // props.updateSubscription(values)
     })
@@ -118,7 +118,9 @@ const Subscription = (props) => {
         // debugger
         if (nextBilling != "" && new Date(props.subscription.next_billing*1000) > new Date()) {
             return (
-                <NavBar handleSignout={props.signOut} contractor={props.contractor} loggedIn={props.loggedIn} user="contractor" />
+                <div style={{"height": 125 + "px"}}>
+                    <NavBar handleSignout={props.signOut} contractor={props.contractor} loggedIn={props.loggedIn} user="contractor" />
+                </div>
             )
         }
     }
@@ -136,7 +138,7 @@ const Subscription = (props) => {
 
             <Form onSubmit={formik.handleSubmit}>
 
-            <h1>Subscription</h1>
+            <h1 style={{"marginInlineStart": 25+"px"}}>Subscription</h1>
             <div className="subscriptions mb-3">
 
             <div className="monthly">

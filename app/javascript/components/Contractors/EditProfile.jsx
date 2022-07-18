@@ -30,8 +30,8 @@ export default function EditProfile(props) {
     }
 
     const modifySubscription = () => {
-        history.push("/contractors/subscription")
-        // <Redirect to="/contractors/subscription" />
+        history.push("/employers/subscription")
+        // <Redirect to="/employers/subscription" />
     }
 
     const handleSubscription = () => {
@@ -52,7 +52,7 @@ export default function EditProfile(props) {
                             </Form.Group>
                         </Row>
                         <div className="d-flex justify-content-around">
-                            <Button onClick={() => modifySubscription()}>Modify/Cancel Subscription</Button>
+                            <Button onClick={() => modifySubscription()}>Modify Subscription</Button>
                             <Button type="submit" onClick={formik.handleSubmit}>Save Changes</Button>
                         </div>
                     </div>
@@ -81,9 +81,9 @@ export default function EditProfile(props) {
         onSubmit: values => {
             props.updateProfile(values)
             if (employer.monthly != true && employer.yearly != true) {
-                history.push('/contractors/subscription')
+                history.push('/employers/subscription')
             } else {
-                history.push(`/contractors/${values.id}/profile`)
+                history.push(`/employers/${values.id}/profile`)
             }
         }
     })
@@ -124,7 +124,7 @@ export default function EditProfile(props) {
                         <Row className="mb-3">
                         <Form.Group as={Col}>
                         <FloatingLabel label="Description">
-                            <Form.Control as="textarea" name="description" style={{ "backgroundColor": "#2f2f2f", "color": "#fff"}} value={formik.values.description} onChange={formik.handleChange} />
+                            <Form.Control as="textarea" name="description" style={{ "backgroundColor": "#2f2f2f", "color": "#fff", height: 150 + "px", width: 350 + "px"}} value={formik.values.description} onChange={formik.handleChange} />
                         </FloatingLabel>
                         </Form.Group>
                         </Row>

@@ -11,6 +11,7 @@ class Api::V1::JobsController < ApplicationController
         elsif @employer
             @files = {}
             @jobs = @employer.jobs
+            @candidates = @employer.applicants.filter{|applicant| applicant.acceptance != false}
             @employees = @jobs.map{|job| job.employees}
             if @employees.length > 0 
                 @applicants = @employees[0].map{|employee| employee}
@@ -20,7 +21,7 @@ class Api::V1::JobsController < ApplicationController
                     end
                 }
             end
-            render json: {contractor: @employer, jobs: JobSerializer.new(@jobs), applicants: @employer.applicants, files: @files, subscription: SubscriptionSerializer.new(@employer.subscription)}, prerender: true
+            render json: {contractor: @employer, jobs: JobSerializer.new(@jobs), applicants: ApplicantSerializer.new(@candidates), files: @files, subscription: SubscriptionSerializer.new(@employer.subscription)}, prerender: true
         else
             @jobs = Job.all
         end
@@ -33,7 +34,7 @@ class Api::V1::JobsController < ApplicationController
         if !search_params.blank?
             @candidates = @candidates.potential(search_params)
         end
-        render json: {job: JobSerializer.new(@job)}
+        render json: {job: JobSerializer.new(@job) }
     end
 
     def new
@@ -49,7 +50,7 @@ class Api::V1::JobsController < ApplicationController
         # @job.potential
         if @job.save
             # @employees = @employer.applicants.map {|applicant| applicant.employee }
-            render json: JobSerializer.new(@job)
+            render json: {job: JobSerializer.new(@job), applicants: ApplicantSerializer.new(@job.applicants)}
             # , candidates: EmployeeSerializer.new(@employees, include: [:profile, :work_histories])}
         else
             render json: @job.errors
@@ -63,7 +64,7 @@ class Api::V1::JobsController < ApplicationController
         # @job.proximity
         # @job.potential
         if @job.save            
-            render json: JobSerializer.new(@job)
+            render json: {job: JobSerializer.new(@job), applicants: ApplicantSerializer.new(@employer.applicants)}
         else
             render json: @job.errors
         end

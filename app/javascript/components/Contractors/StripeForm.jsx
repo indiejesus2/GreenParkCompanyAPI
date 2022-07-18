@@ -43,7 +43,8 @@ const StripeForm = (props) => {
     const [formError, setFormError] = useState(props.errors.plan_id)
 
     useEffect(() => {
-        if (!!error || (!!formError && props.touched.plan_id)) {
+        debugger
+        if (Array.isArray(error) || (!!formError && props.touched.plan_id)) {
             setAlert(true)
         } else {
             setAlert(false)
@@ -74,10 +75,13 @@ const StripeForm = (props) => {
 
                     <Row className="mb-3">
                         <Form.Group as={Col} controlId="validationprops01">
+                            <Form.Label>
+                                Card Number
+                            </Form.Label>
                         <Form.Control
                             type="text"
                             name="card_number"
-                            placeholder="Card Number"
+                            placeholder="#### #### #### ####"
                             value={props.values.card_number}
                             onChange={props.handleChange}
                             isInvalid={props.errors.email && props.touched.card_number}
@@ -141,16 +145,19 @@ const StripeForm = (props) => {
                                 )}
                             </Form.Select>
                         </Form.Group>
-                        <Form.Group as={Col} controlId="validationprops02">
-
+                        <Form.Group as={Col} className="mb-3" controlId="validationprops02">
+                            <Form.Label>
+                                CVC
+                            </Form.Label>
                             <Form.Control
                                 type="text"
                                 name="cvc"
-                                placeholder="CVC"
+                                placeholder="###"
                                 value={props.values.cvc}
                                 onChange={props.handleChange}
                                 isInvalid={props.errors.cvc && props.touched.cvc}
                                 onBlur={props.handleBlur}
+                                style={{ "backgroundColor": "#2f2f2f", "color": "#fff" }}
                                 // style={{
                                 //     "padding": 5 + "px",
                                 //     "width": 15 + "%",
@@ -162,7 +169,7 @@ const StripeForm = (props) => {
                                     )}
                         </Form.Group>
                     </Row>
-                    <div className="d-flex justify-content-between">
+                    <div className="d-flex justify-content-between mb-3">
                         <Button variant="primary" type="submit" onClick={() => props.handleSubmit} 
                         // style={{ "width": 100 + "%"}}
                     >Submit Info</Button>

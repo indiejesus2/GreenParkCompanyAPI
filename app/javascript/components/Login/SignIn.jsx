@@ -40,8 +40,8 @@ export default function SignIn(props) {
                 props.signIn(values)
                 if (values.user == "employee") {
                     history.push('/employees')
-                } else if (values.user == "contractor") {
-                    history.push('/contractors')
+                } else if (values.user == "employer") {
+                    history.push('/employers')
                 }
         },
     });
@@ -78,17 +78,9 @@ export default function SignIn(props) {
 
     const handleError = () => {
         if (!Array.isArray(contractorError)) {
-            formik.setFieldValue('user', "contractor")
+            formik.setFieldValue('user', "employer")
         }
     }
-
-    // const handleImg = () => {
-    //     if (window.screen.availWidth > 580) {
-    //         return (
-    //             "none"
-    //         )    
-    //     }
-    // }
 
     const handleWidth = () => {
         if (window.screen.availWidth > 580) {
@@ -103,10 +95,6 @@ export default function SignIn(props) {
     return (
         <Modal show animation centered onHide={handleClose} size={handleModal} >
             <div className="signIn">
-            {/* <Modal.Header>
-                <img src="/images/blucollarlogo.png" alt="Blue Collar Logo" className="signIn"/>
-            </Modal.Header> */}
-
             <Form noValidate onSubmit={formik.handleSubmit}
             >
             <Modal.Body
@@ -129,7 +117,7 @@ export default function SignIn(props) {
                             }}
                         >
                             <option value="employee">Employee</option>
-                            <option value="contractor">Contractor</option>
+                            <option value="employer">Employer</option>
                         </Form.Select>
                 </Form.Group>
                 <Form.Group className="mb-3" md="4" controlId="validationFormik01">

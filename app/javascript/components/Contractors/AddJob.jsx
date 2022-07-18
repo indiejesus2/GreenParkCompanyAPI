@@ -205,7 +205,7 @@ export default function AddJob(props) {
         validationSchema: schema,
         onSubmit: values => {
             props.addJob(values)
-            props.history.push(`/contractors`)
+            props.history.push(`/employers`)
         }
     })
 
