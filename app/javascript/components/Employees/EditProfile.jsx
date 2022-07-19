@@ -231,7 +231,7 @@ export default function EditProfile(props) {
     })
 
     const handleTable = () => {
-        if (window.size>580) {
+        if (size.width > 580) {
             return (
                 <div>
                     <Row className="mb-3">
@@ -506,7 +506,7 @@ export default function EditProfile(props) {
             <h1>Edit Profile</h1>
             <div className="input">
                 <Form onSubmit={formik.handleSubmit} className="profile-form">
-
+                    {handleTable()}
                 <div className="d-flex justify-content-around">
                         <Button onClick={handleShow} className="d-flex justify-content-right">
                             Upload Resume/CV
