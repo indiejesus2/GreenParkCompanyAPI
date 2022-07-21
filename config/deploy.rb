@@ -1,5 +1,5 @@
 # config valid for current version and patch releases of Capistrano
-lock "~> 3.16.0"
+lock "~> 3.17.0"
 server '144.126.218.31', port: 22, roles: [:web, :app, :db], primary: true
 
 set :repo_url, "git@github.com:indiejesus2/GreenParkCompanyAPI.git"
