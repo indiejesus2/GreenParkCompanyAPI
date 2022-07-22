@@ -1,7 +1,5 @@
 class Api::V1::DocumentsController < ApplicationController
     before_action :set_employee, only: [:create, :update, :destroy]
-    # skip_before_action :verify_authenticity_token
-
 
     def index
         @documents = Document.all
@@ -12,7 +10,7 @@ class Api::V1::DocumentsController < ApplicationController
     end
 
     def create
-        byebug
+        # byebug
         @employee.file.attach(params[:file])
         if @employee.save
             render json: EmployeeSerializer.new(@employee)
@@ -21,7 +19,7 @@ class Api::V1::DocumentsController < ApplicationController
 
     private
         def document_params
-            params.permit(:filename, :employee_id, :content_type)
+            params.permit(:filename, :employee_id, :content_type, )
         end
 
     def set_employee

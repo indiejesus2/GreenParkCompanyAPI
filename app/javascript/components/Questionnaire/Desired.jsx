@@ -191,22 +191,14 @@ const Desired = props => {
         </Row>
         <Row>
             <Form.Group as={Col}>
-            <Form.Label>
-                Valid Driver's License:
-            </Form.Label>
-            <Form.Select style={{ "backgroundColor": "#2f2f2f", "color": "#fff"}} name="license" label="license" value={props.values.license} onChange={props.handleChange} defaultValue={props.values.license}>
-                    <option value="true">Yes</option>
-                    <option value="false">No</option>
-            </Form.Select>
-                {/* <Form.Check type="checkbox" style={{ color: "#fff" }} name="license" label="Check for Valid Identification" value={props.values.license} onChange={props.handleChange} defaultChecked={props.values.license}/> */}
+                <Form.Check type="checkbox" style={{ color: "#fff" }} name="license" label="Check for Valid Identification" value={props.values.license} onChange={props.handleChange} defaultChecked={props.values.license}/>
             </Form.Group>
             <Form.Group as={Col}>
                         <Button variant="link" onClick={handleShow} className="d-flex justify-content-right">
                             Upload Resume/CV
                             <EmployeeFile 
                             show={show} 
-                            // employee={props.employee}
-                            id={props.employee.id}
+                            employee={props.employee}
                             uploadFile={props.uploadFile}
                             fileLoading={props.fileLoading}
                             // uploadFile={} 
@@ -294,19 +286,9 @@ const Desired = props => {
             </Form.Group>
         </Row>
         <Row>
-        <Form.Group as={Col}>
-            <Form.Label>
-                Valid Driver's License:
-            </Form.Label>
-            <Form.Select style={{ "backgroundColor": "#2f2f2f", "color": "#fff"}} name="license" label="license" value={props.values.license} onChange={props.handleChange} defaultValue={props.values.license}>
-                    <option value="true">Yes</option>
-                    <option value="false">No</option>
-            </Form.Select>
-                {/* <Form.Check type="checkbox" style={{ color: "#fff" }} name="license" label="Check for Valid Identification" value={props.values.license} onChange={props.handleChange} defaultChecked={props.values.license}/> */}
-            </Form.Group>
-            {/* <Form.Group as={Col}>
+            <Form.Group as={Col}>
                 <Form.Check type="checkbox" style={{ color: "#fff" }} name="license" label="Check for Valid Identification" value={props.values.license} onChange={props.handleChange} defaultChecked={props.values.license}/>
-            </Form.Group> */}
+            </Form.Group>
             </Row>
             <Row className="mb-3">
             <Form.Group as={Col}>

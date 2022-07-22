@@ -348,13 +348,9 @@ export default function EditProfile(props) {
                 </Form.Group>
                 </Row>
                 <Row className="mb-3">
-                <Form.Label>
-                Valid Driver's License:
-            </Form.Label>
-            <Form.Select style={{ "backgroundColor": "#2f2f2f", "color": "#fff"}} name="license" label="license" value={formik.values.license} onChange={formik.handleChange} defaultValue={formik.values.license}>
-                    <option value="true">Yes</option>
-                    <option value="false">No</option>
-            </Form.Select>
+                    <Form.Group as={Col}>
+                        <Form.Check name="license" label="Check for Valid Identification" value={formik.values.license} onChange={formik.handleChange} defaultChecked={formik.values.license}/>
+                    </Form.Group>
                 </Row>
                 </div>
             )
@@ -489,19 +485,9 @@ export default function EditProfile(props) {
                 </Form.Group>
                 </Row>
                 <Row className="mb-3">
-                <Form.Group as={Col}>
-            <Form.Label>
-                Valid Driver's License:
-            </Form.Label>
-            <Form.Select style={{ "backgroundColor": "#2f2f2f", "color": "#fff"}} name="license" label="license" value={formik.values.license} onChange={formik.handleChange} defaultValue={formik.values.license}>
-                    <option value="true">Yes</option>
-                    <option value="false">No</option>
-            </Form.Select>
-                {/* <Form.Check type="checkbox" style={{ color: "#fff" }} name="license" label="Check for Valid Identification" value={props.values.license} onChange={props.handleChange} defaultChecked={props.values.license}/> */}
-            </Form.Group>
-                    {/* <Form.Group as={Col}>
+                    <Form.Group as={Col}>
                         <Form.Check name="license" label="Check for Valid Identification" value={formik.values.license} onChange={formik.handleChange} defaultChecked={formik.values.license}/>
-                    </Form.Group> */}
+                    </Form.Group>
                 </Row>
                 </div>
             )
@@ -526,8 +512,7 @@ export default function EditProfile(props) {
                             Upload Resume/CV
                             <EmployeeFile 
                             show={show} 
-                            // employee={employee}
-                            id={employee.employee_id}
+                            employee={employee}
                             uploadFile={props.uploadFile}
                             fileLoading={props.fileLoading}
                             // uploadFile={} 
