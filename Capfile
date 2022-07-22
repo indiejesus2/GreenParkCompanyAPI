@@ -32,6 +32,7 @@ require "capistrano/rails"
 # require 'capistrano/faster_assets'
 require "capistrano/bundler"
 require "capistrano/puma"
+require "capistrano/postgresql"
 require 'dotenv'
 Dotenv.load
 install_plugin Capistrano::Puma
