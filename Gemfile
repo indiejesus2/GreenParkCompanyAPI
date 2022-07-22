@@ -69,7 +69,6 @@ group :development do
     gem 'capistrano-bundler', require: false
     gem 'capistrano3-puma',   require: false
     gem 'capistrano-faster-assets', require: false
-    gem 'capistrano-postgresql', require: false
 end
 
 group :test do
