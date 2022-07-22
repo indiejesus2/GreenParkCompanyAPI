@@ -18,7 +18,6 @@ import { updatePassword } from '../actions/updatePassword'
 import { currentUser } from '../actions/currentUser'
 import {resetPassword } from '../actions/resetPassword'
 import { contactMsg } from '../actions/contactMsg'
-import { Image } from 'react-bootstrap'
 import Employees from '../components/Employees/Employees'
 import Questionnaire from '../components/Questionnaire/Main'
 import Profile from '../components/Employees/Profile'
@@ -50,13 +49,7 @@ class EmployeesContainer extends Component {
         if (this.props.loading == true) {
             return (
                 <div>
-                    <div>
-                        <Logo user="employee"/>
-                    </div>
-                    <div className="homepage">
-                        <Image style={{"transform": "scale(" + 0.75 + ")", marginTop: 75 + "px", marginLeft: 75 + "px"}} fluid="true" src="/images/blucollarO.png" alt="collar" />
-                        {/* <span className="sr-only">Loading...</span> */}
-                    </div>
+                    <Logo user="employee"/>
                         <div className="loading">
                             Loading....
                         </div>

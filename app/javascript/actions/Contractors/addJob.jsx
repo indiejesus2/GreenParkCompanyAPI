@@ -11,7 +11,7 @@ export const addJob = (job) => {
         };
         return fetch('/api/v1/jobs', configObj)
         .then(resp => resp.json())
-        .then(job => dispatch({type: 'ADD_JOB', payload: job}))
+        .then(job => dispatch({type: 'ADD_JOB', payload: job.data.attributes}))
         .catch(err => {
             dispatch({type: 'ERROR_CONTRACTOR', payload: err})
         })

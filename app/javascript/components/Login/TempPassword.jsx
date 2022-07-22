@@ -156,7 +156,7 @@ const TempPassword = props => {
                                     style={{ "backgroundColor": "#2f2f2f", "color": "#fff"}}
                                     >
                                     <option value="employee">Employee</option>
-                                    <option value="employer">Employer</option>
+                                    <option value="contractor">Contractor</option>
                                 </Form.Select>
                             </Form.Label>
                             </Form.Group>

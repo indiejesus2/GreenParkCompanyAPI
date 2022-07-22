@@ -60,7 +60,7 @@ const NavBar = props => {
     }
 
     const handleSubscription = () => {
-        if (props.contractor.name && history.location.pathname != "/employers/about") {
+        if (props.contractor.name && history.location.pathname != "/contractors/about") {
             return (
                 <h1 className="employeeTitle">{props.contractor.name.toUpperCase()}'S DASHBOARD</h1>
             )
@@ -184,7 +184,7 @@ const NavBar = props => {
                                 >
                                     About
                                 </Nav.Link>
-                                <Nav.Link as={Link} to={`/employees/contact`} eventKey="5"
+                                <Nav.Link as={Link} to={`/employees`} eventKey="5"
                                     style={{
                                         color: "#fff",
                                         fontFamily: 'Luam, serif',
@@ -225,7 +225,7 @@ const NavBar = props => {
                                 >
                                 <Nav.Link as={Link} to="/employees">HOME</Nav.Link>
                                 <Nav.Link as={Link} to="/employees/about">ABOUT</Nav.Link>
-                                <Nav.Link as={Link} to="/employees/contact">CONTACT</Nav.Link>
+                                <Nav.Link as={Link} to="/employees">CONTACT</Nav.Link>
                             </Nav>
 
                             <Nav
@@ -262,7 +262,7 @@ const NavBar = props => {
                         <div style={{textAlign: "center", zIndex:1, background:"black", position: "relative", bottom: 50+"px"}}>
                         <Navbar.Collapse id="basic-navbar-nav">
                                 <Nav defaultActiveKey="/" className="flex-column me-auto">
-                                    <Nav.Link as={Link} to="/employers" eventKey="1"
+                                    <Nav.Link as={Link} to="/contractors" eventKey="1"
                                         style={{
                                             color: "#fff",
                                             fontFamily: 'Luam, serif',
@@ -271,7 +271,7 @@ const NavBar = props => {
                                     >
                                         My Jobs
                                     </Nav.Link>
-                                    <Nav.Link as={Link} to={`/employers/${props.contractor.id}/applicants`} eventKey="2"
+                                    <Nav.Link as={Link} to={`/contractors/${props.contractor.id}/applicants`} eventKey="2"
                                         style={{
                                             color: "#fff",
                                             fontFamily: 'Luam, serif',
@@ -280,7 +280,7 @@ const NavBar = props => {
                                     >
                                         Applicants
                                     </Nav.Link>
-                                    <Nav.Link as={Link} to={`/employers/addjob`} eventKey="3"
+                                    <Nav.Link as={Link} to={`/contractors/addjob`} eventKey="3"
                                         style={{
                                             color: "#fff",
                                             fontFamily: 'Luam, serif',
@@ -289,7 +289,7 @@ const NavBar = props => {
                                     >
                                         Add Job
                                     </Nav.Link>
-                                    <Nav.Link as={Link} to={`/employers/${props.contractor.id}/profile`} eventKey="4"
+                                    <Nav.Link as={Link} to={`/contractors/${props.contractor.id}/profile`} eventKey="4"
                                         style={{
                                             color: "#fff",
                                             fontFamily: 'Luam, serif',
@@ -300,7 +300,7 @@ const NavBar = props => {
                                     </Nav.Link>
                                 </Nav>
                                 <Nav defaultActiveKey="/" className="flex-column me-auto"> 
-                                    <Nav.Link as={Link} to="/employers/about" eventKey="5"
+                                    <Nav.Link as={Link} to="/contractors/about" eventKey="5"
                                         style={{
                                             color: "#fff",
                                             fontFamily: 'Luam, serif',
@@ -309,7 +309,7 @@ const NavBar = props => {
                                     >
                                         About
                                     </Nav.Link>
-                                    <Nav.Link as={Link} to={`/employers/contact`} eventKey="6"
+                                    <Nav.Link as={Link} to={`/contractors`} eventKey="6"
                                         style={{
                                             color: "#fff",
                                             fontFamily: 'Luam, serif',
@@ -339,9 +339,9 @@ const NavBar = props => {
                                 "font-size": "x-large",
                             }}
                             >
-                            <Nav.Link as={Link} to="/employers">HOME</Nav.Link>
-                            <Nav.Link as={Link} to="/employers/about">ABOUT</Nav.Link>
-                            <Nav.Link as={Link} to="/employers/contact">CONTACT</Nav.Link>
+                            <Nav.Link as={Link} to="/contractors">HOME</Nav.Link>
+                            <Nav.Link as={Link} to="/contractors/about">ABOUT</Nav.Link>
+                            <Nav.Link as={Link} to="/contractors">CONTACT</Nav.Link>
                         </Nav>
                         <Nav
                             style={{

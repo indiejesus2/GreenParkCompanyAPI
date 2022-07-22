@@ -42,11 +42,11 @@ const [jobs, setJobs] = useState(props.jobs ? props.jobs : [])
     }
 
     function handleJob(job) {
-        props.history.push(`/employers/${props.contractor.id}/jobs/${job.id}`)
+        props.history.push(`/contractors/${props.contractor.id}/jobs/${job.id}`)
     }
     
     function handleEdit(job) {
-        props.history.push(`/employers/${props.contractor.id}/jobs/${job.id}/editjob`)
+        props.history.push(`/contractors/${props.contractor.id}/jobs/${job.id}/editjob`)
     }
 
     const handleTable = (job) => {
@@ -64,7 +64,7 @@ const [jobs, setJobs] = useState(props.jobs ? props.jobs : [])
                                 </td>
                             </tr>
                             <tr>
-                                <td id="table-header-title" style={{ "border-bottom-width": 0 + "px", "border-right": 2 + "px solid white"}}>Applicants: {props.applicants.filter(applicant=>applicant.job_id == job.id).length}
+                                <td id="table-header-title" style={{ "border-bottom-width": 0 + "px", "border-right": 2 + "px solid white"}}>Applicants: {job.profiles.length}
                                 </td>
                                 <td id="table-header-rating" style={{ "border-bottom-width": 0 + "px"}}>Date Posted: {job.createdDate}
                                 </td>
@@ -72,7 +72,7 @@ const [jobs, setJobs] = useState(props.jobs ? props.jobs : [])
                         </tbody>
                     </Table>
                     <div className="employee-jobs-buttons">
-                        <Button className="mb-3" id="job" onClick={() => handleJob(job)}>View Job</Button>
+                        <Button id="job" onClick={() => handleJob(job)}>View Job</Button>
                         <Button id="edit_job" onClick={() => handleEdit(job)}>Edit Job</Button>
                     </div>
                 </div>
@@ -94,7 +94,7 @@ const [jobs, setJobs] = useState(props.jobs ? props.jobs : [])
                             </tr>
                             <tr>
                                 <td id="table-header-title" style={{ "border-bottom-width": 0 + "px"}}>
-                                    Applicants: {props.applicants.filter(applicant=>applicant.job_id == job.id).length}
+                                    Applicants: {job.profiles.length}
                                 </td>
                             </tr>
                             <tr>
@@ -105,7 +105,7 @@ const [jobs, setJobs] = useState(props.jobs ? props.jobs : [])
                         </tbody>
                     </Table>
                     <div className="employee-jobs-buttons">
-                        <Button className="mb-3" id="job" onClick={() => handleJob(job)}>View Job</Button>
+                        <Button id="job" onClick={() => handleJob(job)}>View Job</Button>
                         <Button id="edit_job" onClick={() => handleEdit(job)}>Edit Job</Button>
                     </div>
                 </div>

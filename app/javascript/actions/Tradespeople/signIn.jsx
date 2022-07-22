@@ -27,7 +27,7 @@ export const signIn = (user) => {
                 }
                 }
             )
-        } else if (user.user == "employer") {
+        } else if (user.user == "contractor") {
             const configObj = {
                 method: "POST",
                 headers: {

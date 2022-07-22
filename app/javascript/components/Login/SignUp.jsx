@@ -51,8 +51,8 @@ export default function SignUp(props) {
             props.signUp(values)
             if (values.user == "employee") {
                 history.push('/employees')
-            } else if (values.user == "employer") {
-                history.push('/employers')
+            } else if (values.user == "contractor") {
+                history.push('/contractors')
             }
         },
     });
@@ -115,7 +115,7 @@ export default function SignUp(props) {
                                 }}
                             >
                             <option value="employee">Employee</option>
-                            <option value="employer">Employer</option>
+                            <option value="contractor">Contractor</option>
                         </Form.Select>
                     </Form.Group>
                     <Form.Group md="4" controlId="validationFormik01">

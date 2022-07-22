@@ -3,7 +3,7 @@ export default function jobsReducer(state = {jobs: [], candidates: [], loading: 
         
         case 'LOADING_JOBS':
             return {
-                ...state,
+                jobs: [...state.jobs],
                 // candidates: [...state.candidates],
                 loading: true
             }

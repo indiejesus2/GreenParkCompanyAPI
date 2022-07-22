@@ -6,13 +6,13 @@ const Logo = props => {
     const history = useHistory()
 
     const [home] = useState(
-        history.location.pathname.includes("contractor") ? '/employers' : '/employees'
+        history.location.pathname.includes("contractor") ? '/contractors' : '/employees'
     )
 
     const handleHome = () => {
-        if (history.location.pathname.includes("employer")) {
+        if (history.location.pathname.includes("contractor")) {
             return (
-                '/employers'
+                '/contractors'
             )
         } else if (history.location.pathname.includes("employees")) {
             return (

@@ -107,7 +107,7 @@ export default function ForgotPassword(props) {
                                 }}
                             >
                                 <option value="employee">Employee</option>
-                                <option value="employer">Employer</option>
+                                <option value="contractor">Contractor</option>
                             </Form.Select>
                     </Form.Group>
                 </Modal.Body>

@@ -23,10 +23,6 @@ class JobSerializer
         object.created_at.strftime("%B %d, %Y")
     end
 
-    attributes :applications do |object|
-       @applicants = object.applicants.filter{|applicant| applicant.acceptance != false}
-    end
-
     # attributes :files do |object|
     #     byebug
         

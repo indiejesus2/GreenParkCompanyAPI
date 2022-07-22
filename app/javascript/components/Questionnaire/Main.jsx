@@ -124,11 +124,9 @@ const Main = (props) => {
                     handleClick={handleClick}
                     />
             </Form>
-            <div className="d-flex justify-content-center stripeModal" >
-            <Alert show={show} style={{width: 50 + "%",  backgroundColor: "#" + 565656}}>
-                <h2 style={{textAlign: "center", color: "white"}}>
-                    Welcome to BluCollar!
-                </h2>
+            <div className="d-flex justify-content-center" >
+            <Alert show={show} style={{width: 50 + "%"}}>
+                    <Alert.Heading>Welcome to BluCollar!</Alert.Heading>
                     <p>
                         Please complete the questionnaire to begin the job-matching process. Please answer as many questions as possible to increase your chances of matching with a potential contractor.
                     </p>

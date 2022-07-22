@@ -46,7 +46,7 @@ class EmployeeMailer < ApplicationMailer
     ) 
   end
 
-  def contact_email
+  def contact
     @contact = params
     mail(
         to: "postmaster@mg.blucollar.com", 

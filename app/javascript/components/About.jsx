@@ -73,7 +73,7 @@ const About = props => {
                 {handleHome()}
                 {/* <NavBar /> */}
             </div>
-            <Image style={{width: 100 + '%', marginTop: 60 + "px"}} src="/images/main page.png" alt="About page" />
+            <Image style={{width: 100 + '%'}} src="/images/main page.png" alt="About page" />
         </div>
     )
 }

@@ -4,5 +4,5 @@ class ApplicantSerializer
     belongs_to :employer 
     belongs_to :job
     has_one :profile, through: :employee
-    attributes :id, :employee_id, :employer_id, :job_id, :rating, :employee, :profile, :employer, :company, :interested, :acceptance, :savedJob, :savedApplicant, :distance
+    attributes :id, :employee_id, :employer_id, :job_id, :rating, :employee, :profile, :employer, :company
 end

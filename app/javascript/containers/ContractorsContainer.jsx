@@ -44,16 +44,15 @@ class ContractorsContainer extends Component {
     }
 
     render() {
-
         if (this.props.loading == true) {
             return (
                 <div>
                     <div>
                         <Logo user="contractor"/>
                     </div>
-                    <div className="homepage">
-                        <Image style={{"transform": "scale(" + 0.75 + ")", marginTop: 75 + "px"}} fluid="true" src="/images/blucollarO.png" alt="collar" />
-                        {/* <span className="sr-only">Loading...</span> */}
+                    <div className="homepage-header">
+                        <Image fluid="true" src="/images/blucollarO.png" alt="collar" />
+                        <span className="sr-only">Loading...</span>
                     </div>
                     <div className="loading">
                 {/* <NavBar loading={this.props.loading} handleSignout={this.handleSignout} user="contractor" /> */}
@@ -75,17 +74,17 @@ class ContractorsContainer extends Component {
         return (
             <div>
                 <Switch>
-                    <Route path='/employers/contact' render={(routerProps) => <Contact {...routerProps} loggedIn={this.props.loggedIn} signOut={this.props.signOut} user="contractor" contractor={this.props.contractor} contactMsg={this.props.contactMsg} />}></Route>
-                    <Route path='/employers/about' render={(routerProps) => <About {...routerProps} loggedIn={this.props.loggedIn} signOut={this.props.signOut} user="contractor" contractor={this.props.contractor} />}></Route>
-                    <Route path='/employers/:id/jobs/:job_id/employees/:employee_id' render={(routerProps) => <EmployeeProfile {...routerProps} loading={this.props.loading} contractor={this.props.contractor} jobs={this.props.jobs} signOut={this.props.signOutContractor} files={this.props.files} />}></Route>
-                    <Route path='/employers/:id/profile' render={(routerProps) => <Profile {...routerProps} loggedIn={this.props.loggedIn} contractor={this.props.contractor} signOut={this.props.signOutContractor} updateProfile={this.props.updateProfile} subscription={this.props.subscription}/>}></Route>
-                    <Route path='/employers/:id/editprofile' render={(routerProps) => <EditProfile {...routerProps} loggedIn={this.props.loggedIn} contractor={this.props.contractor} updateProfile={this.props.updateProfile} signOut={this.props.signOutContractor} subscription={this.props.subscription} updatePayment={this.props.updatePayment}/>}></Route>
-                    <Route path='/employers/:id/jobs' render={(routerProps) => <JobsContainer {...routerProps} jobs={this.props.jobs} contractor={this.props.contractor} candidates={this.props.candidates} profiles={this.props.profiles}  editApplicant={this.props.editApplicant} signOut={this.props.signOutContractor} files={this.props.files}/>}></Route>
-                    <Route path='/employers/addjob' render={(routerProps) => <JobsContainer {...routerProps} contractor={this.props.contractor} addJob={this.props.addJob}/>}></Route>
-                    <Route path='/employers/:id/applicants' render={(routerProps) => <Applicant {...routerProps} loggedIn={this.props.loggedIn} jobs={this.props.jobs} contractor={this.props.contractor} applicants={this.props.applicants} profiles={this.props.profiles}  editApplicant={this.props.editApplicant} files={this.props.files}/>}></Route>
+                    <Route path='/contractors/contact' render={(routerProps) => <Contact {...routerProps} loggedIn={this.props.loggedIn} signOut={this.props.signOut} user="contractor" contractor={this.props.contractor} contactMsg={this.props.contactMsg} />}></Route>
+                    <Route path='/contractors/about' render={(routerProps) => <About {...routerProps} loggedIn={this.props.loggedIn} signOut={this.props.signOut} user="contractor" contractor={this.props.contractor} />}></Route>
+                    <Route path='/contractors/:id/jobs/:job_id/employees/:employee_id' render={(routerProps) => <EmployeeProfile {...routerProps} loading={this.props.loading} contractor={this.props.contractor} jobs={this.props.jobs} signOut={this.props.signOutContractor} files={this.props.files} />}></Route>
+                    <Route path='/contractors/:id/profile' render={(routerProps) => <Profile {...routerProps} loggedIn={this.props.loggedIn} contractor={this.props.contractor} signOut={this.props.signOutContractor} updateProfile={this.props.updateProfile} subscription={this.props.subscription}/>}></Route>
+                    <Route path='/contractors/:id/editprofile' render={(routerProps) => <EditProfile {...routerProps} loggedIn={this.props.loggedIn} contractor={this.props.contractor} updateProfile={this.props.updateProfile} signOut={this.props.signOutContractor} subscription={this.props.subscription} updatePayment={this.props.updatePayment}/>}></Route>
+                    <Route path='/contractors/:id/jobs' render={(routerProps) => <JobsContainer {...routerProps} jobs={this.props.jobs} contractor={this.props.contractor} candidates={this.props.candidates} profiles={this.props.profiles}  editApplicant={this.props.editApplicant} signOut={this.props.signOutContractor} files={this.props.files}/>}></Route>
+                    <Route path='/contractors/addjob' render={(routerProps) => <JobsContainer {...routerProps} contractor={this.props.contractor} addJob={this.props.addJob}/>}></Route>
+                    <Route path='/contractors/:id/applicants' render={(routerProps) => <Applicant {...routerProps} loggedIn={this.props.loggedIn} jobs={this.props.jobs} contractor={this.props.contractor} applicants={this.props.applicants} profiles={this.props.profiles}  editApplicant={this.props.editApplicant} files={this.props.files}/>}></Route>
                     <Route exact path='/signout' render={(routerProps) => <SignOut {...routerProps} signoutUser={this.props.signoutContractorUser} user={this.props.user}/> }/>
-                    <Route path='/employers/subscription' render={(routerProps) => <Subscription {...routerProps} contractor={this.props.contractor} updateSubscription={this.props.updateSubscription} signOut={this.props.signOutContractor} loggedIn={this.props.loggedIn} addPayment={this.props.addPayment} updatePayment={this.props.updatePayment} contractorErrors={this.props.contractorErrors} subscription={this.props.subscription}/>}></Route>
-                    <Route path='/employers' render={(routerProps) => <Contractors {...routerProps} loading={this.props.loading} signIn={this.props.signIn} signUp={this.props.signUp} loggedIn={this.props.loggedIn} contractor={this.props.contractor} profile={this.props.profile} jobs={this.props.jobs} applicants={this.props.applicants} updateSubscription={this.props.updateSubscription} editApplicant={this.props.editApplicant} errors={this.props.errors} signOut={this.props.signOutContractor} files={this.props.files} contractorErrors={this.props.contractorErrors} subscription={this.props.subscription} updatePayment={this.props.updatePayment}/>}></Route>
+                    <Route path='/contractors/subscription' render={(routerProps) => <Subscription {...routerProps} contractor={this.props.contractor} updateSubscription={this.props.updateSubscription} signOut={this.props.signOutContractor} loggedIn={this.props.loggedIn} addPayment={this.props.addPayment} updatePayment={this.props.updatePayment} contractorErrors={this.props.contractorErrors} subscription={this.props.subscription}/>}></Route>
+                    <Route path='/contractors' render={(routerProps) => <Contractors {...routerProps} loading={this.props.loading} signIn={this.props.signIn} signUp={this.props.signUp} loggedIn={this.props.loggedIn} contractor={this.props.contractor} profile={this.props.profile} jobs={this.props.jobs} applicants={this.props.applicants} updateSubscription={this.props.updateSubscription} editApplicant={this.props.editApplicant} errors={this.props.errors} signOut={this.props.signOutContractor} files={this.props.files} contractorErrors={this.props.contractorErrors} subscription={this.props.subscription} updatePayment={this.props.updatePayment}/>}></Route>
                 </Switch>
             </div>
         )}

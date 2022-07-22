@@ -35,15 +35,15 @@ const EmployeeProfile = props => {
     const formik = useFormik({
         initialValues:
          {
-            id: candidate.id, 
-            employee_id: candidate.employee_id,
-            employer_id: candidate.employer_id,
-            job_id: candidate.job_id,
-            acceptance: candidate.acceptance
+            id: application.id, 
+            employee_id: application.employee_id,
+            employer_id: application.employer_id,
+            job_id: application.job_id,
+            acceptance: application.acceptance
         },
         onSubmit: values => {
             props.editApplicant(values)
-            history.push(`/employers/${values.employer_id}/jobs/${values.job_id}`)
+            history.push(`/contractors/${values.employer_id}/jobs/${values.job_id}`)
         }
     })
 
@@ -58,7 +58,7 @@ const EmployeeProfile = props => {
     }
 
     const handleApplicant = (status) => {
-        formik.setValues(candidate)
+        formik.setValues(application)
         formik.setFieldValue('acceptance', status)
         formik.handleSubmit(formik.values)
     }
@@ -162,7 +162,7 @@ const EmployeeProfile = props => {
                             Name:                         
                         </td>
                         <td style={{"padding": "0px" }}>
-                            {candidate.profile.fname} {candidate.profile.lname}
+                            {candidate.fname} {candidate.lname}
                         </td>
                         </tr>
                         <tr style={{ "border-bottom-width": 0 + "px"}}>
@@ -178,7 +178,7 @@ const EmployeeProfile = props => {
                             Location:                         
                         </td>
                         <td style={{"padding": "0px" }}>
-                            {candidate.profile.city}, {candidate.profile.state} {candidate.profile.zipcode}
+                            {candidate.city}, {candidate.state} {candidate.zipcode}
                         </td>
                         </tr>
                         <tr style={{ "border-bottom-width": 0 + "px"}}>
@@ -186,7 +186,7 @@ const EmployeeProfile = props => {
                             Job Type:                         
                         </td>
                         <td style={{"padding": "0px" }}>
-                            {candidate.profile.jobtype.join(', ')}
+                            {candidate.jobtype.join(', ')}
                         </td>
                         </tr>
                         <tr style={{ "border-bottom-width": 0 + "px"}}>
@@ -194,7 +194,7 @@ const EmployeeProfile = props => {
                             Job Shifts: 
                         </td>
                         <td style={{"padding": "0px" }}>
-                            {candidate.profile.shifts.join(", ")}
+                            {candidate.shifts.join(", ")}
                         </td>
                         </tr>
                         <tr style={{ "border-bottom-width": 0 + "px"}}>
@@ -202,7 +202,7 @@ const EmployeeProfile = props => {
                             Schedule:
                         </td>
                         <td style={{"padding": "0px" }}>
-                        {candidate.profile.schedule.join(", ")}
+                        {candidate.schedule.join(", ")}
                         </td>
                         </tr>
                         <tr style={{ "border-bottom-width": 0 + "px"}}>
@@ -210,7 +210,7 @@ const EmployeeProfile = props => {
                                 Pay: 
                             </td>
                             <td style={{"padding": "0px" }}>
-                                ${candidate.profile.minpay} {candidate.profile.paytype}
+                                ${candidate.minpay} {candidate.paytype}
                             </td>
                         </tr>
                         <tr style={{ "border-bottom-width": 0 + "px"}}>
@@ -218,7 +218,7 @@ const EmployeeProfile = props => {
                                 Match Rating: 
                             </td>
                             <td style={{"padding": "0px" }}>
-                                {rate(candidate.rating)}        
+                                {rate(application.rating)}        
                             </td>
                         </tr>
                         <tr style={{ "border-bottom-width": 0 + "px"}}>
@@ -226,7 +226,7 @@ const EmployeeProfile = props => {
                                 Distance: 
                             </td>
                             <td style={{"padding": "0px" }}>
-                                {Math.round(candidate.distance)} Miles        
+                                {Math.round(application.distance)} Miles        
                             </td>
                         </tr>
                     </Table>
@@ -237,7 +237,7 @@ const EmployeeProfile = props => {
                     </div>
                     <div className="job-buttons">
                         {handleDecline()}
-                        <Button onClick={() => props.handleContact(candidate.profile)}>Contact Applicant</Button>
+                        <Button onClick={() => props.handleContact(candidate)}>Contact Applicant</Button>
                     </div> */}
                     </div>
                     <div className="description"
@@ -249,7 +249,7 @@ const EmployeeProfile = props => {
                         </div>
                         <div className="description-box">
                             <p>
-                                {candidate.profile.description}
+                                {candidate.description}
                             </p>
                             {/* <h3 style={{ "fontWeight": "bold"}}>Past Experience: </h3>
                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p> */}
@@ -293,8 +293,7 @@ const EmployeeProfile = props => {
                         {handleResume()}
                     </div>
                     <div className="job-buttons">
-                        {/* {handleDecline()} */}
-                        <Button onClick={() => handleApplicant(false)}>Decline Applicant</Button>
+                        {handleDecline()}
                         <Button onClick={() => props.handleContact(candidate)}>Contact Applicant</Button>
                     </div>
             </Card>            

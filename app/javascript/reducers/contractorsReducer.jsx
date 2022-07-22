@@ -20,7 +20,7 @@ export default function contractorsReducer(state = {contractor: [], jobs: [], ap
                 loading: false
             }
         case 'SIGNIN_CONTRACTOR':
-            debugger
+            // debugger
             const subscription = () => {
                 if (!!action.payload.subscription.data) {
                     return action.payload.subscription.data.attributes
@@ -28,12 +28,10 @@ export default function contractorsReducer(state = {contractor: [], jobs: [], ap
                     return action.payload.subscription.data
                 }
             }
-
-            // const applications = action.payload.applicants.filter(applicant => applicant.acceptance != false)
             return {
                 contractor: action.payload.contractor,
                 jobs: action.payload.jobs.data.map(job => job.attributes),
-                applicants: action.payload.applicants.data.map(applicant => applicant.attributes),
+                applicants: action.payload.applicants,
                 files: action.payload.files,
                 subscription: subscription(),
                 loggedIn: true,
@@ -64,31 +62,27 @@ export default function contractorsReducer(state = {contractor: [], jobs: [], ap
                 loading: false
             }
         case 'ADD_JOB':
-            debugger
             if(state.jobs) {
-                // let applications = action.payload.applicants.filter(applicant => applicant.acceptance != false)
                 return {
-                    ...state, jobs: [...state.jobs, action.payload.jobs.data.attributes], loading: false, applicants: [...state.applicant, action.payload.applicants.data.attributes]
+                    ...state, jobs: [...state.jobs, action.payload], loading: false, applicants: action.payload.applicants
                 }
             } else {
                 return {
-                    ...state, jobs: [action.payload], loading: false, applicants: applications
+                    ...state, jobs: [action.payload], loading: false, applicants: action.payload.applicants
                 }
             }
         case 'EDIT_JOB':
-            // let applications = action.payload.applicants.filter(applicant => applicant.acceptance != false)
             let edited = state.jobs.map(job => {
-                if(job.id === action.payload.job.data.attributes.id) {
-                    return action.payload.job.data.attributes
+                if(job.id === action.payload.id) {
+                    return action.payload
                 } else {
                     return job
                 }
             })
-            return {...state, jobs: edited, loading: false, applicants: action.payload.applicants.data.map(applicant => applicant.attributes)}
-        case 'DELETE_JOB':            
+            return {...state, jobs: edited, loading: false, applicants: action.payload.applicants}
+        case 'DELETE_JOB':
             let deleted = state.jobs.filter(job => job.id != action.payload.id)
-            // let applications = action.payload.applicants.filter(applicant => applicant.acceptance != false)
-            return {...state, jobs: deleted, loading: false, applicants: applications}
+            return {...state, jobs: deleted, loading: false, applicants: action.payload.applicants}
         case 'ADD_PAYMENT':
             // debugger
             return {
