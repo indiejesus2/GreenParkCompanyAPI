@@ -300,22 +300,22 @@ a:hover {
 
 // }
 
-// @media only screen and (max-width: 580px) {
-//   .employee-jobs-buttons {
-//     display: flex !important;
-//     justify-content: space-between;
-//   }
+@media only screen and (max-width: 580px) {
+  .employee-jobs-buttons {
+    display: flex !important;
+    justify-content: space-between;
+  }
 
-//   .navSticky {
-//     height: 65px !important;
-//   }
+  .navSticky {
+    height: 65px !important;
+  }
 
-//   .modal-dialog {
-//     position: unset !important;
-//   }
+  .modal-dialog {
+    position: unset !important;
+  }
+}
 // =======
 // >>>>>>> parent of e3a6c86 (WIP: Updated contractors to employers. Applicants come with their profiles rather than in jobs. Contact form should work properly now.)
-// }
 
 @media only screen and (min-width: 975px) {
   .employeeCollapseNav {

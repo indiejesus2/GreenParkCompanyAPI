@@ -49,7 +49,7 @@ class EmployeeMailer < ApplicationMailer
   def contact
     @contact = params
     mail(
-        to: "postmaster@mg.blucollar.com", 
+        to: "paul@blucollar.com", 
         subject: "Contact Message",
     )
   end

@@ -1,35 +1,38 @@
 import React, { useState, useEffect } from 'react'
+import { useHistory } from 'react-router-dom'
 import { Card, Image } from 'react-bootstrap'
 import Logo from './Logo'
 import NavBar from './NavBar'
 
 const About = props => {
 
-    // const size = useWindowPosition();
+    const size = useWindowPosition();
 
-    // function useWindowPosition() {
-    //     const [windowPosition, setWindowPosition] = useState({
-    //         width: undefined,
-    //         height: undefined
-    //     });
+    const history = useHistory()
 
-    //     useEffect(() => {
-    //         function handleScroll() {
-    //             setWindowPosition({
-    //                 width: window.scrollX,
-    //                 height: window.scrollY
-    //             });
-    //         }
-            
-    //         window.addEventListener("scroll", handleScroll);
-            
-    //         handleScroll();
-            
-    //         return () => window.removeEventListener("scroll", handleScroll);
-    //     }, []);
+    function useWindowPosition() {
+        const [windowPosition, setWindowPosition] = useState({
+            width: undefined,
+            height: undefined
+        });
 
-    //     return windowPosition;
-    // }
+        useEffect(() => {
+            function handleScroll() {
+                setWindowPosition({
+                    width: window.scrollX,
+                    height: window.scrollY
+                });
+            }
+            
+            window.addEventListener("scroll", handleScroll);
+            
+            handleScroll();
+            
+            return () => window.removeEventListener("scroll", handleScroll);
+        }, [size]);
+
+        return windowPosition;
+    }
 
     const handleNav = () => {
         if (props.user == "employee") {
@@ -49,7 +52,6 @@ const About = props => {
     }
 
     const handleHome = () => {
-        debugger
         if (props.user == "employee" || props.user == "contractor") {
             return (
                 <div>
@@ -66,14 +68,22 @@ const About = props => {
         //     )
         }
     }
+
+    const handleStick = () => {
+        if (size.height > 50 || history.location.pathname != "/home/about") {
+            return (
+                <div className="navSticky">
+                    {handleHome()}
+                    {/* <NavBar /> */}
+                </div>
+            )
+        }
+    }
     
     return (
         <div>
-            <div className="navSticky">
-                {handleHome()}
-                {/* <NavBar /> */}
-            </div>
-            <Image style={{width: 100 + '%'}} src="/images/main page.png" alt="About page" />
+            {handleStick()}
+            <Image style={{width: 100 + '%', paddingTop: 60+"px"}} src="/images/main page.png" alt="About page" />
         </div>
     )
 }

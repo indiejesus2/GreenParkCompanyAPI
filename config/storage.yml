@@ -10,7 +10,7 @@ local:
 digitalocean:
   service: S3
   endpoint: https://bc-resume.nyc3.digitaloceanspaces.com/
-  access_key_id: ENV['ACCESS_KEY_ID']
-  secret_access_key: ENV['SECRET_ACCESS_KEY']
+  access_key_id: <%= Rails.application.credentials.digitalocean[:production][:aws_access_key_id] %>
+  secret_access_key: <%= Rails.application.credentials.digitalocean[:production][:aws_secret_access_key] %>
   region: us-east-1
   bucket: bc_resume

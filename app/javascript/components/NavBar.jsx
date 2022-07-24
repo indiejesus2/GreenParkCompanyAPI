@@ -356,7 +356,7 @@ const NavBar = props => {
             )
         } else if (history.location.pathname != "/home" && history.location.pathname != "/home/about") {
                 return (
-                        <Logo />
+                    <Logo />
                 )
         } else {
             return (

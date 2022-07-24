@@ -114,7 +114,7 @@ const Login = props => {
                 <div>
                     <Home />
                 </div>
-                <div ref={myRef} style={{paddingTop: 35+"px"}}>
+                <div ref={myRef} style={{paddingTop: 60+"px"}}>
                     <About />
                 </div>
                 {/* <SignUp signUp={props.signUp} currentStep={props.currentStep} handleClick={handleClick} handlePassword={handlePassword} errors={errors} handleClose={handleClose} />

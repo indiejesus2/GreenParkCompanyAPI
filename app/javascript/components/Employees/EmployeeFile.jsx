@@ -1,23 +1,25 @@
 import React, { useState, useEffect } from 'react'
 import { Modal, Button, Form } from 'react-bootstrap'
+import { useHistory } from 'react-router-dom'
+
 
 const EmployeeFile = props => {
 
     const [show, setShow] = useState(false)
+    const history = useHistory()
 
     useEffect(() => {
         setShow(props.show)
     }, [props.show])
 
 
-    const id = props.employee.id
+    // const id = props.employee.id
     const [file, setFile] = useState(null)
 
     const handleSubmit = () => {
         let data = new FormData()
-        debugger
         data.append("file", file, file.name)
-        data.append('employee_id', id)
+        data.append('employee_id', props.id)
         props.uploadFile(data)
     }
 
