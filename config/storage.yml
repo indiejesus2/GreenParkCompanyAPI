@@ -14,3 +14,5 @@ digitalocean:
   secret_access_key: <%= Rails.application.credentials.digitalocean[:production][:aws_secret_access_key] %>
   region: us-east-1
   bucket: bc_resume
+  upload:
+    acl: "public-read"

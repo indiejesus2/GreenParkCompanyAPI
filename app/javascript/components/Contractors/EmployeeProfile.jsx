@@ -132,17 +132,17 @@ const EmployeeProfile = props => {
     const handleResume = () => {
         if (file.length>0) {
             return (
-                <Button onClick={() => handleDownload()}>Download Resume</Button>
+                <Button onClick={() => handleDownload()}>View Resume</Button>
             )
         } else {
             return (
-                <Button disabled>Download Resume</Button>
+                <Button disabled>View Resume</Button>
             )
         }
     }
 
     const handleDownload = () => {
-        window.location.href = file[0][1]
+        window.open(file[0][1], "_blank")
     }
     
         return (

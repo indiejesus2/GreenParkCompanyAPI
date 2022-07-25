@@ -16,6 +16,7 @@ class Api::V1::JobsController < ApplicationController
                 @applicants = @employees[0].map{|employee| employee}
                 @applicants.each{|applicant|
                     if applicant.file.attached?
+                        # byebug
                         @files[applicant.id] = applicant.file.url
                     end
                 }
