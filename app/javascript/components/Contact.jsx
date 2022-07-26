@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useFormik } from 'formik'
-import { Form, Button, Modal, CloseButton, Alert, Image, Col, Row} from 'react-bootstrap'
+import { Form, Button, Modal, CloseButton, Alert, Image, Col, Row, Toast, ToastContainer} from 'react-bootstrap'
 import { useHistory } from 'react-router-dom'
 import * as yup from 'yup'
 
@@ -11,14 +11,26 @@ const Contact = props => {
         msg: yup.string().required("Please enter a message.")
     })
 
+    const handleHome = () => {
+        if (history.location.pathname.includes("employees")) {
+            return ('/employees')
+        } else if (history.location.pathname.includes("employers")) {
+            return ('/employers')
+        } else {
+            return ('/')
+        }
+    }
+
     const handleClose = () => {
-        history.push('/');
+        history.push(handleHome());
+        setMsg(false)
         setShow(false)
     }
 
     const [show, setShow] = useState(true)
     const history = useHistory();
     const [alert, setAlert] = useState(false)
+    const [msg, setMsg] = useState(false)
 
     const formik = useFormik({
         initialValues: {
@@ -29,13 +41,9 @@ const Contact = props => {
         validationSchema: schema,
         onSubmit: values => {
             props.contactMsg(values)
-            history.push("/")
+            setMsg(true)
         },
     });
-
-    if(props.currentStep !== 5) {
-        return null
-    }
 
     return (
         <React.Fragment>
@@ -43,11 +51,7 @@ const Contact = props => {
                 <div className="signIn" style={{
                     "maxwidth": 771 + "px"
                 }}>
-                    <Form noValidate onSubmit={formik.handleSubmit}
-                        style={{
-                            "width": 50 + "%"
-                        }}
-                    >
+                    <Form noValidate onSubmit={formik.handleSubmit}>
                     <Modal.Body
                         style={{
                             "paddingBlock": 0 + "px"
@@ -131,6 +135,15 @@ const Contact = props => {
             />
                 </div>
             </Modal>
+            <ToastContainer position="top-center">
+                <Toast show={msg} centered onHide={handleClose}>
+                    <Toast.Header>
+                    </Toast.Header>
+                        <Toast.Body style={{backgroundColor: "black"}}>
+                            <h2>Thank you. Your message has been sent to the website adminstrator.</h2>
+                        </Toast.Body>
+                </Toast>
+            </ToastContainer>
         </React.Fragment>
     )
 

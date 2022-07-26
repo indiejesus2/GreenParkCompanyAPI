@@ -112,6 +112,9 @@ class Api::V1::AuthController < ApplicationController
         @email = contact_params[:email]
         @msg = contact_params[:msg]
         EmployeeMailer.with(name: @name, email: @email, msg: @msg).contact_email.deliver_later
+        render json: {
+            status: 200
+        }
     end
 
         #     render json: {
@@ -152,7 +155,7 @@ class Api::V1::AuthController < ApplicationController
     end
 
     def contact_params
-        params.require(:contact).permit(:name, :email, :msg)
+        params.require(:auth).permit(:name, :email, :msg)
     end
 
 end

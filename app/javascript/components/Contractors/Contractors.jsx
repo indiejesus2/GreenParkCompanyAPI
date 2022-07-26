@@ -69,12 +69,12 @@ const Contractors = props => {
     const handleApplicants = () => {
         if (jobs.length < 1) {
             return (
-                <Redirect to="/contractors/addJob" />
+                <Redirect to="/employers/addJob" />
             )
         } else if (currentStep == 1) {
             return (
                 <div className="dashboard">
-                    <JobsContainer jobs={jobs} contractor={contractor} candidates={props.candidates} profiles={props.profiles} files={props.files} />
+                    <JobsContainer jobs={jobs} contractor={contractor} applicants={props.applicants} candidates={props.candidates} profiles={props.profiles} files={props.files} />
                     {/* <JobsContainer jobs={props.jobs} contractor={props.contractor} candidates={props.candidates} profiles={props.profiles} editApplicant={props.editApplicant} signOut={props.signOutContractor} files={props.files}/> */}
                     {/* <Applicant contractor={contractor} jobs={jobs} applicants={props.applicants} editApplicant={props.editApplicant} currentStep={currentStep} handleApplicant={handleApplicant} /> */}
                 </div>
@@ -88,6 +88,7 @@ const Contractors = props => {
                 editApplicant={props.editApplicant}
                 handleClose={handleClose}
                 job={job}
+                applicants={props.applicants}
                 currentStep={currentStep}
                 handleContact={handleContact}
                 contractor={contractor}
@@ -116,19 +117,19 @@ const Contractors = props => {
         )
     } else if (!contractor.name) {
         return (
-            <Redirect to={`/contractors/${contractor.id}/editprofile`} />
+            <Redirect to={`/employers/${contractor.id}/editprofile`} />
         )
     } else if (contractor.status == false) {
         // || props.subscription.stripe_active == false) {
         return (
             <div>
                 <NavBar handleSignout={props.signOut} contractor={props.contractor} />
-                <Redirect to="/contractors/subscription" />
+                <Redirect to="/employers/subscription" />
             </div>
         )        
     } else if (props.loggedIn === true && jobs.length < 1) {
         return (
-            <Redirect to="/contractors/addjob" />
+            <Redirect to="/employers/addjob" />
         )
     } else if (props.loggedIn === true) {
         return (
@@ -150,4 +151,4 @@ const Contractors = props => {
     
 }
 
-export default Contractors   
+export default Contractors     

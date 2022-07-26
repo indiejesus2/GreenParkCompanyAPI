@@ -13,11 +13,11 @@ const Profile = props => {
     // const handleShow = () => setShow(true)
 
     const handleClick = () => {
-        props.history.push(`/contractors/${contractor.id}/editprofile`)
+        props.history.push(`/employers/${contractor.id}/editprofile`)
     }
 
     const handleClose = () => {
-        props.history.push('/contractors')
+        props.history.push('/employers')
     }
 
     const handleBilling = () => {

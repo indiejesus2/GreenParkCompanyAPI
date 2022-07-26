@@ -25,7 +25,7 @@ const App = () => {
                     <Route path="/home" component={LoginContainer}></Route>
                     {/* // exact render={(routerProps) => <Home {...routerProps} signIn={this.props.signIn}/>}></Route> */}
                     <Route path="/employees" component={EmployeesContainer}></Route>
-                    <Route path="/contractors" component={ContractorsContainer}></Route>
+                    <Route path="/employers" component={ContractorsContainer}></Route>
                 </Switch>
                 </ErrorBoundary>
             </div>

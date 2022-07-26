@@ -8,7 +8,7 @@ export const contactMsg = (msg) => {
             },
             body: JSON.stringify(msg)
         };
-        return fetch('api/v1/contact', configObj)
+        return fetch('/api/v1/contact', configObj)
         .then(resp => resp.json())
         // .then()
     }

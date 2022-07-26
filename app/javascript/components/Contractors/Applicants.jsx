@@ -7,8 +7,9 @@ import EmployeeProfile from './EmployeeProfile'
 const Applicants = (props) => {
     
     const [job, setJob] = useState(props.job)
-    const [applicants, setApplicants] = useState(props.job.applicants.sort(applicant => applicant.rating))
-    const [profiles, setProfiles] = useState(props.job.profiles)
+    const [applicants, setApplicants] = useState(props.applicants.filter(applicant=>applicant.job_id == job.id).sort((a,b) => a.rating - b.rating))
+    // debugger
+    // const [profiles, setProfiles] = useState(props.applicants.profiles)
 
     const size = useWindowSize();
 
@@ -36,38 +37,39 @@ const Applicants = (props) => {
         return windowSize;
     }
 
-    const original = profiles.map(profile => {
-        let oObj = {
-            info: '',
-            application: ''
-        }
-        let candidate = applicants.find(applicant => applicant.employee_id == profile.employee_id)
-        // && applicant.acceptance !== false
-            if (profile.employee_id == candidate.employee_id) {
-                oObj.info = profile,
-                oObj.application = candidate
-            }
-        return oObj
-    })
+    // const original = profiles.map(profile => {
+    //     let oObj = {
+    //         info: '',
+    //         application: ''
+    //     }
+    //     let candidate = applicants.find(applicant => applicant.employee_id == profile.employee_id)
+    //     // && applicant.acceptance !== false
+    //         if (profile.employee_id == candidate.employee_id) {
+    //             oObj.info = profile,
+    //             oObj.application = candidate
+    //         }
+    //     return oObj
+    // })
 
     const [show, setShow] = useState(false)
     const [applicant, setApplicant] = useState("")
-    const [candidates, setCandidates] = useState(original)
+    const [candidates, setCandidates] = useState(applicants)
     const handleClose = () => {
         setShow(false);
     }
 
     const saved = () => {
-        let savedApplicants = candidates.map(candidate => candidate.application.accepted == true)
+        let savedApplicants = candidates.map(candidate => candidate.acceptance == true)
         return savedApplicants
     }
     
     useEffect(() => {
         if (props.savedApplicants == true && saved != candidates) {
             setCandidates(saved)
-        } else if (props.savedApplicants == false && props.applicants != applicants) {
-            setCandidates(original)
-        }
+        } 
+        // else if (props.savedApplicants == false && props.applicants != applicants) {
+        //     setCandidates(applicants)
+        // }
     })
 
     const rate = (rating) => {
@@ -112,26 +114,28 @@ const Applicants = (props) => {
     })
 
     const handleApplied = (e) => {
-        let filtered = []
-        Object.entries(candidates).map(function([info, applicant]) {
-            if(applicant.application.interested == true) {
-                filtered.push(applicant)
-            }
-        })
+        // let filtered = []
+        // Object.entries(candidates).map(function([info, applicant]) {
+        //     if(applicant.application.interested == true) {
+        //         filtered.push(applicant)
+        //     }
+        // })
+        let filtered = candidates.map(candidate => candidate.interested == true)
         if (e.currentTarget.checked == true) {
             setCandidates(filtered)
         } else {
-            setCandidates(original)
+            setCandidates(candidates)
         }
     }
 
     const handleApplications = () => {
-        let filtered = []
-        Object.entries(candidates).map(function([info, applicant]) {
-            if(applicant.application.interested == true) {
-                filtered.push(applicant)
-            }
-        })
+        // let filtered = []
+        // Object.entries(candidates).map(function([info, applicant]) {
+        //     if(applicant.application.interested == true) {
+        //         filtered.push(applicant)
+        //     }
+        // })
+        let filtered = candidates.filter(candidate => candidate.interested == true)
         if (filtered.length > 0) {
             return (
                     <div className='homeApplied'>
@@ -144,7 +148,7 @@ const Applicants = (props) => {
 
     const handleContact = (candidate) => {
         let person = job.employees.find(employee => employee.id == candidate.info.employee_id)
-        window.location.href = ("mailto:" + person.email + "?subject=" + job.title + " - " + props.contractor.name)        
+        window.location.href = ("mailto:" + candidate.employee.email + "?subject=" + job.title + " - " + props.contractor.name)        
     }
     
     const handleAcceptance = (candidate) => {
@@ -176,53 +180,65 @@ const Applicants = (props) => {
     const handleTable = (candidate) => {
         if (size.width > 580) {
             return (
-                <Table style={{ "marginBottom": 2.5 + "px"}}>
-                    <tbody>
-                        <tr>
-                            <td id="table-header" style={{ "border-bottom-width": 0 + "px", "border-right": 2 + "px solid white"}}>
-                                Name: {candidate.info.fname} {candidate.info.lname}
-                            </td>
-                            <td id="table-header-rating" style={{ "border-bottom-width": 0 + "px"}}>Rating:
-                                {rate(candidate.application.rating)}
-                            </td>
-                        </tr>
-                        <tr>
-                            <td id="table-header-title" style={{ "border-bottom-width": 0 + "px", "border-right": 2 + "px solid white"}}>Job Title:<span></span>
-                                {job.title}
-                            </td>
-                            <td id="table-header-location" style={{ "border-bottom-width": 0 + "px"}}>
-                                Distance:{Math.round(candidate.application.distance)} Miles
-                            </td>
-                        </tr>
-                     </tbody>
-                </Table>
+                <div className="d-flex">
+                    <Table style={{ "marginBottom": 2.5 + "px"}}>
+                        <tbody>
+                            <tr>
+                                <td id="table-header" style={{ "border-bottom-width": 0 + "px", "border-right": 2 + "px solid white"}}>
+                                    Name: {candidate.profile.fname} {candidate.profile.lname}
+                                </td>
+                                <td id="table-header-rating" style={{ "border-bottom-width": 0 + "px"}}>Rating:
+                                    {rate(candidate.rating)}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td id="table-header-title" style={{ "border-bottom-width": 0 + "px", "border-right": 2 + "px solid white"}}>Job Title:<span></span>
+                                    {job.title}
+                                </td>
+                                <td id="table-header-location" style={{ "border-bottom-width": 0 + "px"}}>
+                                    Distance:{Math.round(candidate.distance)} Miles
+                                </td>
+                            </tr>
+                         </tbody>
+                    </Table>
+                    <div className="employee-jobs-buttons">
+                        <Button onClick={() => props.handleApplicant(candidate)}>Details</Button>
+                        <Button onClick={() => handleContact(candidate)}>Contact</Button>
+                    </div>
+                </div>
             )
         } else {
             return (
-                <Table style={{ "marginBottom": 2.5 + "px"}}>
-                    <tbody>
-                        <tr>
-                            <td id="table-header" style={{ "border-bottom-width": 0 + "px"}}>
-                                Name: {candidate.info.fname} {candidate.info.lname}
-                            </td>
-                        </tr>
-                        <tr>
-                            <td id="table-header-rating" style={{ "border-bottom-width": 0 + "px"}}>Rating:
-                                {rate(candidate.application.rating)}
-                            </td>
-                        </tr>
-                        <tr>
-                            <td id="table-header-title" style={{ "border-bottom-width": 0 + "px"}}>Job Title:<span></span>
-                                {job.title}
-                            </td>
-                        </tr>                        
-                        <tr>
-                            <td id="table-header-location" style={{ "border-bottom-width": 0 + "px"}}>
-                                Distance:{Math.round(candidate.application.distance)} Miles
-                            </td>
-                        </tr>
-                     </tbody>
-                </Table>
+                <div className="d-flex">
+                    <Table style={{ "marginBottom": 2.5 + "px"}}>
+                        <tbody>
+                            <tr>
+                                <td id="table-header" style={{ "border-bottom-width": 0 + "px"}}>
+                                    Name: {candidate.profile.fname} {candidate.profile.lname}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td id="table-header-rating" style={{ "border-bottom-width": 0 + "px"}}>Rating:
+                                    {rate(candidate.rating)}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td id="table-header-title" style={{ "border-bottom-width": 0 + "px"}}>Job Title:<span></span>
+                                    {job.title}
+                                </td>
+                            </tr>                        
+                            <tr>
+                                <td id="table-header-location" style={{ "border-bottom-width": 0 + "px"}}>
+                                    Distance:{Math.round(candidate.distance)} Miles
+                                </td>
+                            </tr>
+                         </tbody>
+                    </Table>
+                    <div className="employee-jobs-buttons">
+                        <Button onClick={() => props.handleApplicant(candidate)}>Details</Button>
+                        <Button onClick={() => handleContact(candidate)}>Contact</Button>
+                    </div>
+                </div>
             )
         }
     }
@@ -232,20 +248,17 @@ const Applicants = (props) => {
             {header()}
         <div className="employees-jobs">
             {candidates.map(candidate => 
-                <Card id={candidate.info.id} key={candidate.info.id} >                
+                <Card id={candidate.id} key={candidate.id} >                
                     <Card.Body className="d-flex">
                         {handleTable(candidate)}
-                        <div className="employee-jobs-buttons">
-                            <Button onClick={() => props.handleApplicant(candidate)}>Details</Button>
-                            <Button onClick={() => handleContact(candidate)}>Contact</Button>
-                        </div>
+
                     </Card.Body>
                 </Card>
             )}
                 <EmployeeProfile 
                     show={show}
-                    candidate={applicant.info}
-                    application={applicant.application}
+                    candidate={applicant}
+                    // application={applicant.application}
                     editApplicant={props.editApplicant}
                     handleClose={handleClose}
                     handleContact={handleContact}

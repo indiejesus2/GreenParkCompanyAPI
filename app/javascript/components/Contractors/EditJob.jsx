@@ -199,7 +199,7 @@ export default function EditJob(props) {
         validationSchema: schema,
         onSubmit: values => {
             props.editJob(values)
-            props.history.push(`/contractors/${job.employer_id}/jobs/${job.id}`)
+            props.history.push(`/employers/${job.employer_id}/jobs/${job.id}`)
         }
     })
 

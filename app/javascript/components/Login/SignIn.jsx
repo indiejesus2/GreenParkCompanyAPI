@@ -40,7 +40,7 @@ export default function SignIn(props) {
                 props.signIn(values)
                 if (values.user == "employee") {
                     history.push('/employees')
-                } else if (values.user == "contractor") {
+                } else if (values.user == "employer") {
                     history.push('/contractors')
                 }
         },
@@ -78,7 +78,7 @@ export default function SignIn(props) {
 
     const handleError = () => {
         if (!Array.isArray(contractorError)) {
-            formik.setFieldValue('user', "contractor")
+            formik.setFieldValue('user', "employer")
         }
     }
 
@@ -129,7 +129,7 @@ export default function SignIn(props) {
                             }}
                         >
                             <option value="employee">Employee</option>
-                            <option value="contractor">Contractor</option>
+                            <option value="employer">Employer</option>
                         </Form.Select>
                 </Form.Group>
                 <Form.Group className="mb-3" md="4" controlId="validationFormik01">
