@@ -233,7 +233,7 @@ const Basic = (props) => {
                     </Row>
                     <Row className="mb-3">
                     <Form.Group as={Col}>
-                        <FloatingLabel label="Description">
+                        <FloatingLabel label="Tell Us About Yourself">
                             <Form.Control as="textarea" name="description"  style={{ backgroundColor: "#2f2f2f", "color": "#fff", height: '100px', "margin-top": 15+"px"}} value={props.values.description} onChange={props.handleChange} />
                         </FloatingLabel>
                     </Form.Group>
@@ -341,7 +341,7 @@ const Basic = (props) => {
                     </Row>
                     <Row className="mb-3">
                     <Form.Group as={Col}>
-                        <FloatingLabel label="Description">
+                        <FloatingLabel label="Tell Us About Yourself">
                             <Form.Control as="textarea" name="description"  style={{ backgroundColor: "#2f2f2f", "color": "#fff", height: '100px', "margin-top": 15+"px"}} value={props.values.description} onChange={props.handleChange} />
                         </FloatingLabel>
                     </Form.Group>

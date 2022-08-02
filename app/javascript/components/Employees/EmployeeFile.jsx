@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Modal, Button, Form } from 'react-bootstrap'
+import { Modal, Button, Form, CloseButton } from 'react-bootstrap'
 import { useHistory } from 'react-router-dom'
 
 
@@ -7,6 +7,11 @@ const EmployeeFile = props => {
 
     const [show, setShow] = useState(false)
     const history = useHistory()
+    // const handleClose = () => props.handleClose()
+    const handleClose = () => {
+        setShow(false)
+        props.handleShow()
+    }
 
     useEffect(() => {
         setShow(props.show)
@@ -15,12 +20,14 @@ const EmployeeFile = props => {
 
     // const id = props.employee.id
     const [file, setFile] = useState(null)
+    const [msg, setMsg] = useState(props.msg)
 
     const handleSubmit = () => {
         let data = new FormData()
         data.append("file", file, file.name)
         data.append('employee_id', props.id)
         props.uploadFile(data)
+        props.handleMsg()
     }
 
     const handleChange = (e) => {
@@ -32,18 +39,15 @@ const EmployeeFile = props => {
         }
     }
 
-    const handleClose = () => {
-        history.push('/');
-        setShow(false)
-    }
-
     return (
-        <div className="employee-file">
-            <Modal show={show} backdrop centered onHide={handleClose} >
-                <Modal.Header style={{ "backgroundColor": "#373737"}}>
-                    <Modal.Title style={{ color: "#fff" }}>
-                        Upload Document
-                    </Modal.Title>
+        <Modal show={show} backdrop centered onHide={handleClose} >
+            <div className="employee-file">
+                <Modal.Header style={{ "backgroundColor": "#373737"}} closeButton>
+                    <div className="d-flex justify-content-between">
+                        <Modal.Title style={{ color: "#fff" }}>
+                            Upload Document
+                        </Modal.Title>
+                    </div>
                 </Modal.Header>
                 <Modal.Body style={{ "backgroundColor": "#373737"}}>
                 <Form.Group>
@@ -52,8 +56,17 @@ const EmployeeFile = props => {
                 </Form.Group>
                 <Button onClick={handleSubmit}>Upload Document</Button>
                 </Modal.Body>
-            </Modal>
-        </div>
+                    <div id="closeButton">
+                        <CloseButton onClick={handleClose} 
+                            style={{
+                                position: "relative",
+                                bottom: 15 + "px",
+                                right: 15 + "px"
+                            }}
+                        />
+                    </div>
+            </div>
+        </Modal>
     )
     
 }

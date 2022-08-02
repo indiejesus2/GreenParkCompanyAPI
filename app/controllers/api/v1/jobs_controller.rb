@@ -7,7 +7,11 @@ class Api::V1::JobsController < ApplicationController
         if @employee 
             # @jobs = Job.near(@employee.profile.address, @employee.profile.commute)
             @jobs = @employee.jobs.filter{|job| job.status == true}
-            render json: {employee: EmployeeSerializer.new(@employee), jobs: JobSerializer.new(@jobs)}, prerender: true
+            @files = {}
+            if @employee.file.attached?
+                @files[@employee.id] = @employee.file.url
+            end
+            render json: {employee: EmployeeSerializer.new(@employee), jobs: JobSerializer.new(@jobs), files: @files}, prerender: true
         elsif @employer
             @files = {}
             @jobs = @employer.jobs

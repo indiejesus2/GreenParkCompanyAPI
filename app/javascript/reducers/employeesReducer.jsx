@@ -24,7 +24,7 @@ export default function employeesReducer(state = {employee: [], profile: [], exp
                 experience: employee.experiences,
                 jobs: jobs,
                 applicants: employee.applicants,
-                file: employee.file,
+                file: action.payload.files,
                 document: employee.document,
                 loggedIn: true,
                 employeeErrors: [],
@@ -65,7 +65,7 @@ export default function employeesReducer(state = {employee: [], profile: [], exp
                 experience: profile.experiences,
                 jobs: matches,
                 applicants: profile.applicants,
-                file: profile.file,
+                file: action.payload.files,
                 document: profile.document,
                 loading: false
             }

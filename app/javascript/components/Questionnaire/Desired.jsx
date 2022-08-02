@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Modal, Form, FloatingLabel, Button, Row, Col, InputGroup, Image } from 'react-bootstrap'
+import { Modal, Form, FloatingLabel, Button, Row, Col, InputGroup, Image, Toast, ToastContainer } from 'react-bootstrap'
 import EmployeeFile from '../Employees/EmployeeFile'
 
 const Desired = props => {
@@ -7,6 +7,8 @@ const Desired = props => {
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+    const handleMsg = () => setMsg(true);
+    const handleCloseMsg = () => setMsg(false)
 
     const size = useWindowSize();
 
@@ -118,6 +120,8 @@ const Desired = props => {
         return null
     }
 
+    const [msg, setMsg] = use
+
     const handleTable = () => {
         if (size.width>580) {
             return (
@@ -188,25 +192,31 @@ const Desired = props => {
                         <Form.Control style={{ "backgroundColor": "#2f2f2f", "color": "#fff"}} type="text" name="minpay" onChange={props.handleChange} value={props.values.minpay}/>
                     </InputGroup>
             </Form.Group>
+            <Form.Group>
+                <Form.Label>
+                    Valid Driver's License:
+                </Form.Label>
+                <Form.Select style={{ "backgroundColor": "#2f2f2f", "color": "#fff"}} name="license" label="license" value={formik.values.license} onChange={formik.handleChange} defaultValue={formik.values.license}>
+                    <option value="true">Yes</option>
+                    <option value="false">No</option>
+                </Form.Select>
+            </Form.Group>
         </Row>
         <Row>
             <Form.Group as={Col}>
-                <Form.Check type="checkbox" style={{ color: "#fff" }} name="license" label="Check for Valid Identification" value={props.values.license} onChange={props.handleChange} defaultChecked={props.values.license}/>
+                <Button variant="link" onClick={handleShow} className="d-flex justify-content-right">
+                    Upload Resume/CV
+                    <EmployeeFile 
+                    show={show} 
+                    employee={props.employee}
+                    uploadFile={props.uploadFile}
+                    fileLoading={props.fileLoading}
+                    // uploadFile={} 
+                    />
+                </Button>
             </Form.Group>
-            <Form.Group as={Col}>
-                        <Button variant="link" onClick={handleShow} className="d-flex justify-content-right">
-                            Upload Resume/CV
-                            <EmployeeFile 
-                            show={show} 
-                            employee={props.employee}
-                            uploadFile={props.uploadFile}
-                            fileLoading={props.fileLoading}
-                            // uploadFile={} 
-                            />
-                        </Button>
-                    </Form.Group>
         </Row>
-            </Modal.Body>
+        </Modal.Body>
             )
         } else {
             return (
@@ -286,23 +296,31 @@ const Desired = props => {
             </Form.Group>
         </Row>
         <Row>
-            <Form.Group as={Col}>
-                <Form.Check type="checkbox" style={{ color: "#fff" }} name="license" label="Check for Valid Identification" value={props.values.license} onChange={props.handleChange} defaultChecked={props.values.license}/>
+            <Form.Group>
+                <Form.Label>
+                    Valid Driver's License:
+                </Form.Label>
+                <Form.Select style={{ "backgroundColor": "#2f2f2f", "color": "#fff"}} name="license" label="license" value={formik.values.license} onChange={formik.handleChange} defaultValue={formik.values.license}>
+                    <option value="true">Yes</option>
+                    <option value="false">No</option>
+                </Form.Select>
             </Form.Group>
-            </Row>
-            <Row className="mb-3">
+        </Row>
+        <Row className="mb-3">
             <Form.Group as={Col}>
-                        <Button variant="link" onClick={handleShow} className="d-flex justify-content-right">
-                            Upload Resume/CV
-                            <EmployeeFile 
-                            show={show} 
-                            employee={props.employee}
-                            uploadFile={props.uploadFile}
-                            fileLoading={props.fileLoading}
-                            // uploadFile={} 
-                            />
-                        </Button>
-                    </Form.Group>
+                <Button variant="link" onClick={handleShow} className="d-flex justify-content-right">
+                    Upload Resume/CV
+                    <EmployeeFile 
+                        show={show} 
+                        employee={props.employee}
+                        uploadFile={props.uploadFile}
+                        fileLoading={props.fileLoading}
+                        handleMsg={handleMsg}
+                        handleClose={handleClose}
+                        // uploadFile={} 
+                    />
+                </Button>
+            </Form.Group>
         </Row>
             </Modal.Body>
             )
@@ -335,6 +353,15 @@ const Desired = props => {
                 </Button>
                 </Modal.Footer>
         </Modal>
+        <ToastContainer position="top-center">
+                <Toast show={msg} centered onHide={handleCloseMsg}>
+                    <Toast.Header>
+                    </Toast.Header>
+                        <Toast.Body style={{backgroundColor: "black"}}>
+                            <h2>Your resume has been successfully uploaded.</h2>
+                        </Toast.Body>
+                </Toast>
+            </ToastContainer>
         </React.Fragment>
             </div>
         </div>

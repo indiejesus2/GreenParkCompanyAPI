@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useFormik } from 'formik'
-import { Form, FloatingLabel, Button, Row, Col, InputGroup } from 'react-bootstrap'
+import { Form, FloatingLabel, Button, Row, Col, InputGroup, Toast, ToastContainer, CloseButton } from 'react-bootstrap'
 import {Link, Redirect} from 'react-router-dom'
 import EmployeeFile from './EmployeeFile'
 import NavBar from '../NavBar'
@@ -193,11 +193,15 @@ export default function EditProfile(props) {
     ]
 
     const [show, setShow] = useState(false);
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
+    // const handleClose = () => setShow(false)
+    const handleShow = () => setShow(!show);
+    const [msg, setMsg] = useState(false)
+    const handleMsg = () => setMsg(!msg)
+    // const handleCloseMsg = () => setMsg(false)
+
     useEffect(() => {
         if (props.fileLoading == false) {
-            handleClose()
+            handleShow()
         }
     }, [props.fileLoading])
 
@@ -532,6 +536,9 @@ export default function EditProfile(props) {
                             id={employee.employee_id}
                             uploadFile={props.uploadFile}
                             fileLoading={props.fileLoading}
+                            handleMsg={handleMsg}
+                            handleShow={handleShow}
+                            // handleClose={handleClose}
                             // uploadFile={} 
                             />
                         </Button>
@@ -542,6 +549,15 @@ export default function EditProfile(props) {
                 </div>
                     </Form>
                 </div>
+                    <ToastContainer position="top-center">
+                        <Toast show={msg} centered onClose={handleMsg}>
+                            <Toast.Header closeButton={true}>
+                            </Toast.Header>
+                                <Toast.Body style={{backgroundColor: "black"}}>
+                                <h2>Your resume has been successfully uploaded.</h2>
+                                </Toast.Body>
+                        </Toast>
+                    </ToastContainer>
             </div>
         </div>
         </div>

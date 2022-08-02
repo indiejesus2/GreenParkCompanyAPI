@@ -132,7 +132,7 @@ const EmployeeProfile = props => {
     const handleResume = () => {
         if (file.length>0) {
             return (
-                <Button onClick={() => handleDownload()}>Download Resume</Button>
+                <Button onClick={() => handleDownload()}>View Resume</Button>
             )
         } else {
             return (
