@@ -208,7 +208,7 @@ const Applicant = (props) => {
     const handleApplied = (e) => {
 
         // let filtered = []
-        let interested = applicants.map(applicant => applicant.interested == true)
+        let interested = applicants.filter(applicant => applicant.interested == true)
         // Object.entries(candidates).map(function([info, applicant]) {
         //     if(applicant.application.interested == true) {
         //         filtered.push(applicant)

@@ -120,7 +120,7 @@ const Applicants = (props) => {
         //         filtered.push(applicant)
         //     }
         // })
-        let filtered = candidates.map(candidate => candidate.interested == true)
+        let filtered = candidates.filter(candidate => candidate.interested == true)
         if (e.currentTarget.checked == true) {
             setCandidates(filtered)
         } else {
