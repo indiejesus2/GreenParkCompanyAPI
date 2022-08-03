@@ -41,7 +41,7 @@ export default function SignIn(props) {
                 if (values.user == "employee") {
                     history.push('/employees')
                 } else if (values.user == "employer") {
-                    history.push('/contractors')
+                    history.push('/employers')
                 }
         },
     });

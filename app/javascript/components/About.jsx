@@ -83,7 +83,7 @@ const About = props => {
     return (
         <div>
             {handleStick()}
-            <Image style={{width: 100 + '%', paddingTop: 60+"px"}} src="/images/main page.png" alt="About page" />
+            <Image style={{width: 100 + '%', paddingTop: 60+"px"}} src="/images/new main page.png" alt="About page" />
         </div>
     )
 }
