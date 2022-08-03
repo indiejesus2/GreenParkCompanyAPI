@@ -8,9 +8,11 @@ const EmployeeFile = props => {
     const [show, setShow] = useState(false)
     const history = useHistory()
     // const handleClose = () => props.handleClose()
+    
     const handleClose = () => {
         setShow(false)
-        props.handleShow()
+        props.handleClose()
+        // props.handleShow()
     }
 
     useEffect(() => {
@@ -27,6 +29,7 @@ const EmployeeFile = props => {
         data.append("file", file, file.name)
         data.append('employee_id', props.id)
         props.uploadFile(data)
+        handleClose()
         props.handleMsg()
     }
 
@@ -56,15 +59,6 @@ const EmployeeFile = props => {
                 </Form.Group>
                 <Button onClick={handleSubmit}>Upload Document</Button>
                 </Modal.Body>
-                    <div id="closeButton">
-                        <CloseButton onClick={handleClose} 
-                            style={{
-                                position: "relative",
-                                bottom: 15 + "px",
-                                right: 15 + "px"
-                            }}
-                        />
-                    </div>
             </div>
         </Modal>
     )

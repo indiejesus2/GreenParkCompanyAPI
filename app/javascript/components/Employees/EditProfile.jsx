@@ -193,11 +193,11 @@ export default function EditProfile(props) {
     ]
 
     const [show, setShow] = useState(false);
-    // const handleClose = () => setShow(false)
-    const handleShow = () => setShow(!show);
+    const handleClose = () => setShow(false)
+    const handleShow = () => setShow(true);
     const [msg, setMsg] = useState(false)
-    const handleMsg = () => setMsg(!msg)
-    // const handleCloseMsg = () => setMsg(false)
+    const handleMsg = () => setMsg(true)
+    const handleCloseMsg = () => setMsg(false)
 
     useEffect(() => {
         if (props.fileLoading == false) {
@@ -537,8 +537,8 @@ export default function EditProfile(props) {
                             uploadFile={props.uploadFile}
                             fileLoading={props.fileLoading}
                             handleMsg={handleMsg}
-                            handleShow={handleShow}
-                            // handleClose={handleClose}
+                            // handleShow={handleShow}
+                            handleClose={handleClose}
                             // uploadFile={} 
                             />
                         </Button>
@@ -550,7 +550,7 @@ export default function EditProfile(props) {
                     </Form>
                 </div>
                     <ToastContainer position="top-center">
-                        <Toast show={msg} centered onClose={handleMsg}>
+                        <Toast show={msg} centered onClose={handleCloseMsg}>
                             <Toast.Header closeButton={true}>
                             </Toast.Header>
                                 <Toast.Body style={{backgroundColor: "black"}}>

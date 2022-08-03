@@ -136,7 +136,7 @@ const EmployeeProfile = props => {
             )
         } else {
             return (
-                <Button disabled>Download Resume</Button>
+                <Button disabled>View Resume</Button>
             )
         }
     }

@@ -5,6 +5,7 @@ import EmployeeFile from '../Employees/EmployeeFile'
 const Desired = props => {
 
     const [show, setShow] = useState(false);
+    const [msg, setMsg] = useState(false)
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
     const handleMsg = () => setMsg(true);
@@ -120,7 +121,7 @@ const Desired = props => {
         return null
     }
 
-    const [msg, setMsg] = use
+    
 
     const handleTable = () => {
         if (size.width>580) {
@@ -196,7 +197,7 @@ const Desired = props => {
                 <Form.Label>
                     Valid Driver's License:
                 </Form.Label>
-                <Form.Select style={{ "backgroundColor": "#2f2f2f", "color": "#fff"}} name="license" label="license" value={formik.values.license} onChange={formik.handleChange} defaultValue={formik.values.license}>
+                <Form.Select style={{ "backgroundColor": "#2f2f2f", "color": "#fff"}} name="license" label="license" value={props.values.license} onChange={props.handleChange} defaultValue={props.values.license}>
                     <option value="true">Yes</option>
                     <option value="false">No</option>
                 </Form.Select>
@@ -300,7 +301,7 @@ const Desired = props => {
                 <Form.Label>
                     Valid Driver's License:
                 </Form.Label>
-                <Form.Select style={{ "backgroundColor": "#2f2f2f", "color": "#fff"}} name="license" label="license" value={formik.values.license} onChange={formik.handleChange} defaultValue={formik.values.license}>
+                <Form.Select style={{ "backgroundColor": "#2f2f2f", "color": "#fff"}} name="license" label="license" value={props.values.license} onChange={props.handleChange} defaultValue={props.values.license}>
                     <option value="true">Yes</option>
                     <option value="false">No</option>
                 </Form.Select>
