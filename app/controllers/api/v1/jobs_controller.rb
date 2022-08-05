@@ -1,6 +1,6 @@
 class Api::V1::JobsController < ApplicationController
     before_action :set_employee
-    before_action :set_employer, only: [:edit, :update, :destroy]
+    before_action :set_employer
     before_action :set_job, only: [:edit, :update, :destroy]
 
     def index
