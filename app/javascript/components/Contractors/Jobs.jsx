@@ -7,13 +7,13 @@ import SideNavBar from '../SideNavBar'
 const Jobs = (props) => {
 
 const [jobs, setJobs] = useState(props.jobs ? props.jobs : [])
+debugger
 
-    // useEffect(() => {
-    //     if (props.jobs != jobs) {
-    //         setJobs(props.jobs)
-    //     }
-
-    // })
+    useEffect(() => {
+        if (props.jobs != jobs) {
+            setJobs(props.jobs)
+        }
+    }), [props.jobs]
 
     const size = useWindowSize();
 

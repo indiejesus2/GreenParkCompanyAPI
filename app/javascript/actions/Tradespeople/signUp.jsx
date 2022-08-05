@@ -22,7 +22,7 @@ export const signUp = (user) => {
                     dispatch({type: 'SIGNUP_EMPLOYEE', payload: employee.data.attributes})
                 }
             })
-        } else if (user.user == "contractor") {
+        } else if (user.user == "employer") {
             const configObj = {
                 method: "POST",
                 headers: {

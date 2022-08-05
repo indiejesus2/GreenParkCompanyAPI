@@ -1,6 +1,6 @@
 class Api::V1::JobsController < ApplicationController
     before_action :set_employee
-    before_action :set_employer
+    before_action :set_employer, only: [:edit, :update, :destroy]
     before_action :set_job, only: [:edit, :update, :destroy]
 
     def index
@@ -69,7 +69,7 @@ class Api::V1::JobsController < ApplicationController
         # @job.proximity
         # @job.potential
         if @job.save            
-            render json: JobSerializer.new(@job)
+            render json: {job: JobSerializer.new(@job), applicants: ApplicantSerializer.new(@job.employer.applicants)}
         else
             render json: @job.errors
         end

@@ -65,18 +65,21 @@ export default function contractorsReducer(state = {contractor: [], jobs: [], ap
             }
         case 'ADD_JOB':
             debugger
+            let newApplicants = action.payload.applicants.data.map(applicant => applicant.attributes)
             if(state.jobs) {
                 // let applications = action.payload.applicants.filter(applicant => applicant.acceptance != false)
                 return {
-                    ...state, jobs: [...state.jobs, action.payload.jobs.data.attributes], loading: false, applicants: [...state.applicant, action.payload.applicants.data.attributes]
+                    ...state, jobs: [...state.jobs, action.payload.job.data.attributes], loading: false, applicants: newApplicants
                 }
             } else {
                 return {
-                    ...state, jobs: [action.payload], loading: false, applicants: applications
+                    ...state, jobs: action.payload.job.data.attributes, loading: false, applicants: newApplicants
                 }
             }
         case 'EDIT_JOB':
             // let applications = action.payload.applicants.filter(applicant => applicant.acceptance != false)
+            let editApplicants = action.payload.applicants.data.map(applicant => applicant.attributes)
+
             let edited = state.jobs.map(job => {
                 if(job.id === action.payload.job.data.attributes.id) {
                     return action.payload.job.data.attributes
@@ -84,7 +87,8 @@ export default function contractorsReducer(state = {contractor: [], jobs: [], ap
                     return job
                 }
             })
-            return {...state, jobs: edited, loading: false, applicants: action.payload.applicants.data.map(applicant => applicant.attributes)}
+            debugger
+            return {...state, jobs: edited, loading: false, applicants: editApplicants}
         case 'DELETE_JOB':            
             let deleted = state.jobs.filter(job => job.id != action.payload.id)
             // let applications = action.payload.applicants.filter(applicant => applicant.acceptance != false)
