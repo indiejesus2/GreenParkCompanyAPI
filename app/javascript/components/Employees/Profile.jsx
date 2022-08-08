@@ -37,11 +37,12 @@ const Profile = props => {
     const [show, setShow] = useState(false);
     const [preview, setPreview] = useState(false)
     const [applications, setApplications] = useState([])
-    const files = props.files ? Object.entries(props.files) : []
-    const file = files.filter(file => file[0] == props.employee.id)
+    // const files = props.files ? Object.entries(props.files) : []
+    // const file = files.filter(file => file[0] == props.employee.id)
+    const file = props.file
 
     const handleResume = () => {
-        if (file.length>0) {
+        if (!!file) {
             return (
                 <Button onClick={() => handleDownload()}>View Resume</Button>
             )
@@ -49,7 +50,8 @@ const Profile = props => {
     }
 
     const handleDownload = () => {
-        window.location.href = file[0][1]
+        window.open(file, "_blank")
+        // props.history.push(file, '_blank');
     }
 
     const handlePreview = () => setPreview(true)

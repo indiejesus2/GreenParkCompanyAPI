@@ -69,10 +69,6 @@ const NavBar = props => {
 
     const history = useHistory()
 
-    const handleLogo = () => {
-        
-    }
-
     const handleCollapse = () => {
         if (size.height > 450) {
             return (
@@ -124,8 +120,14 @@ const NavBar = props => {
         </div>
             )
         }
+    }
 
-        
+    const handleLogo = () => {
+        if (size.height > 450) {
+            return "md"
+        } else {
+            return "sm"
+        }
     }
 
 
@@ -370,7 +372,7 @@ const NavBar = props => {
                 <div className="homeCollapseNav"
                     style={handlePosition()}
                 >
-                    <Navbar collapseOnSelect expand='md' variant="dark" className="upperCollapseNav">
+                    <Navbar collapseOnSelect expand={handleLogo()} variant="dark" className="upperCollapseNav">
                         <div className="home-nav">
                             <Navbar.Toggle aria-controls="basic-navbar-nav" />
                         </div>

@@ -6,7 +6,7 @@ export const uploadFile = (file) => {
             body: file
         })
         .then(resp => resp.json())
-        .then(file => {dispatch({type: 'UPLOAD_FILE', payload: file.data.attributes})})
+        .then(file => {dispatch({type: 'UPLOAD_FILE', payload: file})})
         .catch(err => {dispatch({type: 'ERROR_EMPLOYEE', payload: err})})
     }
 }

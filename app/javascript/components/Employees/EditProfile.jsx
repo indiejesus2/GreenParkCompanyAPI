@@ -196,12 +196,14 @@ export default function EditProfile(props) {
     const handleClose = () => setShow(false)
     const handleShow = () => setShow(true);
     const [msg, setMsg] = useState(false)
+    const [fileLoading, setFileLoading] = useState(false)
     const handleMsg = () => setMsg(true)
     const handleCloseMsg = () => setMsg(false)
 
     useEffect(() => {
-        if (props.fileLoading == false) {
-            handleShow()
+        if (fileLoading == false && show == true) {
+            handleClose()
+            handleMsg()
         }
     }, [props.fileLoading])
 
@@ -548,16 +550,17 @@ export default function EditProfile(props) {
                     <Button type="submit" value="Save Changes" onClick={formik.handleSubmit}>Save Changes</Button>
                 </div>
                     </Form>
-                </div>
-                    <ToastContainer position="top-center">
-                        <Toast show={msg} centered onClose={handleCloseMsg}>
-                            <Toast.Header closeButton={true}>
-                            </Toast.Header>
-                                <Toast.Body style={{backgroundColor: "black"}}>
-                                <h2>Your resume has been successfully uploaded.</h2>
-                                </Toast.Body>
-                        </Toast>
-                    </ToastContainer>
+            </div>
+            {/* {handleFileLoading()} */}
+            <ToastContainer position="middle-center">
+                <Toast show={msg} onClose={handleCloseMsg}>
+                    <Toast.Header style={{justifyContent: "right"}} closeButton>
+                    </Toast.Header>
+                        <Toast.Body style={{backgroundColor: "black"}}>
+                        <h2>Your resume has been successfully uploaded.</h2>
+                        </Toast.Body>
+                </Toast>
+            </ToastContainer>
             </div>
         </div>
         </div>

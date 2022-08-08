@@ -70,7 +70,7 @@ const About = props => {
     }
 
     const handleStick = () => {
-        if (size.height > 50 || history.location.pathname != "/home/about") {
+        if (size.height > 50) {
             return (
                 <div className="navSticky">
                     {handleHome()}
@@ -83,7 +83,7 @@ const About = props => {
     return (
         <div>
             {handleStick()}
-            <Image style={{width: 100 + '%', paddingTop: 60+"px"}} src="/images/new main page.png" alt="About page" />
+            <Image style={{width: 100 + '%', paddingTop: 70+"px"}} src="/images/new main page.png" alt="About page" />
         </div>
     )
 }

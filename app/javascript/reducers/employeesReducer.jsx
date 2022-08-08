@@ -24,7 +24,7 @@ export default function employeesReducer(state = {employee: [], profile: [], exp
                 experience: employee.experiences,
                 jobs: jobs,
                 applicants: employee.applicants,
-                file: action.payload.files,
+                file: action.payload.file,
                 document: employee.document,
                 loggedIn: true,
                 employeeErrors: [],
@@ -65,7 +65,7 @@ export default function employeesReducer(state = {employee: [], profile: [], exp
                 experience: profile.experiences,
                 jobs: matches,
                 applicants: profile.applicants,
-                file: action.payload.files,
+                file: action.payload.file,
                 document: profile.document,
                 loading: false
             }
@@ -92,7 +92,7 @@ export default function employeesReducer(state = {employee: [], profile: [], exp
             return {
                 ...state,
                 fileLoading: false,
-                document: action.payload
+                file: action.payload
             }
         case 'UPDATE_APPLICATIONS':
             return {

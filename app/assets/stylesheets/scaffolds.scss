@@ -273,10 +273,28 @@ a:hover {
   margin-left: 15px;
 }
 
+@media only screen and (min-width: 775px) {
+  .homeCollapse {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;    
+  }
+
+
+}
+
 @media only screen and (min-width: 580px) {
   // .home-nav {
-  //   display: flex !important;
-  //   justify-content: right !important;
+    //   display: flex !important;
+    //   justify-content: right !important;
+    .home-nav {
+      display: flex !important;
+      justify-content: space-between !important;
+      position: relative !important;
+      bottom: 5px !important;
+    }
+
+    
   // }
 
   // .homeCollapseNav {
@@ -285,19 +303,8 @@ a:hover {
   //   top: 10px;
   // }
 
-  .homeCollapse {
-      display: flex;
-      justify-content: space-between;
-      width: 100%;
-      
-  }
+  
 
-  .home-nav {
-    display: flex !important;
-    justify-content: space-between !important;
-    position: relative !important;
-    bottom: 5px !important;
-  }
 
   .signIn Form {
     width: 66%
@@ -356,6 +363,7 @@ a:hover {
     justify-content: end;
     padding-inline: 15px;
     position: relative;
+    bottom: 60px;
   }
 
   .employee-nav {
@@ -411,18 +419,6 @@ a:hover {
   //   display: flex !important;
   //   justify-content: space-evenly;
   // }
-
-  .employee-nav img {
-    scale: 65%;
-    transform: scale(.65);
-  }
-
-  .employee-nav-toggle {
-    scale: 85%;
-    transform: scale(.85);
-    bottom: 4rem;
-    left: 1rem;
-  }
 
   .page {
     bottom: 2rem;
@@ -497,6 +493,12 @@ a:hover {
   
 }
 
+@media only screen and (max-width: 550px) {
+  .employee-nav {
+    justify-content: left;
+  }
+}
+
 @media only screen and (max-width: 748px) {
   .signIn {
     justify-content: center;
@@ -517,9 +519,7 @@ a:hover {
     text-align: center !important;
   }
 
-  .employee-nav {
-    justify-content: left;
-  }
+  
 
   .page {
     bottom: 3.5rem !important;
@@ -531,6 +531,31 @@ a:hover {
     padding-inline-end: 0px !important;
   }
 
+  // .employee-nav img {
+  //   scale: 65%;
+  //   transform: scale(.65);
+  // }
+
+  .employee-nav-toggle {
+    // scale: 85%;
+    // transform: scale(.85);
+    bottom: 4rem;
+    left: 1rem;
+  }
+
+}
+
+@media only screen and (max-width: 450px) {
+
+  .employee-nav img {
+    scale: 65%;
+    transform: scale(.65);
+  }
+
+  .employee-nav-toggle {
+    scale: 85%;
+    transform: scale(.85);
+  }
 }
 
 .navSticky {

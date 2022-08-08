@@ -29,8 +29,8 @@ const EmployeeFile = props => {
         data.append("file", file, file.name)
         data.append('employee_id', props.id)
         props.uploadFile(data)
-        handleClose()
-        props.handleMsg()
+        // handleClose()
+        // props.handleMsg()
     }
 
     const handleChange = (e) => {

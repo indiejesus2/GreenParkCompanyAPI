@@ -13,7 +13,7 @@ class Api::V1::DocumentsController < ApplicationController
         # byebug
         @employee.file.attach(params[:file])
         if @employee.save
-            render json: EmployeeSerializer.new(@employee)
+            render json: {file: @employee.file.url}
         end
     end
 
