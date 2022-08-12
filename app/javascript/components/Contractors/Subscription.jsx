@@ -56,16 +56,16 @@ const Subscription = (props) => {
         // e.stopPropagation()
         // e.preventDefault()
         if (duration == "Monthly") {
-            // setPlan(1)
-            // formik.setFieldValue('plan_id', 1)
-            setPlan(3)
-            formik.setFieldValue('plan_id', 3)
+            setPlan(1)
+            formik.setFieldValue('plan_id', 1)
+            // setPlan(3)
+            // formik.setFieldValue('plan_id', 3)
             // setActive(true)
         } else {
-            // setPlan(2)
-            // formik.setFieldValue('plan_id', 2)
-            setPlan(4)
-            formik.setFieldValue('plan_id', 4)
+            setPlan(2)
+            formik.setFieldValue('plan_id', 2)
+            // setPlan(4)
+            // formik.setFieldValue('plan_id', 4)
         }
         setActive(true)
         formik.setFieldValue('active', true)
@@ -73,8 +73,8 @@ const Subscription = (props) => {
     }
 
     const handleMonthly = () => {
-        // if (plan == 1) {
-        if (plan == 3) {
+        if (plan == 1) {
+        // if (plan == 3) {
             return (
                 <Button value="Monthly" onClick={() => handleClick("Monthly")} style={{backgroundColor: "green"}}>Monthly</Button>
             )
