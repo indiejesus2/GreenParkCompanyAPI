@@ -55,7 +55,6 @@ class Api::V1::JobsController < ApplicationController
         # @job.proximity
         # @job.potential
         if @job.save
-            byebug
             # @employees = @employer.applicants.map {|applicant| applicant.employee }
             render json: {job: JobSerializer.new(@job), applicants: ApplicantSerializer.new(@employer.applicants)}
             # , candidates: EmployeeSerializer.new(@employees, include: [:profile, :work_histories])}
