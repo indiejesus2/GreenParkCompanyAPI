@@ -15,7 +15,7 @@ class Api::V1::JobsController < ApplicationController
         elsif @employer
             @files = {}
             @jobs = @employer.jobs
-            @candidates = @employer.applicants.filter{|applicant| applicant.acceptance != false}
+            # @candidates = @employer.applicants.filter{|applicant| applicant.acceptance != false}
             @employees = @jobs.map{|job| job.employees}
             if @employees.length > 0 
                 @applicants = @employees[0].map{|employee| employee}
@@ -26,7 +26,7 @@ class Api::V1::JobsController < ApplicationController
                     end
                 }
             end
-            render json: {contractor: @employer, jobs: JobSerializer.new(@jobs), applicants: ApplicantSerializer.new(@candidates), files: @files, subscription: SubscriptionSerializer.new(@employer.subscription)}, prerender: true
+            render json: {contractor: @employer, jobs: JobSerializer.new(@jobs), applicants: ApplicantSerializer.new(@employer.applicants), files: @files, subscription: SubscriptionSerializer.new(@employer.subscription)}, prerender: true
         else
             @jobs = Job.all
         end
