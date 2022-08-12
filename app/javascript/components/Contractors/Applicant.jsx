@@ -259,7 +259,15 @@ const Applicant = (props) => {
     //     setCandidates(original)
     // }
     const header = () => {
-        if (candidates.length==0) {
+        if (jobs.length<0) {
+            return (
+                <div className="newemployer" style={{paddingInline: 15+"px"}}>
+                    <h1>Future Applicants</h1>
+                    <h3>Please add a job to find qualified candidates.</h3>
+                </div>
+            )
+        } 
+        else if (candidates.length==0) {
             return (
                 <div className="newemployer" style={{paddingInline: 15+"px"}}>
                     <h1>Future Applicants</h1>

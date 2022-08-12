@@ -16,6 +16,7 @@ class Api::V1::JobsController < ApplicationController
             @files = {}
             @jobs = @employer.jobs
             @candidates = @employer.applicants.filter{|applicant| applicant.acceptance != false}
+            byebug
             @employees = @jobs.map{|job| job.employees}
             if @employees.length > 0 
                 @applicants = @employees[0].map{|employee| employee}
@@ -54,6 +55,7 @@ class Api::V1::JobsController < ApplicationController
         # @job.proximity
         # @job.potential
         if @job.save
+            byebug
             # @employees = @employer.applicants.map {|applicant| applicant.employee }
             render json: {job: JobSerializer.new(@job), applicants: ApplicantSerializer.new(@employer.applicants)}
             # , candidates: EmployeeSerializer.new(@employees, include: [:profile, :work_histories])}

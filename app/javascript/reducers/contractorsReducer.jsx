@@ -9,6 +9,7 @@ export default function contractorsReducer(state = {contractor: [], jobs: [], ap
             }
         case 'SIGNUP_CONTRACTOR':
             return {
+                ...state,
                 contractor: action.payload,
                 loggedIn: true,
                 loading: false
@@ -66,16 +67,16 @@ export default function contractorsReducer(state = {contractor: [], jobs: [], ap
         case 'ADD_JOB':
             debugger
             let newApplicants = action.payload.applicants.data.map(applicant => applicant.attributes)
-            if(state.jobs) {
+            // if(state.jobs) {
                 // let applications = action.payload.applicants.filter(applicant => applicant.acceptance != false)
                 return {
                     ...state, jobs: [...state.jobs, action.payload.job.data.attributes], loading: false, applicants: newApplicants
                 }
-            } else {
-                return {
-                    ...state, jobs: action.payload.job.data.attributes, loading: false, applicants: newApplicants
-                }
-            }
+            // } else {
+                // return {
+                //     ...state, jobs: action.payload.job.data.attributes, loading: false, applicants: newApplicants
+                // }
+            // }
         case 'EDIT_JOB':
             // let applications = action.payload.applicants.filter(applicant => applicant.acceptance != false)
             let editApplicants = action.payload.applicants.data.map(applicant => applicant.attributes)
