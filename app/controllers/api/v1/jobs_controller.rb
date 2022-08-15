@@ -15,7 +15,7 @@ class Api::V1::JobsController < ApplicationController
         elsif @employer
             @files = {}
             @jobs = @employer.jobs
-            # @candidates = @employer.applicants.filter{|applicant| applicant.acceptance != false}
+            @candidates = @employer.applicants.filter{|applicant| applicant.acceptance != false}
             @employees = @jobs.map{|job| job.employees}
             if @employees.length > 0 
                 @applicants = @employees[0].map{|employee| employee}
@@ -35,11 +35,11 @@ class Api::V1::JobsController < ApplicationController
     def show
         @job = Job.find(params[:id])
         @employer = @job.employer
-        @candidates = @job.proximity
-        if !search_params.blank?
-            @candidates = @candidates.potential(search_params)
-        end
-        render json: {job: JobSerializer.new(@job)}
+        # @candidates = @job.proximity
+        # if !search_params.blank?
+        #     @candidates = @candidates.potential(search_params)
+        # end
+        render json: {job: JobSerializer.new(@job), applicants: ApplicantSerializer.new(@employer.applicants)}
     end
 
     def new
@@ -78,7 +78,7 @@ class Api::V1::JobsController < ApplicationController
     def destroy
         @job = @employer.jobs.find(params[:id])
         @job.destroy
-        render json: @job
+        render json: {job: @job, applicants: ApplicantSerializer.new(@employer.applicants)}
     end
 
     private

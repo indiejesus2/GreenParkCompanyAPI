@@ -10,12 +10,6 @@ import NavBar from '../components/NavBar'
 import TempPassword from './Login/TempPassword';
 
 const App = () => {
-
-    // useEffect(() => {
-    //     currentUser()
-    // })
-
-    debugger
         
         return (
             <div>

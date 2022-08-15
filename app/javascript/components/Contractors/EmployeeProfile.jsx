@@ -43,7 +43,7 @@ const EmployeeProfile = props => {
         },
         onSubmit: values => {
             props.editApplicant(values)
-            history.push(`/employers/${values.employer_id}/jobs/${values.job_id}`)
+            history.push(`/employers/${values.employer_id}/jobs/${values.job_id}/matches`)
         }
     })
 
@@ -106,7 +106,7 @@ const EmployeeProfile = props => {
     }
 
     const handleAcceptance = () => {
-        if (application.acceptance != true) {
+        if (candidate.acceptance != true) {
             return (
                 <Button onClick={() => handleApplicant(true)}>Accept Applicant</Button>
             )
@@ -118,7 +118,7 @@ const EmployeeProfile = props => {
     }
     
     const handleDecline = () => {
-        if (application.acceptance == true) {
+        if (candidate.acceptance == true) {
             return (
                 <Button onClick={() => handleApplicant(false)}>Decline Applicant</Button>
             )

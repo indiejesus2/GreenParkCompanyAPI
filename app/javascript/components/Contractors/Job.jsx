@@ -18,29 +18,6 @@ const Job = props => {
     }
 
 
-    const handleApplicants = () => {
-        if (currentStep == 1) {
-            return (
-                <Applicants job={job} contractor={props.contractor} applicants={props.applicants} editApplicant={props.editApplicant} handleApplicant={handleApplicant} />
-            )
-        } else if (currentStep == 2) {
-            return (
-                <EmployeeProfile 
-                candidate={applicant}
-                // application={applicant.application}
-                editApplicant={props.editApplicant}
-                handleClose={handleClose}
-                job={job}
-                applicants={props.applicants}
-                currentStep={currentStep}
-                contractor={props.contractor}
-                handleContact={handleContact}
-                files={props.files}
-                />
-            )
-        }
-    }
-
     const handleJob = () => {
         // props.history.push(`/contractors/${props.contractor.id}/jobs`)
         props.history.push(`/employers`)
@@ -180,10 +157,9 @@ const Job = props => {
                                     </Card.Body>
                                 </Card>
                             </div>
-                            <div className="employees-jobs mt-3">
-                                {/* <h2>Applicants</h2> */}
+                            {/* <div className="employees-jobs mt-3">
                                 {handleApplicants()}
-                            </div>
+                            </div> */}
                             </div>
                         </div>
                     </div>

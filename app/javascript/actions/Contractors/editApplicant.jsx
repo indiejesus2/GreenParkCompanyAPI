@@ -11,7 +11,7 @@ export const editApplicant = (applicant) => {
         };
         return fetch(`/api/v1/applicants/${applicant.id}`, configObj)
         .then(resp => resp.json())
-        .then(jobs => dispatch({type: 'FETCH_JOBS', payload: jobs}))
+        .then(jobs => dispatch({type: 'EDIT_JOB', payload: jobs}))
         .catch(err => {
             dispatch({type: 'ERROR_CONTRACTOR', payload: err})
         })

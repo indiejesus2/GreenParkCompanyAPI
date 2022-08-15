@@ -35,7 +35,6 @@ const Home = props => {
     }
 
     const handleHome = () => {
-        // debugger
         if (size.height < 50) {
             return (
                 <NavBar />

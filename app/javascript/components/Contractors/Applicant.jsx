@@ -297,7 +297,6 @@ const Applicant = (props) => {
         //         filtered.push(applicant)
         //     }
         // })
-        debugger
         let applied = applicants.filter(applicant => applicant.interested == true)
         if (applied.length > 0) {
             return (

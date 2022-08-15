@@ -49,10 +49,13 @@ export default function employeesReducer(state = {employee: [], profile: [], exp
         case 'CREATE_PROFILE':
             return {
                 ...state,
-                profile: action.payload.profile,
-                experience: action.payload.experiences,
-                jobs: action.payload.jobs,
-                applicants: action.payload.applicants,
+                employee: action.payload.employee.data.attributes,
+                profile: employee.profile,
+                experience: employee.experiences,
+                jobs: action.payload.jobs.data.map(job=>job.attributes),
+                applicants: employee.applicants,
+                file: action.payload.file,
+                document: employee.document,
                 loading: false
             }
         case 'UPDATE_PROFILE':

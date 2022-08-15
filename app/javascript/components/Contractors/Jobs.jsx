@@ -6,9 +6,8 @@ import SideNavBar from '../SideNavBar'
 
 const Jobs = (props) => {
 
-const [jobs, setJobs] = useState(props.jobs ? props.jobs : [])
-debugger
-
+    const [jobs, setJobs] = useState(props.jobs ? props.jobs : [])
+    
     useEffect(() => {
         if (props.jobs != jobs) {
             setJobs(props.jobs)
@@ -41,12 +40,12 @@ debugger
         return windowSize;
     }
 
-    function handleJob(job) {
-        props.history.push(`/employers/${props.contractor.id}/jobs/${job.id}`)
+    function handleMatches(job) {
+        props.history.push(`/employers/${props.contractor.id}/jobs/${job.id}/matches`)
     }
     
-    function handleEdit(job) {
-        props.history.push(`/employers/${props.contractor.id}/jobs/${job.id}/editjob`)
+    function handleJob(job) {
+        props.history.push(`/employers/${props.contractor.id}/jobs/${job.id}`)
     }
 
     const handleTable = (job) => {
@@ -64,7 +63,7 @@ debugger
                                 </td>
                             </tr>
                             <tr>
-                                <td id="table-header-title" style={{ "border-bottom-width": 0 + "px", "border-right": 2 + "px solid white"}}>Applicants: {props.applicants.filter(applicant=>applicant.job_id == job.id).length}
+                                <td id="table-header-title" style={{ "border-bottom-width": 0 + "px", "border-right": 2 + "px solid white"}}>Matches: {props.applicants.filter(applicant=>applicant.job_id == job.id).length}
                                 </td>
                                 <td id="table-header-rating" style={{ "border-bottom-width": 0 + "px"}}>Date Posted: {job.createdDate}
                                 </td>
@@ -72,8 +71,8 @@ debugger
                         </tbody>
                     </Table>
                     <div className="employee-jobs-buttons">
-                        <Button className="mb-3" id="job" onClick={() => handleJob(job)}>View Job</Button>
-                        <Button id="edit_job" onClick={() => handleEdit(job)}>Edit Job</Button>
+                        <Button className="mb-3" id="job" onClick={() => handleMatches(job)}>View Matches</Button>
+                        <Button id="edit_job" onClick={() => handleJob(job)}>View/Edit Job</Button>
                     </div>
                 </div>
             )
@@ -94,7 +93,7 @@ debugger
                             </tr>
                             <tr>
                                 <td id="table-header-title" style={{ "border-bottom-width": 0 + "px"}}>
-                                    Applicants: {props.applicants.filter(applicant=>applicant.job_id == job.id).length}
+                                    Matches: {props.applicants.filter(applicant=>applicant.job_id == job.id).length}
                                 </td>
                             </tr>
                             <tr>
@@ -105,8 +104,8 @@ debugger
                         </tbody>
                     </Table>
                     <div className="employee-jobs-buttons">
-                        <Button className="mb-3" id="job" onClick={() => handleJob(job)}>View Job</Button>
-                        <Button id="edit_job" onClick={() => handleEdit(job)}>Edit Job</Button>
+                        <Button className="mb-3" id="job" onClick={() => handleMatches(job)}>View Matches</Button>
+                        <Button id="edit_job" onClick={() => handleJob(job)}>View/Edit Job</Button>
                     </div>
                 </div>
             )

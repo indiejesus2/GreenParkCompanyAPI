@@ -2,12 +2,15 @@ import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { Form, Button, Card, Table } from 'react-bootstrap'
 import EmployeeProfile from './EmployeeProfile'
+import NavBar from '../NavBar'
+import SideNavBar from '../SideNavBar'
 
 
 const Applicants = (props) => {
     
-    const [job, setJob] = useState(props.job)
+    const [job, setJob] = useState(props.jobs.find(job => job.id == props.match.params.job_id))
     const [applicants, setApplicants] = useState(props.applicants.filter(applicant=>applicant.job_id == job.id).sort((a,b) => a.rating - b.rating))
+    const [currentStep, setStep] = useState(1)
     // debugger
     // const [profiles, setProfiles] = useState(props.applicants.profiles)
 
@@ -37,25 +40,18 @@ const Applicants = (props) => {
         return windowSize;
     }
 
-    // const original = profiles.map(profile => {
-    //     let oObj = {
-    //         info: '',
-    //         application: ''
-    //     }
-    //     let candidate = applicants.find(applicant => applicant.employee_id == profile.employee_id)
-    //     // && applicant.acceptance !== false
-    //         if (profile.employee_id == candidate.employee_id) {
-    //             oObj.info = profile,
-    //             oObj.application = candidate
-    //         }
-    //     return oObj
-    // })
-
     const [show, setShow] = useState(false)
     const [applicant, setApplicant] = useState("")
     const [candidates, setCandidates] = useState(applicants)
+    
     const handleClose = () => {
-        setShow(false);
+        setStep(1)
+    }
+
+    const handleApplicant = (candidate) => {
+        setApplicant(candidate)
+        setStep(2)
+        setShow(true)
     }
 
     const saved = () => {
@@ -71,6 +67,39 @@ const Applicants = (props) => {
         //     setCandidates(applicants)
         // }
     })
+
+    const handleApplicants = () => {
+        if (currentStep == 1) {        
+            return (
+                    <div className="employees-jobs">
+                    {candidates.map(candidate => 
+                        <Card id={candidate.id} key={candidate.id} >                
+                            <Card.Body className="d-flex">
+                                {handleTable(candidate)}
+    
+                            </Card.Body>
+                        </Card>
+                    )}
+            </div>
+                )
+        } else if (currentStep == 2) {
+            return (
+                <EmployeeProfile 
+                candidate={applicant}
+                // application={applicant.application}
+                show={show}
+                editApplicant={props.editApplicant}
+                handleClose={handleClose}
+                job={job}
+                applicants={props.applicants}
+                currentStep={currentStep}
+                contractor={props.contractor}
+                handleContact={handleContact}
+                files={props.files}
+                />
+            )
+        }
+    }
 
     const rate = (rating) => {
         if (rating == 6 || rating == 5) {
@@ -147,9 +176,14 @@ const Applicants = (props) => {
     }
 
     const handleContact = (candidate) => {
-        let person = job.employees.find(employee => employee.id == candidate.info.employee_id)
-        window.location.href = ("mailto:" + candidate.employee.email + "?subject=" + job.title + " - " + props.contractor.name)        
+        let person = job.employees.find(employee => employee.id == candidate.employee_id)
+        window.location.href = ("mailto:" + person.email + "?subject=" + job.title + " - " + props.contractor.name)
     }
+
+    // const handleContact = (candidate) => {
+    //     let person = job.employees.find(employee => employee.id == candidate.info.employee_id)
+    //     window.location.href = ("mailto:" + candidate.employee.email + "?subject=" + job.title + " - " + props.contractor.name)        
+    // }
     
     const handleAcceptance = (candidate) => {
         let person = job.employees.find(employee => employee.id == candidate.info.employee_id)
@@ -170,7 +204,7 @@ const Applicants = (props) => {
         } else {
             return (
                 <div className="newemployer">
-                    <h1>{candidates.length} {candidates.length<=1?"Applicant":"Applicants!"}</h1>
+                    <h1>{candidates.length} {candidates.length<=1?"Match":"Matches!"}</h1>
                     {handleApplications()}
                 </div>
             )
@@ -202,7 +236,7 @@ const Applicants = (props) => {
                          </tbody>
                     </Table>
                     <div className="employee-jobs-buttons">
-                        <Button onClick={() => props.handleApplicant(candidate)}>Details</Button>
+                        <Button onClick={() => handleApplicant(candidate)}>Details</Button>
                         <Button onClick={() => handleContact(candidate)}>Contact</Button>
                     </div>
                 </div>
@@ -235,7 +269,7 @@ const Applicants = (props) => {
                          </tbody>
                     </Table>
                     <div className="employee-jobs-buttons">
-                        <Button onClick={() => props.handleApplicant(candidate)}>Details</Button>
+                        <Button onClick={() => handleApplicant(candidate)}>Details</Button>
                         <Button onClick={() => handleContact(candidate)}>Contact</Button>
                     </div>
                 </div>
@@ -245,28 +279,15 @@ const Applicants = (props) => {
     
     return (
         <div className="applicants">
-            {header()}
-        <div className="employees-jobs">
-            {candidates.map(candidate => 
-                <Card id={candidate.id} key={candidate.id} >                
-                    <Card.Body className="d-flex">
-                        {handleTable(candidate)}
-
-                    </Card.Body>
-                </Card>
-            )}
-                <EmployeeProfile 
-                    show={show}
-                    candidate={applicant}
-                    // application={applicant.application}
-                    editApplicant={props.editApplicant}
-                    handleClose={handleClose}
-                    handleContact={handleContact}
-                    contractor={props.contractor}
-                    files={props.files}
-                    job={props.job}
-                />
-            </div>
+            <NavBar handleSignout={props.signOut} contractor={props.contractor} loggedIn={props.loggedIn} user="contractor" />
+                <div className="page">
+                    <SideNavBar contractor={props.contractor} user="contractor"/>
+                        <div className="dashboard">
+                            <h1 style={{ textAlign: "center", textTransform: "uppercase"}}>{job.title}</h1>
+                            {header()}  
+                            {handleApplicants()}
+                        </div>
+                </div>
         </div>
     )
     

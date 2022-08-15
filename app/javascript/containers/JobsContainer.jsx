@@ -11,6 +11,7 @@ import AddJob from '../components/Contractors/AddJob'
 import EditJob from '../components/Contractors/EditJob'
 import Job from '../components/Contractors/Job'
 import Jobs from '../components/Contractors/Jobs'
+import Applicants from '../components/Contractors/Applicants'
 import NavBar from '../components/NavBar'
 import Contractors from '../components/Contractors/Contractors'
 
@@ -21,6 +22,7 @@ class JobsContainer extends Component {
                 <div className="jobs">
                     <Switch>
                         <Route path='/employers/:id/jobs/:job_id/editjob' render={(routerProps) => <EditJob {...routerProps} jobs={this.props.jobs} contractor={this.props.contractor} editJob={this.props.editJob} loggedIn={this.props.loggedIn} deleteJob={this.props.deleteJob}/>}></Route>
+                        <Route path='/employers/:id/jobs/:job_id/matches' render={(routerProps) => <Applicants {...routerProps} contractor={this.props.contractor} jobs={this.props.jobs} applicants={this.props.applicants} candidates={this.props.candidates} profiles={this.props.profiles} fetchJob={this.props.fetchJob} editApplicant={this.props.editApplicant} loggedIn={this.props.loggedIn} deleteJob={this.props.deleteJob} editJob={this.props.editJob} files={this.props.files}/>}></Route>
                         <Route path='/employers/:id/jobs/:job_id' render={(routerProps) => <Job {...routerProps} contractor={this.props.contractor} jobs={this.props.jobs} applicants={this.props.applicants} candidates={this.props.candidates} profiles={this.props.profiles} fetchJob={this.props.fetchJob} editApplicant={this.props.editApplicant} loggedIn={this.props.loggedIn} deleteJob={this.props.deleteJob} editJob={this.props.editJob} files={this.props.files}/>}></Route>
                         <Route path='/employers/addjob' render={(routerProps) => <AddJob {...routerProps} contractor={this.props.contractor} addJob={this.props.addJob} loggedIn={this.props.loggedIn} />}></Route>
                         <Route path='/employers/signup' render={(routerProps) => <ContractorsSignUp {...routerProps} loading={this.props.loading} signUpContractor={this.props.signUpContractor} loggedIn={this.props.loggedIn}/>}></Route>

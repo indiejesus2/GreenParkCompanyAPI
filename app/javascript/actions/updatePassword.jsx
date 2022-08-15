@@ -22,7 +22,6 @@ export const updatePassword = (user) => {
         return fetch(`/api/v1/forgot_password`, configObj)
         .then(resp => resp.json())
         .then(user => {
-            debugger
             if (user.error) {
                 dispatch({
                     type: 'ERROR_EMPLOYEE',

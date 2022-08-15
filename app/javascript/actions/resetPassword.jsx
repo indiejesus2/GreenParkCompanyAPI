@@ -11,7 +11,6 @@ export const resetPassword = (user) => {
         return fetch(`/api/v1/reset_password`, configObj)
         .then(resp => resp.json())
         .then(user => {
-            debugger
             if (user.error) {
                 dispatch({
                     type: 'ERROR_EMPLOYEE',

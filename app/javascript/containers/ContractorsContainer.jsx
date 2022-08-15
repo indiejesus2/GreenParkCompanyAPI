@@ -22,6 +22,7 @@ import EditProfile from '../components/Contractors/EditProfile'
 import JobsContainer from '../containers/JobsContainer'
 import AddJob from '../components/Contractors/AddJob'
 import Applicant from '../components/Contractors/Applicant'
+import Applicants from '../components/Contractors/Applicants'
 import Logo from '../components/Logo'
 import About from '../components/About'
 import Contact from '../components/Contact'
@@ -80,6 +81,7 @@ class ContractorsContainer extends Component {
                     <Route path='/employers/:id/jobs/:job_id/employees/:employee_id' render={(routerProps) => <EmployeeProfile {...routerProps} loading={this.props.loading} contractor={this.props.contractor} jobs={this.props.jobs} signOut={this.props.signOutContractor} files={this.props.files} />}></Route>
                     <Route path='/employers/:id/profile' render={(routerProps) => <Profile {...routerProps} loggedIn={this.props.loggedIn} contractor={this.props.contractor} signOut={this.props.signOutContractor} updateProfile={this.props.updateProfile} subscription={this.props.subscription}/>}></Route>
                     <Route path='/employers/:id/editprofile' render={(routerProps) => <EditProfile {...routerProps} loggedIn={this.props.loggedIn} contractor={this.props.contractor} updateProfile={this.props.updateProfile} signOut={this.props.signOutContractor} subscription={this.props.subscription} updatePayment={this.props.updatePayment}/>}></Route>
+                    <Route path='/employers/:id/jobs/:job_id/matches' render={(routerProps) => <Applicants {...routerProps} contractor={this.props.contractor} jobs={this.props.jobs} applicants={this.props.applicants} candidates={this.props.candidates} profiles={this.props.profiles} fetchJob={this.props.fetchJob} editApplicant={this.props.editApplicant} loggedIn={this.props.loggedIn} deleteJob={this.props.deleteJob} editJob={this.props.editJob} files={this.props.files}/>}></Route>
                     <Route path='/employers/:id/jobs' render={(routerProps) => <JobsContainer {...routerProps} jobs={this.props.jobs} contractor={this.props.contractor} candidates={this.props.candidates} profiles={this.props.profiles}  editApplicant={this.props.editApplicant} signOut={this.props.signOutContractor} files={this.props.files}/>}></Route>
                     <Route path='/employers/addjob' render={(routerProps) => <JobsContainer {...routerProps} contractor={this.props.contractor} addJob={this.props.addJob}/>}></Route>
                     <Route path='/employers/:id/applicants' render={(routerProps) => <Applicant {...routerProps} loggedIn={this.props.loggedIn} jobs={this.props.jobs} contractor={this.props.contractor} applicants={this.props.applicants} profiles={this.props.profiles}  editApplicant={this.props.editApplicant} files={this.props.files}/>}></Route>

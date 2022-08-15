@@ -11,7 +11,7 @@ export const createProfile = (profile) => {
         };
         return fetch(`/api/v1/employees/${profile.employee_id}/profiles/`, configObj)
         .then(resp => resp.json())
-        .then(profile => {dispatch({type: 'CREATE_PROFILE', payload: profile.data.attributes})})
+        .then(profile => {dispatch({type: 'CREATE_PROFILE', payload: profile})})
         .catch(err => {
             dispatch({type: 'ERROR_EMPLOYEE', payload: err})
         })

@@ -48,7 +48,7 @@ class Api::V1::ApplicantsController < ApplicationController
     def update
         @applicant.update(applicant_params)
         if @applicant.save
-            redirect_to api_v1_employer_jobs_path(@employer), status: 303
+            redirect_to api_v1_employer_job_path(@employer, @job), status: 303
         else
             render json: @applicant.errors
         end
