@@ -186,7 +186,7 @@ const NavBar = props => {
                                 >
                                     About
                                 </Nav.Link>
-                                <Nav.Link as={Link} to={`/employees`} eventKey="5"
+                                <Nav.Link as={Link} to={`/employees/contact`} eventKey="5"
                                     style={{
                                         color: "#fff",
                                         fontFamily: 'Luam, serif',
@@ -227,7 +227,7 @@ const NavBar = props => {
                                 >
                                 <Nav.Link as={Link} to="/employees">HOME</Nav.Link>
                                 <Nav.Link as={Link} to="/employees/about">ABOUT</Nav.Link>
-                                <Nav.Link as={Link} to="/employees">CONTACT</Nav.Link>
+                                <Nav.Link as={Link} to="/employees/contact">CONTACT</Nav.Link>
                             </Nav>
 
                             <Nav
@@ -311,7 +311,7 @@ const NavBar = props => {
                                     >
                                         About
                                     </Nav.Link>
-                                    <Nav.Link as={Link} to={`/employers`} eventKey="6"
+                                    <Nav.Link as={Link} to={`/employers/contact`} eventKey="6"
                                         style={{
                                             color: "#fff",
                                             fontFamily: 'Luam, serif',
@@ -343,7 +343,7 @@ const NavBar = props => {
                             >
                             <Nav.Link as={Link} to="/employers">HOME</Nav.Link>
                             <Nav.Link as={Link} to="/employers/about">ABOUT</Nav.Link>
-                            <Nav.Link as={Link} to="/employers">CONTACT</Nav.Link>
+                            <Nav.Link as={Link} to="/employers/contact">CONTACT</Nav.Link>
                         </Nav>
                         <Nav
                             style={{

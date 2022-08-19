@@ -183,6 +183,14 @@ const EmployeeProfile = props => {
                         </tr>
                         <tr style={{ "border-bottom-width": 0 + "px"}}>
                         <td style={{"padding": "0px" }}>
+                            Phone Number:                         
+                        </td>
+                        <td style={{"padding": "0px" }}>
+                            {candidate.profile.phone}
+                        </td>
+                        </tr>
+                        <tr style={{ "border-bottom-width": 0 + "px"}}>
+                        <td style={{"padding": "0px" }}>
                             Job Type:                         
                         </td>
                         <td style={{"padding": "0px" }}>

@@ -47,7 +47,7 @@ export default function EditProfile(props) {
                         <Row className="mb-3">
                             <Form.Group as={Col}>
                             <FloatingLabel label="Subscription">
-                                <Form.Control name="subscription" value={employer.monthly == true ? "Monthly" : "Yearly"} readOnly />
+                                <Form.Control name="subscription" style={{ "backgroundColor": "#717272", "color": "#fff"}} value={employer.monthly == true ? "Monthly" : "Yearly"} />
                             </FloatingLabel>
                             </Form.Group>
                         </Row>

@@ -359,7 +359,7 @@ const Applicant = (props) => {
             )
         } else {
             return (
-                <div className="d-flex">
+                <div>
                     <Table style={{ "marginBottom": 2.5 + "px"}}>
                         <tbody>
                             <tr>
