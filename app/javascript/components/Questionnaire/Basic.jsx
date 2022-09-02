@@ -164,7 +164,10 @@ const Basic = (props) => {
                     </Form.Group> 
                     <Form.Group as={Col}>
                         <FloatingLabel label="Last Name">
-                            <Form.Control type="text" name="lname" style={{ "backgroundColor": "#2f2f2f", "color": "#fff"}} value={props.values.lname} onChange={props.handleChange} />
+                            <Form.Control type="text" name="lname" style={{ "backgroundColor": "#2f2f2f", "color": "#fff"}} value={props.values.lname} onChange={props.handleChange} isInvalid={props.errors.lname && props.touched.lname} onBlur={props.handleBlur}/>
+                            {props.errors.lname && props.touched.lname && (
+                                <div style={{ color: "red"}}>{props.errors.lname}</div>
+                            )}
                         </FloatingLabel>
                         </Form.Group>
                     </Row>
@@ -222,7 +225,10 @@ const Basic = (props) => {
                     <Row>
                     <Form.Group as={Col}>
                         <FloatingLabel label="Phone">
-                            <Form.Control type="text" name="phone" style={{ "backgroundColor": "#2f2f2f", "color": "#fff"}} value={formatPhoneNumber(props.values.phone)} onChange={props.handleChange} />
+                        <Form.Control type="text" name="phone" style={{ "backgroundColor": "#2f2f2f", "color": "#fff"}} value={formatPhoneNumber(props.values.phone)} onChange={props.handleChange} isInvalid={props.errors.phone && props.touched.phone} onBlur={props.handleBlur} />
+                            {props.errors.phone && props.touched.phone && (
+                                <div style={{ color: "red"}}>{props.errors.phone}</div>
+                            )}
                         </FloatingLabel>
                     </Form.Group>
                     <Form.Group as={Col}>
@@ -265,7 +271,10 @@ const Basic = (props) => {
                     <Row className="mb-3">
                     <Form.Group as={Col}>
                         <FloatingLabel label="Last Name">
-                            <Form.Control type="text" name="lname" style={{ "backgroundColor": "#2f2f2f", "color": "#fff"}} value={props.values.lname} onChange={props.handleChange} />
+                            <Form.Control type="text" name="lname" style={{ "backgroundColor": "#2f2f2f", "color": "#fff"}} value={props.values.lname} onChange={props.handleChange} isInvalid={props.errors.lname && props.touched.lname} onBlur={props.handleBlur}/>
+                                {props.errors.lname && props.touched.lname && (
+                                    <div style={{ color: "red"}}>{props.errors.lname}</div>
+                                )}
                         </FloatingLabel>
                         </Form.Group>
                     </Row>
@@ -328,7 +337,11 @@ const Basic = (props) => {
                 <Row className="mb-3">
                     <Form.Group as={Col}>
                         <FloatingLabel label="Phone">
-                            <Form.Control type="text" name="phone" style={{ "backgroundColor": "#2f2f2f", "color": "#fff"}} value={formatPhoneNumber(props.values.phone)} onChange={props.handleChange} />
+                            <Form.Control type="text" name="phone" style={{ "backgroundColor": "#2f2f2f", "color": "#fff"}} value={formatPhoneNumber(props.values.phone)} onChange={props.handleChange} isInvalid={props.errors.phone && props.touched.phone} onBlur={props.handleBlur} />
+                            {props.errors.phone && props.touched.phone && (
+                                <div style={{ color: "red"}}>{props.errors.phone}</div>
+                            )}
+                <Row className="mb-3"></Row>
                         </FloatingLabel>
                     </Form.Group>
                 </Row>

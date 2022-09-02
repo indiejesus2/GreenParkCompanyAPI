@@ -38,7 +38,9 @@ export default function SignIn(props) {
         validationSchema: schema,
         onSubmit: values => {
                 props.signIn(values)
-                if (values.user == "employee") {
+                if (values.user == "employee" && values.email == "admin@blucollar.com") {
+                    history.push('/admin')
+                } else if (values.user == "employee") {
                     history.push('/employees')
                 } else if (values.user == "employer") {
                     history.push('/employers')

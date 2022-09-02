@@ -39,7 +39,11 @@ class Employer < ApplicationRecord
       stripe_id,
       card,
     )
-    return last4
+    if !!last4 
+      return last4
+    else 
+      return ""
+    end
   end
 
   private

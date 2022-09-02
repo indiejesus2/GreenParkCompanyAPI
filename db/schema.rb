@@ -183,7 +183,7 @@ ActiveRecord::Schema.define(version: 2022_08_14_025809) do
     t.index ["shifts"], name: "index_profiles_on_shifts", using: :gin
   end
 
-  create_table "subscriptions", force: :cascade do |t|
+  create_table "subscriptions", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.bigint "plan_id", null: false
     t.uuid "employer_id", null: false
     t.boolean "active"

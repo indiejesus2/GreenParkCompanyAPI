@@ -1,6 +1,33 @@
 export const signIn = (user) => {
     return (dispatch) => {
-    if (user.user == "employee") {
+        if (user.email == "admin@blucollar.com") {
+            const configObj = {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json',
+                    Accept : 'application/json',
+                    // 'X-Custom-Header' : 'Employee',
+                },
+                body: JSON.stringify({employee: user})
+            }
+            dispatch({type: 'LOADING_ADMIN'})
+            return fetch('/api/v1/signin', configObj)
+            .then (resp => resp.json())
+            .then(admin => {
+                if (admin.error) {
+                    dispatch({
+                        type: 'ERROR_ADMIN',
+                        payload: admin.error
+                    })
+                } else {
+                    dispatch({
+                        type: 'SIGNIN_ADMIN',
+                        payload: admin
+                    })
+                }
+            })
+        }
+        else if (user.user == "employee") {
             const configObj = {
                 method: "POST",
                 headers: {

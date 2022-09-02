@@ -28,10 +28,12 @@ const Main = (props) => {
     }
 
     const schema = yup.object().shape({
-        fname: yup.string().required(),
-        city: yup.string().required(),
-        state: yup.string().required(),
-        zipcode: yup.string().required(),
+        fname: yup.string().required("Please enter a first name"),
+        lname: yup.string().required("Please enter a last name"),
+        city: yup.string().required("Please enter a city"),
+        state: yup.string().required("Please enter a state"),
+        zipcode: yup.string().required("Please enter a zip-code"),
+        phone: yup.string().required("Please enter a phone number"),
         trade: yup.string().required()
     })
 
@@ -79,10 +81,13 @@ const Main = (props) => {
         } else if (currentStep === 2 && direction === "next") {
             setStep(step+1)
         } else {
-            formik.setErrors({city: "Please enter a city", state: "Please enter a state", zipcode: "Please enter a zip-code"})
+            formik.setErrors({city: "Please enter a city", state: "Please enter a state", zipcode: "Please enter a zip-code", fname: "Please enter a first name", lname: "Please enter a last name", phone: "Please enter a phone number"})
             formik.setFieldTouched('city')
             formik.setFieldTouched('state')
             formik.setFieldTouched('zipcode')
+            formik.setFieldTouched('lname')
+            formik.setFieldTouched('fname')
+            formik.setFieldTouched('phone')
         }
     }
 
