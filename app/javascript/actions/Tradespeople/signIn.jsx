@@ -6,7 +6,7 @@ export const signIn = (user) => {
                 headers: {
                     'Content-Type': 'application/json',
                     Accept : 'application/json',
-                    // 'X-Custom-Header' : 'Employee',
+                    'X-Custom-Header' : 'Employee',
                 },
                 body: JSON.stringify({employee: user})
             }

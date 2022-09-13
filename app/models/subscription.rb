@@ -1,5 +1,5 @@
 class Subscription < ApplicationRecord
-  attr_accessor :card_number, :exp_month, :exp_year, :cvc  
+  attr_accessor :card_number, :exp_month, :exp_year, :cvc, :expiryDate
   belongs_to :plan
   belongs_to :employer  
   validates :stripe_id, presence: true, uniqueness: true  
@@ -12,7 +12,7 @@ class Subscription < ApplicationRecord
       Stripe::Customer.create_source(
         employer.stripe_id,
         { source: generate_card_token }
-      )    
+      )
       response = Stripe::Subscription.create({
         customer: employer.stripe_id,
         items: [

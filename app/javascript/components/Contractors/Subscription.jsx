@@ -20,8 +20,7 @@ const Subscription = (props) => {
 
     const schema = yup.object().shape({
         card_number: yup.string().required(),
-        exp_month: yup.string().required(),
-        exp_year: yup.string().required(),
+        expiryDate: yup.string().required("Invalid expiration date"),
         cvc: yup.string().required(),
         plan_id: yup.string().required("Please select a plan")
     })
@@ -33,6 +32,7 @@ const Subscription = (props) => {
             plan_id: plan,
             active: active,
             card_number: "",
+            expiryDate: "",
             exp_month: "",
             exp_year: "",
             cvc: ""

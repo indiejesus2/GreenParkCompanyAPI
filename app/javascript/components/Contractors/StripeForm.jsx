@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Form, Button, FloatingLabel, Row, Col, InputGroup, Modal, Alert } from 'react-bootstrap'
+import { usePaymentInputs } from 'react-payment-inputs';
+
 // import {useprops} from 'props'
 import * as yup from 'yup'
 
@@ -7,6 +9,7 @@ const StripeForm = (props) => {
 
     const [alert, setAlert] = useState(false)
     const [active, setActive] = useState(!!props.subscription?props.subscription.active:false)
+    const { meta, getCardNumberProps, getExpiryDateProps, getCVCProps } = usePaymentInputs();
 
     const months = [
         "--",
@@ -43,7 +46,6 @@ const StripeForm = (props) => {
     const [formError, setFormError] = useState(props.errors.plan_id)
 
     useEffect(() => {
-        debugger
         if (Array.isArray(error) || (!!formError && props.touched.plan_id)) {
             setAlert(true)
         } else {
@@ -71,20 +73,21 @@ const StripeForm = (props) => {
                         {props.errors.plan_id && props.touched.plan_id && (
                             <div style={{ color: "red"}}>{props.errors.plan_id}</div>
                         )}
-                    </Alert>
-
-                    <Row className="mb-3">
-                        <Form.Group as={Col} controlId="validationprops01">
+                    </Alert>                    
+                <div>
+                    <Row>
+                        <Form.Group as={Col} controlId="validationprops01" className="mb-3">
                             <Form.Label>
                                 Card Number
                             </Form.Label>
                         <Form.Control
-                            type="text"
+                            {...getCardNumberProps ({ onChange: props.handleChange })}
                             name="card_number"
                             placeholder="#### #### #### ####"
                             value={props.values.card_number}
-                            onChange={props.handleChange}
-                            isInvalid={props.errors.email && props.touched.card_number}
+                            // onChange={props.handleChange}
+                            style={{ "backgroundColor": "#2f2f2f", "color": "#fff"}}
+                            isInvalid={props.errors.card_number && props.touched.card_number}
                             onBlur={props.handleBlur}
                             // style={{
                             //     "padding": 5 + "px",
@@ -99,62 +102,39 @@ const StripeForm = (props) => {
                                 )}
                         </Form.Group>
                     </Row>
-
-                    <Row className="cardInfo">
-                        <Form.Group as={Col} className="mb-3" md="4" >
+                    <Row>
+                    <Form.Group as={Col} className="mb-3">
                             <Form.Label>
-                                Exp. Month
+                                Expiration Date
                             </Form.Label>
-                            <Form.Select
-                                name="exp_month"
-                                onChange={props.handleChange}
-                                value={props.values.exp_month}
-                                // defaultValue={props.values.exp_month}
+                            <Form.Control
+                                {...getExpiryDateProps({ onChange: props.handleChange })}
+                                name="expiryDate"
+                                // onChange={props.handleChange}
+                                value={props.values.expiryDate}
+                                // defaultValue={props.values.expiryDate}
                                 style={{ "backgroundColor": "#2f2f2f", "color": "#fff"}}
-                                isInvalid={props.errors.exp_month && props.touched.exp_month}
-                                // onBlur={props.handleBlur}
-                            >
-                                {months.map(month => 
-                                    <option key={month} value={month}>{month}</option>    
-
-
+                                isInvalid={props.errors.expiryDate && props.touched.expiryDate}
+                                onBlur={props.handleBlur}
+                            />
+                               
+                                {props.errors.expiryDate && props.touched.expiryDate && (
+                                    <div style={{ color: "red"}}>{props.errors.expiryDate}</div>
                                 )}
-                                {props.errors.exp_month && props.touched.exp_month && (
-                                    <div style={{ color: "red"}}>{props.errors.exp_month}</div>
-                                )}
-                            </Form.Select>
+                            {/* </Form.Select> */}
                         </Form.Group>
-                        <Form.Group as={Col} className="mb-3" md="4">
-                            <Form.Label>
-                                Exp. Year
-                            </Form.Label>
-                            <Form.Select
-                                name="exp_year"
-                                onChange={props.handleChange}
-                                // value={props.values.exp_year}
-                                // defaultValue={props.values.exp_year}
-                                style={{ "backgroundColor": "#2f2f2f", "color": "#fff"}}
-                                isInvalid={props.errors.exp_year && props.touched.exp_year}
-                                // onBlur={props.handleBlur}
-                            >
-                                {years.map(year => 
-                                    <option key={year} value={year}>{year}</option>    
-                                )}
-                                {props.errors.exp_year && props.touched.exp_year && (
-                                    <div style={{ color: "red"}}>{props.errors.exp_year}</div>
-                                )}
-                            </Form.Select>
-                        </Form.Group>
+                    </Row>
+                    <Row>
                         <Form.Group as={Col} className="mb-3" controlId="validationprops02">
                             <Form.Label>
                                 CVC
                             </Form.Label>
                             <Form.Control
-                                type="text"
+                                {...getCVCProps({ onChange: props.handleChange })}
+                                // type="text"
                                 name="cvc"
                                 placeholder="###"
                                 value={props.values.cvc}
-                                onChange={props.handleChange}
                                 isInvalid={props.errors.cvc && props.touched.cvc}
                                 onBlur={props.handleBlur}
                                 style={{ "backgroundColor": "#2f2f2f", "color": "#fff" }}
@@ -168,7 +148,11 @@ const StripeForm = (props) => {
                                     <div style={{ color: "red"}}>{props.errors.cvc}</div>
                                     )}
                         </Form.Group>
+
+                        {/* <input  value={props.values.cvc} style={{ "backgroundColor": "#2f2f2f", "color": "#fff"}} /> */}
                     </Row>
+                        {meta.isTouched && meta.error && <span>Error: {meta.error}</span>}
+                </div>
                     <div className="d-flex justify-content-between mb-3">
                         <Button variant="primary" type="submit" onClick={() => props.handleSubmit} 
                         // style={{ "width": 100 + "%"}}
@@ -182,3 +166,4 @@ const StripeForm = (props) => {
 }
 
 export default StripeForm
+

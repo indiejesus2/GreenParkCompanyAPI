@@ -5,6 +5,7 @@ import thunkMiddleware from 'redux-thunk';
 import employeesReducer from '../reducers/employeesReducer'
 import contractorsReducer from '../reducers/contractorsReducer'
 import jobsReducer from '../reducers/jobsReducer';
+import adminReducer from '../reducers/adminReducer';
 import errorsReducer from '../reducers/errorsReducer'
 import { combineReducers } from 'redux';
 
@@ -12,6 +13,7 @@ const rootReducer = combineReducers({
     employeesReducer,
     contractorsReducer,
     jobsReducer,
+    adminReducer,
     errorsReducer
   })
 
