@@ -44,10 +44,12 @@ class Api::V1::EmployersController < ApplicationController
   def update
       @employer.update(employer_params)
       if @employer.save
+        p @employer
         if !!@employer.monthly || !!@employer.yearly
           @employer.status = true
           @employer.save
         end
+        p EmployerSerializer.new(@employer)
         render json: EmployerSerializer.new(@employer)
       else
         format.html { render :edit, status: :unprocessable_entity }

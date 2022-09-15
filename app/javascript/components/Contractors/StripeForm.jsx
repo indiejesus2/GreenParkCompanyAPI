@@ -7,7 +7,7 @@ import * as yup from 'yup'
 
 const StripeForm = (props) => {
 
-    const [alert, setAlert] = useState(false)
+    const [notice, setNotice] = useState(false)
     const [active, setActive] = useState(!!props.subscription?props.subscription.active:false)
     const { meta, getCardNumberProps, getExpiryDateProps, getCVCProps } = usePaymentInputs();
 
@@ -47,9 +47,9 @@ const StripeForm = (props) => {
 
     useEffect(() => {
         if (Array.isArray(error) || (!!formError && props.touched.plan_id)) {
-            setAlert(true)
+            setNotice(true)
         } else {
-            setAlert(false)
+            setNotice(false)
         }
     })
 
