@@ -10,7 +10,8 @@ const Subscription = (props) => {
 
     const [monthly, setMonthly] = useState(false)
     const [yearly, setYearly] = useState(false)
-    const [id, setId] = useState(props.contractor.id)
+    const [id, setId] = useState(!!props.subscription?props.subscription.id:"")
+    const [employerId, setEmployerId] = useState(props.contractor.id)
     const [show, setShow] = useState(false)
     const [showForm, setShowForm] = useState(false)
     const [plan, setPlan] = useState(!!props.subscription&&!!props.subscription.active?props.subscription.plan_id:"")
@@ -27,7 +28,8 @@ const Subscription = (props) => {
     
     const formik = useFormik({
         initialValues: {
-            employer_id: id,
+            id: id,
+            employer_id: employerId,
             stripe_id: stripe,
             plan_id: plan,
             active: active,
@@ -40,7 +42,8 @@ const Subscription = (props) => {
         validationSchema: schema,
         onSubmit: values => {
             // if (props.contractor.status == true && active == true) {
-            if (stripe != "") {
+            // if (stripe != "" && props.contractor.status == true) {
+                if (id != "") {
                 props.updatePayment(values)
             // } else if (props.subscription.active == true && active == false){
             //     props.cancelPayment(values)
@@ -100,8 +103,8 @@ const Subscription = (props) => {
 
     const handleCancelation = () => {
         let cancellation = {
-            id: props.subscription.id,
-            employer_id: id,
+            id: id,
+            employer_id: employerId,
             active: false,
             stripe_id: props.subscription.stripe_id,
         } 

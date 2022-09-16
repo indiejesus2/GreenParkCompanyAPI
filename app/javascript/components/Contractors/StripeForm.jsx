@@ -8,6 +8,7 @@ import * as yup from 'yup'
 const StripeForm = (props) => {
 
     const [notice, setNotice] = useState(false)
+    const [id, setId] = useState(!!props.subscription?props.subscription.id:"")
     const [active, setActive] = useState(!!props.subscription?props.subscription.active:false)
     const { meta, getCardNumberProps, getExpiryDateProps, getCVCProps } = usePaymentInputs();
 
@@ -54,7 +55,7 @@ const StripeForm = (props) => {
     })
 
     const cancellation = () => {
-        if (active == true) {
+        if (active == true && id != "") {
             return (
                 <Button onClick={() => props.handleConfirmation()}>Cancel Subscription</Button>
                 // <div className="d-flex justify-center mt-3" style={{width: 100 + "%"}}>

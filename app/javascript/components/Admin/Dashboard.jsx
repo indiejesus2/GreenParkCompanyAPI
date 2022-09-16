@@ -5,13 +5,12 @@ import { Image } from 'react-bootstrap'
 
 const Dashboard = props => {
 
-    // debugger
+    
 
     const [loading, setLoading] = useState(props.loading)
     const [employees, setEmployees] = useState(props.employees)
     const [employers, setEmployers] = useState(props.employers)
     const [jobs, setJobs] = useState(props.jobs)
-
 
 
     // useEffect(() => {
@@ -40,6 +39,7 @@ const Dashboard = props => {
         </div>
         )
     } else if (props.loggedIn === false) {
+        debugger
         return (
             <Redirect to="/home" />
         )

@@ -9,9 +9,9 @@ export default function adminReducer(state = {employees: [], jobs: [], employers
             }
         case 'SIGNIN_ADMIN':
             return {
-                employees: action.payload.employees,
-                employers: action.payload.employers,
-                jobs: action.payload.jobs,
+                employees: action.payload.employees.data.map(employee => employee.attributes),
+                employers: action.payload.employers.data.map(employer => employer.attributes),
+                jobs: action.payload.jobs.data.map(job => job.attributes),
                 loading: false,
                 loggedIn: true
             }
