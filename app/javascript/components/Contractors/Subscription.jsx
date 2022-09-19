@@ -43,7 +43,7 @@ const Subscription = (props) => {
         onSubmit: values => {
             // if (props.contractor.status == true && active == true) {
             // if (stripe != "" && props.contractor.status == true) {
-                if (id != "") {
+            if (active == true && id != "") {
                 props.updatePayment(values)
             // } else if (props.subscription.active == true && active == false){
             //     props.cancelPayment(values)
