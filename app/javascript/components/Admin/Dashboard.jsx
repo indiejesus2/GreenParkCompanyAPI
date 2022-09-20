@@ -1,11 +1,15 @@
 import React, {useState, useEffect} from 'react'
 import { Redirect } from 'react-router-dom'
+import Applicant from './Applicant'
+import EmployeeProfile from './EmployeeProfile'
+import JobsContainer from '../../containers/JobsContainer'
 import NavBar from '../NavBar'
+import SideNavBar from '../SideNavBar'
 import { Image } from 'react-bootstrap'
 
 const Dashboard = props => {
 
-    
+    // debugger
 
     const [loading, setLoading] = useState(props.loading)
     const [employees, setEmployees] = useState(props.employees)
@@ -13,20 +17,20 @@ const Dashboard = props => {
     const [jobs, setJobs] = useState(props.jobs)
 
 
-    // useEffect(() => {
-    //     // if (props.contractorErrors != errors) {
-    //     //     setErrors(props.contractorErrors)
-    //     // } else 
-    //     if (props.loading != loading) {
-    //         setLoading(props.loading)
-    //     } else if (props.contractor != contractor) {
-    //         setContractor(props.contractor)
-    //     } else if (props.applicants != applicants) {
-    //         setApplicants(props.applicants)
-    //     } else if (props.jobs != jobs) {
-    //         setJobs(props.jobs)
-    //     }
-    // })
+
+    useEffect(() => {
+        if (props.contractorErrors != errors) {
+            setErrors(props.contractorErrors)
+        } else if (props.loading != loading) {
+            setLoading(props.loading)
+        } else if (props.contractor != contractor) {
+            setContractor(props.contractor)
+        } else if (props.applicants != applicants) {
+            setApplicants(props.applicants)
+        } else if (props.jobs != jobs) {
+            setJobs(props.jobs)
+        }
+    })
 
     if (props.loading === true) {
         return (
@@ -39,7 +43,6 @@ const Dashboard = props => {
         </div>
         )
     } else if (props.loggedIn === false) {
-        debugger
         return (
             <Redirect to="/home" />
         )

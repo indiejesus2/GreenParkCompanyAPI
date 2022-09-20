@@ -1,6 +1,4 @@
-import { assertConditionalExpression } from "@babel/types"
-
-export default function adminReducer(state = {employees: [], jobs: [], employers: [], loading: false, loggedIn: false}, action) {
+export default function adminReducer(state = {employees: [], jobs: [], employers: [], loading: false}, action) {
     switch(action.type) {    
         case 'LOADING_ADMIN':
             return {
@@ -8,10 +6,11 @@ export default function adminReducer(state = {employees: [], jobs: [], employers
                 loading: true
             }
         case 'SIGNIN_ADMIN':
+            debugger
             return {
-                employees: action.payload.employees.data.map(employee => employee.attributes),
-                employers: action.payload.employers.data.map(employer => employer.attributes),
-                jobs: action.payload.jobs.data.map(job => job.attributes),
+                employees: action.payload.employees,
+                employers: action.payload.employers,
+                jobs: action.payload.jobs,
                 loading: false,
                 loggedIn: true
             }
