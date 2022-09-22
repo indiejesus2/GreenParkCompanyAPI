@@ -17,6 +17,7 @@ const Subscription = (props) => {
     const [active, setActive] = useState(!!props.subscription?props.subscription.active:false)
     const [nextBilling, setNextBilling] = useState(!!props.subscription?props.subscription.nextBilling:"")
     const [stripe, setStripe] = useState(!!props.subscription?props.subscription.stripe_id:"")
+    const [subscriptionId, setSubscriptionId] = useState(!!props.subscription?props.subscription.id:"")
 
     const schema = yup.object().shape({
         card_number: yup.string().required(),
@@ -28,7 +29,8 @@ const Subscription = (props) => {
     
     const formik = useFormik({
         initialValues: {
-            employer_id: id,
+            id: subscriptionId,
+            employer_id: employerId,
             stripe_id: stripe,
             plan_id: plan,
             active: active,
@@ -39,8 +41,9 @@ const Subscription = (props) => {
         },
         validationSchema: schema,
         onSubmit: values => {
+            console.log(props.subscription)
             // if (props.contractor.status == true && active == true) {
-            if (stripe != "") {
+            if (subscriptionId != "") {
                 props.updatePayment(values)
             // } else if (props.subscription.active == true && active == false){
             //     props.cancelPayment(values)
