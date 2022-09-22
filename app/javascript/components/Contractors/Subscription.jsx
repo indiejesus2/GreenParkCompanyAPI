@@ -10,7 +10,7 @@ const Subscription = (props) => {
 
     const [monthly, setMonthly] = useState(false)
     const [yearly, setYearly] = useState(false)
-    const [id, setId] = useState(props.contractor.id)
+    const [employerId, setId] = useState(props.contractor.id)
     const [show, setShow] = useState(false)
     const [showForm, setShowForm] = useState(false)
     const [plan, setPlan] = useState(!!props.subscription&&!!props.subscription.active?props.subscription.plan_id:"")
