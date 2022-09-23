@@ -30,7 +30,7 @@ export default function EditProfile(props) {
     }
 
     const modifySubscription = () => {
-        history.push("/employers/subscription")
+        history.push("/employers/updatesubscription")
         // <Redirect to="/employers/subscription" />
     }
 

@@ -6,7 +6,7 @@ import ConfirmSubscription from './ConfirmSubscription'
 import StripeForm from './StripeForm'
 import NavBar from '../NavBar'
 
-const Subscription = (props) => {
+const UpdateSubscription = (props) => {
 
     const [monthly, setMonthly] = useState(false)
     const [yearly, setYearly] = useState(false)
@@ -39,7 +39,7 @@ const Subscription = (props) => {
         },
         validationSchema: schema,
         onSubmit: values => {
-            props.addPayment(values)
+            props.updatePayment(values)
             props.history.push(`/employers`)
         }
         // props.updateSubscription(values)
@@ -131,7 +131,7 @@ const Subscription = (props) => {
 
             <Form onSubmit={formik.handleSubmit}>
 
-            <h1 style={{"marginInlineStart": 25+"px"}}>Subscription</h1>
+            <h1 style={{"marginInlineStart": 25+"px"}}>UpdateSubscription</h1>
             <div className="subscriptions mb-3">
 
             <div className="monthly">
@@ -180,4 +180,4 @@ const Subscription = (props) => {
     )
 }
 
-export default Subscription
+export default UpdateSubscription
