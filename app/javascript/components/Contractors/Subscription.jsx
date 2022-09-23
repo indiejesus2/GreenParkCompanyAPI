@@ -10,40 +10,37 @@ const Subscription = (props) => {
 
     const [monthly, setMonthly] = useState(false)
     const [yearly, setYearly] = useState(false)
-    const [employerId, setId] = useState(props.contractor.id)
+    const [id, setId] = useState(props.contractor.id)
     const [show, setShow] = useState(false)
     const [showForm, setShowForm] = useState(false)
     const [plan, setPlan] = useState(!!props.subscription&&!!props.subscription.active?props.subscription.plan_id:"")
     const [active, setActive] = useState(!!props.subscription?props.subscription.active:false)
     const [nextBilling, setNextBilling] = useState(!!props.subscription?props.subscription.nextBilling:"")
     const [stripe, setStripe] = useState(!!props.subscription?props.subscription.stripe_id:"")
-    const [subscriptionId, setSubscriptionId] = useState(!!props.subscription?props.subscription.id:"")
 
     const schema = yup.object().shape({
         card_number: yup.string().required(),
-        exp_month: yup.string().required(),
-        exp_year: yup.string().required(),
+        expiryDate: yup.string().required("Invalid expiration date"),
         cvc: yup.string().required(),
         plan_id: yup.string().required("Please select a plan")
     })
     
     const formik = useFormik({
         initialValues: {
-            id: subscriptionId,
-            employer_id: employerId,
+            employer_id: id,
             stripe_id: stripe,
             plan_id: plan,
             active: active,
             card_number: "",
+            expiryDate: "",
             exp_month: "",
             exp_year: "",
             cvc: ""
         },
         validationSchema: schema,
         onSubmit: values => {
-            console.log(props.subscription)
             // if (props.contractor.status == true && active == true) {
-            if (subscriptionId != "") {
+            if (stripe != "") {
                 props.updatePayment(values)
             // } else if (props.subscription.active == true && active == false){
             //     props.cancelPayment(values)

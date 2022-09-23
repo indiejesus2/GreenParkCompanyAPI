@@ -1,4 +1,6 @@
-export default function adminReducer(state = {employees: [], jobs: [], employers: [], loading: false}, action) {
+import { assertConditionalExpression } from "@babel/types"
+
+export default function adminReducer(state = {employees: [], jobs: [], employers: [], loading: false, loggedIn: false}, action) {
     switch(action.type) {    
         case 'LOADING_ADMIN':
             return {
@@ -6,7 +8,6 @@ export default function adminReducer(state = {employees: [], jobs: [], employers
                 loading: true
             }
         case 'SIGNIN_ADMIN':
-            debugger
             return {
                 employees: action.payload.employees,
                 employers: action.payload.employers,

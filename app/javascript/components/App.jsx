@@ -5,6 +5,7 @@ import ErrorBoundary from '../components/ErrorBoundary'
 import LoginContainer from '../containers/LoginContainer'
 import EmployeesContainer from '../containers/EmployeesContainer'
 import ContractorsContainer from '../containers/ContractorsContainer'
+import AdminContainer from '../containers/AdminContainer'
 import { currentUser } from '../actions/currentUser'
 import NavBar from '../components/NavBar'
 import TempPassword from './Login/TempPassword';
@@ -20,6 +21,7 @@ const App = () => {
                     {/* // exact render={(routerProps) => <Home {...routerProps} signIn={this.props.signIn}/>}></Route> */}
                     <Route path="/employees" component={EmployeesContainer}></Route>
                     <Route path="/employers" component={ContractorsContainer}></Route>
+                    <Route path="/admin" component={AdminContainer}></Route>
                 </Switch>
                 </ErrorBoundary>
             </div>

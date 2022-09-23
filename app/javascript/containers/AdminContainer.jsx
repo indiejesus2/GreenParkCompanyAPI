@@ -7,15 +7,16 @@ import { addJob } from '../actions/Contractors/addJob'
 import { editJob } from '../actions/Contractors/editJob'
 import { deleteJob } from '../actions/Contractors/deleteJob'
 import { editApplicant } from '../actions/Contractors/editApplicant'
-import { dashboard } from '../components/Admin/Dashboard'
+import Dashboard from '../components/Admin/Dashboard'
 
 class AdminContainer extends Component {
-  
+
+    
     render() {
-            return (
+        return (
                 <div className="admin">
                     <Switch>
-                        <Route path='/admin' render={(routerProps) => <Dashboard {...routerProps} loading={this.props.loading} employees={this.props.employees} employers={this.props.employers} jobs={this.props.jobs} />}></Route>
+                        <Route path='/admin' render={(routerProps) => <Dashboard {...routerProps} loggedIn={this.props.loggedIn} loading={this.props.loading} employees={this.props.employees} employers={this.props.employers} jobs={this.props.jobs} />}></Route>
                     </Switch>
                 </div>
             )
@@ -35,7 +36,7 @@ const mapStateToProps = state => {
         employees: state.adminReducer.employees,
         employers: state.adminReducer.employers,
         jobs: state.adminReducer.jobs,
-        errors: state.errorsReducer.errors
+        // errors: state.errorsReducer.errors
     }
 }
 

@@ -124,7 +124,6 @@ export default function contractorsReducer(state = {contractor: [], jobs: [], ap
             return {
                 loggedIn: false,
                 contractor: [],
-                subscription: [],
                 jobs: [],
                 applicants: [],
                 contractorErrors: []

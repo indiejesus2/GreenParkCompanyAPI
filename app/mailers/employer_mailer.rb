@@ -31,4 +31,31 @@ class EmployerMailer < ApplicationMailer
         ) 
     end
 
+    def cancel_subscription
+        @employer = params[:employer]
+        @url = 'http://www.blucollar.com'
+        mail(
+            to: email_address_with_name(@employer.email, @employer.name),
+            subject: "BluCollar - Candidate Matches"
+        )
+    end
+    
+    def next_billing
+        @employer = params[:employer]
+        @url = 'http://www.blucollar.com'
+        mail(
+            to: email_address_with_name(@employer.email, @employer.name),
+            subject: "BluCollar - Candidate Matches"
+        )
+    end
+    
+    def updated_subscription
+        @employer = params[:employer]
+        @url = 'http://www.blucollar.com'
+        mail(
+            to: email_address_with_name(@employer.email, @employer.name),
+            subject: "BluCollar - Candidate Matches"
+        )
+    end
+
 end
