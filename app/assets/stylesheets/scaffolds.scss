@@ -44,6 +44,35 @@ body, p, ol, ul, label, span, input, select {
 //   outline: 1px solid slategrey;
 // }
 
+.adminDashboard .card {
+  width: 500px;
+  margin-inline: 25px;
+  margin-block-end: 45px;
+  border-color: white;
+  background-color: black;
+}
+
+.adminDashboard {
+  display: flex;
+  justify-content: center;
+  flex-flow: wrap;
+}
+
+
+
+.adminJobs .card {
+  width: 500px;
+  margin-inline: 25px;
+  margin-block-end: 45px;
+  border-color: white;
+  background-color: black;
+}
+
+.adminCards {
+  display: flex;
+  flex-wrap: wrap;
+}
+
 pre {
   background-color: #3d8ac9;
   // background-color: #eee;

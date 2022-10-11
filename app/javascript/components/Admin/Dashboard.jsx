@@ -1,18 +1,16 @@
 import React, {useState, useEffect} from 'react'
 import { Redirect } from 'react-router-dom'
 import NavBar from '../NavBar'
-import { Image } from 'react-bootstrap'
+import { Image, Card, Table, CardGroup, Button } from 'react-bootstrap'
 
 const Dashboard = props => {
 
-    // debugger
+    // debugger, Card
 
     const [loading, setLoading] = useState(props.loading)
-    const [employees, setEmployees] = useState(props.employees)
+    const [employees, setEmployees] = useState(props.employees.filter(employee => !!employee.profile))
     const [employers, setEmployers] = useState(props.employers)
     const [jobs, setJobs] = useState(props.jobs)
-
-
 
     // useEffect(() => {
     //     // if (props.contractorErrors != errors) {
@@ -28,6 +26,26 @@ const Dashboard = props => {
     //         setJobs(props.jobs)
     //     }
     // })
+    const handleBilling = employer => {
+        if (!!employer.subscription && employer.subscription.next_billing != employer.subscription.cancel_at) {
+            return (
+                new Date(employer.subscription.next_billing*1000).toLocaleDateString()
+            )
+        } else {
+            return (
+                "Cancelled"
+            )
+        }
+    }
+
+    const handleJob = (job) => {
+        props.history.push(`/admin/editJob/${job.id}`)
+    }
+
+    const handleProfile = (employee) => {
+        props.history.push(`/admin/editprofile/${employee.id}`)
+    }
+
 
     if (props.loading === true) {
         return (
@@ -45,10 +63,17 @@ const Dashboard = props => {
         )
     } else if (props.loggedIn === true) {
         return (
+            <div className="admin">
+                <NavBar handleSignout={props.signOut} loggedIn={props.loggedIn} user="admin" />
             <div className="adminDashboard">
-                Employees
-                <br />
-                {employees.map(employee => 
+                        <div className="adminJobs">    
+                        <div>
+                            Employees
+                        </div>
+                        <div className="adminCards">
+
+                    {employees.map(employee => 
+
                     <Card id={employee.id} key={employee.id}>
                         <Card.Body>
                         <Table>
@@ -58,7 +83,7 @@ const Dashboard = props => {
                                 Name:                         
                             </td>
                             <td style={{"padding": "0px" }}>
-                                {employee.fname} {employee.lname}
+                                {employee.profile.fname} {employee.profile.lname}
                             </td>
                             </tr>                    
                             <tr style={{ "border-bottom-width": 0 + "px"}}>
@@ -66,7 +91,7 @@ const Dashboard = props => {
                                 Trade:                         
                             </td>
                             <td style={{"padding": "0px" }}>
-                                {employee.trade}
+                                {employee.profile.trade}
                             </td>
                             </tr>                    
                             <tr style={{ "border-bottom-width": 0 + "px"}}>
@@ -74,65 +99,24 @@ const Dashboard = props => {
                                 Location:                         
                             </td>
                             <td style={{"padding": "0px" }}>
-                                {employee.city}, {employee.state} {employee.zipcode}
+                                {employee.profile.city}, {employee.profile.state} {employee.profile.zipcode}
                             </td>
-                            </tr>
-                            <tr style={{ "border-bottom-width": 0 + "px"}}>
-                            <td style={{"padding": "0px" }}>
-                                Commute:                         
-                            </td>
-                            <td style={{"padding": "0px" }}>
-                                {employee.commute}
-                            </td>
-                            </tr>
-                            <tr style={{ "border-bottom-width": 0 + "px"}}>
-                            <td style={{"padding": "0px" }}>
-                                Phone Number:                         
-                            </td>
-                            <td style={{"padding": "0px" }}>
-                                {employee.phone}
-                            </td>
-                            </tr>
-                            <tr style={{ "border-bottom-width": 0 + "px"}}>
-                            <td style={{"padding": "0px" }}>
-                                Job Type:                         
-                            </td>
-                            <td style={{"padding": "0px" }}>
-                                {employee.jobtype.join(', ')}
-                            </td>
-                            </tr>
-                            <tr style={{ "border-bottom-width": 0 + "px"}}>
-                            <td style={{"padding": "0px" }}>
-                                Job Shifts: 
-                            </td>
-                            <td style={{"padding": "0px" }}>
-                                {employee.shifts.join(", ")}
-                            </td>
-                            </tr>
-                            <tr style={{ "border-bottom-width": 0 + "px"}}>
-                            <td style={{"padding": "0px" }}>
-                                Schedule:
-                            </td>
-                            <td style={{"padding": "0px" }}>
-                            {employee.schedule.join(", ")}
-                            </td>
-                            </tr>
-                            <tr style={{ "border-bottom-width": 0 + "px"}}>
-                                <td style={{"padding": "0px" }}>
-                                    Pay: 
-                                </td>
-                                <td style={{"padding": "0px" }}>
-                                    ${employee.minpay} {employee.paytype}
-                                </td>
                             </tr>
                         </tbody>                
                     </Table>
+                    <Button onClick={() => handleProfile(employee)}>Edit Profile</Button>
                         </Card.Body>
                     </Card>
                 )}
-                <br />
-                Employers
-                <br />
+                        </div>
+                    </div>
+                
+                <div className="adminJobs">    
+                <div>
+                    Employers
+                </div>
+                <div className="adminCards">
+
                 {employers.map(employer => 
                     <Card id={employer.id} key={employer.id}>
                         <Card.Body>
@@ -143,7 +127,7 @@ const Dashboard = props => {
                                             Company Name: 
                                         </td>
                                         <td style={{"padding": "0px" }}>
-                                            {contractor.name}
+                                            {employer.name}
                                         </td>
                                     </tr>
                                     <tr style={{ "border-bottom-width": 0 + "px"}}>
@@ -151,7 +135,7 @@ const Dashboard = props => {
                                             Email: 
                                         </td>
                                         <td style={{"padding": "0px" }}>
-                                            {contractor.email}
+                                            {employer.email}
                                         </td>
                                     </tr>
                                     <tr style={{ "border-bottom-width": 0 + "px"}}>
@@ -159,7 +143,7 @@ const Dashboard = props => {
                                             Phone Number: 
                                         </td>
                                         <td style={{"padding": "0px" }}>
-                                            {contractor.phone}
+                                            {employer.phone}
                                         </td>
                                     </tr>
                                     <tr style={{ "border-bottom-width": 0 + "px"}}>
@@ -167,7 +151,7 @@ const Dashboard = props => {
                                             Subscription: 
                                         </td>
                                         <td style={{"padding": "0px" }}>
-                                            {contractor.monthly == true ? "Monthly" : "Yearly"}
+                                            {employer.monthly == true ? "Monthly" : "Yearly"}
                                         </td>
                                     </tr>
                                     <tr style={{ "border-bottom-width": 0 + "px"}}>
@@ -175,7 +159,7 @@ const Dashboard = props => {
                                             Next Billing Date: 
                                         </td>
                                         <td style={{"padding": "0px" }}>
-                                            {handleBilling()}
+                                            {handleBilling(employer)}
                                         </td>
                                     </tr>
                                     <tr style={{ "border-bottom-width": 0 + "px"}}>
@@ -183,7 +167,7 @@ const Dashboard = props => {
                                             Card:
                                         </td>
                                         <td style={{"padding": "0px" }}>
-                                            {contractor.current_card}
+                                            {employer.current_card}
                                         </td>
                                     </tr>
                                 </tbody>
@@ -191,14 +175,28 @@ const Dashboard = props => {
                         </Card.Body>
                     </Card>    
                 )}
-                <br />
-                Jobs
-                <br />
+                </div>
+                </div>
+                <div className="adminJobs">
+
+                <div>
+                    Jobs
+                </div>
+                <div className="adminCards">
+
                 {jobs.map(job => 
                     <Card id={job.id} key={job.id}>
                         <Card.Body>
                         <Table>
                                                 <tbody>
+                                                <tr style={{ "border-bottom-width": 0 + "px"}}>
+                                                <td style={{"padding": "0px" }}>
+                                                    Company:                         
+                                                </td>
+                                                <td style={{"padding": "0px" }}>
+                                                    {job.company}
+                                                </td>
+                                                </tr>
                                                 <tr style={{ "border-bottom-width": 0 + "px"}}>
                                                 <td style={{"padding": "0px" }}>
                                                     Title:                         
@@ -223,44 +221,17 @@ const Dashboard = props => {
                                                     {job.createdDate}
                                                 </td>
                                                 </tr>
-                                                <tr style={{ "border-bottom-width": 0 + "px"}}>
-                                                <td style={{"padding": "0px" }}>
-                                                    Job Type:                         
-                                                </td>
-                                                <td style={{"padding": "0px" }}>
-                                                    {job.jobtype.join(', ')}
-                                                </td>
-                                                </tr>
-                                                <tr style={{ "border-bottom-width": 0 + "px"}}>
-                                                <td style={{"padding": "0px" }}>
-                                                    Job Shifts: 
-                                                </td>
-                                                <td style={{"padding": "0px" }}>
-                                                    {job.shifts.join(", ")}
-                                                </td>
-                                                </tr>
-                                                <tr style={{ "border-bottom-width": 0 + "px"}}>
-                                                <td style={{"padding": "0px" }}>
-                                                    Schedule:
-                                                </td>
-                                                <td style={{"padding": "0px" }}>
-                                                {job.schedule.join(", ")}
-                                                </td>
-                                                </tr>
-                                                <tr style={{ "border-bottom-width": 0 + "px"}}>
-                                                    <td style={{"padding": "0px" }}>
-                                                        Pay: 
-                                                    </td>
-                                                    <td style={{"padding": "0px" }}>
-                                                        ${job.minpay} {job.paytype}
-                                                    </td>
-                                                </tr>
                                                 </tbody>                
                                             </Table>
+                                            <Button onClick={() => handleJob(job)}>Edit Job</Button>
                         </Card.Body>
                     </Card>
                 )}
-            </div>
+                
+                        </div>
+                    </div>
+                </div>
+        </div>
         )
     } else {
         debugger

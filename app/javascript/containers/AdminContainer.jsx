@@ -7,7 +7,10 @@ import { addJob } from '../actions/Contractors/addJob'
 import { editJob } from '../actions/Contractors/editJob'
 import { deleteJob } from '../actions/Contractors/deleteJob'
 import { editApplicant } from '../actions/Contractors/editApplicant'
+import { updateProfile } from '../actions/Tradespeople/updateProfile'
 import Dashboard from '../components/Admin/Dashboard'
+import EditJobAdmin from '../components/Admin/EditJobAdmin'
+import EditProfileAdmin from '../components/Admin/EditProfileAdmin'
 
 class AdminContainer extends Component {
 
@@ -16,6 +19,8 @@ class AdminContainer extends Component {
         return (
                 <div className="admin">
                     <Switch>
+                        <Route path='/admin/editProfile/:employee_id' render={(routerProps) => <EditProfileAdmin {...routerProps} loggedIn={this.props.loggedIn} loading={this.props.loading} employees={this.props.employees} employers={this.props.employers} jobs={this.props.jobs} updateProfile={this.props.updateProfile} />}></Route>
+                        <Route path='/admin/editJob/:job_id' render={(routerProps) => <EditJobAdmin {...routerProps} loggedIn={this.props.loggedIn} loading={this.props.loading} employees={this.props.employees} employers={this.props.employers} jobs={this.props.jobs} updateJob={this.props.updateJob} />}></Route>
                         <Route path='/admin' render={(routerProps) => <Dashboard {...routerProps} loggedIn={this.props.loggedIn} loading={this.props.loading} employees={this.props.employees} employers={this.props.employers} jobs={this.props.jobs} />}></Route>
                     </Switch>
                 </div>

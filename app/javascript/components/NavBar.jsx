@@ -356,6 +356,24 @@ const NavBar = props => {
                     {handleSubscription()}
                 </div>
             )
+        } else if (props.loggedIn == true && props.user == "admin") {
+            return (
+                <div>
+                    <div>
+                        <Logo />
+                    </div>
+                    <Navbar style={{"paddingBlockEnd": 75+"px"}}>
+                    <Nav style={{"font-size": "x-large"}}>
+                        <Nav.Link as={Link} to="/admin">HOME</Nav.Link>
+                    </Nav>
+                    <Nav style={{"font-size": "x-large"}}>
+                        <Nav.Link as={Link} to="/home/signOut">SIGN-OUT</Nav.Link>|
+                        {/* <Nav.Link as={Link} to="/employers/about">ABOUT</Nav.Link>
+                        <Nav.Link as={Link} to="/employers/contact">CONTACT</Nav.Link> */}
+                    </Nav>
+                    </Navbar>
+                </div>
+            )
         } else if (history.location.pathname != "/home" && history.location.pathname != "/home/about") {
                 return (
                     <Logo />
