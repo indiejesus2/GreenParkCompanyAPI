@@ -44,24 +44,27 @@ body, p, ol, ul, label, span, input, select {
 //   outline: 1px solid slategrey;
 // }
 
-.adminDashboard .card {
-  width: 500px;
-  margin-inline: 25px;
-  margin-block-end: 45px;
-  border-color: white;
-  background-color: black;
-}
+// .adminDashboard .card {
+//   width: 500px;
+//   margin-inline: 25px;
+//   margin-block-end: 45px;
+//   border-color: white;
+//   background-color: black;
+// }
 
 .adminDashboard {
   display: flex;
   justify-content: center;
   flex-flow: wrap;
+  // padding-top: 50px;
 }
 
-
+.admin {
+  padding-top: 25px;
+}
 
 .adminJobs .card {
-  width: 500px;
+  width: 300px;
   margin-inline: 25px;
   margin-block-end: 45px;
   border-color: white;
@@ -71,6 +74,15 @@ body, p, ol, ul, label, span, input, select {
 .adminCards {
   display: flex;
   flex-wrap: wrap;
+}
+
+.adminPagination {
+  display: flex;
+  justify-content: center;
+}
+
+.adminPagination button {
+  margin: 15px
 }
 
 pre {

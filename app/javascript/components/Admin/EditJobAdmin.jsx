@@ -149,6 +149,10 @@ const EditJobAdmin = props => {
 
     const job = props.jobs.find(job => job.id == props.match.params.job_id)
 
+    const handleDelete = () => {
+        props.deleteJob(job)
+        props.history.push('/admin/jobs')
+    }
 
     const formik = useFormik({
         initialValues: {
@@ -172,7 +176,7 @@ const EditJobAdmin = props => {
         validationSchema: schema,
         onSubmit: values => {
             props.editJob(values)
-            props.history.push(`/employers/${job.employer_id}/jobs/${job.id}`)
+            props.history.push(`/admin/jobs`)
         }
     })
 
@@ -313,8 +317,9 @@ const EditJobAdmin = props => {
                         <Form.Check type="checkbox" name="license" label="Driver's License" value={formik.values.license} onChange={formik.handleChange} style={{ color: "#fff"}} defaultChecked={formik.values.license}/>
                     </Form.Group>
                 </Row>
-                <div className="submit">
+                <div className="d-flex justify-content-around">
                     <Button type="submit" value="Save Changes" onClick={formik.handleSubmit}>Save Changes</Button>
+                    <Button type="secondary" onClick={() => handleDelete()}>Delete Job</Button>
                 </div>
             </Form>
             </div>

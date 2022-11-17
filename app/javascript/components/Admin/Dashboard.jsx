@@ -6,26 +6,30 @@ import { Image, Card, Table, CardGroup, Button } from 'react-bootstrap'
 const Dashboard = props => {
 
     // debugger, Card
+    // debugger
 
     const [loading, setLoading] = useState(props.loading)
-    const [employees, setEmployees] = useState(props.employees.filter(employee => !!employee.profile))
-    const [employers, setEmployers] = useState(props.employers)
-    const [jobs, setJobs] = useState(props.jobs)
+    const [employees, setEmployees] = useState(props.employees.filter(employee => !!employee.profile)).splice(0,10)
+    const [employers, setEmployers] = useState(props.employers).splice(0,10)
+    const [jobs, setJobs] = useState(props.jobs).splice(0,10)
 
-    // useEffect(() => {
-    //     // if (props.contractorErrors != errors) {
-    //     //     setErrors(props.contractorErrors)
+
+    useEffect(() => {
+    // //     // if (props.contractorErrors != errors) {
+    // //     //     setErrors(props.contractorErrors)
     //     // } else 
-    //     if (props.loading != loading) {
-    //         setLoading(props.loading)
-    //     } else if (props.contractor != contractor) {
-    //         setContractor(props.contractor)
-    //     } else if (props.applicants != applicants) {
-    //         setApplicants(props.applicants)
-    //     } else if (props.jobs != jobs) {
-    //         setJobs(props.jobs)
-    //     }
-    // })
+    //     // if (props.loading != loading) {
+            setLoading(props.loading)
+            setEmployees(props.employees.filter(employee => !!employee.profile).splice(0,10))
+            setEmployers(props.employers.splice(0,10))
+            setJobs(props.jobs.splice(0,10))
+    //     // } else if (props.employees != employees) {
+    //     //     setEmployees(props.employees.filter(employee => !!employee.profile).splice(0,10))
+    //     // } else if (props.employers != employers) {
+    //     // } else if (props.jobs != jobs) {
+    //     // }
+    }, [props.loading])
+
     const handleBilling = employer => {
         if (!!employer.subscription && employer.subscription.next_billing != employer.subscription.cancel_at) {
             return (
@@ -42,12 +46,16 @@ const Dashboard = props => {
         props.history.push(`/admin/editJob/${job.id}`)
     }
 
-    const handleProfile = (employee) => {
-        props.history.push(`/admin/editprofile/${employee.id}`)
+    const handleEmployee = (employee) => {
+        props.history.push(`/admin/editemployee/${employee.id}`)
+    }
+    
+    const handleEmployer = (employer) => {
+        props.history.push(`/admin/editemployer/${employer.id}`)
     }
 
 
-    if (props.loading === true) {
+    if (loading === true) {
         return (
             <div className="spinner">
             <NavBar handleSignout={props.signOut} />
@@ -72,8 +80,9 @@ const Dashboard = props => {
                         </div>
                         <div className="adminCards">
 
+                    {/* {props.employees.filter(employee => !!employee.profile).splice(0,10).map(employee =>  */}
                     {employees.map(employee => 
-
+// .filter(employee => !!employee.profile).splice(0,10).map
                     <Card id={employee.id} key={employee.id}>
                         <Card.Body>
                         <Table>
@@ -104,7 +113,7 @@ const Dashboard = props => {
                             </tr>
                         </tbody>                
                     </Table>
-                    <Button onClick={() => handleProfile(employee)}>Edit Profile</Button>
+                    <Button onClick={() => handleEmployee(employee)}>Edit Profile</Button>
                         </Card.Body>
                     </Card>
                 )}
@@ -118,6 +127,7 @@ const Dashboard = props => {
                 <div className="adminCards">
 
                 {employers.map(employer => 
+                // .splice(0,10).map
                     <Card id={employer.id} key={employer.id}>
                         <Card.Body>
                         <Table>
@@ -172,6 +182,7 @@ const Dashboard = props => {
                                     </tr>
                                 </tbody>
                             </Table>
+                            <Button onClick={() => handleEmployer(employer)}>Edit Employer</Button>
                         </Card.Body>
                     </Card>    
                 )}
@@ -185,43 +196,44 @@ const Dashboard = props => {
                 <div className="adminCards">
 
                 {jobs.map(job => 
+                // .splice(0,10).map
                     <Card id={job.id} key={job.id}>
                         <Card.Body>
                         <Table>
-                                                <tbody>
-                                                <tr style={{ "border-bottom-width": 0 + "px"}}>
-                                                <td style={{"padding": "0px" }}>
-                                                    Company:                         
-                                                </td>
-                                                <td style={{"padding": "0px" }}>
-                                                    {job.company}
-                                                </td>
-                                                </tr>
-                                                <tr style={{ "border-bottom-width": 0 + "px"}}>
-                                                <td style={{"padding": "0px" }}>
-                                                    Title:                         
-                                                </td>
-                                                <td style={{"padding": "0px" }}>
-                                                    {job.title}
-                                                </td>
-                                                </tr>
-                                                <tr style={{ "border-bottom-width": 0 + "px"}}>
-                                                <td style={{"padding": "0px" }}>
-                                                    Location:                         
-                                                </td>
-                                                <td style={{"padding": "0px" }}>
-                                                    {job.city}, {job.state} {job.zipcode}
-                                                </td>
-                                                </tr>
-                                                <tr style={{ "border-bottom-width": 0 + "px"}}>
-                                                <td style={{"padding": "0px" }}>
-                                                    Date Posted:                         
-                                                </td>
-                                                <td style={{"padding": "0px" }}>
-                                                    {job.createdDate}
-                                                </td>
-                                                </tr>
-                                                </tbody>                
+                            <tbody>
+                                <tr style={{ "border-bottom-width": 0 + "px"}}>
+                                <td style={{"padding": "0px" }}>
+                                    Company:                         
+                                </td>
+                                <td style={{"padding": "0px" }}>
+                                    {job.company}
+                                </td>
+                                </tr>
+                                <tr style={{ "border-bottom-width": 0 + "px"}}>
+                                <td style={{"padding": "0px" }}>
+                                    Title:                         
+                                </td>
+                                <td style={{"padding": "0px" }}>
+                                    {job.title}
+                                </td>
+                                </tr>
+                                <tr style={{ "border-bottom-width": 0 + "px"}}>
+                                <td style={{"padding": "0px" }}>
+                                    Location:                         
+                                </td>
+                                <td style={{"padding": "0px" }}>
+                                    {job.city}, {job.state} {job.zipcode}
+                                </td>
+                                </tr>
+                                <tr style={{ "border-bottom-width": 0 + "px"}}>
+                                <td style={{"padding": "0px" }}>
+                                    Date Posted:                         
+                                </td>
+                                <td style={{"padding": "0px" }}>
+                                    {job.createdDate}
+                                </td>
+                                </tr>
+                                </tbody>                
                                             </Table>
                                             <Button onClick={() => handleJob(job)}>Edit Job</Button>
                         </Card.Body>

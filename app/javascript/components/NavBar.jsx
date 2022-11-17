@@ -362,11 +362,20 @@ const NavBar = props => {
                     <div>
                         <Logo />
                     </div>
-                    <Navbar style={{"paddingBlockEnd": 75+"px"}}>
-                    <Nav style={{"font-size": "x-large"}}>
+                    <Navbar variant="dark" expand={false} style={{"margin-block": 15 + "px"}}>
+                    <Nav style={{"font-size": "x-large", "color": "white"}}>
                         <Nav.Link as={Link} to="/admin">HOME</Nav.Link>
                     </Nav>
-                    <Nav style={{"font-size": "x-large"}}>
+                    <Nav style={{"font-size": "x-large", "color": "white"}}>
+                        <Nav.Link as={Link} to="/admin/employees">EMPLOYEES</Nav.Link>
+                    </Nav>
+                    <Nav style={{"font-size": "x-large", "color": "white"}}>
+                        <Nav.Link as={Link} to="/admin/employers">EMPLOYERS</Nav.Link>
+                    </Nav>
+                    <Nav style={{"font-size": "x-large", "color": "white"}}>
+                        <Nav.Link as={Link} to="/admin/jobs">JOBS</Nav.Link>
+                    </Nav>
+                    <Nav style={{"font-size": "x-large", "color": "white"}}>
                         <Nav.Link as={Link} to="/home/signOut">SIGN-OUT</Nav.Link>|
                         {/* <Nav.Link as={Link} to="/employers/about">ABOUT</Nav.Link>
                         <Nav.Link as={Link} to="/employers/contact">CONTACT</Nav.Link> */}

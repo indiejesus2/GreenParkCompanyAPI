@@ -57,11 +57,14 @@ class Api::V1::EmployersController < ApplicationController
 
   # DELETE /employers/1 or /employers/1.json
   def destroy
+    @employer = Employer.find(params[:id])
     @employer.destroy
-    respond_to do |format|
-      format.html { redirect_to employers_url, notice: "Employer was successfully destroyed." }
-      format.json { head :no_content }
-    end
+    @employers = Employer.all
+    render json: {employer: EmployerSerializer.new(@employer)}
+    # respond_to do |format|
+    #   format.html { redirect_to employers_url, notice: "Employer was successfully destroyed." }
+    #   format.json { head :no_content }
+    # end
   end
 
   private

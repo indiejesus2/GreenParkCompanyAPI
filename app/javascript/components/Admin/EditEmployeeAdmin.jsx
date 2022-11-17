@@ -6,7 +6,7 @@ import {Link, Redirect} from 'react-router-dom'
 import NavBar from '../NavBar'
 // import SideNavBar from '../SideNavBar'
 
-const EditProfileAdmin = (props) => {
+const EditEmployeeAdmin = (props) => {
 
     const formatPhoneNumber = (value) => {
 
@@ -210,6 +210,11 @@ const EditProfileAdmin = (props) => {
         }
     })
 
+    const handleDelete = () => {
+        props.deleteEmployee(employee)
+        props.history.push('/admin/employees')
+    }
+
     const handleTable = () => {
             return (
                 <div>
@@ -342,9 +347,9 @@ const EditProfileAdmin = (props) => {
     }
 
     return (
-        <div className="employees">
+        <div className="admin">
         <NavBar handleSignout={props.signOut} loggedIn={props.loggedIn} user="admin" />
-        <div className="page">
+        <div className="adminDashboard">
             {/* <SideNavBar profile={props.profile} user="employee"/> */}
 
             {/* <div className="dashboard">
@@ -373,6 +378,7 @@ const EditProfileAdmin = (props) => {
                         Add Experience
                     </Button> */}
                     <Button type="submit" value="Save Changes" onClick={formik.handleSubmit}>Save Changes</Button>
+                    <Button type="secondary" value="Delete Employee" onClick={() => handleDelete()}>Delete Employee</Button>
                     </Form>
                 {/* </div> */}
             </div>
@@ -394,4 +400,4 @@ const EditProfileAdmin = (props) => {
 
 }
 
-export default EditProfileAdmin
+export default EditEmployeeAdmin
