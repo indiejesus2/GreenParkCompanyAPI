@@ -1,14 +1,48 @@
 import React, { useState, useEffect } from 'react'
+import {Link, useHistory} from 'react-router-dom'
 import { useFormik } from 'formik'
 import { Image, Card, Table, CardGroup, Button } from 'react-bootstrap'
 import NavBar from '../NavBar'
 
 const EmployeesAdmin = props => {
 
-    const [employees, setEmployees] = useState(props.employees.filter(employee => !!employee.profile).splice(0, 10))
+    const [little, setLittle] = useState(props.employees.filter(employee => !!employee.profile))
+    const [employees, setEmployees] = useState(little.slice(0,10))
     const [page, setPage] = useState(0)
     const [endPage, setEndPage] = useState(Math.round(props.employees.length/10) - 1)
 
+    const history = useHistory()
+
+    const handleNav = () => {
+        if (history.location.pathname === "/admin/employees") {
+            return (
+                <NavBar handleSignout={props.signOut} loggedIn={props.loggedIn} user="admin" />
+            )
+        }
+    }
+
+    const handlePage = () => {
+        if (history.location.pathname === "/admin/employees") {
+            return (
+                <div className="adminPagination">
+                    <Button onClick={(e) => handleNewPage(e)} value="previous">
+                        Previous
+                    </Button>
+                    <Button onClick={(e) => handleNewPage(e)} value="next">
+                        Next
+                    </Button>
+                </div>
+            )
+        }
+    }
+
+    // const handleNav = () => {
+    //     if (history.location.pathname != "/admin/employees") {
+    //         return (
+    //             <NavBar handleSignout={props.signOut} loggedIn={props.loggedIn} user="admin" />
+    //         )
+    //     }
+    // }
     // debugger
     // useEffect(() => {
     //     if (props.employees != employees) {
@@ -17,7 +51,7 @@ const EmployeesAdmin = props => {
     // }), [props.employees]
 
     const handleEmployee = (employee) => {
-        props.history.push(`/admin/editemployee/${employee.id}`)
+        history.push(`/admin/editemployee/${employee.id}`)
     }
 
     const handleNewPage = e => {
@@ -33,12 +67,17 @@ const EmployeesAdmin = props => {
         setPage(newPage)
         handlePagination(newPage)
     }
+
+    const handleDelete = (employee) => {
+        props.deleteEmployee(employee)
+    }
     
     const handlePagination = (newPage) => {
         if (newPage == 0) {
-            setEmployees(props.employees.filter(employee => !!employee.profile).splice(newPage, 10))
+            setEmployees(little.slice(newPage, 10))
         } else {
-            setEmployees(props.employees.filter(employee => !!employee.profile).splice(newPage + "0", 10))
+            let page = newPage + "0"
+            setEmployees(little.slice(page, page + 10))
         }
     }
 
@@ -55,7 +94,7 @@ const EmployeesAdmin = props => {
     } else if (props.loggedIn === true) {
         return (
             <div className="admin">
-                <NavBar handleSignout={props.signOut} loggedIn={props.loggedIn} user="admin" />
+                {handleNav()}
             <div className="adminDashboard">
                         <div className="adminJobs">    
                         <div className="d-flex justify-content-center">
@@ -63,14 +102,7 @@ const EmployeesAdmin = props => {
                                 Employees `{props.employees.length}`
                             </h1>
                         </div>
-                        <div className="adminPagination">
-                            <Button onClick={(e) => handleNewPage(e)} value="previous">
-                                Previous
-                            </Button>
-                            <Button onClick={(e) => handleNewPage(e)} value="next">
-                                Next
-                            </Button>
-                        </div>
+                        {handlePage()}
                         <div className="adminCards">
 
                     {employees.map(employee => 
@@ -105,7 +137,10 @@ const EmployeesAdmin = props => {
                             </tr>
                         </tbody>                
                     </Table>
-                    <Button onClick={() => handleEmployee(employee)}>Edit Profile</Button>
+                    <div className="employee-jobs-buttons">
+                        <Button onClick={() => handleEmployee(employee)}>Edit Profile</Button>
+                        <Button type="secondary" value="Delete Employee" onClick={() => handleDelete(employee)}>Delete Employee</Button>
+                    </div>
                         </Card.Body>
                     </Card>
                 )}

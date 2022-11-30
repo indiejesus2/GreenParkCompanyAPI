@@ -9,7 +9,7 @@ import SideNavBar from '../SideNavBar'
 const Applicants = (props) => {
     
     const [job, setJob] = useState(props.jobs.find(job => job.id == props.match.params.job_id))
-    const [applicants, setApplicants] = useState(props.applicants.filter(applicant=>applicant.job_id == job.id).sort((a,b) => a.rating - b.rating))
+    const [applicants, setApplicants] = useState(props.applicants.filter(applicant=>applicant.job_id == job.id).sort((a,b) => b.rating - a.rating))
     const [currentStep, setStep] = useState(1)
     // debugger
     // const [profiles, setProfiles] = useState(props.applicants.profiles)

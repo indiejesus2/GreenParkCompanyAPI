@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react'
-import { Link, Redirect } from 'react-router-dom'
+import { Link, Redirect, useHistory } from 'react-router-dom'
 import { Card, CardGroup, Button, Table } from 'react-bootstrap/'
 import NavBar from '../NavBar'
 import SideNavBar from '../SideNavBar'
 
 const JobsAdmin = (props) => {
 
-    const [jobs, setJobs] = useState(props.jobs.splice(0,10))
+    const [jobs, setJobs] = useState(props.jobs.slice(0,10))
     const [page, setPage] = useState(0)
     const [endPage, setEndPage] = useState(Math.round(props.jobs.length/10) - 1)
 
@@ -26,20 +26,58 @@ const JobsAdmin = (props) => {
 
     const handlePagination = (newPage) => {
         if (newPage == 0) {
-            setJobs(props.jobs.spice(0,10))
+            setJobs(props.jobs.slice(0,10))
         } else {
-            setJobs(props.jobs.splice(newPage+"0", 10))
+            let page = newPage + "0"
+            setJobs(props.jobs.slice(page, page + 10))
         }
     }
     
+    const history = useHistory()
+
+    const handleNav = () => {
+        if (history.location.pathname === "/admin/jobs") {
+            return (
+                <NavBar handleSignout={props.signOut} loggedIn={props.loggedIn} user="admin" />
+            )
+        }
+    }
+
+    const handlePage = () => {
+        if (history.location.pathname === "/admin/jobs") {
+            return (
+                <div className="adminPagination">
+                    <Button onClick={(e) => handleNewPage(e)} value="previous">
+                        Previous
+                    </Button>
+                    <Button onClick={(e) => handleNewPage(e)} value="next">
+                        Next
+                    </Button>
+                </div>
+            )
+        }
+    }
+
+    // const handleNav = () => {
+    //     if (history.location.pathname != "/admin/jobs") {
+    //         return (
+    //             <NavBar handleSignout={props.signOut} loggedIn={props.loggedIn} user="admin" />
+    //         )
+    //     }
+    // }
     // useEffect(() => {
     //     if (props.jobs != jobs) {
     //         setJobs(props.jobs)
     //     }
     // }), [props.jobs]
     
-    function handleJob(job) {
-        props.history.push(`/admin/editJob/${job.id}`)
+    const handleJob = job => {
+        history.push(`/admin/editJob/${job.id}`)
+    }
+
+    const handleDelete = job => {
+        props.deleteJob(job)
+        // props.history.push('/admin/jobs')
     }
 
     const handleTable = (job) => {
@@ -83,6 +121,7 @@ const JobsAdmin = (props) => {
                 </Table>
                 <div className="employee-jobs-buttons">
                     <Button id="edit_job" onClick={() => handleJob(job)}>Edit Job</Button>
+                    <Button type="secondary" onClick={() => handleDelete(job)}>Delete Job</Button>
                 </div>
             </div>
         )
@@ -91,7 +130,7 @@ const JobsAdmin = (props) => {
     if (props.loading == true) {
         return (
             <div className="spinner">
-            <NavBar handleSignout={props.signOut} />
+            {handleNav()}
             <div className="homepage-header">
                 <Image fluid="true" src="/images/blucollarO.png" alt="collar" />
                 <span className="sr-only">Loading...</span>
@@ -101,17 +140,11 @@ const JobsAdmin = (props) => {
     } else if (props.loggedIn === true) {
         return (
             <div className="adminJobs">
+                {handleNav()}
                 <div className="d-flex justify-content-center">
                     <h1>Jobs `{props.jobs.length}`</h1>
                 </div>
-                <div className="adminPagination">
-                    <Button onClick={(e) => handleNewPage(e)} value="previous">
-                        Previous
-                    </Button>
-                    <Button onClick={(e) => handleNewPage(e)} value="next">
-                        Next
-                    </Button>
-                </div>
+                {handlePage()}
                 <div className="adminCards">
                     {jobs.map(job =>
                         <Card id={job.id} key={job.id}>

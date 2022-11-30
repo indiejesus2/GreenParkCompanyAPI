@@ -2,33 +2,38 @@ import React, {useState, useEffect} from 'react'
 import { Redirect } from 'react-router-dom'
 import NavBar from '../NavBar'
 import { Image, Card, Table, CardGroup, Button } from 'react-bootstrap'
+import EmployeesAdmin from './EmployeesAdmin'
+import EmployersAdmin from './EmployersAdmin'
+import JobsAdmin from './JobsAdmin'
 
 const Dashboard = props => {
 
     // debugger, Card
     // debugger
 
-    const [loading, setLoading] = useState(props.loading)
-    const [employees, setEmployees] = useState(props.employees.filter(employee => !!employee.profile)).splice(0,10)
-    const [employers, setEmployers] = useState(props.employers).splice(0,10)
-    const [jobs, setJobs] = useState(props.jobs).splice(0,10)
+    // const [loading, setLoading] = useState(props.loading)
+    // const [employers, setEmployers] = useState(props.employers)
+    // const [employees, setEmployees] = useState(props.employees.filter(employee => !!employee.profile))
+    // const [jobs, setJobs] = useState(props.jobs)
+    // const [smallEmployers, setSmallEmployers] = useState(employers).splice(0,10)
+    // const [smallEmployees, setSmallEmployees] = useState(employees.filter(employee => !!employee.profile)).splice(0,10)
+    // const [smallJobs, setSmallJobs] = useState(jobs).splice(0,10)
 
-
-    useEffect(() => {
-    // //     // if (props.contractorErrors != errors) {
-    // //     //     setErrors(props.contractorErrors)
-    //     // } else 
-    //     // if (props.loading != loading) {
-            setLoading(props.loading)
-            setEmployees(props.employees.filter(employee => !!employee.profile).splice(0,10))
-            setEmployers(props.employers.splice(0,10))
-            setJobs(props.jobs.splice(0,10))
-    //     // } else if (props.employees != employees) {
-    //     //     setEmployees(props.employees.filter(employee => !!employee.profile).splice(0,10))
-    //     // } else if (props.employers != employers) {
-    //     // } else if (props.jobs != jobs) {
-    //     // }
-    }, [props.loading])
+    // useEffect(() => {
+    // // //     // if (props.contractorErrors != errors) {
+    // // //     //     setErrors(props.contractorErrors)
+    // //     // } else 
+    // //     // if (props.loading != loading) {
+    //         setLoading(props.loading)
+    //         setEmployees(props.employees.filter(employee => !!employee.profile).splice(0,10))
+    //         setEmployers(props.employers.splice(0,10))
+    //         setJobs(props.jobs.splice(0,10))
+    // //     // } else if (props.employees != employees) {
+    // //     //     setEmployees(props.employees.filter(employee => !!employee.profile).splice(0,10))
+    // //     // } else if (props.employers != employers) {
+    // //     // } else if (props.jobs != jobs) {
+    // //     // }
+    // }, [props.loading])
 
     const handleBilling = employer => {
         if (!!employer.subscription && employer.subscription.next_billing != employer.subscription.cancel_at) {
@@ -55,7 +60,7 @@ const Dashboard = props => {
     }
 
 
-    if (loading === true) {
+    if (props.loading === true) {
         return (
             <div className="spinner">
             <NavBar handleSignout={props.signOut} />
@@ -74,15 +79,16 @@ const Dashboard = props => {
             <div className="admin">
                 <NavBar handleSignout={props.signOut} loggedIn={props.loggedIn} user="admin" />
             <div className="adminDashboard">
-                        <div className="adminJobs">    
+                <EmployeesAdmin employees={props.employees} loggedIn={props.loggedIn} signOut={props.signOut} loading={props.loading} />
+                <EmployersAdmin employers={props.employers} loggedIn={props.loggedIn} signOut={props.signOut} loading={props.loading} />
+                <JobsAdmin jobs={props.jobs} loggedIn={props.loggedIn} signOut={props.signOut} loading={props.loading} />
+                        {/* <div className="adminJobs">    
                         <div>
                             Employees
                         </div>
                         <div className="adminCards">
+                    {props.employees.filter(employee => !!employee.profile).map(employee => 
 
-                    {/* {props.employees.filter(employee => !!employee.profile).splice(0,10).map(employee =>  */}
-                    {employees.map(employee => 
-// .filter(employee => !!employee.profile).splice(0,10).map
                     <Card id={employee.id} key={employee.id}>
                         <Card.Body>
                         <Table>
@@ -118,16 +124,15 @@ const Dashboard = props => {
                     </Card>
                 )}
                         </div>
-                    </div>
+                    </div> */}
                 
-                <div className="adminJobs">    
+                {/* <div className="adminJobs">    
                 <div>
                     Employers
                 </div>
                 <div className="adminCards">
 
-                {employers.map(employer => 
-                // .splice(0,10).map
+                {props.employers.map(employer => 
                     <Card id={employer.id} key={employer.id}>
                         <Card.Body>
                         <Table>
@@ -195,10 +200,10 @@ const Dashboard = props => {
                 </div>
                 <div className="adminCards">
 
-                {jobs.map(job => 
-                // .splice(0,10).map
-                    <Card id={job.id} key={job.id}>
-                        <Card.Body>
+                {props.jobs.map(job => 
+                // .map
+                    <Card id={job.id} key={job.id}> */}
+                        {/* <Card.Body>
                         <Table>
                             <tbody>
                                 <tr style={{ "border-bottom-width": 0 + "px"}}>
@@ -241,12 +246,11 @@ const Dashboard = props => {
                 )}
                 
                         </div>
-                    </div>
+                    </div>*/}
                 </div>
-        </div>
+        </div> 
         )
     } else {
-        debugger
         return (
             <Redirect to="/home" />
         )

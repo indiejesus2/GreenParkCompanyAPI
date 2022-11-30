@@ -1,13 +1,16 @@
 import React, { useState, useEffect } from 'react'
+import {Link, useHistory} from 'react-router-dom'
+
 import { useFormik } from 'formik'
 import { Image, Card, Table, CardGroup, Button } from 'react-bootstrap'
 import NavBar from '../NavBar'
 
 const EmployersAdmin = (props) => {
 
-    const [employers, setEmployers] = useState(props.employers.splice(0,10))
+    const [little, setLittle] = useState(props.employers)
+    const [employers, setEmployers] = useState(little.slice(0,10))
     const [page, setPage] = useState(0)
-    const [endPage, setEndPage] = useState(Math.round(props.employees.length/10) - 1)
+    const [endPage, setEndPage] = useState(Math.round(props.employers.length/10) - 1)
 
     const handleNewPage = e => {
         let newPage = page
@@ -25,12 +28,37 @@ const EmployersAdmin = (props) => {
 
     const handlePagination = (newPage) => {
         if (newPage == 0) {
-            setEmployers(props.employers.splice(newPage,10))
+            setEmployers(little.slice(newPage,10))
         } else {
-            setEmployers(props.employers.splice(newPage+"0", 10))
+            let page = newPage + "0"
+            setEmployers(little.slice(page, page+10))
         }
     }
 
+    const history = useHistory()
+
+    const handleNav = () => {
+        if (history.location.pathname === "/admin/employers") {
+            return (
+                <NavBar handleSignout={props.signOut} loggedIn={props.loggedIn} user="admin" />
+            )
+        }
+    }
+
+    const handlePage = () => {
+        if (history.location.pathname === "/admin/employers") {
+            return (
+                <div className="adminPagination">
+                    <Button onClick={(e) => handleNewPage(e)} value="previous">
+                        Previous
+                    </Button>
+                    <Button onClick={(e) => handleNewPage(e)} value="next">
+                        Next
+                    </Button>
+                </div>
+            )
+        }
+    }
     // useEffect(() => {
     //     if (props.employers != employers) {
     //         setEmployers(props.employers)
@@ -38,7 +66,12 @@ const EmployersAdmin = (props) => {
     // }), [props.employers]
 
     const handleEmployer = (employer) => {
-        props.history.push(`/admin/editemployer/${employer.id}`)
+        history.push(`/admin/editemployer/${employer.id}`)
+    }
+
+    const handleDelete = (employer) => {
+        props.deleteEmployer(employer)
+        // props.history.push('/admin/employers')
     }
 
     const handleBilling = employer => {
@@ -67,7 +100,7 @@ const EmployersAdmin = (props) => {
     else if (props.loggedIn === true) {
         return (
             <div className="admin">
-                <NavBar handleSignout={props.signOut} loggedIn={props.loggedIn} user="admin" />
+                {handleNav()}
             <div className="adminDashboard">
             <div className="adminJobs">    
                 <div className="d-flex justify-content-center">
@@ -75,14 +108,7 @@ const EmployersAdmin = (props) => {
                         Employers `{props.employers.length}`
                     </h1>
                 </div>
-                <div className="adminPagination">
-                    <Button onClick={(e) => handleNewPage(e)} value="previous">
-                        Previous
-                    </Button>
-                    <Button onClick={(e) => handleNewPage(e)} value="next">
-                        Next
-                    </Button>
-                </div>
+                {handlePage()}
                 <div className="adminCards">
 
                 {employers.map(employer => 
@@ -140,7 +166,10 @@ const EmployersAdmin = (props) => {
                                     </tr>
                                 </tbody>
                             </Table>
-                            <Button onClick={() => handleEmployer(employer)}>Edit Employer</Button>
+                            <div className="employee-jobs-buttons">
+                                <Button onClick={() => handleEmployer(employer)}>Edit Employer</Button>
+                                <Button type="secondary" onClick={() => handleDelete(employer)}>Delete Employer</Button>
+                            </div>
                         </Card.Body>
                     </Card>    
                 )}
