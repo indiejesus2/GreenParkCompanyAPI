@@ -16,7 +16,7 @@ class EmployeeSerializer
     #     object.file.content_type if object.file.attached?
     # end
 
-    attributes :id, :email, :profile, :applicants, :experiences, :jobs
+    attributes :id, :email, :profile, :applicants, :experiences, :jobs, :created_at, :updated_at
     # def file
     #     if object.file.attached?
     #         {

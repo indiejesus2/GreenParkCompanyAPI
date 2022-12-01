@@ -6,7 +6,8 @@ import NavBar from '../NavBar'
 
 const EmployeesAdmin = props => {
 
-    const [little, setLittle] = useState(props.employees.filter(employee => !!employee.profile))
+    const [little, setLittle] = useState(props.employees)
+    // const [little, setLittle] = useState(props.employees.filter(employee => !!employee.profile))
     const [employees, setEmployees] = useState(little.slice(0,10))
     const [page, setPage] = useState(0)
     const [endPage, setEndPage] = useState(Math.round(props.employees.length/10) - 1)
@@ -81,6 +82,72 @@ const EmployeesAdmin = props => {
         }
     }
 
+    const handleProfile = (employee) => {
+        if (!!employee.profile) {
+            return (
+                <Table>
+                    <tbody>
+                        <tr style={{ "border-bottom-width": 0 + "px"}}>
+                            <td style={{"padding": "0px" }}>
+                                Name:                         
+                            </td>
+                            <td style={{"padding": "0px" }}>
+                                {employee.profile.fname} {employee.profile.lname}
+                            </td>
+                        </tr>                    
+                        <tr style={{ "border-bottom-width": 0 + "px"}}>
+                            <td style={{"padding": "0px" }}>
+                                Email:                         
+                            </td>
+                            <td style={{"padding": "0px" }}>
+                                {employee.email}
+                            </td>
+                        </tr>    
+                        <tr style={{ "border-bottom-width": 0 + "px"}}>
+                            <td style={{"padding": "0px" }}>
+                                Trade:                         
+                            </td>
+                            <td style={{"padding": "0px" }}>
+                                {employee.profile.trade}
+                            </td>
+                        </tr>                    
+                        <tr style={{ "border-bottom-width": 0 + "px"}}>
+                            <td style={{"padding": "0px" }}>
+                                Location:                         
+                            </td>
+                            <td style={{"padding": "0px" }}>
+                                {employee.profile.city}, {employee.profile.state} {employee.profile.zipcode}
+                            </td>
+                        </tr>
+                    </tbody>
+                </Table>
+            )
+        } else {
+            return (
+                <Table>
+                    <tbody>
+                        <tr style={{ "border-bottom-width": 0 + "px"}}>
+                            <td style={{"padding": "0px" }}>
+                                Email:                         
+                            </td>
+                            <td style={{"padding": "0px" }}>
+                                {employee.email}
+                            </td>
+                        </tr>                    
+                        <tr style={{ "border-bottom-width": 0 + "px"}}>
+                            <td style={{"padding": "0px" }}>
+                                Created-Date:                         
+                            </td>
+                            <td style={{"padding": "0px" }}>
+                                {employee.created_at}
+                            </td>
+                        </tr>                    
+                    </tbody>
+                </Table>
+            )
+        }
+    }
+
     if (props.loading == true) {
         return (
             <div className="spinner">
@@ -96,51 +163,22 @@ const EmployeesAdmin = props => {
             <div className="admin">
                 {handleNav()}
             <div className="adminDashboard">
-                        <div className="adminJobs">    
-                        <div className="d-flex justify-content-center">
-                            <h1>
-                                Employees `{props.employees.length}`
-                            </h1>
-                        </div>
-                        {handlePage()}
-                        <div className="adminCards">
-
+                <div className="adminJobs">    
+                    <div className="d-flex justify-content-center">
+                        <h1>
+                            Employees `{props.employees.length}`
+                        </h1>
+                    </div>
+                    {handlePage()}
+                    <div className="adminCards">
                     {employees.map(employee => 
-
                     <Card id={employee.id} key={employee.id}>
                         <Card.Body>
-                        <Table>
-                        <tbody>
-                            <tr style={{ "border-bottom-width": 0 + "px"}}>
-                            <td style={{"padding": "0px" }}>
-                                Name:                         
-                            </td>
-                            <td style={{"padding": "0px" }}>
-                                {employee.profile.fname} {employee.profile.lname}
-                            </td>
-                            </tr>                    
-                            <tr style={{ "border-bottom-width": 0 + "px"}}>
-                            <td style={{"padding": "0px" }}>
-                                Trade:                         
-                            </td>
-                            <td style={{"padding": "0px" }}>
-                                {employee.profile.trade}
-                            </td>
-                            </tr>                    
-                            <tr style={{ "border-bottom-width": 0 + "px"}}>
-                            <td style={{"padding": "0px" }}>
-                                Location:                         
-                            </td>
-                            <td style={{"padding": "0px" }}>
-                                {employee.profile.city}, {employee.profile.state} {employee.profile.zipcode}
-                            </td>
-                            </tr>
-                        </tbody>                
-                    </Table>
-                    <div className="employee-jobs-buttons">
-                        <Button onClick={() => handleEmployee(employee)}>Edit Profile</Button>
-                        <Button type="secondary" value="Delete Employee" onClick={() => handleDelete(employee)}>Delete Employee</Button>
-                    </div>
+                            {handleProfile(employee)}
+                            <div className="employee-jobs-buttons">
+                                <Button onClick={() => handleEmployee(employee)}>Edit Profile</Button>
+                                <Button type="secondary" value="Delete Employee" onClick={() => handleDelete(employee)}>Delete Employee</Button>
+                            </div>
                         </Card.Body>
                     </Card>
                 )}
