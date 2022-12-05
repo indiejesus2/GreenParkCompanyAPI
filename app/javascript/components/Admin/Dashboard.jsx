@@ -79,9 +79,15 @@ const Dashboard = props => {
             <div className="admin">
                 <NavBar handleSignout={props.signOut} loggedIn={props.loggedIn} user="admin" />
             <div className="adminDashboard">
-                <EmployeesAdmin employees={props.employees} loggedIn={props.loggedIn} signOut={props.signOut} loading={props.loading} />
-                <EmployersAdmin employers={props.employers} loggedIn={props.loggedIn} signOut={props.signOut} loading={props.loading} />
-                <JobsAdmin jobs={props.jobs} loggedIn={props.loggedIn} signOut={props.signOut} loading={props.loading} />
+                <div>
+                    <EmployeesAdmin employees={props.employees} loggedIn={props.loggedIn} signOut={props.signOut} deleteEmployee={props.deleteEmployee} loading={props.loading} />
+                </div>
+                <div>
+                    <EmployersAdmin employers={props.employers} loggedIn={props.loggedIn} signOut={props.signOut} deleteEmployer={props.deleteEmployer} loading={props.loading} />
+                </div>
+                <div>
+                    <JobsAdmin jobs={props.jobs} loggedIn={props.loggedIn} signOut={props.signOut} deleteJob={props.deleteJob} loading={props.loading} />
+                </div>
                         {/* <div className="adminJobs">    
                         <div>
                             Employees

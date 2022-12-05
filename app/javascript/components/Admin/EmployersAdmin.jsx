@@ -12,6 +12,12 @@ const EmployersAdmin = (props) => {
     const [page, setPage] = useState(0)
     const [endPage, setEndPage] = useState(Math.round(props.employers.length/10) - 1)
 
+    useEffect(() => {
+        if (props.employers != little) {
+            setLittle(props.employers)
+        }
+    }, [props.employers])
+
     const handleNewPage = e => {
         let newPage = page
         if (e.target.value == "next" && page !== endPage) {

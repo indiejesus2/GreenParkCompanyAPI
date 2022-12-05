@@ -14,6 +14,12 @@ const EmployeesAdmin = props => {
 
     const history = useHistory()
 
+    useEffect(() => {
+        if (props.employees != little) {
+            setLittle(props.employees)
+        }
+    }, [props.employees])
+
     const handleNav = () => {
         if (history.location.pathname === "/admin/employees") {
             return (

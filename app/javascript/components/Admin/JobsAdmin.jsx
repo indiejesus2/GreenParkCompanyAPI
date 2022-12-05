@@ -10,6 +10,12 @@ const JobsAdmin = (props) => {
     const [page, setPage] = useState(0)
     const [endPage, setEndPage] = useState(Math.round(props.jobs.length/10) - 1)
 
+    useEffect(() => {
+        if (props.jobs != jobs) {
+            setJobs(props.jobs)
+        }
+    }, [props.jobs])
+
     const handleNewPage = e => {
         let newPage = page
         if (e.target.value == "next" && page !== endPage) {

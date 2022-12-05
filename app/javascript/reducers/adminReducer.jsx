@@ -19,7 +19,8 @@ export default function adminReducer(state = {employees: [], jobs: [], employers
             let deletedEmployees = state.employees.filter(employee => employee.id != action.payload.employee.data.id)
             return {
                 ...state,
-                employees: deletedEmployees
+                employees: deletedEmployees,
+                loading: false
             }
         case 'DELETE_EMPLOYER':
             let deletedEmployers = state.employers.filter(employer => employer.id != action.payload.employer.data.id)
@@ -33,7 +34,8 @@ export default function adminReducer(state = {employees: [], jobs: [], employers
             let deletedJobs = state.jobs.filter(job => job.id != action.payload.job.id)
             return {
                 ...state,
-                jobs: deletedJobs
+                jobs: deletedJobs,
+                loading: false
             }
         case 'LOGOUT_ADMIN':
             return {
