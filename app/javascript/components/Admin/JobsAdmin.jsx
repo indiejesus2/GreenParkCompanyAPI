@@ -15,8 +15,8 @@ const JobsAdmin = (props) => {
         let newJobs = props.jobs
         if (newJobs != jobs) {
             setLittle(newJobs)
-            setJobs(newJobs)
-            setEndPage(Math.ceil(jobs.length/10)-1)
+            setJobs(newJobs.slice(0,10))
+            setEndPage(Math.ceil(newJobs.length/10)-1)
         }
     }, [props.jobs])
 
