@@ -10,11 +10,14 @@ const EmployersAdmin = (props) => {
     const [little, setLittle] = useState(props.employers)
     const [employers, setEmployers] = useState(little.slice(0,10))
     const [page, setPage] = useState(0)
-    const [endPage, setEndPage] = useState(Math.round(props.employers.length/10) - 1)
+    const [endPage, setEndPage] = useState(Math.ceil(props.employers.length/10) - 1)
 
     useEffect(() => {
+        let newEmployers = props.employers
         if (props.employers != little) {
-            setLittle(props.employers)
+            setLittle(newEmployers)
+            setEmployers(newEmployers.slice(0,10))
+            setEndPage(Math.ceil(newEmployers.length/10)-1)
         }
     }, [props.employers])
 

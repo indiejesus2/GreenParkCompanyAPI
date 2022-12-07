@@ -6,13 +6,17 @@ import SideNavBar from '../SideNavBar'
 
 const JobsAdmin = (props) => {
 
-    const [jobs, setJobs] = useState(props.jobs.slice(0,10))
+    const [little, setLittle] = useState(props.jobs)
+    const [jobs, setJobs] = useState(little.slice(0,10))
     const [page, setPage] = useState(0)
-    const [endPage, setEndPage] = useState(Math.round(props.jobs.length/10) - 1)
+    const [endPage, setEndPage] = useState(Math.ceil(props.jobs.length/10) - 1)
 
     useEffect(() => {
-        if (props.jobs != jobs) {
-            setJobs(props.jobs)
+        newJobs = props.jobs
+        if (newJobs != jobs) {
+            setLittle(newJobs)
+            setJobs(newJobs)
+            setEndPage(Math.ceil(jobs.length/10)-1)
         }
     }, [props.jobs])
 

@@ -10,23 +10,31 @@ const EmployeesAdmin = props => {
     // const [little, setLittle] = useState(props.employees.filter(employee => !!employee.profile))
     const [employees, setEmployees] = useState(little.slice(0,10))
     const [page, setPage] = useState(0)
-    const [endPage, setEndPage] = useState(Math.round(props.employees.length/10) - 1)
+    const [endPage, setEndPage] = useState(Math.ceil(props.employees.length/10) - 1)
 
     const history = useHistory()
 
     useEffect(() => {
-        if (props.employees != little) {
-            setLittle(props.employees)
+        let newEmployees = props.employees
+        if (newEmployees != little) {
+            setLittle(newEmployees)
+            setEmployees(newEmployees.slice(0,10))
+            setEndPage(Math.ceil(newEmployees.length/10) - 1)
         }
     }, [props.employees])
-
+    
     const handleNav = () => {
         if (history.location.pathname === "/admin/employees") {
             return (
                 <NavBar handleSignout={props.signOut} loggedIn={props.loggedIn} user="admin" />
-            )
+                )
+            }
         }
-    }
+        
+    // const handleEmployees = () => {
+    //     setEmployees(little.slice(0,10))
+    //     setEndPage(Math.ceil(props.employees.length/10) - 1)
+    // }
 
     const handlePage = () => {
         if (history.location.pathname === "/admin/employees") {
