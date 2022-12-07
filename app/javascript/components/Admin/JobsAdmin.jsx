@@ -12,7 +12,7 @@ const JobsAdmin = (props) => {
     const [endPage, setEndPage] = useState(Math.ceil(props.jobs.length/10) - 1)
 
     useEffect(() => {
-        newJobs = props.jobs
+        let newJobs = props.jobs
         if (newJobs != jobs) {
             setLittle(newJobs)
             setJobs(newJobs)
