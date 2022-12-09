@@ -86,6 +86,7 @@ const JobsAdmin = (props) => {
     }
 
     const handleDelete = job => {
+        debugger
         props.deleteJob(job)
         // props.history.push('/admin/jobs')
     }
