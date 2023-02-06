@@ -178,7 +178,11 @@ export default function EditProfile(props) {
         "Painting",
         "Maintenance",
         "Electric",
-        "Landscape",   
+        "Landscape",
+        "Irrigation",
+        "Construction",
+        "Mechanic",
+        "Roofing",   
         "Other/None"
     ]
 

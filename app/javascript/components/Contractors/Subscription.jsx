@@ -19,9 +19,9 @@ const Subscription = (props) => {
     const [stripe, setStripe] = useState(!!props.subscription?props.subscription.stripe_id:"")
 
     const schema = yup.object().shape({
-        card_number: yup.string().required(),
+        card_number: yup.string().required("Valid card number is required"),
         expiryDate: yup.string().required("Invalid expiration date"),
-        cvc: yup.string().required(),
+        cvc: yup.string().required("CVC is required"),
         plan_id: yup.string().required("Please select a plan")
     })
     
@@ -35,9 +35,10 @@ const Subscription = (props) => {
             expiryDate: "",
             exp_month: "",
             exp_year: "",
-            cvc: ""
+            cvc: "",
+            trial: ""
         },
-        validationSchema: schema,
+        // validationSchema: schema,
         onSubmit: values => {
             props.addPayment(values)
             props.history.push(`/employers`)
@@ -105,8 +106,6 @@ const Subscription = (props) => {
         setShow(true)
     }
 
-    
-
     const handleNavBar = () => {
         // debugger
         if (nextBilling != "" && new Date(props.subscription.next_billing*1000) > new Date()) {
@@ -157,6 +156,8 @@ const Subscription = (props) => {
                 {handleYearly()}
                 {/* <Button value="Yearly" onClick={handleClick}>Yearly</Button> */}
             </div>
+            </div>
+            <div>
             </div>
             <StripeForm 
                 handleChange={formik.handleChange}

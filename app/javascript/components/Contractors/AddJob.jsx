@@ -160,7 +160,11 @@ export default function AddJob(props) {
         "Painting",
         "Maintenance",
         "Electric",
-        "Landscape",   
+        "Landscape",
+        "Irrigation",
+        "Construction",
+        "Mechanic",
+        "Roofing",   
         "Other/None"
     ]
 

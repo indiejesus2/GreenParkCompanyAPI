@@ -153,6 +153,19 @@ const StripeForm = (props) => {
                     </Row>
                         {meta.isTouched && meta.error && <span>Error: {meta.error}</span>}
                 </div>
+                    <div>
+                        <Form.Group as={Col} className="mb-3">
+                            <Form.Label>
+                                Trial Period Code
+                            </Form.Label>
+                            <Form.Control
+                                name="trial"
+                                value={props.values.trial}
+                                style={{ "backgroundColor": "#2f2f2f", "color": "#fff" }}
+                                onChange={props.handleChange}
+                            />
+                        </Form.Group>
+                    </div>
                     <div className="d-flex justify-content-between mb-3">
                         <Button variant="primary" type="submit" onClick={() => props.handleSubmit} 
                         // style={{ "width": 100 + "%"}}

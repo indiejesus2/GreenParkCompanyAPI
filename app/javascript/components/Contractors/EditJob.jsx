@@ -150,7 +150,11 @@ export default function EditJob(props) {
         "Painting",
         "Maintenance",
         "Electric",
-        "Landscape",   
+        "Landscape",
+        "Irrigation",
+        "Construction",
+        "Mechanic",
+        "Roofing",   
         "Other/None"
     ]
 

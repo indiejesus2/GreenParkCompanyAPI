@@ -165,14 +165,6 @@ const EmployersAdmin = (props) => {
                                             {handleBilling(employer)}
                                         </td>
                                     </tr>
-                                    <tr style={{ "border-bottom-width": 0 + "px"}}>
-                                        <td style={{"padding": "0px" }}>
-                                            Card:
-                                        </td>
-                                        <td style={{"padding": "0px" }}>
-                                            {employer.current_card}
-                                        </td>
-                                    </tr>
                                 </tbody>
                             </Table>
                             <div className="employee-jobs-buttons">

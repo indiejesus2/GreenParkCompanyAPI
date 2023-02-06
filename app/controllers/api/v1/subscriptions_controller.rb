@@ -1,7 +1,7 @@
 class Api::V1::SubscriptionsController < ApplicationController
   before_action :set_subscription, only: %i[show, update]   
   before_action :set_employer
-  wrap_parameters :subscription, include: [:card_number, :exp_month, :exp_year, :cvc, :employer_id, :plan_id, :stripe_id, :active, :id, :expiryDate]
+  wrap_parameters :subscription, include: [:card_number, :exp_month, :exp_year, :cvc, :employer_id, :plan_id, :stripe_id, :active, :id, :expiryDate, :trial]
   
   def show
     render json: @subscription
@@ -9,21 +9,25 @@ class Api::V1::SubscriptionsController < ApplicationController
   
   def create
     current = subscription_params
-    current[:exp_month] = current[:expiryDate].split()[0]
-    current[:exp_year] = current[:expiryDate].split()[2]
-    @subscription = Subscription.new(current)
-    if @subscription.save
-      @employer.update(status: true)
-      if @subscription.plan_id == 1
-        @employer.update(monthly: true)
-      elsif @subscription.plan_id == 2
-        @employer.update(yearly: true)
+    if current[:trial] == "collar"
+      @employer.update(status: true, trial: true)
+      render json: {contractor: @employer}, prerender: true
+    else 
+      current[:exp_month] = current[:expiryDate].split()[0]
+      current[:exp_year] = current[:expiryDate].split()[2]
+      @subscription = Subscription.new(current)
+      if @subscription.save
+        @employer.update(status: true)
+        if @subscription.plan_id == 1
+          @employer.update(monthly: true)
+        elsif @subscription.plan_id == 2
+          @employer.update(yearly: true)
+        end
+        EmployerMailer.with(employer: @employer).welcome_email.deliver_later
+        render json: {contractor: @employer, subscription: SubscriptionSerializer.new(@employer.subscription)}, prerender: true
+      else
+        render json: {error: @subscription.errors.first, status: :unprocessable_entity}
       end
-      EmployerMailer.with(employer: @employer).welcome_email.deliver_later
-      render json: {contractor: @employer, subscription: SubscriptionSerializer.new(@employer.subscription)}, prerender: true
-    else
-      byebug
-      render json: {error: @subscription.errors.first, status: :unprocessable_entity}
     end
   end
   
@@ -60,5 +64,6 @@ class Api::V1::SubscriptionsController < ApplicationController
     def subscription_params
       params.require(:subscription).permit(:card_number, :exp_month, :exp_year, :cvc, :employer_id, :plan_id, :stripe_id, :active, :id, :expiryDate)
     end
+
 
 end

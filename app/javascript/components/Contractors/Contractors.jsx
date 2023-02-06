@@ -119,7 +119,7 @@ const Contractors = props => {
         return (
             <Redirect to={`/employers/${contractor.id}/editprofile`} />
         )
-    } else if (contractor.status == false) {
+    } else if (contractor.status == false && contractor.trial == false) {
         // || props.subscription.stripe_active == false) {
         return (
             <div>
