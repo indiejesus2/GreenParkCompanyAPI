@@ -3,7 +3,7 @@ class EmployeeMailer < ApplicationMailer
 
     def welcome_email
         @employee = params[:employee]
-        @url = 'https://www.blucollar.com'
+        @url = 'http://www.blucollar.com'
         mail(
             to: email_address_with_name(@employee.email, @employee.profile.name),
             subject: "Welcome to BluCollar!"

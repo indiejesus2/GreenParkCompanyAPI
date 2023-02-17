@@ -14,9 +14,12 @@
       Make sure to check out these other jobs that you matched with.
       <% elsif @jobs.length = 1 %>
       Make sure to check out this other job that you matched with.
+      <% else %>
+      For the meantime, BluCollar will continue looking for jobs that match your profile.
       <% end %>
-    </p>
+    </p> 
     </div>
+    <% if @jobs.length > 0 %>
     <div class="jobs">
         <% @jobs.each do |job| %>
       <div class="job">
@@ -28,6 +31,7 @@
       </div>
         <% end %>
     </div>
+    <% end %>
     <p>
       To login to the site, just follow this link: <%= @url %>.
     </p>

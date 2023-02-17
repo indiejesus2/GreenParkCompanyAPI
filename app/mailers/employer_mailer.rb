@@ -58,4 +58,20 @@ class EmployerMailer < ApplicationMailer
         )
     end
 
+    def applied_email
+        @url = 'http://www.blucollar.com'
+        @employer = params[:employer]
+        @application = @employer.applicants.find{|applicant| applicant.id == params[:application]}
+        @jobs = @employer.jobs
+        @applicant = @jobs.find_index{|job| job.id == @application.job_id}
+        @candidate = @employees.profiles.find{|profile| profile.employee_id == @application.employee_id}
+        @job = Job.find{|job| job.id == @application.job_id}
+        @job_url = `http://www.blucollar.com/employers/#{@job.employer_id}/jobs/#{@job.id}`
+        @jobs = @jobs.reject{|job| job.id == @job.id}
+        mail(
+            to: email_address_with_name(@employer.email, @employer.name),
+            subject: "BluCollar - Candidate Application"
+        )
+    end
+
 end

@@ -7,12 +7,12 @@
     <img src="images/blucollar-logo-non-bold.png" alt="Logo" />
     <p>Hello <%= @employer.name %>,</p>
     <p>
-      We have some exciting news! A candidate has applied for the <%= job.title %> position. Feel free to reach out to them to set up an interview.
+      We have some exciting news! A candidate has applied for the <a href= <%= @job.title %>> </a> position. Feel free to reach out to them to set up an interview.
     </p>
       <div class="candidate">
-        <h3><%= candidate.name %></h3>
-        <p><%= candidate.email %></p>
-        <p><%= candidate.address %></p>
+        <h3><%= @candidate.name %></h3>
+        <p><%= @candidate.email %></p>
+        <p><%= @candidate.address %></p>
       </div>
     <p>
 

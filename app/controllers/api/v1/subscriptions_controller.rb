@@ -10,6 +10,7 @@ class Api::V1::SubscriptionsController < ApplicationController
   def create
     current = subscription_params
     if current[:trial] == "collar"
+      EmployerMailer.with(employer: @employer).welcome_email.deliver_later
       @employer.update(status: true, trial: true)
       render json: {contractor: @employer}, prerender: true
     else 
