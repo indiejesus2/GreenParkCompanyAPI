@@ -4,7 +4,7 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <img src="images/blucollar-logo-non-bold.png" alt="Logo" />
+    <%= image_tag(attachments['logo.png'].url) %>
     <h1>Hello, <%= @employer.name %></h1>
     <p>
       A <%= @employer.subscription %> subscription will be charged to your card ending in <%= @employer.card %> on <%= @employer.date %>. 

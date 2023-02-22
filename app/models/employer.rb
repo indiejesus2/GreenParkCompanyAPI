@@ -46,6 +46,20 @@ class Employer < ApplicationRecord
     end
   end
 
+  def self.recent_applicants
+    employers = Employer.all
+    employers.each do |employer|
+      if employer.applicants.length > 0
+        candidates = employer.applicants.filter { |candidate| candidate.created_at >= Date.current - 1 }
+        if candidates.length > 0
+          # byebug
+          EmployerMailer.with(employer: employer).candidates_email.deliver_later
+        end
+      end
+    end
+  end
+    
+
   private
 
   def generate_base64_token

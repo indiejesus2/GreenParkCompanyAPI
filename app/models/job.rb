@@ -45,6 +45,7 @@ class Job < ApplicationRecord
       applicants.each{|applicant|
         if Applicant.where(job_id: id, employee_id: applicant.employee_id).length == 0 
           Applicant.create(employee_id: "#{applicant.employee_id}", employer_id: "#{employer_id}", job_id: "#{id}", distance: distance_to(applicant))
+          EmployerMailer.with(employer: self.employer, applicant: applicant).match_email.deliver_later
         end
       }
     end

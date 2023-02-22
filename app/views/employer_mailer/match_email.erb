@@ -5,20 +5,19 @@
   </head>
   <body>
     <%= image_tag(attachments['logo.png'].url) %>
-    <p>Hello <%= @employer.name %>,</p>
+    <div class="message">
     <p>
-      We have some exciting news! A candidate has applied for the <a href= <%= @job.title %>> </a> position. Feel free to reach out to them to set up an interview.
-    </p>
+      Incredible news <%= @employer.name %>!
+      We have found a candidate that matches your job.
       <div class="candidate">
         <h3><%= @candidate.name %></h3>
         <p><%= @candidate.email %></p>
         <p><%= @candidate.address %></p>
       </div>
     <p>
-
-      To login to the site, just follow this link: <a href=<%= @url %>>BluCollar</a>.
+      To login to the site, just follow this link: <%= @url %>.
     </p>
-    <p>Happy hunting and have a great day!</p>
+    <p>Happy job-hunting and have a great day!</p>
     <p>BluCollar</p>
   </body>
 </html>

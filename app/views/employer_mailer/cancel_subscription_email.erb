@@ -4,7 +4,7 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <img src="images/blucollar-logo-non-bold.png" alt="Logo" />
+    <%= image_tag(attachments['logo.png'].url) %>
     <h1>Hello, <%= @employer.name %></h1>
     <p>
       <%= @employer.subscription %> subscription has been canceled. While you take a break from BluCollar, your jobs will be put on hold until you renew your subscription.

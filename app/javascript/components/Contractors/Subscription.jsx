@@ -40,8 +40,12 @@ const Subscription = (props) => {
         },
         // validationSchema: schema,
         onSubmit: values => {
-            props.addPayment(values)
-            props.history.push(`/employers`)
+            if (values.trial == "collar") {
+                props.addPayment(values)
+                props.history.push(`/employers`)
+            } else {
+                formik.setErrors({trial: "Incorrect trial period code"})
+            }
         }
         // props.updateSubscription(values)
     })

@@ -5,23 +5,18 @@
   </head>
   <body>
     <%= image_tag(attachments['logo.png'].url) %>
-    <p>Hey <%= @employee.profile.name %>,</p>
+    <div class="message">
     <p>
-      Here are the latest jobs you match with. 
-    </p>
-    <div class="jobs">
-        <% @jobs.each do |job| %>
+      Incredible news <%= @employee.profile.name %>!
+      We have found a job that matches your profile.
       <div class="job">
           <span class="header">
-            <h3><%= job.employer.name %></h3>
+            <h3><%= @job.employer.name %></h3>
           </span>
-            <h4><%= job.title %></h4>
-            <p><%= job.address %></p>
+            <h4><%= @job.title %></h4>
+            <p><%= @job.address %></p>
       </div>
-        <% end %>
-    </div>
     <p>
-
       To login to the site, just follow this link: <%= @url %>.
     </p>
     <p>Happy job-hunting and have a great day!</p>

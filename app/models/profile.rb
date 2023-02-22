@@ -33,6 +33,7 @@ class Profile < ApplicationRecord
         if job.status == true
           if Applicant.where(job_id: job.id, employee_id: employee_id).length == 0 && !job.applicants.detect{|applicant| applicant.employee_id == employee_id}
             Applicant.create(employee_id: "#{employee_id}", employer_id: "#{job.employer_id}", job_id: "#{job.id}", distance: distance_to(job))
+            EmployeeMailer.with(employee: self.employee, job: job).match_email.deliver_later
           end
         end
       }

@@ -4,7 +4,7 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <img src="images/blucollar-logo-non-bold.png" alt="Logo" />
+    <%= image_tag(attachments['logo.png'].url) %>
     <h1>Welcome to BluCollar, <%= @employer.name %></h1>
     <p>
       You have successfully signed up to BluCollar.com. Once you begin posting jobs, we can start the process of matching with potential candidates. Keep an eye on your inbox for a flood of candidates.
