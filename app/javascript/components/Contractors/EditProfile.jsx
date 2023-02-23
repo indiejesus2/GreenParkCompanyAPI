@@ -80,7 +80,7 @@ export default function EditProfile(props) {
         },
         onSubmit: values => {
             props.updateProfile(values)
-            if (employer.monthly != true && employer.yearly != true) {
+            if ((employer.monthly != true && employer.yearly != true) || employer.status == false) {
                 history.push('/employers/subscription')
             } else {
                 history.push(`/employers/${values.id}/profile`)

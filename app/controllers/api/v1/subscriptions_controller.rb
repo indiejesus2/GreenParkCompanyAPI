@@ -10,12 +10,10 @@ class Api::V1::SubscriptionsController < ApplicationController
   def create
     current = subscription_params
     if current[:trial] == "collar"
-      byebug
       @employer.update(status: true, trial: true)
       EmployerMailer.with(employer: @employer).welcome_email.deliver_later
       render json: {contractor: @employer}, prerender: true
     else 
-      byebug
       current[:exp_month] = current[:expiryDate].split()[0]
       current[:exp_year] = current[:expiryDate].split()[2]
       @subscription = Subscription.new(current)
