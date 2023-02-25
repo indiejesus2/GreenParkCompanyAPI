@@ -7,15 +7,17 @@
     <%= image_tag(attachments['logo.png'].url) %>
     <p>Hello <%= @employer.name %>,</p>
     <p>
-      We have some exciting news! A candidate has applied for the <a href= <%= @job.title %>> </a> position. Feel free to reach out to them to set up an interview.
+      We have some exciting news! A candidate has applied for the <%= @job.title %> position. Feel free to reach out to them to set up an interview.
     </p>
-      <div class="candidate">
-        <h3><%= @candidate.name %></h3>
-        <p><%= @candidate.email %></p>
-        <p><%= @candidate.address %></p>
+    <div class="job">
+          <span class="jobTitle">
+            <h2><%= @candidate.name %></h2>
+            <span class="jobDetails">
+              <h3><%= @candidate.employee.email %> | <%= @candidate.address %></h3>
+            </span>
+        </span>
       </div>
     <p>
-
       To login to the site, just follow this link: <a href=<%= @url %>>BluCollar</a>.
     </p>
     <p>Happy hunting and have a great day!</p>

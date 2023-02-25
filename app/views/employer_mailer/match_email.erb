@@ -6,17 +6,21 @@
   <body>
     <%= image_tag(attachments['logo.png'].url) %>
     <div class="message">
-    <p>
-      Incredible news <%= @employer.name %>!
-      We have found a candidate that matches your job.
-      <div class="candidate">
-        <h3><%= @candidate.name %></h3>
-        <p><%= @candidate.email %></p>
-        <p><%= @candidate.address %></p>
+      <span class="above">
+        Incredible news <%= @employer.name %>!
+        We have found a candidate that matches your job.
+      </span>
+      <div class="job">
+        <span class="jobTitle">
+            <h2><%= @candidate.name %></h2>
+          <span class="jobDetails">
+            <h3><%= @job.title %> | <%= @candidate.address %></h3>
+          </span>
+          </span>
       </div>
-    <p>
-      To login to the site, just follow this link: <%= @url %>.
-    </p>
+    <span class="below">
+      Login to the site to view more details on the candidate and check other matches we've found for you: <a href=<%= @url %> target="_blank">BluCollar</a>.
+    </span>
     <p>Happy job-hunting and have a great day!</p>
     <p>BluCollar</p>
   </body>

@@ -55,6 +55,7 @@ class Api::V1::JobsController < ApplicationController
         # @job.potential
         if @job.save
             # @employees = @employer.applicants.map {|applicant| applicant.employee }
+            @job.match
             render json: {job: JobSerializer.new(@job), applicants: ApplicantSerializer.new(@employer.applicants)}
             # , candidates: EmployeeSerializer.new(@employees, include: [:profile, :work_histories])}
         else

@@ -69,9 +69,9 @@ class Api::V1::EmployeesController < ApplicationController
     @applicant = Applicant.find_by(employee_id: params[:id], job_id: params[:job_id])
     @applicant.interested = @applicant.interested == false ? true : false
     @applicant.save
-    @employer = Employer.find(@applicant.employerId)
-    EmployeeMailer.with(employee: @employee, application: @applicant.id).applied_email.deliver_later
-    EmployerMailer.with(employer: @employer, application: @applicant.id).applied_email.deliver_later
+    @employer = Employer.find(@applicant.employer_id)
+    EmployeeMailer.with(employee: @employee, applicant: @applicant).applied_email.deliver_later
+    EmployerMailer.with(employer: @employer, applicant: @applicant).applied_email.deliver_later
     render json: @employee.applicants
   end
 

@@ -21,7 +21,8 @@ class Api::V1::ProfilesController < ApplicationController
                     @history.save
                 end
             end
-            EmployeeMailer.with(employee: @employee).welcome_email.deliver_later
+            EmployeeMailer.with(employee: @employee).welcome_email.deliver_now
+            @profile.match
             # redirect_to api_v1_employee_path(@employee)
             redirect_to api_v1_employee_jobs_path(@employee), status: 303
         else
@@ -33,7 +34,7 @@ class Api::V1::ProfilesController < ApplicationController
         @profile = @employee.profile
         employee = {employee_id: @employee.id}
         @profile.update(profile_params)
-        if @profile.save
+        if @profile.savec
             if !!history_params 
                 for history in history_params
                     together = history.merge(employee)

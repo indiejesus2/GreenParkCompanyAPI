@@ -9,10 +9,11 @@
     <p>
       Awesome job <%= @employee.profile.name %>!
       Your application has been successfully delivered to <b> <%= @job.company %> </b>. Look forward to them contacting you soon about the <b> <%= @job.title %> </b> position . 
-    </p><p>
+    </p>
+    <p>
       <% if @jobs.length > 1 %>
       Make sure to check out these other jobs that you matched with.
-      <% elsif @jobs.length = 1 %>
+      <% elsif @jobs.length == 1 %>
       Make sure to check out this other job that you matched with.
       <% else %>
       For the meantime, BluCollar will continue looking for jobs that match your profile.
@@ -23,18 +24,19 @@
     <div class="jobs">
         <% @jobs.each do |job| %>
       <div class="job">
-          <span class="header">
-            <h3><%= job.employer.name %></h3>
-          </span>
-            <h4><%= job.title %></h4>
-            <p><%= job.address %></p>
+          <span class="jobTitle">
+            <h2><%= @job.title %></h2>
+            <span class="jobDetails">
+              <h3><%= @job.employer.name %> | <%= @job.address %></h3>
+            </span>
+        </span>
       </div>
         <% end %>
     </div>
     <% end %>
-    <p>
-      To login to the site, just follow this link: <%= @url %>.
-    </p>
+    <span class="below">
+        To login to the site, just follow this link: <a href=<%= @url %> target="_blank">BluCollar</a>.
+    </span>
     <p>Happy job-hunting and have a great day!</p>
     <p>BluCollar</p>
   </body>

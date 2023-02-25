@@ -6,10 +6,24 @@ class Profile < ApplicationRecord
   # reverse_geocoded_by :latitude, :longitude
   after_validation :geocode
   before_save :proximity, :potential
+  # after_save :match
   after_update :updateTrade, :updatedProximity
   # after_validation :proximity, :potential
 
   # after_validation :reverse_geocode
+
+  def welcome
+    EmployeeMailer.with(employee: self.employee).welcome_email.deliver_later
+  end
+
+  def match
+    self.employee.applicants.each {
+      |applicant|
+      EmployeeMailer.with(applicant: applicant).match_email.deliver_later
+      EmployerMailer.with(applicant: applicant).match_email.deliver_later
+    }
+  end
+
 
   def address
     [city, state].compact.join(', ')
@@ -33,7 +47,7 @@ class Profile < ApplicationRecord
         if job.status == true
           if Applicant.where(job_id: job.id, employee_id: employee_id).length == 0 && !job.applicants.detect{|applicant| applicant.employee_id == employee_id}
             Applicant.create(employee_id: "#{employee_id}", employer_id: "#{job.employer_id}", job_id: "#{job.id}", distance: distance_to(job))
-            EmployeeMailer.with(employee: self.employee, job: job).match_email.deliver_later
+            # EmployeeMailer.with(employee: self.employee, job: job).match_email.deliver_later
           end
         end
       }

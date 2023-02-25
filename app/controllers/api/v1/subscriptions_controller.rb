@@ -12,7 +12,7 @@ class Api::V1::SubscriptionsController < ApplicationController
     if current[:trial] == "collar"
       @employer.update(status: true, trial: true)
       EmployerMailer.with(employer: @employer).welcome_email.deliver_later
-      render json: {contractor: @employer}, prerender: true
+      render json: {contractor: @employer, subscription: SubscriptionSerializer.new(@employer.subscription)}, prerender: true
     else 
       current[:exp_month] = current[:expiryDate].split()[0]
       current[:exp_year] = current[:expiryDate].split()[2]

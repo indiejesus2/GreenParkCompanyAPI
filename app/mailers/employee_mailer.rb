@@ -14,6 +14,7 @@ class EmployeeMailer < ApplicationMailer
     def jobs_email
         @employee = params[:employee]
         @jobs = @employee.jobs.sort_by {|job| job.id}.take(5)
+        attachments.inline["logo.png"] = File.read("#{Rails.root}/public/images/blucollar-logo-non-bold.png")
         mail(
             to: email_address_with_name(@employee.email, @employee.profile.name),
             subject: "BluCollar - Job Matches"
@@ -22,13 +23,13 @@ class EmployeeMailer < ApplicationMailer
 
     def applied_email
         @url = 'http://www.blucollar.com'
+        attachments.inline["logo.png"] = File.read("#{Rails.root}/public/images/blucollar-logo-non-bold.png")
         @employee = params[:employee]
-        @application = @employee.applicants.find{|applicant| applicant.id == params[:application]}
+        @applicant = params[:applicant]
         @jobs = @employee.jobs
-        @applicant = @jobs.find_index{|job| job.id == @application.job_id}
-        @job = Job.find{|job| job.id == @application.job_id}
-        @jobs = @jobs.reject{|job| job.id == @job.id}
-        @job_url = `http://www.blucollar.com/#{@employee.id}/jobs/#{@job.id}`
+        @job = Job.find{|job| job.id == @applicant.job_id}
+        @jobs = @jobs.reject{|job| job.id == @job.id}.take(3)
+        # @job_url = `http://www.blucollar.com/#{@employee.id}/jobs/#{@job.id}`
         mail(
             to: email_address_with_name(@employee.email, @employee.profile.name),
             subject: "BluCollar - Applied Job"
@@ -37,14 +38,17 @@ class EmployeeMailer < ApplicationMailer
 
     def match_email
         @url = 'http://www.blucollar.com'
-        @employee = params[:employee]
-        @job = params[:job]
+        @applicant = params[:applicant]
+        @employee = Employee.find(@applicant.employee_id)
+        @job = Job.find(@applicant.job_id)
+        attachments.inline["logo.png"] = File.read("#{Rails.root}/public/images/blucollar-logo-non-bold.png")
         # @application = @employee.applicants.find{|applicant| applicant.id == params[:application]}
         # @jobs = @employee.jobs
         # @applicant = @jobs.find_index{|job| job.id == @application.job_id}
         # @job = Job.find{|job| job.id == @application.job_id}
         # @jobs = @jobs.reject{|job| job.id == @job.id}
-        @job_url = `http://www.blucollar.com/#{@employee.id}/jobs/#{@job.id}`
+        # @job_url = "http://www.blucollar.com/" + @employee.id + "/jobs/" + @job.id + "/matches"
+        # @job_url = `http://www.blucollar.com/#{@employee.id}/jobs/#{@job.id}/matches`
         mail(
             to: email_address_with_name(@employee.email, @employee.profile.name),
             subject: "BluCollar - Job Match"
@@ -57,6 +61,7 @@ class EmployeeMailer < ApplicationMailer
     @employee = @user.profile    
     @url = 'http://www.blucollar.com'
     @reset_url = 'http://www.blucollarcom/home/reset_password'
+    attachments.inline["logo.png"] = File.read("#{Rails.root}/public/images/blucollar-logo-non-bold.png")
     mail(
         to: @user.email, subject: "Password Reset"
     ) 

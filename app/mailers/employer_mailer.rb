@@ -38,9 +38,15 @@ class EmployerMailer < ApplicationMailer
         ) 
     end
 
-    def cancel_subscription
+    def cancel_subscription_email
         @employer = params[:employer]
+        if @employer.yearly == true 
+            @subscription = "yearly"
+        else
+            @subscription = "monthly"
+        end
         @url = 'http://www.blucollar.com'
+        attachments.inline["logo.png"] = File.read("#{Rails.root}/public/images/blucollar-logo-non-bold.png")
         mail(
             to: email_address_with_name(@employer.email, @employer.name),
             subject: "BluCollar - Candidate Matches"
@@ -67,14 +73,15 @@ class EmployerMailer < ApplicationMailer
 
     def applied_email
         @url = 'http://www.blucollar.com'
+        attachments.inline["logo.png"] = File.read("#{Rails.root}/public/images/blucollar-logo-non-bold.png")
         @employer = params[:employer]
-        @application = @employer.applicants.find{|applicant| applicant.id == params[:application]}
+        @applicant = params[:applicant]
         @jobs = @employer.jobs
-        @applicant = @jobs.find_index{|job| job.id == @application.job_id}
-        @candidate = @employees.profiles.find{|profile| profile.employee_id == @application.employee_id}
-        @job = Job.find{|job| job.id == @application.job_id}
-        @job_url = `http://www.blucollar.com/employers/#{@job.employer_id}/jobs/#{@job.id}`
-        @jobs = @jobs.reject{|job| job.id == @job.id}
+        @candidate = Profile.find{|profile| profile.employee_id == @applicant.employee_id}
+        @job = Job.find{|job| job.id == @applicant.job_id}
+        @applicants = @job.applicants
+        # @job_url = `http://www.blucollar.com/employers/#{@job.employer_id}/jobs/#{@job.id}`
+        @applicants = @applicants.reject{|applicant| applicant.id == @applicant.id}.take(3)
         mail(
             to: email_address_with_name(@employer.email, @employer.name),
             subject: "BluCollar - Candidate Application"
@@ -83,16 +90,21 @@ class EmployerMailer < ApplicationMailer
 
     def match_email
         @url = 'http://www.blucollar.com'
-        @employer = params[:employer]
-        @job = params[:job]
+        @applicant = params[:applicant]
+        @employee = Employee.find(@applicant.employee_id)
+        @candidate = @employee.profile
+        @employer = Employer.find(@applicant.employer_id)
+        @job = Job.find(@applicant.job_id)
+        attachments.inline["logo.png"] = File.read("#{Rails.root}/public/images/blucollar-logo-non-bold.png")
+        # byebug
         # @application = @employee.applicants.find{|applicant| applicant.id == params[:application]}
         # @jobs = @employee.jobs
         # @applicant = @jobs.find_index{|job| job.id == @application.job_id}
         # @job = Job.find{|job| job.id == @application.job_id}
         # @jobs = @jobs.reject{|job| job.id == @job.id}
-        @job_url = `http://www.blucollar.com/#{@employer.id}/jobs/#{@job.id}`
+        # @job_url = `http://www.blucollar.com/#{@employer.id}/jobs/#{@job.id}/matches`
         mail(
-            to: email_address_with_name(@employee.email, @employee.profile.name),
+            to: email_address_with_name(@employer.email, @employer.name),
             subject: "BluCollar - Candidate Match"
         )
     end
