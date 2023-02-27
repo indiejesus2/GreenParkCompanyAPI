@@ -44,6 +44,8 @@ class Api::V1::SubscriptionsController < ApplicationController
         @employer.update(monthly: true)
       elsif @subscription.plan_id == 2 && @employer.yearly == false
         @employer.update(yearly: true)
+      elsif @subscription.active == false
+        @employer.update(status: false)
       end
       render json: {contractor: @employer, subscription: SubscriptionSerializer.new(@employer.subscription)}, prerender: true
       # render json: @subscription

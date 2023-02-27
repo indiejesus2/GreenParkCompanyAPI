@@ -13,6 +13,7 @@ class EmployerMailer < ApplicationMailer
 
     def candidates_email
         @employer = params[:employer]
+        attachments.inline["logo.png"] = File.read("#{Rails.root}/public/images/blucollar-logo-non-bold.png")
         # byebug
         # @candidates = params[:applications].map{|applicant| applicant.profile}
         # byebug
@@ -24,11 +25,12 @@ class EmployerMailer < ApplicationMailer
         @url = 'http://www.blucollar.com'
         mail(
             to: email_address_with_name(@employer.email, @employer.name),
-            subject: "BluCollar - Candidate Matches"
+            subject: "BluCollar - Latest Candidates"
         )
     end
 
-    def password_reset
+    def password_reset_email
+        attachments.inline["logo.png"] = File.read("#{Rails.root}/public/images/blucollar-logo-non-bold.png")
         @user = params[:employer]
         @temp = params[:temp]
         @url = 'http://www.blucollar.com'
@@ -49,25 +51,27 @@ class EmployerMailer < ApplicationMailer
         attachments.inline["logo.png"] = File.read("#{Rails.root}/public/images/blucollar-logo-non-bold.png")
         mail(
             to: email_address_with_name(@employer.email, @employer.name),
-            subject: "BluCollar - Candidate Matches"
+            subject: "BluCollar - Cancel Subscription"
         )
     end
     
-    def next_billing
+    def next_billing_email
+        attachments.inline["logo.png"] = File.read("#{Rails.root}/public/images/blucollar-logo-non-bold.png")
         @employer = params[:employer]
         @url = 'http://www.blucollar.com'
         mail(
             to: email_address_with_name(@employer.email, @employer.name),
-            subject: "BluCollar - Candidate Matches"
+            subject: "BluCollar - Upcoming Billing"
         )
     end
     
-    def updated_subscription
+    def updated_subscription_email
+        attachments.inline["logo.png"] = File.read("#{Rails.root}/public/images/blucollar-logo-non-bold.png")
         @employer = params[:employer]
         @url = 'http://www.blucollar.com'
         mail(
             to: email_address_with_name(@employer.email, @employer.name),
-            subject: "BluCollar - Candidate Matches"
+            subject: "BluCollar - Recent Updates to Subscription"
         )
     end
 

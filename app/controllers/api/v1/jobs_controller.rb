@@ -77,6 +77,7 @@ class Api::V1::JobsController < ApplicationController
     end
 
     def destroy
+        byebug
         @job = @employer.jobs.find(params[:id])
         @job.destroy
         render json: {job: @job, applicants: ApplicantSerializer.new(@employer.applicants)}

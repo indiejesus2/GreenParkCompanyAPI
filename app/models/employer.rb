@@ -6,6 +6,7 @@ class Employer < ApplicationRecord
   has_many :applicants, through: :jobs
   has_one :subscription
   before_validation :create_stripe_reference, on: :create  
+  after_update :update_jobs
   
   def create_stripe_reference
     response = Stripe::Customer.create(email: email)
@@ -56,6 +57,16 @@ class Employer < ApplicationRecord
           EmployerMailer.with(employer: employer).candidates_email.deliver_later
         end
       end
+    end
+  end
+
+  def update_jobs
+    byebug
+    if self.status == false
+      jobs = self.jobs
+      jobs.each {
+        |job| job.closed
+      }
     end
   end
     

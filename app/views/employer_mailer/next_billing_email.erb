@@ -7,7 +7,7 @@
     <%= image_tag(attachments['logo.png'].url) %>
     <h1>Hello, <%= @employer.name %></h1>
     <p>
-      A <%= @employer.subscription %> subscription will be charged to your card ending in <%= @employer.card %> on <%= @employer.date %>. 
+      A <%= @employer.subscription %> subscription will be charged to your card ending in <%= @employer.current_card %> on <%= @employer.date %>. 
 
       <br>
       If you would like to update your payment method or pause your subscription, update your profile at BluCollar.com.

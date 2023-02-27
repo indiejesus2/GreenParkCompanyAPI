@@ -13,7 +13,7 @@ class EmployeeMailer < ApplicationMailer
 
     def jobs_email
         @employee = params[:employee]
-        @jobs = @employee.jobs.sort_by {|job| job.id}.take(5)
+        @jobs = @employee.jobs.sort_by {|job| job.created_at}.take(5)
         attachments.inline["logo.png"] = File.read("#{Rails.root}/public/images/blucollar-logo-non-bold.png")
         mail(
             to: email_address_with_name(@employee.email, @employee.profile.name),
