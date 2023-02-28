@@ -61,7 +61,6 @@ class Employer < ApplicationRecord
   end
 
   def update_jobs
-    byebug
     if self.status == false
       jobs = self.jobs
       jobs.each {

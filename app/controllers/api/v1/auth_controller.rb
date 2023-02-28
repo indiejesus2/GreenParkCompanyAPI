@@ -14,6 +14,7 @@ class Api::V1::AuthController < ApplicationController
         end
         if @employee && @employee.authenticate(employee_params[:password])
             session[:employee_id] = @employee.id
+            session[:expire_after] = 1.hour
             # format.html { redirect_to @employee, notice: "Employee was successfully creaated." }
             redirect_to api_v1_employee_jobs_path(@employee)
             # token = issue_token(@user)
@@ -21,9 +22,11 @@ class Api::V1::AuthController < ApplicationController
             # render json: {user: UserSerializer.new(@user), jwt: token}
         elsif @contractor && @contractor.authenticate(employer_params[:password])
             session[:contractor_id] = @contractor.id
+            session[:expire_after] = 1.hour
             redirect_to api_v1_employer_jobs_path(@contractor)
         elsif @admin && @admin.authenticate(employee_params[:password])
             session[:employee_id] = @admin.id
+            session[:expire_after] = 1.hour
             render json: {employees: EmployeeSerializer.new(Employee.all), jobs: JobSerializer.new(Job.all), employers: EmployerSerializer.new(Employer.all)}, prerender: true
         else
             render json: {error: "Incorrect Username/Password"}, status: 401
@@ -100,7 +103,6 @@ class Api::V1::AuthController < ApplicationController
         else
             @user = Employer.find_by(email: reset_params[:email])
         end
-        byebug
         if @user.password_reset_token == reset_params[:token]
             @user.update(password: params[:password])
             @user.save

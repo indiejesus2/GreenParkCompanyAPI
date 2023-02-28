@@ -35,7 +35,6 @@ class ContractorsContainer extends Component {
     // }
 
     // componentDidUpdate() {
-    //     // debugger
     //     if (!!this.props.contractor) {
     //         this.props.currentUser()
     //     }

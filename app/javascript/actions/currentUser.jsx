@@ -14,7 +14,9 @@ export const currentUser = () => {
         //         payload: user
         //         })
         // } 
+        // debugger
         if(!user.employee && !user.contractor) {
+            // debugger
             dispatch({
                 type: 'LOGOUT_EMPLOYEE',
                 type: 'LOGOUT_CONTRACTOR'
