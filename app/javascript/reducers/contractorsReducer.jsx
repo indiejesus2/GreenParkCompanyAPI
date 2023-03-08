@@ -84,6 +84,7 @@ export default function contractorsReducer(state = {contractor: [], jobs: [], ap
             let edited = state.jobs.map(job => {
                 if(job.id === action.payload.job.data.attributes.id) {
                     return action.payload.job.data.attributes
+                    
                 } else {
                     return job
                 }
